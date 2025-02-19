@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArenasProyect3", "ArenasProyect3\ArenasProyect3.csproj", "{B942BF7C-92E1-46CB-AC5E-C649D34927EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B942BF7C-92E1-46CB-AC5E-C649D34927EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B942BF7C-92E1-46CB-AC5E-C649D34927EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B942BF7C-92E1-46CB-AC5E-C649D34927EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B942BF7C-92E1-46CB-AC5E-C649D34927EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62C61CF2-982A-46DC-912F-8B4ED2D4B5BA}
+	EndGlobalSection
+EndGlobal
