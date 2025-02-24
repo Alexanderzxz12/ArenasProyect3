@@ -53,13 +53,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
             datalistadoTodasPedido.DataSource = null;
-            cboBusqeuda.SelectedIndex = 0;
 
             //PREFILES Y PERSIMOS---------------------------------------------------------------
             if (Program.RangoEfecto != 1)
             {
-                btnAnularPedido.Visible = false;
-                lblAnularPedido.Visible = false;
+
             }
             //---------------------------------------------------------------------------------
         }
@@ -400,7 +398,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //MOSTRAR ACTAS POR CLIENTE
-        public void MostrarActasCliente(string cliente, DateTime fechaInicio, DateTime fechaTermino)
+        public void MostrarPedidoPorCliente(string cliente, DateTime fechaInicio, DateTime fechaTermino)
         {
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
@@ -437,6 +435,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             DGV.Columns[1].Visible = false;
             DGV.Columns[13].Visible = false;
+            DGV.Columns[14].Visible = false;
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
             foreach (DataGridViewColumn column in DGV.Columns)
@@ -494,7 +493,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //MOSTRAR PEDIDOS SEGUN EL CLIENTE
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            MostrarActasCliente(txtBusqueda.Text, DesdeFecha.Value, HastaFecha.Value);
+            MostrarPedidoPorCliente(txtBusqueda.Text, DesdeFecha.Value, HastaFecha.Value);
         }
 
         //GENERACION DE REPORTES
@@ -507,10 +506,43 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             frm.Show();
         }
 
+        //VISUALIZAR ORDEN DE COMPRA
+        private void btnAbiriOrdenCompra_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(datalistadoTodasPedido.SelectedCells[14].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
+            }
+        }
+
+        //FUNCION PARA ANULAR UN PEDIDO/COTIZACION-------------------------------------------------------------
+        //FUNCION PARA VERIFICAR SI HAY OP CREADA PARA PROCEDER A ANULAR PEDIDO
+        public void VerificarOPxPedidoAnulacion(int idPedido)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("BuscarOPxPedidoAnulacion", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBuscarOPxPedidoAnulacion.DataSource = dt;
+            con.Close();
+        }
+
         //PRODEDIMEINTO PARA ANULAR MI PEDIDO
         private void btnAnularPedido_Click(object sender, EventArgs e)
         {
+            LimpiarAnulacionPedido();
             panleAnulacion.Visible = true;
+            datalistadoTodasPedido.Enabled = false;
         }
 
         //FUNCION PARA PROCEDER A ANULAR MI PEDIDO, COTIZACION
@@ -518,37 +550,51 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             if (datalistadoTodasPedido.CurrentRow != null)
             {
+
                 int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
                 string idCotizacion = datalistadoTodasPedido.SelectedCells[13].Value.ToString();
+                int ordenProduccion = 0;
+
+                VerificarOPxPedidoAnulacion(idPedido);
+
+                if (datalistadoBuscarOPxPedidoAnulacion.RowCount > 0)
+                {
+                    ordenProduccion = datalistadoBuscarOPxPedidoAnulacion.RowCount;
+                }
 
                 DialogResult boton = MessageBox.Show("¿Realmente desea anular esta pedido?. Se anulará la cotización asociada ha este pedido.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    try
+                    if (ordenProduccion > 0)
                     {
-                        SqlConnection con = new SqlConnection();
-                        SqlCommand cmd = new SqlCommand();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("AnularPedido", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idPedido", idPedido);
-                        cmd.Parameters.AddWithValue("@idCotizacion", idCotizacion);
-                        cmd.Parameters.AddWithValue("@mensajeAnulado", txtJustificacionAnulacion.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        MessageBox.Show("Pedido y cotización asociado a esta, anuladas exitosamente.", "Validación del Sistema");
-                        MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
-
-                        panleAnulacion.Visible = false;
-                        txtJustificacionAnulacion.Text = "";
-
-                        //Enviar("jhoalexxxcc@gmail.com.pe", "ANULACIÓN DEL PEDIDO N°. " + codigoPedido, "Correo de verificación de anulación de un pedido por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now);
+                        MessageBox.Show("El pedido que desea anular ya tiene una orden de producción generada.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("AnularPedido", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                            cmd.Parameters.AddWithValue("@idCotizacion", idCotizacion);
+                            cmd.Parameters.AddWithValue("@mensajeAnulado", txtJustificacionAnulacion.Text);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            MessageBox.Show("Pedido y cotización asociado a esta, anuladas exitosamente.", "Validación del Sistema");
+                            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            LimpiarAnulacionPedido();
+                            panleAnulacion.Visible = false;
+                            datalistadoTodasPedido.Enabled = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                 }
             }
@@ -561,9 +607,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //BOTON PARA RETROCEDER DE LA ANULACION
         private void btnRetrocederAnulacion_Click(object sender, EventArgs e)
         {
+            LimpiarAnulacionPedido();
             panleAnulacion.Visible = false;
+            datalistadoTodasPedido.Enabled = true;
+
+        }
+
+        //FUNCION PARA LIMPIAR MIS CONTROLES ORIETADO A ANULACION DE PEDIDO
+        public void LimpiarAnulacionPedido()
+        {
+            datalistadoBuscarOPxPedidoAnulacion.Rows.Clear();
             txtJustificacionAnulacion.Text = "";
         }
+        //-------------------------------------------------------------------------------------------------------
 
         //CREAR ORDEN DE PRODUCCION 
         private void btnOrdenProduccion_Click(object sender, EventArgs e)
@@ -572,7 +628,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             if (datalistadoTodasPedido.CurrentRow != null)
             {
-                if (datalistadoTodasPedido.SelectedCells[12].Value.ToString() == "PENDIENTE")
+                if (datalistadoTodasPedido.SelectedCells[12].Value.ToString() == "ANULADO")
+                {
+                    MessageBox.Show("El pedido se encuentra anulado.", "Validación del Sistema");
+                }
+                else
                 {
                     txtSolicitante.Text = Program.NombreUsuarioCompleto;
                     int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
@@ -582,6 +642,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     CargarPrioridad();
                     CargarLocal();
                     cboOperacion.SelectedIndex = 0;
+                    dtFechaCreacionOP.Value = DateTime.Now;
+                    dtFechaTerminoOP.Value = DateTime.Now;
+                    dtpFechaGeneraPedido.Value = DateTime.Now;
 
                     panelGenerarOP.Visible = true;
 
@@ -637,163 +700,168 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     datalistadoProductos.Columns[9].ReadOnly = true;
                     datalistadoProductos.Columns[10].ReadOnly = true;
                     datalistadoProductos.Columns[11].ReadOnly = true;
-
-                }
-                else
-                {
-                    MessageBox.Show("El pedido está con un estado diferente a pendiente.", "Validación del Sistema");
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un registro para poder generar una OP.", "Validación del sistema");
+                MessageBox.Show("Debe seleccionar un registro para poder generar una OP.", "Validación del Sistema");
             }
         }
 
         //VISUALIZAR MI OC
         private void btnVerOC_Click(object sender, EventArgs e)
         {
-            Process.Start(VisualizarOC);
+            try
+            {
+                Process.Start(VisualizarOC);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
+            }
         }
 
         //SELECCIONAR UN PRODUCTO DE MI LISTADO
         private void datalistadoProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Verifica que la celda seleccionada sea válida y que no sea el encabezado
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (datalistadoProductos.CurrentRow != null)
             {
-                // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
-                DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[6];
-
-                // Validar si la celda está vacía o es cero
-                if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                // Verifica que la celda seleccionada sea válida y que no sea el encabezado
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
-                    cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
-                }
-            }
+                    // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
+                    DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[6];
 
-            // Verifica que la celda seleccionada sea válida y que no sea el encabezado
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
-                DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[8];
-
-                // Validar si la celda está vacía o es cero
-                if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
-                {
-                    cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
-                }
-            }
-
-            // Verifica que la celda seleccionada sea válida y que no sea el encabezado
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
-                DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[9];
-
-                // Validar si la celda está vacía o es cero
-                if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
-                {
-                    cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
-                }
-            }
-
-            //ABIRIR PLANOS
-            DataGridViewColumn currentColumn = datalistadoProductos.Columns[e.ColumnIndex];
-
-            //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
-            if (currentColumn.Name == "pl1")
-            {
-                //SI NO HAY UN REGISTRO SELECCIONADO
-                if (datalistadoProductos.CurrentRow != null)
-                {
-                    //CAPTURAR EL PLANO DE MI PRODUCTO
-                    string planoProducto = datalistadoProductos.SelectedCells[17].Value.ToString();
-                    try
+                    // Validar si la celda está vacía o es cero
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
                     {
-                        Process.Start(planoProducto);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación.", "Validación del Sistema", MessageBoxButtons.OK);
+                        cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
                     }
                 }
-            }
 
-            //ABIRIR PLANOS
-            DataGridViewColumn currentColumn2 = datalistadoProductos.Columns[e.ColumnIndex];
-
-            //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
-            if (currentColumn2.Name == "pl2")
-            {
-                //SI NO HAY UN REGISTRO SELECCIONADO
-                if (datalistadoProductos.CurrentRow != null)
+                // Verifica que la celda seleccionada sea válida y que no sea el encabezado
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
-                    //CAPTURAR EL PLANO DE MI PRODUCTO
-                    string planoSemiProducido = datalistadoProductos.SelectedCells[18].Value.ToString();
-                    try
+                    // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
+                    DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[8];
+
+                    // Validar si la celda está vacía o es cero
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
                     {
-                        Process.Start(planoSemiProducido);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación.", "Validación del Sistema", MessageBoxButtons.OK);
+                        cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
                     }
                 }
+
+                // Verifica que la celda seleccionada sea válida y que no sea el encabezado
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
+                    DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[9];
+
+                    // Validar si la celda está vacía o es cero
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                    {
+                        cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
+                    }
+                }
+
+                //ABIRIR PLANOS
+                DataGridViewColumn currentColumn = datalistadoProductos.Columns[e.ColumnIndex];
+
+                //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
+                if (currentColumn.Name == "pl1")
+                {
+                    //SI NO HAY UN REGISTRO SELECCIONADO
+                    if (datalistadoProductos.CurrentRow != null)
+                    {
+                        //CAPTURAR EL PLANO DE MI PRODUCTO
+                        string planoProducto = datalistadoProductos.SelectedCells[17].Value.ToString();
+                        try
+                        {
+                            Process.Start(planoProducto);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación.", "Validación del Sistema", MessageBoxButtons.OK);
+                        }
+                    }
+                }
+
+                //ABIRIR PLANOS
+                DataGridViewColumn currentColumn2 = datalistadoProductos.Columns[e.ColumnIndex];
+
+                //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
+                if (currentColumn2.Name == "pl2")
+                {
+                    //SI NO HAY UN REGISTRO SELECCIONADO
+                    if (datalistadoProductos.CurrentRow != null)
+                    {
+                        //CAPTURAR EL PLANO DE MI PRODUCTO
+                        string planoSemiProducido = datalistadoProductos.SelectedCells[18].Value.ToString();
+                        try
+                        {
+                            Process.Start(planoSemiProducido);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación.", "Validación del Sistema", MessageBoxButtons.OK);
+                        }
+                    }
+                }
+
+                txtProducto.Text = datalistadoProductos.SelectedCells[3].Value.ToString();
+                lblIdProducto.Text = datalistadoProductos.SelectedCells[16].Value.ToString();
+                txtCodigoBSS.Text = datalistadoProductos.SelectedCells[13].Value.ToString();
+                txtCodigoSistema.Text = datalistadoProductos.SelectedCells[12].Value.ToString();
+                txtCodigoCliente.Text = datalistadoProductos.SelectedCells[14].Value.ToString();
+                string codigoFormulacion = datalistadoProductos.SelectedCells[15].Value.ToString();
+                txtCodigoFormulacion.Text = codigoFormulacion;
+                int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
+
+                BuscarMaterialesFormulacion(codigoFormulacion);
+                BuscarLineaFormulacion(codigoFormulacion);
+                BuscarSemiProducidoFormulacionOP(codigoFormulacion);
+                txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
+                datalistadoActividades.Rows.Clear();
+
+                int contador = 1;
+                foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacion.Rows)
+                {
+                    string idMaterialDetalleActividad = dgv.Cells[0].Value.ToString();
+                    string idProducto = dgv.Cells[1].Value.ToString();
+                    string codigoBSS = dgv.Cells[2].Value.ToString();
+                    string codigoSistema = dgv.Cells[3].Value.ToString();
+                    string descripcionProducto = dgv.Cells[4].Value.ToString();
+                    string cantidad = dgv.Cells[5].Value.ToString();
+                    string medida = dgv.Cells[6].Value.ToString();
+                    string idFormulacion = dgv.Cells[7].Value.ToString();
+                    string stock = dgv.Cells[8].Value.ToString();
+
+                    decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+
+                    datalistadoActividades.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
+                    contador = contador + 1;
+                }
+
+                foreach (DataGridViewRow dgv in datalistadoSemiProducidoFormulacion.Rows)
+                {
+                    string idProducto = dgv.Cells[0].Value.ToString();
+                    string codigoBSS = dgv.Cells[3].Value.ToString();
+                    string codigoSistema = dgv.Cells[1].Value.ToString();
+                    string descripcionProducto = dgv.Cells[2].Value.ToString();
+                    string cantidad = "1.000";
+                    string medida = dgv.Cells[5].Value.ToString();
+                    string stock = dgv.Cells[6].Value.ToString();
+
+                    decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+
+                    datalistadoActividades.Rows.Add(new[] { Convert.ToString(contador), null, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
+
+                }
+
+                lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
+                alternarColorFilas(datalistadoActividades);
             }
-
-            txtProducto.Text = datalistadoProductos.SelectedCells[3].Value.ToString();
-            lblIdProducto.Text = datalistadoProductos.SelectedCells[16].Value.ToString();
-            txtCodigoBSS.Text = datalistadoProductos.SelectedCells[13].Value.ToString();
-            txtCodigoSistema.Text = datalistadoProductos.SelectedCells[12].Value.ToString();
-            txtCodigoCliente.Text = datalistadoProductos.SelectedCells[14].Value.ToString();
-            string codigoFormulacion = datalistadoProductos.SelectedCells[15].Value.ToString();
-            txtCodigoFormulacion.Text = codigoFormulacion;
-            int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
-
-            BuscarMaterialesFormulacion(codigoFormulacion);
-            BuscarLineaFormulacion(codigoFormulacion);
-            BuscarSemiProducidoFormulacionOP(codigoFormulacion);
-            txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
-            datalistadoActividades.Rows.Clear();
-
-            int contador = 1;
-            foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacion.Rows)
-            {
-                string idMaterialDetalleActividad = dgv.Cells[0].Value.ToString();
-                string idProducto = dgv.Cells[1].Value.ToString();
-                string codigoBSS = dgv.Cells[2].Value.ToString();
-                string codigoSistema = dgv.Cells[3].Value.ToString();
-                string descripcionProducto = dgv.Cells[4].Value.ToString();
-                string cantidad = dgv.Cells[5].Value.ToString();
-                string medida = dgv.Cells[6].Value.ToString();
-                string idFormulacion = dgv.Cells[7].Value.ToString();
-                string stock = dgv.Cells[8].Value.ToString();
-
-                decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
-
-                datalistadoActividades.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
-                contador = contador + 1;
-            }
-
-            foreach (DataGridViewRow dgv in datalistadoSemiProducidoFormulacion.Rows)
-            {
-                string idProducto = dgv.Cells[0].Value.ToString();
-                string codigoBSS = dgv.Cells[3].Value.ToString();
-                string codigoSistema = dgv.Cells[1].Value.ToString();
-                string descripcionProducto = dgv.Cells[2].Value.ToString();
-                string cantidad = "1.000";
-                string medida = dgv.Cells[5].Value.ToString();
-                string stock = dgv.Cells[6].Value.ToString();
-
-                decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
-
-                datalistadoActividades.Rows.Add(new[] { Convert.ToString(contador), null, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
-
-            }
-
-            lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
-            alternarColorFilas(datalistadoActividades);
         }
 
         //BOTON PARA GUARDAR MI OP Y REQUERIMEINTOP
@@ -1044,11 +1112,97 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             cboOperacion.SelectedIndex = 0;
         }
 
-        //FUNCION PARA EDITAR MI PEDIDO
+
+
+        //FUNCION DE EDICION DE UNA ORDEN DE COMPRA-----------------------------------------------------------------
+        //FUNCION PARA ACTIVAR MI EDICION DE ORDEN DE COMPRA DE PEDIUDO
         private void btnModificarOrdenCompra_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Función no habilitada.", "Validación del Sistema", MessageBoxButtons.OK);
+            LimpiarEdicionOrdenCompra();
+            panelModificacionOrdenCompra.Visible = true;
+            datalistadoTodasPedido.Enabled = false;
         }
+
+        //FUNCION PARA EDITAR MI ORDEN DE COMPRA DE MI PEDIDO GENERADO
+        private void btnCargarOrdenCompra_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtRutaOrdenCompraModi.Text = openFileDialog1.FileName;
+            }
+        }
+
+        //FUNCION PARA LIMPIAR MI CAJA DE TEXTO LENADO POR MI RUTA
+        private void btnLimpiarCargaOrdenCompra_Click(object sender, EventArgs e)
+        {
+            txtRutaOrdenCompraModi.Text = "";
+        }
+
+        //FUNCION PARA REGRESAR O SALIR DE MI EDICION DE ORDEN DE COMPRA
+        private void btnRegresarOrdenCompra_Click(object sender, EventArgs e)
+        {
+            LimpiarEdicionOrdenCompra();
+            panelModificacionOrdenCompra.Visible = false;
+            datalistadoTodasPedido.Enabled = true;
+        }
+
+        //FUNCION PARA PODER PROCEDER CON LA EDICION DE MI ORDEN DE COMPRA
+        private void btnEditarOrdenCompra_Click(object sender, EventArgs e)
+        {
+            if (txtCodigoOrdenCompraModi.Text == "" || txtRutaOrdenCompraModi.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un código de orden de compra o adjuntar un documento.", "Validación del Sistema");
+            }
+            else
+            {
+                try
+                {
+                    //IMODIFICAR MI ORDEN DE COMPRA DE UN PEDIDO
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ModificarOrdenCompra", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    //MODIFICACION
+                    cmd.Parameters.AddWithValue("@idPedido", datalistadoTodasPedido.SelectedCells[1].Value.ToString());
+                    cmd.Parameters.AddWithValue("@codigOC", txtCodigoOrdenCompraModi.Text);
+
+                    string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraModi.Text + " - PEDIDO " + datalistadoTodasPedido.SelectedCells[2].Value.ToString();
+                    string RutaOld = txtRutaOrdenCompraModi.Text;
+                    string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
+                    File.Copy(RutaOld, RutaNew, true);
+
+                    cmd.Parameters.AddWithValue("@rutaOC", RutaNew);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    //MENSAJE DE CONFIRMACION DE EDICION DE ORDEN DE COMPRA
+                    MessageBox.Show("Se editó correctamente la orden de compra del pedido " + datalistadoTodasPedido.SelectedCells[2].Value.ToString() + ".", "Validación del Sistema");
+                    LimpiarEdicionOrdenCompra();
+                    MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                    panelModificacionOrdenCompra.Visible = false;
+                    datalistadoTodasPedido.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: ", ex.Message);
+                    datalistadoTodasPedido.Enabled = true;
+                }
+            }
+        }
+
+        public void LimpiarEdicionOrdenCompra()
+        {
+            txtRutaOrdenCompraModi.Text = "";
+            txtCodigoOrdenCompraModi.Text = "";
+        }
+        //----------------------------------------------------------------------------------------------------------
 
         //BOTON PARA EXPORTAR MIS DATOS
         private void btnExportarExcel_Click(object sender, EventArgs e)
@@ -1132,20 +1286,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
         }
 
-        ////MÉTODO PARA ENVIAR CORREOS POR LA ANULACIÓN DE UN REQUERIMIENTO
-        //public void Enviar(string para, string asunto, string mensaje)
-        //{
-        //    var outlokkApp = new Microsoft.Office.Interop.Outlook.Application();
-        //    var mailItem = (Microsoft.Office.Interop.Outlook.MailItem)outlokkApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
-        //    mailItem.To = para;
-        //    mailItem.Subject = asunto;
-        //    mailItem.Body = mensaje;
-
-        //    mailItem.Send();
-        //    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(mailItem);
-        //    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(outlokkApp);
-        //}
-
         //FUNCION PARA ABRIR EL MANUAL DE USUARIO
         private void btnInfoPedido_Click(object sender, EventArgs e)
         {
@@ -1214,5 +1354,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

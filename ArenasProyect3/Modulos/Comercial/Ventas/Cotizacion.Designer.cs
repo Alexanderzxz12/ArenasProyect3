@@ -76,8 +76,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -88,6 +86,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.dataListadiCotiDetallesXCodigoAdjudicado = new System.Windows.Forms.DataGridView();
@@ -388,6 +388,20 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtDetallePedido = new System.Windows.Forms.TextBox();
             this.datalistadoGeneracionPedido = new System.Windows.Forms.DataGridView();
+            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CÓDIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPCIÓN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTIDADP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIOUNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCUENTOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTALP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ESTADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSeleccionarFechaEntrega = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.codigoFormulacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDetallePedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtArchivoAdjuntoPedido = new System.Windows.Forms.TextBox();
             this.label82 = new System.Windows.Forms.Label();
             this.txtCodigoCotizacionPedido = new System.Windows.Forms.TextBox();
@@ -497,20 +511,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.label85 = new System.Windows.Forms.Label();
             this.label86 = new System.Windows.Forms.Label();
             this.btnExportar = new System.Windows.Forms.Button();
-            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CÓDIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCRIPCIÓN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CANTIDADP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRECIOUNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCUENTOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTALP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ESTADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSeleccionarFechaEntrega = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.codigoFormulacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDetallePedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadiCotiDetallesXCodigoAdjudicado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadiCotiDetallesXCodigo)).BeginInit();
@@ -4759,6 +4759,126 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoGeneracionPedido.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoGeneracionPedido_CellContentClick);
             this.datalistadoGeneracionPedido.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoGeneracionPedido_CellEndEdit);
             // 
+            // Editar
+            // 
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle45.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Editar.DefaultCellStyle = dataGridViewCellStyle45;
+            this.Editar.HeaderText = "EDITAR";
+            this.Editar.MinimumWidth = 6;
+            this.Editar.Name = "Editar";
+            this.Editar.Visible = false;
+            this.Editar.Width = 60;
+            // 
+            // Item
+            // 
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Item.DefaultCellStyle = dataGridViewCellStyle46;
+            this.Item.HeaderText = "ITEM";
+            this.Item.MinimumWidth = 6;
+            this.Item.Name = "Item";
+            this.Item.Width = 45;
+            // 
+            // CÓDIGO
+            // 
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CÓDIGO.DefaultCellStyle = dataGridViewCellStyle47;
+            this.CÓDIGO.HeaderText = "CÓDIGO";
+            this.CÓDIGO.MinimumWidth = 6;
+            this.CÓDIGO.Name = "CÓDIGO";
+            this.CÓDIGO.Width = 125;
+            // 
+            // DESCRIPCIÓN
+            // 
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DESCRIPCIÓN.DefaultCellStyle = dataGridViewCellStyle48;
+            this.DESCRIPCIÓN.HeaderText = "DESCRIPCIÓN";
+            this.DESCRIPCIÓN.MinimumWidth = 6;
+            this.DESCRIPCIÓN.Name = "DESCRIPCIÓN";
+            this.DESCRIPCIÓN.Width = 500;
+            // 
+            // CANTIDADP
+            // 
+            dataGridViewCellStyle49.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CANTIDADP.DefaultCellStyle = dataGridViewCellStyle49;
+            this.CANTIDADP.HeaderText = "CANTIDAD";
+            this.CANTIDADP.MinimumWidth = 6;
+            this.CANTIDADP.Name = "CANTIDADP";
+            this.CANTIDADP.Width = 80;
+            // 
+            // PRECIOUNITARIO
+            // 
+            dataGridViewCellStyle50.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PRECIOUNITARIO.DefaultCellStyle = dataGridViewCellStyle50;
+            this.PRECIOUNITARIO.HeaderText = "PRECIO UNIT.";
+            this.PRECIOUNITARIO.MinimumWidth = 6;
+            this.PRECIOUNITARIO.Name = "PRECIOUNITARIO";
+            this.PRECIOUNITARIO.Width = 80;
+            // 
+            // DESCUENTOP
+            // 
+            dataGridViewCellStyle51.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DESCUENTOP.DefaultCellStyle = dataGridViewCellStyle51;
+            this.DESCUENTOP.HeaderText = "DSCT";
+            this.DESCUENTOP.MinimumWidth = 6;
+            this.DESCUENTOP.Name = "DESCUENTOP";
+            this.DESCUENTOP.Width = 80;
+            // 
+            // TOTALP
+            // 
+            dataGridViewCellStyle52.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TOTALP.DefaultCellStyle = dataGridViewCellStyle52;
+            this.TOTALP.HeaderText = "TOTAL";
+            this.TOTALP.MinimumWidth = 6;
+            this.TOTALP.Name = "TOTALP";
+            this.TOTALP.Width = 80;
+            // 
+            // ESTADO
+            // 
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle53.NullValue = false;
+            this.ESTADO.DefaultCellStyle = dataGridViewCellStyle53;
+            this.ESTADO.HeaderText = "ESTADO";
+            this.ESTADO.MinimumWidth = 6;
+            this.ESTADO.Name = "ESTADO";
+            this.ESTADO.Visible = false;
+            this.ESTADO.Width = 80;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.Visible = false;
+            this.Codigo.Width = 125;
+            // 
+            // fechaEntrega
+            // 
+            dataGridViewCellStyle54.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaEntrega.DefaultCellStyle = dataGridViewCellStyle54;
+            this.fechaEntrega.HeaderText = "FECHA ENTREGA";
+            this.fechaEntrega.Name = "fechaEntrega";
+            this.fechaEntrega.Width = 80;
+            // 
+            // btnSeleccionarFechaEntrega
+            // 
+            this.btnSeleccionarFechaEntrega.HeaderText = "F. E.";
+            this.btnSeleccionarFechaEntrega.Name = "btnSeleccionarFechaEntrega";
+            this.btnSeleccionarFechaEntrega.Width = 30;
+            // 
+            // codigoFormulacion
+            // 
+            this.codigoFormulacion.HeaderText = "CodigoFormulacion";
+            this.codigoFormulacion.Name = "codigoFormulacion";
+            this.codigoFormulacion.Visible = false;
+            // 
+            // idDetallePedido
+            // 
+            this.idDetallePedido.HeaderText = "IdDetallePedido";
+            this.idDetallePedido.Name = "idDetallePedido";
+            this.idDetallePedido.Visible = false;
+            // 
             // txtArchivoAdjuntoPedido
             // 
             this.txtArchivoAdjuntoPedido.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5983,126 +6103,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnExportar.TabIndex = 2026;
             this.btnExportar.UseVisualStyleBackColor = true;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
-            // 
-            // Editar
-            // 
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle45.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Editar.DefaultCellStyle = dataGridViewCellStyle45;
-            this.Editar.HeaderText = "EDITAR";
-            this.Editar.MinimumWidth = 6;
-            this.Editar.Name = "Editar";
-            this.Editar.Visible = false;
-            this.Editar.Width = 60;
-            // 
-            // Item
-            // 
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Item.DefaultCellStyle = dataGridViewCellStyle46;
-            this.Item.HeaderText = "ITEM";
-            this.Item.MinimumWidth = 6;
-            this.Item.Name = "Item";
-            this.Item.Width = 45;
-            // 
-            // CÓDIGO
-            // 
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CÓDIGO.DefaultCellStyle = dataGridViewCellStyle47;
-            this.CÓDIGO.HeaderText = "CÓDIGO";
-            this.CÓDIGO.MinimumWidth = 6;
-            this.CÓDIGO.Name = "CÓDIGO";
-            this.CÓDIGO.Width = 125;
-            // 
-            // DESCRIPCIÓN
-            // 
-            dataGridViewCellStyle48.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DESCRIPCIÓN.DefaultCellStyle = dataGridViewCellStyle48;
-            this.DESCRIPCIÓN.HeaderText = "DESCRIPCIÓN";
-            this.DESCRIPCIÓN.MinimumWidth = 6;
-            this.DESCRIPCIÓN.Name = "DESCRIPCIÓN";
-            this.DESCRIPCIÓN.Width = 500;
-            // 
-            // CANTIDADP
-            // 
-            dataGridViewCellStyle49.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CANTIDADP.DefaultCellStyle = dataGridViewCellStyle49;
-            this.CANTIDADP.HeaderText = "CANTIDAD";
-            this.CANTIDADP.MinimumWidth = 6;
-            this.CANTIDADP.Name = "CANTIDADP";
-            this.CANTIDADP.Width = 80;
-            // 
-            // PRECIOUNITARIO
-            // 
-            dataGridViewCellStyle50.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PRECIOUNITARIO.DefaultCellStyle = dataGridViewCellStyle50;
-            this.PRECIOUNITARIO.HeaderText = "PRECIO UNIT.";
-            this.PRECIOUNITARIO.MinimumWidth = 6;
-            this.PRECIOUNITARIO.Name = "PRECIOUNITARIO";
-            this.PRECIOUNITARIO.Width = 80;
-            // 
-            // DESCUENTOP
-            // 
-            dataGridViewCellStyle51.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DESCUENTOP.DefaultCellStyle = dataGridViewCellStyle51;
-            this.DESCUENTOP.HeaderText = "DSCT";
-            this.DESCUENTOP.MinimumWidth = 6;
-            this.DESCUENTOP.Name = "DESCUENTOP";
-            this.DESCUENTOP.Width = 80;
-            // 
-            // TOTALP
-            // 
-            dataGridViewCellStyle52.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TOTALP.DefaultCellStyle = dataGridViewCellStyle52;
-            this.TOTALP.HeaderText = "TOTAL";
-            this.TOTALP.MinimumWidth = 6;
-            this.TOTALP.Name = "TOTALP";
-            this.TOTALP.Width = 80;
-            // 
-            // ESTADO
-            // 
-            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle53.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle53.NullValue = false;
-            this.ESTADO.DefaultCellStyle = dataGridViewCellStyle53;
-            this.ESTADO.HeaderText = "ESTADO";
-            this.ESTADO.MinimumWidth = 6;
-            this.ESTADO.Name = "ESTADO";
-            this.ESTADO.Visible = false;
-            this.ESTADO.Width = 80;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.MinimumWidth = 6;
-            this.Codigo.Name = "Codigo";
-            this.Codigo.Visible = false;
-            this.Codigo.Width = 125;
-            // 
-            // fechaEntrega
-            // 
-            dataGridViewCellStyle54.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fechaEntrega.DefaultCellStyle = dataGridViewCellStyle54;
-            this.fechaEntrega.HeaderText = "FECHA ENTREGA";
-            this.fechaEntrega.Name = "fechaEntrega";
-            this.fechaEntrega.Width = 80;
-            // 
-            // btnSeleccionarFechaEntrega
-            // 
-            this.btnSeleccionarFechaEntrega.HeaderText = "F. E.";
-            this.btnSeleccionarFechaEntrega.Name = "btnSeleccionarFechaEntrega";
-            this.btnSeleccionarFechaEntrega.Width = 30;
-            // 
-            // codigoFormulacion
-            // 
-            this.codigoFormulacion.HeaderText = "CodigoFormulacion";
-            this.codigoFormulacion.Name = "codigoFormulacion";
-            this.codigoFormulacion.Visible = false;
-            // 
-            // idDetallePedido
-            // 
-            this.idDetallePedido.HeaderText = "IdDetallePedido";
-            this.idDetallePedido.Name = "idDetallePedido";
-            this.idDetallePedido.Visible = false;
             // 
             // Cotizacion
             // 

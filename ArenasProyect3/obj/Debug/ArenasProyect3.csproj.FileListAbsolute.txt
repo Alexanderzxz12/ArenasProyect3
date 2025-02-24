@@ -129,3 +129,5 @@ C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\Ar
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Admin.MenuPrincipal.resources
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOP.MenuConsultasOP.resources
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOP.ListadoPedidos.resources
+C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOP.ListadoOrdenProduccion.resources
+C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Visualizadores.VisualizarOrdenProduccion.resources

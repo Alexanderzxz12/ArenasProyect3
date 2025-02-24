@@ -58,7 +58,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //ABRIR LISTADO DE ORDENES DE PRODUCCION
         private void btnListadoOP_Click(object sender, EventArgs e)
         {
-
+            if (panelMantenimientos.Controls.Count == 1)
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoOrdenProduccion());
+            }
+            else
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoOrdenProduccion());
+            }
         }
 
         //ABRIR LISTADO DETALLES DE LAS ORDENES DE PRODUCCION

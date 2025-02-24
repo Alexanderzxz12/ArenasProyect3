@@ -404,6 +404,12 @@
     <Compile Include="Modulos\Procesos\Productos\ListadoProductos.Designer.cs">
       <DependentUpon>ListadoProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOP\ListadoOrdenProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOP\ListadoOrdenProduccion.Designer.cs">
+      <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Produccion\ConsultasOP\ListadoPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -482,6 +488,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InformeNotaSalida.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\InformeOrdenProduccion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeOrdenProduccion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\InformePedidoVenta.cs">
@@ -567,6 +579,12 @@
     </Compile>
     <Compile Include="Visualizadores\VisualizarNotaSalida.Designer.cs">
       <DependentUpon>VisualizarNotaSalida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarOrdenProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarOrdenProduccion.Designer.cs">
+      <DependentUpon>VisualizarOrdenProduccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Visualizadores\VisualizarPedidoVenta.cs">
       <SubType>Form</SubType>
@@ -745,6 +763,9 @@
     <EmbeddedResource Include="Modulos\Procesos\Productos\ListadoProductos.resx">
       <DependentUpon>ListadoProductos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\ListadoOrdenProduccion.resx">
+      <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\ListadoPedidos.resx">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
     </EmbeddedResource>
@@ -803,6 +824,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeNotaSalida.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InformeOrdenProduccion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeOrdenProduccion.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\InformePedidoVenta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformePedidoVenta.cs</LastGenOutput>
@@ -849,6 +874,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarNotaSalida.resx">
       <DependentUpon>VisualizarNotaSalida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visualizadores\VisualizarOrdenProduccion.resx">
+      <DependentUpon>VisualizarOrdenProduccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarPedidoVenta.resx">
       <DependentUpon>VisualizarPedidoVenta.cs</DependentUpon>
