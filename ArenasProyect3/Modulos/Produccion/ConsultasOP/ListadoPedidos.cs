@@ -499,11 +499,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //GENERACION DE REPORTES
         private void btnGenerarPedidoPdf_Click(object sender, EventArgs e)
         {
-            string ccodigoCotizacion = datalistadoTodasPedido.Rows[datalistadoTodasPedido.CurrentRow.Index].Cells[1].Value.ToString();
-            Visualizadores.VisualizarPedidoVenta frm = new Visualizadores.VisualizarPedidoVenta();
-            frm.lblCodigo.Text = ccodigoCotizacion;
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoTodasPedido.CurrentRow != null)
+            {
+                string ccodigoCotizacion = datalistadoTodasPedido.Rows[datalistadoTodasPedido.CurrentRow.Index].Cells[1].Value.ToString();
+                Visualizadores.VisualizarPedidoVenta frm = new Visualizadores.VisualizarPedidoVenta();
+                frm.lblCodigo.Text = ccodigoCotizacion;
 
-            frm.Show();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un pedido para poder generar el PDF.", "Validación del Sistema");
+            }
         }
 
         //VISUALIZAR ORDEN DE COMPRA
@@ -550,7 +558,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             if (datalistadoTodasPedido.CurrentRow != null)
             {
-
                 int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
                 string idCotizacion = datalistadoTodasPedido.SelectedCells[13].Value.ToString();
                 int ordenProduccion = 0;
@@ -610,13 +617,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             LimpiarAnulacionPedido();
             panleAnulacion.Visible = false;
             datalistadoTodasPedido.Enabled = true;
-
         }
 
         //FUNCION PARA LIMPIAR MIS CONTROLES ORIETADO A ANULACION DE PEDIDO
         public void LimpiarAnulacionPedido()
         {
-            datalistadoBuscarOPxPedidoAnulacion.Rows.Clear();
             txtJustificacionAnulacion.Text = "";
         }
         //-------------------------------------------------------------------------------------------------------
@@ -634,6 +639,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 }
                 else
                 {
+                    LimpiarCamposOrdenProduccion();
                     txtSolicitante.Text = Program.NombreUsuarioCompleto;
                     int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
                     BuscarPedidoPorCodigo(idPedido);
@@ -685,7 +691,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         string totalItems = dgv.Cells[16].Value.ToString();
                         string numeroItem = dgv.Cells[17].Value.ToString();
 
-                        datalistadoProductos.Rows.Add(new[] { null, null, item, descripcionProducto, codigoPedido, medidoProducto, null, cantidadPedido, null, null, stock, formatoFecha, codigoProducto, codigoBss, codigoCliente, codigoFormulacion, idArt, planoProducto, planoSemiProducido, idPedidoD, totalItems, numeroItem, idDetallePedido });
+                        datalistadoProductos.Rows.Add(new[] { null, null, item, descripcionProducto, codigoPedido, medidoProducto, "0", cantidadPedido, null, null, stock, formatoFecha, codigoProducto, codigoBss, codigoCliente, codigoFormulacion, idArt, planoProducto, planoSemiProducido, idPedidoD, totalItems, numeroItem, idDetallePedido });
                     }
 
                     alternarColorFilas(datalistadoProductos);
@@ -708,6 +714,21 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //FUNCION PARA ORDENAR MI LISTADO DE PRODICTOS
+        public static void SortByColumn(DataGridView dataGridView, int columnIndex, ListSortDirection direction)
+        {
+            // Verifica que el índice de la columna esté dentro del rango
+            if (columnIndex >= 0 && columnIndex < dataGridView.Columns.Count)
+            {
+                // Ordena el DataGridView por la columna especificada y en la dirección especificada
+                dataGridView.Sort(dataGridView.Columns[columnIndex], direction);
+            }
+            else
+            {
+                MessageBox.Show("Índice de columna fuera de rango.");
+            }
+        }
+
         //VISUALIZAR MI OC
         private void btnVerOC_Click(object sender, EventArgs e)
         {
@@ -719,6 +740,89 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             {
                 MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
             }
+        }
+
+        //SELECCIONAR UN PRODUCTO - TERMINAR LA SELECCION
+        private void datalistadoProductos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoProductos.CurrentRow != null)
+            {
+                // Verifica que la celda seleccionada sea válida y que no sea el encabezado
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
+                    DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[6];
+
+                    // Validar si la celda está vacía o es cero
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                    {
+                        cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
+                    }
+                }
+
+                // Verifica que la celda seleccionada sea válida y que no sea el encabezado
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
+                    DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[8];
+
+                    // Validar si la celda está vacía o es cero
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                    {
+                        cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
+                    }
+                }
+
+                // Verifica que la celda seleccionada sea válida y que no sea el encabezado
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    // Obtener la celda en la columna 4 (índice 3, porque comienza en 0)
+                    DataGridViewCell cell = datalistadoProductos.Rows[e.RowIndex].Cells[9];
+
+                    // Validar si la celda está vacía o es cero
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                    {
+                        cell.Value = 0; // Asigna el valor predeterminado, por ejemplo, 1
+                    }
+                }
+            }
+
+            txtProducto.Text = datalistadoProductos.SelectedCells[3].Value.ToString();
+            lblIdProducto.Text = datalistadoProductos.SelectedCells[16].Value.ToString();
+            txtCodigoBSS.Text = datalistadoProductos.SelectedCells[13].Value.ToString();
+            txtCodigoSistema.Text = datalistadoProductos.SelectedCells[12].Value.ToString();
+            txtCodigoCliente.Text = datalistadoProductos.SelectedCells[14].Value.ToString();
+            string codigoFormulacion = datalistadoProductos.SelectedCells[15].Value.ToString();
+            txtCodigoFormulacion.Text = codigoFormulacion;
+            int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
+
+            BuscarMaterialesFormulacion(codigoFormulacion);
+            BuscarLineaFormulacion(codigoFormulacion);
+            //BuscarSemiProducidoFormulacionOP(codigoFormulacion);
+            txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
+            datalistadoActividades.Rows.Clear();
+
+            int contador = 1;
+            foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacion.Rows)
+            {
+                string idMaterialDetalleActividad = dgv.Cells[0].Value.ToString();
+                string idProducto = dgv.Cells[1].Value.ToString();
+                string codigoBSS = dgv.Cells[2].Value.ToString();
+                string codigoSistema = dgv.Cells[3].Value.ToString();
+                string descripcionProducto = dgv.Cells[4].Value.ToString();
+                string cantidad = dgv.Cells[5].Value.ToString();
+                string medida = dgv.Cells[6].Value.ToString();
+                string idFormulacion = dgv.Cells[7].Value.ToString();
+                string stock = dgv.Cells[8].Value.ToString();
+
+                decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+
+                datalistadoActividades.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
+                contador = contador + 1;
+            }
+
+            lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
+            alternarColorFilas(datalistadoActividades);
         }
 
         //SELECCIONAR UN PRODUCTO DE MI LISTADO
@@ -820,7 +924,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 BuscarMaterialesFormulacion(codigoFormulacion);
                 BuscarLineaFormulacion(codigoFormulacion);
-                BuscarSemiProducidoFormulacionOP(codigoFormulacion);
+                //BuscarSemiProducidoFormulacionOP(codigoFormulacion);
                 txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
                 datalistadoActividades.Rows.Clear();
 
@@ -843,22 +947,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     contador = contador + 1;
                 }
 
-                foreach (DataGridViewRow dgv in datalistadoSemiProducidoFormulacion.Rows)
-                {
-                    string idProducto = dgv.Cells[0].Value.ToString();
-                    string codigoBSS = dgv.Cells[3].Value.ToString();
-                    string codigoSistema = dgv.Cells[1].Value.ToString();
-                    string descripcionProducto = dgv.Cells[2].Value.ToString();
-                    string cantidad = "1.000";
-                    string medida = dgv.Cells[5].Value.ToString();
-                    string stock = dgv.Cells[6].Value.ToString();
-
-                    decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
-
-                    datalistadoActividades.Rows.Add(new[] { Convert.ToString(contador), null, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
-
-                }
-
                 lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
                 alternarColorFilas(datalistadoActividades);
             }
@@ -868,23 +956,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void btnGuardarOP_Click(object sender, EventArgs e)
         {
             //VALIDACIÓN DE CANTIDADES
-            foreach (DataGridViewRow row in datalistadoProductos.Rows)
+            decimal? cantidadProduccion = Convert.ToDecimal(datalistadoProductos.SelectedCells[6].Value);
+            decimal? cantidadPedido = Convert.ToDecimal(datalistadoProductos.SelectedCells[7].Value);
+
+            if (cantidadProduccion > cantidadPedido)
             {
-                decimal? cantidadProduccion = Convert.ToDecimal(row.Cells[6].Value);
-                decimal? cantidadPedido = Convert.ToDecimal(row.Cells[7].Value);
-
-                if (cantidadProduccion > cantidadPedido)
-                {
-                    MessageBox.Show("No se puede mandar a producir más de la cantidad pedida.", "Validación de Sistema");
-                    return;
-                }
-                else if (cantidadProduccion == 0 || cantidadProduccion == null)
-                {
-                    MessageBox.Show("Debe ingresar una cantidad a producir.", "Validación de Sistema");
-                    return;
-                }
+                MessageBox.Show("No se puede mandar a producir más de la cantidad pedida.", "Validación de Sistema");
+                return;
             }
-
+            else if (cantidadProduccion == 0 || cantidadProduccion == null)
+            {
+                MessageBox.Show("Debe ingresar una cantidad a producir.", "Validación de Sistema");
+                return;
+            }
 
             if (datalistadoProductos.RowCount == 0)
             {
@@ -953,11 +1037,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             }
                             //INGRESAR DATOS DE MI PEDIDO
                             cmd.Parameters.AddWithValue("@idPedido", datalistadoProductos.SelectedCells[19].Value.ToString());
-                            cmd.Parameters.AddWithValue("@numeroItem", datalistadoProductos.SelectedCells[20].Value.ToString());
-                            cmd.Parameters.AddWithValue("@totalItems", datalistadoProductos.SelectedCells[21].Value.ToString());
+                            cmd.Parameters.AddWithValue("@numeroItem", datalistadoProductos.SelectedCells[21].Value.ToString());
+                            cmd.Parameters.AddWithValue("@totalItems", datalistadoProductos.SelectedCells[20].Value.ToString());
                             cmd.Parameters.AddWithValue("@cantidadTotal", datalistadoProductos.SelectedCells[6].Value.ToString());
                             //MODIFICACION DEL ESTADO DE MI DETALLE PEDIDO
                             cmd.Parameters.AddWithValue("@idDetallePedido", datalistadoProductos.SelectedCells[22].Value.ToString());
+                            cmd.Parameters.AddWithValue("@observaciones", txtObservacionesOP.Text);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
@@ -1025,7 +1110,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                             //MENSAJE DE CONFORMIAD CON EL INGRESO DE LA ORDEN DE PRODUCCION
                             MessageBox.Show("Se generó la Orden de producción correctamente.", "Validación del Sistema");
-                            LimpiarCamposOrdenProduccion();
+
+                            LimpiarCamposOrdenProduccionInconpleto();
+
                             int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
                             //RECARGA DE DATOS PARA TRAER LA NUEVA LISTA CON LOS NUEVOS DATOS
                             BuscarPedidoPorCodigo(idPedido);
@@ -1038,7 +1125,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                                 string descripcionProducto = dgv.Cells[2].Value.ToString();
                                 string codigoPedido = dgv.Cells[3].Value.ToString();
                                 string medidoProducto = dgv.Cells[4].Value.ToString();
-                                string cantidadPedido = dgv.Cells[5].Value.ToString();
+                                string cantidadPedidop = dgv.Cells[5].Value.ToString();
                                 DateTime fechaEntrega = Convert.ToDateTime(dgv.Cells[6].Value.ToString());
                                 string formatoFecha = fechaEntrega.ToString("yyyy-MM-dd");
                                 string codigoProducto = dgv.Cells[7].Value.ToString();
@@ -1053,7 +1140,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                                 string totalItems = dgv.Cells[16].Value.ToString();
                                 string numeroItem = dgv.Cells[17].Value.ToString();
 
-                                datalistadoProductos.Rows.Add(new[] { null, null, item, descripcionProducto, codigoPedido, medidoProducto, null, cantidadPedido, null, null, stock, formatoFecha, codigoProducto, codigoBss, codigoCliente, codigoFormulacion, idArt, planoProducto, planoSemiProducido, idPedidoD, totalItems, numeroItem, idDetallePedido });
+                                datalistadoProductos.Rows.Add(new[] { null, null, item, descripcionProducto, codigoPedido, medidoProducto, null, cantidadPedidop, null, null, stock, formatoFecha, codigoProducto, codigoBss, codigoCliente, codigoFormulacion, idArt, planoProducto, planoSemiProducido, idPedidoD, totalItems, numeroItem, idDetallePedido });
                             }
 
                             alternarColorFilas(datalistadoProductos);
@@ -1112,7 +1199,29 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             cboOperacion.SelectedIndex = 0;
         }
 
-
+        //LIMPIAR AMPOS DE LA ORDEN DE PRIDCCUIN (NO TODOS LOS DATOS)
+        public void LimpiarCamposOrdenProduccionInconpleto()
+        {
+            datalistadoActividades.Rows.Clear();
+            datalistadoProductos.Rows.Clear();
+            dtpFechaGeneraPedido.Value = DateTime.Now;
+            dtFechaCreacionOP.Value = DateTime.Now;
+            dtFechaTerminoOP.Value = DateTime.Now;
+            txtProducto.Text = "";
+            txtCodigoBSS.Text = "";
+            txtCodigoSistema.Text = "";
+            txtCodigoCliente.Text = "";
+            txtArea.Text = "";
+            txtCodigoFormulacion.Text = "";
+            txtColorProducto.Text = "";
+            txtObservacionesOP.Text = "";
+            lblCantidadItemsMateriales.Text = "***";
+            lblCantidadItems.Text = "***";
+            cboSede.SelectedIndex = 0;
+            cboPrioridad.SelectedIndex = 0;
+            cboLocal.SelectedIndex = 0;
+            cboOperacion.SelectedIndex = 0;
+        }
 
         //FUNCION DE EDICION DE UNA ORDEN DE COMPRA-----------------------------------------------------------------
         //FUNCION PARA ACTIVAR MI EDICION DE ORDEN DE COMPRA DE PEDIUDO
@@ -1335,7 +1444,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 // **Enviar parámetro al reporte**
                 // Cambia "NombreParametro" por el nombre exacto del parámetro en tu reporte
                 int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                int codigoPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[2].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                string codigoPedido = datalistadoTodasPedido.SelectedCells[2].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
                 string cliente = datalistadoTodasPedido.SelectedCells[5].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
                 string unidad = datalistadoTodasPedido.SelectedCells[10].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
                 crystalReport.SetParameterValue("@idPedido", idPedido);
@@ -1354,7 +1463,5 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }

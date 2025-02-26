@@ -30,9 +30,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoOrdenProduccion));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -69,10 +72,42 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
-            this.btnAnularPedido = new System.Windows.Forms.Button();
+            this.btnAnularOP = new System.Windows.Forms.Button();
             this.lblAnularPedido = new System.Windows.Forms.Label();
             this.btnGenerarOrdenProduccionPDF = new System.Windows.Forms.Button();
             this.label53 = new System.Windows.Forms.Label();
+            this.btnPlano = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnOC = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panleAnulacion = new System.Windows.Forms.Panel();
+            this.btnRetrocederAnulacion = new System.Windows.Forms.Button();
+            this.btnProcederAnulacion = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.txtJustificacionAnulacion = new System.Windows.Forms.TextBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label59 = new System.Windows.Forms.Label();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.btnInfoDetalles = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.datalistadoExcel = new System.Windows.Forms.DataGridView();
+            this.nActa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nLiqui = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chekCulminada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaTermino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.responsable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordenCOmpra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).BeginInit();
@@ -89,6 +124,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTodasOP)).BeginInit();
+            this.panleAnulacion.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoDetalles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -480,25 +521,25 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.datalistadoTodasOP.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasOP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasOP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datalistadoTodasOP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasOP.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.detalles});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasOP.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasOP.DefaultCellStyle = dataGridViewCellStyle3;
             this.datalistadoTodasOP.Location = new System.Drawing.Point(5, 197);
             this.datalistadoTodasOP.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoTodasOP.MultiSelect = false;
@@ -513,10 +554,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // 
             // detalles
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle5.NullValue")));
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.detalles.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.detalles.DefaultCellStyle = dataGridViewCellStyle2;
             this.detalles.HeaderText = "SEGUI.";
             this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
             this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -530,7 +571,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(597, 624);
+            this.label18.Location = new System.Drawing.Point(436, 624);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(94, 13);
@@ -543,11 +584,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnExportar.FlatAppearance.BorderSize = 0;
             this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
-            this.btnExportar.Location = new System.Drawing.Point(623, 588);
+            this.btnExportar.Location = new System.Drawing.Point(469, 588);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(36, 33);
             this.btnExportar.TabIndex = 2035;
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnExportarExcel
             // 
@@ -555,40 +597,42 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnExportarExcel.FlatAppearance.BorderSize = 0;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
-            this.btnExportarExcel.Location = new System.Drawing.Point(442, 588);
+            this.btnExportarExcel.Location = new System.Drawing.Point(375, 588);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(36, 33);
             this.btnExportarExcel.TabIndex = 2034;
             this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // label60
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(434, 624);
+            this.label60.Location = new System.Drawing.Point(367, 624);
             this.label60.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(53, 13);
             this.label60.TabIndex = 2033;
             this.label60.Text = "EXPORTAR";
             // 
-            // btnAnularPedido
+            // btnAnularOP
             // 
-            this.btnAnularPedido.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAnularPedido.FlatAppearance.BorderSize = 0;
-            this.btnAnularPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnularPedido.Image = ((System.Drawing.Image)(resources.GetObject("btnAnularPedido.Image")));
-            this.btnAnularPedido.Location = new System.Drawing.Point(700, 587);
-            this.btnAnularPedido.Name = "btnAnularPedido";
-            this.btnAnularPedido.Size = new System.Drawing.Size(41, 35);
-            this.btnAnularPedido.TabIndex = 2032;
-            this.btnAnularPedido.UseVisualStyleBackColor = true;
+            this.btnAnularOP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAnularOP.FlatAppearance.BorderSize = 0;
+            this.btnAnularOP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnularOP.Image = ((System.Drawing.Image)(resources.GetObject("btnAnularOP.Image")));
+            this.btnAnularOP.Location = new System.Drawing.Point(766, 587);
+            this.btnAnularOP.Name = "btnAnularOP";
+            this.btnAnularOP.Size = new System.Drawing.Size(41, 35);
+            this.btnAnularOP.TabIndex = 2032;
+            this.btnAnularOP.UseVisualStyleBackColor = true;
+            this.btnAnularOP.Click += new System.EventHandler(this.btnAnularOP_Click);
             // 
             // lblAnularPedido
             // 
             this.lblAnularPedido.AutoSize = true;
             this.lblAnularPedido.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnularPedido.Location = new System.Drawing.Point(699, 624);
+            this.lblAnularPedido.Location = new System.Drawing.Point(765, 624);
             this.lblAnularPedido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAnularPedido.Name = "lblAnularPedido";
             this.lblAnularPedido.Size = new System.Drawing.Size(44, 13);
@@ -601,7 +645,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnGenerarOrdenProduccionPDF.FlatAppearance.BorderSize = 0;
             this.btnGenerarOrdenProduccionPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarOrdenProduccionPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarOrdenProduccionPDF.Image")));
-            this.btnGenerarOrdenProduccionPDF.Location = new System.Drawing.Point(523, 587);
+            this.btnGenerarOrdenProduccionPDF.Location = new System.Drawing.Point(691, 587);
             this.btnGenerarOrdenProduccionPDF.Name = "btnGenerarOrdenProduccionPDF";
             this.btnGenerarOrdenProduccionPDF.Size = new System.Drawing.Size(41, 35);
             this.btnGenerarOrdenProduccionPDF.TabIndex = 2028;
@@ -612,12 +656,369 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(502, 624);
+            this.label53.Location = new System.Drawing.Point(670, 624);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(83, 13);
             this.label53.TabIndex = 2027;
             this.label53.Text = "PDF ORDEN PRO.";
+            // 
+            // btnPlano
+            // 
+            this.btnPlano.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPlano.FlatAppearance.BorderSize = 0;
+            this.btnPlano.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlano.Image = ((System.Drawing.Image)(resources.GetObject("btnPlano.Image")));
+            this.btnPlano.Location = new System.Drawing.Point(554, 587);
+            this.btnPlano.Name = "btnPlano";
+            this.btnPlano.Size = new System.Drawing.Size(41, 35);
+            this.btnPlano.TabIndex = 2038;
+            this.btnPlano.UseVisualStyleBackColor = true;
+            this.btnPlano.Click += new System.EventHandler(this.btnPlano_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(545, 624);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 2037;
+            this.label1.Text = "PDF PLANO";
+            // 
+            // btnOC
+            // 
+            this.btnOC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOC.FlatAppearance.BorderSize = 0;
+            this.btnOC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOC.Image = ((System.Drawing.Image)(resources.GetObject("btnOC.Image")));
+            this.btnOC.Location = new System.Drawing.Point(618, 587);
+            this.btnOC.Name = "btnOC";
+            this.btnOC.Size = new System.Drawing.Size(41, 35);
+            this.btnOC.TabIndex = 2040;
+            this.btnOC.UseVisualStyleBackColor = true;
+            this.btnOC.Click += new System.EventHandler(this.btnOC_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(615, 624);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 2039;
+            this.label2.Text = "PDF O/C";
+            // 
+            // panleAnulacion
+            // 
+            this.panleAnulacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panleAnulacion.Controls.Add(this.btnRetrocederAnulacion);
+            this.panleAnulacion.Controls.Add(this.btnProcederAnulacion);
+            this.panleAnulacion.Controls.Add(this.label12);
+            this.panleAnulacion.Controls.Add(this.label13);
+            this.panleAnulacion.Controls.Add(this.panel10);
+            this.panleAnulacion.Controls.Add(this.txtJustificacionAnulacion);
+            this.panleAnulacion.Controls.Add(this.label57);
+            this.panleAnulacion.Controls.Add(this.label58);
+            this.panleAnulacion.Controls.Add(this.panel9);
+            this.panleAnulacion.Location = new System.Drawing.Point(328, 197);
+            this.panleAnulacion.Margin = new System.Windows.Forms.Padding(4);
+            this.panleAnulacion.Name = "panleAnulacion";
+            this.panleAnulacion.Size = new System.Drawing.Size(521, 246);
+            this.panleAnulacion.TabIndex = 2041;
+            this.panleAnulacion.Visible = false;
+            // 
+            // btnRetrocederAnulacion
+            // 
+            this.btnRetrocederAnulacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRetrocederAnulacion.FlatAppearance.BorderSize = 0;
+            this.btnRetrocederAnulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetrocederAnulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnRetrocederAnulacion.Image")));
+            this.btnRetrocederAnulacion.Location = new System.Drawing.Point(444, 192);
+            this.btnRetrocederAnulacion.Name = "btnRetrocederAnulacion";
+            this.btnRetrocederAnulacion.Size = new System.Drawing.Size(36, 33);
+            this.btnRetrocederAnulacion.TabIndex = 2022;
+            this.btnRetrocederAnulacion.UseVisualStyleBackColor = true;
+            this.btnRetrocederAnulacion.Click += new System.EventHandler(this.btnRetrocederAnulacion_Click);
+            // 
+            // btnProcederAnulacion
+            // 
+            this.btnProcederAnulacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProcederAnulacion.FlatAppearance.BorderSize = 0;
+            this.btnProcederAnulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcederAnulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnProcederAnulacion.Image")));
+            this.btnProcederAnulacion.Location = new System.Drawing.Point(357, 192);
+            this.btnProcederAnulacion.Name = "btnProcederAnulacion";
+            this.btnProcederAnulacion.Size = new System.Drawing.Size(36, 33);
+            this.btnProcederAnulacion.TabIndex = 2021;
+            this.btnProcederAnulacion.UseVisualStyleBackColor = true;
+            this.btnProcederAnulacion.Click += new System.EventHandler(this.btnProcederAnulacion_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(431, 226);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 14);
+            this.label12.TabIndex = 2020;
+            this.label12.Text = "REGRESAR";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(341, 226);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(69, 14);
+            this.label13.TabIndex = 2019;
+            this.label13.Text = "CONTINUAR";
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel10.Location = new System.Drawing.Point(109, 45);
+            this.panel10.Margin = new System.Windows.Forms.Padding(4);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(300, 1);
+            this.panel10.TabIndex = 998;
+            // 
+            // txtJustificacionAnulacion
+            // 
+            this.txtJustificacionAnulacion.Location = new System.Drawing.Point(14, 79);
+            this.txtJustificacionAnulacion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtJustificacionAnulacion.Multiline = true;
+            this.txtJustificacionAnulacion.Name = "txtJustificacionAnulacion";
+            this.txtJustificacionAnulacion.Size = new System.Drawing.Size(491, 106);
+            this.txtJustificacionAnulacion.TabIndex = 227;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(28, 60);
+            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(462, 15);
+            this.label57.TabIndex = 226;
+            this.label57.Text = "Se va a proceder a anular la orden de producción, por favor justificar este proce" +
+    "so.";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(210, 26);
+            this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(99, 18);
+            this.label58.TabIndex = 225;
+            this.label58.Text = "Observaciones";
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel9.Controls.Add(this.label59);
+            this.panel9.Controls.Add(this.pictureBox14);
+            this.panel9.Controls.Add(this.btnInfoDetalles);
+            this.panel9.Controls.Add(this.pictureBox9);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Margin = new System.Windows.Forms.Padding(5);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(519, 18);
+            this.panel9.TabIndex = 40;
+            // 
+            // label59
+            // 
+            this.label59.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label59.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(24, 0);
+            this.label59.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(150, 18);
+            this.label59.TabIndex = 2;
+            this.label59.Text = "Detalles y Observaciones";
+            this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
+            this.pictureBox14.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(24, 18);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox14.TabIndex = 999;
+            this.pictureBox14.TabStop = false;
+            // 
+            // btnInfoDetalles
+            // 
+            this.btnInfoDetalles.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInfoDetalles.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnInfoDetalles.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoDetalles.Image")));
+            this.btnInfoDetalles.Location = new System.Drawing.Point(493, 0);
+            this.btnInfoDetalles.Margin = new System.Windows.Forms.Padding(5);
+            this.btnInfoDetalles.Name = "btnInfoDetalles";
+            this.btnInfoDetalles.Size = new System.Drawing.Size(26, 18);
+            this.btnInfoDetalles.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnInfoDetalles.TabIndex = 55;
+            this.btnInfoDetalles.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 54;
+            this.pictureBox9.TabStop = false;
+            // 
+            // datalistadoExcel
+            // 
+            this.datalistadoExcel.AllowUserToAddRows = false;
+            this.datalistadoExcel.AllowUserToDeleteRows = false;
+            this.datalistadoExcel.AllowUserToResizeColumns = false;
+            this.datalistadoExcel.AllowUserToResizeRows = false;
+            this.datalistadoExcel.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoExcel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadoExcel.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.datalistadoExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoExcel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nActa,
+            this.nLiqui,
+            this.chekCulminada,
+            this.fechaInicio,
+            this.fechaTermino,
+            this.cliente,
+            this.unidad,
+            this.responsable,
+            this.estado,
+            this.ordenCOmpra,
+            this.estadoa,
+            this.EstadoOP,
+            this.EstadoOC});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle5;
+            this.datalistadoExcel.Location = new System.Drawing.Point(5, 526);
+            this.datalistadoExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoExcel.MultiSelect = false;
+            this.datalistadoExcel.Name = "datalistadoExcel";
+            this.datalistadoExcel.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoExcel.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.datalistadoExcel.RowHeadersVisible = false;
+            this.datalistadoExcel.RowHeadersWidth = 20;
+            this.datalistadoExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoExcel.Size = new System.Drawing.Size(51, 54);
+            this.datalistadoExcel.TabIndex = 2042;
+            // 
+            // nActa
+            // 
+            this.nActa.HeaderText = "N°. OP";
+            this.nActa.Name = "nActa";
+            this.nActa.ReadOnly = true;
+            // 
+            // nLiqui
+            // 
+            this.nLiqui.HeaderText = "FECHA INICIO";
+            this.nLiqui.Name = "nLiqui";
+            this.nLiqui.ReadOnly = true;
+            // 
+            // chekCulminada
+            // 
+            this.chekCulminada.HeaderText = "FECHA ENTREGA";
+            this.chekCulminada.Name = "chekCulminada";
+            this.chekCulminada.ReadOnly = true;
+            // 
+            // fechaInicio
+            // 
+            this.fechaInicio.HeaderText = "CLIENTE";
+            this.fechaInicio.Name = "fechaInicio";
+            this.fechaInicio.ReadOnly = true;
+            // 
+            // fechaTermino
+            // 
+            this.fechaTermino.HeaderText = "UNIDAD";
+            this.fechaTermino.Name = "fechaTermino";
+            this.fechaTermino.ReadOnly = true;
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "ITEM";
+            this.cliente.Name = "cliente";
+            this.cliente.ReadOnly = true;
+            // 
+            // unidad
+            // 
+            this.unidad.HeaderText = "DESCRIPCIÓN PRODUCTO";
+            this.unidad.Name = "unidad";
+            this.unidad.ReadOnly = true;
+            // 
+            // responsable
+            // 
+            this.responsable.HeaderText = "CANTIDAD";
+            this.responsable.Name = "responsable";
+            this.responsable.ReadOnly = true;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "COLOR";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            // 
+            // ordenCOmpra
+            // 
+            this.ordenCOmpra.HeaderText = "N°. PEDIDO";
+            this.ordenCOmpra.Name = "ordenCOmpra";
+            this.ordenCOmpra.ReadOnly = true;
+            // 
+            // estadoa
+            // 
+            this.estadoa.HeaderText = "CANTIDAD REALIZADA";
+            this.estadoa.Name = "estadoa";
+            this.estadoa.ReadOnly = true;
+            // 
+            // EstadoOP
+            // 
+            this.EstadoOP.HeaderText = "ESTADO";
+            this.EstadoOP.Name = "EstadoOP";
+            this.EstadoOP.ReadOnly = true;
+            // 
+            // EstadoOC
+            // 
+            this.EstadoOC.HeaderText = "ESTADO OC";
+            this.EstadoOC.Name = "EstadoOC";
+            this.EstadoOC.ReadOnly = true;
             // 
             // ListadoOrdenProduccion
             // 
@@ -625,11 +1026,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
+            this.Controls.Add(this.panleAnulacion);
+            this.Controls.Add(this.btnOC);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnPlano);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.label60);
-            this.Controls.Add(this.btnAnularPedido);
+            this.Controls.Add(this.btnAnularOP);
             this.Controls.Add(this.lblAnularPedido);
             this.Controls.Add(this.btnGenerarOrdenProduccionPDF);
             this.Controls.Add(this.label53);
@@ -640,6 +1046,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panelMovimientoFrm);
+            this.Controls.Add(this.datalistadoExcel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ListadoOrdenProduccion";
             this.Text = "ListadoOrdenProduccion";
@@ -662,6 +1069,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTodasOP)).EndInit();
+            this.panleAnulacion.ResumeLayout(false);
+            this.panleAnulacion.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoDetalles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -705,9 +1119,41 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnExportarExcel;
         private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.Button btnAnularPedido;
+        private System.Windows.Forms.Button btnAnularOP;
         private System.Windows.Forms.Label lblAnularPedido;
         private System.Windows.Forms.Button btnGenerarOrdenProduccionPDF;
         private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Button btnPlano;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnOC;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panleAnulacion;
+        private System.Windows.Forms.Button btnRetrocederAnulacion;
+        private System.Windows.Forms.Button btnProcederAnulacion;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.TextBox txtJustificacionAnulacion;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.PictureBox btnInfoDetalles;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.DataGridView datalistadoExcel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nActa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nLiqui;
+        private System.Windows.Forms.DataGridViewTextBoxColumn chekCulminada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaTermino;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn responsable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordenCOmpra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoOC;
     }
 }

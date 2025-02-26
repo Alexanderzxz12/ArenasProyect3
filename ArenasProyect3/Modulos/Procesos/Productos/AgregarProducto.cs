@@ -7761,6 +7761,13 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 txtDescripcionGeneradaProducto.Text = "";
                 txtDescripcionGeneral.Text = "";
             }
+            else if (cboModelos.Text == "PEGAMENTOS")
+            {
+                ckHabilitarTextoCaracteristicas2.Enabled = true;
+                nombreInicial = "PEGAMENTOS";
+                txtDescripcionGeneradaProducto.Text = "PEGAMENTOS";
+                txtDescripcionGeneral.Text = "PEGAMENTOS";
+            }
             //------
             //SOLDADIRA
             else if (cboModelos.Text == "MIG/MAG")
@@ -9290,7 +9297,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             {
                 ckHabilitarTextoCaracteristicas1.Checked = false;
                 ckHabilitarTextoCaracteristicas2.Checked = true;
-                ckHabilitarTextoMedidas1.Checked = false;
+                ckHabilitarTextoMedidas1.Checked = true;
                 ckHabilitarTextoMedidas2.Checked = false;
             }
             else if (cboModelos.Text == "PINTURA")

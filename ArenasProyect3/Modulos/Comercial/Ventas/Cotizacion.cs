@@ -437,7 +437,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoTodasCotiaciones.DataSource = dt;
                 con.Close();
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiaciones);
             }
             else if (cboBusqeudaClienteResponsable.Text == "RESPONSABLE")
             {
@@ -455,8 +454,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoTodasCotiaciones.DataSource = dt;
                 con.Close();
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiaciones);
             }
+            ReordenarFilasMostrarCotizacion(datalistadoTodasCotiaciones);
         }
 
         public void ReordenarFilasMostrarCotizacion(DataGridView DGV)
@@ -742,7 +741,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             List<int> estadoss = new List<int>();
 
             //VALIDAR SI LA COTIZACION YA EXPIRO
-            if (fechaValidez < DateAndTime)
+            if (fechaValidez < DateAndTime && datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "PENDIENTE")
             {
                 vencido = true;
             }
@@ -857,9 +856,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             lblTituloCotizacion.Text = "NUEVA COTIZACIÓN";
             DateAndTime = DateAndTime.AddDays(+10);
             dateFechaValidez.Value = DateAndTime;
+            dateFechaEmision.Value = DateTime.Now;
 
             LimpiarCotizacion();
 
+            btnGuardarCotizacion.Visible = true;
+            lblGuardar.Visible = true;
+            btnEditarCotizacionAccion.Visible = false;
+            lblEditar.Visible = false;
             datalistadoCotizacion.Columns[0].ReadOnly = true;
             datalistadoCotizacion.Columns[1].ReadOnly = true;
             datalistadoCotizacion.Columns[2].ReadOnly = true;
@@ -869,14 +873,113 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //EDITAR MI COTIZACION YA INGRESADA
         private void btnEditarCotizacion_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Función no habilitada.", "Validación del Sistema", MessageBoxButtons.OK);
+            codigoCotizacion = int.Parse(datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString());
+            string estadoCoti = datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString();
+
+            if (estadoCoti == "FUERA DE FECHA" || estadoCoti == "ANULADO" || estadoCoti == "ADJUDICADO PARCIALMENTE" || estadoCoti == "COMPLETADO")
+            {
+                MessageBox.Show("La cotización que intenta editar ya se encuentra en un estado doferente a PENDIENTE, no se puede editar una cotización que este anulada, vencida o adjudicada total/parcial.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                //TAER LA CABECERA DE MI COTRIZACION
+                BuscarCotizacionPorCodigo(codigoCotizacion);
+                //BUSCAR ITEMS DE MI COTIZACION
+                BuscarCotizacionDetallePorCodigo(codigoCotizacion);
+
+                CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadCliente);
+                CargarResponsable(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboResponsableCliente);
+                CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoCliente);
+                CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoCliente);
+                CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoCliente);
+                CargarMoneda(cboMoneda);
+                CargarAlmacen(cboAlmacen);
+                CargarComercial(cboComercial);
+
+                txtLugarEntregado.Text = dataListadiCotiXCodigo.SelectedCells[16].Value.ToString();
+                if (txtLugarEntregado.Text == "Calle El Martillo MZ B Lote 5 Urb. Industrial El Naranjal")
+                {
+                    ckAlmacenArenas.Checked = true;
+                }
+
+                txtGarantia.Text = dataListadiCotiXCodigo.SelectedCells[17].Value.ToString();
+                txtTiempoEntrega.Text = dataListadiCotiXCodigo.SelectedCells[18].Value.ToString();
+                txtDocumentoCliente.Text = dataListadiCotiXCodigo.SelectedCells[32].Value.ToString();
+                txtNombreCliente.Text = dataListadiCotiXCodigo.SelectedCells[5].Value.ToString();
+                txtDireccionClente.Text = dataListadiCotiXCodigo.SelectedCells[33].Value.ToString();
+                txtObservaciones.Text = dataListadiCotiXCodigo.SelectedCells[19].Value.ToString();
+                txtReferencia.Text = dataListadiCotiXCodigo.SelectedCells[14].Value.ToString();
+
+                dateFechaEmision.Text = dataListadiCotiXCodigo.SelectedCells[2].Value.ToString();
+                dateFechaValidez.Text = dataListadiCotiXCodigo.SelectedCells[3].Value.ToString();
+                txtCodigoCotizacion.Text = dataListadiCotiXCodigo.SelectedCells[1].Value.ToString();
+
+                cboUnidadCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[6].Value.ToString();
+                cboResponsableCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[8].Value.ToString();
+                cboContactoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[27].Value.ToString();
+                cboCondicionPagoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[29].Value.ToString();
+                cboFormaPagoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[28].Value.ToString();
+                cboMoneda.SelectedValue = dataListadiCotiXCodigo.SelectedCells[12].Value.ToString();
+                cboComercial.SelectedValue = dataListadiCotiXCodigo.SelectedCells[10].Value.ToString();
+                cboAlmacen.SelectedValue = dataListadiCotiXCodigo.SelectedCells[15].Value.ToString();
+
+                txtSubTotal.Text = dataListadiCotiXCodigo.SelectedCells[20].Value.ToString();
+                txtDescuento.Text = dataListadiCotiXCodigo.SelectedCells[21].Value.ToString();
+                txtInafecta.Text = dataListadiCotiXCodigo.SelectedCells[22].Value.ToString();
+                txtExonerada.Text = dataListadiCotiXCodigo.SelectedCells[23].Value.ToString();
+                txtIgv.Text = dataListadiCotiXCodigo.SelectedCells[24].Value.ToString();
+                txtTotalDescuento.Text = dataListadiCotiXCodigo.SelectedCells[25].Value.ToString();
+                txtTotal.Text = dataListadiCotiXCodigo.SelectedCells[26].Value.ToString();
+
+                //CARGAR DETALLES DE LA COTIZACION
+                datalistadoCotizacion.Rows.Clear();
+
+                if (dataListadiCotiDetallesXCodigo.CurrentRow != null)
+                {
+                    foreach (DataGridViewRow row in dataListadiCotiDetallesXCodigo.Rows)
+                    {
+                        string idDetalleCotizacion = row.Cells[0].Value.ToString();
+                        string codigo = row.Cells[2].Value.ToString();
+                        string codigoformulacion = row.Cells[4].Value.ToString();
+                        string detalle = row.Cells[3].Value.ToString();
+                        string cantidad = row.Cells[5].Value.ToString();
+                        string precioUnitario = row.Cells[6].Value.ToString();
+                        string descuento = row.Cells[7].Value.ToString();
+                        string total = row.Cells[8].Value.ToString();
+                        string codigoCliente = row.Cells[13].Value.ToString();
+                        string descripcionCliente = row.Cells[14].Value.ToString();
+
+                        datalistadoCotizacion.Rows.Add(new[] { codigo, detalle, codigoformulacion, cantidad, precioUnitario, descuento, total, null, null, null, null, null, codigoCliente, descripcionCliente, idDetalleCotizacion });
+                    }
+                }
+
+                datalistadoFormulacionesSeleccionadas.Rows.Clear();
+                alternarColorFilas(datalistadoCotizacion);
+                CargarComboData();
+
+                btnGuardarCotizacion.Visible = false;
+                lblGuardar.Visible = false;
+                btnEditarCotizacionAccion.Visible = true;
+                lblEditar.Visible = true;
+
+                datalistadoTodasCotiaciones.Enabled = false;
+                panelNuevaCotizacion.Visible = true;
+
+                lblTituloCotizacion.Text = "EDICIÓN COTIZACIÓN";
+
+                datalistadoCotizacion.Columns[0].ReadOnly = true;
+                datalistadoCotizacion.Columns[1].ReadOnly = true;
+                datalistadoCotizacion.Columns[2].ReadOnly = true;
+                datalistadoCotizacion.Columns[6].ReadOnly = true;
+            }
         }
 
         //REGRESAR Y SALIR DE LA NUEVA COTIZACION
         private void btnRegresarNuevaCotizacion_Click(object sender, EventArgs e)
         {
+            LimpiarNuevaCotizacion();
             panelNuevaCotizacion.Visible = false;
-            ckAlmacenArenas.Checked = false;
+            datalistadoTodasCotiaciones.Enabled = true;
         }
 
         //ABRIR LOS DETALLES DE MI FORMULACION
@@ -963,6 +1066,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             panelBusquedaClientes.Visible = false;
             txtBusquedaClientes.Text = "";
             txtBusquedaClientes2.Text = "";
+            txtLugarEntregado.Text = "Campo Opcional";
 
             CargarUnidad(CodigoCLiente, cboUnidadCliente);
             CargarResponsable(CodigoCLiente, cboResponsableCliente);
@@ -1187,7 +1291,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDatosAnexosClienteContacto,Descripcion FROM DatosAnexosCliente_Contacto WHERE IdCliente = @idcliente", con);
+            SqlCommand comando = new SqlCommand("SELECT IdDatosAnexosClienteContacto,Descripcion FROM DatosAnexosCliente_Contacto WHERE IdCliente = @idcliente AND Estado = 1", con);
             comando.Parameters.AddWithValue("@idcliente", idcliente);
             SqlDataAdapter data = new SqlDataAdapter(comando);
             DataTable dt = new DataTable();
@@ -1203,7 +1307,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            SqlCommand comando = new SqlCommand("SELECT C.IdCondicionPago, C.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN CondicionPago C ON C.IdCondicionPago = DACC.IdCondicionPago WHERE IdCliente = @idcliente", con);
+            SqlCommand comando = new SqlCommand("SELECT C.IdCondicionPago, C.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN CondicionPago C ON C.IdCondicionPago = DACC.IdCondicionPago WHERE IdCliente = @idcliente AND DACC.Estado = 1", con);
             comando.Parameters.AddWithValue("@idcliente", idcliente);
             SqlDataAdapter data = new SqlDataAdapter(comando);
             DataTable dt = new DataTable();
@@ -1219,7 +1323,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            SqlCommand comando = new SqlCommand("SELECT F.IdFormaPago , F.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN FormaPago F ON F.IdFormaPago = DACC.IdFormaPago WHERE IdCliente = @idcliente", con);
+            SqlCommand comando = new SqlCommand("SELECT F.IdFormaPago , F.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN FormaPago F ON F.IdFormaPago = DACC.IdFormaPago WHERE IdCliente = @idcliente AND DACC.Estado = 1", con);
             comando.Parameters.AddWithValue("@idcliente", idcliente);
             SqlDataAdapter data = new SqlDataAdapter(comando);
             DataTable dt = new DataTable();
@@ -1241,6 +1345,10 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             {
                 panelSeleccionarFormulaciones.Visible = true;
                 cboBusquedaFormulaciones.SelectedIndex = 0;
+                txtBusquedaFormulaciones.Text = "";
+                datalistadoFormulacionesSeleccionadas.Rows.Clear();
+                datalistadoBusquedaFormulaciones.DataSource = null;
+                cboBusquedaFormulaciones.SelectedIndex = 3;
             }
         }
 
@@ -1253,7 +1361,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
             else
             {
-                MessageBox.Show("Por favor seleccione un registro para proceder con la eliminacion.", "Eliminacion de un item", MessageBoxButtons.OK);
+                MessageBox.Show("Por favor, seleccione un registro para proceder con la eliminación.", "Eliminación de un item", MessageBoxButtons.OK);
             }
         }
 
@@ -1318,7 +1426,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
             else
             {
-                MessageBox.Show("Por favor seleccione un registro para proceder con la eliminacion.", "Eliminacion de un item", MessageBoxButtons.OK);
+                MessageBox.Show("Por favor, seleccione un registro para proceder con la eliminación.", "Eliminación de un item", MessageBoxButtons.OK);
             }
         }
 
@@ -1353,7 +1461,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
                         if (datalistadoCotizacion.Rows[datalistadoCotizacion.CurrentRow.Index].Cells[10].Value.ToString() == null)
                         {
-                            MessageBox.Show("Por favor seleccione un tipo de bonificación para continuar.", "Validación del Sistema", MessageBoxButtons.OK);
+                            MessageBox.Show("Por favor, seleccione un tipo de bonificación para continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
@@ -1369,7 +1477,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //FIN DE LA EDICION DE MI LISTADO DE FORMULACIONES EN UNA NUEVA COTIZACION
         private void datalistadoCotizacion_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            int cantidad = 0;
+            decimal cantidad = 0;
             decimal precio;
             decimal descuento;
             decimal total = 0;
@@ -1385,7 +1493,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
             else
             {
-                cantidad = Convert.ToInt32(row.Cells[3].Value);
+                cantidad = Convert.ToDecimal(row.Cells[3].Value);
             }
 
             if (row.Cells[4].Value == null)
@@ -1502,7 +1610,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 }
             }
 
-            DialogResult boton = MessageBox.Show("Realmente desea ingresar esta Cotización?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+            DialogResult boton = MessageBox.Show("¿Realmente desea guardar esta Cotización?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
 
@@ -1571,22 +1679,161 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                         CodigoCotizacion();
                         int codigocotizacion = Convert.ToInt32(datalistadoCodigoCotizacion.SelectedCells[0].Value.ToString());
 
+                        foreach (DataGridViewRow fila in datalistadoCotizacion.Rows)
+                        {
+                            try
+                            {
+                                SqlConnection con = new SqlConnection();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                contador = contador + 1;
+
+                                SqlCommand cmd = new SqlCommand();
+                                cmd = new SqlCommand("InsertarDetalleCotizacion", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                cmd.Parameters.AddWithValue("@idcotizacion", codigocotizacion);
+                                cmd.Parameters.AddWithValue("@codigoproducto", fila.Cells[0].Value.ToString());
+                                cmd.Parameters.AddWithValue("@codigoformulacion", fila.Cells[2].Value.ToString());
+
+                                cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila.Cells[3].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@preciounidad", Convert.ToDecimal(fila.Cells[4].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(fila.Cells[5].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(fila.Cells[6].Value.ToString()));
+
+                                cmd.Parameters.AddWithValue("@idbonificacion", Convert.ToDecimal(fila.Cells[10].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@ta", fila.Cells[11].Value.ToString());
+
+                                cmd.Parameters.AddWithValue("@codigocliente", Convert.ToString(fila.Cells[12].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@descripcioncliente", fila.Cells[13].Value.ToString());
+                                cmd.Parameters.AddWithValue("@contador", contador);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+
+                        MessageBox.Show("Cotización ingresada con éxito.", "Nueva Cotización", MessageBoxButtons.OK);
+                        LimpiarNuevaCotizacion();
+                    }
+                }
+            }
+
+            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //EDITAR COTIZACION
+        private void btnEditarCotizacionAccion_Click(object sender, EventArgs e)
+        {
+            int idCotizacion = int.Parse(datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString());
+            int contador = 0;
+            bool estadoValidacion = false;
+
+            //VALIDAR SI NO HAY REGISTROS O SI NO SE SELECCIONO EL COMBO
+            if (datalistadoCotizacion.Rows.Count == 0)
+            {
+                estadoValidacion = false;
+            }
+            else
+            {
+                int estadoItemsContadosNoValidos = 0;
+                int estadoItemsContadosValidos = 0;
+                int items = datalistadoCotizacion.Rows.Count;
+
+                foreach (DataGridViewRow fila in datalistadoCotizacion.Rows)
+                {
+                    if (fila.Cells[11].Value == null)
+                    {
+                        estadoItemsContadosNoValidos = estadoItemsContadosNoValidos + 1;
+                    }
+                    else
+                    {
+                        estadoItemsContadosValidos = estadoItemsContadosValidos + 1;
+                    }
+                }
+
+                if (estadoItemsContadosValidos == items)
+                {
+                    estadoValidacion = true;
+                }
+                else
+                {
+                    estadoValidacion = false;
+                }
+            }
+
+            DialogResult boton = MessageBox.Show("¿Realmente desea editar esta Cotización?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+            if (boton == DialogResult.OK)
+            {
+                if (txtNombreCliente.Text == "" || cboUnidadCliente.SelectedValue == null || cboResponsableCliente.SelectedValue == null || cboContactoCliente.SelectedValue == null || cboCondicionPagoCliente.SelectedValue == null || cboFormaPagoCliente.SelectedValue == null || cboComercial.SelectedValue == null || cboMoneda.SelectedValue == null || cboAlmacen.SelectedValue == null || txtReferencia.Text == "Campo Obligatorio")
+                {
+                    MessageBox.Show("Debe llenar todos los campos para poder continuar con la edición de la cotización.", "Validación del Sistema");
+                }
+                else
+                {
+                    //FUNCION PARA 
+                    if (estadoValidacion == false)
+                    {
+                        MessageBox.Show("Debe seleccionar alguna formulación o seleccionar una bonificación y una tranferencia para poder continuar.", "Modificar Cotización", MessageBoxButtons.OK);
+                    }
+                    else if (estadoValidacion == true && lblTituloCotizacion.Text == "EDICIÓN COTIZACIÓN")
+                    {
+                        //INSERTAR COTIZACION
                         try
                         {
                             SqlConnection con = new SqlConnection();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("ModificarCotizacion", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@idcotizacion", idCotizacion);
+                            cmd.Parameters.AddWithValue("@fechaValidez", dateFechaValidez.Value);
+
+                            cmd.Parameters.AddWithValue("@idcomercial", cboComercial.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@idmoneda", cboMoneda.SelectedValue.ToString());
+
+                            cmd.Parameters.AddWithValue("@referencia", txtReferencia.Text);
+
+                            cmd.Parameters.AddWithValue("@idalmacen", cboAlmacen.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@lugarentrega", txtLugarEntregado.Text);
+                            cmd.Parameters.AddWithValue("@garantia", txtGarantia.Text);
+                            cmd.Parameters.AddWithValue("@tiempoEntrega", txtTiempoEntrega.Text);
+                            cmd.Parameters.AddWithValue("@observaciones", txtObservaciones.Text);
+
+                            cmd.Parameters.AddWithValue("@subtotal", Convert.ToDecimal(txtSubTotal.Text));
+                            cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtDescuento.Text));
+                            cmd.Parameters.AddWithValue("@inafecta", Convert.ToDecimal(txtInafecta.Text));
+                            cmd.Parameters.AddWithValue("@exonerado", Convert.ToDecimal(txtExonerada.Text));
+                            cmd.Parameters.AddWithValue("@igv", Convert.ToDecimal(txtIgv.Text));
+                            cmd.Parameters.AddWithValue("@totaldescuento", Convert.ToDecimal(txtTotalDescuento.Text));
+                            cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(txtTotal.Text));
+
+                            cmd.Parameters.AddWithValue("@idunidad", cboUnidadCliente.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@idresponsable", cboResponsableCliente.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@idcontacto", cboContactoCliente.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@idformapago", cboFormaPagoCliente.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@idcondicionpago", cboCondicionPagoCliente.SelectedValue.ToString());
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            //MODIFICAR DETALLE COTIZACION
                             foreach (DataGridViewRow fila in datalistadoCotizacion.Rows)
                             {
                                 try
                                 {
+                                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                    con.Open();
                                     contador = contador + 1;
 
-                                    SqlCommand cmd = new SqlCommand();
-                                    cmd = new SqlCommand("InsertarDetalleCotizacion", con);
+                                    cmd = new SqlCommand("ModificarDetalleCotizacion", con);
                                     cmd.CommandType = CommandType.StoredProcedure;
 
-                                    cmd.Parameters.AddWithValue("@idcotizacion", codigocotizacion);
+                                    cmd.Parameters.AddWithValue("@iddetallecotizacion", Convert.ToInt32(fila.Cells[14].Value.ToString()));
                                     cmd.Parameters.AddWithValue("@codigoproducto", fila.Cells[0].Value.ToString());
                                     cmd.Parameters.AddWithValue("@codigoformulacion", fila.Cells[2].Value.ToString());
 
@@ -1600,197 +1847,32 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
                                     cmd.Parameters.AddWithValue("@codigocliente", Convert.ToString(fila.Cells[12].Value.ToString()));
                                     cmd.Parameters.AddWithValue("@descripcioncliente", fila.Cells[13].Value.ToString());
-                                    cmd.Parameters.AddWithValue("@contador", contador);
                                     cmd.ExecuteNonQuery();
+                                    con.Close();
                                 }
                                 catch (Exception ex)
                                 {
                                     MessageBox.Show(ex.Message);
                                 }
                             }
-                            con.Close();
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message);
                         }
 
-                        MessageBox.Show("Cotización ingresada con éxito.", "Nueva Cotización", MessageBoxButtons.OK);
+
+                        MessageBox.Show("Cotización editada con éxito.", "Edición Cotización", MessageBoxButtons.OK);
                         LimpiarNuevaCotizacion();
                     }
-                    //else if (estadoValidacion = true && lblTituloCotizacion.Text == "EDICIÓN")
-                    //{
-                    //    try
-                    //    {
-                    //        DialogResult boton = MessageBox.Show("¿Realmente desea editar este regsitro?", "Edición de una cotización", MessageBoxButtons.OKCancel);
-                    //        if (boton == DialogResult.OK)
-                    //        {
-                    //            SqlConnection con = new SqlConnection();
-                    //            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    //            con.Open();
-                    //            SqlCommand cmd = new SqlCommand();
-                    //            cmd = new SqlCommand("ModificarCotizacion", con);
-                    //            cmd.CommandType = CommandType.StoredProcedure;
-
-                    //            cmd.Parameters.AddWithValue("@idcotizacion", codigoCotizacionEdicion);
-                    //            cmd.Parameters.AddWithValue("@fechaValidez", dateFechaValidez.Value);
-
-                    //            cmd.Parameters.AddWithValue("@idcliente", CodigoCLienteEdicion);
-                    //            cmd.Parameters.AddWithValue("@idcomercial", cboComercial.SelectedValue.ToString());
-                    //            cmd.Parameters.AddWithValue("@idmoneda", cboMoneda.SelectedValue.ToString());
-
-                    //            cmd.Parameters.AddWithValue("@referencia", "");
-                    //            cmd.Parameters.AddWithValue("@idalmacen", cboAlmacen.SelectedValue.ToString());
-                    //            cmd.Parameters.AddWithValue("@lugarentrega", txtLugarEntregado.Text);
-                    //            cmd.Parameters.AddWithValue("@tiempoentrega", "");
-                    //            cmd.Parameters.AddWithValue("@observaciones", txtObservaciones.Text);
-
-                    //            cmd.Parameters.AddWithValue("@subtotal", Convert.ToDecimal(txtSubTotal.Text));
-                    //            cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtDescuento.Text));
-                    //            cmd.Parameters.AddWithValue("@inafecta", Convert.ToDecimal(txtInafecta.Text));
-                    //            cmd.Parameters.AddWithValue("@exonerado", Convert.ToDecimal(txtExonerada.Text));
-                    //            cmd.Parameters.AddWithValue("@igv", Convert.ToDecimal(txtIgv.Text));
-                    //            cmd.Parameters.AddWithValue("@totaldescuento", Convert.ToDecimal(txtTotalDescuento.Text));
-                    //            cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(txtTotal.Text));
-
-                    //            cmd.Parameters.AddWithValue("@idunidad", cboUnidadCliente.SelectedValue.ToString());
-                    //            cmd.Parameters.AddWithValue("@idresponsable", cboResponsableCliente.SelectedValue.ToString());
-                    //            cmd.Parameters.AddWithValue("@idcontacto", cboContactoCliente.SelectedValue.ToString());
-                    //            cmd.Parameters.AddWithValue("@idformapago", cboFormaPagoCliente.SelectedValue.ToString());
-                    //            cmd.Parameters.AddWithValue("@idcondicionpago", cboCondicionPagoCliente.SelectedValue.ToString());
-                    //            cmd.ExecuteNonQuery();
-                    //            con.Close();
-
-
-                    //            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    //            con.Open();
-                    //            foreach (DataGridViewRow fila in datalistadoCotizacion.Rows)
-                    //            {
-                    //                try
-                    //                {
-                    //                    cmd = new SqlCommand("ModificarDetalleCotizacion", con);
-                    //                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    //                    cmd.Parameters.AddWithValue("@iddetallecotizacion", fila.Cells[14].Value.ToString());
-                    //                    cmd.Parameters.AddWithValue("@codigoproducto", fila.Cells[0].Value.ToString());
-                    //                    cmd.Parameters.AddWithValue("@codigoformulacion", fila.Cells[2].Value.ToString());
-
-                    //                    cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila.Cells[3].Value.ToString()));
-                    //                    cmd.Parameters.AddWithValue("@preciounidad", Convert.ToDecimal(fila.Cells[4].Value.ToString()));
-                    //                    cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(fila.Cells[5].Value.ToString()));
-                    //                    cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(fila.Cells[6].Value.ToString()));
-
-                    //                    string str = fila.Cells[10].Value.ToString();
-                    //                    if (str == "SI")
-                    //                    {
-                    //                        str = "1";
-                    //                    }
-                    //                    else if (str == "NO")
-                    //                    {
-                    //                        str = "2";
-                    //                    }
-
-                    //                    string str2 = fila.Cells[11].Value.ToString();
-                    //                    if (str2 == "GravadoRetiro por premio")
-                    //                    {
-                    //                        str2 = "1";
-                    //                    }
-                    //                    else if (str2 == "Gravado-Retiro por donación")
-                    //                    {
-                    //                        str2 = "2";
-                    //                    }
-                    //                    else if (str2 == "Gravado-Retiro")
-                    //                    {
-                    //                        str2 = "3";
-                    //                    }
-                    //                    else if (str2 == "Gravado-Retiro por publicidad")
-                    //                    {
-                    //                        str2 = "4";
-                    //                    }
-                    //                    else if (str2 == "Gravado-Bonificaiones")
-                    //                    {
-                    //                        str2 = "5";
-                    //                    }
-                    //                    else if (str2 == "Gravado-IVAP")
-                    //                    {
-                    //                        str2 = "6";
-                    //                    }
-                    //                    else if (str2 == "Exonerado-Operación Onerosa")
-                    //                    {
-                    //                        str2 = "7";
-                    //                    }
-                    //                    else if (str2 == "Exonerado-Transferencia Gratuito")
-                    //                    {
-                    //                        str2 = "8";
-                    //                    }
-                    //                    else if (str2 == "Inafecta-Operación Onerosa")
-                    //                    {
-                    //                        str2 = "9";
-                    //                    }
-                    //                    else if (str2 == "Inafecto-Retiro por Bonificaión")
-                    //                    {
-                    //                        str2 = "10";
-                    //                    }
-                    //                    else if (str2 == "Inafecto-Retiro")
-                    //                    {
-                    //                        str2 = "11";
-                    //                    }
-                    //                    else if (str2 == "Inafecto-Retiro por Muestras Medicas")
-                    //                    {
-                    //                        str2 = "12";
-                    //                    }
-                    //                    else if (str2 == "Inafecto-Retiro por Convenio Colectivo")
-                    //                    {
-                    //                        str2 = "13";
-                    //                    }
-                    //                    else if (str2 == "Inafecto-Retiro por premio")
-                    //                    {
-                    //                        str2 = "14";
-                    //                    }
-                    //                    else if (str2 == "Inafecto-Retiro por publicidad")
-                    //                    {
-                    //                        str2 = "15";
-                    //                    }
-                    //                    else if (str2 == "Exportación")
-                    //                    {
-                    //                        str2 = "16";
-                    //                    }
-                    //                    else if (str2 == "Gravado-Operación Onerosa")
-                    //                    {
-                    //                        str2 = "17";
-                    //                    }
-                    //                    cmd.Parameters.AddWithValue("@idbonificacion", Convert.ToInt32(str));
-                    //                    cmd.Parameters.AddWithValue("@ta", Convert.ToInt32(str2));
-
-                    //                    cmd.Parameters.AddWithValue("@codigocliente", Convert.ToString(fila.Cells[12].Value.ToString()));
-                    //                    cmd.Parameters.AddWithValue("@descripcioncliente", fila.Cells[13].Value.ToString());
-                    //                    cmd.ExecuteNonQuery();
-                    //                }
-                    //                catch (Exception ex)
-                    //                {
-                    //                    MessageBox.Show(ex.Message);
-                    //                }
-                    //            }
-                    //            con.Close();
-
-                    //            ckAlmacenArenas.Checked = false;
-
-                    //            MessageBox.Show("Cotización editada con exito", "Edición de la cotización", MessageBoxButtons.OK);
-                    //            LimpiarNuevaCotizacion();
-                    //        }
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        MessageBox.Show(ex.Message);
-                    //    }
-                    //}
                 }
             }
 
+            datalistadoTodasCotiaciones.Enabled = true;
             CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
         }
 
-        //HABILITAR ANULACION
+        //HABILITAR ANULACION-------------------------------------------------------------------------------
         private void btnAnularCotizacion_Click(object sender, EventArgs e)
         {
             if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
@@ -1800,6 +1882,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             else
             {
                 panleAnulacion.Visible = true;
+                datalistadoTodasCotiaciones.Enabled = false;
+                txtJustificacionAnulacion.Text = "";
             }
         }
 
@@ -1813,10 +1897,10 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
                 if (codigo != 0)
                 {
-                    DialogResult boton = MessageBox.Show("Realmente desea anular esta Cotización?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    DialogResult boton = MessageBox.Show("¿Realmente desea anular esta Cotización?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                     if (boton == DialogResult.OK)
                     {
-                        if(estado == "COMPLETADO" || estado == "ADJUDICADO PARCIALMENTE")
+                        if (estado == "COMPLETADO" || estado == "ADJUDICADO PARCIALMENTE")
                         {
                             MessageBox.Show("Esta cotización ya tiene un pedido generado, por favor anular por el mantenimiento de pedidos.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
@@ -1837,6 +1921,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
                             panleAnulacion.Visible = false;
                             txtJustificacionAnulacion.Text = "";
+                            datalistadoTodasCotiaciones.Enabled = true;
                         }
                     }
                 }
@@ -1858,7 +1943,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             txtJustificacionAnulacion.Text = "";
             panleAnulacion.Visible = false;
+            datalistadoTodasCotiaciones.Enabled = true;
         }
+        //---------------------------------------------------------------------------------------------------
 
         //VISUALIZAR MI PDF DE MI COTIZACION
         private void btnGenerarCotizacionPdf_Click(object sender, EventArgs e)
@@ -1904,10 +1991,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             cboContactoCliente.DataSource = null;
             cboCondicionPagoCliente.DataSource = null;
             cboFormaPagoCliente.DataSource = null;
+            ckAlmacenArenas.Checked = false;
 
             datalistadoCotizacion.Rows.Clear();
             txtObservaciones.Text = "Campo Opcional";
             txtLugarEntregado.Text = "Campo Opcional";
+            txtReferencia.Text = "Campo Obligatorio";
+            txtGarantia.Text = "Campo Opcional";
 
             txtSubTotal.Text = "0.00";
             txtDescuento.Text = "0.00";
@@ -1937,38 +2027,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoclientes.DataSource = dt;
                 con.Close();
-                datalistadoclientes.Columns[5].Visible = false;
-                datalistadoclientes.Columns[6].Visible = false;
-                datalistadoclientes.Columns[7].Visible = false;
-                datalistadoclientes.Columns[8].Visible = false;
-                datalistadoclientes.Columns[9].Visible = false;
-                datalistadoclientes.Columns[10].Visible = false;
-                datalistadoclientes.Columns[11].Visible = false;
-                datalistadoclientes.Columns[12].Visible = false;
-                datalistadoclientes.Columns[13].Visible = false;
-                datalistadoclientes.Columns[14].Visible = false;
-                datalistadoclientes.Columns[15].Visible = false;
-                datalistadoclientes.Columns[16].Visible = false;
-                datalistadoclientes.Columns[17].Visible = false;
-                datalistadoclientes.Columns[18].Visible = false;
-                datalistadoclientes.Columns[19].Visible = false;
-                datalistadoclientes.Columns[20].Visible = false;
-                datalistadoclientes.Columns[21].Visible = false;
-                datalistadoclientes.Columns[22].Visible = false;
-                datalistadoclientes.Columns[23].Visible = false;
-                datalistadoclientes.Columns[24].Visible = false;
-                datalistadoclientes.Columns[25].Visible = false;
-                datalistadoclientes.Columns[26].Visible = false;
-                datalistadoclientes.Columns[27].Visible = false;
-                datalistadoclientes.Columns[28].Visible = false;
-                datalistadoclientes.Columns[29].Visible = false;
-                datalistadoclientes.Columns[30].Visible = false;
-
-                datalistadoclientes.Columns[0].Width = 110;
-                datalistadoclientes.Columns[1].Width = 100;
-                datalistadoclientes.Columns[2].Width = 250;
-                datalistadoclientes.Columns[3].Width = 100;
-                datalistadoclientes.Columns[4].Width = 150;
             }
             else if (cboTipoBusquedaClientes.Text == "DOCUMENTO")
             {
@@ -1984,40 +2042,47 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoclientes.DataSource = dt;
                 con.Close();
-                datalistadoclientes.Columns[5].Visible = false;
-                datalistadoclientes.Columns[6].Visible = false;
-                datalistadoclientes.Columns[7].Visible = false;
-                datalistadoclientes.Columns[8].Visible = false;
-                datalistadoclientes.Columns[9].Visible = false;
-                datalistadoclientes.Columns[10].Visible = false;
-                datalistadoclientes.Columns[11].Visible = false;
-                datalistadoclientes.Columns[12].Visible = false;
-                datalistadoclientes.Columns[13].Visible = false;
-                datalistadoclientes.Columns[14].Visible = false;
-                datalistadoclientes.Columns[15].Visible = false;
-                datalistadoclientes.Columns[16].Visible = false;
-                datalistadoclientes.Columns[17].Visible = false;
-                datalistadoclientes.Columns[18].Visible = false;
-                datalistadoclientes.Columns[19].Visible = false;
-                datalistadoclientes.Columns[20].Visible = false;
-                datalistadoclientes.Columns[21].Visible = false;
-                datalistadoclientes.Columns[22].Visible = false;
-                datalistadoclientes.Columns[23].Visible = false;
-                datalistadoclientes.Columns[24].Visible = false;
-                datalistadoclientes.Columns[25].Visible = false;
-                datalistadoclientes.Columns[26].Visible = false;
-                datalistadoclientes.Columns[27].Visible = false;
-                datalistadoclientes.Columns[28].Visible = false;
-                datalistadoclientes.Columns[29].Visible = false;
-                datalistadoclientes.Columns[30].Visible = false;
 
-                datalistadoclientes.Columns[0].Width = 110;
-                datalistadoclientes.Columns[1].Width = 100;
-                datalistadoclientes.Columns[2].Width = 250;
-                datalistadoclientes.Columns[3].Width = 100;
-                datalistadoclientes.Columns[4].Width = 150;
             }
+            ReordenarColumnasBusquedaClientes(datalistadoclientes);
             alternarColorFilas(datalistadoclientes);
+        }
+
+        //FUNCION APRA REORDENAR MIS COLUMNAS D EMI BUSQUEDA DE CLIENTE
+        public void ReordenarColumnasBusquedaClientes(DataGridView DGV)
+        {
+            DGV.Columns[5].Visible = false;
+            DGV.Columns[6].Visible = false;
+            DGV.Columns[7].Visible = false;
+            DGV.Columns[8].Visible = false;
+            DGV.Columns[9].Visible = false;
+            DGV.Columns[10].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[12].Visible = false;
+            DGV.Columns[13].Visible = false;
+            DGV.Columns[14].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
+            DGV.Columns[17].Visible = false;
+            DGV.Columns[18].Visible = false;
+            DGV.Columns[19].Visible = false;
+            DGV.Columns[20].Visible = false;
+            DGV.Columns[21].Visible = false;
+            DGV.Columns[22].Visible = false;
+            DGV.Columns[23].Visible = false;
+            DGV.Columns[24].Visible = false;
+            DGV.Columns[25].Visible = false;
+            DGV.Columns[26].Visible = false;
+            DGV.Columns[27].Visible = false;
+            DGV.Columns[28].Visible = false;
+            DGV.Columns[29].Visible = false;
+            DGV.Columns[30].Visible = false;
+
+            DGV.Columns[0].Width = 110;
+            DGV.Columns[1].Width = 100;
+            DGV.Columns[2].Width = 250;
+            DGV.Columns[3].Width = 100;
+            DGV.Columns[4].Width = 150;
         }
 
         //BUSCAR FORMULACIONES PARA AGREGAR A MI COTIZAVION
@@ -2037,12 +2102,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoBusquedaFormulaciones.DataSource = dt;
                 con.Close();
-
-                datalistadoBusquedaFormulaciones.Columns[1].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[2].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[3].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[4].Width = 540;
-                datalistadoBusquedaFormulaciones.Columns[5].Width = 135;
             }
             if (cboBusquedaFormulaciones.Text == "CÓDIGO")
             {
@@ -2058,12 +2117,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoBusquedaFormulaciones.DataSource = dt;
                 con.Close();
-
-                datalistadoBusquedaFormulaciones.Columns[1].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[2].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[3].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[4].Width = 540;
-                datalistadoBusquedaFormulaciones.Columns[5].Width = 135;
             }
             if (cboBusquedaFormulaciones.Text == "C. FORMULACIÓN")
             {
@@ -2079,12 +2132,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoBusquedaFormulaciones.DataSource = dt;
                 con.Close();
-
-                datalistadoBusquedaFormulaciones.Columns[1].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[2].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[3].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[4].Width = 540;
-                datalistadoBusquedaFormulaciones.Columns[5].Width = 135;
             }
             if (cboBusquedaFormulaciones.Text == "CÓDIGO BSS")
             {
@@ -2100,15 +2147,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 da.Fill(dt);
                 datalistadoBusquedaFormulaciones.DataSource = dt;
                 con.Close();
-
-                datalistadoBusquedaFormulaciones.Columns[1].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[2].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[3].Width = 100;
-                datalistadoBusquedaFormulaciones.Columns[4].Width = 540;
-                datalistadoBusquedaFormulaciones.Columns[5].Width = 135;
             }
 
-            alternarColorFilas(datalistadoBusquedaFormulaciones);
+            ReordenadoColumnasBusquedaFormulaciones(datalistadoBusquedaFormulaciones);
         }
 
         //REFRESCAR TODAS LAS FORMULACIONESS
@@ -2125,29 +2166,49 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             da.Fill(dt);
             datalistadoBusquedaFormulaciones.DataSource = dt;
             con.Close();
-
-            datalistadoBusquedaFormulaciones.Columns[1].Width = 130;
-            datalistadoBusquedaFormulaciones.Columns[2].Width = 130;
-            datalistadoBusquedaFormulaciones.Columns[3].Width = 130;
-            datalistadoBusquedaFormulaciones.Columns[4].Width = 520;
-            datalistadoBusquedaFormulaciones.Columns[5].Width = 135;
-            alternarColorFilas(datalistadoBusquedaFormulaciones);
+            ReordenadoColumnasBusquedaFormulaciones(datalistadoBusquedaFormulaciones);
         }
 
         //EJECUCIONES VARIAS----------------------------------------------------------------------------------------------
+        //REORDENAMIENTO DE MIS LISTADO DE BUSQUEDA DE FORULACIONES
+        public void ReordenadoColumnasBusquedaFormulaciones(DataGridView DGV)
+        {
+            DGV.Columns[1].Width = 95;
+            DGV.Columns[2].Width = 100;
+            DGV.Columns[3].Width = 95;
+            DGV.Columns[4].Width = 520;
+            DGV.Columns[5].Width = 135;
+            alternarColorFilas(DGV);
+        }
+
+        //LIMPIEA DE CAMPOS DE MI COTIZACION
         public void LimpiarNuevaCotizacion()
         {
             panelNuevaCotizacion.Visible = false;
 
+            txtBusquedaClientes.Text = "";
             txtNombreCliente.Text = "";
             txtDireccionClente.Text = "";
+            txtDocumentoCliente.Text = "";
+            txtNombreCliente.Text = "";
+            txtDireccionClente.Text = "";
+
+            var DateAndTime = DateTime.Now;
+            DateAndTime = DateAndTime.AddDays(+10);
+            dateFechaValidez.Value = DateAndTime;
+
             cboUnidadCliente.DataSource = null;
             cboResponsableCliente.DataSource = null;
             cboContactoCliente.DataSource = null;
             cboCondicionPagoCliente.DataSource = null;
             cboFormaPagoCliente.DataSource = null;
+            if (cboComercial.SelectedIndex != -1) { cboComercial.SelectedIndex = 0; }
+            if (cboMoneda.SelectedIndex != -1) { cboMoneda.SelectedIndex = 0; }
+            if (cboAlmacen.SelectedIndex != -1) { cboAlmacen.SelectedIndex = 0; }
 
-            txtObservaciones.Text = "";
+            txtObservaciones.Text = "Campo Opcional";
+            txtTiempoEntrega.Text = "Campo Opcional";
+            txtGarantia.Text = "Campo Opcional";
             txtSubTotal.Text = "";
             txtDescuento.Text = "";
             txtInafecta.Text = "";
@@ -2203,17 +2264,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             if (txtObservaciones.Text == "Campo Opcional")
             {
-                txtObservaciones.ReadOnly = false;
                 txtObservaciones.Text = "";
+                txtObservaciones.ReadOnly = false;
             }
-        }
-
-        //FUNCION PARA HACER CLICK EN MI CAJA DE LUGAR ENTREGADO
-        private void txtLugarEntregado_Click(object sender, EventArgs e)
-        {
-            if (txtLugarEntregado.Text == "Campo Opcional")
+            else
             {
-                txtLugarEntregado.Text = "";
+                txtObservaciones.ReadOnly = false;
             }
         }
 
@@ -2222,19 +2278,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             if (txtReferencia.Text == "Campo Obligatorio")
             {
-                txtReferencia.ReadOnly = false;
                 txtReferencia.Text = "";
+                txtReferencia.ReadOnly = false;
             }
-        }
-
-        //CUANDO SE DESELECCIONA EL LUGAR DE ENTREGA
-        private void txtLugarEntregado_Leave(object sender, EventArgs e)
-        {
-            if (txtLugarEntregado.Text == "")
+            else
             {
-                txtLugarEntregado.ReadOnly = true;
-                txtLugarEntregado.Text = "Campo Opcional";
-                txtLugarEntregado.ForeColor = SystemColors.WindowText;
+                txtReferencia.ReadOnly = false;
             }
         }
 
@@ -2410,10 +2459,15 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     CargarMoneda(cboMonedaPedido);
                     CargarAlmacen(cboAlmacenPedido);
 
+                    FechaAhoraPedido.Value = DateTime.Now;
+                    FechaPedidoPedido.Value = DateTime.Now;
+                    FechaEntregaPedido.Value = DateTime.Now;
+                    dateTimeFechaTermino.Value = DateTime.Now;
                     txtCodigoClientePedido.Text = dataListadiCotiXCodigo.SelectedCells[32].Value.ToString();
                     txtClientePedido.Text = dataListadiCotiXCodigo.SelectedCells[5].Value.ToString();
                     txtDireccionCLientePedido.Text = dataListadiCotiXCodigo.SelectedCells[33].Value.ToString();
                     txtLugarEntregaPedido.Text = dataListadiCotiXCodigo.SelectedCells[16].Value.ToString();
+
 
                     FechaCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[2].Value.ToString();
                     txtCodigoCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[1].Value.ToString();
@@ -2468,6 +2522,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                         MessageBox.Show(ex.Message);
                     }
 
+                    alternarColorFilas(datalistadoGeneracionPedido);
                     panelGenerarPedido.Visible = true;
                     FechaEntregaPedido.Value = DateTime.Now;
                     FechaPedidoPedido.Value = DateTime.Now;
@@ -2494,16 +2549,31 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         public void RegresarGenerarPedido()
         {
             panelGenerarPedido.Visible = false;
-            datalistadoGeneracionPedido.Rows.Clear();
-            txtCodigoOrdenCompraPedido.Text = "";
-            txtArchivoAdjuntoPedido.Text = "";
-            txtPesoPedido.Text = "";
+            LimpiarCamposPedido();
         }
 
-        //FILTRAR ITEMS DE MI PEDIDO
-        private void btnFiltarSeleccionadosPedido_Click(object sender, EventArgs e)
+        //LIMPIEZA DE CAMPOS DE PEDIDO
+        public void LimpiarCamposPedido()
         {
-            MessageBox.Show("Filtro de items no habilitado.", "Validación del Sistema", MessageBoxButtons.OK);
+            //CABECERA
+            txtCodigoOrdenCompraPedido.Text = "";
+            txtArchivoAdjuntoPedido.Text = "";
+            txtObservacionesPedido.Text = "";
+            txtDetallePedido.Text = "";
+            txtPesoPedido.Text = "0.00";
+
+            //CAMPOS NUMERICOS
+            txtSubTotalPedido.Text = "";
+            txtDescuentoPedido.Text = "";
+            txtInafectaPedido.Text = "";
+            txtExoneradaPedido.Text = "";
+            txtIgvPedido.Text = "";
+            txtTotalDescuentoPedido.Text = "";
+            txtTotalPedido.Text = "";
+            dateTimeFechaTermino.Value = DateTime.Now;
+
+            //DETALLES
+            datalistadoGeneracionPedido.Rows.Clear();
         }
 
         //GENERACIÓN DEL PEDIDO----------------------------------------------------------------------
@@ -2526,6 +2596,28 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             txtArchivoAdjuntoPedido.Text = "";
             txtCodigoOrdenCompraPedido.Text = "";
+        }
+
+        //FUNCION PARA PODER RECUPERA LA MAYOR FECHA DE MI DATAGRIDVIEW
+        private void GetMaxDateFromDataGridView()
+        {
+            DateTime maxDate = DateTime.MinValue;
+
+            foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
+            {
+                if (row.Cells["fechaEntrega"].Value != null && DateTime.TryParse(row.Cells["fechaEntrega"].Value.ToString(), out DateTime dateValue))
+                {
+                    if (dateValue > maxDate)
+                    {
+                        maxDate = dateValue;
+                    }
+                }
+            }
+
+            if (maxDate != Convert.ToDateTime("1/01/0001 00:00:00"))
+            {
+                FechaEntregaPedido.Value = maxDate;
+            }
         }
 
         //EDITAR MI PEDIDO, VALORES
@@ -2585,6 +2677,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             txtInafectaPedido.Text = String.Format("0.00");
             txtExoneradaPedido.Text = String.Format("0.00");
             txtTotalDescuentoPedido.Text = String.Format("0.00");
+
+            GetMaxDateFromDataGridView();
         }
 
         //CAMBIAR EL DESCUENTO DE MI PEDIDO
@@ -2625,6 +2719,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             datalistadoGeneracionPedido.CurrentRow.Cells[10].Value = dateTimeFechaTermino.Text;
             panelFechaEntrega.Visible = false;
+            GetMaxDateFromDataGridView();
         }
 
         //HABILITAR EL INGRESO DE TEXTO
@@ -2632,8 +2727,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             if (txtObservacionesPedido.Text == "Campo Opcional")
             {
-                txtObservacionesPedido.ReadOnly = false;
                 txtObservacionesPedido.Text = "";
+                txtObservacionesPedido.ReadOnly = false;
+            }
+            else
+            {
+                txtObservacionesPedido.ReadOnly = false;
             }
         }
 
@@ -2653,8 +2752,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             if (txtDetallePedido.Text == "Campo Opcional")
             {
-                txtDetallePedido.ReadOnly = false;
                 txtDetallePedido.Text = "";
+                txtDetallePedido.ReadOnly = false;
+            }
+            else
+            {
+                txtDetallePedido.ReadOnly = false;
             }
         }
 
@@ -2674,8 +2777,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             if (txtGarantia.Text == "Campo Opcional")
             {
-                txtGarantia.ReadOnly = false;
                 txtGarantia.Text = "";
+                txtGarantia.ReadOnly = false;
+            }
+            else
+            {
+                txtGarantia.ReadOnly = false;
             }
         }
 
@@ -2695,8 +2802,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             if (txtTiempoEntrega.Text == "Campo Opcional")
             {
-                txtTiempoEntrega.ReadOnly = false;
                 txtTiempoEntrega.Text = "";
+                txtTiempoEntrega.ReadOnly = false;
+            }
+            else
+            {
+                txtTiempoEntrega.ReadOnly = false;
             }
         }
 
@@ -2711,161 +2822,154 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
+
         //BOTON PARA GUARADR EL MI PEDIDO Y GENERAR EL DOCUMENTO RESPECTIVO
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea guardar este pedido con estos Items?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (txtCodigoOrdenCompraPedido.Text == "" || txtArchivoAdjuntoPedido.Text == "")
-                {
-                    MessageBox.Show("Debe ingresar una orden de compra o documento.", "Validación del Sistema");
-                }
-                else
-                {
+                bool sinFecha = false;
 
-                    bool sinFecha = false;
+                //VALIDAR SI SE INGRESARON FECHAS
+                foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
+                {
+                    DateTime fechaInicio = Convert.ToDateTime(row.Cells["fechaEntrega"].Value);
 
-                    //VALIDAR SI SE INGRESARON FECHAS
-                    foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
+                    if (fechaInicio == null || fechaInicio == Convert.ToDateTime("1/01/0001 00:00:00"))
                     {
-                        DateTime fechaInicio = Convert.ToDateTime(row.Cells["fechaEntrega"].Value);
-
-                        if (fechaInicio == null || fechaInicio == Convert.ToDateTime("1/01/0001 00:00:00"))
-                        {
-                            sinFecha = true;
-                            MessageBox.Show("Debe ingresar la fecha correspondiente a la entrega.", "Validación del Sistema");
-                            return;
-                        }
+                        sinFecha = true;
+                        MessageBox.Show("Debe ingresar la fecha correspondiente a la entrega.", "Validación del Sistema");
+                        return;
                     }
+                }
+
+                try
+                {
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("InsertarPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    CodigoGeneracionPedido();
+                    int cantidaditems = datalistadoGeneracionPedido.RowCount;
+
+                    cmd.Parameters.AddWithValue("@codigoPedido", Convert.ToInt32(CodigoGeneradoPedido));
+                    cmd.Parameters.AddWithValue("@fechaPedido", FechaPedidoPedido.Value);
+                    cmd.Parameters.AddWithValue("@idCliente", datalistadoTodasCotiaciones.SelectedCells[5].Value.ToString());
+                    cmd.Parameters.AddWithValue("@direccion", txtDireccionCLientePedido.Text);
+                    cmd.Parameters.AddWithValue("@lugarEntrega", txtLugarEntregaPedido.Text);
+                    cmd.Parameters.AddWithValue("@idUnidad", cboUnidadClientePedido.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@idResponsable", cboResponsableClientePedido.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@idContacto", cboContactoClientePedido.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@idCondicion", cboCondicionPagoClientePedido.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@idFormaPago", cboFormaPagoClientePedido.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@idMoneda", cboMonedaPedido.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@idAlmacen", cboAlmacenPedido.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@fechaEntrega", FechaEntregaPedido.Value);
+                    cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPesoPedido.Text));
+                    cmd.Parameters.AddWithValue("@ordenCompra", txtCodigoOrdenCompraPedido.Text);
+
+                    string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraPedido.Text + " - PEDIDO " + CodigoGeneradoPedido;
+                    string RutaOld = txtArchivoAdjuntoPedido.Text;
+                    string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
+                    File.Copy(RutaOld, RutaNew);
+
+                    cmd.Parameters.AddWithValue("@rutaOrdenCompra", RutaNew);
+                    cmd.Parameters.AddWithValue("@observaciones", txtObservacionesPedido.Text);
+                    cmd.Parameters.AddWithValue("@detallePedido", txtDetallePedido.Text);
+                    cmd.Parameters.AddWithValue("@subTotal", Convert.ToDecimal(txtSubTotalPedido.Text));
+                    cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtDescuentoPedido.Text));
+                    cmd.Parameters.AddWithValue("@inafecta", Convert.ToDecimal(txtInafectaPedido.Text));
+                    cmd.Parameters.AddWithValue("@exonerado", Convert.ToDecimal(txtExoneradaPedido.Text));
+                    cmd.Parameters.AddWithValue("@IGV", Convert.ToDecimal(txtIgvPedido.Text));
+                    cmd.Parameters.AddWithValue("@totalDescuento", Convert.ToDecimal(txtTotalDescuentoPedido.Text));
+                    cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(txtTotalPedido.Text));
+                    cmd.Parameters.AddWithValue("@idCotizacion", txtIdCotizacionPedido.Text);
+                    cmd.Parameters.AddWithValue("@cantidadItems", cantidaditems);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    MessageBox.Show("Se registró el nuevo pedido.", "Validación del Sistema");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                //CAMBIO DE ESTADO--------
+                try
+                {
+                    CodigoPedido();
+                    int codigopedido = Convert.ToInt32(datalistadoCodigoPedido.SelectedCells[0].Value.ToString());
+                    int contador = 0;
 
                     try
                     {
+                        foreach (DataGridViewRow fila in datalistadoGeneracionPedido.Rows)
+                        {
+                            try
+                            {
+                                contador = contador + 1;
+
+                                SqlConnection con = new SqlConnection();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                SqlCommand cmd = new SqlCommand();
+                                cmd = new SqlCommand("InsertarDetallePedido", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                cmd.Parameters.AddWithValue("@idPedido", codigopedido);
+                                cmd.Parameters.AddWithValue("@codigoproducto", fila.Cells[2].Value.ToString());
+                                cmd.Parameters.AddWithValue("@descripcionProducto", fila.Cells[3].Value.ToString());
+                                cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila.Cells[4].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@preciounidad", Convert.ToDecimal(fila.Cells[5].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(fila.Cells[6].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(fila.Cells[7].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@fechaEntrega", Convert.ToDateTime(fila.Cells[10].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@codigoFormulacion", fila.Cells[12].Value.ToString());
+                                cmd.Parameters.AddWithValue("@item", contador);
+                                cmd.Parameters.AddWithValue("@idDetalleCotizacion", fila.Cells[13].Value.ToString());
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
+                    {
+                        contador = 0;
+                        contador = contador + 1;
+
+                        int codigodetallecotizacion = Convert.ToInt32(row.Cells["Codigo"].Value);
+
                         SqlConnection con = new SqlConnection();
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarPedido", con);
+                        cmd = new SqlCommand("CambiarEstadoCotiDetalle", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-
-                        CodigoGeneracionPedido();
-                        int cantidaditems = datalistadoGeneracionPedido.RowCount;
-
-                        cmd.Parameters.AddWithValue("@codigoPedido", Convert.ToInt32(CodigoGeneradoPedido));
-                        cmd.Parameters.AddWithValue("@fechaPedido", FechaPedidoPedido.Value);
-                        cmd.Parameters.AddWithValue("@idCliente", datalistadoTodasCotiaciones.SelectedCells[5].Value.ToString());
-                        cmd.Parameters.AddWithValue("@direccion", txtDireccionCLientePedido.Text);
-                        cmd.Parameters.AddWithValue("@lugarEntrega", txtLugarEntregaPedido.Text);
-                        cmd.Parameters.AddWithValue("@idUnidad", cboUnidadClientePedido.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idResponsable", cboResponsableClientePedido.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idContacto", cboContactoClientePedido.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idCondicion", cboCondicionPagoClientePedido.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idFormaPago", cboFormaPagoClientePedido.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idMoneda", cboMonedaPedido.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idAlmacen", cboAlmacenPedido.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@fechaEntrega", FechaEntregaPedido.Value);
-                        cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPesoPedido.Text));
-                        cmd.Parameters.AddWithValue("@ordenCompra", txtCodigoOrdenCompraPedido.Text);
-
-                        string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraPedido.Text + " - PEDIDO " + CodigoGeneradoPedido;
-                        string RutaOld = txtArchivoAdjuntoPedido.Text;
-                        string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
-                        File.Copy(RutaOld, RutaNew);
-
-                        cmd.Parameters.AddWithValue("@rutaOrdenCompra", RutaNew);
-                        cmd.Parameters.AddWithValue("@observaciones", txtObservacionesPedido.Text);
-                        cmd.Parameters.AddWithValue("@detallePedido", txtDetallePedido.Text);
-                        cmd.Parameters.AddWithValue("@subTotal", Convert.ToDecimal(txtSubTotalPedido.Text));
-                        cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtDescuentoPedido.Text));
-                        cmd.Parameters.AddWithValue("@inafecta", Convert.ToDecimal(txtInafectaPedido.Text));
-                        cmd.Parameters.AddWithValue("@exonerado", Convert.ToDecimal(txtExoneradaPedido.Text));
-                        cmd.Parameters.AddWithValue("@IGV", Convert.ToDecimal(txtIgvPedido.Text));
-                        cmd.Parameters.AddWithValue("@totalDescuento", Convert.ToDecimal(txtTotalDescuentoPedido.Text));
-                        cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(txtTotalPedido.Text));
-                        cmd.Parameters.AddWithValue("@idCotizacion", txtIdCotizacionPedido.Text);
-                        cmd.Parameters.AddWithValue("@cantidadItems", cantidaditems);
+                        cmd.Parameters.AddWithValue("@iddetalleitems", codigodetallecotizacion);
+                        cmd.Parameters.AddWithValue("@idPedido", codigopedido);
                         cmd.ExecuteNonQuery();
                         con.Close();
-
-                        MessageBox.Show("Se registró el nuevo pedido.", "Validación del Sistema");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
                     }
 
-                    //CAMBIO DE ESTADO--------
-                    try
-                    {
-                        CodigoPedido();
-                        int codigopedido = Convert.ToInt32(datalistadoCodigoPedido.SelectedCells[0].Value.ToString());
-                        int contador = 0;
-
-                        try
-                        {
-                            foreach (DataGridViewRow fila in datalistadoGeneracionPedido.Rows)
-                            {
-                                try
-                                {
-                                    contador = contador + 1;
-
-                                    SqlConnection con = new SqlConnection();
-                                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                    con.Open();
-                                    SqlCommand cmd = new SqlCommand();
-                                    cmd = new SqlCommand("InsertarDetallePedido", con);
-                                    cmd.CommandType = CommandType.StoredProcedure;
-
-                                    cmd.Parameters.AddWithValue("@idPedido", codigopedido);
-                                    cmd.Parameters.AddWithValue("@codigoproducto", fila.Cells[2].Value.ToString());
-                                    cmd.Parameters.AddWithValue("@descripcionProducto", fila.Cells[3].Value.ToString());
-                                    cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila.Cells[4].Value.ToString()));
-                                    cmd.Parameters.AddWithValue("@preciounidad", Convert.ToDecimal(fila.Cells[5].Value.ToString()));
-                                    cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(fila.Cells[6].Value.ToString()));
-                                    cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(fila.Cells[7].Value.ToString()));
-                                    cmd.Parameters.AddWithValue("@fechaEntrega", Convert.ToDateTime(fila.Cells[10].Value.ToString()));
-                                    cmd.Parameters.AddWithValue("@codigoFormulacion", fila.Cells[12].Value.ToString());
-                                    cmd.Parameters.AddWithValue("@item", contador);
-                                    cmd.Parameters.AddWithValue("@idDetalleCotizacion", fila.Cells[13].Value.ToString());
-                                    cmd.ExecuteNonQuery();
-                                    con.Close();
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.Message);
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-
-                        foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
-                        {
-                            contador = 0;
-                            contador = contador + 1;
-
-                            int codigodetallecotizacion = Convert.ToInt32(row.Cells["Codigo"].Value);
-
-                            SqlConnection con = new SqlConnection();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("CambiarEstadoCotiDetalle", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@iddetalleitems", codigodetallecotizacion);
-                            cmd.Parameters.AddWithValue("@idPedido", codigopedido);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                        }
-
-                        RegresarGenerarPedido();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    RegresarGenerarPedido();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -3070,6 +3174,42 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private void btnInfoCoti_Click(object sender, EventArgs e)
         {
             Process.Start(ruta);
+        }
+
+        //VALIDACIO DE SOLO INGRESO DE NUMEROS O LETRAS NELAS COULMAS CORRECTAS
+        private void DataGridViewTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Obtener el índice de la columna actual
+            int columnIndex = datalistadoCotizacion.CurrentCell.ColumnIndex;
+
+            // Permitir solo números, puntos, comas y teclas de control (como retroceso) en todas las columnas excepto la 8 y 9
+            if (columnIndex != 12 && columnIndex != 13)
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        //VALIDACIÓN DE SOLO NÚMEROS - DETALLES DE MI COTIZACION
+        private void datalistadoCotizacion_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (e.Control is TextBox textBox)
+            {
+                textBox.KeyPress -= DataGridViewTextBox_KeyPress;
+                textBox.KeyPress += DataGridViewTextBox_KeyPress;
+            }
+        }
+
+        //SOLO PERMITE INRGRESO DE NUEMROS
+        private void txtPesoPedido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números, puntos, comas y teclas de control (como retroceso)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
         }
     }
 }

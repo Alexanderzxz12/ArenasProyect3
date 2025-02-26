@@ -51,6 +51,23 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             //---------------------------------------------------------------------------------
         }
 
+        //FUNCION PARA VERIFICAR SI HAY OP CREADA PARA PROCEDER A ANULAR PEDIDO
+        public void VerificarOPxPedidoAnulacion(int idPedido)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("BuscarOPxPedidoAnulacion", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBuscarOPxPedidoAnulacion.DataSource = dt;
+            con.Close();
+        }
+
         //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
         public void MostrarExcel()
         {
@@ -92,7 +109,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             datalistadoTodasPedido.DataSource = dt;
             con.Close();
             RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
-
         }
 
         //MOSTRAR ACTAS POR CLIENTE
@@ -123,7 +139,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             DGV.Columns[3].Width = 100;
             DGV.Columns[4].Width = 100;
             DGV.Columns[5].Width = 350;
-            DGV.Columns[6].Width = 150;
+            DGV.Columns[6].Width = 130;
             DGV.Columns[7].Width = 80;
             DGV.Columns[8].Width = 80;
             DGV.Columns[9].Width = 80;
@@ -133,6 +149,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
             DGV.Columns[1].Visible = false;
             DGV.Columns[13].Visible = false;
+            DGV.Columns[14].Visible = false;
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
             foreach (DataGridViewColumn column in DGV.Columns)
@@ -182,17 +199,40 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //GENERACION DE REPORTES
         private void btnGenerarPedidoPdf_Click(object sender, EventArgs e)
         {
-            string ccodigoCotizacion = datalistadoTodasPedido.Rows[datalistadoTodasPedido.CurrentRow.Index].Cells[1].Value.ToString();
-            Visualizadores.VisualizarPedidoVenta frm = new Visualizadores.VisualizarPedidoVenta();
-            frm.lblCodigo.Text = ccodigoCotizacion;
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoTodasPedido.CurrentRow != null)
+            {
+                string ccodigoCotizacion = datalistadoTodasPedido.Rows[datalistadoTodasPedido.CurrentRow.Index].Cells[1].Value.ToString();
+                Visualizadores.VisualizarPedidoVenta frm = new Visualizadores.VisualizarPedidoVenta();
+                frm.lblCodigo.Text = ccodigoCotizacion;
 
-            frm.Show();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un pedido para poder generar el PDF.", "Validación del Sistema");
+            }
+        }
+
+        //ABRIR Y VISUALIZAR MI OC
+        private void btnAbiriOrdenCompra_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(datalistadoTodasPedido.SelectedCells[14].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
+            }
         }
 
         //PRODEDIMEINTO PARA ANULAR MI PEDIDO
         private void btnAnularPedido_Click(object sender, EventArgs e)
         {
+            txtJustificacionAnulacion.Text = "";
             panleAnulacion.Visible = true;
+            datalistadoTodasPedido.Enabled = false;
         }
 
         //FUNCION PARA PROCEDER A ANULAR MI PEDIDO, COTIZACION
@@ -202,37 +242,53 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             {
                 int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
                 string idCotizacion = datalistadoTodasPedido.SelectedCells[13].Value.ToString();
+                int ordenProduccion = 0;
+
+                VerificarOPxPedidoAnulacion(idPedido);
+
+                if (datalistadoBuscarOPxPedidoAnulacion.RowCount > 0)
+                {
+                    ordenProduccion = datalistadoBuscarOPxPedidoAnulacion.RowCount;
+                }
 
                 DialogResult boton = MessageBox.Show("¿Realmente desea anular esta pedido?. Se anulará la cotización asociada ha este pedido.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    try
+                    if (ordenProduccion > 0)
                     {
-                        SqlConnection con = new SqlConnection();
-                        SqlCommand cmd = new SqlCommand();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("AnularPedido", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idPedido", idPedido);
-                        cmd.Parameters.AddWithValue("@idCotizacion", idCotizacion);
-                        cmd.Parameters.AddWithValue("@mensajeAnulado", txtJustificacionAnulacion.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        MessageBox.Show("Pedido y cotización asociado a esta, anuladas exitosamente.", "Validación del Sistema");
-                        MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
-
-                        panleAnulacion.Visible = false;
-                        txtJustificacionAnulacion.Text = "";
-
-                        //Enviar("jhoalexxxcc@gmail.com.pe", "ANULACIÓN DEL PEDIDO N°. " + codigoPedido, "Correo de verificación de anulación de un pedido por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now);
+                        MessageBox.Show("El pedido que desea anular ya tiene una orden de producción generada.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("AnularPedido", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                            cmd.Parameters.AddWithValue("@idCotizacion", idCotizacion);
+                            cmd.Parameters.AddWithValue("@mensajeAnulado", txtJustificacionAnulacion.Text);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            MessageBox.Show("Pedido y cotización asociado a esta, anuladas exitosamente.", "Validación del Sistema");
+                            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                 }
+
+                panleAnulacion.Visible = false;
+                txtJustificacionAnulacion.Text = "";
+                datalistadoTodasPedido.Enabled = true;
             }
             else
             {
@@ -243,15 +299,101 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //BOTON PARA RETROCEDER DE LA ANULACION
         private void btnRetrocederAnulacion_Click(object sender, EventArgs e)
         {
-            panleAnulacion.Visible = false;
             txtJustificacionAnulacion.Text = "";
+            panleAnulacion.Visible = false;
+            datalistadoTodasPedido.Enabled = true;
         }
 
-        //FUNCION PARA EDITAR MI PEDIDO
+        //FUNCION DE EDICION DE UNA ORDEN DE COMPRA-----------------------------------------------------------------
+        //FUNCION PARA ACTIVAR MI EDICION DE ORDEN DE COMPRA DE PEDIUDO
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Función no habilitada", "Validación del Sistema", MessageBoxButtons.OK);
+            LimpiarEdicionOrdenCompra();
+            panelModificacionOrdenCompra.Visible = true;
+            datalistadoTodasPedido.Enabled = false;
         }
+
+        //FUNCION PARA EDITAR MI ORDEN DE COMPRA DE MI PEDIDO GENERADO
+        private void btnCargarOrdenCompra_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtRutaOrdenCompraModi.Text = openFileDialog1.FileName;
+            }
+        }
+
+        //FUNCION PARA LIMPIAR MI CAJA DE TEXTO LENADO POR MI RUTA
+        private void btnLimpiarCargaOrdenCompra_Click(object sender, EventArgs e)
+        {
+            txtRutaOrdenCompraModi.Text = "";
+        }
+
+        //FUNCION PARA REGRESAR O SALIR DE MI EDICION DE ORDEN DE COMPRA
+        private void btnRegresarOrdenCompra_Click(object sender, EventArgs e)
+        {
+            LimpiarEdicionOrdenCompra();
+            panelModificacionOrdenCompra.Visible = false;
+            datalistadoTodasPedido.Enabled = true;
+        }
+
+        //FUNCION PARA PODER PROCEDER CON LA EDICION DE MI ORDEN DE COMPRA
+        private void btnEditarOrdenCompra_Click(object sender, EventArgs e)
+        {
+            if (txtCodigoOrdenCompraModi.Text == "" || txtRutaOrdenCompraModi.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un código de orden de compra o adjuntar un documento.", "Validación del Sistema");
+            }
+            else
+            {
+                try
+                {
+                    //IMODIFICAR MI ORDEN DE COMPRA DE UN PEDIDO
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ModificarOrdenCompra", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    //MODIFICACION
+                    cmd.Parameters.AddWithValue("@idPedido", datalistadoTodasPedido.SelectedCells[1].Value.ToString());
+                    cmd.Parameters.AddWithValue("@codigOC", txtCodigoOrdenCompraModi.Text);
+
+                    string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraModi.Text + " - PEDIDO " + datalistadoTodasPedido.SelectedCells[2].Value.ToString();
+                    string RutaOld = txtRutaOrdenCompraModi.Text;
+                    string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
+                    File.Copy(RutaOld, RutaNew, true);
+
+                    cmd.Parameters.AddWithValue("@rutaOC", RutaNew);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    //MENSAJE DE CONFIRMACION DE EDICION DE ORDEN DE COMPRA
+                    MessageBox.Show("Se editó correctamente la orden de compra del pedido " + datalistadoTodasPedido.SelectedCells[2].Value.ToString() + ".", "Validación del Sistema");
+                    LimpiarEdicionOrdenCompra();
+                    MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                    panelModificacionOrdenCompra.Visible = false;
+                    datalistadoTodasPedido.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: ", ex.Message);
+                    datalistadoTodasPedido.Enabled = true;
+                }
+            }
+        }
+
+        //LIMPIAR CAMPOS DE EDICION DE ORDEN DE COMPRA
+        public void LimpiarEdicionOrdenCompra()
+        {
+            txtRutaOrdenCompraModi.Text = "";
+            txtCodigoOrdenCompraModi.Text = "";
+        }
+        //----------------------------------------------------------------------------------------------------------
 
         //BOTON PARA EXPORTAR MIS DATOS
         private void btnExportarExcel_Click(object sender, EventArgs e)
@@ -334,20 +476,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             sl.SaveAs(desktopPath + @"\Reporte de pedidos.xlsx");
             MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
         }
-
-        ////MÉTODO PARA ENVIAR CORREOS POR LA ANULACIÓN DE UN REQUERIMIENTO
-        //public void Enviar(string para, string asunto, string mensaje)
-        //{
-        //    var outlokkApp = new Microsoft.Office.Interop.Outlook.Application();
-        //    var mailItem = (Microsoft.Office.Interop.Outlook.MailItem)outlokkApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
-        //    mailItem.To = para;
-        //    mailItem.Subject = asunto;
-        //    mailItem.Body = mensaje;
-
-        //    mailItem.Send();
-        //    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(mailItem);
-        //    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(outlokkApp);
-        //}
 
         //FUNCION PARA ABRIR EL MANUAL DE USUARIO
         private void btnInfoPedido_Click(object sender, EventArgs e)

@@ -30,12 +30,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pedido));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.lblCarga = new System.Windows.Forms.Label();
@@ -111,6 +113,29 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panel30 = new System.Windows.Forms.Panel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.panel32 = new System.Windows.Forms.Panel();
+            this.panelModificacionOrdenCompra = new System.Windows.Forms.Panel();
+            this.btnLimpiarCargaOrdenCompra = new System.Windows.Forms.Button();
+            this.btnCargarOrdenCompra = new System.Windows.Forms.Button();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.txtRutaOrdenCompraModi = new System.Windows.Forms.TextBox();
+            this.txtCodigoOrdenCompraModi = new System.Windows.Forms.TextBox();
+            this.btnRegresarOrdenCompra = new System.Windows.Forms.Button();
+            this.btnEditarOrdenCompra = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label42 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnAbiriOrdenCompra = new System.Windows.Forms.Button();
+            this.label45 = new System.Windows.Forms.Label();
+            this.datalistadoBuscarOPxPedidoAnulacion = new System.Windows.Forms.DataGridView();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).BeginInit();
@@ -136,12 +161,19 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelDetalleOP.SuspendLayout();
             this.panel29.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelModificacionOrdenCompra.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
             // 
             this.panelMovimientoFrm.BackColor = System.Drawing.Color.BurlyWood;
             this.panelMovimientoFrm.Controls.Add(this.label6);
+            this.panelMovimientoFrm.Controls.Add(this.datalistadoBuscarOPxPedidoAnulacion);
             this.panelMovimientoFrm.Controls.Add(this.lblCarga);
             this.panelMovimientoFrm.Controls.Add(this.pictureBox12);
             this.panelMovimientoFrm.Controls.Add(this.btnInfoPedido);
@@ -414,7 +446,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox6.Location = new System.Drawing.Point(269, 53);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
@@ -426,7 +458,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox5.Location = new System.Drawing.Point(269, 22);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
@@ -438,7 +470,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox4.Location = new System.Drawing.Point(99, 53);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
@@ -483,7 +515,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // pictureBox7
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Black;
-            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox7.Location = new System.Drawing.Point(99, 22);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
@@ -513,27 +545,28 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoTodasPedido.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasPedido.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasPedido.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.datalistadoTodasPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.detalles});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasPedido.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasPedido.DefaultCellStyle = dataGridViewCellStyle5;
             this.datalistadoTodasPedido.Location = new System.Drawing.Point(5, 195);
             this.datalistadoTodasPedido.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoTodasPedido.MultiSelect = false;
             this.datalistadoTodasPedido.Name = "datalistadoTodasPedido";
             this.datalistadoTodasPedido.ReadOnly = true;
             this.datalistadoTodasPedido.RowHeadersVisible = false;
@@ -545,10 +578,10 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             // detalles
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.detalles.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.detalles.DefaultCellStyle = dataGridViewCellStyle4;
             this.detalles.HeaderText = "SEGUI.";
             this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
             this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -589,7 +622,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnGenerarPedidoPdf.FlatAppearance.BorderSize = 0;
             this.btnGenerarPedidoPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarPedidoPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarPedidoPdf.Image")));
-            this.btnGenerarPedidoPdf.Location = new System.Drawing.Point(485, 585);
+            this.btnGenerarPedidoPdf.Location = new System.Drawing.Point(515, 585);
             this.btnGenerarPedidoPdf.Name = "btnGenerarPedidoPdf";
             this.btnGenerarPedidoPdf.Size = new System.Drawing.Size(41, 35);
             this.btnGenerarPedidoPdf.TabIndex = 2010;
@@ -600,7 +633,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(474, 622);
+            this.label53.Location = new System.Drawing.Point(504, 622);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(62, 13);
@@ -613,7 +646,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnEditarPedido.FlatAppearance.BorderSize = 0;
             this.btnEditarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarPedido.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarPedido.Image")));
-            this.btnEditarPedido.Location = new System.Drawing.Point(657, 585);
+            this.btnEditarPedido.Location = new System.Drawing.Point(695, 585);
             this.btnEditarPedido.Name = "btnEditarPedido";
             this.btnEditarPedido.Size = new System.Drawing.Size(41, 35);
             this.btnEditarPedido.TabIndex = 2012;
@@ -624,12 +657,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(647, 622);
+            this.label50.Location = new System.Drawing.Point(674, 622);
             this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(59, 13);
+            this.label50.Size = new System.Drawing.Size(78, 13);
             this.label50.TabIndex = 2011;
-            this.label50.Text = "MODIFICAR";
+            this.label50.Text = "MODIFICAR O/C";
             // 
             // btnAnularPedido
             // 
@@ -637,7 +670,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnAnularPedido.FlatAppearance.BorderSize = 0;
             this.btnAnularPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnularPedido.Image = ((System.Drawing.Image)(resources.GetObject("btnAnularPedido.Image")));
-            this.btnAnularPedido.Location = new System.Drawing.Point(741, 585);
+            this.btnAnularPedido.Location = new System.Drawing.Point(771, 585);
             this.btnAnularPedido.Name = "btnAnularPedido";
             this.btnAnularPedido.Size = new System.Drawing.Size(41, 35);
             this.btnAnularPedido.TabIndex = 2014;
@@ -648,7 +681,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.lblAnularPedido.AutoSize = true;
             this.lblAnularPedido.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnularPedido.Location = new System.Drawing.Point(738, 622);
+            this.lblAnularPedido.Location = new System.Drawing.Point(768, 622);
             this.lblAnularPedido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAnularPedido.Name = "lblAnularPedido";
             this.lblAnularPedido.Size = new System.Drawing.Size(44, 13);
@@ -661,7 +694,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnExportarExcel.FlatAppearance.BorderSize = 0;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
-            this.btnExportarExcel.Location = new System.Drawing.Point(403, 586);
+            this.btnExportarExcel.Location = new System.Drawing.Point(373, 586);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(36, 33);
             this.btnExportarExcel.TabIndex = 2016;
@@ -672,7 +705,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(395, 622);
+            this.label60.Location = new System.Drawing.Point(365, 622);
             this.label60.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(53, 13);
@@ -683,7 +716,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(553, 622);
+            this.label18.Location = new System.Drawing.Point(583, 622);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(73, 13);
@@ -696,7 +729,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnExportar.FlatAppearance.BorderSize = 0;
             this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
-            this.btnExportar.Location = new System.Drawing.Point(571, 586);
+            this.btnExportar.Location = new System.Drawing.Point(601, 586);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(36, 33);
             this.btnExportar.TabIndex = 2023;
@@ -884,14 +917,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoExcel.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoExcel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoExcel.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.datalistadoExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoExcel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nActa,
@@ -905,27 +938,27 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.estado,
             this.ordenCOmpra,
             this.estadoa});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle7;
             this.datalistadoExcel.Location = new System.Drawing.Point(5, 520);
             this.datalistadoExcel.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoExcel.MultiSelect = false;
             this.datalistadoExcel.Name = "datalistadoExcel";
             this.datalistadoExcel.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoExcel.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoExcel.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.datalistadoExcel.RowHeadersVisible = false;
             this.datalistadoExcel.RowHeadersWidth = 20;
             this.datalistadoExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1006,7 +1039,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelDetalleOP.Controls.Add(this.panel31);
             this.panelDetalleOP.Controls.Add(this.panel32);
             this.panelDetalleOP.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDetalleOP.Location = new System.Drawing.Point(1020, 599);
+            this.panelDetalleOP.Location = new System.Drawing.Point(1153, 607);
             this.panelDetalleOP.Name = "panelDetalleOP";
             this.panelDetalleOP.Size = new System.Drawing.Size(1068, 589);
             this.panelDetalleOP.TabIndex = 2027;
@@ -1065,12 +1098,319 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panel32.Size = new System.Drawing.Size(1, 587);
             this.panel32.TabIndex = 120;
             // 
+            // panelModificacionOrdenCompra
+            // 
+            this.panelModificacionOrdenCompra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelModificacionOrdenCompra.Controls.Add(this.btnLimpiarCargaOrdenCompra);
+            this.panelModificacionOrdenCompra.Controls.Add(this.btnCargarOrdenCompra);
+            this.panelModificacionOrdenCompra.Controls.Add(this.label44);
+            this.panelModificacionOrdenCompra.Controls.Add(this.label43);
+            this.panelModificacionOrdenCompra.Controls.Add(this.txtRutaOrdenCompraModi);
+            this.panelModificacionOrdenCompra.Controls.Add(this.txtCodigoOrdenCompraModi);
+            this.panelModificacionOrdenCompra.Controls.Add(this.btnRegresarOrdenCompra);
+            this.panelModificacionOrdenCompra.Controls.Add(this.btnEditarOrdenCompra);
+            this.panelModificacionOrdenCompra.Controls.Add(this.label24);
+            this.panelModificacionOrdenCompra.Controls.Add(this.label39);
+            this.panelModificacionOrdenCompra.Controls.Add(this.panel4);
+            this.panelModificacionOrdenCompra.Controls.Add(this.label40);
+            this.panelModificacionOrdenCompra.Controls.Add(this.label41);
+            this.panelModificacionOrdenCompra.Controls.Add(this.panel6);
+            this.panelModificacionOrdenCompra.Location = new System.Drawing.Point(328, 204);
+            this.panelModificacionOrdenCompra.Margin = new System.Windows.Forms.Padding(4);
+            this.panelModificacionOrdenCompra.Name = "panelModificacionOrdenCompra";
+            this.panelModificacionOrdenCompra.Size = new System.Drawing.Size(521, 232);
+            this.panelModificacionOrdenCompra.TabIndex = 2031;
+            this.panelModificacionOrdenCompra.Visible = false;
+            // 
+            // btnLimpiarCargaOrdenCompra
+            // 
+            this.btnLimpiarCargaOrdenCompra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiarCargaOrdenCompra.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarCargaOrdenCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarCargaOrdenCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarCargaOrdenCompra.Image")));
+            this.btnLimpiarCargaOrdenCompra.Location = new System.Drawing.Point(470, 130);
+            this.btnLimpiarCargaOrdenCompra.Name = "btnLimpiarCargaOrdenCompra";
+            this.btnLimpiarCargaOrdenCompra.Size = new System.Drawing.Size(26, 27);
+            this.btnLimpiarCargaOrdenCompra.TabIndex = 2028;
+            this.btnLimpiarCargaOrdenCompra.UseVisualStyleBackColor = true;
+            this.btnLimpiarCargaOrdenCompra.Click += new System.EventHandler(this.btnLimpiarCargaOrdenCompra_Click);
+            // 
+            // btnCargarOrdenCompra
+            // 
+            this.btnCargarOrdenCompra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargarOrdenCompra.FlatAppearance.BorderSize = 0;
+            this.btnCargarOrdenCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarOrdenCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarOrdenCompra.Image")));
+            this.btnCargarOrdenCompra.Location = new System.Drawing.Point(438, 129);
+            this.btnCargarOrdenCompra.Name = "btnCargarOrdenCompra";
+            this.btnCargarOrdenCompra.Size = new System.Drawing.Size(26, 27);
+            this.btnCargarOrdenCompra.TabIndex = 2027;
+            this.btnCargarOrdenCompra.UseVisualStyleBackColor = true;
+            this.btnCargarOrdenCompra.Click += new System.EventHandler(this.btnCargarOrdenCompra_Click);
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(23, 133);
+            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(80, 30);
+            this.label44.TabIndex = 2026;
+            this.label44.Text = "RUTA ORDEN \r\nDE COMPRA:";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(23, 93);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(96, 30);
+            this.label43.TabIndex = 2025;
+            this.label43.Text = "CÓDIGO ORDEN \r\nDE COMPRA:";
+            // 
+            // txtRutaOrdenCompraModi
+            // 
+            this.txtRutaOrdenCompraModi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRutaOrdenCompraModi.Location = new System.Drawing.Point(129, 132);
+            this.txtRutaOrdenCompraModi.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRutaOrdenCompraModi.Name = "txtRutaOrdenCompraModi";
+            this.txtRutaOrdenCompraModi.ReadOnly = true;
+            this.txtRutaOrdenCompraModi.Size = new System.Drawing.Size(303, 21);
+            this.txtRutaOrdenCompraModi.TabIndex = 2024;
+            this.txtRutaOrdenCompraModi.Tag = "";
+            // 
+            // txtCodigoOrdenCompraModi
+            // 
+            this.txtCodigoOrdenCompraModi.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigoOrdenCompraModi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoOrdenCompraModi.Location = new System.Drawing.Point(129, 95);
+            this.txtCodigoOrdenCompraModi.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoOrdenCompraModi.Name = "txtCodigoOrdenCompraModi";
+            this.txtCodigoOrdenCompraModi.Size = new System.Drawing.Size(122, 21);
+            this.txtCodigoOrdenCompraModi.TabIndex = 2023;
+            this.txtCodigoOrdenCompraModi.Tag = "";
+            // 
+            // btnRegresarOrdenCompra
+            // 
+            this.btnRegresarOrdenCompra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegresarOrdenCompra.FlatAppearance.BorderSize = 0;
+            this.btnRegresarOrdenCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegresarOrdenCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarOrdenCompra.Image")));
+            this.btnRegresarOrdenCompra.Location = new System.Drawing.Point(454, 175);
+            this.btnRegresarOrdenCompra.Name = "btnRegresarOrdenCompra";
+            this.btnRegresarOrdenCompra.Size = new System.Drawing.Size(36, 33);
+            this.btnRegresarOrdenCompra.TabIndex = 2022;
+            this.btnRegresarOrdenCompra.UseVisualStyleBackColor = true;
+            this.btnRegresarOrdenCompra.Click += new System.EventHandler(this.btnRegresarOrdenCompra_Click);
+            // 
+            // btnEditarOrdenCompra
+            // 
+            this.btnEditarOrdenCompra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarOrdenCompra.FlatAppearance.BorderSize = 0;
+            this.btnEditarOrdenCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarOrdenCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarOrdenCompra.Image")));
+            this.btnEditarOrdenCompra.Location = new System.Drawing.Point(380, 175);
+            this.btnEditarOrdenCompra.Name = "btnEditarOrdenCompra";
+            this.btnEditarOrdenCompra.Size = new System.Drawing.Size(36, 33);
+            this.btnEditarOrdenCompra.TabIndex = 2021;
+            this.btnEditarOrdenCompra.UseVisualStyleBackColor = true;
+            this.btnEditarOrdenCompra.Click += new System.EventHandler(this.btnEditarOrdenCompra_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(441, 209);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 14);
+            this.label24.TabIndex = 2020;
+            this.label24.Text = "REGRESAR";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(364, 209);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(67, 14);
+            this.label39.TabIndex = 2019;
+            this.label39.Text = "MODIFICAR";
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel4.Location = new System.Drawing.Point(109, 45);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(300, 1);
+            this.panel4.TabIndex = 998;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(29, 51);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(461, 30);
+            this.label40.TabIndex = 226;
+            this.label40.Text = "Se modificara la orden de compra adjuntada al pedido, si el pedido en cuestión ya" +
+    " \r\ntiene una orden de producción, no se podrá modificar.";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(201, 26);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(117, 18);
+            this.label41.TabIndex = 225;
+            this.label41.Text = "Orden de Compra";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel6.Controls.Add(this.label42);
+            this.panel6.Controls.Add(this.pictureBox11);
+            this.panel6.Controls.Add(this.pictureBox13);
+            this.panel6.Controls.Add(this.pictureBox15);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(5);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(519, 18);
+            this.panel6.TabIndex = 40;
+            // 
+            // label42
+            // 
+            this.label42.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label42.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label42.Location = new System.Drawing.Point(24, 0);
+            this.label42.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(160, 18);
+            this.label42.TabIndex = 2;
+            this.label42.Text = "Modificar orden de compra";
+            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(24, 18);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 999;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(493, 0);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(26, 18);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox13.TabIndex = 55;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox15.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox15.TabIndex = 54;
+            this.pictureBox15.TabStop = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnAbiriOrdenCompra
+            // 
+            this.btnAbiriOrdenCompra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAbiriOrdenCompra.FlatAppearance.BorderSize = 0;
+            this.btnAbiriOrdenCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbiriOrdenCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnAbiriOrdenCompra.Image")));
+            this.btnAbiriOrdenCompra.Location = new System.Drawing.Point(437, 585);
+            this.btnAbiriOrdenCompra.Name = "btnAbiriOrdenCompra";
+            this.btnAbiriOrdenCompra.Size = new System.Drawing.Size(41, 35);
+            this.btnAbiriOrdenCompra.TabIndex = 2034;
+            this.btnAbiriOrdenCompra.UseVisualStyleBackColor = true;
+            this.btnAbiriOrdenCompra.Click += new System.EventHandler(this.btnAbiriOrdenCompra_Click);
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(436, 622);
+            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(44, 13);
+            this.label45.TabIndex = 2033;
+            this.label45.Text = "PDF O/C";
+            // 
+            // datalistadoBuscarOPxPedidoAnulacion
+            // 
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToAddRows = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToDeleteRows = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToOrderColumns = true;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToResizeColumns = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToResizeRows = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoBuscarOPxPedidoAnulacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadoBuscarOPxPedidoAnulacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBuscarOPxPedidoAnulacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.datalistadoBuscarOPxPedidoAnulacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBuscarOPxPedidoAnulacion.DefaultCellStyle = dataGridViewCellStyle2;
+            this.datalistadoBuscarOPxPedidoAnulacion.Location = new System.Drawing.Point(63, 0);
+            this.datalistadoBuscarOPxPedidoAnulacion.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoBuscarOPxPedidoAnulacion.Name = "datalistadoBuscarOPxPedidoAnulacion";
+            this.datalistadoBuscarOPxPedidoAnulacion.ReadOnly = true;
+            this.datalistadoBuscarOPxPedidoAnulacion.RowHeadersVisible = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.RowHeadersWidth = 20;
+            this.datalistadoBuscarOPxPedidoAnulacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoBuscarOPxPedidoAnulacion.Size = new System.Drawing.Size(14, 34);
+            this.datalistadoBuscarOPxPedidoAnulacion.TabIndex = 2036;
+            // 
             // Pedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
+            this.Controls.Add(this.btnAbiriOrdenCompra);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.panelModificacionOrdenCompra);
             this.Controls.Add(this.panelDetalleOP);
             this.Controls.Add(this.panleAnulacion);
             this.Controls.Add(this.label18);
@@ -1124,6 +1464,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelDetalleOP.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelModificacionOrdenCompra.ResumeLayout(false);
+            this.panelModificacionOrdenCompra.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1206,5 +1553,28 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private System.Windows.Forms.Panel panel30;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.Panel panel32;
+        private System.Windows.Forms.Panel panelModificacionOrdenCompra;
+        private System.Windows.Forms.Button btnLimpiarCargaOrdenCompra;
+        private System.Windows.Forms.Button btnCargarOrdenCompra;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox txtRutaOrdenCompraModi;
+        private System.Windows.Forms.TextBox txtCodigoOrdenCompraModi;
+        private System.Windows.Forms.Button btnRegresarOrdenCompra;
+        private System.Windows.Forms.Button btnEditarOrdenCompra;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnAbiriOrdenCompra;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.DataGridView datalistadoBuscarOPxPedidoAnulacion;
     }
 }
