@@ -53,8 +53,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
-                //PRIMERA CARGA DE MI FORMULARIO
-                private void ListadoOrdenProduccion_Load(object sender, EventArgs e)
+        //PRIMERA CARGA DE MI FORMULARIO
+        private void ListadoOrdenProduccion_Load(object sender, EventArgs e)
         {
             DateTime date = DateTime.Now;
             DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
@@ -75,9 +75,24 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //FUNCION PARA VERIFICAR SI HAY UNA CANTIDAD 
-        public void VerificarOPCantidadIngresada(int idPedido)
+        public void MostrarCantidadesSegunOP(int idOrdenProduccion)
         {
-
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("MostrarCantidadesSegunOP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoCantidades.DataSource = dt;
+            con.Close();
+            datalistadoCantidades.Columns[0].Width = 40;
+            datalistadoCantidades.Columns[1].Width = 120;
+            datalistadoCantidades.Columns[2].Width = 100;
+            alternarColorFilas(datalistadoCantidades);
         }
 
         //COLOREAR MI LISTADO
@@ -188,22 +203,43 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             //REDIEMNSION DE PEDIDOS
             DGV.Columns[2].Width = 80;
-            DGV.Columns[3].Width = 90;
-            DGV.Columns[4].Width = 90;
-            DGV.Columns[5].Width = 350;
-            DGV.Columns[6].Width = 150;
-            DGV.Columns[7].Width = 40;
-            DGV.Columns[8].Width = 350;
-            DGV.Columns[9].Width = 60;
-            DGV.Columns[10].Width = 80;
-            DGV.Columns[11].Width = 80;
-            DGV.Columns[12].Width = 65;
-            DGV.Columns[13].Width = 120;
-            DGV.Columns[14].Width = 70;
-
+            DGV.Columns[3].Width = 80;
+            DGV.Columns[4].Width = 80;
+            DGV.Columns[5].Width = 300;
+            DGV.Columns[6].Width = 130;
+            DGV.Columns[7].Width = 35;
+            DGV.Columns[8].Width = 300;
+            DGV.Columns[9].Width = 55;
+            DGV.Columns[10].Width = 75;
+            DGV.Columns[11].Width = 75;
+            DGV.Columns[12].Width = 60;
+            DGV.Columns[13].Width = 110;
+            DGV.Columns[14].Width = 65;
+            //SE HACE NO VISIBLE LAS COLUMNAS QUE NO LES INTERESA AL USUARIO
             DGV.Columns[1].Visible = false;
             DGV.Columns[15].Visible = false;
             DGV.Columns[16].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
+            DGV.Columns[17].Visible = false;
+            DGV.Columns[18].Visible = false;
+            DGV.Columns[19].Visible = false;
+            DGV.Columns[20].Visible = false;
+            DGV.Columns[21].Visible = false;
+            //SE BLOQUEA MI LISTADO
+            DGV.Columns[2].ReadOnly = true;
+            DGV.Columns[3].ReadOnly = true;
+            DGV.Columns[4].ReadOnly = true;
+            DGV.Columns[5].ReadOnly = true;
+            DGV.Columns[6].ReadOnly = true;
+            DGV.Columns[7].ReadOnly = true;
+            DGV.Columns[8].ReadOnly = true;
+            DGV.Columns[9].ReadOnly = true;
+            DGV.Columns[10].ReadOnly = true;
+            DGV.Columns[11].ReadOnly = true;
+            DGV.Columns[12].ReadOnly = true;
+            DGV.Columns[13].ReadOnly = true;
+            DGV.Columns[14].ReadOnly = true;
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
             foreach (DataGridViewColumn column in DGV.Columns)
@@ -223,6 +259,64 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             else
             {
                 this.datalistadoTodasOP.Cursor = curAnterior;
+            }
+        }
+
+        //EVENTO PARA ABRIR EL INGRESO DE CANTIDADES
+        private void datalistadoTodasOP_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoTodasOP.CurrentRow != null)
+            {
+                int count = 0;
+                foreach (DataGridViewRow row in datalistadoTodasOP.Rows)
+                {
+                    if (Convert.ToBoolean(row.Cells[0].Value))
+                    {
+                        count++;
+                    }
+                }
+
+                if (count == 0) { count = 1; }
+
+                datalistadoTodasOP.Enabled = false;
+                panelIngresoCantidades.Visible = true;
+                txtOpsSeleccionadas.Text = Convert.ToString(count);
+                //CARGA DE DAOTS
+                txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
+                int IdOrdenProduccion = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value.ToString());
+                txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[5].Value.ToString();
+                txtCantidadTotalOP.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
+                txtCantidadRequerida.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
+                dtpFechaRealizada.Value = DateTime.Now;
+                txtCantidadRealizada.Text = "";
+                txtCantidadRestante.Text = "";
+                MostrarCantidadesSegunOP(IdOrdenProduccion);
+
+                if (count != 1)
+                {
+                    btnGenerarGuardarCantidades.Visible = true;
+                    lblGenerarGuardarCantidades.Visible = true;
+                    btnGuardarCantidad.Visible = false;
+                    lblGuardarCantidad.Visible = false;
+                    txtCantidadRealizada.ReadOnly = true;
+                    txtCantidadRealizada.Text = "Gen. Automática";
+                    lblIdOP.Text = "Varios";
+                    txtCantidadRestante.Text = "0";
+                }
+                else
+                {
+                    btnGuardarCantidad.Visible = true;
+                    lblGuardarCantidad.Visible = true;
+                    btnGenerarGuardarCantidades.Visible = false;
+                    lblGenerarGuardarCantidades.Visible = false;
+                    txtCantidadRealizada.ReadOnly = false;
+                    lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema");
             }
         }
 
@@ -303,6 +397,72 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             {
                 MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
             }
+        }
+
+        //EVENTO PARA GUARDAR MI S CANTIDADES INGRESADAS
+        private void btnGuardarCantidad_Click(object sender, EventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoTodasOP.CurrentRow != null)
+            {
+                if(txtCantidadRealizada.Text == "" || txtCantidadRealizada.Text == "0")
+                {
+                    MessageBox.Show("Debe ingresar una cantidad válida para poder registrar.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                //if else (txtCantidadRealizada.Text)
+                //{
+
+                //}
+                else
+                {
+                    DialogResult boton = MessageBox.Show("¿Realmente desea ingresar esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
+                    {
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("IngresarRegistroCantidad", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOrdenProduccion", lblIdOP.Text);
+                            cmd.Parameters.AddWithValue("@cantidad", txtCantidadRealizada.Text);
+                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema");
+                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            LimpiarCantidades();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema");
+            }
+        }
+
+        //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
+        private void btnSalirCantidad_Click(object sender, EventArgs e)
+        {
+            LimpiarCantidades();
+        }
+
+        //FUNCION PARA LIMPIAR LAS CANTIDADES
+        public void LimpiarCantidades()
+        {
+            datalistadoTodasOP.Enabled = true;
+            panelIngresoCantidades.Visible = false;
+            txtOpsSeleccionadas.Text = "";
+            txtCantidadRealizada.Text = "";
+            txtCantidadRestante.Text = "";
         }
 
         //ANULACION DE MI OP - PEDIDO - COTIZACION
@@ -532,5 +692,17 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //EVENTO PARA VALIDAR EL INGRESO DE NUMEROS Y SIGNOS
+        private void txtCantidadRealizada_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números, puntos, comas y teclas de control (como retroceso)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+        }
+
+
     }
 }

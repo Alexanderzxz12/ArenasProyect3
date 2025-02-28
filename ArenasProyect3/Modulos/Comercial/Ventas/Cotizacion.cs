@@ -2870,14 +2870,22 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     cmd.Parameters.AddWithValue("@idAlmacen", cboAlmacenPedido.SelectedValue.ToString());
                     cmd.Parameters.AddWithValue("@fechaEntrega", FechaEntregaPedido.Value);
                     cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPesoPedido.Text));
-                    cmd.Parameters.AddWithValue("@ordenCompra", txtCodigoOrdenCompraPedido.Text);
+                    
+                    if(txtArchivoAdjuntoPedido.Text != "")
+                    {
+                        string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraPedido.Text + " - PEDIDO " + CodigoGeneradoPedido;
+                        string RutaOld = txtArchivoAdjuntoPedido.Text;
+                        string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
+                        File.Copy(RutaOld, RutaNew);
+                        cmd.Parameters.AddWithValue("@ordenCompra", txtCodigoOrdenCompraPedido.Text);
+                        cmd.Parameters.AddWithValue("@rutaOrdenCompra", RutaNew);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ordenCompra", "");
+                        cmd.Parameters.AddWithValue("@rutaOrdenCompra", "");
+                    }
 
-                    string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraPedido.Text + " - PEDIDO " + CodigoGeneradoPedido;
-                    string RutaOld = txtArchivoAdjuntoPedido.Text;
-                    string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
-                    File.Copy(RutaOld, RutaNew);
-
-                    cmd.Parameters.AddWithValue("@rutaOrdenCompra", RutaNew);
                     cmd.Parameters.AddWithValue("@observaciones", txtObservacionesPedido.Text);
                     cmd.Parameters.AddWithValue("@detallePedido", txtDetallePedido.Text);
                     cmd.Parameters.AddWithValue("@subTotal", Convert.ToDecimal(txtSubTotalPedido.Text));

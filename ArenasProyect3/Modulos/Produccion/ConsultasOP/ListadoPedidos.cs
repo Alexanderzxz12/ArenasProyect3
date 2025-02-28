@@ -1047,6 +1047,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             con.Close();
 
                             UltimaOP();
+                            GenerarCodigoRequerimientoSimple();
                             //INGRESAR MI REQUERIMIENTO PARA MI ORDEN DE PRODUCCION-----------------------------
                             SqlConnection con2 = new SqlConnection();
                             con2.ConnectionString = Conexion.ConexionMaestra.conexion;
@@ -1082,7 +1083,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             //INGRESO DE LOS DETALLES DEL REQUERIMIENTO SIMPLE CON UN FOREACH
                             foreach (DataGridViewRow row in datalistadoActividades.Rows)
                             {
-                                decimal cantidadTotal = Convert.ToDecimal(row.Cells["cantidadTotal"].Value);
+                                decimal cantidad = Convert.ToDecimal(row.Cells["cantidad"].Value);
 
                                 //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
                                 con.Open();
@@ -1091,16 +1092,17 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                                 cmd.Parameters.AddWithValue("@item", contador);
                                 cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[2].Value));
                                 //SI NO HAN PUESTO UN VALOR AL PRODUCTO
-                                if (cantidadTotal == 0)
+                                if (cantidad == 0)
                                 {
                                     cmd.Parameters.AddWithValue("@cantidad", 1.000);
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@cantidad", cantidadTotal);
+                                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
                                 }
 
                                 cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[9].Value));
+                                cmd.Parameters.AddWithValue("@cantidadTotal", Convert.ToString(row.Cells[7].Value));
                                 cmd.ExecuteNonQuery();
                                 con.Close();
 

@@ -49,7 +49,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoPedidos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -69,6 +68,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.datalistadoBuscarOPxPedidoAnulacion = new System.Windows.Forms.DataGridView();
@@ -108,7 +108,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.panel16 = new System.Windows.Forms.Panel();
             this.label54 = new System.Windows.Forms.Label();
             this.datalistadoTodasPedido = new System.Windows.Forms.DataGridView();
-            this.detalles = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnAnularPedido = new System.Windows.Forms.Button();
             this.lblAnularPedido = new System.Windows.Forms.Label();
             this.btnModificarOrdenCompra = new System.Windows.Forms.Button();
@@ -277,6 +276,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnAbiriOrdenCompra = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
+            this.detalles = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoUltimaOP)).BeginInit();
@@ -1045,21 +1045,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.datalistadoTodasPedido.Size = new System.Drawing.Size(1167, 383);
             this.datalistadoTodasPedido.TabIndex = 211;
             this.datalistadoTodasPedido.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoTodasPedido_CellMouseMove);
-            // 
-            // detalles
-            // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle18.NullValue")));
-            dataGridViewCellStyle18.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.detalles.DefaultCellStyle = dataGridViewCellStyle18;
-            this.detalles.HeaderText = "SEGUI.";
-            this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
-            this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.detalles.MinimumWidth = 6;
-            this.detalles.Name = "detalles";
-            this.detalles.ReadOnly = true;
-            this.detalles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.detalles.Width = 45;
             // 
             // btnAnularPedido
             // 
@@ -3026,6 +3011,21 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.label45.TabIndex = 2031;
             this.label45.Text = "PDF O/C";
             // 
+            // detalles
+            // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle18.NullValue")));
+            dataGridViewCellStyle18.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.detalles.DefaultCellStyle = dataGridViewCellStyle18;
+            this.detalles.HeaderText = "DET. C.";
+            this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
+            this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.detalles.MinimumWidth = 6;
+            this.detalles.Name = "detalles";
+            this.detalles.ReadOnly = true;
+            this.detalles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.detalles.Width = 45;
+            // 
             // ListadoPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3148,7 +3148,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.Panel panel16;
         internal System.Windows.Forms.Label label54;
         private System.Windows.Forms.DataGridView datalistadoTodasPedido;
-        private System.Windows.Forms.DataGridViewImageColumn detalles;
         private System.Windows.Forms.Button btnAnularPedido;
         private System.Windows.Forms.Label lblAnularPedido;
         private System.Windows.Forms.Button btnModificarOrdenCompra;
@@ -3326,5 +3325,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.DataGridView datalistadoBuscarOPxPedidoAnulacion;
+        private System.Windows.Forms.DataGridViewImageColumn detalles;
     }
 }
