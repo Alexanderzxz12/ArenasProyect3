@@ -14,6 +14,8 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using CrystalDecisions.Shared;
+using ArenasProyect3.Modulos.ManGeneral;
+using System.Diagnostics;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -23,6 +25,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         int idJefatura = 0;
         string alias = "";
         private Cursor curAnterior = null;
+        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
 
         //CONSTRUCTRO DE MI FORMULAROI
         public ListadoRequerimientoSimple()
@@ -1322,6 +1325,18 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        //ABRIR EL MANUAL DE USUARIO
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
+        }
+
+        //ABRIR EL MANUAL DE USUARIO
+        private void btnInfoBusquedaProductos_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
     {
         //VARIABLES GLOBALES PARA MIS ACTAS DE VISITA
         private Cursor curAnterior = null;
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualViajes;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - ACTAS DE VISITA
         public ListadoActas()
@@ -568,12 +568,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
         //FUNCION PARA ABRIR EL MANUAL DE USUARIO
         private void btnInfo_Click(object sender, EventArgs e)
-        {
-            Process.Start(ruta);
-        }
-
-        //FUNCION PARA ABRIR EL MANUAL DE USUARIO
-        private void btnInfo_Click_1(object sender, EventArgs e)
         {
             Process.Start(ruta);
         }

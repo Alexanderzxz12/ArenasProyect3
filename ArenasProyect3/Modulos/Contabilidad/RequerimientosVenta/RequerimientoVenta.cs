@@ -23,7 +23,7 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
     {
         //VARIABLES GLOBALES PARA MIS ACTAS DE VISITA
         private Cursor curAnterior = null;
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualViajes;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - REQUERIMIENTOS DE VENTA
         public RequerimientoVenta()

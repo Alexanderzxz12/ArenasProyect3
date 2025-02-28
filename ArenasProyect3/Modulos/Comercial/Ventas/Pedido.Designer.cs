@@ -29,6 +29,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pedido));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,10 +38,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.datalistadoBuscarOPxPedidoAnulacion = new System.Windows.Forms.DataGridView();
             this.lblCarga = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.btnInfoPedido = new System.Windows.Forms.PictureBox();
@@ -130,13 +131,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panel6 = new System.Windows.Forms.Panel();
             this.label42 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.btnInfoEdicionOrdenCOmpra = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnAbiriOrdenCompra = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
-            this.datalistadoBuscarOPxPedidoAnulacion = new System.Windows.Forms.DataGridView();
             this.panelMovimientoFrm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).BeginInit();
@@ -164,9 +165,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelModificacionOrdenCompra.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoEdicionOrdenCOmpra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -196,6 +196,43 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.label6.TabIndex = 2;
             this.label6.Text = "PEDIDO";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // datalistadoBuscarOPxPedidoAnulacion
+            // 
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToAddRows = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToDeleteRows = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToOrderColumns = true;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToResizeColumns = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToResizeRows = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoBuscarOPxPedidoAnulacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadoBuscarOPxPedidoAnulacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBuscarOPxPedidoAnulacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.datalistadoBuscarOPxPedidoAnulacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBuscarOPxPedidoAnulacion.DefaultCellStyle = dataGridViewCellStyle2;
+            this.datalistadoBuscarOPxPedidoAnulacion.Location = new System.Drawing.Point(63, 0);
+            this.datalistadoBuscarOPxPedidoAnulacion.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoBuscarOPxPedidoAnulacion.Name = "datalistadoBuscarOPxPedidoAnulacion";
+            this.datalistadoBuscarOPxPedidoAnulacion.ReadOnly = true;
+            this.datalistadoBuscarOPxPedidoAnulacion.RowHeadersVisible = false;
+            this.datalistadoBuscarOPxPedidoAnulacion.RowHeadersWidth = 20;
+            this.datalistadoBuscarOPxPedidoAnulacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoBuscarOPxPedidoAnulacion.Size = new System.Drawing.Size(14, 34);
+            this.datalistadoBuscarOPxPedidoAnulacion.TabIndex = 2036;
             // 
             // lblCarga
             // 
@@ -1278,7 +1315,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel6.Controls.Add(this.label42);
             this.panel6.Controls.Add(this.pictureBox11);
-            this.panel6.Controls.Add(this.pictureBox13);
+            this.panel6.Controls.Add(this.btnInfoEdicionOrdenCOmpra);
             this.panel6.Controls.Add(this.pictureBox15);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
@@ -1312,18 +1349,19 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.pictureBox11.TabIndex = 999;
             this.pictureBox11.TabStop = false;
             // 
-            // pictureBox13
+            // btnInfoEdicionOrdenCOmpra
             // 
-            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
-            this.pictureBox13.Location = new System.Drawing.Point(493, 0);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(26, 18);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox13.TabIndex = 55;
-            this.pictureBox13.TabStop = false;
+            this.btnInfoEdicionOrdenCOmpra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInfoEdicionOrdenCOmpra.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnInfoEdicionOrdenCOmpra.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoEdicionOrdenCOmpra.Image")));
+            this.btnInfoEdicionOrdenCOmpra.Location = new System.Drawing.Point(493, 0);
+            this.btnInfoEdicionOrdenCOmpra.Margin = new System.Windows.Forms.Padding(5);
+            this.btnInfoEdicionOrdenCOmpra.Name = "btnInfoEdicionOrdenCOmpra";
+            this.btnInfoEdicionOrdenCOmpra.Size = new System.Drawing.Size(26, 18);
+            this.btnInfoEdicionOrdenCOmpra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnInfoEdicionOrdenCOmpra.TabIndex = 55;
+            this.btnInfoEdicionOrdenCOmpra.TabStop = false;
+            this.btnInfoEdicionOrdenCOmpra.Click += new System.EventHandler(this.btnInfoEdicionOrdenCOmpra_Click);
             // 
             // pictureBox15
             // 
@@ -1365,43 +1403,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.label45.TabIndex = 2033;
             this.label45.Text = "PDF O/C";
             // 
-            // datalistadoBuscarOPxPedidoAnulacion
-            // 
-            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToAddRows = false;
-            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToDeleteRows = false;
-            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToOrderColumns = true;
-            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToResizeColumns = false;
-            this.datalistadoBuscarOPxPedidoAnulacion.AllowUserToResizeRows = false;
-            this.datalistadoBuscarOPxPedidoAnulacion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.datalistadoBuscarOPxPedidoAnulacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.datalistadoBuscarOPxPedidoAnulacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBuscarOPxPedidoAnulacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.datalistadoBuscarOPxPedidoAnulacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBuscarOPxPedidoAnulacion.DefaultCellStyle = dataGridViewCellStyle2;
-            this.datalistadoBuscarOPxPedidoAnulacion.Location = new System.Drawing.Point(63, 0);
-            this.datalistadoBuscarOPxPedidoAnulacion.Margin = new System.Windows.Forms.Padding(4);
-            this.datalistadoBuscarOPxPedidoAnulacion.Name = "datalistadoBuscarOPxPedidoAnulacion";
-            this.datalistadoBuscarOPxPedidoAnulacion.ReadOnly = true;
-            this.datalistadoBuscarOPxPedidoAnulacion.RowHeadersVisible = false;
-            this.datalistadoBuscarOPxPedidoAnulacion.RowHeadersWidth = 20;
-            this.datalistadoBuscarOPxPedidoAnulacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoBuscarOPxPedidoAnulacion.Size = new System.Drawing.Size(14, 34);
-            this.datalistadoBuscarOPxPedidoAnulacion.TabIndex = 2036;
-            // 
             // Pedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1437,6 +1438,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.Load += new System.EventHandler(this.Pedido_Load);
             this.panelMovimientoFrm.ResumeLayout(false);
             this.panelMovimientoFrm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).EndInit();
@@ -1468,9 +1470,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelModificacionOrdenCompra.PerformLayout();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoEdicionOrdenCOmpra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1570,7 +1571,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox btnInfoEdicionOrdenCOmpra;
         private System.Windows.Forms.PictureBox pictureBox15;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnAbiriOrdenCompra;

@@ -22,7 +22,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         string reconocerImagen2 = "";
         string reconocerImagen3 = "";
         private Cursor curAnterior = null;
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualViajes;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - ACTAS DE VISITA
         public ActasVisita()
@@ -1835,6 +1835,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
         //BOTON PARA ABRIR EL MAUAL DE SUAURIO
         private void btnInfoDetalle_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
+        }
+
+        //BOTON PARA ABRIR EL MAUAL DE SUAURIO
+        private void btnInfoActa_Click(object sender, EventArgs e)
         {
             Process.Start(ruta);
         }

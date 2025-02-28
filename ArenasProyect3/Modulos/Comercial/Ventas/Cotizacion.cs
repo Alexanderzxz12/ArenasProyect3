@@ -24,7 +24,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         private Cursor curAnterior = null;
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualVentas;
 
         int CodigoCLiente = 0;
         int codigoCotizacion;

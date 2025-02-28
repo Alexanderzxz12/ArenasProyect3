@@ -21,7 +21,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
     public partial class Pedido : Form
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualVentas;
         private Cursor curAnterior = null;
 
         //CONMSTRUCTOR DE MI FORMULARIO
@@ -489,6 +489,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             Process.Start(ruta);
         }
 
+        //FUNCION PARA ABRIR EL MANUAL DE USUARIO
+        private void btnInfoEdicionOrdenCOmpra_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //EXPORTAR DOCUMENTO SELECCIOANDO
         private void btnExportar_Click(object sender, EventArgs e)
         {
@@ -545,5 +551,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

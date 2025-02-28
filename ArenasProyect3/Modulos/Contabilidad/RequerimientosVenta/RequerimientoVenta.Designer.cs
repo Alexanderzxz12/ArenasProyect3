@@ -696,7 +696,7 @@
             // 
             this.lblDesaprobarRequerimiento.AutoSize = true;
             this.lblDesaprobarRequerimiento.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDesaprobarRequerimiento.Location = new System.Drawing.Point(477, 619);
+            this.lblDesaprobarRequerimiento.Location = new System.Drawing.Point(473, 619);
             this.lblDesaprobarRequerimiento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDesaprobarRequerimiento.Name = "lblDesaprobarRequerimiento";
             this.lblDesaprobarRequerimiento.Size = new System.Drawing.Size(79, 13);
@@ -707,7 +707,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(592, 619);
+            this.label8.Location = new System.Drawing.Point(588, 619);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 13);
@@ -718,7 +718,7 @@
             // 
             this.lblAnotacionAtendido.AutoSize = true;
             this.lblAnotacionAtendido.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnotacionAtendido.Location = new System.Drawing.Point(343, 619);
+            this.lblAnotacionAtendido.Location = new System.Drawing.Point(339, 619);
             this.lblAnotacionAtendido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAnotacionAtendido.Name = "lblAnotacionAtendido";
             this.lblAnotacionAtendido.Size = new System.Drawing.Size(103, 13);
@@ -731,7 +731,7 @@
             this.btnVerRequerimiento.FlatAppearance.BorderSize = 0;
             this.btnVerRequerimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerRequerimiento.Image = ((System.Drawing.Image)(resources.GetObject("btnVerRequerimiento.Image")));
-            this.btnVerRequerimiento.Location = new System.Drawing.Point(604, 581);
+            this.btnVerRequerimiento.Location = new System.Drawing.Point(600, 581);
             this.btnVerRequerimiento.Name = "btnVerRequerimiento";
             this.btnVerRequerimiento.Size = new System.Drawing.Size(36, 33);
             this.btnVerRequerimiento.TabIndex = 2012;
@@ -744,7 +744,7 @@
             this.btnDesaprobaRequerimiento.FlatAppearance.BorderSize = 0;
             this.btnDesaprobaRequerimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDesaprobaRequerimiento.Image = ((System.Drawing.Image)(resources.GetObject("btnDesaprobaRequerimiento.Image")));
-            this.btnDesaprobaRequerimiento.Location = new System.Drawing.Point(501, 581);
+            this.btnDesaprobaRequerimiento.Location = new System.Drawing.Point(497, 581);
             this.btnDesaprobaRequerimiento.Name = "btnDesaprobaRequerimiento";
             this.btnDesaprobaRequerimiento.Size = new System.Drawing.Size(36, 33);
             this.btnDesaprobaRequerimiento.TabIndex = 2013;
@@ -757,7 +757,7 @@
             this.btnAtenderRequerimeinto.FlatAppearance.BorderSize = 0;
             this.btnAtenderRequerimeinto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAtenderRequerimeinto.Image = ((System.Drawing.Image)(resources.GetObject("btnAtenderRequerimeinto.Image")));
-            this.btnAtenderRequerimeinto.Location = new System.Drawing.Point(380, 581);
+            this.btnAtenderRequerimeinto.Location = new System.Drawing.Point(376, 581);
             this.btnAtenderRequerimeinto.Name = "btnAtenderRequerimeinto";
             this.btnAtenderRequerimeinto.Size = new System.Drawing.Size(36, 33);
             this.btnAtenderRequerimeinto.TabIndex = 2014;
@@ -768,7 +768,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(684, 620);
+            this.label18.Location = new System.Drawing.Point(680, 620);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(71, 13);
@@ -781,7 +781,7 @@
             this.btnExportar.FlatAppearance.BorderSize = 0;
             this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
-            this.btnExportar.Location = new System.Drawing.Point(700, 581);
+            this.btnExportar.Location = new System.Drawing.Point(696, 581);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(36, 33);
             this.btnExportar.TabIndex = 2023;
@@ -794,7 +794,7 @@
             this.btnExportarExcel.FlatAppearance.BorderSize = 0;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
-            this.btnExportarExcel.Location = new System.Drawing.Point(795, 581);
+            this.btnExportarExcel.Location = new System.Drawing.Point(791, 581);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(36, 33);
             this.btnExportarExcel.TabIndex = 2026;
@@ -805,7 +805,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(785, 620);
+            this.label60.Location = new System.Drawing.Point(781, 620);
             this.label60.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(53, 13);

@@ -15,7 +15,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
     public partial class MenuActas : Form
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualViajes;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU DE REQUERIMIENTOS Y LIQUIDACIONES
         public MenuActas()

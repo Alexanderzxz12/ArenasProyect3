@@ -195,7 +195,7 @@
             this.btnInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnInfo.TabIndex = 55;
             this.btnInfo.TabStop = false;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click_1);
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnAtudaFormularioArena
             // 

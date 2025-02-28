@@ -136,6 +136,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.label18 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ckAprobacionAuto = new System.Windows.Forms.CheckBox();
+            this.btnInfoBusquedaProductos = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.panelInformacionFecha.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -155,6 +156,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaProducto)).BeginInit();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoBusquedaProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -572,6 +574,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnInfo.TabIndex = 55;
             this.btnInfo.TabStop = false;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnAtudaFormularioArena
             // 
@@ -1328,6 +1331,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel9.Controls.Add(this.btnInfoBusquedaProductos);
             this.panel9.Controls.Add(this.label18);
             this.panel9.Controls.Add(this.pictureBox1);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1377,6 +1381,20 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.ckAprobacionAuto.Text = "Aprobar de manera automática";
             this.ckAprobacionAuto.UseVisualStyleBackColor = true;
             this.ckAprobacionAuto.Visible = false;
+            // 
+            // btnInfoBusquedaProductos
+            // 
+            this.btnInfoBusquedaProductos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInfoBusquedaProductos.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnInfoBusquedaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoBusquedaProductos.Image")));
+            this.btnInfoBusquedaProductos.Location = new System.Drawing.Point(1069, 0);
+            this.btnInfoBusquedaProductos.Margin = new System.Windows.Forms.Padding(5);
+            this.btnInfoBusquedaProductos.Name = "btnInfoBusquedaProductos";
+            this.btnInfoBusquedaProductos.Size = new System.Drawing.Size(25, 18);
+            this.btnInfoBusquedaProductos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnInfoBusquedaProductos.TabIndex = 1981;
+            this.btnInfoBusquedaProductos.TabStop = false;
+            this.btnInfoBusquedaProductos.Click += new System.EventHandler(this.btnInfoBusquedaProductos_Click);
             // 
             // RequerimientoSimple
             // 
@@ -1437,6 +1455,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaProducto)).EndInit();
             this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoBusquedaProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1542,5 +1561,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn stock;
         private System.Windows.Forms.CheckBox ckAprobacionAuto;
+        private System.Windows.Forms.PictureBox btnInfoBusquedaProductos;
     }
 }

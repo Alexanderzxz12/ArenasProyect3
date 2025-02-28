@@ -15,7 +15,7 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
     public partial class MenuLiquidacionVenta : Form
     {
         //VARIABLES GLOBALES PARA MIS ACTAS DE VISITA
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualViajes;
 
         //CONSTRUCTOR DEL MANTENIMIENTO
         public MenuLiquidacionVenta()

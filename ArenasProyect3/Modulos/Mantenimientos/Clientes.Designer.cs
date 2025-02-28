@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Clientes));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClientes = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -51,35 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelAgregarCliente = new System.Windows.Forms.Panel();
-            this.panelContacto = new System.Windows.Forms.Panel();
-            this.btnRegresarContacto = new System.Windows.Forms.Button();
-            this.btnEliminarContactos = new System.Windows.Forms.Button();
-            this.btnGuardarContacto = new System.Windows.Forms.Button();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.lblCodigoContacto = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.txtNombreContacto = new System.Windows.Forms.TextBox();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.datalistadocontacto = new System.Windows.Forms.DataGridView();
-            this.cboCargoContacto = new System.Windows.Forms.ComboBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.cboAreaContacto = new System.Windows.Forms.ComboBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.cboUnidadContacto = new System.Windows.Forms.ComboBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.txtCorreoContacto = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.txtAnexoContacto = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.txtTelefonoContacto = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.txtCodigoClienteContacto = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.txtNombreClienteContacto = new System.Windows.Forms.TextBox();
             this.panelUnidad = new System.Windows.Forms.Panel();
             this.btnEiminarUnidad = new System.Windows.Forms.Button();
             this.btnCerrarUnidad = new System.Windows.Forms.Button();
@@ -138,6 +109,35 @@
             this.datalistadosucursal = new System.Windows.Forms.DataGridView();
             this.label51 = new System.Windows.Forms.Label();
             this.txtNombreClienteSucursal = new System.Windows.Forms.TextBox();
+            this.panelContacto = new System.Windows.Forms.Panel();
+            this.btnRegresarContacto = new System.Windows.Forms.Button();
+            this.btnEliminarContactos = new System.Windows.Forms.Button();
+            this.btnGuardarContacto = new System.Windows.Forms.Button();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.lblCodigoContacto = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtNombreContacto = new System.Windows.Forms.TextBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.datalistadocontacto = new System.Windows.Forms.DataGridView();
+            this.cboCargoContacto = new System.Windows.Forms.ComboBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.cboAreaContacto = new System.Windows.Forms.ComboBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.cboUnidadContacto = new System.Windows.Forms.ComboBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.txtCorreoContacto = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.txtAnexoContacto = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.txtTelefonoContacto = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtCodigoClienteContacto = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtNombreClienteContacto = new System.Windows.Forms.TextBox();
             this.panelCondicion = new System.Windows.Forms.Panel();
             this.btnRetrocederCondicion = new System.Windows.Forms.Button();
             this.btnEliminarCondicion = new System.Windows.Forms.Button();
@@ -243,17 +243,20 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.cboTipoBusqueda = new System.Windows.Forms.ComboBox();
+            this.btnInfo = new System.Windows.Forms.PictureBox();
+            this.label78 = new System.Windows.Forms.Label();
+            this.btnInfoPrincipal = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             this.panelAgregarCliente.SuspendLayout();
-            this.panelContacto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).BeginInit();
             this.panelUnidad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).BeginInit();
             this.panelSucursal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadosucursal)).BeginInit();
+            this.panelContacto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).BeginInit();
             this.panelCondicion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -269,6 +272,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoPrincipal)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -369,6 +374,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnInfoPrincipal);
+            this.panel2.Controls.Add(this.label78);
             this.panel2.Controls.Add(this.panelAgregarCliente);
             this.panel2.Controls.Add(this.btnExportarListadoClientes);
             this.panel2.Controls.Add(this.datalistado);
@@ -448,373 +455,6 @@
             this.panelAgregarCliente.Size = new System.Drawing.Size(985, 562);
             this.panelAgregarCliente.TabIndex = 154;
             this.panelAgregarCliente.Visible = false;
-            // 
-            // panelContacto
-            // 
-            this.panelContacto.Controls.Add(this.btnRegresarContacto);
-            this.panelContacto.Controls.Add(this.btnEliminarContactos);
-            this.panelContacto.Controls.Add(this.btnGuardarContacto);
-            this.panelContacto.Controls.Add(this.label69);
-            this.panelContacto.Controls.Add(this.label68);
-            this.panelContacto.Controls.Add(this.label67);
-            this.panelContacto.Controls.Add(this.label62);
-            this.panelContacto.Controls.Add(this.lblCodigoContacto);
-            this.panelContacto.Controls.Add(this.label45);
-            this.panelContacto.Controls.Add(this.txtNombreContacto);
-            this.panelContacto.Controls.Add(this.panel9);
-            this.panelContacto.Controls.Add(this.datalistadocontacto);
-            this.panelContacto.Controls.Add(this.cboCargoContacto);
-            this.panelContacto.Controls.Add(this.label44);
-            this.panelContacto.Controls.Add(this.cboAreaContacto);
-            this.panelContacto.Controls.Add(this.label43);
-            this.panelContacto.Controls.Add(this.cboUnidadContacto);
-            this.panelContacto.Controls.Add(this.label42);
-            this.panelContacto.Controls.Add(this.label41);
-            this.panelContacto.Controls.Add(this.txtCorreoContacto);
-            this.panelContacto.Controls.Add(this.label40);
-            this.panelContacto.Controls.Add(this.txtAnexoContacto);
-            this.panelContacto.Controls.Add(this.label39);
-            this.panelContacto.Controls.Add(this.txtTelefonoContacto);
-            this.panelContacto.Controls.Add(this.label38);
-            this.panelContacto.Controls.Add(this.txtCodigoClienteContacto);
-            this.panelContacto.Controls.Add(this.label37);
-            this.panelContacto.Controls.Add(this.txtNombreClienteContacto);
-            this.panelContacto.Location = new System.Drawing.Point(12, 80);
-            this.panelContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.panelContacto.Name = "panelContacto";
-            this.panelContacto.Size = new System.Drawing.Size(958, 466);
-            this.panelContacto.TabIndex = 133;
-            this.panelContacto.Visible = false;
-            // 
-            // btnRegresarContacto
-            // 
-            this.btnRegresarContacto.FlatAppearance.BorderSize = 0;
-            this.btnRegresarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegresarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarContacto.Image")));
-            this.btnRegresarContacto.Location = new System.Drawing.Point(887, 155);
-            this.btnRegresarContacto.Name = "btnRegresarContacto";
-            this.btnRegresarContacto.Size = new System.Drawing.Size(28, 28);
-            this.btnRegresarContacto.TabIndex = 154;
-            this.btnRegresarContacto.UseVisualStyleBackColor = true;
-            this.btnRegresarContacto.Click += new System.EventHandler(this.btnRegresarContacto_Click);
-            // 
-            // btnEliminarContactos
-            // 
-            this.btnEliminarContactos.FlatAppearance.BorderSize = 0;
-            this.btnEliminarContactos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarContactos.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarContactos.Image")));
-            this.btnEliminarContactos.Location = new System.Drawing.Point(887, 97);
-            this.btnEliminarContactos.Name = "btnEliminarContactos";
-            this.btnEliminarContactos.Size = new System.Drawing.Size(28, 28);
-            this.btnEliminarContactos.TabIndex = 153;
-            this.btnEliminarContactos.UseVisualStyleBackColor = true;
-            this.btnEliminarContactos.Click += new System.EventHandler(this.btnEliminarContactos_Click);
-            // 
-            // btnGuardarContacto
-            // 
-            this.btnGuardarContacto.FlatAppearance.BorderSize = 0;
-            this.btnGuardarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarContacto.Image")));
-            this.btnGuardarContacto.Location = new System.Drawing.Point(887, 38);
-            this.btnGuardarContacto.Name = "btnGuardarContacto";
-            this.btnGuardarContacto.Size = new System.Drawing.Size(28, 28);
-            this.btnGuardarContacto.TabIndex = 152;
-            this.btnGuardarContacto.UseVisualStyleBackColor = true;
-            this.btnGuardarContacto.Click += new System.EventHandler(this.btnGuardarContacto_Click);
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(877, 183);
-            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(51, 14);
-            this.label69.TabIndex = 151;
-            this.label69.Text = "Regresar";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(881, 127);
-            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(39, 14);
-            this.label68.TabIndex = 150;
-            this.label68.Text = "Anular";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(878, 69);
-            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(47, 14);
-            this.label67.TabIndex = 149;
-            this.label67.Text = "Guardar";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(34, 196);
-            this.label62.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(63, 14);
-            this.label62.TabIndex = 148;
-            this.label62.Text = "C. Registro:";
-            // 
-            // lblCodigoContacto
-            // 
-            this.lblCodigoContacto.AutoSize = true;
-            this.lblCodigoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoContacto.Location = new System.Drawing.Point(111, 196);
-            this.lblCodigoContacto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoContacto.Name = "lblCodigoContacto";
-            this.lblCodigoContacto.Size = new System.Drawing.Size(13, 14);
-            this.lblCodigoContacto.TabIndex = 144;
-            this.lblCodigoContacto.Text = "0";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(59, 97);
-            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(55, 14);
-            this.label45.TabIndex = 142;
-            this.label45.Text = "Nombres:";
-            // 
-            // txtNombreContacto
-            // 
-            this.txtNombreContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreContacto.Location = new System.Drawing.Point(151, 94);
-            this.txtNombreContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreContacto.Name = "txtNombreContacto";
-            this.txtNombreContacto.Size = new System.Drawing.Size(286, 22);
-            this.txtNombreContacto.TabIndex = 141;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel9.Location = new System.Drawing.Point(479, 72);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1, 100);
-            this.panel9.TabIndex = 140;
-            // 
-            // datalistadocontacto
-            // 
-            this.datalistadocontacto.AllowUserToAddRows = false;
-            this.datalistadocontacto.AllowUserToDeleteRows = false;
-            this.datalistadocontacto.AllowUserToResizeColumns = false;
-            this.datalistadocontacto.AllowUserToResizeRows = false;
-            this.datalistadocontacto.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.datalistadocontacto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.datalistadocontacto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadocontacto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
-            this.datalistadocontacto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadocontacto.DefaultCellStyle = dataGridViewCellStyle18;
-            this.datalistadocontacto.Location = new System.Drawing.Point(20, 215);
-            this.datalistadocontacto.Margin = new System.Windows.Forms.Padding(4);
-            this.datalistadocontacto.Name = "datalistadocontacto";
-            this.datalistadocontacto.ReadOnly = true;
-            this.datalistadocontacto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.datalistadocontacto.RowHeadersVisible = false;
-            this.datalistadocontacto.RowHeadersWidth = 51;
-            this.datalistadocontacto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadocontacto.Size = new System.Drawing.Size(919, 239);
-            this.datalistadocontacto.TabIndex = 139;
-            this.datalistadocontacto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadocontacto_CellClick);
-            // 
-            // cboCargoContacto
-            // 
-            this.cboCargoContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCargoContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboCargoContacto.FormattingEnabled = true;
-            this.cboCargoContacto.Location = new System.Drawing.Point(594, 146);
-            this.cboCargoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.cboCargoContacto.Name = "cboCargoContacto";
-            this.cboCargoContacto.Size = new System.Drawing.Size(230, 21);
-            this.cboCargoContacto.TabIndex = 147;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(536, 146);
-            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(38, 14);
-            this.label44.TabIndex = 137;
-            this.label44.Text = "Cargo:";
-            // 
-            // cboAreaContacto
-            // 
-            this.cboAreaContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAreaContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboAreaContacto.FormattingEnabled = true;
-            this.cboAreaContacto.Location = new System.Drawing.Point(594, 68);
-            this.cboAreaContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.cboAreaContacto.Name = "cboAreaContacto";
-            this.cboAreaContacto.Size = new System.Drawing.Size(230, 21);
-            this.cboAreaContacto.TabIndex = 144;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(544, 71);
-            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(30, 14);
-            this.label43.TabIndex = 135;
-            this.label43.Text = "Área";
-            // 
-            // cboUnidadContacto
-            // 
-            this.cboUnidadContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUnidadContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboUnidadContacto.FormattingEnabled = true;
-            this.cboUnidadContacto.Location = new System.Drawing.Point(594, 120);
-            this.cboUnidadContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.cboUnidadContacto.Name = "cboUnidadContacto";
-            this.cboUnidadContacto.Size = new System.Drawing.Size(230, 21);
-            this.cboUnidadContacto.TabIndex = 146;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(529, 120);
-            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(45, 14);
-            this.label42.TabIndex = 131;
-            this.label42.Text = "Unidad:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(15, 148);
-            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(99, 14);
-            this.label41.TabIndex = 16;
-            this.label41.Text = "Correo Electronico:";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtCorreoContacto
-            // 
-            this.txtCorreoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreoContacto.Location = new System.Drawing.Point(151, 148);
-            this.txtCorreoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCorreoContacto.Name = "txtCorreoContacto";
-            this.txtCorreoContacto.Size = new System.Drawing.Size(253, 22);
-            this.txtCorreoContacto.TabIndex = 143;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(533, 97);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(41, 14);
-            this.label40.TabIndex = 14;
-            this.label40.Text = "Anéxo:";
-            // 
-            // txtAnexoContacto
-            // 
-            this.txtAnexoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnexoContacto.Location = new System.Drawing.Point(594, 94);
-            this.txtAnexoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAnexoContacto.MaxLength = 15;
-            this.txtAnexoContacto.Name = "txtAnexoContacto";
-            this.txtAnexoContacto.Size = new System.Drawing.Size(126, 22);
-            this.txtAnexoContacto.TabIndex = 145;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(62, 123);
-            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(52, 14);
-            this.label39.TabIndex = 12;
-            this.label39.Text = "Teléfono:";
-            // 
-            // txtTelefonoContacto
-            // 
-            this.txtTelefonoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefonoContacto.Location = new System.Drawing.Point(151, 120);
-            this.txtTelefonoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTelefonoContacto.MaxLength = 20;
-            this.txtTelefonoContacto.Name = "txtTelefonoContacto";
-            this.txtTelefonoContacto.Size = new System.Drawing.Size(102, 22);
-            this.txtTelefonoContacto.TabIndex = 142;
-            this.txtTelefonoContacto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoContacto_KeyPress);
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(68, 69);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(46, 14);
-            this.label38.TabIndex = 10;
-            this.label38.Text = "Código::";
-            // 
-            // txtCodigoClienteContacto
-            // 
-            this.txtCodigoClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoClienteContacto.Location = new System.Drawing.Point(151, 68);
-            this.txtCodigoClienteContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigoClienteContacto.Name = "txtCodigoClienteContacto";
-            this.txtCodigoClienteContacto.ReadOnly = true;
-            this.txtCodigoClienteContacto.Size = new System.Drawing.Size(111, 22);
-            this.txtCodigoClienteContacto.TabIndex = 140;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(128, 22);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(57, 18);
-            this.label37.TabIndex = 8;
-            this.label37.Text = "Cliente:";
-            // 
-            // txtNombreClienteContacto
-            // 
-            this.txtNombreClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreClienteContacto.Location = new System.Drawing.Point(193, 22);
-            this.txtNombreClienteContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreClienteContacto.Name = "txtNombreClienteContacto";
-            this.txtNombreClienteContacto.ReadOnly = true;
-            this.txtNombreClienteContacto.Size = new System.Drawing.Size(631, 22);
-            this.txtNombreClienteContacto.TabIndex = 7;
             // 
             // panelUnidad
             // 
@@ -953,23 +593,23 @@
             this.datalistadounidad.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadounidad.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadounidad.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadounidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadounidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.datalistadounidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadounidad.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadounidad.DefaultCellStyle = dataGridViewCellStyle18;
             this.datalistadounidad.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadounidad.Location = new System.Drawing.Point(20, 215);
             this.datalistadounidad.Margin = new System.Windows.Forms.Padding(4);
@@ -1506,23 +1146,23 @@
             this.datalistadosucursal.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadosucursal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadosucursal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadosucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadosucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.datalistadosucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadosucursal.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadosucursal.DefaultCellStyle = dataGridViewCellStyle20;
             this.datalistadosucursal.Location = new System.Drawing.Point(20, 215);
             this.datalistadosucursal.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadosucursal.Name = "datalistadosucursal";
@@ -1556,6 +1196,373 @@
             this.txtNombreClienteSucursal.Size = new System.Drawing.Size(631, 22);
             this.txtNombreClienteSucursal.TabIndex = 11;
             // 
+            // panelContacto
+            // 
+            this.panelContacto.Controls.Add(this.btnRegresarContacto);
+            this.panelContacto.Controls.Add(this.btnEliminarContactos);
+            this.panelContacto.Controls.Add(this.btnGuardarContacto);
+            this.panelContacto.Controls.Add(this.label69);
+            this.panelContacto.Controls.Add(this.label68);
+            this.panelContacto.Controls.Add(this.label67);
+            this.panelContacto.Controls.Add(this.label62);
+            this.panelContacto.Controls.Add(this.lblCodigoContacto);
+            this.panelContacto.Controls.Add(this.label45);
+            this.panelContacto.Controls.Add(this.txtNombreContacto);
+            this.panelContacto.Controls.Add(this.panel9);
+            this.panelContacto.Controls.Add(this.datalistadocontacto);
+            this.panelContacto.Controls.Add(this.cboCargoContacto);
+            this.panelContacto.Controls.Add(this.label44);
+            this.panelContacto.Controls.Add(this.cboAreaContacto);
+            this.panelContacto.Controls.Add(this.label43);
+            this.panelContacto.Controls.Add(this.cboUnidadContacto);
+            this.panelContacto.Controls.Add(this.label42);
+            this.panelContacto.Controls.Add(this.label41);
+            this.panelContacto.Controls.Add(this.txtCorreoContacto);
+            this.panelContacto.Controls.Add(this.label40);
+            this.panelContacto.Controls.Add(this.txtAnexoContacto);
+            this.panelContacto.Controls.Add(this.label39);
+            this.panelContacto.Controls.Add(this.txtTelefonoContacto);
+            this.panelContacto.Controls.Add(this.label38);
+            this.panelContacto.Controls.Add(this.txtCodigoClienteContacto);
+            this.panelContacto.Controls.Add(this.label37);
+            this.panelContacto.Controls.Add(this.txtNombreClienteContacto);
+            this.panelContacto.Location = new System.Drawing.Point(12, 80);
+            this.panelContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.panelContacto.Name = "panelContacto";
+            this.panelContacto.Size = new System.Drawing.Size(958, 466);
+            this.panelContacto.TabIndex = 133;
+            this.panelContacto.Visible = false;
+            // 
+            // btnRegresarContacto
+            // 
+            this.btnRegresarContacto.FlatAppearance.BorderSize = 0;
+            this.btnRegresarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegresarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarContacto.Image")));
+            this.btnRegresarContacto.Location = new System.Drawing.Point(887, 155);
+            this.btnRegresarContacto.Name = "btnRegresarContacto";
+            this.btnRegresarContacto.Size = new System.Drawing.Size(28, 28);
+            this.btnRegresarContacto.TabIndex = 154;
+            this.btnRegresarContacto.UseVisualStyleBackColor = true;
+            this.btnRegresarContacto.Click += new System.EventHandler(this.btnRegresarContacto_Click);
+            // 
+            // btnEliminarContactos
+            // 
+            this.btnEliminarContactos.FlatAppearance.BorderSize = 0;
+            this.btnEliminarContactos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarContactos.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarContactos.Image")));
+            this.btnEliminarContactos.Location = new System.Drawing.Point(887, 97);
+            this.btnEliminarContactos.Name = "btnEliminarContactos";
+            this.btnEliminarContactos.Size = new System.Drawing.Size(28, 28);
+            this.btnEliminarContactos.TabIndex = 153;
+            this.btnEliminarContactos.UseVisualStyleBackColor = true;
+            this.btnEliminarContactos.Click += new System.EventHandler(this.btnEliminarContactos_Click);
+            // 
+            // btnGuardarContacto
+            // 
+            this.btnGuardarContacto.FlatAppearance.BorderSize = 0;
+            this.btnGuardarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarContacto.Image")));
+            this.btnGuardarContacto.Location = new System.Drawing.Point(887, 38);
+            this.btnGuardarContacto.Name = "btnGuardarContacto";
+            this.btnGuardarContacto.Size = new System.Drawing.Size(28, 28);
+            this.btnGuardarContacto.TabIndex = 152;
+            this.btnGuardarContacto.UseVisualStyleBackColor = true;
+            this.btnGuardarContacto.Click += new System.EventHandler(this.btnGuardarContacto_Click);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(877, 183);
+            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(51, 14);
+            this.label69.TabIndex = 151;
+            this.label69.Text = "Regresar";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.Location = new System.Drawing.Point(881, 127);
+            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(39, 14);
+            this.label68.TabIndex = 150;
+            this.label68.Text = "Anular";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.Location = new System.Drawing.Point(878, 69);
+            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(47, 14);
+            this.label67.TabIndex = 149;
+            this.label67.Text = "Guardar";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(34, 196);
+            this.label62.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(63, 14);
+            this.label62.TabIndex = 148;
+            this.label62.Text = "C. Registro:";
+            // 
+            // lblCodigoContacto
+            // 
+            this.lblCodigoContacto.AutoSize = true;
+            this.lblCodigoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoContacto.Location = new System.Drawing.Point(111, 196);
+            this.lblCodigoContacto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoContacto.Name = "lblCodigoContacto";
+            this.lblCodigoContacto.Size = new System.Drawing.Size(13, 14);
+            this.lblCodigoContacto.TabIndex = 144;
+            this.lblCodigoContacto.Text = "0";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(59, 97);
+            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(55, 14);
+            this.label45.TabIndex = 142;
+            this.label45.Text = "Nombres:";
+            // 
+            // txtNombreContacto
+            // 
+            this.txtNombreContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreContacto.Location = new System.Drawing.Point(151, 94);
+            this.txtNombreContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreContacto.Name = "txtNombreContacto";
+            this.txtNombreContacto.Size = new System.Drawing.Size(286, 22);
+            this.txtNombreContacto.TabIndex = 141;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel9.Location = new System.Drawing.Point(479, 72);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1, 100);
+            this.panel9.TabIndex = 140;
+            // 
+            // datalistadocontacto
+            // 
+            this.datalistadocontacto.AllowUserToAddRows = false;
+            this.datalistadocontacto.AllowUserToDeleteRows = false;
+            this.datalistadocontacto.AllowUserToResizeColumns = false;
+            this.datalistadocontacto.AllowUserToResizeRows = false;
+            this.datalistadocontacto.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadocontacto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.datalistadocontacto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadocontacto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            this.datalistadocontacto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadocontacto.DefaultCellStyle = dataGridViewCellStyle22;
+            this.datalistadocontacto.Location = new System.Drawing.Point(20, 215);
+            this.datalistadocontacto.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadocontacto.Name = "datalistadocontacto";
+            this.datalistadocontacto.ReadOnly = true;
+            this.datalistadocontacto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.datalistadocontacto.RowHeadersVisible = false;
+            this.datalistadocontacto.RowHeadersWidth = 51;
+            this.datalistadocontacto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadocontacto.Size = new System.Drawing.Size(919, 239);
+            this.datalistadocontacto.TabIndex = 139;
+            this.datalistadocontacto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadocontacto_CellClick);
+            // 
+            // cboCargoContacto
+            // 
+            this.cboCargoContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCargoContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCargoContacto.FormattingEnabled = true;
+            this.cboCargoContacto.Location = new System.Drawing.Point(594, 146);
+            this.cboCargoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCargoContacto.Name = "cboCargoContacto";
+            this.cboCargoContacto.Size = new System.Drawing.Size(230, 21);
+            this.cboCargoContacto.TabIndex = 147;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(536, 146);
+            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(38, 14);
+            this.label44.TabIndex = 137;
+            this.label44.Text = "Cargo:";
+            // 
+            // cboAreaContacto
+            // 
+            this.cboAreaContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAreaContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAreaContacto.FormattingEnabled = true;
+            this.cboAreaContacto.Location = new System.Drawing.Point(594, 68);
+            this.cboAreaContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.cboAreaContacto.Name = "cboAreaContacto";
+            this.cboAreaContacto.Size = new System.Drawing.Size(230, 21);
+            this.cboAreaContacto.TabIndex = 144;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(544, 71);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(30, 14);
+            this.label43.TabIndex = 135;
+            this.label43.Text = "Área";
+            // 
+            // cboUnidadContacto
+            // 
+            this.cboUnidadContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnidadContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboUnidadContacto.FormattingEnabled = true;
+            this.cboUnidadContacto.Location = new System.Drawing.Point(594, 120);
+            this.cboUnidadContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUnidadContacto.Name = "cboUnidadContacto";
+            this.cboUnidadContacto.Size = new System.Drawing.Size(230, 21);
+            this.cboUnidadContacto.TabIndex = 146;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(529, 120);
+            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(45, 14);
+            this.label42.TabIndex = 131;
+            this.label42.Text = "Unidad:";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(15, 148);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(99, 14);
+            this.label41.TabIndex = 16;
+            this.label41.Text = "Correo Electronico:";
+            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtCorreoContacto
+            // 
+            this.txtCorreoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreoContacto.Location = new System.Drawing.Point(151, 148);
+            this.txtCorreoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCorreoContacto.Name = "txtCorreoContacto";
+            this.txtCorreoContacto.Size = new System.Drawing.Size(253, 22);
+            this.txtCorreoContacto.TabIndex = 143;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(533, 97);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(41, 14);
+            this.label40.TabIndex = 14;
+            this.label40.Text = "Anéxo:";
+            // 
+            // txtAnexoContacto
+            // 
+            this.txtAnexoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAnexoContacto.Location = new System.Drawing.Point(594, 94);
+            this.txtAnexoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAnexoContacto.MaxLength = 15;
+            this.txtAnexoContacto.Name = "txtAnexoContacto";
+            this.txtAnexoContacto.Size = new System.Drawing.Size(126, 22);
+            this.txtAnexoContacto.TabIndex = 145;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(62, 123);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(52, 14);
+            this.label39.TabIndex = 12;
+            this.label39.Text = "Teléfono:";
+            // 
+            // txtTelefonoContacto
+            // 
+            this.txtTelefonoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefonoContacto.Location = new System.Drawing.Point(151, 120);
+            this.txtTelefonoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTelefonoContacto.MaxLength = 20;
+            this.txtTelefonoContacto.Name = "txtTelefonoContacto";
+            this.txtTelefonoContacto.Size = new System.Drawing.Size(102, 22);
+            this.txtTelefonoContacto.TabIndex = 142;
+            this.txtTelefonoContacto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoContacto_KeyPress);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(68, 69);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(46, 14);
+            this.label38.TabIndex = 10;
+            this.label38.Text = "Código::";
+            // 
+            // txtCodigoClienteContacto
+            // 
+            this.txtCodigoClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoClienteContacto.Location = new System.Drawing.Point(151, 68);
+            this.txtCodigoClienteContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoClienteContacto.Name = "txtCodigoClienteContacto";
+            this.txtCodigoClienteContacto.ReadOnly = true;
+            this.txtCodigoClienteContacto.Size = new System.Drawing.Size(111, 22);
+            this.txtCodigoClienteContacto.TabIndex = 140;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(128, 22);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(57, 18);
+            this.label37.TabIndex = 8;
+            this.label37.Text = "Cliente:";
+            // 
+            // txtNombreClienteContacto
+            // 
+            this.txtNombreClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreClienteContacto.Location = new System.Drawing.Point(193, 22);
+            this.txtNombreClienteContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreClienteContacto.Name = "txtNombreClienteContacto";
+            this.txtNombreClienteContacto.ReadOnly = true;
+            this.txtNombreClienteContacto.Size = new System.Drawing.Size(631, 22);
+            this.txtNombreClienteContacto.TabIndex = 7;
+            // 
             // panelCondicion
             // 
             this.panelCondicion.Controls.Add(this.btnRetrocederCondicion);
@@ -1580,7 +1587,6 @@
             this.panelCondicion.Size = new System.Drawing.Size(958, 466);
             this.panelCondicion.TabIndex = 135;
             this.panelCondicion.Visible = false;
-            this.panelCondicion.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCondicion_Paint);
             // 
             // btnRetrocederCondicion
             // 
@@ -1692,23 +1698,23 @@
             this.datalistadoCondicion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoCondicion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoCondicion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoCondicion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoCondicion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.datalistadoCondicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoCondicion.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoCondicion.DefaultCellStyle = dataGridViewCellStyle24;
             this.datalistadoCondicion.Location = new System.Drawing.Point(20, 215);
             this.datalistadoCondicion.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoCondicion.Name = "datalistadoCondicion";
@@ -2538,6 +2544,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkRed;
+            this.panel5.Controls.Add(this.btnInfo);
             this.panel5.Controls.Add(this.label58);
             this.panel5.Controls.Add(this.pictureBox3);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
@@ -2681,23 +2688,23 @@
             this.datalistado.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistado.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.datalistado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistado.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistado.DefaultCellStyle = dataGridViewCellStyle14;
             this.datalistado.Location = new System.Drawing.Point(58, 158);
             this.datalistado.Margin = new System.Windows.Forms.Padding(4);
             this.datalistado.Name = "datalistado";
@@ -2718,28 +2725,28 @@
             this.datalistadoExcel.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoExcel.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoExcel.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.datalistadoExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoExcel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.qqq,
             this.sss,
             this.sssdd,
             this.asad});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle16;
             this.datalistadoExcel.Location = new System.Drawing.Point(58, 576);
             this.datalistadoExcel.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoExcel.Name = "datalistadoExcel";
@@ -2846,6 +2853,45 @@
             this.cboTipoBusqueda.TabIndex = 151;
             this.cboTipoBusqueda.SelectedIndexChanged += new System.EventHandler(this.cboTipoBusqueda_SelectedIndexChanged);
             // 
+            // btnInfo
+            // 
+            this.btnInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInfo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnInfo.Image = ((System.Drawing.Image)(resources.GetObject("btnInfo.Image")));
+            this.btnInfo.Location = new System.Drawing.Point(957, 0);
+            this.btnInfo.Margin = new System.Windows.Forms.Padding(5);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(26, 20);
+            this.btnInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnInfo.TabIndex = 133;
+            this.btnInfo.TabStop = false;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.BackColor = System.Drawing.Color.Transparent;
+            this.label78.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label78.Location = new System.Drawing.Point(897, 610);
+            this.label78.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(130, 15);
+            this.label78.TabIndex = 160;
+            this.label78.Text = "Para más información";
+            // 
+            // btnInfoPrincipal
+            // 
+            this.btnInfoPrincipal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInfoPrincipal.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoPrincipal.Image")));
+            this.btnInfoPrincipal.Location = new System.Drawing.Point(1033, 607);
+            this.btnInfoPrincipal.Margin = new System.Windows.Forms.Padding(5);
+            this.btnInfoPrincipal.Name = "btnInfoPrincipal";
+            this.btnInfoPrincipal.Size = new System.Drawing.Size(26, 20);
+            this.btnInfoPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnInfoPrincipal.TabIndex = 161;
+            this.btnInfoPrincipal.TabStop = false;
+            this.btnInfoPrincipal.Click += new System.EventHandler(this.btnInfoPrincipal_Click);
+            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2865,15 +2911,15 @@
             this.panel2.PerformLayout();
             this.panelAgregarCliente.ResumeLayout(false);
             this.panelAgregarCliente.PerformLayout();
-            this.panelContacto.ResumeLayout(false);
-            this.panelContacto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).EndInit();
             this.panelUnidad.ResumeLayout(false);
             this.panelUnidad.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).EndInit();
             this.panelSucursal.ResumeLayout(false);
             this.panelSucursal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadosucursal)).EndInit();
+            this.panelContacto.ResumeLayout(false);
+            this.panelContacto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).EndInit();
             this.panelCondicion.ResumeLayout(false);
             this.panelCondicion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).EndInit();
@@ -2893,6 +2939,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoPrincipal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3101,5 +3149,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sss;
         private System.Windows.Forms.DataGridViewTextBoxColumn sssdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn asad;
+        private System.Windows.Forms.PictureBox btnInfo;
+        private System.Windows.Forms.PictureBox btnInfoPrincipal;
+        private System.Windows.Forms.Label label78;
     }
 }

@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.Diagnostics;
+using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -24,6 +26,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         string area = "";
         int IdUsuario = 0;
         private Cursor curAnterior = null;
+        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
 
         public ValidacionRequerimientoSimple()
         {
@@ -681,6 +684,24 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+    
+        //ABRIR EL MANUAL DE USUARIO
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
+        }
+
+        //ABRIR EL MANUAL DE USUARIO
+        private void btnInfoDetalles_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
+        }
+
+        //ABRIR EL MANUAL DE USUARIO
+        private void btnInfoDetalleRequerimiento_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
         }
     }
 }

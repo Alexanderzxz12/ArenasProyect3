@@ -15,7 +15,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
     public partial class MenuVentas : Form
     {
         //VARIABLES GLOBALES
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualVentas;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU DE COTIZACIONES Y PEDIDOS
         public MenuVentas()

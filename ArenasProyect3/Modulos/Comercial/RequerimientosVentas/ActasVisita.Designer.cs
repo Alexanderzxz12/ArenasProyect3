@@ -2150,6 +2150,7 @@
             this.btnInfoActa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnInfoActa.TabIndex = 55;
             this.btnInfoActa.TabStop = false;
+            this.btnInfoActa.Click += new System.EventHandler(this.btnInfoActa_Click);
             // 
             // pictureBox7
             // 

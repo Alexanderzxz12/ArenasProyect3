@@ -26,7 +26,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         int numeroActa = 0;
         int idLiquidacion = 0;
         private Cursor curAnterior = null;
-        string ruta = Manual.manualComercial;
+        string ruta = Manual.manualVentas;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - LIQUIDACION DE VENTA
         public LiquidacionVenta()

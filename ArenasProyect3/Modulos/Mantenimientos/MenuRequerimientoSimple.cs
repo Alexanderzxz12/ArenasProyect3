@@ -15,7 +15,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
     public partial class MenuRequerimientoSimple : Form
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU DE REQUERIMIENTOS SIMPLE
         public MenuRequerimientoSimple()

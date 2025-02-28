@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -21,6 +23,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         string cantidadRequerimiento2 = "";
         int IdUsuario = 0;
         string area = "";
+        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
 
         //CONSTRUCTOR DE MI MANTENIMIENTO
         public RequerimientoSimple()
@@ -700,6 +703,17 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 panelInformacionFecha.Visible = true;
             }
+        }
+
+        //ABRIR EL MANUAL DE USUARIO
+        private void btnInfoBusquedaProductos_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
         }
     }
 }

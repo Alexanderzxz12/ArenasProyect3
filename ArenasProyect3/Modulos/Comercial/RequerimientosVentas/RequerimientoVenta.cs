@@ -29,7 +29,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private Cursor curAnterior = null;
         int numeroLiquidacion = 0;
         int numeroRequerimiento = 0;
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualViajes;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - REQUERIMIENTOS DE VENTA
         public RequerimientoVenta()

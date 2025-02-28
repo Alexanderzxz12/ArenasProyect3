@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -27,6 +29,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         bool EstadoDni = false;
         bool EstadoRuc = false;
         bool EstadoOtro = false;
+
+        string Manual = ManGeneral.Manual.manualClientes;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - CLIENTES
         public Clientes()
@@ -1922,9 +1926,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la ubicación siguiente: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
         }
 
-        private void panelCondicion_Paint(object sender, PaintEventArgs e)
+        //BOTON PARA ABIRIR MI MANUAL DE USUARIO
+        private void btnInfo_Click(object sender, EventArgs e)
         {
+            Process.Start(Manual);
+        }
 
+        //BOTON PARA ABIRIR MI MANUAL DE USUARIO
+        private void btnInfoPrincipal_Click(object sender, EventArgs e)
+        {
+            Process.Start(Manual);
         }
     }
 }
