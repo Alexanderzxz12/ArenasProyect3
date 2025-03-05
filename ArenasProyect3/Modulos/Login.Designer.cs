@@ -197,7 +197,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(268, 18);
             this.label12.TabIndex = 1998;
-            this.label12.Text = "Made by Arenas S.R.L - v1.1.0.151";
+            this.label12.Text = "Made by Arenas S.R.L - v1.1.0.152";
             // 
             // imgValidacionIncorrecta
             // 

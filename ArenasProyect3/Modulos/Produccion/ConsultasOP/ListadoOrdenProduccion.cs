@@ -21,11 +21,120 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         private Cursor curAnterior = null;
+        int totalCantidades = 0;
 
         //CONMSTRUCTOR DE MI FORMULARIO
         public ListadoOrdenProduccion()
         {
             InitializeComponent();
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO Y VER SI ESTAN VENCIDOS
+        public void CargarColoresListadoOPGeneral()
+        {
+            try
+            {
+                //VARIABLE DE FECHA
+                var DateAndTime = DateTime.Now;
+                //RECORRER MI LISTADO PARA VALIDAR MIS OPs, SI ESTAN VENCIDAS O NO
+                foreach (DataGridViewRow datorecuperado in datalistadoTodasOP.Rows)
+                {
+                    //RECUERAR LA FECHA Y EL CÓDIGO DE MI OP
+                    DateTime fechaEntrega = Convert.ToDateTime(datorecuperado.Cells["FECHA DE ENTREGA"].Value);
+                    int codigoOP = Convert.ToInt32(datorecuperado.Cells["ID"].Value);
+                    string estadoOP = Convert.ToString(datorecuperado.Cells["ESTADO"].Value);
+
+                    int cantidadEsperada = Convert.ToInt32(datorecuperado.Cells["CANTIDAD"].Value);
+                    int cantidadRealizada = Convert.ToInt32(datorecuperado.Cells["CANTIDAD REALIZADA"].Value);
+
+                    if (estadoOP != "ANULADO")
+                    {
+                        if (cantidadEsperada == cantidadRealizada)
+                        {
+                            //CAMBIAR EL ESTADO DE MI OP
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOP", codigoOP);
+                            cmd.Parameters.AddWithValue("@estadoOP", 4);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+
+                        //SI LA FECHA DE VALIDEZ ES MAYOR A LA FECHA ACTUAL CONSULTADA
+                        if (estadoOP == "PENDIENTE")
+                        {
+                            if (fechaEntrega == DateAndTime)
+                            {
+                                //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+                                SqlConnection con = new SqlConnection();
+                                SqlCommand cmd = new SqlCommand();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                cmd = new SqlCommand("CambiarEstadoOP", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@idOP", codigoOP);
+                                cmd.Parameters.AddWithValue("@estadoOP", 2);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
+                            else if (fechaEntrega < DateAndTime)
+                            {
+                                //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+                                SqlConnection con = new SqlConnection();
+                                SqlCommand cmd = new SqlCommand();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                cmd = new SqlCommand("CambiarEstadoOP", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@idOP", codigoOP);
+                                cmd.Parameters.AddWithValue("@estadoOP", 3);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO
+        public void ColoresListado()
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= datalistadoTodasOP.RowCount - 1; i++)
+                {
+                    if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "FUERA DE FECHA")
+                    {
+                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "LÍMITE")
+                    {
+                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
+                    }
+                    else if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "PENDIENTE")
+                    {
+                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                    else if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "CULMINADO")
+                    {
+                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
@@ -77,6 +186,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //FUNCION PARA VERIFICAR SI HAY UNA CANTIDAD 
         public void MostrarCantidadesSegunOP(int idOrdenProduccion)
         {
+            totalCantidades = 0;
+
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
@@ -93,6 +204,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             datalistadoCantidades.Columns[1].Width = 120;
             datalistadoCantidades.Columns[2].Width = 100;
             alternarColorFilas(datalistadoCantidades);
+
+
+            //CONTAR CUANTAS CANTIDADES HAY
+            foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+            {
+                totalCantidades = totalCantidades + Convert.ToInt32(row.Cells[1].Value.ToString());
+            }
         }
 
         //COLOREAR MI LISTADO
@@ -241,6 +359,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[13].ReadOnly = true;
             DGV.Columns[14].ReadOnly = true;
 
+            CargarColoresListadoOPGeneral();
+            ColoresListado();
+
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
             foreach (DataGridViewColumn column in DGV.Columns)
             {
@@ -292,6 +413,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 txtCantidadRealizada.Text = "";
                 txtCantidadRestante.Text = "";
                 MostrarCantidadesSegunOP(IdOrdenProduccion);
+                lblCantidadTotalInghresada.Text = Convert.ToString(totalCantidades);
+                txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadRequerida.Text) - Convert.ToInt32(lblCantidadTotalInghresada.Text));
 
                 if (count != 1)
                 {
@@ -324,17 +447,20 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR OP SEGUN LAS FECHAS
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR OP SEGUN LAS FECHAS
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
@@ -344,13 +470,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             if (cboBusqeuda.Text == "CÓDIGO OP")
             {
                 MostrarOrdenProduccionPorCodigoOP(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                MostrarOrdenProduccionPorCodigoOP(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
             }
             else if (cboBusqeuda.Text == "CLIENTE")
             {
                 MostrarOrdenProduccionPorCliente(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                MostrarOrdenProduccionPorCliente(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
             }
             else if (cboBusqeuda.Text == "DESCRIPCIÓN PRODUCTO")
             {
+                MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
                 MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
             }
         }
@@ -405,14 +534,18 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoTodasOP.CurrentRow != null)
             {
-                if(txtCantidadRealizada.Text == "" || txtCantidadRealizada.Text == "0")
+                if (txtCantidadRealizada.Text == "" || txtCantidadRealizada.Text == "0")
                 {
                     MessageBox.Show("Debe ingresar una cantidad válida para poder registrar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
-                //if else (txtCantidadRealizada.Text)
-                //{
-
-                //}
+                else if (txtCantidadRequerida.Text == lblCantidadTotalInghresada.Text)
+                {
+                    MessageBox.Show("La orden de producción ya culminó.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else if (Convert.ToInt32(txtCantidadRestante.Text) < Convert.ToInt32(txtCantidadRealizada.Text))
+                {
+                    MessageBox.Show("No se puede ingresar una cantidad mayor a la restante.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
                 else
                 {
                     DialogResult boton = MessageBox.Show("¿Realmente desea ingresar esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
@@ -447,6 +580,52 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             {
                 MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema");
             }
+        }
+
+        //EVENTO PARA GUARDAR VARIAS CANTIDADES INGRESADAS
+        private void btnGenerarGuardarCantidades_Click(object sender, EventArgs e)
+        {
+            List<int> idOPSeleccionada = new List<int>();
+            List<int> CantidadTotalOPSeleccionada = new List<int>();
+
+            foreach (DataGridViewRow row in datalistadoTodasOP.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = row.Cells[0] as DataGridViewCheckBoxCell;
+
+                if (checkBox != null && Convert.ToBoolean(checkBox.Value) == true)
+                {
+                    try
+                    {
+                        int idOp = Convert.ToInt32(row.Cells[1].Value.ToString());
+                        int cantidadEsperada = Convert.ToInt32(row.Cells[9].Value.ToString());
+                        int cantidadHecha = Convert.ToInt32(row.Cells[12].Value.ToString());
+                        int TotalCantidad = cantidadEsperada - cantidadHecha;
+
+                        if (TotalCantidad != 0)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("IngresarRegistroCantidad", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOrdenProduccion", idOp);
+                            cmd.Parameters.AddWithValue("@cantidad", TotalCantidad);
+                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+            MessageBox.Show("Operación terminada.", "Validación del Sistema");
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            LimpiarCantidades();
         }
 
         //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
@@ -702,7 +881,5 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 e.Handled = true;
             }
         }
-
-
     }
 }

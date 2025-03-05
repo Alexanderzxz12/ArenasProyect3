@@ -21,7 +21,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
     public partial class ListadoPedidos : Form
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
-        string ruta = Manual.manualComercial;
+        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
         private Cursor curAnterior = null;
         string VisualizarOC = "";
         string codigoOrdenProduccion = "";
@@ -311,6 +311,23 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             datalistadoLineaFormulacion.DataSource = dt;
+            con.Close();
+        }
+
+        //BUSCAR EL ULTIMO COLOR DE MI PRODUCTO EN UNA OP
+        public void BuscarUltimoColorProducto(int idProducto)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("BuscarUltimoColorProductoOP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idProducto", idProducto);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBusquedaColorUltimoProducto.DataSource = dt;
             con.Close();
         }
 
@@ -798,7 +815,21 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             BuscarMaterialesFormulacion(codigoFormulacion);
             BuscarLineaFormulacion(codigoFormulacion);
-            //BuscarSemiProducidoFormulacionOP(codigoFormulacion);
+
+            if (lblIdProducto.Text == "---")
+            {
+                BuscarUltimoColorProducto(0);
+            }
+            else
+            {
+                BuscarUltimoColorProducto(Convert.ToInt32(lblIdProducto.Text));
+
+                if (datalistadoBusquedaColorUltimoProducto.Rows.Count > 0)
+                {
+                    txtColorProducto.Text = datalistadoBusquedaColorUltimoProducto.SelectedCells[0].Value.ToString();
+                }
+            }
+
             txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
             datalistadoActividades.Rows.Clear();
 
@@ -924,7 +955,21 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 BuscarMaterialesFormulacion(codigoFormulacion);
                 BuscarLineaFormulacion(codigoFormulacion);
-                //BuscarSemiProducidoFormulacionOP(codigoFormulacion);
+
+                if (lblIdProducto.Text == "---")
+                {
+                    BuscarUltimoColorProducto(0);
+                }
+                else
+                {
+                    BuscarUltimoColorProducto(Convert.ToInt32(lblIdProducto.Text));
+
+                    if(datalistadoBusquedaColorUltimoProducto.Rows.Count > 0)
+                    {
+                        txtColorProducto.Text = datalistadoBusquedaColorUltimoProducto.SelectedCells[0].Value.ToString();
+                    }
+                }
+
                 txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
                 datalistadoActividades.Rows.Clear();
 

@@ -109,7 +109,6 @@ C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\bin\Debug\Sp
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\bin\Debug\DocumentFormat.OpenXml.dll
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\bin\Debug\SpreadsheetLight.xml
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Comercial.Auditora.Auditora.resources
-C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.csproj.AssemblyReference.cache
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Logistica.MenuLogistcia.resources
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Mantenimientos.MenuRequerimientoSimple.resources
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Mantenimientos.RequerimientoSimple.resources

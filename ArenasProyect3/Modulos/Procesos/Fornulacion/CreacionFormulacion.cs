@@ -2004,7 +2004,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            da = new SqlDataAdapter("SELECT Codcom AS [CÓDIGO], IdArt AS [C. ART], Detalle AS [DESCRIPCIÓN] , M.Descripcion AS [MEDIDA] FROM PRODUCTOS P INNER JOIN MEDIDA M ON M.IdMedida = P.IdMedida WHERE P.Estado = 1 AND IdTipoMercaderias = 16", con);
+            da = new SqlDataAdapter("SELECT Codcom AS [CÓDIGO], IdArt AS [C. ART], Detalle AS [DESCRIPCIÓN] , M.Descripcion AS [MEDIDA] FROM PRODUCTOS P INNER JOIN MEDIDA M ON M.IdMedida = P.IdMedida WHERE P.Estado = 1 AND IdTipoMercaderias IN (16,15)", con);
             da.Fill(dt);
             dgv.DataSource = dt;
             con.Close();

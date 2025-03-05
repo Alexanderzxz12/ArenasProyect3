@@ -92,7 +92,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             btnEditarF.Visible = true;
             btnEditar2F.Visible = false;
 
-            btnGuardarF.Visible = true;
+            btnGuardar.Visible = true;
             btnGuardar2F.Visible = false;
 
             CancelarF.Visible = false;
@@ -149,7 +149,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             txtAbreviatura.Enabled = true;
             txtCodSunat.Enabled = true;
 
-            btnGuardarF.Visible = false;
+            btnGuardar.Visible = false;
             btnGuardar2F.Visible = true;
 
             CancelarF.Visible = true;
@@ -197,7 +197,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     btnEditarF.Visible = true;
                     btnEditar2F.Visible = false;
 
-                    btnGuardarF.Visible = true;
+                    btnGuardar.Visible = true;
                     btnGuardar2F.Visible = false;
 
                     cboEstado.SelectedIndex = -1;
@@ -230,7 +230,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
                 CancelarF.Visible = true;
                 lblCancelar.Visible = true;
-                btnGuardarF.Enabled = true;
+                btnGuardar.Enabled = true;
             }
         }
 
@@ -274,7 +274,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     btnEditarF.Visible = true;
                     btnEditar2F.Visible = false;
 
-                    btnGuardarF.Visible = true;
+                    btnGuardar.Visible = true;
                     btnGuardar2F.Visible = false;
 
                     cboEstado.SelectedIndex = -1;
@@ -302,7 +302,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             btnEditarF.Visible = true;
             btnEditar2F.Visible = false;
 
-            btnGuardarF.Visible = true;
+            btnGuardar.Visible = true;
             btnGuardar2F.Visible = false;
 
             CancelarF.Visible = false;
