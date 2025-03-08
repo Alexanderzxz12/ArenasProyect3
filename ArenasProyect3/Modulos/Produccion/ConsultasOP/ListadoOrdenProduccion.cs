@@ -49,6 +49,50 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                     if (estadoOP != "ANULADO")
                     {
+                        //SI LA FECHA DE VALIDEZ ES MAYOR A LA FECHA ACTUAL CONSULTADA
+                        if (fechaEntrega == DateAndTime.Date)
+                        {
+                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOP", codigoOP);
+                            cmd.Parameters.AddWithValue("@estadoOP", 2);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        else if (fechaEntrega < DateAndTime.Date)
+                        {
+                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOP", codigoOP);
+                            cmd.Parameters.AddWithValue("@estadoOP", 3);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        else if (fechaEntrega > DateAndTime)
+                        {
+                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOP", codigoOP);
+                            cmd.Parameters.AddWithValue("@estadoOP", 1);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+
                         if (cantidadEsperada == cantidadRealizada)
                         {
                             //CAMBIAR EL ESTADO DE MI OP
@@ -62,39 +106,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             cmd.Parameters.AddWithValue("@estadoOP", 4);
                             cmd.ExecuteNonQuery();
                             con.Close();
-                        }
-
-                        //SI LA FECHA DE VALIDEZ ES MAYOR A LA FECHA ACTUAL CONSULTADA
-                        if (estadoOP == "PENDIENTE")
-                        {
-                            if (fechaEntrega == DateAndTime)
-                            {
-                                //CAMBIAR EL ESTADO DE MI COTIZACIÓN
-                                SqlConnection con = new SqlConnection();
-                                SqlCommand cmd = new SqlCommand();
-                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con.Open();
-                                cmd = new SqlCommand("CambiarEstadoOP", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-                                cmd.Parameters.AddWithValue("@idOP", codigoOP);
-                                cmd.Parameters.AddWithValue("@estadoOP", 2);
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-                            }
-                            else if (fechaEntrega < DateAndTime)
-                            {
-                                //CAMBIAR EL ESTADO DE MI COTIZACIÓN
-                                SqlConnection con = new SqlConnection();
-                                SqlCommand cmd = new SqlCommand();
-                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con.Open();
-                                cmd = new SqlCommand("CambiarEstadoOP", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-                                cmd.Parameters.AddWithValue("@idOP", codigoOP);
-                                cmd.Parameters.AddWithValue("@estadoOP", 3);
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-                            }
                         }
                     }
                 }
@@ -726,6 +737,73 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             //txtJustificacionAnulacion.Text = "";
         }
         //----------------------------------------------------------------------------------------------------------
+        //MODIFICAR MI FECHA DE ENTREGA DE MI ORDEN DE PRODUCCION
+        private void btnModificarFecha_Click(object sender, EventArgs e)
+        {
+            if (datalistadoTodasOP.CurrentRow != null)
+            {
+                datalistadoTodasOP.Enabled = false;
+                panelModiFechaEntrega.Visible = true;
+                int IdOP = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value);
+                txtModiCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
+                dtpModiFechaOP.Value = Convert.ToDateTime(datalistadoTodasOP.SelectedCells[3].Value);
+                dtpModiFechaEntrega.Value = Convert.ToDateTime(datalistadoTodasOP.SelectedCells[4].Value);
+                txtModiObservacionModiFecha.Text = "";
+            }
+        }
+
+        //CONFIRMAR MI MODIFICACION DE FECHAS
+        private void btnModiConfirmar_Click(object sender, EventArgs e)
+        {
+            if (datalistadoTodasOP.CurrentRow != null)
+            {
+                int idOrdenProduccion = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value.ToString());
+
+                DialogResult boton = MessageBox.Show("¿Realmente desea modificar esta fecha de orden de producción?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
+                {
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        SqlCommand cmd = new SqlCommand();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        cmd = new SqlCommand("ModificarFechaOrdenProduccion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
+                        cmd.Parameters.AddWithValue("@fechaEntrega", dtpModiFechaEntrega.Value);
+                        cmd.Parameters.AddWithValue("@observacion", txtModiObservacionModiFecha.Text);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Fecha de entrega de mi orden de producción modificada exitosamente.", "Validación del Sistema");
+                        MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                        MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                        datalistadoTodasOP.Enabled = true;
+                        panelModiFechaEntrega.Visible = false;
+                        txtModiObservacionModiFecha.Text = "";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una orden de producción para poder editarla.", "Validación del Sistema");
+            }
+        }
+
+        //FUNCION PARA RETROCEDER MI MODIFICACION DE FECHA
+        private void btnModiRetroceder_Click(object sender, EventArgs e)
+        {
+            txtModiObservacionModiFecha.Text = "";
+            datalistadoTodasOP.Enabled = true;
+            panelModiFechaEntrega.Visible = false;
+        }
+
+        //-----------------------------------------------------------------------------------------------------------
 
         //BOTON PARA EXPORTAR MIS DATOS
         private void btnExportarExcel_Click(object sender, EventArgs e)
