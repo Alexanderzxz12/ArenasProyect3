@@ -260,17 +260,18 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             //SE REDIMENSIONA EL TAMAÑO DE CADA COLUMNA DE MI LISTADO DE PRODUCTOS
             DGV.Columns[1].Width = 100;
-            DGV.Columns[2].Width = 520;
-            DGV.Columns[3].Width = 150;
-            DGV.Columns[8].Width = 88;
-            DGV.Columns[9].Width = 80;
-            DGV.Columns[10].Width = 87;
+            DGV.Columns[2].Width = 80;
+            DGV.Columns[3].Width = 520;
+            DGV.Columns[4].Width = 150;
+            DGV.Columns[9].Width = 88;
+            DGV.Columns[10].Width = 80;
+            DGV.Columns[11].Width = 87;
             //SE QUITA LAS COLUMNAS QUE NO SON RELEVANTES PARA EL USUARIO
-            DGV.Columns[4].Visible = false;
             DGV.Columns[5].Visible = false;
             DGV.Columns[6].Visible = false;
             DGV.Columns[7].Visible = false;
-            DGV.Columns[11].Visible = false;
+            DGV.Columns[8].Visible = false;
+            DGV.Columns[12].Visible = false;
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
             foreach (DataGridViewColumn column in DGV.Columns)
@@ -372,11 +373,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             if (currentColumn.Name == "ckSeleccionarProducto")
             {
                 //SE CAPTURA LAS VARIABLES 
-                string id = datalistadoBusquedaProducto.SelectedCells[11].Value.ToString();
+                string id = datalistadoBusquedaProducto.SelectedCells[12].Value.ToString();
                 string codigo = datalistadoBusquedaProducto.SelectedCells[1].Value.ToString();
-                string producto = datalistadoBusquedaProducto.SelectedCells[2].Value.ToString();
-                string tipoMedida = datalistadoBusquedaProducto.SelectedCells[3].Value.ToString();
-                string stock = datalistadoBusquedaProducto.SelectedCells[8].Value.ToString();
+                string producto = datalistadoBusquedaProducto.SelectedCells[3].Value.ToString();
+                string tipoMedida = datalistadoBusquedaProducto.SelectedCells[4].Value.ToString();
+                string stock = datalistadoBusquedaProducto.SelectedCells[9].Value.ToString();
 
                 //SE AGREGA A LA NUEVA LISTA
                 datalistadoSeleccionBusquedaProducto.Rows.Add(new[] { id, codigo, producto, tipoMedida, stock });
@@ -570,6 +571,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                             }
 
                             cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[5].Value));
+                            cmd.Parameters.AddWithValue("@cantidadTotal", 0.000);
                             cmd.ExecuteNonQuery();
                             con.Close();
 

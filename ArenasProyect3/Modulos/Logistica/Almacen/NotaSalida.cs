@@ -152,7 +152,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
 
                 MostrarItemsSegunRequerimientoStockAlmacen(valorListado5_Codigo);
 
-                string stockAlcualAlmacen = datalistadoDetalleRequerimeintoSimpleStockAlmacen.SelectedCells[7].Value.ToString();
+                string stockAlcualAlmacen = datalistadoDetalleRequerimeintoSimpleStockAlmacen.SelectedCells[8].Value.ToString();
 
                 datalistadoProductosRequerimiento.Rows.Add(new[] { null, valorListado1_IdDetalleRequerimeinto, null, null, valorListado4_IdArt, valorListado5_Codigo, valorListado6_Descripcion, valorListado7_TipoMedida, valorListado8_CantidadRequerida, valorListado_CantidadRetirada, stockAlcualAlmacen, valorListado_CantidadARetirar });
             }
@@ -331,33 +331,41 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
         //BUSQUEDA DE REQUERIMIENTO
         private void txtBusquedaReque_TextChanged(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT RS.IdRequerimientoSimple, RS.CodigoRequerimientoSimple, RS.FechaRequerida, RS.FechaSolicitada, RS.IdSolicitante, USU.Nombres + ' ' + USU.ApellidoParterno + ' ' + USU.ApellidoMaterno AS[SOLICITANTE] FROM RequerimientoSimple RS INNER JOIN Usuarios USU ON USU.IdUsuarios = RS.IdSolicitante WHERE RS.Estado = 1 AND RS.IdTipo = 1 AND EstadoAtendido = 0 AND RS.CodigoRequerimientoSimple LIKE '%' + @codigo + '%'", con);
-            comando.Parameters.AddWithValue("@codigo", txtBusquedaReque.Text);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-
-            if (dt.Rows.Count > 0)
+            if (rbRequerimiento.Checked == false && rbRequerimientoOT.Checked == false && rbRequerimientoOP.Checked == false && rbPedidoGenerado.Checked == false)
             {
-                DataRow row = dt.Rows[0];
-                DataTimeFechaReqeurmientoRequerida.Text = System.Convert.ToString(row["FechaRequerida"]);
-                DateTimeFechaRequerimientoSolicitada.Text = System.Convert.ToString(row["FechaSolicitada"]);
-                txtSolicitante.Text = System.Convert.ToString(row["SOLICITANTE"]);
-                lblIdSolicitante.Text = System.Convert.ToString(row["IdSolicitante"]);
-                cboComboReqeurimientoSimple.DataSource = dt;
+                MessageBox.Show("Debe seleccionar un criterio de búsqueda.", "Validación del Sistema", MessageBoxButtons.OK);
+                txtBusquedaReque.Text = "";
             }
             else
             {
-                // Maneja el caso donde no hay registros
-                MessageBox.Show("No se encontraron registros.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtBusquedaReque.Text = "";
-            }
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT RS.IdRequerimientoSimple, RS.CodigoRequerimientoSimple, RS.FechaRequerida, RS.FechaSolicitada, RS.IdSolicitante, USU.Nombres + ' ' + USU.ApellidoParterno + ' ' + USU.ApellidoMaterno AS[SOLICITANTE] FROM RequerimientoSimple RS INNER JOIN Usuarios USU ON USU.IdUsuarios = RS.IdSolicitante WHERE RS.Estado = 1 AND RS.IdTipo = 1 AND EstadoAtendido = 0 AND RS.CodigoRequerimientoSimple LIKE '%' + @codigo + '%'", con);
+                comando.Parameters.AddWithValue("@codigo", txtBusquedaReque.Text);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
 
-            cboComboReqeurimientoSimple.DisplayMember = "CodigoRequerimientoSimple";
-            cboComboReqeurimientoSimple.ValueMember = "IdRequerimientoSimple"; 
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    DataTimeFechaReqeurmientoRequerida.Text = System.Convert.ToString(row["FechaRequerida"]);
+                    DateTimeFechaRequerimientoSolicitada.Text = System.Convert.ToString(row["FechaSolicitada"]);
+                    txtSolicitante.Text = System.Convert.ToString(row["SOLICITANTE"]);
+                    lblIdSolicitante.Text = System.Convert.ToString(row["IdSolicitante"]);
+                    cboComboReqeurimientoSimple.DataSource = dt;
+                }
+                else
+                {
+                    // Maneja el caso donde no hay registros
+                    MessageBox.Show("No se encontraron registros.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtBusquedaReque.Text = "";
+                }
+
+                cboComboReqeurimientoSimple.DisplayMember = "CodigoRequerimientoSimple";
+                cboComboReqeurimientoSimple.ValueMember = "IdRequerimientoSimple";
+            }
         }
 
         //BÚSQUEDA DE REQUERIMIENTO SIMPLE - DETALLES
@@ -372,9 +380,8 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
                 int idRequerimiento = Convert.ToInt32(cboComboReqeurimientoSimple.SelectedValue.ToString());
                 MostrarItemsSegunRequerimiento(idRequerimiento);
                 estadoRequerimeintoAtendidoTotal = true;
+                CargarComboData();
             }
-
-            CargarComboData();
         }
 
         //BÚSQUEDA DE REQUERIMEINTO POR ORDEN DE TRABAJO

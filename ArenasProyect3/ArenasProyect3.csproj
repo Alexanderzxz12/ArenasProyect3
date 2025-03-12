@@ -270,6 +270,18 @@
     <Compile Include="Modulos\Logistica\Almacen\TipoCambio.Designer.cs">
       <DependentUpon>TipoCambio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Logistica\Compras\ListadoOrdenesCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Logistica\Compras\ListadoOrdenesCompra.Designer.cs">
+      <DependentUpon>ListadoOrdenesCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Logistica\Compras\ListadoRequerimientosSimples.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Logistica\Compras\ListadoRequerimientosSimples.Designer.cs">
+      <DependentUpon>ListadoRequerimientosSimples.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Logistica\Compras\MenuAccionesCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -696,6 +708,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Almacen\TipoCambio.resx">
       <DependentUpon>TipoCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Logistica\Compras\ListadoRequerimientosSimples.resx">
+      <DependentUpon>ListadoRequerimientosSimples.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Compras\MenuAccionesCompra.resx">
       <DependentUpon>MenuAccionesCompra.cs</DependentUpon>

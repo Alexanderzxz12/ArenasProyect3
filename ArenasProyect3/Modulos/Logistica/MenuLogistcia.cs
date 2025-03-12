@@ -292,7 +292,17 @@ namespace ArenasProyect3.Modulos.Logistica
         //ABRIR EL MENÚ Y MANTENIMENTO COMPRAS
         private void btnCompras_Click(object sender, EventArgs e)
         {
-
+            if (panelPrincipalLogistica.Controls.Count == 1)
+            {
+                panelPrincipalLogistica.Controls.Clear();
+                AbrirFormularios(new Logistica.Compras.MenuAccionesCompra());
+            }
+            else
+            {
+                panelPrincipalLogistica.Controls.Clear();
+                AbrirFormularios(new Logistica.Compras.MenuAccionesCompra());
+            }
+            panelDatos.Visible = false;
         }
 
         //ABRIR EL MENÚ Y MANTENIMENTO DESPACHOS

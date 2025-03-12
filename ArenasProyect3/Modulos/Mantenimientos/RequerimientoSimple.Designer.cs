@@ -1014,7 +1014,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelBuscarProductos.Controls.Add(this.txtBusquedaProducto);
             this.panelBuscarProductos.Controls.Add(this.label13);
             this.panelBuscarProductos.Controls.Add(this.panel9);
-            this.panelBuscarProductos.Location = new System.Drawing.Point(1020, 574);
+            this.panelBuscarProductos.Location = new System.Drawing.Point(39, 54);
             this.panelBuscarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.panelBuscarProductos.Name = "panelBuscarProductos";
             this.panelBuscarProductos.Size = new System.Drawing.Size(1094, 528);
