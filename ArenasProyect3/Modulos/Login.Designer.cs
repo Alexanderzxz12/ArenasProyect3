@@ -193,11 +193,11 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label12.Location = new System.Drawing.Point(659, 516);
+            this.label12.Location = new System.Drawing.Point(669, 515);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(268, 18);
             this.label12.TabIndex = 1998;
-            this.label12.Text = "Made by Arenas S.R.L - v1.1.0.154";
+            this.label12.Text = "Made by Arenas S.R.L - v1.1.0.155";
             // 
             // imgValidacionIncorrecta
             // 

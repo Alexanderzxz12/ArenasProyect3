@@ -320,34 +320,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 da.Fill(dt);
                 datalistadoTodasRequerimientos.DataSource = dt;
                 con.Close();
-                //SE REDIMENSIONA EL TAMAÑO DE CADA COLUMNA DE MI LISTADO DE REQUERIMIENTOS
-                datalistadoTodasRequerimientos.Columns[1].Width = 50;
-                datalistadoTodasRequerimientos.Columns[2].Width = 100;
-                datalistadoTodasRequerimientos.Columns[3].Width = 100;
-                datalistadoTodasRequerimientos.Columns[4].Width = 100;
-                datalistadoTodasRequerimientos.Columns[5].Width = 180;
-                datalistadoTodasRequerimientos.Columns[6].Width = 370;
-                datalistadoTodasRequerimientos.Columns[7].Width = 60;
-                datalistadoTodasRequerimientos.Columns[8].Width = 80;
-                datalistadoTodasRequerimientos.Columns[9].Width = 95;
-                datalistadoTodasRequerimientos.Columns[10].Width = 95;
-                datalistadoTodasRequerimientos.Columns[11].Width = 85;
-                //SE QUITA LAS COLUMNAS QUE NO SON RELEVANTES PARA EL USUARIO
-                datalistadoTodasRequerimientos.Columns[12].Visible = false;
-                datalistadoTodasRequerimientos.Columns[13].Visible = false;
-                datalistadoTodasRequerimientos.Columns[14].Visible = false;
-                //CARGAR LOS COLORES DE ACUERDO A SU ESTADO
-                ColoresListado();
+                RedimensionarListado(datalistadoTodasRequerimientos);
             }
             else
             {
                 lblCarga.Text = "0";
-            }
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in datalistadoTodasRequerimientos.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
@@ -394,30 +371,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             da.Fill(dt);
             datalistadoTodasRequerimientos.DataSource = dt;
             con.Close();
-            //SE REDIMENSIONA EL TAMAÑO DE CADA COLUMNA DE MI LISTADO DE REQUERIMIENTOS
-            datalistadoTodasRequerimientos.Columns[1].Width = 50;
-            datalistadoTodasRequerimientos.Columns[2].Width = 100;
-            datalistadoTodasRequerimientos.Columns[3].Width = 100;
-            datalistadoTodasRequerimientos.Columns[4].Width = 100;
-            datalistadoTodasRequerimientos.Columns[5].Width = 180;
-            datalistadoTodasRequerimientos.Columns[6].Width = 370;
-            datalistadoTodasRequerimientos.Columns[7].Width = 60;
-            datalistadoTodasRequerimientos.Columns[8].Width = 80;
-            datalistadoTodasRequerimientos.Columns[9].Width = 95;
-            datalistadoTodasRequerimientos.Columns[10].Width = 95;
-            datalistadoTodasRequerimientos.Columns[11].Width = 85;
-            //SE QUITA LAS COLUMNAS QUE NO SON RELEVANTES PARA EL USUARIO
-            datalistadoTodasRequerimientos.Columns[12].Visible = false;
-            datalistadoTodasRequerimientos.Columns[13].Visible = false;
-            datalistadoTodasRequerimientos.Columns[14].Visible = false;
-            //CARGAR LOS COLORES DE ACUERDO A SU ESTADO
-            ColoresListado();
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in datalistadoTodasRequerimientos.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+            RedimensionarListado(datalistadoTodasRequerimientos);
         }
 
         //MOSTRAR REQUERIMIENTOS POR ESTADOS---------------------------------------------------------------------------------------------------
@@ -437,30 +391,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             da.Fill(dt);
             datalistadoTodasRequerimientos.DataSource = dt;
             con.Close();
-            //SE REDIMENSIONA EL TAMAÑO DE CADA COLUMNA DE MI LISTADO DE REQUERIMIENTOS
-            datalistadoTodasRequerimientos.Columns[1].Width = 50;
-            datalistadoTodasRequerimientos.Columns[2].Width = 100;
-            datalistadoTodasRequerimientos.Columns[3].Width = 100;
-            datalistadoTodasRequerimientos.Columns[4].Width = 100;
-            datalistadoTodasRequerimientos.Columns[5].Width = 180;
-            datalistadoTodasRequerimientos.Columns[6].Width = 370;
-            datalistadoTodasRequerimientos.Columns[7].Width = 60;
-            datalistadoTodasRequerimientos.Columns[8].Width = 80;
-            datalistadoTodasRequerimientos.Columns[9].Width = 95;
-            datalistadoTodasRequerimientos.Columns[10].Width = 95;
-            datalistadoTodasRequerimientos.Columns[11].Width = 85;
-            //SE QUITA LAS COLUMNAS QUE NO SON RELEVANTES PARA EL USUARIO
-            datalistadoTodasRequerimientos.Columns[12].Visible = false;
-            datalistadoTodasRequerimientos.Columns[13].Visible = false;
-            datalistadoTodasRequerimientos.Columns[14].Visible = false;
-            //CARGAR LOS COLORES DE ACUERDO A SU ESTADO
-            ColoresListado();
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in datalistadoTodasRequerimientos.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+            RedimensionarListado(datalistadoTodasRequerimientos);
         }
 
         //MOSTRAR REQUERIMIENTOS POR ESTADO DE ACUERDO A LAS FECHAS SELECCIONADAS
@@ -480,30 +411,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             da.Fill(dt);
             datalistadoTodasRequerimientos.DataSource = dt;
             con.Close();
-            //SE REDIMENSIONA EL TAMAÑO DE CADA COLUMNA DE MI LISTADO DE REQUERIMIENTOS
-            datalistadoTodasRequerimientos.Columns[1].Width = 50;
-            datalistadoTodasRequerimientos.Columns[2].Width = 100;
-            datalistadoTodasRequerimientos.Columns[3].Width = 100;
-            datalistadoTodasRequerimientos.Columns[4].Width = 100;
-            datalistadoTodasRequerimientos.Columns[5].Width = 180;
-            datalistadoTodasRequerimientos.Columns[6].Width = 370;
-            datalistadoTodasRequerimientos.Columns[7].Width = 60;
-            datalistadoTodasRequerimientos.Columns[8].Width = 80;
-            datalistadoTodasRequerimientos.Columns[9].Width = 95;
-            datalistadoTodasRequerimientos.Columns[10].Width = 95;
-            datalistadoTodasRequerimientos.Columns[11].Width = 85;
-            //SE QUITA LAS COLUMNAS QUE NO SON RELEVANTES PARA EL USUARIO
-            datalistadoTodasRequerimientos.Columns[12].Visible = false;
-            datalistadoTodasRequerimientos.Columns[13].Visible = false;
-            datalistadoTodasRequerimientos.Columns[14].Visible = false;
-            //CARGAR LOS COLORES DE ACUERDO A SU ESTADO
-            ColoresListado();
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in datalistadoTodasRequerimientos.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+            RedimensionarListado(datalistadoTodasRequerimientos);
         }
 
         //MOSTRAR REQUERIMIENTOS DESAPROBADOS
@@ -522,27 +430,33 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             da.Fill(dt);
             datalistadoTodasRequerimientos.DataSource = dt;
             con.Close();
+            RedimensionarListado(datalistadoTodasRequerimientos);
+        }
+
+        //FUNCION PARA REDIMENSIONAR MI LISTADO
+        public void RedimensionarListado(DataGridView DGV)
+        {
             //SE REDIMENSIONA EL TAMAÑO DE CADA COLUMNA DE MI LISTADO DE REQUERIMIENTOS
-            datalistadoTodasRequerimientos.Columns[1].Width = 50;
-            datalistadoTodasRequerimientos.Columns[2].Width = 100;
-            datalistadoTodasRequerimientos.Columns[3].Width = 100;
-            datalistadoTodasRequerimientos.Columns[4].Width = 100;
-            datalistadoTodasRequerimientos.Columns[5].Width = 180;
-            datalistadoTodasRequerimientos.Columns[6].Width = 370;
-            datalistadoTodasRequerimientos.Columns[7].Width = 60;
-            datalistadoTodasRequerimientos.Columns[8].Width = 80;
-            datalistadoTodasRequerimientos.Columns[9].Width = 95;
-            datalistadoTodasRequerimientos.Columns[10].Width = 95;
-            datalistadoTodasRequerimientos.Columns[11].Width = 85;
+            DGV.Columns[1].Width = 50;
+            DGV.Columns[2].Width = 100;
+            DGV.Columns[3].Width = 100;
+            DGV.Columns[4].Width = 100;
+            DGV.Columns[5].Width = 180;
+            DGV.Columns[6].Width = 370;
+            DGV.Columns[7].Width = 60;
+            DGV.Columns[8].Width = 80;
+            DGV.Columns[9].Width = 95;
+            DGV.Columns[10].Width = 95;
+            DGV.Columns[11].Width = 85;
             //SE QUITA LAS COLUMNAS QUE NO SON RELEVANTES PARA EL USUARIO
-            datalistadoTodasRequerimientos.Columns[12].Visible = false;
-            datalistadoTodasRequerimientos.Columns[13].Visible = false;
-            datalistadoTodasRequerimientos.Columns[14].Visible = false;
+            DGV.Columns[12].Visible = false;
+            DGV.Columns[13].Visible = false;
+            DGV.Columns[14].Visible = false;
             //CARGAR LOS COLORES DE ACUERDO A SU ESTADO
             ColoresListado();
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in datalistadoTodasRequerimientos.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }

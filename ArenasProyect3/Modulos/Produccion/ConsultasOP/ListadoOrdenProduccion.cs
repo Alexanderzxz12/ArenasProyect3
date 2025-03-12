@@ -411,8 +411,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 if (count == 0) { count = 1; }
 
-                datalistadoTodasOP.Enabled = false;
-                panelIngresoCantidades.Visible = true;
                 txtOpsSeleccionadas.Text = Convert.ToString(count);
                 //CARGA DE DAOTS
                 txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
@@ -427,26 +425,37 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 lblCantidadTotalInghresada.Text = Convert.ToString(totalCantidades);
                 txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadRequerida.Text) - Convert.ToInt32(lblCantidadTotalInghresada.Text));
 
-                if (count != 1)
-                {
-                    btnGenerarGuardarCantidades.Visible = true;
-                    lblGenerarGuardarCantidades.Visible = true;
-                    btnGuardarCantidad.Visible = false;
-                    lblGuardarCantidad.Visible = false;
-                    txtCantidadRealizada.ReadOnly = true;
-                    txtCantidadRealizada.Text = "Gen. Automática";
-                    lblIdOP.Text = "Varios";
-                    txtCantidadRestante.Text = "0";
+                if(txtCantidadRestante.Text == "0") {
+                    datalistadoTodasOP.Enabled = true;
+                    panelIngresoCantidades.Visible = false;
+                    MessageBox.Show("Esta OP ya culminó satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    btnGuardarCantidad.Visible = true;
-                    lblGuardarCantidad.Visible = true;
-                    btnGenerarGuardarCantidades.Visible = false;
-                    lblGenerarGuardarCantidades.Visible = false;
-                    txtCantidadRealizada.ReadOnly = false;
-                    lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
-                }
+                    datalistadoTodasOP.Enabled = false;
+                    panelIngresoCantidades.Visible = true;
+
+                    if (count != 1)
+                    {
+                        btnGenerarGuardarCantidades.Visible = true;
+                        lblGenerarGuardarCantidades.Visible = true;
+                        btnGuardarCantidad.Visible = false;
+                        lblGuardarCantidad.Visible = false;
+                        txtCantidadRealizada.ReadOnly = true;
+                        txtCantidadRealizada.Text = "Gen. Automática";
+                        lblIdOP.Text = "Varios";
+                        txtCantidadRestante.Text = "0";
+                    }
+                    else
+                    {
+                        btnGuardarCantidad.Visible = true;
+                        lblGuardarCantidad.Visible = true;
+                        btnGenerarGuardarCantidades.Visible = false;
+                        lblGenerarGuardarCantidades.Visible = false;
+                        txtCantidadRealizada.ReadOnly = false;
+                        lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
+                    }
+                }   
             }
             else
             {
@@ -578,6 +587,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                             MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema");
                             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                             LimpiarCantidades();
                         }
                         catch (Exception ex)
@@ -641,6 +651,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
         //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
         private void btnSalirCantidad_Click(object sender, EventArgs e)
+        {
+            LimpiarCantidades();
+        }
+
+        //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
+        private void btnCerrarDetallesOPCantidades_Click(object sender, EventArgs e)
         {
             LimpiarCantidades();
         }
@@ -959,5 +975,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 e.Handled = true;
             }
         }
+
+
     }
 }

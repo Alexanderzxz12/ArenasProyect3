@@ -708,7 +708,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         string totalItems = dgv.Cells[16].Value.ToString();
                         string numeroItem = dgv.Cells[17].Value.ToString();
 
-                        datalistadoProductos.Rows.Add(new[] { null, null, item, descripcionProducto, codigoPedido, medidoProducto, "0", cantidadPedido, null, null, stock, formatoFecha, codigoProducto, codigoBss, codigoCliente, codigoFormulacion, idArt, planoProducto, planoSemiProducido, idPedidoD, totalItems, numeroItem, idDetallePedido });
+                        datalistadoProductos.Rows.Add(new[] { null, null, item, descripcionProducto, codigoPedido, medidoProducto, cantidadPedido, cantidadPedido, null, null, stock, formatoFecha, codigoProducto, codigoBss, codigoCliente, codigoFormulacion, idArt, planoProducto, planoSemiProducido, idPedidoD, totalItems, numeroItem, idDetallePedido });
                     }
 
                     alternarColorFilas(datalistadoProductos);
@@ -950,6 +950,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 txtCodigoSistema.Text = datalistadoProductos.SelectedCells[12].Value.ToString();
                 txtCodigoCliente.Text = datalistadoProductos.SelectedCells[14].Value.ToString();
                 string codigoFormulacion = datalistadoProductos.SelectedCells[15].Value.ToString();
+                dtFechaTerminoOP.Value = Convert.ToDateTime(datalistadoProductos.SelectedCells[11].Value.ToString());
                 txtCodigoFormulacion.Text = codigoFormulacion;
                 int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
 

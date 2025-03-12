@@ -228,44 +228,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 da.Fill(dt);
                 datalistadoTodasActas.DataSource = dt;
                 con.Close();
-                //NO MOSTRAR LAS COLUMNAS QUE NO SEAN DE REELEVANCIA PARA EL USUARIO
-                datalistadoTodasActas.Columns[3].Visible = false;
-                datalistadoTodasActas.Columns[7].Visible = false;
-                datalistadoTodasActas.Columns[9].Visible = false;
-                datalistadoTodasActas.Columns[11].Visible = false;
-                datalistadoTodasActas.Columns[14].Visible = false;
-                datalistadoTodasActas.Columns[15].Visible = false;
-                //BLOQUEAR LAS COLUMNAS Y HACERLAS DE SOLO LECTURA
-                datalistadoTodasActas.Columns[1].ReadOnly = true;
-                datalistadoTodasActas.Columns[2].ReadOnly = true;
-                datalistadoTodasActas.Columns[5].ReadOnly = true;
-                datalistadoTodasActas.Columns[6].ReadOnly = true;
-                datalistadoTodasActas.Columns[8].ReadOnly = true;
-                datalistadoTodasActas.Columns[10].ReadOnly = true;
-                datalistadoTodasActas.Columns[12].ReadOnly = true;
-                datalistadoTodasActas.Columns[13].ReadOnly = true;
-                //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
-                datalistadoTodasActas.Columns[1].Width = 55;
-                datalistadoTodasActas.Columns[2].Width = 55;
-                datalistadoTodasActas.Columns[4].Width = 90;
-                datalistadoTodasActas.Columns[5].Width = 90;
-                datalistadoTodasActas.Columns[6].Width = 90;
-                datalistadoTodasActas.Columns[8].Width = 350;
-                datalistadoTodasActas.Columns[10].Width = 150;
-                datalistadoTodasActas.Columns[12].Width = 198;
-                datalistadoTodasActas.Columns[13].Width = 90;
-                //CARGAR EL MÉTODO QUE COLOREA LAS FILAS
-                ColoresListado();
-            }
-            else
-            {
-                lblCarga.Text = "0";
-            }
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in datalistadoTodasActas.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                RediemndionarListado(datalistadoTodasActas);
             }
         }
 
@@ -286,37 +249,43 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             da.Fill(dt);
             datalistadoTodasActas.DataSource = dt;
             con.Close();
+            RediemndionarListado(datalistadoTodasActas);
+        }
+
+        //FINCION PARA REDIMENCIONAR MI LISTADO
+        public void RediemndionarListado(DataGridView DGV)
+        {
             //NO MOSTRAR LAS COLUMNAS QUE NO SEAN DE REELEVANCIA PARA EL USUARIO
-            datalistadoTodasActas.Columns[3].Visible = false;
-            datalistadoTodasActas.Columns[7].Visible = false;
-            datalistadoTodasActas.Columns[9].Visible = false;
-            datalistadoTodasActas.Columns[11].Visible = false;
-            datalistadoTodasActas.Columns[14].Visible = false;
-            datalistadoTodasActas.Columns[15].Visible = false;
+            DGV.Columns[3].Visible = false;
+            DGV.Columns[7].Visible = false;
+            DGV.Columns[9].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[14].Visible = false;
+            DGV.Columns[15].Visible = false;
             //BLOQUEAR LAS COLUMNAS Y HACERLAS DE SOLO LECTURA
-            datalistadoTodasActas.Columns[1].ReadOnly = true;
-            datalistadoTodasActas.Columns[2].ReadOnly = true;
-            datalistadoTodasActas.Columns[5].ReadOnly = true;
-            datalistadoTodasActas.Columns[6].ReadOnly = true;
-            datalistadoTodasActas.Columns[8].ReadOnly = true;
-            datalistadoTodasActas.Columns[10].ReadOnly = true;
-            datalistadoTodasActas.Columns[12].ReadOnly = true;
-            datalistadoTodasActas.Columns[13].ReadOnly = true;
+            DGV.Columns[1].ReadOnly = true;
+            DGV.Columns[2].ReadOnly = true;
+            DGV.Columns[5].ReadOnly = true;
+            DGV.Columns[6].ReadOnly = true;
+            DGV.Columns[8].ReadOnly = true;
+            DGV.Columns[10].ReadOnly = true;
+            DGV.Columns[12].ReadOnly = true;
+            DGV.Columns[13].ReadOnly = true;
             //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
-            datalistadoTodasActas.Columns[1].Width = 55;
-            datalistadoTodasActas.Columns[2].Width = 55;
-            datalistadoTodasActas.Columns[4].Width = 90;
-            datalistadoTodasActas.Columns[5].Width = 90;
-            datalistadoTodasActas.Columns[6].Width = 90;
-            datalistadoTodasActas.Columns[8].Width = 350;
-            datalistadoTodasActas.Columns[10].Width = 150;
-            datalistadoTodasActas.Columns[12].Width = 198;
-            datalistadoTodasActas.Columns[13].Width = 90;
+            DGV.Columns[1].Width = 55;
+            DGV.Columns[2].Width = 55;
+            DGV.Columns[4].Width = 90;
+            DGV.Columns[5].Width = 90;
+            DGV.Columns[6].Width = 90;
+            DGV.Columns[8].Width = 350;
+            DGV.Columns[10].Width = 150;
+            DGV.Columns[12].Width = 198;
+            DGV.Columns[13].Width = 90;
             //CARGAR EL MÉTODO QUE COLOREA LAS FILAS
             ColoresListado();
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in datalistadoTodasActas.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }

@@ -142,7 +142,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.panel3 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.btnModificarFecha = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
@@ -168,6 +167,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.btnCerrarDetallesOPCantidades = new System.Windows.Forms.Label();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).BeginInit();
@@ -196,7 +196,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panelModiFechaEntrega.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
@@ -1491,9 +1490,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel3.Controls.Add(this.btnCerrarDetallesOPCantidades);
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.pictureBox1);
-            this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.pictureBox8);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -1525,19 +1524,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 999;
             this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(636, 0);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(26, 18);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 55;
-            this.pictureBox3.TabStop = false;
             // 
             // pictureBox8
             // 
@@ -1845,6 +1831,21 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.pictureBox15.TabIndex = 54;
             this.pictureBox15.TabStop = false;
             // 
+            // btnCerrarDetallesOPCantidades
+            // 
+            this.btnCerrarDetallesOPCantidades.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnCerrarDetallesOPCantidades.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarDetallesOPCantidades.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCerrarDetallesOPCantidades.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarDetallesOPCantidades.Location = new System.Drawing.Point(632, 0);
+            this.btnCerrarDetallesOPCantidades.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnCerrarDetallesOPCantidades.Name = "btnCerrarDetallesOPCantidades";
+            this.btnCerrarDetallesOPCantidades.Size = new System.Drawing.Size(30, 18);
+            this.btnCerrarDetallesOPCantidades.TabIndex = 1000;
+            this.btnCerrarDetallesOPCantidades.Text = " X";
+            this.btnCerrarDetallesOPCantidades.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCerrarDetallesOPCantidades.Click += new System.EventHandler(this.btnCerrarDetallesOPCantidades_Click);
+            // 
             // ListadoOrdenProduccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1913,7 +1914,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.panelModiFechaEntrega.ResumeLayout(false);
             this.panelModiFechaEntrega.PerformLayout();
@@ -2007,7 +2007,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label3;
@@ -2061,5 +2060,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.Label btnCerrarDetallesOPCantidades;
     }
 }

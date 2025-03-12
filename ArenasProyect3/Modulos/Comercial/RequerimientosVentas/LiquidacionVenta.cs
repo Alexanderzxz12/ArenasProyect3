@@ -339,36 +339,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 da.Fill(dt);
                 datalistadoTodasLiquidacion.DataSource = dt;
                 con.Close();
-
-                datalistadoTodasLiquidacion.Columns[6].Visible = false;
-                datalistadoTodasLiquidacion.Columns[15].Visible = false;
-
-                datalistadoTodasLiquidacion.Columns[1].Width = 55;
-                datalistadoTodasLiquidacion.Columns[2].Width = 55;
-                datalistadoTodasLiquidacion.Columns[3].Width = 100;
-                datalistadoTodasLiquidacion.Columns[4].Width = 100;
-                datalistadoTodasLiquidacion.Columns[5].Width = 100;
-                datalistadoTodasLiquidacion.Columns[7].Width = 180;
-                datalistadoTodasLiquidacion.Columns[8].Width = 370;
-                datalistadoTodasLiquidacion.Columns[9].Width = 80;
-                datalistadoTodasLiquidacion.Columns[10].Width = 80;
-                datalistadoTodasLiquidacion.Columns[11].Width = 80;
-                datalistadoTodasLiquidacion.Columns[12].Width = 100;
-                datalistadoTodasLiquidacion.Columns[13].Width = 100;
-                datalistadoTodasLiquidacion.Columns[14].Width = 80;
-
-                ColoresListado();
+                RedimensionarListado(datalistadoTodasLiquidacion);
             }
             else
             {
                 lblCarga.Text = "0";
-            }
-            //}
-
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadoTodasLiquidacion.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
@@ -389,31 +364,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             da.Fill(dt);
             datalistadoTodasLiquidacion.DataSource = dt;
             con.Close();
-
-            datalistadoTodasLiquidacion.Columns[6].Visible = false;
-            datalistadoTodasLiquidacion.Columns[15].Visible = false;
-
-            datalistadoTodasLiquidacion.Columns[1].Width = 55;
-            datalistadoTodasLiquidacion.Columns[2].Width = 55;
-            datalistadoTodasLiquidacion.Columns[3].Width = 100;
-            datalistadoTodasLiquidacion.Columns[4].Width = 100;
-            datalistadoTodasLiquidacion.Columns[5].Width = 100;
-            datalistadoTodasLiquidacion.Columns[7].Width = 180;
-            datalistadoTodasLiquidacion.Columns[8].Width = 370;
-            datalistadoTodasLiquidacion.Columns[9].Width = 80;
-            datalistadoTodasLiquidacion.Columns[10].Width = 80;
-            datalistadoTodasLiquidacion.Columns[11].Width = 80;
-            datalistadoTodasLiquidacion.Columns[12].Width = 100;
-            datalistadoTodasLiquidacion.Columns[13].Width = 100;
-            datalistadoTodasLiquidacion.Columns[14].Width = 80;
-
-            ColoresListado();
-
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadoTodasLiquidacion.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+            RedimensionarListado(datalistadoTodasLiquidacion);
         }
 
         //MOSTRAR REQUERIMIENTOS POR ESTADOS
@@ -433,28 +384,33 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             da.Fill(dt);
             datalistadoTodasLiquidacion.DataSource = dt;
             con.Close();
+            RedimensionarListado(datalistadoTodasLiquidacion);
+        }
 
-            datalistadoTodasLiquidacion.Columns[6].Visible = false;
-            datalistadoTodasLiquidacion.Columns[15].Visible = false;
+        //FINCION PARA REDIMENCIONAR MI LISTADO
+        public void RedimensionarListado(DataGridView DGV)
+        {
+            DGV.Columns[6].Visible = false;
+            DGV.Columns[15].Visible = false;
 
-            datalistadoTodasLiquidacion.Columns[1].Width = 55;
-            datalistadoTodasLiquidacion.Columns[2].Width = 55;
-            datalistadoTodasLiquidacion.Columns[3].Width = 100;
-            datalistadoTodasLiquidacion.Columns[4].Width = 100;
-            datalistadoTodasLiquidacion.Columns[5].Width = 100;
-            datalistadoTodasLiquidacion.Columns[7].Width = 180;
-            datalistadoTodasLiquidacion.Columns[8].Width = 370;
-            datalistadoTodasLiquidacion.Columns[9].Width = 80;
-            datalistadoTodasLiquidacion.Columns[10].Width = 80;
-            datalistadoTodasLiquidacion.Columns[11].Width = 80;
-            datalistadoTodasLiquidacion.Columns[12].Width = 100;
-            datalistadoTodasLiquidacion.Columns[13].Width = 100;
-            datalistadoTodasLiquidacion.Columns[14].Width = 80;
+            DGV.Columns[1].Width = 55;
+            DGV.Columns[2].Width = 55;
+            DGV.Columns[3].Width = 100;
+            DGV.Columns[4].Width = 100;
+            DGV.Columns[5].Width = 100;
+            DGV.Columns[7].Width = 180;
+            DGV.Columns[8].Width = 370;
+            DGV.Columns[9].Width = 80;
+            DGV.Columns[10].Width = 80;
+            DGV.Columns[11].Width = 80;
+            DGV.Columns[12].Width = 100;
+            DGV.Columns[13].Width = 100;
+            DGV.Columns[14].Width = 80;
 
             ColoresListado();
 
             //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadoTodasLiquidacion.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
