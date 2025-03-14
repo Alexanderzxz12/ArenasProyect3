@@ -654,6 +654,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 {
                     MessageBox.Show("El pedido se encuentra anulado.", "Validación del Sistema");
                 }
+                else if (Convert.ToDateTime(datalistadoTodasPedido.SelectedCells[4].Value) < DateTime.Now)
+                {
+                    MessageBox.Show("Se ha pasado la fecha de vencimiento del pedido.", "Validación del Sistema");
+                }
                 else
                 {
                     LimpiarCamposOrdenProduccion();
@@ -677,7 +681,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     lblLuharEntrega.Text = datalistadoPedido.SelectedCells[14].Value.ToString();
 
                     lblCodigoPedido.Text = datalistadoPedido.SelectedCells[1].Value.ToString();
-                    dtFechaTerminoOP.Value = Convert.ToDateTime(datalistadoPedido.SelectedCells[2].Value.ToString());
+                    dtFechaTerminoOP.Value = Convert.ToDateTime(datalistadoPedido.SelectedCells[11].Value.ToString());
 
                     txtCliente.Text = datalistadoPedido.SelectedCells[4].Value.ToString();
                     txtUnidad.Text = datalistadoPedido.SelectedCells[8].Value.ToString();

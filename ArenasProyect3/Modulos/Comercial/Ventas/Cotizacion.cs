@@ -2481,14 +2481,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     cboMonedaPedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[12].Value.ToString();
                     cboAlmacenPedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[15].Value.ToString();
 
-                    txtSubTotalPedido.Text = dataListadiCotiXCodigo.SelectedCells[20].Value.ToString();
-                    txtDescuentoPedido.Text = dataListadiCotiXCodigo.SelectedCells[21].Value.ToString();
-                    txtInafectaPedido.Text = dataListadiCotiXCodigo.SelectedCells[22].Value.ToString();
-                    txtExoneradaPedido.Text = dataListadiCotiXCodigo.SelectedCells[23].Value.ToString();
-                    txtIgvPedido.Text = dataListadiCotiXCodigo.SelectedCells[24].Value.ToString();
-                    txtTotalDescuentoPedido.Text = dataListadiCotiXCodigo.SelectedCells[25].Value.ToString();
-                    txtTotalPedido.Text = dataListadiCotiXCodigo.SelectedCells[26].Value.ToString();
-                    txtPesoPedido.Text = "0.00";
+                    //txtSubTotalPedido.Text = dataListadiCotiXCodigo.SelectedCells[20].Value.ToString();
+                    //txtDescuentoPedido.Text = dataListadiCotiXCodigo.SelectedCells[21].Value.ToString();
+                    //txtInafectaPedido.Text = dataListadiCotiXCodigo.SelectedCells[22].Value.ToString();
+                    //txtExoneradaPedido.Text = dataListadiCotiXCodigo.SelectedCells[23].Value.ToString();
+                    //txtIgvPedido.Text = dataListadiCotiXCodigo.SelectedCells[24].Value.ToString();
+                    //txtTotalDescuentoPedido.Text = dataListadiCotiXCodigo.SelectedCells[25].Value.ToString();
+                    //txtTotalPedido.Text = dataListadiCotiXCodigo.SelectedCells[26].Value.ToString();
+                    //txtPesoPedido.Text = "0.00";
 
                     //DETALLES DEL PEDIDO
                     datalistadoGeneracionPedido.Rows.Clear();
@@ -2826,158 +2826,165 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //BOTON PARA GUARADR EL MI PEDIDO Y GENERAR EL DOCUMENTO RESPECTIVO
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("¿Realmente desea guardar este pedido con estos Items?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-            if (boton == DialogResult.OK)
+            if(txtTotalPedido.Text == "0" || txtTotalPedido.Text == "" || txtSubTotalPedido.Text == "0" || txtSubTotalPedido.Text == "" || datalistadoGeneracionPedido.Rows.Count == 0)
             {
-                bool sinFecha = false;
-
-                //VALIDAR SI SE INGRESARON FECHAS
-                foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
+                MessageBox.Show("Debe ingresar o cargar el subtotal y total o debe seleccionar los respectivos productos.", "Validación del Sistema");
+            }
+            else
+            {
+                DialogResult boton = MessageBox.Show("¿Realmente desea guardar este pedido con estos Items?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    DateTime fechaInicio = Convert.ToDateTime(row.Cells["fechaEntrega"].Value);
+                    bool sinFecha = false;
 
-                    if (fechaInicio == null || fechaInicio == Convert.ToDateTime("1/01/0001 00:00:00"))
+                    //VALIDAR SI SE INGRESARON FECHAS
+                    foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
                     {
-                        sinFecha = true;
-                        MessageBox.Show("Debe ingresar la fecha correspondiente a la entrega.", "Validación del Sistema");
-                        return;
+                        DateTime fechaInicio = Convert.ToDateTime(row.Cells["fechaEntrega"].Value);
+
+                        if (fechaInicio == null || fechaInicio == Convert.ToDateTime("1/01/0001 00:00:00"))
+                        {
+                            sinFecha = true;
+                            MessageBox.Show("Debe ingresar la fecha correspondiente a la entrega.", "Validación del Sistema");
+                            return;
+                        }
                     }
-                }
-
-                try
-                {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarPedido", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    CodigoGeneracionPedido();
-                    int cantidaditems = datalistadoGeneracionPedido.RowCount;
-
-                    cmd.Parameters.AddWithValue("@codigoPedido", Convert.ToInt32(CodigoGeneradoPedido));
-                    cmd.Parameters.AddWithValue("@fechaPedido", FechaPedidoPedido.Value);
-                    cmd.Parameters.AddWithValue("@idCliente", datalistadoTodasCotiaciones.SelectedCells[5].Value.ToString());
-                    cmd.Parameters.AddWithValue("@direccion", txtDireccionCLientePedido.Text);
-                    cmd.Parameters.AddWithValue("@lugarEntrega", txtLugarEntregaPedido.Text);
-                    cmd.Parameters.AddWithValue("@idUnidad", cboUnidadClientePedido.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@idResponsable", cboResponsableClientePedido.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@idContacto", cboContactoClientePedido.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@idCondicion", cboCondicionPagoClientePedido.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@idFormaPago", cboFormaPagoClientePedido.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@idMoneda", cboMonedaPedido.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@idAlmacen", cboAlmacenPedido.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@fechaEntrega", FechaEntregaPedido.Value);
-                    cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPesoPedido.Text));
-                    
-                    if(txtArchivoAdjuntoPedido.Text != "")
-                    {
-                        string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraPedido.Text + " - PEDIDO " + CodigoGeneradoPedido;
-                        string RutaOld = txtArchivoAdjuntoPedido.Text;
-                        string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
-                        File.Copy(RutaOld, RutaNew);
-                        cmd.Parameters.AddWithValue("@ordenCompra", txtCodigoOrdenCompraPedido.Text);
-                        cmd.Parameters.AddWithValue("@rutaOrdenCompra", RutaNew);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@ordenCompra", "");
-                        cmd.Parameters.AddWithValue("@rutaOrdenCompra", "");
-                    }
-
-                    cmd.Parameters.AddWithValue("@observaciones", txtObservacionesPedido.Text);
-                    cmd.Parameters.AddWithValue("@detallePedido", txtDetallePedido.Text);
-                    cmd.Parameters.AddWithValue("@subTotal", Convert.ToDecimal(txtSubTotalPedido.Text));
-                    cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtDescuentoPedido.Text));
-                    cmd.Parameters.AddWithValue("@inafecta", Convert.ToDecimal(txtInafectaPedido.Text));
-                    cmd.Parameters.AddWithValue("@exonerado", Convert.ToDecimal(txtExoneradaPedido.Text));
-                    cmd.Parameters.AddWithValue("@IGV", Convert.ToDecimal(txtIgvPedido.Text));
-                    cmd.Parameters.AddWithValue("@totalDescuento", Convert.ToDecimal(txtTotalDescuentoPedido.Text));
-                    cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(txtTotalPedido.Text));
-                    cmd.Parameters.AddWithValue("@idCotizacion", txtIdCotizacionPedido.Text);
-                    cmd.Parameters.AddWithValue("@cantidadItems", cantidaditems);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
-                    MessageBox.Show("Se registró el nuevo pedido.", "Validación del Sistema");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                //CAMBIO DE ESTADO--------
-                try
-                {
-                    CodigoPedido();
-                    int codigopedido = Convert.ToInt32(datalistadoCodigoPedido.SelectedCells[0].Value.ToString());
-                    int contador = 0;
 
                     try
                     {
-                        foreach (DataGridViewRow fila in datalistadoGeneracionPedido.Rows)
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("InsertarPedido", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        CodigoGeneracionPedido();
+                        int cantidaditems = datalistadoGeneracionPedido.RowCount;
+
+                        cmd.Parameters.AddWithValue("@codigoPedido", Convert.ToInt32(CodigoGeneradoPedido));
+                        cmd.Parameters.AddWithValue("@fechaPedido", FechaPedidoPedido.Value);
+                        cmd.Parameters.AddWithValue("@idCliente", datalistadoTodasCotiaciones.SelectedCells[5].Value.ToString());
+                        cmd.Parameters.AddWithValue("@direccion", txtDireccionCLientePedido.Text);
+                        cmd.Parameters.AddWithValue("@lugarEntrega", txtLugarEntregaPedido.Text);
+                        cmd.Parameters.AddWithValue("@idUnidad", cboUnidadClientePedido.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@idResponsable", cboResponsableClientePedido.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@idContacto", cboContactoClientePedido.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@idCondicion", cboCondicionPagoClientePedido.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@idFormaPago", cboFormaPagoClientePedido.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@idMoneda", cboMonedaPedido.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@idAlmacen", cboAlmacenPedido.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@fechaEntrega", FechaEntregaPedido.Value);
+                        cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPesoPedido.Text));
+
+                        if (txtArchivoAdjuntoPedido.Text != "")
                         {
-                            try
-                            {
-                                contador = contador + 1;
-
-                                SqlConnection con = new SqlConnection();
-                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con.Open();
-                                SqlCommand cmd = new SqlCommand();
-                                cmd = new SqlCommand("InsertarDetallePedido", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                cmd.Parameters.AddWithValue("@idPedido", codigopedido);
-                                cmd.Parameters.AddWithValue("@codigoproducto", fila.Cells[2].Value.ToString());
-                                cmd.Parameters.AddWithValue("@descripcionProducto", fila.Cells[3].Value.ToString());
-                                cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila.Cells[4].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@preciounidad", Convert.ToDecimal(fila.Cells[5].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(fila.Cells[6].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(fila.Cells[7].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@fechaEntrega", Convert.ToDateTime(fila.Cells[10].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@codigoFormulacion", fila.Cells[12].Value.ToString());
-                                cmd.Parameters.AddWithValue("@item", contador);
-                                cmd.Parameters.AddWithValue("@idDetalleCotizacion", fila.Cells[13].Value.ToString());
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
+                            string NombreGenerado = "ORDEN DE COMPRA " + txtCodigoOrdenCompraPedido.Text + " - PEDIDO " + CodigoGeneradoPedido;
+                            string RutaOld = txtArchivoAdjuntoPedido.Text;
+                            string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Comercial\OrdenCompraPedido\" + NombreGenerado + ".pdf";
+                            File.Copy(RutaOld, RutaNew);
+                            cmd.Parameters.AddWithValue("@ordenCompra", txtCodigoOrdenCompraPedido.Text);
+                            cmd.Parameters.AddWithValue("@rutaOrdenCompra", RutaNew);
                         }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@ordenCompra", "");
+                            cmd.Parameters.AddWithValue("@rutaOrdenCompra", "");
+                        }
+
+                        cmd.Parameters.AddWithValue("@observaciones", txtObservacionesPedido.Text);
+                        cmd.Parameters.AddWithValue("@detallePedido", txtDetallePedido.Text);
+                        cmd.Parameters.AddWithValue("@subTotal", Convert.ToDecimal(txtSubTotalPedido.Text));
+                        cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtDescuentoPedido.Text));
+                        cmd.Parameters.AddWithValue("@inafecta", Convert.ToDecimal(txtInafectaPedido.Text));
+                        cmd.Parameters.AddWithValue("@exonerado", Convert.ToDecimal(txtExoneradaPedido.Text));
+                        cmd.Parameters.AddWithValue("@IGV", Convert.ToDecimal(txtIgvPedido.Text));
+                        cmd.Parameters.AddWithValue("@totalDescuento", Convert.ToDecimal(txtTotalDescuentoPedido.Text));
+                        cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(txtTotalPedido.Text));
+                        cmd.Parameters.AddWithValue("@idCotizacion", txtIdCotizacionPedido.Text);
+                        cmd.Parameters.AddWithValue("@cantidadItems", cantidaditems);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Se registró el nuevo pedido.", "Validación del Sistema");
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
 
-                    foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
+                    //CAMBIO DE ESTADO--------
+                    try
                     {
-                        contador = 0;
-                        contador = contador + 1;
+                        CodigoPedido();
+                        int codigopedido = Convert.ToInt32(datalistadoCodigoPedido.SelectedCells[0].Value.ToString());
+                        int contador = 0;
 
-                        int codigodetallecotizacion = Convert.ToInt32(row.Cells["Codigo"].Value);
+                        try
+                        {
+                            foreach (DataGridViewRow fila in datalistadoGeneracionPedido.Rows)
+                            {
+                                try
+                                {
+                                    contador = contador + 1;
 
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("CambiarEstadoCotiDetalle", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@iddetalleitems", codigodetallecotizacion);
-                        cmd.Parameters.AddWithValue("@idPedido", codigopedido);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                                    SqlConnection con = new SqlConnection();
+                                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                    con.Open();
+                                    SqlCommand cmd = new SqlCommand();
+                                    cmd = new SqlCommand("InsertarDetallePedido", con);
+                                    cmd.CommandType = CommandType.StoredProcedure;
+
+                                    cmd.Parameters.AddWithValue("@idPedido", codigopedido);
+                                    cmd.Parameters.AddWithValue("@codigoproducto", fila.Cells[2].Value.ToString());
+                                    cmd.Parameters.AddWithValue("@descripcionProducto", fila.Cells[3].Value.ToString());
+                                    cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila.Cells[4].Value.ToString()));
+                                    cmd.Parameters.AddWithValue("@preciounidad", Convert.ToDecimal(fila.Cells[5].Value.ToString()));
+                                    cmd.Parameters.AddWithValue("@descuento", Convert.ToDecimal(fila.Cells[6].Value.ToString()));
+                                    cmd.Parameters.AddWithValue("@total", Convert.ToDecimal(fila.Cells[7].Value.ToString()));
+                                    cmd.Parameters.AddWithValue("@fechaEntrega", Convert.ToDateTime(fila.Cells[10].Value.ToString()));
+                                    cmd.Parameters.AddWithValue("@codigoFormulacion", fila.Cells[12].Value.ToString());
+                                    cmd.Parameters.AddWithValue("@item", contador);
+                                    cmd.Parameters.AddWithValue("@idDetalleCotizacion", fila.Cells[13].Value.ToString());
+                                    cmd.ExecuteNonQuery();
+                                    con.Close();
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+
+                        foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
+                        {
+                            contador = 0;
+                            contador = contador + 1;
+
+                            int codigodetallecotizacion = Convert.ToInt32(row.Cells["Codigo"].Value);
+
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("CambiarEstadoCotiDetalle", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@iddetalleitems", codigodetallecotizacion);
+                            cmd.Parameters.AddWithValue("@idPedido", codigopedido);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+
+                        RegresarGenerarPedido();
                     }
-
-                    RegresarGenerarPedido();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
