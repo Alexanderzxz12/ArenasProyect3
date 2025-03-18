@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jhoal\\OneDrive\\Escritorio\\Sistemas\\ArenasProyect3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\jhoal\\onedrive\\escritorio\\sistemas\\arenasproyect3\\arenasproyect3\\conexion\\conexionmaestra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\conexion\\conexionmaestra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConexionMaestra.cs",
+              "DocumentMoniker": "C:\\Users\\jhoal\\OneDrive\\Escritorio\\Sistemas\\ArenasProyect3\\ArenasProyect3\\Conexion\\ConexionMaestra.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Conexion\\ConexionMaestra.cs",
+              "ToolTip": "C:\\Users\\jhoal\\OneDrive\\Escritorio\\Sistemas\\ArenasProyect3\\ArenasProyect3\\Conexion\\ConexionMaestra.cs",
+              "RelativeToolTip": "ArenasProyect3\\Conexion\\ConexionMaestra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T22:52:38.816Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
