@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</PublishUrl>
+    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,10 +23,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
-    <MinimumRequiredVersion>1.0.0.61</MinimumRequiredVersion>
+    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</UpdateUrl>
+    <MinimumRequiredVersion>1.0.0.63</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>62</ApplicationRevision>
+    <ApplicationRevision>64</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -416,6 +416,12 @@
     <Compile Include="Modulos\Procesos\Productos\ListadoProductos.Designer.cs">
       <DependentUpon>ListadoProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOP\ListadoDetalleOrdenProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOP\ListadoDetalleOrdenProduccion.Designer.cs">
+      <DependentUpon>ListadoDetalleOrdenProduccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Produccion\ConsultasOP\ListadoOrdenProduccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -778,6 +784,9 @@
     <EmbeddedResource Include="Modulos\Procesos\Productos\ListadoProductos.resx">
       <DependentUpon>ListadoProductos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\ListadoDetalleOrdenProduccion.resx">
+      <DependentUpon>ListadoDetalleOrdenProduccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\ListadoOrdenProduccion.resx">
       <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>
     </EmbeddedResource>
@@ -947,7 +956,6 @@
     <Folder Include="Modulos\Calidad\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="analisis-de-los-datos.ico" />
     <Content Include="panel.ico" />
   </ItemGroup>
   <ItemGroup>

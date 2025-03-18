@@ -147,7 +147,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             datalistadoAntecedentesLineaTrabajo.DataSource = dt;
             con.Close();
         }
-        
+
         //CARGAR ANTECEDENTES POR LINEA DE TRABAJO EDICION
         public void CargarAntecedentesLineaTrabajoEdicion(int idcliente, int idunidad)
         {
@@ -213,23 +213,20 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //MOSTRAR REQUERIMIENTOS AL INCIO 
         public void MostrarActasPorFecha(DateTime fechaInicio, DateTime fechaTermino)
         {
-            if (lblCarga.Text == "0")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarActasPorFecha_Jefatura", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoTodasActas.DataSource = dt;
-                con.Close();
-                RediemndionarListado(datalistadoTodasActas);
-            }
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("MostrarActasPorFecha_Jefatura", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoTodasActas.DataSource = dt;
+            con.Close();
+            RediemndionarListado(datalistadoTodasActas);
         }
 
         //MOSTRAR ACTAS POR RESPONSABLE

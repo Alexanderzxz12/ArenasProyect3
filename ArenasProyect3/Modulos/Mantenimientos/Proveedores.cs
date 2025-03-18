@@ -203,7 +203,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            da = new SqlDataAdapter("SELECT TC.Descripcion AS [TIPO], P.Ruc + '' + P.DNI + '' + P.OTROS AS [NÚMERO DE DOCUMENTO], NombreProveedor + P.PrimerNombre + ' ' + P.ApellidoPaterno + ' ' + P.ApellidoMaterno AS [NOMBRE / NOMBRES Y APELLIDOS], P.Telefono AS [TELÉFONO] ,P.Correo AS [CORREO],P.IdTipoCLiente,P.NombreProveedor,P.PrimerNombre,P.SegundoNombre,P.ApellidoPaterno,P.ApellidoMaterno,P.Telefono,P.Correo,P.PaginaWeb,P.Direccion,UP.CodigoPais,UD.CodigoDepartamento,PR.CodigoProvincia,DI.CodigoDistrito,P.IdProcedencia,P.IdTipoDocumento,P.RUC,P.DNI,P.OTROS,P.Detraccion,P.Declarante,P.Percepcion,P.Retencion,P.Lsoles,P.Ldolares,P.Codigo,P.IdProveedor FROM Proveedores P INNER JOIN TipoClientes TC ON P.IdTipoCliente = TC.IdTipoClientes INNER JOIN UbicacionPais UP ON P.CodigoPais = UP.CodigoPais INNER JOIN UbicacionDepartamento UD ON P.CodigoDepartamento = UD.CodigoDepartamento INNER JOIN UbicacionProvincia PR ON P.CodigoProvincia = PR.CodigoProvincia INNER JOIN UbicacionDistrito DI ON P.CodigoDistrito = DI.CodigoDistrito WHERE P.Estado = 1", con);
+            da = new SqlDataAdapter("SELECT TC.Descripcion AS [TIPO PROVEEDOR], P.Ruc + P.DNI + P.OTROS AS [RUC / DNI / OTRO], NombreProveedor + P.PrimerNombre + ' ' + P.ApellidoPaterno + ' ' + P.ApellidoMaterno AS [RAZÓN SOCIAL / NOMBRES Y APELLIDOS], P.Telefono AS [TELÉFONO / TELÉDONO FIJO] ,P.Correo AS [CORREO],P.IdTipoCLiente,P.NombreProveedor,P.PrimerNombre,P.SegundoNombre,P.ApellidoPaterno,P.ApellidoMaterno,P.Telefono,P.Correo,P.PaginaWeb,P.Direccion,UP.CodigoPais,UD.CodigoDepartamento,PR.CodigoProvincia,DI.CodigoDistrito,P.IdProcedencia,P.IdTipoDocumento,P.RUC,P.DNI,P.OTROS,P.Detraccion,P.Declarante,P.Percepcion,P.Retencion,P.Lsoles,P.Ldolares,P.Codigo,P.IdProveedor FROM Proveedores P INNER JOIN TipoClientes TC ON P.IdTipoCliente = TC.IdTipoClientes INNER JOIN UbicacionPais UP ON P.CodigoPais = UP.CodigoPais INNER JOIN UbicacionDepartamento UD ON P.CodigoDepartamento = UD.CodigoDepartamento INNER JOIN UbicacionProvincia PR ON P.CodigoProvincia = PR.CodigoProvincia INNER JOIN UbicacionDistrito DI ON P.CodigoDistrito = DI.CodigoDistrito WHERE P.Estado = 1", con);
             da.Fill(dt);
             datalistado.DataSource = dt;
             con.Close();
@@ -251,7 +251,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             foreach (DataGridViewRow datorecuperado in datalistado.Rows)
             {
-                string dni = Convert.ToString(datorecuperado.Cells["NÚMERO DE DOCUMENTO"].Value);
+                string dni = Convert.ToString(datorecuperado.Cells["RUC / DNI / OTRO"].Value);
                 if (dni == txtDni.Text)
                 {
                     EstadoDni = true;
@@ -266,7 +266,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             foreach (DataGridViewRow datorecuperado in datalistado.Rows)
             {
-                string ruc = Convert.ToString(datorecuperado.Cells["NÚMERO DE DOCUMENTO"].Value);
+                string ruc = Convert.ToString(datorecuperado.Cells["RUC / DNI / OTRO"].Value);
                 if (ruc == txtRuc.Text)
                 {
                     EstadoRuc = true;
@@ -281,7 +281,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             foreach (DataGridViewRow datorecuperado in datalistado.Rows)
             {
-                string otro = Convert.ToString(datorecuperado.Cells["NÚMERO DE DOCUMENTO"].Value);
+                string otro = Convert.ToString(datorecuperado.Cells["RUC / DNI / OTRO"].Value);
                 if (otro == txtOtroDocumento.Text)
                 {
                     EstadoOtro = true;
@@ -635,7 +635,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
             else
             {
-                if (txtTelefono.Text == "" && txtTelefonoFijo.Text == "" || txtTelefono.TextLength != 9)
+                if (txtTelefono.Text == "" || txtTelefono.TextLength != 9)
                 {
                     MessageBox.Show("Debe ingresar un número de teléfono movil o fijo válido.", "Registro de Proveedores", MessageBoxButtons.OK);
                 }
@@ -755,7 +755,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
             else
             {
-                if (txtTelefono.Text == "" && txtTelefonoFijo.Text == "" || txtTelefono.TextLength != 9 && txtTelefono.Text != "")
+                if (txtTelefono.Text == "" || txtTelefono.TextLength != 9 && txtTelefono.Text != "")
                 {
                     MessageBox.Show("Debe ingresar un número de teléfono movil o fijo válido.", "Registro de Proveedores", MessageBoxButtons.OK);
                 }

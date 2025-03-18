@@ -73,7 +73,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //ABRIR LISTADO DETALLES DE LAS ORDENES DE PRODUCCION
         private void btnListadoDetalleOP_Click(object sender, EventArgs e)
         {
-
+            if (panelMantenimientos.Controls.Count == 1)
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoDetalleOrdenProduccion());
+            }
+            else
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoDetalleOrdenProduccion());
+            }
         }
 
         //ABIRIR EL MANUAL DE USUARIO

@@ -24,9 +24,15 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         string ruta = ManGeneral.Manual.manualRequerimientosSimples;
         private Cursor curAnterior = null;
         string VisualizarOC = "";
+
         string codigoOrdenProduccion = "";
         string cantidadOrdenProduccion = "0000000";
         string cantidadOrdenProduccion2 = "";
+
+        string codigoOS = "";
+        string cantidadOS = "0000000";
+        string cantidadOS2 = "";
+
         string codigoRequerimientoSimple = "";
         string cantidadRequerimiento = "0000000";
         string cantidadRequerimiento2 = "";
@@ -222,6 +228,58 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //CONTAR LA CANTIDAD DE OS
+        public void ConteoOS()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da;
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            da = new SqlDataAdapter("SELECT IdOrdenServicio FROM OrdenServicio WHERE IdOrdenServicio = (SELECT MAX(IdOrdenServicio) FROM OrdenServicio)", con);
+            da.Fill(dt);
+            datalistadoConteoOS.DataSource = dt;
+            con.Close();
+
+            if (datalistadoConteoOS.RowCount > 0)
+            {
+                cantidadOS = datalistadoConteoOS.SelectedCells[0].Value.ToString();
+
+                if (cantidadOS.Length == 1)
+                {
+                    cantidadOS2 = "000000" + cantidadOS;
+                }
+                else if (cantidadOS.Length == 2)
+                {
+                    cantidadOS2 = "00000" + cantidadOS;
+                }
+                else if (cantidadOS.Length == 3)
+                {
+                    cantidadOS2 = "0000" + cantidadOS;
+                }
+                else if (cantidadOS.Length == 4)
+                {
+                    cantidadOS2 = "000" + cantidadOS;
+                }
+                else if (cantidadOS.Length == 5)
+                {
+                    cantidadOS2 = "00" + cantidadOS;
+                }
+                else if (cantidadOS.Length == 6)
+                {
+                    cantidadOS2 = "0" + cantidadOS;
+                }
+                else if (cantidadOS.Length == 7)
+                {
+                    cantidadOS2 = cantidadOS;
+                }
+            }
+            else
+            {
+                cantidadOS2 = cantidadOS;
+            }
+        }
+
         //TRAER EL ULTIMO REGISTRO PARA CREAR MI REQUERIMIENTO
         public void UltimaOP()
         {
@@ -236,7 +294,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.Close();
         }
 
-        //CARGAR Y GENERAR EL CÓDIGO DEL REQUERIMIENTO SIMPLE
+        //CARGAR Y GENERAR EL CÓDIGO DE OP
         public void GenerarCodigoOrdenProduccion()
         {
             ConteoOrdenProduccion();
@@ -244,6 +302,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DateTime date = DateTime.Now;
 
             codigoOrdenProduccion = Convert.ToString(date.Year) + cantidadOrdenProduccion2;
+        }
+
+        //CARGAR Y GENERAR EL CÓDIGO DE OS
+        public void GenerarCodigoOS()
+        {
+            ConteoOS();
+
+            DateTime date = DateTime.Now;
+
+            codigoOS = Convert.ToString(date.Year) + cantidadOS2;
         }
 
         //BUSCAR DETALLES DE MI PEDIDO
@@ -294,6 +362,23 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             datalistadoDetallesMaterialesFormulacion.DataSource = dt;
+            con.Close();
+        }
+
+        //BUSCAR DETALLES Y MATERIALES DE MI FORMULACION
+        public void BuscarMaterialesFormulacionSemi(string codigoFormulacion)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("BuscarMaterialesFormulacionSemi", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoFormulacion", codigoFormulacion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoDetallesMaterialesFormulacionSemi.DataSource = dt;
             con.Close();
         }
 
@@ -392,6 +477,21 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             cboLocal.ValueMember = "IdLocal";
             cboLocal.DisplayMember = "Descripcion";
             cboLocal.DataSource = dt;
+        }
+
+        //CARGAR TIPO OEPRACION
+        public void CargarTipoOperacion()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand comando = new SqlCommand(" SELECT IdTipoOperacionPro, Nombre FROM TipoOperacionPro WHERE Estado = 1", con);
+            SqlDataAdapter data = new SqlDataAdapter(comando);
+            DataTable dt = new DataTable();
+            data.Fill(dt);
+            cboOperacion.ValueMember = "IdTipoOperacionPro";
+            cboOperacion.DisplayMember = "Nombre";
+            cboOperacion.DataSource = dt;
         }
 
         //LISTADO DE PEDIDOS Y SELECCION DE PDF Y ESTADO DE PEDIDOS---------------------
@@ -668,6 +768,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     CargarSede();
                     CargarPrioridad();
                     CargarLocal();
+                    CargarTipoOperacion();
                     cboOperacion.SelectedIndex = 0;
                     dtFechaCreacionOP.Value = DateTime.Now;
                     dtFechaTerminoOP.Value = DateTime.Now;
@@ -818,7 +919,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
 
             BuscarMaterialesFormulacion(codigoFormulacion);
+            BuscarMaterialesFormulacionSemi(codigoFormulacion);
             BuscarLineaFormulacion(codigoFormulacion);
+
+            BuscarSemiProducidoFormulacionOP(codigoFormulacion);
 
             if (lblIdProducto.Text == "---")
             {
@@ -836,7 +940,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
             datalistadoActividades.Rows.Clear();
+            datalistadoActividadesSemi.Rows.Clear();
 
+            //CARGAR MATERIALES DE MI PRODUCTO
             int contador = 1;
             foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacion.Rows)
             {
@@ -856,6 +962,27 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 contador = contador + 1;
             }
 
+            //CARGAR MATERIALES DE MI SEMIPRODUCIDO
+            int contador2 = 1;
+            foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacionSemi.Rows)
+            {
+                string idMaterialDetalleActividad = dgv.Cells[0].Value.ToString();
+                string idProducto = dgv.Cells[1].Value.ToString();
+                string codigoBSS = dgv.Cells[2].Value.ToString();
+                string codigoSistema = dgv.Cells[3].Value.ToString();
+                string descripcionProducto = dgv.Cells[4].Value.ToString();
+                string cantidad = dgv.Cells[5].Value.ToString();
+                string medida = dgv.Cells[6].Value.ToString();
+                string idFormulacion = dgv.Cells[7].Value.ToString();
+                string stock = dgv.Cells[8].Value.ToString();
+
+                decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+
+                datalistadoActividadesSemi.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
+                contador2 = contador2 + 1;
+            }
+
+            lblCantidadMaterialesItemsSemi.Text = Convert.ToString(datalistadoActividadesSemi.RowCount);
             lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
             alternarColorFilas(datalistadoActividades);
         }
@@ -958,8 +1085,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 txtCodigoFormulacion.Text = codigoFormulacion;
                 int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
 
+                
                 BuscarMaterialesFormulacion(codigoFormulacion);
+                BuscarMaterialesFormulacionSemi(codigoFormulacion);
                 BuscarLineaFormulacion(codigoFormulacion);
+
+                BuscarSemiProducidoFormulacionOP(codigoFormulacion);
+
 
                 if (lblIdProducto.Text == "---")
                 {
@@ -977,7 +1109,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
                 datalistadoActividades.Rows.Clear();
+                datalistadoActividadesSemi.Rows.Clear();
 
+                //CARGAR MATERIALES DE MI PRODUCTO
                 int contador = 1;
                 foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacion.Rows)
                 {
@@ -997,6 +1131,27 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     contador = contador + 1;
                 }
 
+                //CARGAR MATERIALES DE MI SEMIPRODUCIDO
+                int contador2 = 1;
+                foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacionSemi.Rows)
+                {
+                    string idMaterialDetalleActividad = dgv.Cells[0].Value.ToString();
+                    string idProducto = dgv.Cells[1].Value.ToString();
+                    string codigoBSS = dgv.Cells[2].Value.ToString();
+                    string codigoSistema = dgv.Cells[3].Value.ToString();
+                    string descripcionProducto = dgv.Cells[4].Value.ToString();
+                    string cantidad = dgv.Cells[5].Value.ToString();
+                    string medida = dgv.Cells[6].Value.ToString();
+                    string idFormulacion = dgv.Cells[7].Value.ToString();
+                    string stock = dgv.Cells[8].Value.ToString();
+
+                    decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+
+                    datalistadoActividadesSemi.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
+                    contador2 = contador2 + 1;
+                }
+
+                lblCantidadMaterialesItemsSemi.Text = Convert.ToString(datalistadoActividadesSemi.RowCount);
                 lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
                 alternarColorFilas(datalistadoActividades);
             }
@@ -1098,12 +1253,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                             UltimaOP();
                             GenerarCodigoRequerimientoSimple();
+
                             //INGRESAR MI REQUERIMIENTO PARA MI ORDEN DE PRODUCCION-----------------------------
                             SqlConnection con2 = new SqlConnection();
                             con2.ConnectionString = Conexion.ConexionMaestra.conexion;
                             SqlCommand cmd2 = new SqlCommand();
                             con2.Open();
                             cmd2 = new SqlCommand("InsertarRequerimientoSimpleOP", con2);
+
                             cmd2.CommandType = CommandType.StoredProcedure;
                             //INGRESAR LOS DATOS GENERALES DE MI REQUERIMIENTO
                             cmd2.Parameters.AddWithValue("@codigoRequerimeintoSimple", codigoRequerimientoSimple);
@@ -1159,6 +1316,108 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                                 //AUMENTAR
                                 contador++;
                             }
+
+                            //if (datalistadoSemiProducidoFormulacion.Rows.Count > 0)
+                            //{
+                            //    //INGRESAR MI OT PARA MI ORDEN DE PRODUCCION-----------------------------
+                            //    SqlConnection con3 = new SqlConnection();
+                            //    con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            //    SqlCommand cmd3 = new SqlCommand();
+                            //    con3.Open();
+                            //    cmd3 = new SqlCommand("InsertarOrdenTrabajo", con3);
+                            //    cmd3.CommandType = CommandType.StoredProcedure;
+
+                            //    //INGRESAR LOS DATOS GENERALES DE OT
+                            //    GenerarCodigoOS();
+                            //    cmd3.Parameters.AddWithValue("@codigoOrdenServicio", codigoOS);
+                            //    cmd3.Parameters.AddWithValue("@fechaInicial", dtFechaCreacionOP.Value);
+                            //    cmd3.Parameters.AddWithValue("@fechaEntrega", dtFechaTerminoOP.Value);
+                            //    cmd3.Parameters.AddWithValue("@idArt", datalistadoSemiProducidoFormulacion.SelectedCells[0].Value.ToString());
+                            //    cmd3.Parameters.AddWithValue("@codigoProducto", datalistadoSemiProducidoFormulacion.SelectedCells[1].Value.ToString());
+                            //    cmd3.Parameters.AddWithValue("@descripcionProducto", datalistadoSemiProducidoFormulacion.SelectedCells[2].Value.ToString());
+                            //    cmd3.Parameters.AddWithValue("@planoProducto", datalistadoSemiProducidoFormulacion.SelectedCells[4].Value.ToString());
+                            //    cmd3.Parameters.AddWithValue("@color", txtColorProducto.Text);
+                            //    cmd3.Parameters.AddWithValue("@codigoBSS", datalistadoSemiProducidoFormulacion.SelectedCells[3].Value.ToString());
+                            //    cmd3.Parameters.AddWithValue("@idGeneraUsuario", DBNull.Value);
+                            //    cmd3.Parameters.AddWithValue("@usuarioGenera", txtSolicitante.Text);
+                            //    cmd3.Parameters.AddWithValue("@idSede", cboSede.SelectedValue.ToString());
+                            //    cmd3.Parameters.AddWithValue("@idPrioridad", cboPrioridad.SelectedValue.ToString());
+                            //    cmd3.Parameters.AddWithValue("@idLocal", cboLocal.SelectedValue.ToString());
+                            //    cmd3.Parameters.AddWithValue("@idOperacion", cboOperacion.SelectedValue.ToString());
+                            //    cmd3.Parameters.AddWithValue("@observacion", "");
+                            //    cmd3.Parameters.AddWithValue("@cantidad", datalistadoProductos.SelectedCells[6].Value.ToString());
+                            //    cmd3.ExecuteNonQuery();
+                            //    con3.Close();
+
+                            //    UltimaOP();
+                            //    GenerarCodigoRequerimientoSimple();
+
+                            //    //INGRESAR MI REQUERIMIENTO PARA MI ORDEN DE PRODUCCION-----------------------------
+                            //    SqlConnection con4 = new SqlConnection();
+                            //    con4.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            //    SqlCommand cmd4 = new SqlCommand();
+                            //    con4.Open();
+                            //    cmd4 = new SqlCommand("InsertarRequerimientoSimpleOT", con4);
+
+                            //    cmd4.CommandType = CommandType.StoredProcedure;
+                            //    //INGRESAR LOS DATOS GENERALES DE MI REQUERIMIENTO
+                            //    cmd4.Parameters.AddWithValue("@codigoRequerimeintoSimple", codigoRequerimientoSimple);
+                            //    cmd4.Parameters.AddWithValue("@fechaRequerida", DateTime.Now);
+                            //    cmd4.Parameters.AddWithValue("@fechaSolicitada", DateTime.Now);
+                            //    cmd4.Parameters.AddWithValue("@desJefatura", "EDUARDO LORO");
+                            //    cmd4.Parameters.AddWithValue("@idSolicitante", 1052);
+                            //    cmd4.Parameters.AddWithValue("@idCentroCostos", 8);
+                            //    cmd4.Parameters.AddWithValue("@observaciones", "REQUERIMIENTO PARA ORDEN DE SERVICIO");
+                            //    cmd4.Parameters.AddWithValue("@idSede", 1);
+                            //    cmd4.Parameters.AddWithValue("@idLocal", 1);
+                            //    cmd4.Parameters.AddWithValue("@idArea", 1);
+                            //    cmd4.Parameters.AddWithValue("@idipo", 2);
+                            //    cmd4.Parameters.AddWithValue("@estadoLogistica", 1);
+                            //    cmd4.Parameters.AddWithValue("@mensajeAnulacion", "");
+                            //    cmd4.Parameters.AddWithValue("@idJefatura", 1052);
+                            //    cmd4.Parameters.AddWithValue("@aliasCargaJefatura", "Jefe de Producción");
+                            //    cmd4.Parameters.AddWithValue("@cantidadItems", Convert.ToInt32(lblCantidadMaterialesItemsSemi.Text));
+                            //    cmd4.Parameters.AddWithValue("@idPrioridad", 1);
+                            //    cmd4.Parameters.AddWithValue("@idOP", datalistadoUltimaOP.SelectedCells[0].Value.ToString());
+                            //    cmd4.ExecuteNonQuery();
+                            //    con4.Close();
+
+                            //    //VARIABLE PARA CONTAR LA CANTIDAD DE ITEMS QUE HAY
+                            //    int contadorOT = 1;
+                            //    //INGRESO DE LOS DETALLES DEL REQUERIMIENTO SIMPLE CON UN FOREACH
+                            //    foreach (DataGridViewRow row in datalistadoActividadesSemi.Rows)
+                            //    {
+                            //        decimal cantidad = Convert.ToDecimal(row.Cells["cantidadSemi"].Value);
+
+                            //        //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
+                            //        con.Open();
+                            //        cmd = new SqlCommand("InsertarRequerimientoSimple_DetalleProductos", con);
+                            //        cmd.CommandType = CommandType.StoredProcedure;
+                            //        cmd.Parameters.AddWithValue("@item", contador);
+                            //        cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[2].Value));
+                            //        //SI NO HAN PUESTO UN VALOR AL PRODUCTO
+                            //        if (cantidad == 0)
+                            //        {
+                            //            cmd.Parameters.AddWithValue("@cantidad", 1.000);
+                            //        }
+                            //        else
+                            //        {
+                            //            cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                            //        }
+
+                            //        cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[9].Value));
+                            //        cmd.Parameters.AddWithValue("@cantidadTotal", Convert.ToString(row.Cells[7].Value));
+                            //        cmd.ExecuteNonQuery();
+                            //        con.Close();
+
+                            //        //AUMENTAR
+                            //        contadorOT++;
+                            //        //}
+                            //    }
+
+                            //    //MENSAJE DE CONFORMIAD CON EL INGRESO DE LA ORDEN DE SERVICIO
+                            //    MessageBox.Show("Se generó la Orden de servicio correctamente.", "Validación del Sistema");
+                            //}
 
                             //MENSAJE DE CONFORMIAD CON EL INGRESO DE LA ORDEN DE PRODUCCION
                             MessageBox.Show("Se generó la Orden de producción correctamente.", "Validación del Sistema");
@@ -1245,10 +1504,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             txtObservacionesOP.Text = "";
             lblCantidadItemsMateriales.Text = "***";
             lblCantidadItems.Text = "***";
-            cboSede.SelectedIndex = 0;
-            cboPrioridad.SelectedIndex = 0;
-            cboLocal.SelectedIndex = 0;
-            cboOperacion.SelectedIndex = 0;
+            cboSede.SelectedItem = 0;
+            cboPrioridad.SelectedItem = 0;
+            cboLocal.SelectedItem = 0;
+            cboOperacion.SelectedItem = 0;
         }
 
         //LIMPIAR AMPOS DE LA ORDEN DE PRIDCCUIN (NO TODOS LOS DATOS)

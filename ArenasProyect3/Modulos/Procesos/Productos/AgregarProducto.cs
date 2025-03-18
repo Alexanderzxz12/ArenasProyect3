@@ -8565,7 +8565,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             else if (cboModelos.Text == "MALLAS TERMOINYECTADAS")
             {
                 DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text +
+                " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
                 " " + txtDescripcionDiseñoAcabado1.Text +
                 " " + txtDescripcionDiametros1.Text +
                 " " + txtDescripcionNTipos3.Text +

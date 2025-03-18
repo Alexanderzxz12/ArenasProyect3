@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Clientes));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClientes = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -50,8 +50,35 @@
             this.panel19 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnInfoPrincipal = new System.Windows.Forms.PictureBox();
-            this.label78 = new System.Windows.Forms.Label();
+            this.panelContacto = new System.Windows.Forms.Panel();
+            this.btnRegresarContacto = new System.Windows.Forms.Button();
+            this.btnEliminarContactos = new System.Windows.Forms.Button();
+            this.btnGuardarContacto = new System.Windows.Forms.Button();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.lblCodigoContacto = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtNombreContacto = new System.Windows.Forms.TextBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.datalistadocontacto = new System.Windows.Forms.DataGridView();
+            this.cboCargoContacto = new System.Windows.Forms.ComboBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.cboAreaContacto = new System.Windows.Forms.ComboBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.cboUnidadContacto = new System.Windows.Forms.ComboBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.txtCorreoContacto = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.txtAnexoContacto = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.txtTelefonoContacto = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtCodigoClienteContacto = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtNombreClienteContacto = new System.Windows.Forms.TextBox();
             this.panelAgregarCliente = new System.Windows.Forms.Panel();
             this.panelUnidad = new System.Windows.Forms.Panel();
             this.btnEiminarUnidad = new System.Windows.Forms.Button();
@@ -82,81 +109,6 @@
             this.txtCodigoClienteUnidad = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombreClienteUnidad = new System.Windows.Forms.TextBox();
-            this.panelSucursal = new System.Windows.Forms.Panel();
-            this.btnRegresarSucursal = new System.Windows.Forms.Button();
-            this.btnEliminarSucursal = new System.Windows.Forms.Button();
-            this.btnGuardarSucursal = new System.Windows.Forms.Button();
-            this.label75 = new System.Windows.Forms.Label();
-            this.label74 = new System.Windows.Forms.Label();
-            this.label73 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.lblCodigoSucursal = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.txtTelefonoSucursal = new System.Windows.Forms.TextBox();
-            this.cboDistritoSucursal = new System.Windows.Forms.ComboBox();
-            this.cboProvinciaSucursal = new System.Windows.Forms.ComboBox();
-            this.cboDepartamentoSucursal = new System.Windows.Forms.ComboBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.cboPaisSucursal = new System.Windows.Forms.ComboBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.txtDireccionSucursal = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.txtNombreSucursal = new System.Windows.Forms.TextBox();
-            this.label52 = new System.Windows.Forms.Label();
-            this.txtCodigoClienteSucursal = new System.Windows.Forms.TextBox();
-            this.datalistadosucursal = new System.Windows.Forms.DataGridView();
-            this.label51 = new System.Windows.Forms.Label();
-            this.txtNombreClienteSucursal = new System.Windows.Forms.TextBox();
-            this.panelContacto = new System.Windows.Forms.Panel();
-            this.btnRegresarContacto = new System.Windows.Forms.Button();
-            this.btnEliminarContactos = new System.Windows.Forms.Button();
-            this.btnGuardarContacto = new System.Windows.Forms.Button();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.lblCodigoContacto = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.txtNombreContacto = new System.Windows.Forms.TextBox();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.datalistadocontacto = new System.Windows.Forms.DataGridView();
-            this.cboCargoContacto = new System.Windows.Forms.ComboBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.cboAreaContacto = new System.Windows.Forms.ComboBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.cboUnidadContacto = new System.Windows.Forms.ComboBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.txtCorreoContacto = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.txtAnexoContacto = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.txtTelefonoContacto = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.txtCodigoClienteContacto = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.txtNombreClienteContacto = new System.Windows.Forms.TextBox();
-            this.panelCondicion = new System.Windows.Forms.Panel();
-            this.btnRetrocederCondicion = new System.Windows.Forms.Button();
-            this.btnEliminarCondicion = new System.Windows.Forms.Button();
-            this.btnGuardarCondicion = new System.Windows.Forms.Button();
-            this.label72 = new System.Windows.Forms.Label();
-            this.label71 = new System.Windows.Forms.Label();
-            this.label70 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.lblCodigoCOndicion = new System.Windows.Forms.Label();
-            this.datalistadoCondicion = new System.Windows.Forms.DataGridView();
-            this.cboFormaCondicion = new System.Windows.Forms.ComboBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.cboCondicionCondicion = new System.Windows.Forms.ComboBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.txtNombreCLienteCondicion = new System.Windows.Forms.TextBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.btnAgregar2 = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -233,6 +185,54 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtCodigoClientes = new System.Windows.Forms.TextBox();
             this.lblTituloPanel = new System.Windows.Forms.Label();
+            this.panelSucursal = new System.Windows.Forms.Panel();
+            this.btnRegresarSucursal = new System.Windows.Forms.Button();
+            this.btnEliminarSucursal = new System.Windows.Forms.Button();
+            this.btnGuardarSucursal = new System.Windows.Forms.Button();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblCodigoSucursal = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.txtTelefonoSucursal = new System.Windows.Forms.TextBox();
+            this.cboDistritoSucursal = new System.Windows.Forms.ComboBox();
+            this.cboProvinciaSucursal = new System.Windows.Forms.ComboBox();
+            this.cboDepartamentoSucursal = new System.Windows.Forms.ComboBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.cboPaisSucursal = new System.Windows.Forms.ComboBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.txtDireccionSucursal = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.txtNombreSucursal = new System.Windows.Forms.TextBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.txtCodigoClienteSucursal = new System.Windows.Forms.TextBox();
+            this.datalistadosucursal = new System.Windows.Forms.DataGridView();
+            this.label51 = new System.Windows.Forms.Label();
+            this.txtNombreClienteSucursal = new System.Windows.Forms.TextBox();
+            this.btnInfoPrincipal = new System.Windows.Forms.PictureBox();
+            this.label78 = new System.Windows.Forms.Label();
+            this.panelCondicion = new System.Windows.Forms.Panel();
+            this.btnRetrocederCondicion = new System.Windows.Forms.Button();
+            this.btnEliminarCondicion = new System.Windows.Forms.Button();
+            this.btnGuardarCondicion = new System.Windows.Forms.Button();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.lblCodigoCOndicion = new System.Windows.Forms.Label();
+            this.datalistadoCondicion = new System.Windows.Forms.DataGridView();
+            this.cboFormaCondicion = new System.Windows.Forms.ComboBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.cboCondicionCondicion = new System.Windows.Forms.ComboBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.txtNombreCLienteCondicion = new System.Windows.Forms.TextBox();
             this.btnExportarListadoClientes = new System.Windows.Forms.Button();
             this.datalistado = new System.Windows.Forms.DataGridView();
             this.datalistadoExcel = new System.Windows.Forms.DataGridView();
@@ -250,16 +250,11 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnInfoPrincipal)).BeginInit();
+            this.panelContacto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).BeginInit();
             this.panelAgregarCliente.SuspendLayout();
             this.panelUnidad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).BeginInit();
-            this.panelSucursal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadosucursal)).BeginInit();
-            this.panelContacto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).BeginInit();
-            this.panelCondicion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.btnSucursal.SuspendLayout();
             this.btnCondicion.SuspendLayout();
@@ -271,6 +266,11 @@
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panelSucursal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadosucursal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoPrincipal)).BeginInit();
+            this.panelCondicion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -374,12 +374,9 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.panelContacto);
             this.panel2.Controls.Add(this.panelAgregarCliente);
-            this.panel2.Controls.Add(this.panelSucursal);
             this.panel2.Controls.Add(this.btnInfoPrincipal);
             this.panel2.Controls.Add(this.label78);
-            this.panel2.Controls.Add(this.panelCondicion);
             this.panel2.Controls.Add(this.btnExportarListadoClientes);
             this.panel2.Controls.Add(this.datalistado);
             this.panel2.Controls.Add(this.datalistadoExcel);
@@ -398,35 +395,380 @@
             this.panel2.Size = new System.Drawing.Size(1154, 636);
             this.panel2.TabIndex = 149;
             // 
-            // btnInfoPrincipal
+            // panelContacto
             // 
-            this.btnInfoPrincipal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInfoPrincipal.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoPrincipal.Image")));
-            this.btnInfoPrincipal.Location = new System.Drawing.Point(1033, 607);
-            this.btnInfoPrincipal.Margin = new System.Windows.Forms.Padding(5);
-            this.btnInfoPrincipal.Name = "btnInfoPrincipal";
-            this.btnInfoPrincipal.Size = new System.Drawing.Size(26, 20);
-            this.btnInfoPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnInfoPrincipal.TabIndex = 161;
-            this.btnInfoPrincipal.TabStop = false;
-            this.btnInfoPrincipal.Click += new System.EventHandler(this.btnInfoPrincipal_Click);
+            this.panelContacto.Controls.Add(this.btnRegresarContacto);
+            this.panelContacto.Controls.Add(this.btnEliminarContactos);
+            this.panelContacto.Controls.Add(this.btnGuardarContacto);
+            this.panelContacto.Controls.Add(this.label69);
+            this.panelContacto.Controls.Add(this.label68);
+            this.panelContacto.Controls.Add(this.label67);
+            this.panelContacto.Controls.Add(this.label62);
+            this.panelContacto.Controls.Add(this.lblCodigoContacto);
+            this.panelContacto.Controls.Add(this.label45);
+            this.panelContacto.Controls.Add(this.txtNombreContacto);
+            this.panelContacto.Controls.Add(this.panel9);
+            this.panelContacto.Controls.Add(this.datalistadocontacto);
+            this.panelContacto.Controls.Add(this.cboCargoContacto);
+            this.panelContacto.Controls.Add(this.label44);
+            this.panelContacto.Controls.Add(this.cboAreaContacto);
+            this.panelContacto.Controls.Add(this.label43);
+            this.panelContacto.Controls.Add(this.cboUnidadContacto);
+            this.panelContacto.Controls.Add(this.label42);
+            this.panelContacto.Controls.Add(this.label41);
+            this.panelContacto.Controls.Add(this.txtCorreoContacto);
+            this.panelContacto.Controls.Add(this.label40);
+            this.panelContacto.Controls.Add(this.txtAnexoContacto);
+            this.panelContacto.Controls.Add(this.label39);
+            this.panelContacto.Controls.Add(this.txtTelefonoContacto);
+            this.panelContacto.Controls.Add(this.label38);
+            this.panelContacto.Controls.Add(this.txtCodigoClienteContacto);
+            this.panelContacto.Controls.Add(this.label37);
+            this.panelContacto.Controls.Add(this.txtNombreClienteContacto);
+            this.panelContacto.Location = new System.Drawing.Point(12, 77);
+            this.panelContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.panelContacto.Name = "panelContacto";
+            this.panelContacto.Size = new System.Drawing.Size(958, 466);
+            this.panelContacto.TabIndex = 133;
+            this.panelContacto.Visible = false;
             // 
-            // label78
+            // btnRegresarContacto
             // 
-            this.label78.AutoSize = true;
-            this.label78.BackColor = System.Drawing.Color.Transparent;
-            this.label78.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(897, 610);
-            this.label78.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(130, 15);
-            this.label78.TabIndex = 160;
-            this.label78.Text = "Para más información";
+            this.btnRegresarContacto.FlatAppearance.BorderSize = 0;
+            this.btnRegresarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegresarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarContacto.Image")));
+            this.btnRegresarContacto.Location = new System.Drawing.Point(887, 155);
+            this.btnRegresarContacto.Name = "btnRegresarContacto";
+            this.btnRegresarContacto.Size = new System.Drawing.Size(28, 28);
+            this.btnRegresarContacto.TabIndex = 154;
+            this.btnRegresarContacto.UseVisualStyleBackColor = true;
+            this.btnRegresarContacto.Click += new System.EventHandler(this.btnRegresarContacto_Click);
+            // 
+            // btnEliminarContactos
+            // 
+            this.btnEliminarContactos.FlatAppearance.BorderSize = 0;
+            this.btnEliminarContactos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarContactos.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarContactos.Image")));
+            this.btnEliminarContactos.Location = new System.Drawing.Point(887, 97);
+            this.btnEliminarContactos.Name = "btnEliminarContactos";
+            this.btnEliminarContactos.Size = new System.Drawing.Size(28, 28);
+            this.btnEliminarContactos.TabIndex = 153;
+            this.btnEliminarContactos.UseVisualStyleBackColor = true;
+            this.btnEliminarContactos.Click += new System.EventHandler(this.btnEliminarContactos_Click);
+            // 
+            // btnGuardarContacto
+            // 
+            this.btnGuardarContacto.FlatAppearance.BorderSize = 0;
+            this.btnGuardarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarContacto.Image")));
+            this.btnGuardarContacto.Location = new System.Drawing.Point(887, 38);
+            this.btnGuardarContacto.Name = "btnGuardarContacto";
+            this.btnGuardarContacto.Size = new System.Drawing.Size(28, 28);
+            this.btnGuardarContacto.TabIndex = 152;
+            this.btnGuardarContacto.UseVisualStyleBackColor = true;
+            this.btnGuardarContacto.Click += new System.EventHandler(this.btnGuardarContacto_Click);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(877, 183);
+            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(51, 14);
+            this.label69.TabIndex = 151;
+            this.label69.Text = "Regresar";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.Location = new System.Drawing.Point(881, 127);
+            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(39, 14);
+            this.label68.TabIndex = 150;
+            this.label68.Text = "Anular";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.Location = new System.Drawing.Point(878, 69);
+            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(47, 14);
+            this.label67.TabIndex = 149;
+            this.label67.Text = "Guardar";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(34, 196);
+            this.label62.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(63, 14);
+            this.label62.TabIndex = 148;
+            this.label62.Text = "C. Registro:";
+            // 
+            // lblCodigoContacto
+            // 
+            this.lblCodigoContacto.AutoSize = true;
+            this.lblCodigoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoContacto.Location = new System.Drawing.Point(111, 196);
+            this.lblCodigoContacto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoContacto.Name = "lblCodigoContacto";
+            this.lblCodigoContacto.Size = new System.Drawing.Size(13, 14);
+            this.lblCodigoContacto.TabIndex = 144;
+            this.lblCodigoContacto.Text = "0";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(59, 97);
+            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(55, 14);
+            this.label45.TabIndex = 142;
+            this.label45.Text = "Nombres:";
+            // 
+            // txtNombreContacto
+            // 
+            this.txtNombreContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreContacto.Location = new System.Drawing.Point(151, 94);
+            this.txtNombreContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreContacto.Name = "txtNombreContacto";
+            this.txtNombreContacto.Size = new System.Drawing.Size(286, 22);
+            this.txtNombreContacto.TabIndex = 141;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel9.Location = new System.Drawing.Point(479, 72);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1, 100);
+            this.panel9.TabIndex = 140;
+            // 
+            // datalistadocontacto
+            // 
+            this.datalistadocontacto.AllowUserToAddRows = false;
+            this.datalistadocontacto.AllowUserToDeleteRows = false;
+            this.datalistadocontacto.AllowUserToResizeColumns = false;
+            this.datalistadocontacto.AllowUserToResizeRows = false;
+            this.datalistadocontacto.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadocontacto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.datalistadocontacto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadocontacto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            this.datalistadocontacto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadocontacto.DefaultCellStyle = dataGridViewCellStyle30;
+            this.datalistadocontacto.Location = new System.Drawing.Point(20, 215);
+            this.datalistadocontacto.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadocontacto.Name = "datalistadocontacto";
+            this.datalistadocontacto.ReadOnly = true;
+            this.datalistadocontacto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.datalistadocontacto.RowHeadersVisible = false;
+            this.datalistadocontacto.RowHeadersWidth = 51;
+            this.datalistadocontacto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadocontacto.Size = new System.Drawing.Size(919, 239);
+            this.datalistadocontacto.TabIndex = 139;
+            this.datalistadocontacto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadocontacto_CellClick);
+            // 
+            // cboCargoContacto
+            // 
+            this.cboCargoContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCargoContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCargoContacto.FormattingEnabled = true;
+            this.cboCargoContacto.Location = new System.Drawing.Point(594, 146);
+            this.cboCargoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCargoContacto.Name = "cboCargoContacto";
+            this.cboCargoContacto.Size = new System.Drawing.Size(230, 21);
+            this.cboCargoContacto.TabIndex = 147;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(536, 146);
+            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(38, 14);
+            this.label44.TabIndex = 137;
+            this.label44.Text = "Cargo:";
+            // 
+            // cboAreaContacto
+            // 
+            this.cboAreaContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAreaContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAreaContacto.FormattingEnabled = true;
+            this.cboAreaContacto.Location = new System.Drawing.Point(594, 68);
+            this.cboAreaContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.cboAreaContacto.Name = "cboAreaContacto";
+            this.cboAreaContacto.Size = new System.Drawing.Size(230, 21);
+            this.cboAreaContacto.TabIndex = 144;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(544, 71);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(30, 14);
+            this.label43.TabIndex = 135;
+            this.label43.Text = "Área";
+            // 
+            // cboUnidadContacto
+            // 
+            this.cboUnidadContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnidadContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboUnidadContacto.FormattingEnabled = true;
+            this.cboUnidadContacto.Location = new System.Drawing.Point(594, 120);
+            this.cboUnidadContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUnidadContacto.Name = "cboUnidadContacto";
+            this.cboUnidadContacto.Size = new System.Drawing.Size(230, 21);
+            this.cboUnidadContacto.TabIndex = 146;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(529, 120);
+            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(45, 14);
+            this.label42.TabIndex = 131;
+            this.label42.Text = "Unidad:";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(15, 148);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(99, 14);
+            this.label41.TabIndex = 16;
+            this.label41.Text = "Correo Electronico:";
+            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtCorreoContacto
+            // 
+            this.txtCorreoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreoContacto.Location = new System.Drawing.Point(151, 148);
+            this.txtCorreoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCorreoContacto.Name = "txtCorreoContacto";
+            this.txtCorreoContacto.Size = new System.Drawing.Size(253, 22);
+            this.txtCorreoContacto.TabIndex = 143;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(533, 97);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(41, 14);
+            this.label40.TabIndex = 14;
+            this.label40.Text = "Anéxo:";
+            // 
+            // txtAnexoContacto
+            // 
+            this.txtAnexoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAnexoContacto.Location = new System.Drawing.Point(594, 94);
+            this.txtAnexoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAnexoContacto.MaxLength = 15;
+            this.txtAnexoContacto.Name = "txtAnexoContacto";
+            this.txtAnexoContacto.Size = new System.Drawing.Size(126, 22);
+            this.txtAnexoContacto.TabIndex = 145;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(62, 123);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(52, 14);
+            this.label39.TabIndex = 12;
+            this.label39.Text = "Teléfono:";
+            // 
+            // txtTelefonoContacto
+            // 
+            this.txtTelefonoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefonoContacto.Location = new System.Drawing.Point(151, 120);
+            this.txtTelefonoContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTelefonoContacto.MaxLength = 20;
+            this.txtTelefonoContacto.Name = "txtTelefonoContacto";
+            this.txtTelefonoContacto.Size = new System.Drawing.Size(102, 22);
+            this.txtTelefonoContacto.TabIndex = 142;
+            this.txtTelefonoContacto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoContacto_KeyPress);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(68, 69);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(46, 14);
+            this.label38.TabIndex = 10;
+            this.label38.Text = "Código::";
+            // 
+            // txtCodigoClienteContacto
+            // 
+            this.txtCodigoClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoClienteContacto.Location = new System.Drawing.Point(151, 68);
+            this.txtCodigoClienteContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoClienteContacto.Name = "txtCodigoClienteContacto";
+            this.txtCodigoClienteContacto.ReadOnly = true;
+            this.txtCodigoClienteContacto.Size = new System.Drawing.Size(111, 22);
+            this.txtCodigoClienteContacto.TabIndex = 140;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(128, 22);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(57, 18);
+            this.label37.TabIndex = 8;
+            this.label37.Text = "Cliente:";
+            // 
+            // txtNombreClienteContacto
+            // 
+            this.txtNombreClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreClienteContacto.Location = new System.Drawing.Point(193, 22);
+            this.txtNombreClienteContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreClienteContacto.Name = "txtNombreClienteContacto";
+            this.txtNombreClienteContacto.ReadOnly = true;
+            this.txtNombreClienteContacto.Size = new System.Drawing.Size(631, 22);
+            this.txtNombreClienteContacto.TabIndex = 7;
             // 
             // panelAgregarCliente
             // 
             this.panelAgregarCliente.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panelAgregarCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelAgregarCliente.Controls.Add(this.panelSucursal);
+            this.panelAgregarCliente.Controls.Add(this.panelCondicion);
+            this.panelAgregarCliente.Controls.Add(this.panelContacto);
             this.panelAgregarCliente.Controls.Add(this.panelUnidad);
             this.panelAgregarCliente.Controls.Add(this.btnRegresar);
             this.panelAgregarCliente.Controls.Add(this.btnAgregar2);
@@ -474,7 +816,7 @@
             this.panelAgregarCliente.Controls.Add(this.label5);
             this.panelAgregarCliente.Controls.Add(this.txtCodigoClientes);
             this.panelAgregarCliente.Controls.Add(this.lblTituloPanel);
-            this.panelAgregarCliente.Location = new System.Drawing.Point(85, 50);
+            this.panelAgregarCliente.Location = new System.Drawing.Point(85, 37);
             this.panelAgregarCliente.Margin = new System.Windows.Forms.Padding(4);
             this.panelAgregarCliente.Name = "panelAgregarCliente";
             this.panelAgregarCliente.Size = new System.Drawing.Size(985, 562);
@@ -618,23 +960,23 @@
             this.datalistadounidad.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadounidad.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadounidad.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadounidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadounidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle35;
             this.datalistadounidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadounidad.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadounidad.DefaultCellStyle = dataGridViewCellStyle36;
             this.datalistadounidad.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadounidad.Location = new System.Drawing.Point(20, 215);
             this.datalistadounidad.Margin = new System.Windows.Forms.Padding(4);
@@ -849,973 +1191,6 @@
             this.txtNombreClienteUnidad.ReadOnly = true;
             this.txtNombreClienteUnidad.Size = new System.Drawing.Size(631, 22);
             this.txtNombreClienteUnidad.TabIndex = 0;
-            // 
-            // panelSucursal
-            // 
-            this.panelSucursal.Controls.Add(this.btnRegresarSucursal);
-            this.panelSucursal.Controls.Add(this.btnEliminarSucursal);
-            this.panelSucursal.Controls.Add(this.btnGuardarSucursal);
-            this.panelSucursal.Controls.Add(this.label75);
-            this.panelSucursal.Controls.Add(this.label74);
-            this.panelSucursal.Controls.Add(this.label73);
-            this.panelSucursal.Controls.Add(this.label59);
-            this.panelSucursal.Controls.Add(this.panel11);
-            this.panelSucursal.Controls.Add(this.lblCodigoSucursal);
-            this.panelSucursal.Controls.Add(this.label57);
-            this.panelSucursal.Controls.Add(this.txtTelefonoSucursal);
-            this.panelSucursal.Controls.Add(this.cboDistritoSucursal);
-            this.panelSucursal.Controls.Add(this.cboProvinciaSucursal);
-            this.panelSucursal.Controls.Add(this.cboDepartamentoSucursal);
-            this.panelSucursal.Controls.Add(this.label53);
-            this.panelSucursal.Controls.Add(this.label54);
-            this.panelSucursal.Controls.Add(this.label55);
-            this.panelSucursal.Controls.Add(this.label56);
-            this.panelSucursal.Controls.Add(this.cboPaisSucursal);
-            this.panelSucursal.Controls.Add(this.label50);
-            this.panelSucursal.Controls.Add(this.txtDireccionSucursal);
-            this.panelSucursal.Controls.Add(this.label49);
-            this.panelSucursal.Controls.Add(this.txtNombreSucursal);
-            this.panelSucursal.Controls.Add(this.label52);
-            this.panelSucursal.Controls.Add(this.txtCodigoClienteSucursal);
-            this.panelSucursal.Controls.Add(this.datalistadosucursal);
-            this.panelSucursal.Controls.Add(this.label51);
-            this.panelSucursal.Controls.Add(this.txtNombreClienteSucursal);
-            this.panelSucursal.Location = new System.Drawing.Point(1134, 106);
-            this.panelSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.panelSucursal.Name = "panelSucursal";
-            this.panelSucursal.Size = new System.Drawing.Size(958, 466);
-            this.panelSucursal.TabIndex = 144;
-            this.panelSucursal.Visible = false;
-            // 
-            // btnRegresarSucursal
-            // 
-            this.btnRegresarSucursal.FlatAppearance.BorderSize = 0;
-            this.btnRegresarSucursal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegresarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarSucursal.Image")));
-            this.btnRegresarSucursal.Location = new System.Drawing.Point(887, 155);
-            this.btnRegresarSucursal.Name = "btnRegresarSucursal";
-            this.btnRegresarSucursal.Size = new System.Drawing.Size(28, 28);
-            this.btnRegresarSucursal.TabIndex = 167;
-            this.btnRegresarSucursal.UseVisualStyleBackColor = true;
-            this.btnRegresarSucursal.Click += new System.EventHandler(this.btnRegresarSucursal_Click);
-            // 
-            // btnEliminarSucursal
-            // 
-            this.btnEliminarSucursal.FlatAppearance.BorderSize = 0;
-            this.btnEliminarSucursal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarSucursal.Image")));
-            this.btnEliminarSucursal.Location = new System.Drawing.Point(887, 97);
-            this.btnEliminarSucursal.Name = "btnEliminarSucursal";
-            this.btnEliminarSucursal.Size = new System.Drawing.Size(28, 28);
-            this.btnEliminarSucursal.TabIndex = 166;
-            this.btnEliminarSucursal.UseVisualStyleBackColor = true;
-            this.btnEliminarSucursal.Click += new System.EventHandler(this.btnEliminarSucursal_Click);
-            // 
-            // btnGuardarSucursal
-            // 
-            this.btnGuardarSucursal.FlatAppearance.BorderSize = 0;
-            this.btnGuardarSucursal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarSucursal.Image")));
-            this.btnGuardarSucursal.Location = new System.Drawing.Point(887, 38);
-            this.btnGuardarSucursal.Name = "btnGuardarSucursal";
-            this.btnGuardarSucursal.Size = new System.Drawing.Size(28, 28);
-            this.btnGuardarSucursal.TabIndex = 165;
-            this.btnGuardarSucursal.UseVisualStyleBackColor = true;
-            this.btnGuardarSucursal.Click += new System.EventHandler(this.btnGuardarSucursal_Click);
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(877, 183);
-            this.label75.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(51, 14);
-            this.label75.TabIndex = 164;
-            this.label75.Text = "Regresar";
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label74.Location = new System.Drawing.Point(881, 127);
-            this.label74.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(39, 14);
-            this.label74.TabIndex = 163;
-            this.label74.Text = "Anular";
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label73.Location = new System.Drawing.Point(878, 69);
-            this.label73.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(47, 14);
-            this.label73.TabIndex = 162;
-            this.label73.Text = "Guardar";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(533, 99);
-            this.label59.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(63, 14);
-            this.label59.TabIndex = 161;
-            this.label59.Text = "C. Registro:";
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel11.Location = new System.Drawing.Point(479, 72);
-            this.panel11.Margin = new System.Windows.Forms.Padding(4);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1, 100);
-            this.panel11.TabIndex = 160;
-            // 
-            // lblCodigoSucursal
-            // 
-            this.lblCodigoSucursal.AutoSize = true;
-            this.lblCodigoSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoSucursal.Location = new System.Drawing.Point(615, 97);
-            this.lblCodigoSucursal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoSucursal.Name = "lblCodigoSucursal";
-            this.lblCodigoSucursal.Size = new System.Drawing.Size(14, 15);
-            this.lblCodigoSucursal.TabIndex = 159;
-            this.lblCodigoSucursal.Text = "0";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(544, 71);
-            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(52, 14);
-            this.label57.TabIndex = 157;
-            this.label57.Text = "Teléfono:";
-            // 
-            // txtTelefonoSucursal
-            // 
-            this.txtTelefonoSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefonoSucursal.Location = new System.Drawing.Point(609, 68);
-            this.txtTelefonoSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTelefonoSucursal.MaxLength = 9;
-            this.txtTelefonoSucursal.Name = "txtTelefonoSucursal";
-            this.txtTelefonoSucursal.Size = new System.Drawing.Size(136, 22);
-            this.txtTelefonoSucursal.TabIndex = 156;
-            this.txtTelefonoSucursal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoSucursal_KeyPress);
-            // 
-            // cboDistritoSucursal
-            // 
-            this.cboDistritoSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDistritoSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboDistritoSucursal.FormattingEnabled = true;
-            this.cboDistritoSucursal.Location = new System.Drawing.Point(675, 186);
-            this.cboDistritoSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.cboDistritoSucursal.Name = "cboDistritoSucursal";
-            this.cboDistritoSucursal.Size = new System.Drawing.Size(155, 21);
-            this.cboDistritoSucursal.TabIndex = 155;
-            // 
-            // cboProvinciaSucursal
-            // 
-            this.cboProvinciaSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProvinciaSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboProvinciaSucursal.FormattingEnabled = true;
-            this.cboProvinciaSucursal.Location = new System.Drawing.Point(494, 186);
-            this.cboProvinciaSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.cboProvinciaSucursal.Name = "cboProvinciaSucursal";
-            this.cboProvinciaSucursal.Size = new System.Drawing.Size(155, 21);
-            this.cboProvinciaSucursal.TabIndex = 154;
-            this.cboProvinciaSucursal.SelectedIndexChanged += new System.EventHandler(this.cboProvinciaSucursal_SelectedIndexChanged);
-            // 
-            // cboDepartamentoSucursal
-            // 
-            this.cboDepartamentoSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDepartamentoSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboDepartamentoSucursal.FormattingEnabled = true;
-            this.cboDepartamentoSucursal.Location = new System.Drawing.Point(310, 186);
-            this.cboDepartamentoSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.cboDepartamentoSucursal.Name = "cboDepartamentoSucursal";
-            this.cboDepartamentoSucursal.Size = new System.Drawing.Size(155, 21);
-            this.cboDepartamentoSucursal.TabIndex = 153;
-            this.cboDepartamentoSucursal.SelectedIndexChanged += new System.EventHandler(this.cboDepartamentoSucursal_SelectedIndexChanged);
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(725, 167);
-            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(44, 14);
-            this.label53.TabIndex = 151;
-            this.label53.Text = "Distrito";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(537, 167);
-            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(52, 14);
-            this.label54.TabIndex = 150;
-            this.label54.Text = "Provincia";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(339, 167);
-            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(79, 14);
-            this.label55.TabIndex = 149;
-            this.label55.Text = "Departamento";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(190, 167);
-            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(27, 14);
-            this.label56.TabIndex = 148;
-            this.label56.Text = "País";
-            // 
-            // cboPaisSucursal
-            // 
-            this.cboPaisSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPaisSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboPaisSucursal.FormattingEnabled = true;
-            this.cboPaisSucursal.Location = new System.Drawing.Point(129, 186);
-            this.cboPaisSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.cboPaisSucursal.Name = "cboPaisSucursal";
-            this.cboPaisSucursal.Size = new System.Drawing.Size(155, 21);
-            this.cboPaisSucursal.TabIndex = 152;
-            this.cboPaisSucursal.SelectedIndexChanged += new System.EventHandler(this.cboPaisSucursal_SelectedIndexChanged);
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(58, 127);
-            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(53, 14);
-            this.label50.TabIndex = 147;
-            this.label50.Text = "Direccion";
-            // 
-            // txtDireccionSucursal
-            // 
-            this.txtDireccionSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccionSucursal.Location = new System.Drawing.Point(151, 124);
-            this.txtDireccionSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDireccionSucursal.Name = "txtDireccionSucursal";
-            this.txtDireccionSucursal.Size = new System.Drawing.Size(303, 22);
-            this.txtDireccionSucursal.TabIndex = 146;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(61, 99);
-            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(50, 14);
-            this.label49.TabIndex = 145;
-            this.label49.Text = "Nombre:";
-            // 
-            // txtNombreSucursal
-            // 
-            this.txtNombreSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreSucursal.Location = new System.Drawing.Point(151, 96);
-            this.txtNombreSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreSucursal.Name = "txtNombreSucursal";
-            this.txtNombreSucursal.Size = new System.Drawing.Size(303, 22);
-            this.txtNombreSucursal.TabIndex = 144;
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(68, 69);
-            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(46, 14);
-            this.label52.TabIndex = 143;
-            this.label52.Text = "Código::";
-            // 
-            // txtCodigoClienteSucursal
-            // 
-            this.txtCodigoClienteSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoClienteSucursal.Location = new System.Drawing.Point(151, 68);
-            this.txtCodigoClienteSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigoClienteSucursal.Name = "txtCodigoClienteSucursal";
-            this.txtCodigoClienteSucursal.ReadOnly = true;
-            this.txtCodigoClienteSucursal.Size = new System.Drawing.Size(111, 22);
-            this.txtCodigoClienteSucursal.TabIndex = 142;
-            // 
-            // datalistadosucursal
-            // 
-            this.datalistadosucursal.AllowUserToAddRows = false;
-            this.datalistadosucursal.AllowUserToDeleteRows = false;
-            this.datalistadosucursal.AllowUserToResizeColumns = false;
-            this.datalistadosucursal.AllowUserToResizeRows = false;
-            this.datalistadosucursal.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.datalistadosucursal.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.datalistadosucursal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.datalistadosucursal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadosucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.datalistadosucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadosucursal.DefaultCellStyle = dataGridViewCellStyle6;
-            this.datalistadosucursal.Location = new System.Drawing.Point(20, 215);
-            this.datalistadosucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.datalistadosucursal.Name = "datalistadosucursal";
-            this.datalistadosucursal.ReadOnly = true;
-            this.datalistadosucursal.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.datalistadosucursal.RowHeadersVisible = false;
-            this.datalistadosucursal.RowHeadersWidth = 51;
-            this.datalistadosucursal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadosucursal.Size = new System.Drawing.Size(919, 239);
-            this.datalistadosucursal.TabIndex = 141;
-            this.datalistadosucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadosucursal_CellClick);
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(128, 22);
-            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(57, 18);
-            this.label51.TabIndex = 12;
-            this.label51.Text = "Cliente:";
-            // 
-            // txtNombreClienteSucursal
-            // 
-            this.txtNombreClienteSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreClienteSucursal.Location = new System.Drawing.Point(193, 22);
-            this.txtNombreClienteSucursal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreClienteSucursal.Name = "txtNombreClienteSucursal";
-            this.txtNombreClienteSucursal.ReadOnly = true;
-            this.txtNombreClienteSucursal.Size = new System.Drawing.Size(631, 22);
-            this.txtNombreClienteSucursal.TabIndex = 11;
-            // 
-            // panelContacto
-            // 
-            this.panelContacto.Controls.Add(this.btnRegresarContacto);
-            this.panelContacto.Controls.Add(this.btnEliminarContactos);
-            this.panelContacto.Controls.Add(this.btnGuardarContacto);
-            this.panelContacto.Controls.Add(this.label69);
-            this.panelContacto.Controls.Add(this.label68);
-            this.panelContacto.Controls.Add(this.label67);
-            this.panelContacto.Controls.Add(this.label62);
-            this.panelContacto.Controls.Add(this.lblCodigoContacto);
-            this.panelContacto.Controls.Add(this.label45);
-            this.panelContacto.Controls.Add(this.txtNombreContacto);
-            this.panelContacto.Controls.Add(this.panel9);
-            this.panelContacto.Controls.Add(this.datalistadocontacto);
-            this.panelContacto.Controls.Add(this.cboCargoContacto);
-            this.panelContacto.Controls.Add(this.label44);
-            this.panelContacto.Controls.Add(this.cboAreaContacto);
-            this.panelContacto.Controls.Add(this.label43);
-            this.panelContacto.Controls.Add(this.cboUnidadContacto);
-            this.panelContacto.Controls.Add(this.label42);
-            this.panelContacto.Controls.Add(this.label41);
-            this.panelContacto.Controls.Add(this.txtCorreoContacto);
-            this.panelContacto.Controls.Add(this.label40);
-            this.panelContacto.Controls.Add(this.txtAnexoContacto);
-            this.panelContacto.Controls.Add(this.label39);
-            this.panelContacto.Controls.Add(this.txtTelefonoContacto);
-            this.panelContacto.Controls.Add(this.label38);
-            this.panelContacto.Controls.Add(this.txtCodigoClienteContacto);
-            this.panelContacto.Controls.Add(this.label37);
-            this.panelContacto.Controls.Add(this.txtNombreClienteContacto);
-            this.panelContacto.Location = new System.Drawing.Point(1126, 580);
-            this.panelContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.panelContacto.Name = "panelContacto";
-            this.panelContacto.Size = new System.Drawing.Size(958, 466);
-            this.panelContacto.TabIndex = 133;
-            this.panelContacto.Visible = false;
-            // 
-            // btnRegresarContacto
-            // 
-            this.btnRegresarContacto.FlatAppearance.BorderSize = 0;
-            this.btnRegresarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegresarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarContacto.Image")));
-            this.btnRegresarContacto.Location = new System.Drawing.Point(887, 155);
-            this.btnRegresarContacto.Name = "btnRegresarContacto";
-            this.btnRegresarContacto.Size = new System.Drawing.Size(28, 28);
-            this.btnRegresarContacto.TabIndex = 154;
-            this.btnRegresarContacto.UseVisualStyleBackColor = true;
-            this.btnRegresarContacto.Click += new System.EventHandler(this.btnRegresarContacto_Click);
-            // 
-            // btnEliminarContactos
-            // 
-            this.btnEliminarContactos.FlatAppearance.BorderSize = 0;
-            this.btnEliminarContactos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarContactos.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarContactos.Image")));
-            this.btnEliminarContactos.Location = new System.Drawing.Point(887, 97);
-            this.btnEliminarContactos.Name = "btnEliminarContactos";
-            this.btnEliminarContactos.Size = new System.Drawing.Size(28, 28);
-            this.btnEliminarContactos.TabIndex = 153;
-            this.btnEliminarContactos.UseVisualStyleBackColor = true;
-            this.btnEliminarContactos.Click += new System.EventHandler(this.btnEliminarContactos_Click);
-            // 
-            // btnGuardarContacto
-            // 
-            this.btnGuardarContacto.FlatAppearance.BorderSize = 0;
-            this.btnGuardarContacto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarContacto.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarContacto.Image")));
-            this.btnGuardarContacto.Location = new System.Drawing.Point(887, 38);
-            this.btnGuardarContacto.Name = "btnGuardarContacto";
-            this.btnGuardarContacto.Size = new System.Drawing.Size(28, 28);
-            this.btnGuardarContacto.TabIndex = 152;
-            this.btnGuardarContacto.UseVisualStyleBackColor = true;
-            this.btnGuardarContacto.Click += new System.EventHandler(this.btnGuardarContacto_Click);
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(877, 183);
-            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(51, 14);
-            this.label69.TabIndex = 151;
-            this.label69.Text = "Regresar";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(881, 127);
-            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(39, 14);
-            this.label68.TabIndex = 150;
-            this.label68.Text = "Anular";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(878, 69);
-            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(47, 14);
-            this.label67.TabIndex = 149;
-            this.label67.Text = "Guardar";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(34, 196);
-            this.label62.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(63, 14);
-            this.label62.TabIndex = 148;
-            this.label62.Text = "C. Registro:";
-            // 
-            // lblCodigoContacto
-            // 
-            this.lblCodigoContacto.AutoSize = true;
-            this.lblCodigoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoContacto.Location = new System.Drawing.Point(111, 196);
-            this.lblCodigoContacto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoContacto.Name = "lblCodigoContacto";
-            this.lblCodigoContacto.Size = new System.Drawing.Size(13, 14);
-            this.lblCodigoContacto.TabIndex = 144;
-            this.lblCodigoContacto.Text = "0";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(59, 97);
-            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(55, 14);
-            this.label45.TabIndex = 142;
-            this.label45.Text = "Nombres:";
-            // 
-            // txtNombreContacto
-            // 
-            this.txtNombreContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreContacto.Location = new System.Drawing.Point(151, 94);
-            this.txtNombreContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreContacto.Name = "txtNombreContacto";
-            this.txtNombreContacto.Size = new System.Drawing.Size(286, 22);
-            this.txtNombreContacto.TabIndex = 141;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel9.Location = new System.Drawing.Point(479, 72);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1, 100);
-            this.panel9.TabIndex = 140;
-            // 
-            // datalistadocontacto
-            // 
-            this.datalistadocontacto.AllowUserToAddRows = false;
-            this.datalistadocontacto.AllowUserToDeleteRows = false;
-            this.datalistadocontacto.AllowUserToResizeColumns = false;
-            this.datalistadocontacto.AllowUserToResizeRows = false;
-            this.datalistadocontacto.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.datalistadocontacto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.datalistadocontacto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadocontacto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.datalistadocontacto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadocontacto.DefaultCellStyle = dataGridViewCellStyle2;
-            this.datalistadocontacto.Location = new System.Drawing.Point(20, 215);
-            this.datalistadocontacto.Margin = new System.Windows.Forms.Padding(4);
-            this.datalistadocontacto.Name = "datalistadocontacto";
-            this.datalistadocontacto.ReadOnly = true;
-            this.datalistadocontacto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.datalistadocontacto.RowHeadersVisible = false;
-            this.datalistadocontacto.RowHeadersWidth = 51;
-            this.datalistadocontacto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadocontacto.Size = new System.Drawing.Size(919, 239);
-            this.datalistadocontacto.TabIndex = 139;
-            this.datalistadocontacto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadocontacto_CellClick);
-            // 
-            // cboCargoContacto
-            // 
-            this.cboCargoContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCargoContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboCargoContacto.FormattingEnabled = true;
-            this.cboCargoContacto.Location = new System.Drawing.Point(594, 146);
-            this.cboCargoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.cboCargoContacto.Name = "cboCargoContacto";
-            this.cboCargoContacto.Size = new System.Drawing.Size(230, 21);
-            this.cboCargoContacto.TabIndex = 147;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(536, 146);
-            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(38, 14);
-            this.label44.TabIndex = 137;
-            this.label44.Text = "Cargo:";
-            // 
-            // cboAreaContacto
-            // 
-            this.cboAreaContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAreaContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboAreaContacto.FormattingEnabled = true;
-            this.cboAreaContacto.Location = new System.Drawing.Point(594, 68);
-            this.cboAreaContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.cboAreaContacto.Name = "cboAreaContacto";
-            this.cboAreaContacto.Size = new System.Drawing.Size(230, 21);
-            this.cboAreaContacto.TabIndex = 144;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(544, 71);
-            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(30, 14);
-            this.label43.TabIndex = 135;
-            this.label43.Text = "Área";
-            // 
-            // cboUnidadContacto
-            // 
-            this.cboUnidadContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUnidadContacto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboUnidadContacto.FormattingEnabled = true;
-            this.cboUnidadContacto.Location = new System.Drawing.Point(594, 120);
-            this.cboUnidadContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.cboUnidadContacto.Name = "cboUnidadContacto";
-            this.cboUnidadContacto.Size = new System.Drawing.Size(230, 21);
-            this.cboUnidadContacto.TabIndex = 146;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(529, 120);
-            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(45, 14);
-            this.label42.TabIndex = 131;
-            this.label42.Text = "Unidad:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(15, 148);
-            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(99, 14);
-            this.label41.TabIndex = 16;
-            this.label41.Text = "Correo Electronico:";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtCorreoContacto
-            // 
-            this.txtCorreoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreoContacto.Location = new System.Drawing.Point(151, 148);
-            this.txtCorreoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCorreoContacto.Name = "txtCorreoContacto";
-            this.txtCorreoContacto.Size = new System.Drawing.Size(253, 22);
-            this.txtCorreoContacto.TabIndex = 143;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(533, 97);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(41, 14);
-            this.label40.TabIndex = 14;
-            this.label40.Text = "Anéxo:";
-            // 
-            // txtAnexoContacto
-            // 
-            this.txtAnexoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnexoContacto.Location = new System.Drawing.Point(594, 94);
-            this.txtAnexoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAnexoContacto.MaxLength = 15;
-            this.txtAnexoContacto.Name = "txtAnexoContacto";
-            this.txtAnexoContacto.Size = new System.Drawing.Size(126, 22);
-            this.txtAnexoContacto.TabIndex = 145;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(62, 123);
-            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(52, 14);
-            this.label39.TabIndex = 12;
-            this.label39.Text = "Teléfono:";
-            // 
-            // txtTelefonoContacto
-            // 
-            this.txtTelefonoContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefonoContacto.Location = new System.Drawing.Point(151, 120);
-            this.txtTelefonoContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTelefonoContacto.MaxLength = 20;
-            this.txtTelefonoContacto.Name = "txtTelefonoContacto";
-            this.txtTelefonoContacto.Size = new System.Drawing.Size(102, 22);
-            this.txtTelefonoContacto.TabIndex = 142;
-            this.txtTelefonoContacto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoContacto_KeyPress);
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(68, 69);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(46, 14);
-            this.label38.TabIndex = 10;
-            this.label38.Text = "Código::";
-            // 
-            // txtCodigoClienteContacto
-            // 
-            this.txtCodigoClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoClienteContacto.Location = new System.Drawing.Point(151, 68);
-            this.txtCodigoClienteContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigoClienteContacto.Name = "txtCodigoClienteContacto";
-            this.txtCodigoClienteContacto.ReadOnly = true;
-            this.txtCodigoClienteContacto.Size = new System.Drawing.Size(111, 22);
-            this.txtCodigoClienteContacto.TabIndex = 140;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(128, 22);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(57, 18);
-            this.label37.TabIndex = 8;
-            this.label37.Text = "Cliente:";
-            // 
-            // txtNombreClienteContacto
-            // 
-            this.txtNombreClienteContacto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreClienteContacto.Location = new System.Drawing.Point(193, 22);
-            this.txtNombreClienteContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreClienteContacto.Name = "txtNombreClienteContacto";
-            this.txtNombreClienteContacto.ReadOnly = true;
-            this.txtNombreClienteContacto.Size = new System.Drawing.Size(631, 22);
-            this.txtNombreClienteContacto.TabIndex = 7;
-            // 
-            // panelCondicion
-            // 
-            this.panelCondicion.Controls.Add(this.btnRetrocederCondicion);
-            this.panelCondicion.Controls.Add(this.btnEliminarCondicion);
-            this.panelCondicion.Controls.Add(this.btnGuardarCondicion);
-            this.panelCondicion.Controls.Add(this.label72);
-            this.panelCondicion.Controls.Add(this.label71);
-            this.panelCondicion.Controls.Add(this.label70);
-            this.panelCondicion.Controls.Add(this.label61);
-            this.panelCondicion.Controls.Add(this.panel10);
-            this.panelCondicion.Controls.Add(this.lblCodigoCOndicion);
-            this.panelCondicion.Controls.Add(this.datalistadoCondicion);
-            this.panelCondicion.Controls.Add(this.cboFormaCondicion);
-            this.panelCondicion.Controls.Add(this.label48);
-            this.panelCondicion.Controls.Add(this.cboCondicionCondicion);
-            this.panelCondicion.Controls.Add(this.label46);
-            this.panelCondicion.Controls.Add(this.label47);
-            this.panelCondicion.Controls.Add(this.txtNombreCLienteCondicion);
-            this.panelCondicion.Location = new System.Drawing.Point(1130, 565);
-            this.panelCondicion.Margin = new System.Windows.Forms.Padding(4);
-            this.panelCondicion.Name = "panelCondicion";
-            this.panelCondicion.Size = new System.Drawing.Size(958, 466);
-            this.panelCondicion.TabIndex = 135;
-            this.panelCondicion.Visible = false;
-            // 
-            // btnRetrocederCondicion
-            // 
-            this.btnRetrocederCondicion.FlatAppearance.BorderSize = 0;
-            this.btnRetrocederCondicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRetrocederCondicion.Image = ((System.Drawing.Image)(resources.GetObject("btnRetrocederCondicion.Image")));
-            this.btnRetrocederCondicion.Location = new System.Drawing.Point(887, 155);
-            this.btnRetrocederCondicion.Name = "btnRetrocederCondicion";
-            this.btnRetrocederCondicion.Size = new System.Drawing.Size(28, 28);
-            this.btnRetrocederCondicion.TabIndex = 155;
-            this.btnRetrocederCondicion.UseVisualStyleBackColor = true;
-            this.btnRetrocederCondicion.Click += new System.EventHandler(this.btnRetrocederCondicion_Click);
-            // 
-            // btnEliminarCondicion
-            // 
-            this.btnEliminarCondicion.FlatAppearance.BorderSize = 0;
-            this.btnEliminarCondicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarCondicion.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarCondicion.Image")));
-            this.btnEliminarCondicion.Location = new System.Drawing.Point(887, 97);
-            this.btnEliminarCondicion.Name = "btnEliminarCondicion";
-            this.btnEliminarCondicion.Size = new System.Drawing.Size(28, 28);
-            this.btnEliminarCondicion.TabIndex = 154;
-            this.btnEliminarCondicion.UseVisualStyleBackColor = true;
-            this.btnEliminarCondicion.Click += new System.EventHandler(this.btnEliminarCondicion_Click);
-            // 
-            // btnGuardarCondicion
-            // 
-            this.btnGuardarCondicion.FlatAppearance.BorderSize = 0;
-            this.btnGuardarCondicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarCondicion.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarCondicion.Image")));
-            this.btnGuardarCondicion.Location = new System.Drawing.Point(887, 38);
-            this.btnGuardarCondicion.Name = "btnGuardarCondicion";
-            this.btnGuardarCondicion.Size = new System.Drawing.Size(28, 28);
-            this.btnGuardarCondicion.TabIndex = 153;
-            this.btnGuardarCondicion.UseVisualStyleBackColor = true;
-            this.btnGuardarCondicion.Click += new System.EventHandler(this.btnGuardarCondicion_Click);
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label72.Location = new System.Drawing.Point(877, 183);
-            this.label72.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(51, 14);
-            this.label72.TabIndex = 152;
-            this.label72.Text = "Regresar";
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.Location = new System.Drawing.Point(881, 127);
-            this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(39, 14);
-            this.label71.TabIndex = 151;
-            this.label71.Text = "Anular";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(878, 69);
-            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(47, 14);
-            this.label70.TabIndex = 150;
-            this.label70.Text = "Guardar";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(34, 196);
-            this.label61.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(63, 14);
-            this.label61.TabIndex = 147;
-            this.label61.Text = "C. Registro:";
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel10.Location = new System.Drawing.Point(479, 72);
-            this.panel10.Margin = new System.Windows.Forms.Padding(4);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1, 100);
-            this.panel10.TabIndex = 146;
-            // 
-            // lblCodigoCOndicion
-            // 
-            this.lblCodigoCOndicion.AutoSize = true;
-            this.lblCodigoCOndicion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoCOndicion.Location = new System.Drawing.Point(111, 196);
-            this.lblCodigoCOndicion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoCOndicion.Name = "lblCodigoCOndicion";
-            this.lblCodigoCOndicion.Size = new System.Drawing.Size(13, 14);
-            this.lblCodigoCOndicion.TabIndex = 145;
-            this.lblCodigoCOndicion.Text = "0";
-            // 
-            // datalistadoCondicion
-            // 
-            this.datalistadoCondicion.AllowUserToAddRows = false;
-            this.datalistadoCondicion.AllowUserToDeleteRows = false;
-            this.datalistadoCondicion.AllowUserToResizeColumns = false;
-            this.datalistadoCondicion.AllowUserToResizeRows = false;
-            this.datalistadoCondicion.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.datalistadoCondicion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.datalistadoCondicion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.datalistadoCondicion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoCondicion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.datalistadoCondicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoCondicion.DefaultCellStyle = dataGridViewCellStyle8;
-            this.datalistadoCondicion.Location = new System.Drawing.Point(20, 215);
-            this.datalistadoCondicion.Margin = new System.Windows.Forms.Padding(4);
-            this.datalistadoCondicion.Name = "datalistadoCondicion";
-            this.datalistadoCondicion.ReadOnly = true;
-            this.datalistadoCondicion.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.datalistadoCondicion.RowHeadersVisible = false;
-            this.datalistadoCondicion.RowHeadersWidth = 51;
-            this.datalistadoCondicion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoCondicion.Size = new System.Drawing.Size(919, 239);
-            this.datalistadoCondicion.TabIndex = 141;
-            this.datalistadoCondicion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoCondicion_CellClick);
-            // 
-            // cboFormaCondicion
-            // 
-            this.cboFormaCondicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFormaCondicion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboFormaCondicion.FormattingEnabled = true;
-            this.cboFormaCondicion.Location = new System.Drawing.Point(553, 100);
-            this.cboFormaCondicion.Margin = new System.Windows.Forms.Padding(4);
-            this.cboFormaCondicion.Name = "cboFormaCondicion";
-            this.cboFormaCondicion.Size = new System.Drawing.Size(272, 21);
-            this.cboFormaCondicion.TabIndex = 140;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(503, 103);
-            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(42, 14);
-            this.label48.TabIndex = 139;
-            this.label48.Text = "Forma:";
-            // 
-            // cboCondicionCondicion
-            // 
-            this.cboCondicionCondicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCondicionCondicion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboCondicionCondicion.FormattingEnabled = true;
-            this.cboCondicionCondicion.Location = new System.Drawing.Point(143, 100);
-            this.cboCondicionCondicion.Margin = new System.Windows.Forms.Padding(4);
-            this.cboCondicionCondicion.Name = "cboCondicionCondicion";
-            this.cboCondicionCondicion.Size = new System.Drawing.Size(280, 21);
-            this.cboCondicionCondicion.TabIndex = 138;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(65, 103);
-            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(57, 14);
-            this.label46.TabIndex = 137;
-            this.label46.Text = "Condición:";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(128, 22);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(57, 18);
-            this.label47.TabIndex = 12;
-            this.label47.Text = "Cliente:";
-            // 
-            // txtNombreCLienteCondicion
-            // 
-            this.txtNombreCLienteCondicion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreCLienteCondicion.Location = new System.Drawing.Point(193, 22);
-            this.txtNombreCLienteCondicion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreCLienteCondicion.Name = "txtNombreCLienteCondicion";
-            this.txtNombreCLienteCondicion.ReadOnly = true;
-            this.txtNombreCLienteCondicion.Size = new System.Drawing.Size(631, 22);
-            this.txtNombreCLienteCondicion.TabIndex = 11;
             // 
             // btnRegresar
             // 
@@ -2584,10 +1959,10 @@
             this.btnInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInfo.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnInfo.Image = ((System.Drawing.Image)(resources.GetObject("btnInfo.Image")));
-            this.btnInfo.Location = new System.Drawing.Point(957, 0);
+            this.btnInfo.Location = new System.Drawing.Point(963, 0);
             this.btnInfo.Margin = new System.Windows.Forms.Padding(5);
             this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(26, 18);
+            this.btnInfo.Size = new System.Drawing.Size(20, 18);
             this.btnInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnInfo.TabIndex = 133;
             this.btnInfo.TabStop = false;
@@ -2705,6 +2080,631 @@
             this.lblTituloPanel.Text = "-------------";
             this.lblTituloPanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panelSucursal
+            // 
+            this.panelSucursal.Controls.Add(this.btnRegresarSucursal);
+            this.panelSucursal.Controls.Add(this.btnEliminarSucursal);
+            this.panelSucursal.Controls.Add(this.btnGuardarSucursal);
+            this.panelSucursal.Controls.Add(this.label75);
+            this.panelSucursal.Controls.Add(this.label74);
+            this.panelSucursal.Controls.Add(this.label73);
+            this.panelSucursal.Controls.Add(this.label59);
+            this.panelSucursal.Controls.Add(this.panel11);
+            this.panelSucursal.Controls.Add(this.lblCodigoSucursal);
+            this.panelSucursal.Controls.Add(this.label57);
+            this.panelSucursal.Controls.Add(this.txtTelefonoSucursal);
+            this.panelSucursal.Controls.Add(this.cboDistritoSucursal);
+            this.panelSucursal.Controls.Add(this.cboProvinciaSucursal);
+            this.panelSucursal.Controls.Add(this.cboDepartamentoSucursal);
+            this.panelSucursal.Controls.Add(this.label53);
+            this.panelSucursal.Controls.Add(this.label54);
+            this.panelSucursal.Controls.Add(this.label55);
+            this.panelSucursal.Controls.Add(this.label56);
+            this.panelSucursal.Controls.Add(this.cboPaisSucursal);
+            this.panelSucursal.Controls.Add(this.label50);
+            this.panelSucursal.Controls.Add(this.txtDireccionSucursal);
+            this.panelSucursal.Controls.Add(this.label49);
+            this.panelSucursal.Controls.Add(this.txtNombreSucursal);
+            this.panelSucursal.Controls.Add(this.label52);
+            this.panelSucursal.Controls.Add(this.txtCodigoClienteSucursal);
+            this.panelSucursal.Controls.Add(this.datalistadosucursal);
+            this.panelSucursal.Controls.Add(this.label51);
+            this.panelSucursal.Controls.Add(this.txtNombreClienteSucursal);
+            this.panelSucursal.Location = new System.Drawing.Point(12, 77);
+            this.panelSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.panelSucursal.Name = "panelSucursal";
+            this.panelSucursal.Size = new System.Drawing.Size(958, 466);
+            this.panelSucursal.TabIndex = 144;
+            this.panelSucursal.Visible = false;
+            // 
+            // btnRegresarSucursal
+            // 
+            this.btnRegresarSucursal.FlatAppearance.BorderSize = 0;
+            this.btnRegresarSucursal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegresarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarSucursal.Image")));
+            this.btnRegresarSucursal.Location = new System.Drawing.Point(887, 155);
+            this.btnRegresarSucursal.Name = "btnRegresarSucursal";
+            this.btnRegresarSucursal.Size = new System.Drawing.Size(28, 28);
+            this.btnRegresarSucursal.TabIndex = 167;
+            this.btnRegresarSucursal.UseVisualStyleBackColor = true;
+            this.btnRegresarSucursal.Click += new System.EventHandler(this.btnRegresarSucursal_Click);
+            // 
+            // btnEliminarSucursal
+            // 
+            this.btnEliminarSucursal.FlatAppearance.BorderSize = 0;
+            this.btnEliminarSucursal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarSucursal.Image")));
+            this.btnEliminarSucursal.Location = new System.Drawing.Point(887, 97);
+            this.btnEliminarSucursal.Name = "btnEliminarSucursal";
+            this.btnEliminarSucursal.Size = new System.Drawing.Size(28, 28);
+            this.btnEliminarSucursal.TabIndex = 166;
+            this.btnEliminarSucursal.UseVisualStyleBackColor = true;
+            this.btnEliminarSucursal.Click += new System.EventHandler(this.btnEliminarSucursal_Click);
+            // 
+            // btnGuardarSucursal
+            // 
+            this.btnGuardarSucursal.FlatAppearance.BorderSize = 0;
+            this.btnGuardarSucursal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarSucursal.Image")));
+            this.btnGuardarSucursal.Location = new System.Drawing.Point(887, 38);
+            this.btnGuardarSucursal.Name = "btnGuardarSucursal";
+            this.btnGuardarSucursal.Size = new System.Drawing.Size(28, 28);
+            this.btnGuardarSucursal.TabIndex = 165;
+            this.btnGuardarSucursal.UseVisualStyleBackColor = true;
+            this.btnGuardarSucursal.Click += new System.EventHandler(this.btnGuardarSucursal_Click);
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label75.Location = new System.Drawing.Point(877, 183);
+            this.label75.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(51, 14);
+            this.label75.TabIndex = 164;
+            this.label75.Text = "Regresar";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Location = new System.Drawing.Point(881, 127);
+            this.label74.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(39, 14);
+            this.label74.TabIndex = 163;
+            this.label74.Text = "Anular";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label73.Location = new System.Drawing.Point(878, 69);
+            this.label73.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(47, 14);
+            this.label73.TabIndex = 162;
+            this.label73.Text = "Guardar";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(533, 99);
+            this.label59.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(63, 14);
+            this.label59.TabIndex = 161;
+            this.label59.Text = "C. Registro:";
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel11.Location = new System.Drawing.Point(479, 72);
+            this.panel11.Margin = new System.Windows.Forms.Padding(4);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1, 100);
+            this.panel11.TabIndex = 160;
+            // 
+            // lblCodigoSucursal
+            // 
+            this.lblCodigoSucursal.AutoSize = true;
+            this.lblCodigoSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoSucursal.Location = new System.Drawing.Point(615, 97);
+            this.lblCodigoSucursal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoSucursal.Name = "lblCodigoSucursal";
+            this.lblCodigoSucursal.Size = new System.Drawing.Size(14, 15);
+            this.lblCodigoSucursal.TabIndex = 159;
+            this.lblCodigoSucursal.Text = "0";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(544, 71);
+            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(52, 14);
+            this.label57.TabIndex = 157;
+            this.label57.Text = "Teléfono:";
+            // 
+            // txtTelefonoSucursal
+            // 
+            this.txtTelefonoSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefonoSucursal.Location = new System.Drawing.Point(609, 68);
+            this.txtTelefonoSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTelefonoSucursal.MaxLength = 9;
+            this.txtTelefonoSucursal.Name = "txtTelefonoSucursal";
+            this.txtTelefonoSucursal.Size = new System.Drawing.Size(136, 22);
+            this.txtTelefonoSucursal.TabIndex = 156;
+            this.txtTelefonoSucursal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoSucursal_KeyPress);
+            // 
+            // cboDistritoSucursal
+            // 
+            this.cboDistritoSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDistritoSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDistritoSucursal.FormattingEnabled = true;
+            this.cboDistritoSucursal.Location = new System.Drawing.Point(675, 186);
+            this.cboDistritoSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.cboDistritoSucursal.Name = "cboDistritoSucursal";
+            this.cboDistritoSucursal.Size = new System.Drawing.Size(155, 21);
+            this.cboDistritoSucursal.TabIndex = 155;
+            // 
+            // cboProvinciaSucursal
+            // 
+            this.cboProvinciaSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProvinciaSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProvinciaSucursal.FormattingEnabled = true;
+            this.cboProvinciaSucursal.Location = new System.Drawing.Point(494, 186);
+            this.cboProvinciaSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.cboProvinciaSucursal.Name = "cboProvinciaSucursal";
+            this.cboProvinciaSucursal.Size = new System.Drawing.Size(155, 21);
+            this.cboProvinciaSucursal.TabIndex = 154;
+            this.cboProvinciaSucursal.SelectedIndexChanged += new System.EventHandler(this.cboProvinciaSucursal_SelectedIndexChanged);
+            // 
+            // cboDepartamentoSucursal
+            // 
+            this.cboDepartamentoSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDepartamentoSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDepartamentoSucursal.FormattingEnabled = true;
+            this.cboDepartamentoSucursal.Location = new System.Drawing.Point(310, 186);
+            this.cboDepartamentoSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.cboDepartamentoSucursal.Name = "cboDepartamentoSucursal";
+            this.cboDepartamentoSucursal.Size = new System.Drawing.Size(155, 21);
+            this.cboDepartamentoSucursal.TabIndex = 153;
+            this.cboDepartamentoSucursal.SelectedIndexChanged += new System.EventHandler(this.cboDepartamentoSucursal_SelectedIndexChanged);
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(725, 167);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(44, 14);
+            this.label53.TabIndex = 151;
+            this.label53.Text = "Distrito";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(537, 167);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(52, 14);
+            this.label54.TabIndex = 150;
+            this.label54.Text = "Provincia";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(339, 167);
+            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(79, 14);
+            this.label55.TabIndex = 149;
+            this.label55.Text = "Departamento";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(190, 167);
+            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(27, 14);
+            this.label56.TabIndex = 148;
+            this.label56.Text = "País";
+            // 
+            // cboPaisSucursal
+            // 
+            this.cboPaisSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPaisSucursal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPaisSucursal.FormattingEnabled = true;
+            this.cboPaisSucursal.Location = new System.Drawing.Point(129, 186);
+            this.cboPaisSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPaisSucursal.Name = "cboPaisSucursal";
+            this.cboPaisSucursal.Size = new System.Drawing.Size(155, 21);
+            this.cboPaisSucursal.TabIndex = 152;
+            this.cboPaisSucursal.SelectedIndexChanged += new System.EventHandler(this.cboPaisSucursal_SelectedIndexChanged);
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(58, 127);
+            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(53, 14);
+            this.label50.TabIndex = 147;
+            this.label50.Text = "Direccion";
+            // 
+            // txtDireccionSucursal
+            // 
+            this.txtDireccionSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccionSucursal.Location = new System.Drawing.Point(151, 124);
+            this.txtDireccionSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDireccionSucursal.Name = "txtDireccionSucursal";
+            this.txtDireccionSucursal.Size = new System.Drawing.Size(303, 22);
+            this.txtDireccionSucursal.TabIndex = 146;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(61, 99);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(50, 14);
+            this.label49.TabIndex = 145;
+            this.label49.Text = "Nombre:";
+            // 
+            // txtNombreSucursal
+            // 
+            this.txtNombreSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreSucursal.Location = new System.Drawing.Point(151, 96);
+            this.txtNombreSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreSucursal.Name = "txtNombreSucursal";
+            this.txtNombreSucursal.Size = new System.Drawing.Size(303, 22);
+            this.txtNombreSucursal.TabIndex = 144;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(68, 69);
+            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(46, 14);
+            this.label52.TabIndex = 143;
+            this.label52.Text = "Código::";
+            // 
+            // txtCodigoClienteSucursal
+            // 
+            this.txtCodigoClienteSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoClienteSucursal.Location = new System.Drawing.Point(151, 68);
+            this.txtCodigoClienteSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoClienteSucursal.Name = "txtCodigoClienteSucursal";
+            this.txtCodigoClienteSucursal.ReadOnly = true;
+            this.txtCodigoClienteSucursal.Size = new System.Drawing.Size(111, 22);
+            this.txtCodigoClienteSucursal.TabIndex = 142;
+            // 
+            // datalistadosucursal
+            // 
+            this.datalistadosucursal.AllowUserToAddRows = false;
+            this.datalistadosucursal.AllowUserToDeleteRows = false;
+            this.datalistadosucursal.AllowUserToResizeColumns = false;
+            this.datalistadosucursal.AllowUserToResizeRows = false;
+            this.datalistadosucursal.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.datalistadosucursal.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadosucursal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.datalistadosucursal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadosucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            this.datalistadosucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadosucursal.DefaultCellStyle = dataGridViewCellStyle26;
+            this.datalistadosucursal.Location = new System.Drawing.Point(20, 215);
+            this.datalistadosucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadosucursal.Name = "datalistadosucursal";
+            this.datalistadosucursal.ReadOnly = true;
+            this.datalistadosucursal.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.datalistadosucursal.RowHeadersVisible = false;
+            this.datalistadosucursal.RowHeadersWidth = 51;
+            this.datalistadosucursal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadosucursal.Size = new System.Drawing.Size(919, 239);
+            this.datalistadosucursal.TabIndex = 141;
+            this.datalistadosucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadosucursal_CellClick);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(128, 22);
+            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(57, 18);
+            this.label51.TabIndex = 12;
+            this.label51.Text = "Cliente:";
+            // 
+            // txtNombreClienteSucursal
+            // 
+            this.txtNombreClienteSucursal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreClienteSucursal.Location = new System.Drawing.Point(193, 22);
+            this.txtNombreClienteSucursal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreClienteSucursal.Name = "txtNombreClienteSucursal";
+            this.txtNombreClienteSucursal.ReadOnly = true;
+            this.txtNombreClienteSucursal.Size = new System.Drawing.Size(631, 22);
+            this.txtNombreClienteSucursal.TabIndex = 11;
+            // 
+            // btnInfoPrincipal
+            // 
+            this.btnInfoPrincipal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInfoPrincipal.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoPrincipal.Image")));
+            this.btnInfoPrincipal.Location = new System.Drawing.Point(1033, 607);
+            this.btnInfoPrincipal.Margin = new System.Windows.Forms.Padding(5);
+            this.btnInfoPrincipal.Name = "btnInfoPrincipal";
+            this.btnInfoPrincipal.Size = new System.Drawing.Size(26, 20);
+            this.btnInfoPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnInfoPrincipal.TabIndex = 161;
+            this.btnInfoPrincipal.TabStop = false;
+            this.btnInfoPrincipal.Click += new System.EventHandler(this.btnInfoPrincipal_Click);
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.BackColor = System.Drawing.Color.Transparent;
+            this.label78.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label78.Location = new System.Drawing.Point(897, 610);
+            this.label78.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(130, 15);
+            this.label78.TabIndex = 160;
+            this.label78.Text = "Para más información";
+            // 
+            // panelCondicion
+            // 
+            this.panelCondicion.Controls.Add(this.btnRetrocederCondicion);
+            this.panelCondicion.Controls.Add(this.btnEliminarCondicion);
+            this.panelCondicion.Controls.Add(this.btnGuardarCondicion);
+            this.panelCondicion.Controls.Add(this.label72);
+            this.panelCondicion.Controls.Add(this.label71);
+            this.panelCondicion.Controls.Add(this.label70);
+            this.panelCondicion.Controls.Add(this.label61);
+            this.panelCondicion.Controls.Add(this.panel10);
+            this.panelCondicion.Controls.Add(this.lblCodigoCOndicion);
+            this.panelCondicion.Controls.Add(this.datalistadoCondicion);
+            this.panelCondicion.Controls.Add(this.cboFormaCondicion);
+            this.panelCondicion.Controls.Add(this.label48);
+            this.panelCondicion.Controls.Add(this.cboCondicionCondicion);
+            this.panelCondicion.Controls.Add(this.label46);
+            this.panelCondicion.Controls.Add(this.label47);
+            this.panelCondicion.Controls.Add(this.txtNombreCLienteCondicion);
+            this.panelCondicion.Location = new System.Drawing.Point(12, 77);
+            this.panelCondicion.Margin = new System.Windows.Forms.Padding(4);
+            this.panelCondicion.Name = "panelCondicion";
+            this.panelCondicion.Size = new System.Drawing.Size(958, 466);
+            this.panelCondicion.TabIndex = 135;
+            this.panelCondicion.Visible = false;
+            // 
+            // btnRetrocederCondicion
+            // 
+            this.btnRetrocederCondicion.FlatAppearance.BorderSize = 0;
+            this.btnRetrocederCondicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetrocederCondicion.Image = ((System.Drawing.Image)(resources.GetObject("btnRetrocederCondicion.Image")));
+            this.btnRetrocederCondicion.Location = new System.Drawing.Point(887, 155);
+            this.btnRetrocederCondicion.Name = "btnRetrocederCondicion";
+            this.btnRetrocederCondicion.Size = new System.Drawing.Size(28, 28);
+            this.btnRetrocederCondicion.TabIndex = 155;
+            this.btnRetrocederCondicion.UseVisualStyleBackColor = true;
+            this.btnRetrocederCondicion.Click += new System.EventHandler(this.btnRetrocederCondicion_Click);
+            // 
+            // btnEliminarCondicion
+            // 
+            this.btnEliminarCondicion.FlatAppearance.BorderSize = 0;
+            this.btnEliminarCondicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarCondicion.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarCondicion.Image")));
+            this.btnEliminarCondicion.Location = new System.Drawing.Point(887, 97);
+            this.btnEliminarCondicion.Name = "btnEliminarCondicion";
+            this.btnEliminarCondicion.Size = new System.Drawing.Size(28, 28);
+            this.btnEliminarCondicion.TabIndex = 154;
+            this.btnEliminarCondicion.UseVisualStyleBackColor = true;
+            this.btnEliminarCondicion.Click += new System.EventHandler(this.btnEliminarCondicion_Click);
+            // 
+            // btnGuardarCondicion
+            // 
+            this.btnGuardarCondicion.FlatAppearance.BorderSize = 0;
+            this.btnGuardarCondicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarCondicion.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarCondicion.Image")));
+            this.btnGuardarCondicion.Location = new System.Drawing.Point(887, 38);
+            this.btnGuardarCondicion.Name = "btnGuardarCondicion";
+            this.btnGuardarCondicion.Size = new System.Drawing.Size(28, 28);
+            this.btnGuardarCondicion.TabIndex = 153;
+            this.btnGuardarCondicion.UseVisualStyleBackColor = true;
+            this.btnGuardarCondicion.Click += new System.EventHandler(this.btnGuardarCondicion_Click);
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Location = new System.Drawing.Point(877, 183);
+            this.label72.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(51, 14);
+            this.label72.TabIndex = 152;
+            this.label72.Text = "Regresar";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label71.Location = new System.Drawing.Point(881, 127);
+            this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(39, 14);
+            this.label71.TabIndex = 151;
+            this.label71.Text = "Anular";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(878, 69);
+            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(47, 14);
+            this.label70.TabIndex = 150;
+            this.label70.Text = "Guardar";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(34, 196);
+            this.label61.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(63, 14);
+            this.label61.TabIndex = 147;
+            this.label61.Text = "C. Registro:";
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel10.Location = new System.Drawing.Point(479, 72);
+            this.panel10.Margin = new System.Windows.Forms.Padding(4);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1, 100);
+            this.panel10.TabIndex = 146;
+            // 
+            // lblCodigoCOndicion
+            // 
+            this.lblCodigoCOndicion.AutoSize = true;
+            this.lblCodigoCOndicion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoCOndicion.Location = new System.Drawing.Point(111, 196);
+            this.lblCodigoCOndicion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoCOndicion.Name = "lblCodigoCOndicion";
+            this.lblCodigoCOndicion.Size = new System.Drawing.Size(13, 14);
+            this.lblCodigoCOndicion.TabIndex = 145;
+            this.lblCodigoCOndicion.Text = "0";
+            // 
+            // datalistadoCondicion
+            // 
+            this.datalistadoCondicion.AllowUserToAddRows = false;
+            this.datalistadoCondicion.AllowUserToDeleteRows = false;
+            this.datalistadoCondicion.AllowUserToResizeColumns = false;
+            this.datalistadoCondicion.AllowUserToResizeRows = false;
+            this.datalistadoCondicion.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.datalistadoCondicion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoCondicion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.datalistadoCondicion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoCondicion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.datalistadoCondicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoCondicion.DefaultCellStyle = dataGridViewCellStyle28;
+            this.datalistadoCondicion.Location = new System.Drawing.Point(20, 215);
+            this.datalistadoCondicion.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoCondicion.Name = "datalistadoCondicion";
+            this.datalistadoCondicion.ReadOnly = true;
+            this.datalistadoCondicion.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.datalistadoCondicion.RowHeadersVisible = false;
+            this.datalistadoCondicion.RowHeadersWidth = 51;
+            this.datalistadoCondicion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoCondicion.Size = new System.Drawing.Size(919, 239);
+            this.datalistadoCondicion.TabIndex = 141;
+            this.datalistadoCondicion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoCondicion_CellClick);
+            // 
+            // cboFormaCondicion
+            // 
+            this.cboFormaCondicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFormaCondicion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboFormaCondicion.FormattingEnabled = true;
+            this.cboFormaCondicion.Location = new System.Drawing.Point(553, 100);
+            this.cboFormaCondicion.Margin = new System.Windows.Forms.Padding(4);
+            this.cboFormaCondicion.Name = "cboFormaCondicion";
+            this.cboFormaCondicion.Size = new System.Drawing.Size(272, 21);
+            this.cboFormaCondicion.TabIndex = 140;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(503, 103);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(42, 14);
+            this.label48.TabIndex = 139;
+            this.label48.Text = "Forma:";
+            // 
+            // cboCondicionCondicion
+            // 
+            this.cboCondicionCondicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCondicionCondicion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCondicionCondicion.FormattingEnabled = true;
+            this.cboCondicionCondicion.Location = new System.Drawing.Point(143, 100);
+            this.cboCondicionCondicion.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCondicionCondicion.Name = "cboCondicionCondicion";
+            this.cboCondicionCondicion.Size = new System.Drawing.Size(280, 21);
+            this.cboCondicionCondicion.TabIndex = 138;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(65, 103);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(57, 14);
+            this.label46.TabIndex = 137;
+            this.label46.Text = "Condición:";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(128, 22);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(57, 18);
+            this.label47.TabIndex = 12;
+            this.label47.Text = "Cliente:";
+            // 
+            // txtNombreCLienteCondicion
+            // 
+            this.txtNombreCLienteCondicion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreCLienteCondicion.Location = new System.Drawing.Point(193, 22);
+            this.txtNombreCLienteCondicion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreCLienteCondicion.Name = "txtNombreCLienteCondicion";
+            this.txtNombreCLienteCondicion.ReadOnly = true;
+            this.txtNombreCLienteCondicion.Size = new System.Drawing.Size(631, 22);
+            this.txtNombreCLienteCondicion.TabIndex = 11;
+            // 
             // btnExportarListadoClientes
             // 
             this.btnExportarListadoClientes.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -2727,23 +2727,23 @@
             this.datalistado.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistado.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.datalistado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistado.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistado.DefaultCellStyle = dataGridViewCellStyle32;
             this.datalistado.Location = new System.Drawing.Point(58, 158);
             this.datalistado.Margin = new System.Windows.Forms.Padding(4);
             this.datalistado.Name = "datalistado";
@@ -2764,28 +2764,28 @@
             this.datalistadoExcel.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoExcel.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoExcel.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.datalistadoExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoExcel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.qqq,
             this.sss,
             this.sssdd,
             this.asad});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle34;
             this.datalistadoExcel.Location = new System.Drawing.Point(58, 576);
             this.datalistadoExcel.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoExcel.Name = "datalistadoExcel";
@@ -2909,21 +2909,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnInfoPrincipal)).EndInit();
+            this.panelContacto.ResumeLayout(false);
+            this.panelContacto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).EndInit();
             this.panelAgregarCliente.ResumeLayout(false);
             this.panelAgregarCliente.PerformLayout();
             this.panelUnidad.ResumeLayout(false);
             this.panelUnidad.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).EndInit();
-            this.panelSucursal.ResumeLayout(false);
-            this.panelSucursal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadosucursal)).EndInit();
-            this.panelContacto.ResumeLayout(false);
-            this.panelContacto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).EndInit();
-            this.panelCondicion.ResumeLayout(false);
-            this.panelCondicion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.btnSucursal.ResumeLayout(false);
             this.btnCondicion.ResumeLayout(false);
@@ -2938,6 +2931,13 @@
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panelSucursal.ResumeLayout(false);
+            this.panelSucursal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadosucursal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInfoPrincipal)).EndInit();
+            this.panelCondicion.ResumeLayout(false);
+            this.panelCondicion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
