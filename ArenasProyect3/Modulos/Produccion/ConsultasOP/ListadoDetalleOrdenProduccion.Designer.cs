@@ -220,6 +220,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.txtBusqueda.Size = new System.Drawing.Size(589, 21);
             this.txtBusqueda.TabIndex = 163;
             this.txtBusqueda.Tag = "";
+            this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
             // 
             // btnMostrarTodo
             // 
@@ -359,7 +360,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // 
             // pictureBox7
             // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Black;
+            this.pictureBox7.BackColor = System.Drawing.Color.ForestGreen;
             this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Location = new System.Drawing.Point(84, 40);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
@@ -442,6 +443,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.datalistadoTodas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoTodas.Size = new System.Drawing.Size(1167, 383);
             this.datalistadoTodas.TabIndex = 215;
+            this.datalistadoTodas.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.datalistadoTodas_RowPrePaint);
             // 
             // btnExportarExcel
             // 

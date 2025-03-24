@@ -2506,10 +2506,10 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                                 string preciounidad = row.Cells[6].Value.ToString();
                                 string descuento = row.Cells[7].Value.ToString();
                                 string total = row.Cells[8].Value.ToString();
-                                string codigodetalle = row.Cells[0].Value.ToString();
+                                string idProducto = row.Cells[17].Value.ToString();
                                 string codigoFormulacion = row.Cells[4].Value.ToString();
 
-                                datalistadoGeneracionPedido.Rows.Add(new[] { null, item, codigoProducto, descripcion, cantidad, preciounidad, descuento, total, null, codigodetalle, null, null, codigoFormulacion, idDetalleCotizacion });
+                                datalistadoGeneracionPedido.Rows.Add(new[] { null, item, codigoProducto, descripcion, cantidad, preciounidad, descuento, total, null, idProducto, null, null, codigoFormulacion, idDetalleCotizacion });
                             }
                         }
                         else
@@ -2946,6 +2946,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                                     cmd.Parameters.AddWithValue("@codigoFormulacion", fila.Cells[12].Value.ToString());
                                     cmd.Parameters.AddWithValue("@item", contador);
                                     cmd.Parameters.AddWithValue("@idDetalleCotizacion", fila.Cells[13].Value.ToString());
+                                    cmd.Parameters.AddWithValue("@idArt", fila.Cells[9].Value.ToString());
                                     cmd.ExecuteNonQuery();
                                     con.Close();
                                 }

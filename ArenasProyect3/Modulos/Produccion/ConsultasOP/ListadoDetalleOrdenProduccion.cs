@@ -63,6 +63,25 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             RedimensionarListadoGeneralPedido(datalistadoTodas);
         }
 
+        //MOSTRAR OP AL INCIO 
+        public void MostrarDetallePedidoXOPPorCodigoPedido(DateTime fechaInicio, DateTime fechaTermino, string codigoPedido)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("MostrarDetallePedidoXOPorCodigoPedido", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoTodas.DataSource = dt;
+            con.Close();
+            RedimensionarListadoGeneralPedido(datalistadoTodas);
+        }
+
         //FUNCION PARA REDIMENSIONAR MIS LISTADOS
         public void RedimensionarListadoGeneralPedido(DataGridView DGV)
         {
@@ -122,6 +141,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             MostrarDetallePedidoXOPPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
+        //FUNCION PARA REORDENAR Y APLICAR LOS COLRORES
+        private void datalistadoTodas_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            CargarColores();
+        }
 
+        //MOSTRAR SEGUN EL CODIGO DE PEDIDO
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            MostrarDetallePedidoXOPPorCodigoPedido(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+        }
     }
 }

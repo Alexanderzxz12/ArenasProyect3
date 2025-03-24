@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</PublishUrl>
+    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,10 +23,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</UpdateUrl>
-    <MinimumRequiredVersion>1.0.0.63</MinimumRequiredVersion>
+    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
+    <MinimumRequiredVersion>1.0.0.65</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>64</ApplicationRevision>
+    <ApplicationRevision>66</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
