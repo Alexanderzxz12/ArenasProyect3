@@ -2822,7 +2822,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-
         //BOTON PARA GUARADR EL MI PEDIDO Y GENERAR EL DOCUMENTO RESPECTIVO
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
@@ -2966,7 +2965,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                             contador = 0;
                             contador = contador + 1;
 
-                            int codigodetallecotizacion = Convert.ToInt32(row.Cells["Codigo"].Value);
+                            int codigodetallecotizacion = Convert.ToInt32(row.Cells["idDetallePedido"].Value);
 
                             SqlConnection con = new SqlConnection();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;

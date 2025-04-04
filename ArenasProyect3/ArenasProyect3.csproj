@@ -440,6 +440,18 @@
     <Compile Include="Modulos\Produccion\ConsultasOP\MenuConsultasOP.Designer.cs">
       <DependentUpon>MenuConsultasOP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\ListadoOT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\ListadoOT.Designer.cs">
+      <DependentUpon>ListadoOT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\NuevaOT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\NuevaOT.Designer.cs">
+      <DependentUpon>NuevaOT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Produccion\MenuProduccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -795,6 +807,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\MenuConsultasOP.resx">
       <DependentUpon>MenuConsultasOP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\NuevaOT.resx">
+      <DependentUpon>NuevaOT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\MenuProduccion.resx">
       <DependentUpon>MenuProduccion.cs</DependentUpon>

@@ -133,3 +133,4 @@ C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\Ar
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.exe
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.pdb
 C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOP.ListadoDetalleOrdenProduccion.resources
+C:\Users\Alexander Campoverde\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.NuevaOT.resources
