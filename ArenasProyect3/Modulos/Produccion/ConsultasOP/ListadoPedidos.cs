@@ -114,7 +114,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
-        //CONTAR LA CANTIDAD DE REQUERIMIENTOS QUE HAY EN MI TABLA
+        //CONTAR LA CANTIDAD DE REQUERIMIENTOS QUE HAY EN MI TABLA me estoy moudie de s
         public void ConteoRequerimientosSimples()
         {
             DataTable dt = new DataTable();
@@ -302,6 +302,48 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DateTime date = DateTime.Now;
 
             codigoOrdenProduccion = Convert.ToString(date.Year) + cantidadOrdenProduccion2;
+        }
+
+        //VERIFICAR SI TODOS LOS ITEMS TIENNE OP
+        public void ValidarOPparaPedidos()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("BuscarOPporPedido", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", datalistadoProductos.SelectedCells[19].Value.ToString());
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBusquedaOPporPedido.DataSource = dt;
+            con.Close();
+
+            int totalItems = Convert.ToInt32(datalistadoProductos.SelectedCells[20].Value.ToString());
+
+            if (datalistadoBusquedaOPporPedido.RowCount == totalItems)
+            {
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("CambioEstadoPedido", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idPedido", datalistadoProductos.SelectedCells[19].Value.ToString());
+                cmd.Parameters.AddWithValue("@estadoPedido",2);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            else
+            {
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("CambioEstadoPedido", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idPedido", datalistadoProductos.SelectedCells[19].Value.ToString());
+                cmd.Parameters.AddWithValue("@estadoPedido", 1);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
         }
 
         //CARGAR Y GENERAR EL CÓDIGO DE OS
@@ -558,6 +600,48 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
+            ColoresListadoPedidos();
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO PEDIDOS
+        public void ColoresListadoPedidos()
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= datalistadoTodasPedido.RowCount - 1; i++)
+                {
+                    if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "PENDIENTE")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "OP GENERADA")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "INCOMPLETA")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(192, 192, 0);
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "CULMINADA")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "DESPACHADO")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                    }
+                    else
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
 
@@ -1085,7 +1169,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 txtCodigoFormulacion.Text = codigoFormulacion;
                 int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
 
-                
+
                 BuscarMaterialesFormulacion(codigoFormulacion);
                 BuscarMaterialesFormulacionSemi(codigoFormulacion);
                 BuscarLineaFormulacion(codigoFormulacion);
@@ -1101,7 +1185,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 {
                     BuscarUltimoColorProducto(Convert.ToInt32(lblIdProducto.Text));
 
-                    if(datalistadoBusquedaColorUltimoProducto.Rows.Count > 0)
+                    if (datalistadoBusquedaColorUltimoProducto.Rows.Count > 0)
                     {
                         txtColorProducto.Text = datalistadoBusquedaColorUltimoProducto.SelectedCells[0].Value.ToString();
                     }
@@ -1252,7 +1336,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             con.Close();
 
                             UltimaOP();
+                            ValidarOPparaPedidos();
                             GenerarCodigoRequerimientoSimple();
+                            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
 
                             //INGRESAR MI REQUERIMIENTO PARA MI ORDEN DE PRODUCCION-----------------------------
                             SqlConnection con2 = new SqlConnection();
@@ -1346,6 +1432,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                                 cmd3.Parameters.AddWithValue("@idOperacion", cboOperacion.SelectedValue.ToString());
                                 cmd3.Parameters.AddWithValue("@observacion", "");
                                 cmd3.Parameters.AddWithValue("@cantidad", datalistadoProductos.SelectedCells[6].Value.ToString());
+                                cmd3.Parameters.AddWithValue("@idCliente", Convert.ToInt32(lblIdCliente.Text));
                                 cmd3.ExecuteNonQuery();
                                 con3.Close();
 

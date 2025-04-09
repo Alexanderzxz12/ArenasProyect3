@@ -304,9 +304,20 @@ namespace ArenasProyect3.Modulos.Produccion
             panelDatos.Visible = false;
         }
 
+        //ABRIR EL MENÚ Y MANTENIMIENTO CONSULTAS DE OT
         private void btnConsultasOT_Click(object sender, EventArgs e)
         {
-
+            if (panelPrincipaProduccion.Controls.Count == 1)
+            {
+                panelPrincipaProduccion.Controls.Clear();
+                AbrirFormularios(new ConsultasOT.MenuConsultaOT());
+            }
+            else
+            {
+                panelPrincipaProduccion.Controls.Clear();
+                AbrirFormularios(new ConsultasOT.MenuConsultaOT());
+            }
+            panelDatos.Visible = false;
         }
 
         //ABRIR EL MENÚ Y MANTENIMIENTO DE REQUERIMIENTOS

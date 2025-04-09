@@ -336,12 +336,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[4].Width = 80;
             DGV.Columns[5].Width = 300;
             DGV.Columns[6].Width = 130;
-            DGV.Columns[7].Width = 35;
+            DGV.Columns[7].Width = 40;
             DGV.Columns[8].Width = 300;
-            DGV.Columns[9].Width = 55;
-            DGV.Columns[10].Width = 75;
+            DGV.Columns[9].Width = 60;
+            DGV.Columns[10].Width = 85;
             DGV.Columns[11].Width = 75;
-            DGV.Columns[12].Width = 60;
+            DGV.Columns[12].Width = 75;
             DGV.Columns[13].Width = 110;
             DGV.Columns[14].Width = 65;
             //SE HACE NO VISIBLE LAS COLUMNAS QUE NO LES INTERESA AL USUARIO
@@ -463,7 +463,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
-        //MOSTRAR PEDIDOS SEGUN LAS FECHAS
+        //MOSTRAR OP SEGUN LAS FECHAS
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
@@ -975,7 +975,5 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 e.Handled = true;
             }
         }
-
-
     }
 }

@@ -446,6 +446,12 @@
     <Compile Include="Modulos\Produccion\ConsultasOT\ListadoOT.Designer.cs">
       <DependentUpon>ListadoOT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\MenuConsultaOT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\MenuConsultaOT.Designer.cs">
+      <DependentUpon>MenuConsultaOT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Produccion\ConsultasOT\NuevaOT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -524,6 +530,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InformeOrdenProduccion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\InformeOrdenTrabajo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeOrdenTrabajo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\InformePedidoVenta.cs">
@@ -615,6 +627,12 @@
     </Compile>
     <Compile Include="Visualizadores\VisualizarOrdenProduccion.Designer.cs">
       <DependentUpon>VisualizarOrdenProduccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarOrdenTrabajo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarOrdenTrabajo.Designer.cs">
+      <DependentUpon>VisualizarOrdenTrabajo.cs</DependentUpon>
     </Compile>
     <Compile Include="Visualizadores\VisualizarPedidoVenta.cs">
       <SubType>Form</SubType>
@@ -808,6 +826,12 @@
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\MenuConsultasOP.resx">
       <DependentUpon>MenuConsultasOP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\ListadoOT.resx">
+      <DependentUpon>ListadoOT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\MenuConsultaOT.resx">
+      <DependentUpon>MenuConsultaOT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\NuevaOT.resx">
       <DependentUpon>NuevaOT.cs</DependentUpon>
     </EmbeddedResource>
@@ -867,6 +891,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeOrdenProduccion.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InformeOrdenTrabajo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeOrdenTrabajo.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\InformePedidoVenta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformePedidoVenta.cs</LastGenOutput>
@@ -916,6 +944,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarOrdenProduccion.resx">
       <DependentUpon>VisualizarOrdenProduccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visualizadores\VisualizarOrdenTrabajo.resx">
+      <DependentUpon>VisualizarOrdenTrabajo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarPedidoVenta.resx">
       <DependentUpon>VisualizarPedidoVenta.cs</DependentUpon>

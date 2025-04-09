@@ -156,6 +156,48 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+
+            ColoresListadoPedidos();
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO PEDIDOS
+        public void ColoresListadoPedidos()
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= datalistadoTodasPedido.RowCount - 1; i++)
+                {
+                    if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "PENDIENTE")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "OP GENERADA")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "INCOMPLETA")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(192, 192, 0);
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "CULMINADA")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
+                    }
+                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "DESPACHADO")
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                    }
+                    else
+                    {
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
@@ -170,6 +212,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             {
                 this.datalistadoTodasPedido.Cursor = curAnterior;
             }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoTodasPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         //MOSTRAR PEDIDOS SEGUN LAS FECHAS
@@ -551,7 +599,5 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }

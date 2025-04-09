@@ -59,15 +59,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.datalistadoTodasPedido = new System.Windows.Forms.DataGridView();
             this.detalles = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -111,8 +102,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelDetalleOP = new System.Windows.Forms.Panel();
             this.btnSalirSeguimiento = new System.Windows.Forms.Button();
             this.panelVisualizacionNueva = new System.Windows.Forms.Panel();
-            this.imgPedidoColor = new System.Windows.Forms.PictureBox();
-            this.imgPedidoMixto = new System.Windows.Forms.PictureBox();
+            this.imgProduccionColor = new System.Windows.Forms.PictureBox();
+            this.imgProduccionMixto = new System.Windows.Forms.PictureBox();
             this.imgPedidoMono = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -154,6 +145,39 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnAbiriOrdenCompra = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
             this.panelVisualizacionClaseca = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.lblEstadoCotizacion = new System.Windows.Forms.Label();
+            this.lblMontoCotizacion = new System.Windows.Forms.Label();
+            this.lblResponsableCotizacion = new System.Windows.Forms.Label();
+            this.imgProduccionMono = new System.Windows.Forms.PictureBox();
+            this.imgPedidoMixto = new System.Windows.Forms.PictureBox();
+            this.imgPedidoColor = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblCodigoCotizacion = new System.Windows.Forms.Label();
+            this.lblCodigoPedido = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.lblTotalItems = new System.Windows.Forms.Label();
+            this.lblTotalItemsRealizados = new System.Windows.Forms.Label();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBuscarOPxPedidoAnulacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
@@ -164,11 +188,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarMarca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTodasPedido)).BeginInit();
             this.panel16.SuspendLayout();
             this.panleAnulacion.SuspendLayout();
@@ -179,8 +198,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).BeginInit();
             this.panelDetalleOP.SuspendLayout();
             this.panelVisualizacionNueva.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoMixto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgProduccionColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgProduccionMixto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPedidoMono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCotizacionColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCotizacionMixta)).BeginInit();
@@ -193,6 +212,21 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoEdicionOrdenCOmpra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgProduccionMono)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoMixto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoColor)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -345,11 +379,11 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label46);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 75);
+            this.groupBox1.Location = new System.Drawing.Point(5, 75);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(783, 95);
+            this.groupBox1.Size = new System.Drawing.Size(693, 95);
             this.groupBox1.TabIndex = 163;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Búsqueda por";
@@ -384,7 +418,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.txtBusqueda.Location = new System.Drawing.Point(150, 24);
             this.txtBusqueda.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(589, 21);
+            this.txtBusqueda.Size = new System.Drawing.Size(494, 21);
             this.txtBusqueda.TabIndex = 163;
             this.txtBusqueda.Tag = "";
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
@@ -398,7 +432,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.btnMostrarTodo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnMostrarTodo.Image = ((System.Drawing.Image)(resources.GetObject("btnMostrarTodo.Image")));
             this.btnMostrarTodo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMostrarTodo.Location = new System.Drawing.Point(642, 57);
+            this.btnMostrarTodo.Location = new System.Drawing.Point(553, 57);
             this.btnMostrarTodo.Name = "btnMostrarTodo";
             this.btnMostrarTodo.Size = new System.Drawing.Size(110, 32);
             this.btnMostrarTodo.TabIndex = 152;
@@ -411,7 +445,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.btnAgregarMarca.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnAgregarMarca.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarMarca.Image")));
-            this.btnAgregarMarca.Location = new System.Drawing.Point(742, 24);
+            this.btnAgregarMarca.Location = new System.Drawing.Point(645, 24);
             this.btnAgregarMarca.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregarMarca.Name = "btnAgregarMarca";
             this.btnAgregarMarca.Size = new System.Drawing.Size(27, 21);
@@ -486,118 +520,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.label46.TabIndex = 153;
             this.label46.Text = "desde";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.pictureBox6);
-            this.groupBox2.Controls.Add(this.pictureBox5);
-            this.groupBox2.Controls.Add(this.pictureBox4);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.pictureBox7);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(803, 75);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(364, 95);
-            this.groupBox2.TabIndex = 164;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Estados";
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox6.Location = new System.Drawing.Point(269, 53);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(72, 23);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 31;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox5.Location = new System.Drawing.Point(269, 22);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(72, 23);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 30;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox4.Location = new System.Drawing.Point(99, 53);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(72, 23);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 29;
-            this.pictureBox4.TabStop = false;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(192, 61);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 14);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Despachada";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(192, 30);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 14);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "Incompleta";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(14, 61);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 14);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Culminada";
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Black;
-            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox7.Location = new System.Drawing.Point(99, 22);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(72, 23);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 28;
-            this.pictureBox7.TabStop = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(14, 30);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 14);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Pendiente";
-            // 
             // datalistadoTodasPedido
             // 
             this.datalistadoTodasPedido.AllowUserToAddRows = false;
@@ -637,6 +559,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoTodasPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoTodasPedido.Size = new System.Drawing.Size(1167, 383);
             this.datalistadoTodasPedido.TabIndex = 165;
+            this.datalistadoTodasPedido.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoTodasPedido_CellDoubleClick);
             this.datalistadoTodasPedido.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoTodasPedido_CellMouseMove);
             // 
             // detalles
@@ -1106,7 +1029,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelDetalleOP.Controls.Add(this.panel31);
             this.panelDetalleOP.Controls.Add(this.panel32);
             this.panelDetalleOP.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDetalleOP.Location = new System.Drawing.Point(1165, 31);
+            this.panelDetalleOP.Location = new System.Drawing.Point(54, 26);
             this.panelDetalleOP.Name = "panelDetalleOP";
             this.panelDetalleOP.Size = new System.Drawing.Size(1068, 589);
             this.panelDetalleOP.TabIndex = 2027;
@@ -1126,8 +1049,28 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             // panelVisualizacionNueva
             // 
+            this.panelVisualizacionNueva.Controls.Add(this.lblTotalItemsRealizados);
+            this.panelVisualizacionNueva.Controls.Add(this.lblTotalItems);
+            this.panelVisualizacionNueva.Controls.Add(this.label25);
+            this.panelVisualizacionNueva.Controls.Add(this.label10);
+            this.panelVisualizacionNueva.Controls.Add(this.lblCodigoPedido);
+            this.panelVisualizacionNueva.Controls.Add(this.lblCodigoCotizacion);
+            this.panelVisualizacionNueva.Controls.Add(this.label7);
+            this.panelVisualizacionNueva.Controls.Add(this.label8);
+            this.panelVisualizacionNueva.Controls.Add(this.label9);
+            this.panelVisualizacionNueva.Controls.Add(this.imgProduccionColor);
+            this.panelVisualizacionNueva.Controls.Add(this.imgProduccionMixto);
             this.panelVisualizacionNueva.Controls.Add(this.imgPedidoColor);
             this.panelVisualizacionNueva.Controls.Add(this.imgPedidoMixto);
+            this.panelVisualizacionNueva.Controls.Add(this.imgProduccionMono);
+            this.panelVisualizacionNueva.Controls.Add(this.lblResponsableCotizacion);
+            this.panelVisualizacionNueva.Controls.Add(this.lblMontoCotizacion);
+            this.panelVisualizacionNueva.Controls.Add(this.lblEstadoCotizacion);
+            this.panelVisualizacionNueva.Controls.Add(this.pictureBox16);
+            this.panelVisualizacionNueva.Controls.Add(this.pictureBox7);
+            this.panelVisualizacionNueva.Controls.Add(this.pictureBox6);
+            this.panelVisualizacionNueva.Controls.Add(this.pictureBox5);
+            this.panelVisualizacionNueva.Controls.Add(this.pictureBox4);
             this.panelVisualizacionNueva.Controls.Add(this.imgPedidoMono);
             this.panelVisualizacionNueva.Controls.Add(this.label16);
             this.panelVisualizacionNueva.Controls.Add(this.label15);
@@ -1142,30 +1085,30 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelVisualizacionNueva.Size = new System.Drawing.Size(1048, 509);
             this.panelVisualizacionNueva.TabIndex = 127;
             // 
-            // imgPedidoColor
+            // imgProduccionColor
             // 
-            this.imgPedidoColor.Image = ((System.Drawing.Image)(resources.GetObject("imgPedidoColor.Image")));
-            this.imgPedidoColor.Location = new System.Drawing.Point(273, 50);
-            this.imgPedidoColor.Name = "imgPedidoColor";
-            this.imgPedidoColor.Size = new System.Drawing.Size(95, 95);
-            this.imgPedidoColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imgPedidoColor.TabIndex = 132;
-            this.imgPedidoColor.TabStop = false;
+            this.imgProduccionColor.Image = ((System.Drawing.Image)(resources.GetObject("imgProduccionColor.Image")));
+            this.imgProduccionColor.Location = new System.Drawing.Point(477, 50);
+            this.imgProduccionColor.Name = "imgProduccionColor";
+            this.imgProduccionColor.Size = new System.Drawing.Size(95, 95);
+            this.imgProduccionColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgProduccionColor.TabIndex = 132;
+            this.imgProduccionColor.TabStop = false;
             // 
-            // imgPedidoMixto
+            // imgProduccionMixto
             // 
-            this.imgPedidoMixto.Image = ((System.Drawing.Image)(resources.GetObject("imgPedidoMixto.Image")));
-            this.imgPedidoMixto.Location = new System.Drawing.Point(273, 50);
-            this.imgPedidoMixto.Name = "imgPedidoMixto";
-            this.imgPedidoMixto.Size = new System.Drawing.Size(95, 95);
-            this.imgPedidoMixto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imgPedidoMixto.TabIndex = 133;
-            this.imgPedidoMixto.TabStop = false;
+            this.imgProduccionMixto.Image = ((System.Drawing.Image)(resources.GetObject("imgProduccionMixto.Image")));
+            this.imgProduccionMixto.Location = new System.Drawing.Point(477, 50);
+            this.imgProduccionMixto.Name = "imgProduccionMixto";
+            this.imgProduccionMixto.Size = new System.Drawing.Size(95, 95);
+            this.imgProduccionMixto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgProduccionMixto.TabIndex = 133;
+            this.imgProduccionMixto.TabStop = false;
             // 
             // imgPedidoMono
             // 
             this.imgPedidoMono.Image = ((System.Drawing.Image)(resources.GetObject("imgPedidoMono.Image")));
-            this.imgPedidoMono.Location = new System.Drawing.Point(274, 50);
+            this.imgPedidoMono.Location = new System.Drawing.Point(278, 50);
             this.imgPedidoMono.Name = "imgPedidoMono";
             this.imgPedidoMono.Size = new System.Drawing.Size(95, 95);
             this.imgPedidoMono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1215,7 +1158,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // imgCotizacionColor
             // 
             this.imgCotizacionColor.Image = ((System.Drawing.Image)(resources.GetObject("imgCotizacionColor.Image")));
-            this.imgCotizacionColor.Location = new System.Drawing.Point(93, 50);
+            this.imgCotizacionColor.Location = new System.Drawing.Point(91, 50);
             this.imgCotizacionColor.Name = "imgCotizacionColor";
             this.imgCotizacionColor.Size = new System.Drawing.Size(95, 95);
             this.imgCotizacionColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1225,7 +1168,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // imgCotizacionMixta
             // 
             this.imgCotizacionMixta.Image = ((System.Drawing.Image)(resources.GetObject("imgCotizacionMixta.Image")));
-            this.imgCotizacionMixta.Location = new System.Drawing.Point(93, 50);
+            this.imgCotizacionMixta.Location = new System.Drawing.Point(91, 50);
             this.imgCotizacionMixta.Name = "imgCotizacionMixta";
             this.imgCotizacionMixta.Size = new System.Drawing.Size(95, 95);
             this.imgCotizacionMixta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1626,10 +1569,372 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             // panelVisualizacionClaseca
             // 
-            this.panelVisualizacionClaseca.Location = new System.Drawing.Point(1162, 55);
+            this.panelVisualizacionClaseca.Location = new System.Drawing.Point(1168, 39);
             this.panelVisualizacionClaseca.Name = "panelVisualizacionClaseca";
             this.panelVisualizacionClaseca.Size = new System.Drawing.Size(988, 358);
             this.panelVisualizacionClaseca.TabIndex = 126;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.pictureBox8);
+            this.groupBox3.Controls.Add(this.pictureBox10);
+            this.groupBox3.Controls.Add(this.pictureBox13);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.pictureBox18);
+            this.groupBox3.Controls.Add(this.pictureBox19);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.pictureBox20);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.label23);
+            this.groupBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(704, 75);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(468, 95);
+            this.groupBox3.TabIndex = 2035;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Estados";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(11, 61);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(59, 14);
+            this.label17.TabIndex = 2034;
+            this.label17.Text = "OP Gener.";
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackColor = System.Drawing.Color.Red;
+            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox8.Location = new System.Drawing.Point(396, 55);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(61, 23);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 33;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox10.Location = new System.Drawing.Point(87, 55);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(61, 23);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 32;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox13.Location = new System.Drawing.Point(396, 24);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(61, 23);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox13.TabIndex = 31;
+            this.pictureBox13.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(329, 61);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 14);
+            this.label19.TabIndex = 2033;
+            this.label19.Text = "Anulado";
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.pictureBox18.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox18.Location = new System.Drawing.Point(246, 24);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(61, 23);
+            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox18.TabIndex = 30;
+            this.pictureBox18.TabStop = false;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.BackColor = System.Drawing.Color.Blue;
+            this.pictureBox19.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox19.Location = new System.Drawing.Point(246, 55);
+            this.pictureBox19.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(61, 23);
+            this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox19.TabIndex = 29;
+            this.pictureBox19.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(329, 29);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(64, 14);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "Despacha.";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(169, 32);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(69, 14);
+            this.label21.TabIndex = 11;
+            this.label21.Text = "Incompleta";
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.BackColor = System.Drawing.Color.Black;
+            this.pictureBox20.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox20.Location = new System.Drawing.Point(87, 24);
+            this.pictureBox20.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(61, 23);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox20.TabIndex = 28;
+            this.pictureBox20.TabStop = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(169, 61);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(66, 14);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "Culminada";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(11, 32);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(63, 14);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "Pendiente";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(127, 180);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(25, 26);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 134;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(309, 180);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(25, 26);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 135;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(511, 180);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(25, 26);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 136;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(727, 180);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(25, 26);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 137;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox16.Image")));
+            this.pictureBox16.Location = new System.Drawing.Point(900, 180);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(25, 26);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox16.TabIndex = 138;
+            this.pictureBox16.TabStop = false;
+            // 
+            // lblEstadoCotizacion
+            // 
+            this.lblEstadoCotizacion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstadoCotizacion.Location = new System.Drawing.Point(78, 237);
+            this.lblEstadoCotizacion.Name = "lblEstadoCotizacion";
+            this.lblEstadoCotizacion.Size = new System.Drawing.Size(125, 20);
+            this.lblEstadoCotizacion.TabIndex = 139;
+            this.lblEstadoCotizacion.Text = "ESTADO";
+            this.lblEstadoCotizacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMontoCotizacion
+            // 
+            this.lblMontoCotizacion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMontoCotizacion.Location = new System.Drawing.Point(78, 257);
+            this.lblMontoCotizacion.Name = "lblMontoCotizacion";
+            this.lblMontoCotizacion.Size = new System.Drawing.Size(125, 20);
+            this.lblMontoCotizacion.TabIndex = 140;
+            this.lblMontoCotizacion.Text = "MONTO: ********";
+            this.lblMontoCotizacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblResponsableCotizacion
+            // 
+            this.lblResponsableCotizacion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResponsableCotizacion.Location = new System.Drawing.Point(78, 277);
+            this.lblResponsableCotizacion.Name = "lblResponsableCotizacion";
+            this.lblResponsableCotizacion.Size = new System.Drawing.Size(125, 20);
+            this.lblResponsableCotizacion.TabIndex = 141;
+            this.lblResponsableCotizacion.Text = "RESPONSABLE:";
+            this.lblResponsableCotizacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // imgProduccionMono
+            // 
+            this.imgProduccionMono.Image = ((System.Drawing.Image)(resources.GetObject("imgProduccionMono.Image")));
+            this.imgProduccionMono.Location = new System.Drawing.Point(477, 50);
+            this.imgProduccionMono.Name = "imgProduccionMono";
+            this.imgProduccionMono.Size = new System.Drawing.Size(95, 95);
+            this.imgProduccionMono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgProduccionMono.TabIndex = 142;
+            this.imgProduccionMono.TabStop = false;
+            // 
+            // imgPedidoMixto
+            // 
+            this.imgPedidoMixto.Image = ((System.Drawing.Image)(resources.GetObject("imgPedidoMixto.Image")));
+            this.imgPedidoMixto.Location = new System.Drawing.Point(279, 50);
+            this.imgPedidoMixto.Name = "imgPedidoMixto";
+            this.imgPedidoMixto.Size = new System.Drawing.Size(95, 95);
+            this.imgPedidoMixto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgPedidoMixto.TabIndex = 143;
+            this.imgPedidoMixto.TabStop = false;
+            // 
+            // imgPedidoColor
+            // 
+            this.imgPedidoColor.Image = ((System.Drawing.Image)(resources.GetObject("imgPedidoColor.Image")));
+            this.imgPedidoColor.Location = new System.Drawing.Point(279, 50);
+            this.imgPedidoColor.Name = "imgPedidoColor";
+            this.imgPedidoColor.Size = new System.Drawing.Size(95, 95);
+            this.imgPedidoColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgPedidoColor.TabIndex = 144;
+            this.imgPedidoColor.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(259, 277);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(125, 20);
+            this.label7.TabIndex = 147;
+            this.label7.Text = "RESPONSABLE:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(259, 257);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(125, 20);
+            this.label8.TabIndex = 146;
+            this.label8.Text = "MONTO: ********";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(259, 237);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(125, 20);
+            this.label9.TabIndex = 145;
+            this.label9.Text = "ESTADO";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblCodigoCotizacion
+            // 
+            this.lblCodigoCotizacion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoCotizacion.Location = new System.Drawing.Point(78, 217);
+            this.lblCodigoCotizacion.Name = "lblCodigoCotizacion";
+            this.lblCodigoCotizacion.Size = new System.Drawing.Size(125, 20);
+            this.lblCodigoCotizacion.TabIndex = 148;
+            this.lblCodigoCotizacion.Text = "CODIGO COTI";
+            this.lblCodigoCotizacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblCodigoPedido
+            // 
+            this.lblCodigoPedido.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoPedido.Location = new System.Drawing.Point(259, 217);
+            this.lblCodigoPedido.Name = "lblCodigoPedido";
+            this.lblCodigoPedido.Size = new System.Drawing.Size(125, 20);
+            this.lblCodigoPedido.TabIndex = 149;
+            this.lblCodigoPedido.Text = "CODIGO PEDIDO";
+            this.lblCodigoPedido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(460, 217);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 20);
+            this.label10.TabIndex = 150;
+            this.label10.Text = "CODIGO PEDIDO";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(460, 237);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(125, 20);
+            this.label25.TabIndex = 151;
+            this.label25.Text = "ESTADO";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTotalItems
+            // 
+            this.lblTotalItems.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalItems.Location = new System.Drawing.Point(460, 257);
+            this.lblTotalItems.Name = "lblTotalItems";
+            this.lblTotalItems.Size = new System.Drawing.Size(125, 20);
+            this.lblTotalItems.TabIndex = 152;
+            this.lblTotalItems.Text = "TOTAL ITEMS";
+            this.lblTotalItems.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTotalItemsRealizados
+            // 
+            this.lblTotalItemsRealizados.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalItemsRealizados.Location = new System.Drawing.Point(448, 277);
+            this.lblTotalItemsRealizados.Name = "lblTotalItemsRealizados";
+            this.lblTotalItemsRealizados.Size = new System.Drawing.Size(144, 20);
+            this.lblTotalItemsRealizados.TabIndex = 153;
+            this.lblTotalItemsRealizados.Text = "TOTAL ITEMS REALIZADOS";
+            this.lblTotalItemsRealizados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Pedido
             // 
@@ -1655,12 +1960,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.Controls.Add(this.label53);
             this.Controls.Add(this.panel16);
             this.Controls.Add(this.datalistadoTodasPedido);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panelMovimientoFrm);
             this.Controls.Add(this.datalistadoExcel);
+            this.Controls.Add(this.groupBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Pedido";
             this.Text = "Pedido";
@@ -1677,12 +1982,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarMarca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTodasPedido)).EndInit();
             this.panel16.ResumeLayout(false);
             this.panleAnulacion.ResumeLayout(false);
@@ -1696,8 +1995,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelDetalleOP.PerformLayout();
             this.panelVisualizacionNueva.ResumeLayout(false);
             this.panelVisualizacionNueva.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoMixto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgProduccionColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgProduccionMixto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPedidoMono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCotizacionColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCotizacionMixta)).EndInit();
@@ -1711,6 +2010,22 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoEdicionOrdenCOmpra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgProduccionMono)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoMixto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPedidoColor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1737,15 +2052,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView datalistadoTodasPedido;
         private System.Windows.Forms.Panel panel16;
         internal System.Windows.Forms.Label label54;
@@ -1831,8 +2137,41 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.PictureBox imgProduccionColor;
+        private System.Windows.Forms.PictureBox imgProduccionMixto;
+        private System.Windows.Forms.PictureBox imgPedidoMono;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.PictureBox pictureBox18;
+        private System.Windows.Forms.PictureBox pictureBox19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.PictureBox imgPedidoColor;
         private System.Windows.Forms.PictureBox imgPedidoMixto;
-        private System.Windows.Forms.PictureBox imgPedidoMono;
+        private System.Windows.Forms.PictureBox imgProduccionMono;
+        private System.Windows.Forms.Label lblResponsableCotizacion;
+        private System.Windows.Forms.Label lblMontoCotizacion;
+        private System.Windows.Forms.Label lblEstadoCotizacion;
+        private System.Windows.Forms.PictureBox pictureBox16;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblCodigoPedido;
+        private System.Windows.Forms.Label lblCodigoCotizacion;
+        private System.Windows.Forms.Label lblTotalItemsRealizados;
+        private System.Windows.Forms.Label lblTotalItems;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label10;
     }
 }
