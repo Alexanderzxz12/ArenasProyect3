@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLogoArenas = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ImgRegresar = new System.Windows.Forms.PictureBox();
@@ -107,6 +107,7 @@
             this.dataListado = new System.Windows.Forms.DataGridView();
             this.Eli = new System.Windows.Forms.DataGridViewImageColumn();
             this.timerProduccion = new System.Windows.Forms.Timer(this.components);
+            this.timerIngenieria = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnLogoArenas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgRegresar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgValidacionIncorrecta)).BeginInit();
@@ -1014,14 +1015,14 @@
             this.dataListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eli});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataListado.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataListado.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataListado.EnableHeadersVisualStyles = false;
             this.dataListado.Location = new System.Drawing.Point(33, 38);
             this.dataListado.Name = "dataListado";
@@ -1046,6 +1047,11 @@
             // 
             this.timerProduccion.Interval = 50;
             this.timerProduccion.Tick += new System.EventHandler(this.timerProduccion_Tick);
+            // 
+            // timerIngenieria
+            // 
+            this.timerIngenieria.Interval = 50;
+            this.timerIngenieria.Tick += new System.EventHandler(this.timerIngenieria_Tick);
             // 
             // Login
             // 
@@ -1203,5 +1209,6 @@
         private System.Windows.Forms.DataGridView dataListado;
         private System.Windows.Forms.DataGridViewImageColumn Eli;
         private System.Windows.Forms.Timer timerProduccion;
+        private System.Windows.Forms.Timer timerIngenieria;
     }
 }

@@ -285,7 +285,7 @@ namespace ArenasProyect3.Modulos.Produccion
         //ABRIR EL MENÚ Y MANTENIMEINTO
         private void btnTiempoProduccion_Click(object sender, EventArgs e)
         {
-
+            panelProhibicion.Visible = true;
         }
 
         //ABRIR EL MENÚ Y MANTENIMIENTO CONSULTAS DE OP

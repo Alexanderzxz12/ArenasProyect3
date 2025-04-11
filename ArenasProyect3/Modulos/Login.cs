@@ -27,7 +27,7 @@ namespace ArenasProyect3.Modulos
         int contadorInicioProcesos;
         int contadorInicioComercial;
         int contadorInicioProduccion;
-        //int contadorInicioIngieneria;
+        int contadorInicioIngieneria;
         int contadorInicioLogistica;
         int contadorInicioContabilidad;
         //int contadorInicioCalidad;
@@ -228,7 +228,7 @@ namespace ArenasProyect3.Modulos
                 if (estadoSistema == "ACTIVO - CORRIENDO")
                 {
                     //ABRIR EL PANEL DEL AREA SELECCIONADA
-                    area = "Ingieneria";
+                    area = "Ingeniería";
                     if (panelUsuarios.Controls.Count < 1)
                     {
                         panelUsuarios.Controls.Clear();
@@ -596,6 +596,21 @@ namespace ArenasProyect3.Modulos
                 Produccion.ShowDialog();
             }
         }
+
+        //INGENIERUA
+        private void timerIngenieria_Tick(object sender, EventArgs e)
+        {
+            contadorInicioIngieneria = contadorInicioIngieneria - 1;
+            this.lblContadorInicio.Text = contadorInicioIngieneria.ToString();
+            if (contadorInicioIngieneria == 0)
+            {
+                this.timerIngenieria.Enabled = false;
+                Modulos.Ingenieria.MenuIngenieria Ingenieria = new Modulos.Ingenieria.MenuIngenieria();
+
+                this.Hide();
+                Ingenieria.ShowDialog();
+            }
+        }
         //----------------------------------------------------------------------------------------------------------
 
         //CARGA DE METODOS PARA EL FUNCIONAMIENTO DEL LOGIN------------------------------------------------------------
@@ -758,6 +773,14 @@ namespace ArenasProyect3.Modulos
                     contadorInicioProduccion = 20;
                     this.lblContadorInicio.Text = Convert.ToInt32(contadorInicioProduccion).ToString();
                     this.timerProduccion.Enabled = true;
+                }
+                else if (Program.AreaUsuario == "Ingeniería")
+                {
+                    lblNombre.Text = Program.UnoNombreUnoApellidoUsuario;
+                    panelBienvenida.Visible = true;
+                    contadorInicioIngieneria = 20;
+                    this.lblContadorInicio.Text = Convert.ToInt32(contadorInicioIngieneria).ToString();
+                    this.timerIngenieria.Enabled = true;
                 }
                 else
                 {
@@ -924,6 +947,8 @@ namespace ArenasProyect3.Modulos
             btnAdministrador.BackColor = Color.Black;
             lblLeyendaAdmin.BackColor = Color.Black;
         }
+
+
 
 
         //-----------------------------------------------------------------------------------------------

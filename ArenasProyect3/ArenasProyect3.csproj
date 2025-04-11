@@ -26,7 +26,7 @@
     <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
     <MinimumRequiredVersion>1.0.0.65</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>66</ApplicationRevision>
+    <ApplicationRevision>68</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -239,6 +239,12 @@
     </Compile>
     <Compile Include="Modulos\Contabilidad\RequerimientosVenta\RequerimientoVenta.Designer.cs">
       <DependentUpon>RequerimientoVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Ingenieria\MenuIngenieria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Ingenieria\MenuIngenieria.Designer.cs">
+      <DependentUpon>MenuIngenieria.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Login.cs">
       <SubType>Form</SubType>
@@ -729,6 +735,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Contabilidad\RequerimientosVenta\RequerimientoVenta.resx">
       <DependentUpon>RequerimientoVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Ingenieria\MenuIngenieria.resx">
+      <DependentUpon>MenuIngenieria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

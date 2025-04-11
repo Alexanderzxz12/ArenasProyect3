@@ -780,7 +780,7 @@
             "Calidad",
             "Procesos",
             "Logística",
-            "Ingienería",
+            "Ingeniería",
             "Producción"});
             this.txtArea.Location = new System.Drawing.Point(159, 330);
             this.txtArea.Name = "txtArea";

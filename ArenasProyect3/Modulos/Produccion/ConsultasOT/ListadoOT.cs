@@ -582,8 +582,55 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar una OT para poder continuar.", "Validación del Sistema");
             }
+        }
+
+        //EVENTO PARA GUARDAR VARIAS CANTIDADES INGRESADAS
+        private void btnGenerarGuardarCantidades_Click(object sender, EventArgs e)
+        {
+            List<int> idOTSeleccionada = new List<int>();
+            List<int> CantidadTotalOTSeleccionada = new List<int>();
+
+            foreach (DataGridViewRow row in datalistadoTodasOT.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = row.Cells[0] as DataGridViewCheckBoxCell;
+
+                if (checkBox != null && Convert.ToBoolean(checkBox.Value) == true)
+                {
+                    try
+                    {
+                        int idOt = Convert.ToInt32(row.Cells[1].Value.ToString());
+                        int cantidadEsperada = Convert.ToInt32(row.Cells[7].Value.ToString());
+                        int cantidadHecha = Convert.ToInt32(row.Cells[10].Value.ToString());
+                        int TotalCantidad = cantidadEsperada - cantidadHecha;
+
+                        if (TotalCantidad != 0)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("IngresarRegistroCantidadOT", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOrdenServicio", idOt);
+                            cmd.Parameters.AddWithValue("@cantidad", TotalCantidad);
+                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+            MessageBox.Show("Operación terminada.", "Validación del Sistema");
+            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            LimpiarCantidades();
         }
 
         //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
@@ -744,7 +791,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
     }
 }
