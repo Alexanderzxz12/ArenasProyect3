@@ -91,6 +91,79 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
+        //VERIFICAR SI TODOS LOS ITEMS TIENNE OP
+        public void ValidarOPparaPedidos(int IdPedido, int totalItems)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("BuscarOPporPedido", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBusquedaOPporPedido.DataSource = dt;
+            con.Close();
+
+
+            if (datalistadoBusquedaOPporPedido.RowCount == totalItems)
+            {
+                List<int> estados = new List<int>();
+
+                foreach (DataGridViewRow dgv in datalistadoBusquedaOPporPedido.Rows)
+                {
+                    estados.Add(Convert.ToInt32(dgv.Cells[2].Value.ToString()));
+                }
+
+                if (estados.Contains(4) && estados.Contains(1) || estados.Contains(4) && estados.Contains(2) || estados.Contains(4) && estados.Contains(3))
+                {
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 3);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else if (estados.Contains(4))
+                {
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 4);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else
+                {
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 2);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            else
+            {
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("CambioEstadoPedido", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+                cmd.Parameters.AddWithValue("@estadoPedido", 1);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
         //LISTADO DE PEDIDOS Y SELECCION DE PDF Y ESTADO DE PEDIDOS---------------------
         //MOSTRAR PEDIDOS AL INCIO 
         public void MostrarPedidoPorFecha(DateTime fechaInicio, DateTime fechaTermino)
@@ -168,6 +241,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 //RECORRIDO DE MI LISTADO
                 for (var i = 0; i <= datalistadoTodasPedido.RowCount - 1; i++)
                 {
+                    ValidarOPparaPedidos(Convert.ToInt32(datalistadoTodasPedido.Rows[i].Cells[1].Value), Convert.ToInt32(datalistadoTodasPedido.Rows[i].Cells[9].Value));
+
                     if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "PENDIENTE")
                     {
                         datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;

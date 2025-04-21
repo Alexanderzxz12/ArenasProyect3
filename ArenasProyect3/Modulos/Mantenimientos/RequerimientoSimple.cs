@@ -82,6 +82,23 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
         }
 
+        //COLOREAR MI LISTADO
+        public void alternarColorFilas(DataGridView dgv)
+        {
+            try
+            {
+                {
+                    var withBlock = dgv;
+                    withBlock.RowsDefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
+                    withBlock.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //------------------------------CARGA DE COMBOS-----------------------------------
         //CARGAR TIPO DE REQUERIMIENTO
         public void CargarTipoRequerimiento()
@@ -253,6 +270,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             datalistadoBusquedaProducto.DataSource = dt;
             con.Close();
             Rediemnsion(datalistadoBusquedaProducto);
+            alternarColorFilas(datalistadoBusquedaProducto);
         }
 
         //FUNCION DE REDIEMNSION
@@ -278,6 +296,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+
+            alternarColorFilas(DGV);
         }
 
         //---------------------------------------------------------------------------------
@@ -381,6 +401,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
 
                 //SE AGREGA A LA NUEVA LISTA
                 datalistadoSeleccionBusquedaProducto.Rows.Add(new[] { id, codigo, producto, tipoMedida, stock });
+                alternarColorFilas(datalistadoSeleccionBusquedaProducto);
                 //SE BORRA EL REGISTRO SELECCIONADO
                 datalistadoBusquedaProducto.Rows.Remove(datalistadoBusquedaProducto.CurrentRow);
             }
@@ -448,6 +469,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             txtBusquedaProducto.Text = "";
             cboTipoBusquedaProducto.SelectedIndex = 1;
             datalistadoSeleccionBusquedaProducto.Rows.Clear();
+            alternarColorFilas(datalistadoProductosRequerimiento);
         }
 
         //VALIDACIÓN DEL LISTADO DE PRESUPUESTO

@@ -1286,6 +1286,7 @@
             this.btnRegresarEdicionActa.Size = new System.Drawing.Size(36, 33);
             this.btnRegresarEdicionActa.TabIndex = 2021;
             this.btnRegresarEdicionActa.UseVisualStyleBackColor = true;
+            this.btnRegresarEdicionActa.Click += new System.EventHandler(this.btnRegresarEdicionActa_Click_1);
             // 
             // panelDetallesContacto3
             // 

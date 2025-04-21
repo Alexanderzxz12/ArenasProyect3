@@ -929,6 +929,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoProductosRequerimientoOP.DefaultCellStyle = dataGridViewCellStyle4;
             this.datalistadoProductosRequerimientoOP.Location = new System.Drawing.Point(138, 285);
             this.datalistadoProductosRequerimientoOP.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoProductosRequerimientoOP.MultiSelect = false;
             this.datalistadoProductosRequerimientoOP.Name = "datalistadoProductosRequerimientoOP";
             this.datalistadoProductosRequerimientoOP.RowHeadersVisible = false;
             this.datalistadoProductosRequerimientoOP.RowHeadersWidth = 50;
@@ -1014,10 +1015,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelBuscarProductos.Controls.Add(this.txtBusquedaProducto);
             this.panelBuscarProductos.Controls.Add(this.label13);
             this.panelBuscarProductos.Controls.Add(this.panel9);
-            this.panelBuscarProductos.Location = new System.Drawing.Point(39, 54);
+            this.panelBuscarProductos.Location = new System.Drawing.Point(81, 77);
             this.panelBuscarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.panelBuscarProductos.Name = "panelBuscarProductos";
-            this.panelBuscarProductos.Size = new System.Drawing.Size(1094, 528);
+            this.panelBuscarProductos.Size = new System.Drawing.Size(1011, 483);
             this.panelBuscarProductos.TabIndex = 2034;
             this.panelBuscarProductos.Visible = false;
             // 
@@ -1027,9 +1028,9 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnRefrescar.FlatAppearance.BorderSize = 0;
             this.btnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefrescar.Image = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Image")));
-            this.btnRefrescar.Location = new System.Drawing.Point(924, 25);
+            this.btnRefrescar.Location = new System.Drawing.Point(852, 27);
             this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.Size = new System.Drawing.Size(25, 25);
+            this.btnRefrescar.Size = new System.Drawing.Size(24, 24);
             this.btnRefrescar.TabIndex = 2028;
             this.btnRefrescar.UseVisualStyleBackColor = true;
             this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
@@ -1040,7 +1041,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnBorrarBusquedaProductps.FlatAppearance.BorderSize = 0;
             this.btnBorrarBusquedaProductps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarBusquedaProductps.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarBusquedaProductps.Image")));
-            this.btnBorrarBusquedaProductps.Location = new System.Drawing.Point(942, 472);
+            this.btnBorrarBusquedaProductps.Location = new System.Drawing.Point(873, 426);
             this.btnBorrarBusquedaProductps.Name = "btnBorrarBusquedaProductps";
             this.btnBorrarBusquedaProductps.Size = new System.Drawing.Size(35, 35);
             this.btnBorrarBusquedaProductps.TabIndex = 2027;
@@ -1053,7 +1054,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnRegresarBusqeudaProductos.FlatAppearance.BorderSize = 0;
             this.btnRegresarBusqeudaProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresarBusqeudaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarBusqeudaProductos.Image")));
-            this.btnRegresarBusqeudaProductos.Location = new System.Drawing.Point(1009, 472);
+            this.btnRegresarBusqeudaProductos.Location = new System.Drawing.Point(940, 426);
             this.btnRegresarBusqeudaProductos.Name = "btnRegresarBusqeudaProductos";
             this.btnRegresarBusqeudaProductos.Size = new System.Drawing.Size(35, 35);
             this.btnRegresarBusqeudaProductos.TabIndex = 2026;
@@ -1066,7 +1067,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnConfirmarBusquedaProductos.FlatAppearance.BorderSize = 0;
             this.btnConfirmarBusquedaProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmarBusquedaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirmarBusquedaProductos.Image")));
-            this.btnConfirmarBusquedaProductos.Location = new System.Drawing.Point(869, 472);
+            this.btnConfirmarBusquedaProductos.Location = new System.Drawing.Point(800, 426);
             this.btnConfirmarBusquedaProductos.Name = "btnConfirmarBusquedaProductos";
             this.btnConfirmarBusquedaProductos.Size = new System.Drawing.Size(35, 35);
             this.btnConfirmarBusquedaProductos.TabIndex = 2025;
@@ -1076,7 +1077,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(894, 29);
+            this.pictureBox2.Location = new System.Drawing.Point(810, 29);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(25, 22);
@@ -1090,7 +1091,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Blue;
-            this.label20.Location = new System.Drawing.Point(27, 483);
+            this.label20.Location = new System.Drawing.Point(18, 437);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(459, 28);
@@ -1102,27 +1103,27 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(1093, 18);
+            this.panel10.Location = new System.Drawing.Point(1010, 18);
             this.panel10.Margin = new System.Windows.Forms.Padding(4);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1, 509);
+            this.panel10.Size = new System.Drawing.Size(1, 464);
             this.panel10.TabIndex = 52;
             // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 527);
+            this.panel11.Location = new System.Drawing.Point(0, 482);
             this.panel11.Margin = new System.Windows.Forms.Padding(4);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1094, 1);
+            this.panel11.Size = new System.Drawing.Size(1011, 1);
             this.panel11.TabIndex = 51;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(852, 509);
+            this.label21.Location = new System.Drawing.Point(783, 463);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(70, 14);
@@ -1133,7 +1134,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(934, 509);
+            this.label22.Location = new System.Drawing.Point(865, 463);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(50, 14);
@@ -1144,7 +1145,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(998, 509);
+            this.label23.Location = new System.Drawing.Point(929, 463);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(61, 14);
@@ -1154,10 +1155,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel12.Location = new System.Drawing.Point(44, 271);
+            this.panel12.Location = new System.Drawing.Point(105, 254);
             this.panel12.Margin = new System.Windows.Forms.Padding(4);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1000, 1);
+            this.panel12.Size = new System.Drawing.Size(800, 1);
             this.panel12.TabIndex = 44;
             // 
             // datalistadoSeleccionBusquedaProducto
@@ -1191,7 +1192,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoSeleccionBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle6;
-            this.datalistadoSeleccionBusquedaProducto.Location = new System.Drawing.Point(9, 280);
+            this.datalistadoSeleccionBusquedaProducto.Location = new System.Drawing.Point(17, 263);
             this.datalistadoSeleccionBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoSeleccionBusquedaProducto.MultiSelect = false;
             this.datalistadoSeleccionBusquedaProducto.Name = "datalistadoSeleccionBusquedaProducto";
@@ -1200,7 +1201,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoSeleccionBusquedaProducto.RowHeadersVisible = false;
             this.datalistadoSeleccionBusquedaProducto.RowHeadersWidth = 50;
             this.datalistadoSeleccionBusquedaProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoSeleccionBusquedaProducto.Size = new System.Drawing.Size(1076, 185);
+            this.datalistadoSeleccionBusquedaProducto.Size = new System.Drawing.Size(985, 156);
             this.datalistadoSeleccionBusquedaProducto.TabIndex = 43;
             // 
             // dataGridViewTextBoxColumn1
@@ -1271,7 +1272,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle8;
-            this.datalistadoBusquedaProducto.Location = new System.Drawing.Point(9, 61);
+            this.datalistadoBusquedaProducto.Location = new System.Drawing.Point(17, 62);
             this.datalistadoBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaProducto.MultiSelect = false;
             this.datalistadoBusquedaProducto.Name = "datalistadoBusquedaProducto";
@@ -1279,7 +1280,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoBusquedaProducto.RowHeadersVisible = false;
             this.datalistadoBusquedaProducto.RowHeadersWidth = 50;
             this.datalistadoBusquedaProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoBusquedaProducto.Size = new System.Drawing.Size(1076, 202);
+            this.datalistadoBusquedaProducto.Size = new System.Drawing.Size(985, 184);
             this.datalistadoBusquedaProducto.TabIndex = 42;
             this.datalistadoBusquedaProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoBusquedaProducto_CellContentClick);
             // 
@@ -1299,7 +1300,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             "CÓDIGO",
             "DESCRIPCIÓN",
             "CÓDIGO BSS"});
-            this.cboTipoBusquedaProducto.Location = new System.Drawing.Point(274, 29);
+            this.cboTipoBusquedaProducto.Location = new System.Drawing.Point(190, 29);
             this.cboTipoBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoBusquedaProducto.Name = "cboTipoBusquedaProducto";
             this.cboTipoBusquedaProducto.Size = new System.Drawing.Size(138, 22);
@@ -1310,7 +1311,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.txtBusquedaProducto.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtBusquedaProducto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusquedaProducto.Location = new System.Drawing.Point(420, 29);
+            this.txtBusquedaProducto.Location = new System.Drawing.Point(336, 29);
             this.txtBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusquedaProducto.Name = "txtBusquedaProducto";
             this.txtBusquedaProducto.Size = new System.Drawing.Size(470, 22);
@@ -1321,7 +1322,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(176, 33);
+            this.label13.Location = new System.Drawing.Point(92, 33);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(92, 14);
@@ -1338,7 +1339,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Margin = new System.Windows.Forms.Padding(4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1094, 18);
+            this.panel9.Size = new System.Drawing.Size(1011, 18);
             this.panel9.TabIndex = 34;
             // 
             // btnInfoBusquedaProductos
@@ -1346,7 +1347,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnInfoBusquedaProductos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInfoBusquedaProductos.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnInfoBusquedaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoBusquedaProductos.Image")));
-            this.btnInfoBusquedaProductos.Location = new System.Drawing.Point(1069, 0);
+            this.btnInfoBusquedaProductos.Location = new System.Drawing.Point(986, 0);
             this.btnInfoBusquedaProductos.Margin = new System.Windows.Forms.Padding(5);
             this.btnInfoBusquedaProductos.Name = "btnInfoBusquedaProductos";
             this.btnInfoBusquedaProductos.Size = new System.Drawing.Size(25, 18);

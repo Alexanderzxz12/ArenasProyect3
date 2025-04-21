@@ -1610,6 +1610,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //BOTON CERRAR LA EDICION DE MI ACTA
+        private void btnRegresarEdicionActa_Click_1(object sender, EventArgs e)
+        {
+            panelModificarActa.Visible = false;
+            datalistadoTodasActas.Enabled = true;
+        }
+
         //BOTON PARA VISUALIZAR LAS ACTAS
         private void btnVisualizarActa_Click(object sender, EventArgs e)
         {
@@ -1810,5 +1817,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             Process.Start(ruta);
         }
+
+
     }
 }

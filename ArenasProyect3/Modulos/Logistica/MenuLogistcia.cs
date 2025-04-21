@@ -38,7 +38,6 @@ namespace ArenasProyect3.Modulos.Logistica
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int LParam);
 
-
         //EVENTO PARA TRAER LAS LIBRERIAS PARA PODER MOVER
         private void panelPrincipal_MouseDown(object sender, MouseEventArgs e)
         {
@@ -128,6 +127,22 @@ namespace ArenasProyect3.Modulos.Logistica
 
         //ABRIRI EL PANEL CON LOS DATOS DE LA TABLA AUDITORA
         private void btnAuditora_Click(object sender, EventArgs e)
+        {
+            //if (panelPrincipalComercial.Controls.Count == 1)
+            //{
+            //    panelPrincipalComercial.Controls.Clear();
+            //    AbrirFormularios(new MenuReportes());
+            //}
+            //else
+            //{
+            //    panelPrincipalComercial.Controls.Clear();
+            //    AbrirFormularios(new MenuReportes());
+            //}
+            //panelDatos.Visible = false;
+        }
+
+        //ABRIR EL PANEL PAR ADMINISTRAR LAS NOTIFICACIONES
+        private void btnAdministrarNotificaciones_Click(object sender, EventArgs e)
         {
             panelProhibicion.Visible = true;
         }
@@ -350,7 +365,6 @@ namespace ArenasProyect3.Modulos.Logistica
         {
             panelProhibicion.Visible = true;
         }
-
         //--------------------------------------------------------------------------------------------------------
 
         //CARGA DE METODOS - GENERAL----------------------------------------------------------------------------------
@@ -395,7 +409,39 @@ namespace ArenasProyect3.Modulos.Logistica
             Program.NombreUsuarioCompleto = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
         }
 
-        //REPORTE DE MENUS
+        ////REPORTE DE MENUS
+        //public void ReporteMenuComercial(DateTime desde, DateTime hasta)
+        //{
+        //    SqlConnection conp = new SqlConnection();
+        //    conp.ConnectionString = Conexion.ConexionMaestra.conexion;
+
+        //    SqlCommand cmdp = new SqlCommand();
+        //    cmdp = new SqlCommand("ReporteMenuComercial", conp);
+        //    cmdp.CommandType = CommandType.StoredProcedure;
+        //    cmdp.Parameters.AddWithValue("@desdeFecha", desde);
+        //    cmdp.Parameters.AddWithValue("@hastaFecha", hasta);
+
+
+        //    SqlParameter totalRequerimeintosPendientes = new SqlParameter("@totalRequerimeintosPendientes", 0); totalRequerimeintosPendientes.Direction = ParameterDirection.Output;
+        //    SqlParameter totalRequeSinLiqui = new SqlParameter("@totalRequeSinLiqui", 0); totalRequeSinLiqui.Direction = ParameterDirection.Output;
+        //    SqlParameter totalActasGenradas = new SqlParameter("@totalActasGeneradas", 0); totalActasGenradas.Direction = ParameterDirection.Output;
+        //    SqlParameter totalRequerimeintosAtrasados = new SqlParameter("@totalRequerimeintosAtrasados", 0); totalRequerimeintosAtrasados.Direction = ParameterDirection.Output;
+
+        //    cmdp.Parameters.Add(totalRequerimeintosPendientes);
+        //    cmdp.Parameters.Add(totalRequeSinLiqui);
+        //    cmdp.Parameters.Add(totalActasGenradas);
+        //    cmdp.Parameters.Add(totalRequerimeintosAtrasados);
+
+        //    conp.Open();
+        //    cmdp.ExecuteNonQuery();
+
+        //    lblReporteRequerimeintosPendietens.Text = cmdp.Parameters["@totalRequerimeintosPendientes"].Value.ToString();
+        //    lblReporteLiquidacionesPendientes.Text = cmdp.Parameters["@totalRequeSinLiqui"].Value.ToString();
+        //    lblReporteActasGeneradas.Text = cmdp.Parameters["@totalActasGeneradas"].Value.ToString();
+        //    lblReporteRequerimeintosAtrasados.Text = cmdp.Parameters["@totalRequerimeintosAtrasados"].Value.ToString();
+
+        //    conp.Close();
+        //}
 
 
         //CARGA DE LAS NOVEDADES Y VALIDACIÓN DEL TIEMPO DE APARICIÓN
@@ -537,5 +583,7 @@ namespace ArenasProyect3.Modulos.Logistica
         {
             btnReportes.BackColor = Color.White;
         }
+
+
     }
 }

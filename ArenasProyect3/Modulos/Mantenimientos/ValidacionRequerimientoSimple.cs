@@ -142,9 +142,9 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 datalistadoDetallesRequerimiento.Columns[1].Visible = false;
                 datalistadoDetallesRequerimiento.Columns[8].Visible = false;
                 //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
-                datalistadoDetallesRequerimiento.Columns[0].Width = 70;
+                datalistadoDetallesRequerimiento.Columns[0].Width = 50;
                 datalistadoDetallesRequerimiento.Columns[2].Width = 100;
-                datalistadoDetallesRequerimiento.Columns[3].Width = 250;
+                datalistadoDetallesRequerimiento.Columns[3].Width = 350;
                 datalistadoDetallesRequerimiento.Columns[4].Width = 100;
                 datalistadoDetallesRequerimiento.Columns[5].Width = 90;
                 datalistadoDetallesRequerimiento.Columns[6].Width = 90;
@@ -356,7 +356,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 if (datalistadoRequerimiento.SelectedCells[13].Value.ToString() == "ANULADO")
                 {
-                    string codigoActaReporte = datalistadoRequerimiento.Rows[datalistadoRequerimiento.CurrentRow.Index].Cells[1].Value.ToString();
+                    MessageBox.Show("El requerimiento se encuentra anulado, no se puede visualizar el requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {

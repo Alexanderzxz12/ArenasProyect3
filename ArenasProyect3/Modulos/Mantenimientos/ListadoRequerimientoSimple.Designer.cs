@@ -505,7 +505,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Seleccionar.DefaultCellStyle = dataGridViewCellStyle2;
             this.Seleccionar.HeaderText = "SEL";
             this.Seleccionar.Image = ((System.Drawing.Image)(resources.GetObject("Seleccionar.Image")));
@@ -515,7 +515,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.Seleccionar.ReadOnly = true;
             this.Seleccionar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Seleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Seleccionar.Width = 35;
+            this.Seleccionar.Width = 30;
             // 
             // panel3
             // 
@@ -632,7 +632,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Teal;
-            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox6.Location = new System.Drawing.Point(254, 64);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox6.Name = "pictureBox6";
@@ -655,7 +655,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // btnBusquedaAprobados
             // 
             this.btnBusquedaAprobados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnBusquedaAprobados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBusquedaAprobados.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnBusquedaAprobados.Location = new System.Drawing.Point(420, 64);
             this.btnBusquedaAprobados.Margin = new System.Windows.Forms.Padding(5);
             this.btnBusquedaAprobados.Name = "btnBusquedaAprobados";
@@ -667,7 +667,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox14
             // 
             this.pictureBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pictureBox14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox14.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox14.Location = new System.Drawing.Point(420, 26);
             this.pictureBox14.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox14.Name = "pictureBox14";
@@ -679,7 +679,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox7
             // 
             this.pictureBox7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox7.Location = new System.Drawing.Point(85, 26);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox7.Name = "pictureBox7";
@@ -724,7 +724,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox9
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox9.Location = new System.Drawing.Point(85, 64);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox9.Name = "pictureBox9";
@@ -736,7 +736,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox8
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox8.Location = new System.Drawing.Point(254, 26);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox8.Name = "pictureBox8";
@@ -756,10 +756,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnMostrarTodo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMostrarTodo.Location = new System.Drawing.Point(490, 83);
             this.btnMostrarTodo.Name = "btnMostrarTodo";
+            this.btnMostrarTodo.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.btnMostrarTodo.Size = new System.Drawing.Size(112, 32);
             this.btnMostrarTodo.TabIndex = 155;
-            this.btnMostrarTodo.Text = "Mostrar Todo";
-            this.btnMostrarTodo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMostrarTodo.Text = "      Mostrar Todo";
             this.btnMostrarTodo.UseVisualStyleBackColor = false;
             this.btnMostrarTodo.Click += new System.EventHandler(this.btnMostrarTodo_Click);
             // 
@@ -1486,7 +1486,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox17
             // 
             this.pictureBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pictureBox17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox17.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox17.Location = new System.Drawing.Point(475, 31);
             this.pictureBox17.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox17.Name = "pictureBox17";
@@ -1498,7 +1498,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox13
             // 
             this.pictureBox13.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox13.Location = new System.Drawing.Point(816, 31);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox13.Name = "pictureBox13";
@@ -1532,7 +1532,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox15
             // 
             this.pictureBox15.BackColor = System.Drawing.Color.Black;
-            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox15.Location = new System.Drawing.Point(653, 31);
             this.pictureBox15.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox15.Name = "pictureBox15";
@@ -2759,7 +2759,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoExcel.RowHeadersVisible = false;
             this.datalistadoExcel.RowHeadersWidth = 20;
             this.datalistadoExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoExcel.Size = new System.Drawing.Size(21, 66);
+            this.datalistadoExcel.Size = new System.Drawing.Size(21, 59);
             this.datalistadoExcel.TabIndex = 2041;
             // 
             // numeroRequerimientoSimple
@@ -3114,7 +3114,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.TextBox txtSolicitante;
-        private System.Windows.Forms.DataGridViewImageColumn Seleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn CÓDIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCIÓN;
@@ -3137,5 +3136,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.PictureBox btnInfoBusquedaProductos;
+        private System.Windows.Forms.DataGridViewImageColumn Seleccionar;
     }
 }

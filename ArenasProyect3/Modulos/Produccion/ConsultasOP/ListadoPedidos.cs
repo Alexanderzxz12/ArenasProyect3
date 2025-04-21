@@ -305,7 +305,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //VERIFICAR SI TODOS LOS ITEMS TIENNE OP
-        public void ValidarOPparaPedidos()
+        public void ValidarOPparaPedidos(int IdPedido, int totalItems)
         {
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
@@ -314,24 +314,55 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             SqlCommand cmd = new SqlCommand();
             cmd = new SqlCommand("BuscarOPporPedido", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idPedido", datalistadoProductos.SelectedCells[19].Value.ToString());
+            cmd.Parameters.AddWithValue("@idPedido", IdPedido);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             datalistadoBusquedaOPporPedido.DataSource = dt;
             con.Close();
 
-            int totalItems = Convert.ToInt32(datalistadoProductos.SelectedCells[20].Value.ToString());
 
             if (datalistadoBusquedaOPporPedido.RowCount == totalItems)
             {
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                cmd = new SqlCommand("CambioEstadoPedido", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idPedido", datalistadoProductos.SelectedCells[19].Value.ToString());
-                cmd.Parameters.AddWithValue("@estadoPedido",2);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                List<int> estados = new List<int>();
+
+                foreach (DataGridViewRow dgv in datalistadoBusquedaOPporPedido.Rows)
+                {
+                    estados.Add(Convert.ToInt32(dgv.Cells[2].Value.ToString()));
+                }
+
+                if (estados.Contains(4) && estados.Contains(1) || estados.Contains(4) && estados.Contains(2) || estados.Contains(4) && estados.Contains(3))
+                {
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 3);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else if (estados.Contains(4))
+                {
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 4);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else
+                {
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idPedido", IdPedido);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 2);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
             }
             else
             {
@@ -339,7 +370,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 con.Open();
                 cmd = new SqlCommand("CambioEstadoPedido", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idPedido", datalistadoProductos.SelectedCells[19].Value.ToString());
+                cmd.Parameters.AddWithValue("@idPedido", IdPedido);
                 cmd.Parameters.AddWithValue("@estadoPedido", 1);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -613,6 +644,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 //RECORRIDO DE MI LISTADO
                 for (var i = 0; i <= datalistadoTodasPedido.RowCount - 1; i++)
                 {
+                    ValidarOPparaPedidos(Convert.ToInt32(datalistadoTodasPedido.Rows[i].Cells[1].Value), Convert.ToInt32(datalistadoTodasPedido.Rows[i].Cells[9].Value));
+
                     if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "PENDIENTE")
                     {
                         datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
@@ -834,11 +867,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             if (datalistadoTodasPedido.CurrentRow != null)
             {
+                DateTime fechaPedido = Convert.ToDateTime(datalistadoTodasPedido.SelectedCells[4].Value);
+                string formatoFechaPedido = fechaPedido.ToString("yyyy-MM-dd");
+
                 if (datalistadoTodasPedido.SelectedCells[12].Value.ToString() == "ANULADO")
                 {
                     MessageBox.Show("El pedido se encuentra anulado.", "Validación del Sistema");
                 }
-                else if (Convert.ToDateTime(datalistadoTodasPedido.SelectedCells[4].Value) < DateTime.Now)
+                else if (Convert.ToDateTime(formatoFechaPedido) < DateTime.Now.Date)
                 {
                     MessageBox.Show("Se ha pasado la fecha de vencimiento del pedido.", "Validación del Sistema");
                 }
@@ -860,12 +896,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                     panelGenerarOP.Visible = true;
 
+                    
                     lblIdCliente.Text = datalistadoPedido.SelectedCells[3].Value.ToString();
                     lblIdUnidad.Text = datalistadoPedido.SelectedCells[7].Value.ToString();
                     lblIdSolicitante.Text = datalistadoPedido.SelectedCells[9].Value.ToString();
                     lblLuharEntrega.Text = datalistadoPedido.SelectedCells[14].Value.ToString();
 
                     lblCodigoPedido.Text = datalistadoPedido.SelectedCells[1].Value.ToString();
+                    lblIdPedido.Text = datalistadoPedido.SelectedCells[0].Value.ToString();
                     dtFechaTerminoOP.Value = Convert.ToDateTime(datalistadoPedido.SelectedCells[11].Value.ToString());
 
                     txtCliente.Text = datalistadoPedido.SelectedCells[4].Value.ToString();
@@ -1336,7 +1374,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             con.Close();
 
                             UltimaOP();
-                            ValidarOPparaPedidos();
+                            ValidarOPparaPedidos(Convert.ToInt32(datalistadoProductos.SelectedCells[19].Value.ToString()), Convert.ToInt32(datalistadoProductos.SelectedCells[20].Value.ToString()));
                             GenerarCodigoRequerimientoSimple();
                             MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
 
@@ -1511,7 +1549,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                             LimpiarCamposOrdenProduccionInconpleto();
 
-                            int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
+                            int idPedido = Convert.ToInt32(lblIdPedido.Text);
                             //RECARGA DE DATOS PARA TRAER LA NUEVA LISTA CON LOS NUEVOS DATOS
                             BuscarPedidoPorCodigo(idPedido);
                             BuscarPedidoPorCodigoDetalle(idPedido);

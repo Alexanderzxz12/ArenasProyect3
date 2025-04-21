@@ -30,6 +30,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -87,10 +89,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.datalistadoBusquedaOPporPedido = new System.Windows.Forms.DataGridView();
             this.datalistadoConteoOS = new System.Windows.Forms.DataGridView();
             this.datalistadoDetallesMaterialesFormulacionSemi = new System.Windows.Forms.DataGridView();
             this.datalistadoBusquedaColorUltimoProducto = new System.Windows.Forms.DataGridView();
@@ -275,6 +276,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.idDetallePedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel29 = new System.Windows.Forms.Panel();
             this.label134 = new System.Windows.Forms.Label();
+            this.lblIdPedido = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblCantidadMaterialesItemsSemi = new System.Windows.Forms.Label();
             this.datalistadoActividadesSemi = new System.Windows.Forms.DataGridView();
@@ -317,8 +319,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnAbiriOrdenCompra = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
-            this.datalistadoBusquedaOPporPedido = new System.Windows.Forms.DataGridView();
             this.panelMovimientoFrm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaOPporPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoConteoOS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoDetallesMaterialesFormulacionSemi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaColorUltimoProducto)).BeginInit();
@@ -370,7 +372,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaOPporPedido)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -410,6 +411,43 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.label6.TabIndex = 2;
             this.label6.Text = "PEDIDO";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // datalistadoBusquedaOPporPedido
+            // 
+            this.datalistadoBusquedaOPporPedido.AllowUserToAddRows = false;
+            this.datalistadoBusquedaOPporPedido.AllowUserToDeleteRows = false;
+            this.datalistadoBusquedaOPporPedido.AllowUserToOrderColumns = true;
+            this.datalistadoBusquedaOPporPedido.AllowUserToResizeColumns = false;
+            this.datalistadoBusquedaOPporPedido.AllowUserToResizeRows = false;
+            this.datalistadoBusquedaOPporPedido.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoBusquedaOPporPedido.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadoBusquedaOPporPedido.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaOPporPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.datalistadoBusquedaOPporPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaOPporPedido.DefaultCellStyle = dataGridViewCellStyle2;
+            this.datalistadoBusquedaOPporPedido.Location = new System.Drawing.Point(71, 0);
+            this.datalistadoBusquedaOPporPedido.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoBusquedaOPporPedido.Name = "datalistadoBusquedaOPporPedido";
+            this.datalistadoBusquedaOPporPedido.ReadOnly = true;
+            this.datalistadoBusquedaOPporPedido.RowHeadersVisible = false;
+            this.datalistadoBusquedaOPporPedido.RowHeadersWidth = 20;
+            this.datalistadoBusquedaOPporPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoBusquedaOPporPedido.Size = new System.Drawing.Size(10, 34);
+            this.datalistadoBusquedaOPporPedido.TabIndex = 2040;
             // 
             // datalistadoConteoOS
             // 
@@ -2862,6 +2900,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // 
             this.panel29.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel29.Controls.Add(this.label134);
+            this.panel29.Controls.Add(this.lblIdPedido);
             this.panel29.Controls.Add(this.panel3);
             this.panel29.Controls.Add(this.datalistadoCargarCantidadRequerimeintoSimple);
             this.panel29.Controls.Add(this.pictureBox39);
@@ -2884,6 +2923,17 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.label134.TabIndex = 174;
             this.label134.Text = "GENERAR ORDEN PRODUCCIÓN";
             this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblIdPedido
+            // 
+            this.lblIdPedido.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdPedido.Location = new System.Drawing.Point(141, 2);
+            this.lblIdPedido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIdPedido.Name = "lblIdPedido";
+            this.lblIdPedido.Size = new System.Drawing.Size(10, 18);
+            this.lblIdPedido.TabIndex = 2069;
+            this.lblIdPedido.Text = "2025114524";
+            this.lblIdPedido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
@@ -3389,43 +3439,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.label45.TabIndex = 2031;
             this.label45.Text = "PDF O/C";
             // 
-            // datalistadoBusquedaOPporPedido
-            // 
-            this.datalistadoBusquedaOPporPedido.AllowUserToAddRows = false;
-            this.datalistadoBusquedaOPporPedido.AllowUserToDeleteRows = false;
-            this.datalistadoBusquedaOPporPedido.AllowUserToOrderColumns = true;
-            this.datalistadoBusquedaOPporPedido.AllowUserToResizeColumns = false;
-            this.datalistadoBusquedaOPporPedido.AllowUserToResizeRows = false;
-            this.datalistadoBusquedaOPporPedido.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.datalistadoBusquedaOPporPedido.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.datalistadoBusquedaOPporPedido.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaOPporPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.datalistadoBusquedaOPporPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaOPporPedido.DefaultCellStyle = dataGridViewCellStyle2;
-            this.datalistadoBusquedaOPporPedido.Location = new System.Drawing.Point(71, 0);
-            this.datalistadoBusquedaOPporPedido.Margin = new System.Windows.Forms.Padding(4);
-            this.datalistadoBusquedaOPporPedido.Name = "datalistadoBusquedaOPporPedido";
-            this.datalistadoBusquedaOPporPedido.ReadOnly = true;
-            this.datalistadoBusquedaOPporPedido.RowHeadersVisible = false;
-            this.datalistadoBusquedaOPporPedido.RowHeadersWidth = 20;
-            this.datalistadoBusquedaOPporPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoBusquedaOPporPedido.Size = new System.Drawing.Size(10, 34);
-            this.datalistadoBusquedaOPporPedido.TabIndex = 2040;
-            // 
             // ListadoPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3462,6 +3475,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.Text = "*";
             this.Load += new System.EventHandler(this.ListadoPedidos_Load);
             this.panelMovimientoFrm.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaOPporPedido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoConteoOS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoDetallesMaterialesFormulacionSemi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaColorUltimoProducto)).EndInit();
@@ -3518,7 +3532,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaOPporPedido)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3755,5 +3768,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.DataGridView datalistadoBusquedaOPporPedido;
+        private System.Windows.Forms.Label lblIdPedido;
     }
 }
