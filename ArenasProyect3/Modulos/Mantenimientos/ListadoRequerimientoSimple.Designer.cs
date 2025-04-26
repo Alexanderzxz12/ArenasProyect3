@@ -1033,7 +1033,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelBuscarProductos.Controls.Add(this.txtBusquedaProducto);
             this.panelBuscarProductos.Controls.Add(this.label14);
             this.panelBuscarProductos.Controls.Add(this.panel9);
-            this.panelBuscarProductos.Location = new System.Drawing.Point(39, 54);
+            this.panelBuscarProductos.Location = new System.Drawing.Point(1132, 594);
             this.panelBuscarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.panelBuscarProductos.Name = "panelBuscarProductos";
             this.panelBuscarProductos.Size = new System.Drawing.Size(1094, 528);
@@ -1416,7 +1416,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelDetallesRequerimiento.Controls.Add(this.label24);
             this.panelDetallesRequerimiento.Controls.Add(this.txtCodigoRequerimiento);
             this.panelDetallesRequerimiento.Controls.Add(this.panel6);
-            this.panelDetallesRequerimiento.Location = new System.Drawing.Point(130, 132);
+            this.panelDetallesRequerimiento.Location = new System.Drawing.Point(950, 598);
             this.panelDetallesRequerimiento.Margin = new System.Windows.Forms.Padding(4);
             this.panelDetallesRequerimiento.Name = "panelDetallesRequerimiento";
             this.panelDetallesRequerimiento.Size = new System.Drawing.Size(912, 373);
@@ -1732,7 +1732,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panleAnulacion.Controls.Add(this.label57);
             this.panleAnulacion.Controls.Add(this.label58);
             this.panleAnulacion.Controls.Add(this.panel4);
-            this.panleAnulacion.Location = new System.Drawing.Point(326, 195);
+            this.panleAnulacion.Location = new System.Drawing.Point(875, 612);
             this.panleAnulacion.Margin = new System.Windows.Forms.Padding(4);
             this.panleAnulacion.Name = "panleAnulacion";
             this.panleAnulacion.Size = new System.Drawing.Size(521, 246);
@@ -1915,7 +1915,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelEditarRequerimiento.Controls.Add(this.label46);
             this.panelEditarRequerimiento.Controls.Add(this.txtSolicitante);
             this.panelEditarRequerimiento.Controls.Add(this.groupBox3);
-            this.panelEditarRequerimiento.Location = new System.Drawing.Point(127, 27);
+            this.panelEditarRequerimiento.Location = new System.Drawing.Point(981, 598);
             this.panelEditarRequerimiento.Margin = new System.Windows.Forms.Padding(4);
             this.panelEditarRequerimiento.Name = "panelEditarRequerimiento";
             this.panelEditarRequerimiento.Size = new System.Drawing.Size(918, 600);

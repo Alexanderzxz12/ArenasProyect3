@@ -772,6 +772,28 @@ namespace ArenasProyect3.Modulos.Logistica.Compras
             }
         }
 
+        //SELECCION DEL PDF GENERADO CON SUS RESPECTIVAS FIRMAS, INCLUIDO LA JEFATURA
+        private void datalistadoRequerimiento_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewColumn currentColumn = datalistadoRequerimiento.Columns[e.ColumnIndex];
+
+            if (currentColumn.Name == "btnGenerarPdf")
+            {
+                if (datalistadoRequerimiento.SelectedCells[13].Value.ToString() == "ANULADO")
+                {
+                    MessageBox.Show("El requerimiento se encuentra anulado, no se puede visualizar el requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    string codigoReporte = datalistadoRequerimiento.Rows[datalistadoRequerimiento.CurrentRow.Index].Cells[1].Value.ToString();
+                    Visualizadores.VisualizarRequerimientoSimple frm = new Visualizadores.VisualizarRequerimientoSimple();
+                    frm.lblCodigo.Text = codigoReporte;
+
+                    frm.Show();
+                }
+            }
+        }
+
         //MOSTRAR LA POSIBILIDAD DE ELEJIR LAS FECHAS SEGÚN EL CAMPO SEELCCIOANDO
         private void datalistadoDetalleOC_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1190,136 +1212,172 @@ namespace ArenasProyect3.Modulos.Logistica.Compras
                             DialogResult boton = MessageBox.Show("¿Realmente desea guardar esta nueva orden de compra?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                             if (boton == DialogResult.OK)
                             {
-                                SqlConnection con = new SqlConnection();
-                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con.Open();
-                                SqlCommand cmd = new SqlCommand();
-                                cmd = new SqlCommand("InsertarOrdenCompra", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-                                //INGRESO - PARTE GENERAL DEL REQUERIMIENTO SIMPLE
-                                GenerarCodigoRequerimientoSimple();
-                                cmd.Parameters.AddWithValue("@codigoOrdenCompra", codigoOrdenCOmpra);
-                                cmd.Parameters.AddWithValue("@idRequerimiento1", Convert.ToInt32(lblCodigoReuqe1.Text));
-                                cmd.Parameters.AddWithValue("@idRequerimiento2", Convert.ToInt32(lblCodigoReuqe2.Text));
-                                cmd.Parameters.AddWithValue("@idRequerimiento3", Convert.ToInt32(lblCodigoReuqe3.Text));
-                                cmd.Parameters.AddWithValue("@idProveedor", Convert.ToInt32(lblIdProveedor.Text));
-                                cmd.Parameters.AddWithValue("@idContactoProveedor", cboContacto.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idBancoProveedor", cboTipoVanco.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idTipoOrdenCompra", cboTipoOC.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idFormaPago", cboFormaPago.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idCentroCostos", cboCentreoCostos.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idTipoMoneda", cboMoneda.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idLugarEntrega", 1);
-                                cmd.Parameters.AddWithValue("@fechaOrdenCompra", DateTime.Now);
-                                cmd.Parameters.AddWithValue("@fechaEstimada", dataTimeFechaEstimada.Value);
-                                cmd.Parameters.AddWithValue("@fechaRequerimientoMasAntiguo", dataTimeFechaRequerimiento.Value);
-                                cmd.Parameters.AddWithValue("@fechaRequerimeintoEntregaMasProximo", dataTimeFechaEntrega.Value);
-                                cmd.Parameters.AddWithValue("@codigoCotizacion", txtCotizacionProveedor.Text);
+                                bool sinFecha = false;
 
-                                if (txtFileCotizacion.Text != "")
-                                {
-                                    string rutaOld1 = txtFileCotizacion.Text;
-                                    string name = System.IO.Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
-                                    string RutaNew1 = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Logística\Ordenes de Compra\" + name + ".pdf";
-                                    File.Copy(rutaOld1, RutaNew1);
-                                    cmd.Parameters.AddWithValue("@FileCotizacion", RutaNew1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@FileCotizacion", "");
-                                }
-
-                                cmd.Parameters.AddWithValue("@autorizacion", txtAutorizadoPor.Text);
-                                cmd.Parameters.AddWithValue("@generacion", txtGeneradoPor.Text);
-                                cmd.Parameters.AddWithValue("@observaciones", txtObservacionesOC.Text);
-                                cmd.Parameters.AddWithValue("@subtotal", txtSubTotalOC.Text);
-                                cmd.Parameters.AddWithValue("@descuento", txtDescuentoTotal.Text);
-                                cmd.Parameters.AddWithValue("@flete", txtFlete.Text);
-                                cmd.Parameters.AddWithValue("@igv", txtIGV.Text);
-                                cmd.Parameters.AddWithValue("@total", txtTotalOC.Text);
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-
-                                //VARIABLE PARA CONTAR LA CANTIDAD DE ITEMS QUE HAY
-                                int contador = 1;
-                                //INGRESO DE LOS DETALLES DE LA ORDEN DE COMPRA CON UN FOREACH
+                                //VALIDAR SI SE INGRESARON FECHAS
                                 foreach (DataGridViewRow row in datalistadoDetalleOC.Rows)
                                 {
-                                    //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
+                                    DateTime fechaInicio = Convert.ToDateTime(row.Cells["columFechaEstimada"].Value);
+
+                                    if (fechaInicio == null || fechaInicio == Convert.ToDateTime("1/01/0001 00:00:00"))
+                                    {
+                                        sinFecha = true;
+                                        MessageBox.Show("Debe ingresar la fecha correspondiente a la entrega.", "Validación del Sistema");
+                                        return;
+                                    }
+                                }
+
+                                try
+                                {
+                                    SqlConnection con = new SqlConnection();
+                                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
                                     con.Open();
-                                    cmd = new SqlCommand("InsertarOrdenCompra_DetalleProductos", con);
+                                    SqlCommand cmd = new SqlCommand();
+                                    cmd = new SqlCommand("InsertarOrdenCompra", con);
                                     cmd.CommandType = CommandType.StoredProcedure;
-                                    cmd.Parameters.AddWithValue("@atendido", 0);
-                                    cmd.Parameters.AddWithValue("@item", contador);
-                                    cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[0].Value));
-                                    cmd.Parameters.AddWithValue("@cantidad", Convert.ToString(row.Cells[5].Value));
-                                    cmd.Parameters.AddWithValue("@precio", Convert.ToString(row.Cells[6].Value));
-                                    cmd.Parameters.AddWithValue("@descuento", Convert.ToString(row.Cells[7].Value));
-                                    cmd.Parameters.AddWithValue("@total", Convert.ToString(row.Cells[8].Value));
-                                    cmd.Parameters.AddWithValue("@fechaEstimada", Convert.ToString(row.Cells[9].Value));
-                                    cmd.Parameters.AddWithValue("@descripcionProveedor", Convert.ToString(row.Cells[10].Value));
+                                    //INGRESO - PARTE GENERAL DEL REQUERIMIENTO SIMPLE
+                                    GenerarCodigoRequerimientoSimple();
+                                    cmd.Parameters.AddWithValue("@codigoOrdenCompra", codigoOrdenCOmpra);
+                                    cmd.Parameters.AddWithValue("@idRequerimiento1", Convert.ToInt32(lblCodigoReuqe1.Text));
+                                    cmd.Parameters.AddWithValue("@idRequerimiento2", Convert.ToInt32(lblCodigoReuqe2.Text));
+                                    cmd.Parameters.AddWithValue("@idRequerimiento3", Convert.ToInt32(lblCodigoReuqe3.Text));
+                                    cmd.Parameters.AddWithValue("@idProveedor", Convert.ToInt32(lblIdProveedor.Text));
+                                    cmd.Parameters.AddWithValue("@idContactoProveedor", cboContacto.SelectedValue.ToString());
+                                    cmd.Parameters.AddWithValue("@idBancoProveedor", cboTipoVanco.SelectedValue.ToString());
+                                    cmd.Parameters.AddWithValue("@idTipoOrdenCompra", cboTipoOC.SelectedValue.ToString());
+                                    cmd.Parameters.AddWithValue("@idFormaPago", cboFormaPago.SelectedValue.ToString());
+                                    cmd.Parameters.AddWithValue("@idCentroCostos", cboCentreoCostos.SelectedValue.ToString());
+                                    cmd.Parameters.AddWithValue("@idTipoMoneda", cboMoneda.SelectedValue.ToString());
+                                    cmd.Parameters.AddWithValue("@idLugarEntrega", 1);
+                                    cmd.Parameters.AddWithValue("@fechaOrdenCompra", DateTime.Now);
+                                    cmd.Parameters.AddWithValue("@fechaEstimada", dataTimeFechaEstimada.Value);
+                                    cmd.Parameters.AddWithValue("@fechaRequerimientoMasAntiguo", dataTimeFechaRequerimiento.Value);
+                                    cmd.Parameters.AddWithValue("@fechaRequerimeintoEntregaMasProximo", dataTimeFechaEntrega.Value);
+                                    cmd.Parameters.AddWithValue("@codigoCotizacion", txtCotizacionProveedor.Text);
+
+                                    if (txtFileCotizacion.Text != "")
+                                    {
+                                        string rutaOld1 = txtFileCotizacion.Text;
+                                        string name = System.IO.Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
+                                        string RutaNew1 = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Logística\Ordenes de Compra\" + name + ".pdf";
+                                        File.Copy(rutaOld1, RutaNew1);
+                                        cmd.Parameters.AddWithValue("@FileCotizacion", RutaNew1);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("@FileCotizacion", "");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("@autorizacion", txtAutorizadoPor.Text);
+                                    cmd.Parameters.AddWithValue("@generacion", txtGeneradoPor.Text);
+                                    cmd.Parameters.AddWithValue("@observaciones", txtObservacionesOC.Text);
+                                    cmd.Parameters.AddWithValue("@subtotal", txtSubTotalOC.Text);
+                                    cmd.Parameters.AddWithValue("@descuento", txtDescuentoTotal.Text);
+                                    cmd.Parameters.AddWithValue("@flete", txtFlete.Text);
+                                    cmd.Parameters.AddWithValue("@igv", txtIGV.Text);
+                                    cmd.Parameters.AddWithValue("@total", txtTotalOC.Text);
                                     cmd.ExecuteNonQuery();
                                     con.Close();
 
-                                    contador++;
+                                    //VARIABLE PARA CONTAR LA CANTIDAD DE ITEMS QUE HAY
+                                    int contador = 1;
+                                    //INGRESO DE LOS DETALLES DE LA ORDEN DE COMPRA CON UN FOREACH
+                                    foreach (DataGridViewRow row in datalistadoDetalleOC.Rows)
+                                    {
+                                        //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
+                                        con.Open();
+                                        cmd = new SqlCommand("InsertarOrdenCompra_DetalleProductos", con);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+                                        cmd.Parameters.AddWithValue("@atendido", 0);
+                                        cmd.Parameters.AddWithValue("@item", contador);
+                                        cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[0].Value));
+                                        cmd.Parameters.AddWithValue("@cantidad", Convert.ToString(row.Cells[5].Value));
+                                        cmd.Parameters.AddWithValue("@precio", Convert.ToString(row.Cells[6].Value));
+                                        cmd.Parameters.AddWithValue("@descuento", Convert.ToString(row.Cells[7].Value));
+                                        cmd.Parameters.AddWithValue("@total", Convert.ToString(row.Cells[8].Value));
+                                        cmd.Parameters.AddWithValue("@fechaEstimada", Convert.ToString(row.Cells[9].Value));
+                                        cmd.Parameters.AddWithValue("@descripcionProveedor", Convert.ToString(row.Cells[10].Value));
+                                        cmd.ExecuteNonQuery();
+                                        con.Close();
+
+                                        contador++;
+                                    }
+
+                                    MessageBox.Show("Se ingresó la orden de compra correctamente.", "Validación del Sistema");
+
+                                    datalistadoDetalleOC.Rows.Clear();
+                                    txtSubTotalOC.Text = "";
+                                    txtObservacionesOC.Text = "";
+                                    txtDescuentoTotal.Text = "";
+                                    txtIGV.Text = "";
+                                    txtTotalOC.Text = "";
+                                    txtNombrewProveedor.Text = "";
+                                    txtCodigoProveedor.Text = "";
+                                    txtRuc.Text = "";
+                                    cboNumeroCuenta.Text = "";
+                                    txtFileCotizacion.Text = "";
+                                    txtCotizacionProveedor.Text = "";
+                                    cboTipoVanco.DataSource = null;
+                                    cboContacto.DataSource = null;
+                                    panelNuevaOC.Visible = false;
+
+                                    //CAMBIO DE ESTADO DE DEL REQUEIRMIENTO SIMPLE - ESTADO OC Y ESTADO REQUE - 1
+                                    SqlConnection con2 = new SqlConnection();
+                                    SqlCommand cmd2 = new SqlCommand();
+                                    con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                    con2.Open();
+                                    cmd2 = new SqlCommand("CambioEstadoRequerimientoSimple_JefaturaOC", con2);
+                                    cmd2.CommandType = CommandType.StoredProcedure;
+                                    cmd2.Parameters.AddWithValue("@idRequerimientoSimple", lblCodigoReuqe1.Text);
+                                    cmd2.ExecuteNonQuery();
+                                    con2.Close();
+
+                                    //CAMBIO DE ESTADO DE DEL REQUEIRMIENTO SIMPLE - ESTADO OC Y ESTADO REQUE - 2
+                                    SqlConnection con3 = new SqlConnection();
+                                    SqlCommand cmd3 = new SqlCommand();
+                                    con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                    con3.Open();
+                                    cmd3 = new SqlCommand("CambioEstadoRequerimientoSimple_JefaturaOC", con3);
+                                    cmd3.CommandType = CommandType.StoredProcedure;
+                                    cmd3.Parameters.AddWithValue("@idRequerimientoSimple", lblCodigoReuqe2.Text);
+                                    cmd3.ExecuteNonQuery();
+                                    con3.Close();
+
+                                    //CAMBIO DE ESTADO DE DEL REQUEIRMIENTO SIMPLE - ESTADO OC Y ESTADO REQUE - 3
+                                    SqlConnection con4 = new SqlConnection();
+                                    SqlCommand cmd4 = new SqlCommand();
+                                    con4.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                    con4.Open();
+                                    cmd4 = new SqlCommand("CambioEstadoRequerimientoSimple_JefaturaOC", con4);
+                                    cmd4.CommandType = CommandType.StoredProcedure;
+                                    cmd4.Parameters.AddWithValue("@idRequerimientoSimple", lblCodigoReuqe3.Text);
+                                    cmd4.ExecuteNonQuery();
+                                    con4.Close();
+
+                                    MostrarRequerimientoPorFecha(DesdeFecha.Value, HastaFecha.Value);
                                 }
-
-                                MessageBox.Show("Se ingresó la orden de compra correctamente.", "Validación del Sistema");
-
-                                datalistadoDetalleOC.Rows.Clear();
-                                txtSubTotalOC.Text = "";
-                                txtObservacionesOC.Text = "";
-                                txtDescuentoTotal.Text = "";
-                                txtIGV.Text = "";
-                                txtTotalOC.Text = "";
-                                txtNombrewProveedor.Text = "";
-                                txtCodigoProveedor.Text = "";
-                                txtRuc.Text = "";
-                                cboNumeroCuenta.Text = "";
-                                txtFileCotizacion.Text = "";
-                                txtCotizacionProveedor.Text = "";
-                                cboTipoVanco.DataSource = null;
-                                cboContacto.DataSource = null;
-                                panelNuevaOC.Visible = false;
-
-                                //CAMBIO DE ESTADO DE DEL REQUEIRMIENTO SIMPLE - ESTADO OC Y ESTADO REQUE - 1
-                                SqlConnection con2 = new SqlConnection();
-                                SqlCommand cmd2 = new SqlCommand();
-                                con2.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con2.Open();
-                                cmd2 = new SqlCommand("CambioEstadoRequerimientoSimple_JefaturaOC", con2);
-                                cmd2.CommandType = CommandType.StoredProcedure;
-                                cmd2.Parameters.AddWithValue("@idRequerimientoSimple", lblCodigoReuqe1.Text);
-                                cmd2.ExecuteNonQuery();
-                                con2.Close();
-
-                                //CAMBIO DE ESTADO DE DEL REQUEIRMIENTO SIMPLE - ESTADO OC Y ESTADO REQUE - 2
-                                SqlConnection con3 = new SqlConnection();
-                                SqlCommand cmd3 = new SqlCommand();
-                                con3.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con3.Open();
-                                cmd3 = new SqlCommand("CambioEstadoRequerimientoSimple_JefaturaOC", con3);
-                                cmd3.CommandType = CommandType.StoredProcedure;
-                                cmd3.Parameters.AddWithValue("@idRequerimientoSimple", lblCodigoReuqe2.Text);
-                                cmd3.ExecuteNonQuery();
-                                con3.Close();
-
-                                //CAMBIO DE ESTADO DE DEL REQUEIRMIENTO SIMPLE - ESTADO OC Y ESTADO REQUE - 3
-                                SqlConnection con4 = new SqlConnection();
-                                SqlCommand cmd4 = new SqlCommand();
-                                con4.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con4.Open();
-                                cmd4 = new SqlCommand("CambioEstadoRequerimientoSimple_JefaturaOC", con4);
-                                cmd4.CommandType = CommandType.StoredProcedure;
-                                cmd4.Parameters.AddWithValue("@idRequerimientoSimple", lblCodigoReuqe3.Text);
-                                cmd4.ExecuteNonQuery();
-                                con4.Close();
-
-                                MostrarRequerimientoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
                             }
                         }
                     }
                 }
+            }
+        }
+
+        //BOTON PARA ABRIR LA VENTANA DE CARGA PARA EL DOCUMENTO 
+        private void btnCargarCotizacion_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtFileCotizacion.Text = openFileDialog1.FileName;
             }
         }
 
@@ -1469,22 +1527,8 @@ namespace ArenasProyect3.Modulos.Logistica.Compras
             }
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de Requerimento Simple.xlsx");
+            sl.SaveAs(desktopPath + @"\Reporte de Requerimiento Simple.xlsx");
             MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
-        }
-
-        //BOTON PARA ABRIR LA VENTANA DE CARGA PARA EL DOCUMENTO 
-        private void btnCargarCotizacion_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txtFileCotizacion.Text = openFileDialog1.FileName;
-            }
         }
     }
 }

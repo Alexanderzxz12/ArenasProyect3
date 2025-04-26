@@ -24,9 +24,9 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
-    <MinimumRequiredVersion>1.0.0.65</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.69</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>68</ApplicationRevision>
+    <ApplicationRevision>70</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -532,6 +532,12 @@
       <DependentUpon>InformeNotaSalida.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\InformeOrdenCompra.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeOrdenCompra.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\InformeOrdenProduccion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -627,6 +633,12 @@
     </Compile>
     <Compile Include="Visualizadores\VisualizarNotaSalida.Designer.cs">
       <DependentUpon>VisualizarNotaSalida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarOrdenCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarOrdenCompra.Designer.cs">
+      <DependentUpon>VisualizarOrdenCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="Visualizadores\VisualizarOrdenProduccion.cs">
       <SubType>Form</SubType>
@@ -753,6 +765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Almacen\TipoCambio.resx">
       <DependentUpon>TipoCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Logistica\Compras\ListadoOrdenesCompra.resx">
+      <DependentUpon>ListadoOrdenesCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Compras\ListadoRequerimientosSimples.resx">
       <DependentUpon>ListadoRequerimientosSimples.cs</DependentUpon>
@@ -896,6 +911,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeNotaSalida.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InformeOrdenCompra.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeOrdenCompra.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\InformeOrdenProduccion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeOrdenProduccion.cs</LastGenOutput>
@@ -950,6 +969,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarNotaSalida.resx">
       <DependentUpon>VisualizarNotaSalida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visualizadores\VisualizarOrdenCompra.resx">
+      <DependentUpon>VisualizarOrdenCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarOrdenProduccion.resx">
       <DependentUpon>VisualizarOrdenProduccion.cs</DependentUpon>

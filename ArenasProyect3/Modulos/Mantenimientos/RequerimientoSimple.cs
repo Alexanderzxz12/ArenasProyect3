@@ -373,9 +373,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             datalistadoBusquedaProducto.Columns[1].ReadOnly = true;
             datalistadoBusquedaProducto.Columns[2].ReadOnly = true;
             datalistadoBusquedaProducto.Columns[3].ReadOnly = true;
-            datalistadoBusquedaProducto.Columns[8].ReadOnly = true;
+            datalistadoBusquedaProducto.Columns[4].ReadOnly = true;
             datalistadoBusquedaProducto.Columns[9].ReadOnly = true;
             datalistadoBusquedaProducto.Columns[10].ReadOnly = true;
+            datalistadoBusquedaProducto.Columns[11].ReadOnly = true;
         }
 
         //CAMBIAR EL CRITERIO DE BÚSQUEDA
