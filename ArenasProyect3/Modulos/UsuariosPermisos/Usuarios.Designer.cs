@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.pbCarga = new System.Windows.Forms.PictureBox();
+            this.btnDescargarImagen = new System.Windows.Forms.PictureBox();
             this.btnLimpiarRuta = new System.Windows.Forms.PictureBox();
             this.btnCargarImagen = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -134,6 +136,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarga)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDescargarImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLimpiarRuta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCargarImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icono)).BeginInit();
@@ -149,7 +152,7 @@
             this.panelPrincipal.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelPrincipal.Location = new System.Drawing.Point(0, 0);
             this.panelPrincipal.Name = "panelPrincipal";
-            this.panelPrincipal.Size = new System.Drawing.Size(886, 24);
+            this.panelPrincipal.Size = new System.Drawing.Size(886, 22);
             this.panelPrincipal.TabIndex = 3;
             this.panelPrincipal.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelPrincipal_MouseDown);
             // 
@@ -157,11 +160,11 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(35, 0);
+            this.label1.Location = new System.Drawing.Point(23, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 24);
+            this.label1.Size = new System.Drawing.Size(81, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "USUARIOS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -175,7 +178,7 @@
             this.btnCerrarUsuarios.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCerrarUsuarios.Location = new System.Drawing.Point(851, 0);
             this.btnCerrarUsuarios.Name = "btnCerrarUsuarios";
-            this.btnCerrarUsuarios.Size = new System.Drawing.Size(35, 24);
+            this.btnCerrarUsuarios.Size = new System.Drawing.Size(35, 22);
             this.btnCerrarUsuarios.TabIndex = 1;
             this.btnCerrarUsuarios.Text = "X";
             this.btnCerrarUsuarios.UseVisualStyleBackColor = true;
@@ -187,20 +190,21 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 24);
+            this.pictureBox1.Size = new System.Drawing.Size(23, 22);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.btnAgregar);
             this.panel2.Controls.Add(this.txtBuscar);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.menuStrip1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 24);
+            this.panel2.Location = new System.Drawing.Point(0, 22);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(886, 35);
             this.panel2.TabIndex = 6;
@@ -208,19 +212,20 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(737, 10);
+            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(748, 11);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(108, 16);
+            this.label9.Size = new System.Drawing.Size(86, 15);
             this.label9.TabIndex = 9;
             this.label9.Text = "Nuevo usuario";
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(851, 4);
+            this.btnAgregar.Location = new System.Drawing.Point(840, 5);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(28, 31);
+            this.btnAgregar.Size = new System.Drawing.Size(23, 25);
             this.btnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnAgregar.TabIndex = 0;
             this.btnAgregar.TabStop = false;
@@ -229,7 +234,7 @@
             // txtBuscar
             // 
             this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(302, 6);
+            this.txtBuscar.Location = new System.Drawing.Point(273, 6);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(333, 22);
             this.txtBuscar.TabIndex = 0;
@@ -238,10 +243,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 10);
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(24, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(284, 15);
+            this.label2.Size = new System.Drawing.Size(243, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Búsqueda de usuarios por nombre: o login:";
             // 
@@ -253,7 +258,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(638, 4);
+            this.menuStrip1.Location = new System.Drawing.Point(609, 3);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(48, 26);
@@ -271,14 +276,14 @@
             // 
             this.dataListado.AllowUserToAddRows = false;
             this.dataListado.AllowUserToResizeRows = false;
-            this.dataListado.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataListado.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataListado.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataListado.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataListado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataListado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -286,36 +291,40 @@
             this.dataListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eli});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataListado.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataListado.Dock = System.Windows.Forms.DockStyle.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataListado.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataListado.EnableHeadersVisualStyles = false;
-            this.dataListado.Location = new System.Drawing.Point(0, 59);
+            this.dataListado.Location = new System.Drawing.Point(6, 75);
+            this.dataListado.MultiSelect = false;
             this.dataListado.Name = "dataListado";
             this.dataListado.ReadOnly = true;
             this.dataListado.RowHeadersVisible = false;
             this.dataListado.RowHeadersWidth = 51;
             this.dataListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataListado.Size = new System.Drawing.Size(886, 455);
+            this.dataListado.Size = new System.Drawing.Size(874, 427);
             this.dataListado.TabIndex = 8;
             this.dataListado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListado_CellClick);
             this.dataListado.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListado_CellContentDoubleClick);
             // 
             // Eli
             // 
-            this.Eli.HeaderText = "";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.Eli.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Eli.HeaderText = "*";
             this.Eli.Image = ((System.Drawing.Image)(resources.GetObject("Eli.Image")));
             this.Eli.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Eli.MinimumWidth = 6;
             this.Eli.Name = "Eli";
             this.Eli.ReadOnly = true;
-            this.Eli.Width = 50;
+            this.Eli.Width = 25;
             // 
             // panel4
             // 
@@ -330,6 +339,7 @@
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel5.Controls.Add(this.panelIcono);
+            this.panel5.Controls.Add(this.btnDescargarImagen);
             this.panel5.Controls.Add(this.btnLimpiarRuta);
             this.panel5.Controls.Add(this.btnCargarImagen);
             this.panel5.Controls.Add(this.panel10);
@@ -605,6 +615,18 @@
             this.pbCarga.TabStop = false;
             this.pbCarga.Click += new System.EventHandler(this.pbCarga_Click);
             // 
+            // btnDescargarImagen
+            // 
+            this.btnDescargarImagen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDescargarImagen.Image = ((System.Drawing.Image)(resources.GetObject("btnDescargarImagen.Image")));
+            this.btnDescargarImagen.Location = new System.Drawing.Point(667, 182);
+            this.btnDescargarImagen.Name = "btnDescargarImagen";
+            this.btnDescargarImagen.Size = new System.Drawing.Size(26, 26);
+            this.btnDescargarImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnDescargarImagen.TabIndex = 1956;
+            this.btnDescargarImagen.TabStop = false;
+            this.btnDescargarImagen.Click += new System.EventHandler(this.btnDescargarImagen_Click);
+            // 
             // btnLimpiarRuta
             // 
             this.btnLimpiarRuta.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -774,14 +796,14 @@
             this.txtArea.FormattingEnabled = true;
             this.txtArea.Items.AddRange(new object[] {
             "Administrador",
-            "Ventas",
             "Comercial",
             "Contabilidad",
             "Calidad",
             "Procesos",
             "Logística",
             "Ingeniería",
-            "Producción"});
+            "Producción",
+            "Mantenimiento"});
             this.txtArea.Location = new System.Drawing.Point(159, 330);
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(308, 28);
@@ -1012,6 +1034,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarga)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDescargarImagen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLimpiarRuta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCargarImagen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icono)).EndInit();
@@ -1035,7 +1058,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.DataGridView dataListado;
-        private System.Windows.Forms.DataGridViewImageColumn Eli;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panelIcono;
@@ -1096,5 +1118,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.OpenFileDialog dlg;
         private System.Windows.Forms.OpenFileDialog dlgFirma;
+        private System.Windows.Forms.DataGridViewImageColumn Eli;
+        private System.Windows.Forms.PictureBox btnDescargarImagen;
     }
 }

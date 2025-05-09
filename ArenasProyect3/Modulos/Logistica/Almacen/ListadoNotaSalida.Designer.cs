@@ -47,6 +47,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -76,6 +77,8 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnExportar = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
             this.panelDetallesNotaSalida = new System.Windows.Forms.Panel();
+            this.lblRetrocederDetalleNotaSalida = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.btnSalirDetallesSalida = new System.Windows.Forms.Button();
             this.datalistadoDetallesNotaSalida = new System.Windows.Forms.DataGridView();
             this.label14 = new System.Windows.Forms.Label();
@@ -93,9 +96,6 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.almacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.lblRetrocederDetalleNotaSalida = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).BeginInit();
@@ -112,13 +112,13 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNotasSalida)).BeginInit();
             this.panelDetallesNotaSalida.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoDetallesNotaSalida)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -228,6 +228,24 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.groupBox2.TabIndex = 1947;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Búsqueda por";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.ForestGreen;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(515, 64);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(112, 32);
+            this.button1.TabIndex = 2060;
+            this.button1.Text = "      Mostrar Todo";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnMostrarTodo_Click);
             // 
             // pictureBox4
             // 
@@ -612,6 +630,31 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.panelDetallesNotaSalida.TabIndex = 2058;
             this.panelDetallesNotaSalida.Visible = false;
             // 
+            // lblRetrocederDetalleNotaSalida
+            // 
+            this.lblRetrocederDetalleNotaSalida.AutoSize = true;
+            this.lblRetrocederDetalleNotaSalida.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblRetrocederDetalleNotaSalida.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetrocederDetalleNotaSalida.Location = new System.Drawing.Point(755, 326);
+            this.lblRetrocederDetalleNotaSalida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRetrocederDetalleNotaSalida.Name = "lblRetrocederDetalleNotaSalida";
+            this.lblRetrocederDetalleNotaSalida.Size = new System.Drawing.Size(36, 14);
+            this.lblRetrocederDetalleNotaSalida.TabIndex = 2061;
+            this.lblRetrocederDetalleNotaSalida.Text = "SALIR";
+            this.lblRetrocederDetalleNotaSalida.Click += new System.EventHandler(this.lblRetrocederDetalleNotaSalida_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(265, 30);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(27, 21);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 2060;
+            this.pictureBox6.TabStop = false;
+            // 
             // btnSalirDetallesSalida
             // 
             this.btnSalirDetallesSalida.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -842,48 +885,6 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
             // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(265, 30);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(27, 21);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 2060;
-            this.pictureBox6.TabStop = false;
-            // 
-            // lblRetrocederDetalleNotaSalida
-            // 
-            this.lblRetrocederDetalleNotaSalida.AutoSize = true;
-            this.lblRetrocederDetalleNotaSalida.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblRetrocederDetalleNotaSalida.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetrocederDetalleNotaSalida.Location = new System.Drawing.Point(755, 326);
-            this.lblRetrocederDetalleNotaSalida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRetrocederDetalleNotaSalida.Name = "lblRetrocederDetalleNotaSalida";
-            this.lblRetrocederDetalleNotaSalida.Size = new System.Drawing.Size(36, 14);
-            this.lblRetrocederDetalleNotaSalida.TabIndex = 2061;
-            this.lblRetrocederDetalleNotaSalida.Text = "SALIR";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.ForestGreen;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(515, 64);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(112, 32);
-            this.button1.TabIndex = 2060;
-            this.button1.Text = "      Mostrar Todo";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.btnMostrarTodo_Click);
-            // 
             // ListadoNotaSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -928,13 +929,13 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNotasSalida)).EndInit();
             this.panelDetallesNotaSalida.ResumeLayout(false);
             this.panelDetallesNotaSalida.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoDetallesNotaSalida)).EndInit();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

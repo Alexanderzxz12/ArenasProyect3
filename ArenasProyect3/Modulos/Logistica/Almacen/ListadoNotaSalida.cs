@@ -263,6 +263,13 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             panelDetallesNotaSalida.Visible = false;
         }
 
+        //OCULTAR EL PANEL DE LOS DETALLES DE LA NOTA DE SALIDA
+        private void lblRetrocederDetalleNotaSalida_Click(object sender, EventArgs e)
+        {
+            //OCULTAR EL PANEL DE LOS DETALLES DE LA NOTA DE SALIDA
+            panelDetallesNotaSalida.Visible = false;
+        }
+
         //VISUALIZAR Y GENERAR PDF DE MI NOTA DE SALIDA
         private void btnVerNotaSalida_Click(object sender, EventArgs e)
         {

@@ -783,6 +783,7 @@
             // 
             // btnRegresarLineaTrabajo
             // 
+            this.btnRegresarLineaTrabajo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegresarLineaTrabajo.FlatAppearance.BorderSize = 0;
             this.btnRegresarLineaTrabajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresarLineaTrabajo.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarLineaTrabajo.Image")));
@@ -795,6 +796,7 @@
             // 
             // btnEliminarLineaTrabajo
             // 
+            this.btnEliminarLineaTrabajo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminarLineaTrabajo.FlatAppearance.BorderSize = 0;
             this.btnEliminarLineaTrabajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarLineaTrabajo.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarLineaTrabajo.Image")));
@@ -807,6 +809,7 @@
             // 
             // btnEditarLineaTrabajo
             // 
+            this.btnEditarLineaTrabajo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditarLineaTrabajo.FlatAppearance.BorderSize = 0;
             this.btnEditarLineaTrabajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarLineaTrabajo.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarLineaTrabajo.Image")));
@@ -819,6 +822,7 @@
             // 
             // btnGuardarLineaTrabajo
             // 
+            this.btnGuardarLineaTrabajo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardarLineaTrabajo.FlatAppearance.BorderSize = 0;
             this.btnGuardarLineaTrabajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarLineaTrabajo.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarLineaTrabajo.Image")));
@@ -1186,7 +1190,7 @@
             this.panelModificarActa.Controls.Add(this.label52);
             this.panelModificarActa.Controls.Add(this.label53);
             this.panelModificarActa.Controls.Add(this.panel8);
-            this.panelModificarActa.Location = new System.Drawing.Point(281, 21);
+            this.panelModificarActa.Location = new System.Drawing.Point(281, 22);
             this.panelModificarActa.Margin = new System.Windows.Forms.Padding(4);
             this.panelModificarActa.Name = "panelModificarActa";
             this.panelModificarActa.Size = new System.Drawing.Size(610, 603);
@@ -2184,7 +2188,7 @@
             this.panelNuevaLineaTrabajo.Controls.Add(this.label20);
             this.panelNuevaLineaTrabajo.Controls.Add(this.pictureBox15);
             this.panelNuevaLineaTrabajo.Controls.Add(this.panel4);
-            this.panelNuevaLineaTrabajo.Location = new System.Drawing.Point(259, 21);
+            this.panelNuevaLineaTrabajo.Location = new System.Drawing.Point(259, 23);
             this.panelNuevaLineaTrabajo.Margin = new System.Windows.Forms.Padding(4);
             this.panelNuevaLineaTrabajo.Name = "panelNuevaLineaTrabajo";
             this.panelNuevaLineaTrabajo.Size = new System.Drawing.Size(655, 590);
@@ -2193,6 +2197,7 @@
             // 
             // btnGuardarNuevaLineaTrabajo
             // 
+            this.btnGuardarNuevaLineaTrabajo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardarNuevaLineaTrabajo.FlatAppearance.BorderSize = 0;
             this.btnGuardarNuevaLineaTrabajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarNuevaLineaTrabajo.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarNuevaLineaTrabajo.Image")));
@@ -2205,6 +2210,7 @@
             // 
             // btnRegresarNuevaLineaTranajo
             // 
+            this.btnRegresarNuevaLineaTranajo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegresarNuevaLineaTranajo.FlatAppearance.BorderSize = 0;
             this.btnRegresarNuevaLineaTranajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresarNuevaLineaTranajo.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarNuevaLineaTranajo.Image")));
@@ -2467,6 +2473,7 @@
             // 
             // btnVisualizarImagen1
             // 
+            this.btnVisualizarImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVisualizarImagen1.FlatAppearance.BorderSize = 0;
             this.btnVisualizarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVisualizarImagen1.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarImagen1.Image")));
@@ -2479,6 +2486,7 @@
             // 
             // btnBorrarImagen1
             // 
+            this.btnBorrarImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrarImagen1.FlatAppearance.BorderSize = 0;
             this.btnBorrarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarImagen1.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarImagen1.Image")));
@@ -2491,6 +2499,7 @@
             // 
             // btnCargarImagen1
             // 
+            this.btnCargarImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCargarImagen1.FlatAppearance.BorderSize = 0;
             this.btnCargarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarImagen1.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen1.Image")));
@@ -2528,6 +2537,7 @@
             // 
             // btnVisualizarImagen2
             // 
+            this.btnVisualizarImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVisualizarImagen2.FlatAppearance.BorderSize = 0;
             this.btnVisualizarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVisualizarImagen2.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarImagen2.Image")));
@@ -2540,6 +2550,7 @@
             // 
             // btnBorrarImagen2
             // 
+            this.btnBorrarImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrarImagen2.FlatAppearance.BorderSize = 0;
             this.btnBorrarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarImagen2.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarImagen2.Image")));
@@ -2552,6 +2563,7 @@
             // 
             // btnCargarImagen2
             // 
+            this.btnCargarImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCargarImagen2.FlatAppearance.BorderSize = 0;
             this.btnCargarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarImagen2.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen2.Image")));
@@ -2600,6 +2612,7 @@
             // 
             // btnBorrarImagen3
             // 
+            this.btnBorrarImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrarImagen3.FlatAppearance.BorderSize = 0;
             this.btnBorrarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarImagen3.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarImagen3.Image")));
@@ -2612,6 +2625,7 @@
             // 
             // btnVisualizarImagen3
             // 
+            this.btnVisualizarImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVisualizarImagen3.FlatAppearance.BorderSize = 0;
             this.btnVisualizarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVisualizarImagen3.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarImagen3.Image")));
@@ -2624,6 +2638,7 @@
             // 
             // btnCargarImagen3
             // 
+            this.btnCargarImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCargarImagen3.FlatAppearance.BorderSize = 0;
             this.btnCargarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarImagen3.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen3.Image")));
@@ -2887,6 +2902,7 @@
             // 
             // btnModificarActa
             // 
+            this.btnModificarActa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnModificarActa.FlatAppearance.BorderSize = 0;
             this.btnModificarActa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarActa.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarActa.Image")));
@@ -2899,6 +2915,7 @@
             // 
             // btnVisualizarActa
             // 
+            this.btnVisualizarActa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVisualizarActa.FlatAppearance.BorderSize = 0;
             this.btnVisualizarActa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVisualizarActa.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarActa.Image")));
@@ -2911,6 +2928,7 @@
             // 
             // btnCulminarActa
             // 
+            this.btnCulminarActa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCulminarActa.FlatAppearance.BorderSize = 0;
             this.btnCulminarActa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCulminarActa.Image = ((System.Drawing.Image)(resources.GetObject("btnCulminarActa.Image")));

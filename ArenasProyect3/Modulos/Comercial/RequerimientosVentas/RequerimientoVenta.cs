@@ -754,25 +754,34 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //HABILITAR LA VENTANA DE NUEVO REQUERIMIENTO
         private void btnNuevoRequerimiento_Click(object sender, EventArgs e)
         {
-            //CARGA INICIAL DE LA VENTANA DE NUEVO REQUERIMIENTO
-            lblTituloRequerimiento.Text = "Nuevo Requerimiento";
-            panelNuevoRequerimiento.Visible = true;
-            cboBusquedaClientes.SelectedIndex = 0;
-            cboBusqeudaColaborador.SelectedIndex = 0;
-            //CARGA DE USUARIO LOGEADO AL LISTADO DE COLABORADORES
             CargarResponsables(cboResponsable);
             cboResponsable.SelectedValue = Program.IdUsuario;
-            string codigoColaborador = cboResponsable.SelectedValue.ToString();
-            string NombreColaborador = cboResponsable.Text;
-            datalistadoSeleccionColaborador.Rows.Add(new[] { codigoColaborador, NombreColaborador });
 
-            //CARGA DE COMBOS GENERAES NECESARIOS PARA EL NUEVO REQUERIMIENTO
-            CargarResponsables(cboResponsable);
-            CargarTipoMoneda(cboTipoMoneda);
-            CargarVehiculosReque(cboVehiculo);
+            if(cboResponsable.SelectedValue == null)
+            {
+                MessageBox.Show("Usted no esta autorizado para generar un requerimiento de viaje, por favor pedir más información a su jefatura inmediata.","Validación del Sistema");
+            }
+            else
+            {
+                //CARGA INICIAL DE LA VENTANA DE NUEVO REQUERIMIENTO
+                lblTituloRequerimiento.Text = "Nuevo Requerimiento";
+                panelNuevoRequerimiento.Visible = true;
+                cboBusquedaClientes.SelectedIndex = 0;
+                cboBusqeudaColaborador.SelectedIndex = 0;
+                //CARGA DE USUARIO LOGEADO AL LISTADO DE COLABORADORES
 
-            //BLOQUEO DEL LISTADO DE TODOS LOS REQUERIMEINTOS PARA EVITAR CRUCE DE INFORMACIÓN
-            datalistadoTodasRequerimientos.Enabled = false;
+                string codigoColaborador = cboResponsable.SelectedValue.ToString();
+                string NombreColaborador = cboResponsable.Text;
+                datalistadoSeleccionColaborador.Rows.Add(new[] { codigoColaborador, NombreColaborador });
+
+                //CARGA DE COMBOS GENERAES NECESARIOS PARA EL NUEVO REQUERIMIENTO
+                CargarResponsables(cboResponsable);
+                CargarTipoMoneda(cboTipoMoneda);
+                CargarVehiculosReque(cboVehiculo);
+
+                //BLOQUEO DEL LISTADO DE TODOS LOS REQUERIMEINTOS PARA EVITAR CRUCE DE INFORMACIÓN
+                datalistadoTodasRequerimientos.Enabled = false;
+            }
         }
 
         //HABILITAR LA VENTANA DE EDIDCION DEL REQUERIMIENTO

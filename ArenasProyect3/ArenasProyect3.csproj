@@ -264,6 +264,12 @@
     <Compile Include="Modulos\Logistica\Almacen\MenuAccionesAlmacen.Designer.cs">
       <DependentUpon>MenuAccionesAlmacen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Logistica\Almacen\NotaEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Logistica\Almacen\NotaEntrada.Designer.cs">
+      <DependentUpon>NotaEntrada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Logistica\Almacen\NotaSalida.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -759,6 +765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Almacen\MenuAccionesAlmacen.resx">
       <DependentUpon>MenuAccionesAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Logistica\Almacen\NotaEntrada.resx">
+      <DependentUpon>NotaEntrada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Almacen\NotaSalida.resx">
       <DependentUpon>NotaSalida.cs</DependentUpon>

@@ -487,5 +487,32 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
         {
             txtRutaFirma.Text = "";
         }
+
+        //FUNCION PARA DESCAARGAR LA IMAGEN MOSTRADA
+        private void btnDescargarImagen_Click(object sender, EventArgs e)
+        {
+            // Verificar si el PictureBox contiene una imagen
+            if (Icono.Image != null)
+            {
+                // Crear un cuadro de diálogo para guardar la imagen
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Archivos de Imagen|*.jpg;*.png;*.bmp",
+                    Title = "Guardar Imagen"
+                };
+
+                // Mostrar el cuadro de diálogo y verificar si el usuario seleccionó una ubicación
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Guardar la imagen en la ubicación seleccionada
+                    Icono.Image.Save(saveFileDialog.FileName);
+                    MessageBox.Show("¡Imagen guardada exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ninguna imagen para guardar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

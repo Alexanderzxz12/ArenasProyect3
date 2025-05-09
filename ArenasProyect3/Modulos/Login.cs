@@ -70,7 +70,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI NO EXISTE
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
                 panelValidacionLicencia.Visible = true;
                 imgValidacionCorrecta.Visible = false;
                 imgValidacionIncorrecta.Visible = true;
@@ -80,18 +80,25 @@ namespace ArenasProyect3.Modulos
         //FUNCION PARA CONSULTAR EL ESTADO DEL SISTEMA EN EL SERVIDOR - GENERAL
         public void CargarEstadoSitema()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdEstadoSistema, Descripcion, EstadoSistema FROM EstadoSistema WHERE IdEstadoSistema = (SELECT MAX(IdEstadoSistema) FROM EstadoSistema)", con);
-            da.Fill(dt);
-            datalistadoEstadoSistema.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdEstadoSistema, Descripcion, EstadoSistema FROM EstadoSistema WHERE IdEstadoSistema = (SELECT MAX(IdEstadoSistema) FROM EstadoSistema)", con);
+                da.Fill(dt);
+                datalistadoEstadoSistema.DataSource = dt;
+                con.Close();
 
-            //GUARDAR EL ESTADO EN UNA VARIABLE ESTADO
-            estadoSistema = datalistadoEstadoSistema.SelectedCells[2].Value.ToString();
+                //GUARDAR EL ESTADO EN UNA VARIABLE ESTADO
+                estadoSistema = datalistadoEstadoSistema.SelectedCells[2].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de conexión con el servidor de base de datos, no se encuentra conexión a internet o a la red. " + ex.Message,"Validación del Sistema", MessageBoxButtons.OK);
+            }
         }
 
         //ACCIONES DE SELECCIÓN DEL ÁREA CORRESPONDIENTE-------------------------------------------------------------
@@ -132,7 +139,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
 
@@ -173,7 +180,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
 
@@ -214,7 +221,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
 
@@ -255,7 +262,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
 
@@ -296,7 +303,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
 
@@ -337,7 +344,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
 
@@ -378,7 +385,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
 
@@ -431,7 +438,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
             }
         }
         //-------------------------------------------------------------------------------------------------------
@@ -784,13 +791,13 @@ namespace ArenasProyect3.Modulos
                 }
                 else
                 {
-                    MessageBox.Show("Ocurrio un error inesperado", "Ingreso al Sistema", MessageBoxButtons.OKCancel);
+                    MessageBox.Show("Ocurrio un error inesperado.", "Ingreso al Sistema", MessageBoxButtons.OKCancel);
                     txtPassword.Focus();
                 }
             }
             else if (txtPassword.Text == "")
             {
-                MessageBox.Show("Debe ingresar una contraseña, ingrese una contraseña válida", "Ingreso al Sistema", MessageBoxButtons.OKCancel);
+                MessageBox.Show("Debe ingresar una contraseña, ingrese una contraseña válida.", "Ingreso al Sistema", MessageBoxButtons.OKCancel);
                 txtPassword.Focus();
             }
             else
@@ -947,10 +954,6 @@ namespace ArenasProyect3.Modulos
             btnAdministrador.BackColor = Color.Black;
             lblLeyendaAdmin.BackColor = Color.Black;
         }
-
-
-
-
         //-----------------------------------------------------------------------------------------------
     }
 }

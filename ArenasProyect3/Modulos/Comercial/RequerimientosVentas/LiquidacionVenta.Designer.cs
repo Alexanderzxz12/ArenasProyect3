@@ -29,35 +29,35 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LiquidacionVenta));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle109 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle110 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle111 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle112 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle113 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle114 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle115 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle116 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.datalistadoCodigoActa = new System.Windows.Forms.DataGridView();
@@ -823,38 +823,38 @@
             this.datalistadoTodasLiquidacion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasLiquidacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasLiquidacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle88.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle88.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle88.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle88.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle88.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle88.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle88;
             this.datalistadoTodasLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasLiquidacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnGenerarPdf});
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasLiquidacion.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle90.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle90.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle90.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle90.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle90.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle90.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasLiquidacion.DefaultCellStyle = dataGridViewCellStyle90;
             this.datalistadoTodasLiquidacion.Location = new System.Drawing.Point(8, 197);
             this.datalistadoTodasLiquidacion.Margin = new System.Windows.Forms.Padding(5);
             this.datalistadoTodasLiquidacion.MultiSelect = false;
             this.datalistadoTodasLiquidacion.Name = "datalistadoTodasLiquidacion";
             this.datalistadoTodasLiquidacion.ReadOnly = true;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasLiquidacion.RowHeadersDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle91.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle91.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle91.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasLiquidacion.RowHeadersDefaultCellStyle = dataGridViewCellStyle91;
             this.datalistadoTodasLiquidacion.RowHeadersVisible = false;
             this.datalistadoTodasLiquidacion.RowHeadersWidth = 20;
             this.datalistadoTodasLiquidacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -866,10 +866,10 @@
             // 
             // btnGenerarPdf
             // 
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle31.NullValue")));
-            dataGridViewCellStyle31.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.btnGenerarPdf.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle89.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle89.NullValue")));
+            dataGridViewCellStyle89.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.btnGenerarPdf.DefaultCellStyle = dataGridViewCellStyle89;
             this.btnGenerarPdf.HeaderText = "PDF";
             this.btnGenerarPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarPdf.Image")));
             this.btnGenerarPdf.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -941,7 +941,7 @@
             this.panelNuevaActa.Controls.Add(this.label17);
             this.panelNuevaActa.Controls.Add(this.label18);
             this.panelNuevaActa.Controls.Add(this.panel3);
-            this.panelNuevaActa.Location = new System.Drawing.Point(244, 20);
+            this.panelNuevaActa.Location = new System.Drawing.Point(244, 22);
             this.panelNuevaActa.Margin = new System.Windows.Forms.Padding(4);
             this.panelNuevaActa.Name = "panelNuevaActa";
             this.panelNuevaActa.Size = new System.Drawing.Size(685, 609);
@@ -950,6 +950,7 @@
             // 
             // btnRegresarNuevaActa
             // 
+            this.btnRegresarNuevaActa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegresarNuevaActa.FlatAppearance.BorderSize = 0;
             this.btnRegresarNuevaActa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresarNuevaActa.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarNuevaActa.Image")));
@@ -962,6 +963,7 @@
             // 
             // btnGuardarNuevaActa
             // 
+            this.btnGuardarNuevaActa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardarNuevaActa.FlatAppearance.BorderSize = 0;
             this.btnGuardarNuevaActa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarNuevaActa.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarNuevaActa.Image")));
@@ -1768,6 +1770,7 @@
             // 
             // btnCerrarLiquidacionActas
             // 
+            this.btnCerrarLiquidacionActas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrarLiquidacionActas.FlatAppearance.BorderSize = 0;
             this.btnCerrarLiquidacionActas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarLiquidacionActas.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarLiquidacionActas.Image")));
@@ -1780,6 +1783,7 @@
             // 
             // btnVisualizarLiquidacionActas
             // 
+            this.btnVisualizarLiquidacionActas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVisualizarLiquidacionActas.FlatAppearance.BorderSize = 0;
             this.btnVisualizarLiquidacionActas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVisualizarLiquidacionActas.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarLiquidacionActas.Image")));
@@ -1822,25 +1826,25 @@
             this.datalistadoLiquidacionActas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoLiquidacionActas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoLiquidacionActas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLiquidacionActas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle92.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle92.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle92.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle92.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle92.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle92.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLiquidacionActas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle92;
             this.datalistadoLiquidacionActas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoLiquidacionActas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnGenerarActaVisita});
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoLiquidacionActas.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle93.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle93.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle93.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle93.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle93.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle93.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle93.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoLiquidacionActas.DefaultCellStyle = dataGridViewCellStyle93;
             this.datalistadoLiquidacionActas.Location = new System.Drawing.Point(8, 81);
             this.datalistadoLiquidacionActas.Margin = new System.Windows.Forms.Padding(5);
             this.datalistadoLiquidacionActas.Name = "datalistadoLiquidacionActas";
@@ -2076,7 +2080,7 @@
             this.panelNuevaLiquidadcion.Controls.Add(this.datalistadoDetallesLiquidacion);
             this.panelNuevaLiquidadcion.Controls.Add(this.datalistadoColaboradoresLiquidacion);
             this.panelNuevaLiquidadcion.Controls.Add(this.panel6);
-            this.panelNuevaLiquidadcion.Location = new System.Drawing.Point(105, 20);
+            this.panelNuevaLiquidadcion.Location = new System.Drawing.Point(105, 21);
             this.panelNuevaLiquidadcion.Name = "panelNuevaLiquidadcion";
             this.panelNuevaLiquidadcion.Size = new System.Drawing.Size(962, 610);
             this.panelNuevaLiquidadcion.TabIndex = 2007;
@@ -2096,6 +2100,7 @@
             // 
             // btnSalirLiquidacion
             // 
+            this.btnSalirLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalirLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnSalirLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalirLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnSalirLiquidacion.Image")));
@@ -2108,6 +2113,7 @@
             // 
             // btnGuardarLiquidacion
             // 
+            this.btnGuardarLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardarLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnGuardarLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarLiquidacion.Image")));
@@ -2188,6 +2194,7 @@
             // 
             // btnSalirFechaTermino
             // 
+            this.btnSalirFechaTermino.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalirFechaTermino.FlatAppearance.BorderSize = 0;
             this.btnSalirFechaTermino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalirFechaTermino.Image = ((System.Drawing.Image)(resources.GetObject("btnSalirFechaTermino.Image")));
@@ -2200,6 +2207,7 @@
             // 
             // btnCargarFechaTermino
             // 
+            this.btnCargarFechaTermino.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCargarFechaTermino.FlatAppearance.BorderSize = 0;
             this.btnCargarFechaTermino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarFechaTermino.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarFechaTermino.Image")));
@@ -2212,6 +2220,7 @@
             // 
             // btnBorrarPresupuestoLiquidacion
             // 
+            this.btnBorrarPresupuestoLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrarPresupuestoLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnBorrarPresupuestoLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarPresupuestoLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarPresupuestoLiquidacion.Image")));
@@ -2224,6 +2233,7 @@
             // 
             // btnBorrarColaboradorLiquidacion
             // 
+            this.btnBorrarColaboradorLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrarColaboradorLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnBorrarColaboradorLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarColaboradorLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarColaboradorLiquidacion.Image")));
@@ -2235,6 +2245,7 @@
             // 
             // btnBorrarSeleccionClienteLiquidacion
             // 
+            this.btnBorrarSeleccionClienteLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrarSeleccionClienteLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnBorrarSeleccionClienteLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarSeleccionClienteLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarSeleccionClienteLiquidacion.Image")));
@@ -2336,14 +2347,14 @@
             this.datalistadoClientesLiquidacion.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.datalistadoClientesLiquidacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoClientesLiquidacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoClientesLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle94.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle94.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle94.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle94.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle94.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle94.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoClientesLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle94;
             this.datalistadoClientesLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoClientesLiquidacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnAsistioClienteLiquidacionF,
@@ -2357,14 +2368,14 @@
             this.dataGridViewTextBoxColumn15,
             this.txtCodigoDepartamentoF,
             this.dataGridViewTextBoxColumn17});
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoClientesLiquidacion.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle95.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle95.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle95.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle95.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle95.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle95.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoClientesLiquidacion.DefaultCellStyle = dataGridViewCellStyle95;
             this.datalistadoClientesLiquidacion.Location = new System.Drawing.Point(504, 85);
             this.datalistadoClientesLiquidacion.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoClientesLiquidacion.Name = "datalistadoClientesLiquidacion";
@@ -2637,25 +2648,25 @@
             this.datalistadoBusquedaClietneLiquidacion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoBusquedaClietneLiquidacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoBusquedaClietneLiquidacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaClietneLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle100.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle100.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle100.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle100.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle100.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle100.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle100.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaClietneLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle100;
             this.datalistadoBusquedaClietneLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoBusquedaClietneLiquidacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionarClienteLiquidacion});
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaClietneLiquidacion.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle102.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle102.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle102.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle102.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle102.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle102.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle102.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaClietneLiquidacion.DefaultCellStyle = dataGridViewCellStyle102;
             this.datalistadoBusquedaClietneLiquidacion.Location = new System.Drawing.Point(9, 40);
             this.datalistadoBusquedaClietneLiquidacion.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaClietneLiquidacion.Name = "datalistadoBusquedaClietneLiquidacion";
@@ -2668,12 +2679,12 @@
             // 
             // btnSeleccionarClienteLiquidacion
             // 
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle39.NullValue")));
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.White;
-            this.btnSeleccionarClienteLiquidacion.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle101.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle101.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle101.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle101.NullValue")));
+            dataGridViewCellStyle101.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle101.SelectionForeColor = System.Drawing.Color.White;
+            this.btnSeleccionarClienteLiquidacion.DefaultCellStyle = dataGridViewCellStyle101;
             this.btnSeleccionarClienteLiquidacion.HeaderText = "-";
             this.btnSeleccionarClienteLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnSeleccionarClienteLiquidacion.Image")));
             this.btnSeleccionarClienteLiquidacion.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
@@ -2725,25 +2736,25 @@
             this.datalistadoBusquedaColaboradorLiquidacion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoBusquedaColaboradorLiquidacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoBusquedaColaboradorLiquidacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaColaboradorLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle103.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle103.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle103.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle103.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle103.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle103.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaColaboradorLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle103;
             this.datalistadoBusquedaColaboradorLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoBusquedaColaboradorLiquidacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionarColaboradorLiquidacion});
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaColaboradorLiquidacion.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle105.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle105.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle105.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle105.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle105.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle105.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle105.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaColaboradorLiquidacion.DefaultCellStyle = dataGridViewCellStyle105;
             this.datalistadoBusquedaColaboradorLiquidacion.Location = new System.Drawing.Point(10, 40);
             this.datalistadoBusquedaColaboradorLiquidacion.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaColaboradorLiquidacion.Name = "datalistadoBusquedaColaboradorLiquidacion";
@@ -2756,12 +2767,12 @@
             // 
             // btnSeleccionarColaboradorLiquidacion
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle42.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle42.NullValue")));
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.White;
-            this.btnSeleccionarColaboradorLiquidacion.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle104.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle104.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle104.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle104.NullValue")));
+            dataGridViewCellStyle104.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle104.SelectionForeColor = System.Drawing.Color.White;
+            this.btnSeleccionarColaboradorLiquidacion.DefaultCellStyle = dataGridViewCellStyle104;
             this.btnSeleccionarColaboradorLiquidacion.HeaderText = "-";
             this.btnSeleccionarColaboradorLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnSeleccionarColaboradorLiquidacion.Image")));
             this.btnSeleccionarColaboradorLiquidacion.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
@@ -3105,14 +3116,14 @@
             this.datalistadoDetallesLiquidacion.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoDetallesLiquidacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoDetallesLiquidacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoDetallesLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle96.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle96.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle96.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle96.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle96.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle96.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoDetallesLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle96;
             this.datalistadoDetallesLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoDetallesLiquidacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewButtonColumn1,
@@ -3124,14 +3135,14 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle45.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle45.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle45.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoDetallesLiquidacion.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle97.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle97.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle97.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle97.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle97.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle97.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle97.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoDetallesLiquidacion.DefaultCellStyle = dataGridViewCellStyle97;
             this.datalistadoDetallesLiquidacion.Location = new System.Drawing.Point(5, 282);
             this.datalistadoDetallesLiquidacion.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoDetallesLiquidacion.Name = "datalistadoDetallesLiquidacion";
@@ -3231,27 +3242,27 @@
             this.datalistadoColaboradoresLiquidacion.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.datalistadoColaboradoresLiquidacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoColaboradoresLiquidacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle46.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoColaboradoresLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle98.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle98.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle98.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle98.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle98.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle98.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle98.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoColaboradoresLiquidacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle98;
             this.datalistadoColaboradoresLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoColaboradoresLiquidacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnAsistioColaboradorLiquidacion,
             this.txtIdVendedorLiquidacion,
             this.dataGridViewTextBoxColumn10});
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoColaboradoresLiquidacion.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle99.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle99.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle99.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle99.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle99.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle99.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle99.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoColaboradoresLiquidacion.DefaultCellStyle = dataGridViewCellStyle99;
             this.datalistadoColaboradoresLiquidacion.Location = new System.Drawing.Point(531, 248);
             this.datalistadoColaboradoresLiquidacion.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoColaboradoresLiquidacion.Name = "datalistadoColaboradoresLiquidacion";
@@ -3325,23 +3336,23 @@
             this.datalistadoBusquedaLiquidacionGeneral.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoBusquedaLiquidacionGeneral.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoBusquedaLiquidacionGeneral.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle48.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle48.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle48.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaLiquidacionGeneral.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle106.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle106.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle106.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle106.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle106.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle106.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle106.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaLiquidacionGeneral.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle106;
             this.datalistadoBusquedaLiquidacionGeneral.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle49.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle49.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle49.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle49.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle49.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle49.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaLiquidacionGeneral.DefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle107.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle107.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle107.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle107.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle107.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle107.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle107.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaLiquidacionGeneral.DefaultCellStyle = dataGridViewCellStyle107;
             this.datalistadoBusquedaLiquidacionGeneral.Location = new System.Drawing.Point(33, 0);
             this.datalistadoBusquedaLiquidacionGeneral.Margin = new System.Windows.Forms.Padding(5);
             this.datalistadoBusquedaLiquidacionGeneral.Name = "datalistadoBusquedaLiquidacionGeneral";
@@ -3362,23 +3373,23 @@
             this.dataliostadoBusquedaLiquidacionDetalles.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataliostadoBusquedaLiquidacionDetalles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataliostadoBusquedaLiquidacionDetalles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle50.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle50.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataliostadoBusquedaLiquidacionDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle108.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle108.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle108.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle108.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle108.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle108.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle108.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataliostadoBusquedaLiquidacionDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle108;
             this.dataliostadoBusquedaLiquidacionDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle51.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle51.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle51.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle51.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle51.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle51.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataliostadoBusquedaLiquidacionDetalles.DefaultCellStyle = dataGridViewCellStyle51;
+            dataGridViewCellStyle109.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle109.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle109.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle109.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle109.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle109.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle109.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataliostadoBusquedaLiquidacionDetalles.DefaultCellStyle = dataGridViewCellStyle109;
             this.dataliostadoBusquedaLiquidacionDetalles.Location = new System.Drawing.Point(106, 3);
             this.dataliostadoBusquedaLiquidacionDetalles.Margin = new System.Windows.Forms.Padding(4);
             this.dataliostadoBusquedaLiquidacionDetalles.Name = "dataliostadoBusquedaLiquidacionDetalles";
@@ -3399,23 +3410,23 @@
             this.datalistadoBusquedaLiquidacionColaboradores.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoBusquedaLiquidacionColaboradores.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoBusquedaLiquidacionColaboradores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle52.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle52.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle52.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle52.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle52.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaLiquidacionColaboradores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
+            dataGridViewCellStyle110.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle110.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle110.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle110.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle110.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle110.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle110.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaLiquidacionColaboradores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle110;
             this.datalistadoBusquedaLiquidacionColaboradores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaLiquidacionColaboradores.DefaultCellStyle = dataGridViewCellStyle53;
+            dataGridViewCellStyle111.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle111.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle111.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle111.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle111.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle111.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle111.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaLiquidacionColaboradores.DefaultCellStyle = dataGridViewCellStyle111;
             this.datalistadoBusquedaLiquidacionColaboradores.Location = new System.Drawing.Point(92, 1);
             this.datalistadoBusquedaLiquidacionColaboradores.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaLiquidacionColaboradores.Name = "datalistadoBusquedaLiquidacionColaboradores";
@@ -3450,23 +3461,23 @@
             this.datalistadoBusquedaLiquidacionCLientes.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoBusquedaLiquidacionCLientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoBusquedaLiquidacionCLientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle54.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle54.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle54.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaLiquidacionCLientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle112.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle112.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle112.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle112.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle112.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle112.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle112.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaLiquidacionCLientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle112;
             this.datalistadoBusquedaLiquidacionCLientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle55.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle55.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle55.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaLiquidacionCLientes.DefaultCellStyle = dataGridViewCellStyle55;
+            dataGridViewCellStyle113.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle113.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle113.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle113.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle113.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle113.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle113.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaLiquidacionCLientes.DefaultCellStyle = dataGridViewCellStyle113;
             this.datalistadoBusquedaLiquidacionCLientes.Location = new System.Drawing.Point(59, 0);
             this.datalistadoBusquedaLiquidacionCLientes.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaLiquidacionCLientes.Name = "datalistadoBusquedaLiquidacionCLientes";
@@ -3504,6 +3515,7 @@
             // 
             // btnVisualizarLiquidacion
             // 
+            this.btnVisualizarLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVisualizarLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnVisualizarLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVisualizarLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarLiquidacion.Image")));
@@ -3527,6 +3539,7 @@
             // 
             // btnAprobarLiquidacion
             // 
+            this.btnAprobarLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAprobarLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnAprobarLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAprobarLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnAprobarLiquidacion.Image")));
@@ -3550,6 +3563,7 @@
             // 
             // btnEditarLiquidacion
             // 
+            this.btnEditarLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditarLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnEditarLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarLiquidacion.Image")));
@@ -3573,6 +3587,7 @@
             // 
             // btnDesaprobaLiquidacion
             // 
+            this.btnDesaprobaLiquidacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDesaprobaLiquidacion.FlatAppearance.BorderSize = 0;
             this.btnDesaprobaLiquidacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDesaprobaLiquidacion.Image = ((System.Drawing.Image)(resources.GetObject("btnDesaprobaLiquidacion.Image")));
@@ -3596,6 +3611,7 @@
             // 
             // btnExportarExcel
             // 
+            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcel.FlatAppearance.BorderSize = 0;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
@@ -3615,14 +3631,14 @@
             this.datalistadoTodasLiquidacionExcel.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasLiquidacionExcel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasLiquidacionExcel.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle56.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle56.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle56.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasLiquidacionExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle56;
+            dataGridViewCellStyle114.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle114.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle114.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle114.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle114.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle114.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle114.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasLiquidacionExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle114;
             this.datalistadoTodasLiquidacionExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasLiquidacionExcel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nLiqui,
@@ -3638,27 +3654,27 @@
             this.estadoComercial,
             this.estadoContabilidad,
             this.estadoActas});
-            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle57.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle57.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle57.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle57.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle57.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle57.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasLiquidacionExcel.DefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle115.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle115.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle115.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle115.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle115.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle115.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle115.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasLiquidacionExcel.DefaultCellStyle = dataGridViewCellStyle115;
             this.datalistadoTodasLiquidacionExcel.Location = new System.Drawing.Point(42, 464);
             this.datalistadoTodasLiquidacionExcel.Margin = new System.Windows.Forms.Padding(5);
             this.datalistadoTodasLiquidacionExcel.MultiSelect = false;
             this.datalistadoTodasLiquidacionExcel.Name = "datalistadoTodasLiquidacionExcel";
             this.datalistadoTodasLiquidacionExcel.ReadOnly = true;
-            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle58.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle58.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle58.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasLiquidacionExcel.RowHeadersDefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle116.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle116.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle116.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle116.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle116.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle116.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle116.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasLiquidacionExcel.RowHeadersDefaultCellStyle = dataGridViewCellStyle116;
             this.datalistadoTodasLiquidacionExcel.RowHeadersVisible = false;
             this.datalistadoTodasLiquidacionExcel.RowHeadersWidth = 20;
             this.datalistadoTodasLiquidacionExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

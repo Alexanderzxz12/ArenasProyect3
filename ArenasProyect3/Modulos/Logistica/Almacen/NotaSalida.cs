@@ -326,6 +326,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             CargarAlmacenes();
             CargarTiposMovimientos();
             cboTipoMovimeintos.SelectedIndex = 1;
+            lblTipoSalida.Text = "PDF REQUE.";
         }
 
         //BUSQUEDA DE REQUERIMIENTO
@@ -425,6 +426,23 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        //VUSYAKUZAR PDF DE MI REQUERIMIENTO
+        private void btnVisualizarRequerimiento_Click(object sender, EventArgs e)
+        {
+            if (cboComboReqeurimientoSimple.SelectedValue != null)
+            {
+                string codigoReporte = cboComboReqeurimientoSimple.SelectedValue.ToString();
+                Visualizadores.VisualizarRequerimientoSimple frm = new Visualizadores.VisualizarRequerimientoSimple();
+                frm.lblCodigo.Text = codigoReporte;
+
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una nota de salida para poder generar el PDF respectivo.", "Validación del Sistema");
             }
         }
 
