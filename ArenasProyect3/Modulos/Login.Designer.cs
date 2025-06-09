@@ -108,6 +108,7 @@
             this.Eli = new System.Windows.Forms.DataGridViewImageColumn();
             this.timerProduccion = new System.Windows.Forms.Timer(this.components);
             this.timerIngenieria = new System.Windows.Forms.Timer(this.components);
+            this.timerMantenimiento = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnLogoArenas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgRegresar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgValidacionIncorrecta)).BeginInit();
@@ -198,7 +199,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(268, 18);
             this.label12.TabIndex = 1998;
-            this.label12.Text = "Made by Arenas S.R.L - v1.1.0.157";
+            this.label12.Text = "Made by Arenas S.R.L - v1.1.0.158";
             // 
             // imgValidacionIncorrecta
             // 
@@ -843,7 +844,7 @@
             // 
             this.panelValidacionLicencia.Controls.Add(this.pictureBox1);
             this.panelValidacionLicencia.Controls.Add(this.datalistadoVerificacionLicencia);
-            this.panelValidacionLicencia.Location = new System.Drawing.Point(88, 56);
+            this.panelValidacionLicencia.Location = new System.Drawing.Point(88, 90);
             this.panelValidacionLicencia.Margin = new System.Windows.Forms.Padding(2);
             this.panelValidacionLicencia.Name = "panelValidacionLicencia";
             this.panelValidacionLicencia.Size = new System.Drawing.Size(822, 379);
@@ -1053,6 +1054,11 @@
             this.timerIngenieria.Interval = 50;
             this.timerIngenieria.Tick += new System.EventHandler(this.timerIngenieria_Tick);
             // 
+            // timerMantenimiento
+            // 
+            this.timerMantenimiento.Interval = 50;
+            this.timerMantenimiento.Tick += new System.EventHandler(this.timerMantenimiento_Tick);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1210,5 +1216,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Eli;
         private System.Windows.Forms.Timer timerProduccion;
         private System.Windows.Forms.Timer timerIngenieria;
+        private System.Windows.Forms.Timer timerMantenimiento;
     }
 }

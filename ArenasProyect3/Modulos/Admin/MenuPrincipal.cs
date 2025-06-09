@@ -128,36 +128,113 @@ namespace ArenasProyect3.Modulos.Admin
         //ABRIRI EL PANEL CON LOS DATOS DE LA TABLA AUDITORA
         private void btnAuditora_Click(object sender, EventArgs e)
         {
-            //if (panelPrincipalComercial.Controls.Count == 1)
-            //{
-            //    panelPrincipalComercial.Controls.Clear();
-            //    AbrirFormularios(new MenuReportes());
-            //}
-            //else
-            //{
-            //    panelPrincipalComercial.Controls.Clear();
-            //    AbrirFormularios(new MenuReportes());
-            //}
-            //panelDatos.Visible = false;
+            if (panelPrincipalAdministrador.Controls.Count == 1)
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            else
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            panelDatos.Visible = false;
+        }
+
+        //ABRIR EL MANTENIMIENTO PARA ADMINISTRAR LAS NOVEDADES
+        private void btnEstadoNovedades_Click(object sender, EventArgs e)
+        {
+            if (panelPrincipalAdministrador.Controls.Count == 1)
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            else
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            panelDatos.Visible = false;
+        }
+
+        //ABRIR EL MANTENIMIENTO DE ESTADO DE LICENCIAS
+        private void btnEstadoLicencias_Click(object sender, EventArgs e)
+        {
+            if (panelPrincipalAdministrador.Controls.Count == 1)
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            else
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            panelDatos.Visible = false;
+        }
+
+        //ABRIR EL MANTENIMIENTO PARA ADMINISTRAR EL ESTADO DE SISTEMA
+        private void btnEstadoSistema_Click(object sender, EventArgs e)
+        {
+            if (panelPrincipalAdministrador.Controls.Count == 1)
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            else
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            panelDatos.Visible = false;
         }
 
         //ABRIR EL PANEL PAR ADMINISTRAR LAS NOTIFICACIONES
         private void btnAdministrarNotificaciones_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = true;
+            if (panelPrincipalAdministrador.Controls.Count == 1)
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            else
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            panelDatos.Visible = false;
         }
 
         //ABRIR EL PANLE PARA ADMINISTRAR USUARIOS
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            Modulos.UsuariosPermisos.Usuarios usuarios = new Modulos.UsuariosPermisos.Usuarios();
-            usuarios.Show();
+            if (panelPrincipalAdministrador.Controls.Count == 1)
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            else
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            panelDatos.Visible = false;
         }
 
         //ABRIR ULTIMOS CAMBIOS REALOZADPS
         private void btnUltimosCambios_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = true;
+            if (panelPrincipalAdministrador.Controls.Count == 1)
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            else
+            {
+                panelPrincipalAdministrador.Controls.Clear();
+                AbrirFormularios(new MenuAdministracion());
+            }
+            panelDatos.Visible = false;
         }
 
         //ABRIR EL PANEL DE CONFIRMACIÓN DE VISUALIZACIÓN DE CONTRASEÑA
@@ -331,6 +408,17 @@ namespace ArenasProyect3.Modulos.Admin
                 //OCULTAR EL PANEL DE NOVEDADES
                 panelNovedades.Visible = false;
             }
-        }   
+        }
+
+        //ACIONES DE ENTRAR Y SALIR DE LOS FORMULARIOS Y DE CIERRE DE SESION
+        public void AbrirFormularios(object formFormulario)
+        {
+            Form frm = formFormulario as Form;
+            frm.TopLevel = false;
+            frm.Dock = DockStyle.Fill;
+            this.panelPrincipalAdministrador.Controls.Add(frm);
+            this.panelPrincipalAdministrador.Tag = frm;
+            frm.Show();
+        }
     }
 }

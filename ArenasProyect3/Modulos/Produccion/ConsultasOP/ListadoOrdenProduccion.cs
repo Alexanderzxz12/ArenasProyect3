@@ -126,7 +126,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 {
                     if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "FUERA DE FECHA")
                     {
-                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
                     }
                     else if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "LÍMITE")
                     {
@@ -425,7 +425,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 lblCantidadTotalInghresada.Text = Convert.ToString(totalCantidades);
                 txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadRequerida.Text) - Convert.ToInt32(lblCantidadTotalInghresada.Text));
 
-                if(txtCantidadRestante.Text == "0") {
+                if (txtCantidadRestante.Text == "0")
+                {
                     datalistadoTodasOP.Enabled = true;
                     panelIngresoCantidades.Visible = false;
                     MessageBox.Show("Esta OP ya culminó satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
@@ -455,7 +456,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         txtCantidadRealizada.ReadOnly = false;
                         lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
                     }
-                }   
+                }
             }
             else
             {
@@ -789,10 +790,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
                         cmd.Parameters.AddWithValue("@fechaEntrega", dtpModiFechaEntrega.Value);
                         cmd.Parameters.AddWithValue("@observacion", txtModiObservacionModiFecha.Text);
-                        cmd.ExecuteNonQuery();
+                        string mensaje = cmd.ExecuteScalar()?.ToString();
+                        //cmd.ExecuteScalar();
                         con.Close();
 
-                        MessageBox.Show("Fecha de entrega de mi orden de producción modificada exitosamente.", "Validación del Sistema");
+                        if (mensaje == "")
+                        {
+                            MessageBox.Show("Fecha de entrega de mi orden de producción modificada exitosamente.", "Validación del Sistema");
+                        }
+                        else
+                        {
+                            MessageBox.Show(mensaje, "Validación del Sistema");
+                        }
+
                         MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                         MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                         datalistadoTodasOP.Enabled = true;

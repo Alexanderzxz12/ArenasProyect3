@@ -247,21 +247,17 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     {
                         datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
                     }
-                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "OP GENERADA")
-                    {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
-                    }
                     else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "INCOMPLETA")
                     {
                         datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(192, 192, 0);
                     }
                     else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "CULMINADA")
                     {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
                     }
                     else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "DESPACHADO")
                     {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
                     }
                     else
                     {
@@ -367,7 +363,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 string idCotizacion = datalistadoTodasPedido.SelectedCells[13].Value.ToString();
                 int ordenProduccion = 0;
 
-                VerificarOPxPedidoAnulacion(idPedido);
+                VerificarOPxPedidoAnulacion(idPedido); 
 
                 if (datalistadoBuscarOPxPedidoAnulacion.RowCount > 0)
                 {

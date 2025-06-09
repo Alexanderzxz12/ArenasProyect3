@@ -39,12 +39,12 @@
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.imgUsuario = new System.Windows.Forms.PictureBox();
             this.panel35 = new System.Windows.Forms.Panel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.imgUsuario = new System.Windows.Forms.PictureBox();
             this.lblHoraVivo = new System.Windows.Forms.Label();
             this.datalistadoBusquedaUusario = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -179,6 +179,30 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo = new System.Windows.Forms.DataGridView();
+            this.datalistadoExcelOrdenProduccion = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datalistadoExcelPedido = new System.Windows.Forms.DataGridView();
+            this.numeroPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroCotizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadItems = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordenCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datalistadoBusquedaPedidoPorFecha_Externo = new System.Windows.Forms.DataGridView();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
@@ -207,27 +231,27 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.lblReportes4 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.lblReportes4 = new System.Windows.Forms.Label();
             this.DesdeFecha = new System.Windows.Forms.DateTimePicker();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.lblReportes5 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
+            this.lblReportes5 = new System.Windows.Forms.Label();
             this.panelDatos3 = new System.Windows.Forms.Panel();
             this.lblReportes3 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.HastaFecha = new System.Windows.Forms.DateTimePicker();
             this.lblTituloPrincipal = new System.Windows.Forms.Label();
             this.panelDatos1 = new System.Windows.Forms.Panel();
-            this.lblReportes1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.lblReporteProducto = new System.Windows.Forms.Label();
+            this.lblReportePedidos = new System.Windows.Forms.Label();
+            this.lblReportes1 = new System.Windows.Forms.Label();
             this.panelDatos2 = new System.Windows.Forms.Panel();
-            this.lblReportes2 = new System.Windows.Forms.Label();
+            this.lblReporteOrdenesProduccion = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblReporteFormulacion = new System.Windows.Forms.Label();
+            this.lblReportes2 = new System.Windows.Forms.Label();
             this.panelConfiguracionUsuario = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -241,8 +265,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPaginaArenas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNovedades)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaUusario)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -277,6 +301,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaOrdenProduccionPorFecha_Externo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcelOrdenProduccion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcelPedido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaPedidoPorFecha_Externo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel25.SuspendLayout();
@@ -412,12 +440,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.imgUsuario);
             this.panel1.Controls.Add(this.panel35);
             this.panel1.Controls.Add(this.panel31);
             this.panel1.Controls.Add(this.pictureBox16);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.imgUsuario);
             this.panel1.Controls.Add(this.lblHoraVivo);
             this.panel1.Controls.Add(this.datalistadoBusquedaUusario);
             this.panel1.Controls.Add(this.flowLayoutPanel2);
@@ -432,6 +460,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1337, 38);
             this.panel1.TabIndex = 6;
+            // 
+            // imgUsuario
+            // 
+            this.imgUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imgUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgUsuario.Dock = System.Windows.Forms.DockStyle.Right;
+            this.imgUsuario.Image = ((System.Drawing.Image)(resources.GetObject("imgUsuario.Image")));
+            this.imgUsuario.Location = new System.Drawing.Point(1284, 0);
+            this.imgUsuario.Name = "imgUsuario";
+            this.imgUsuario.Size = new System.Drawing.Size(53, 38);
+            this.imgUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgUsuario.TabIndex = 1;
+            this.imgUsuario.TabStop = false;
+            this.imgUsuario.Click += new System.EventHandler(this.imgUsuario_Click);
             // 
             // panel35
             // 
@@ -480,19 +522,6 @@
             this.label3.Text = "LOGÍSTICA";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // imgUsuario
-            // 
-            this.imgUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgUsuario.Image = ((System.Drawing.Image)(resources.GetObject("imgUsuario.Image")));
-            this.imgUsuario.Location = new System.Drawing.Point(1284, 0);
-            this.imgUsuario.Name = "imgUsuario";
-            this.imgUsuario.Size = new System.Drawing.Size(47, 38);
-            this.imgUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imgUsuario.TabIndex = 1;
-            this.imgUsuario.TabStop = false;
-            this.imgUsuario.Click += new System.EventHandler(this.imgUsuario_Click);
-            // 
             // lblHoraVivo
             // 
             this.lblHoraVivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -531,7 +560,7 @@
             this.lblusuarioActual.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblusuarioActual.Location = new System.Drawing.Point(3, 0);
             this.lblusuarioActual.Name = "lblusuarioActual";
-            this.lblusuarioActual.Size = new System.Drawing.Size(549, 29);
+            this.lblusuarioActual.Size = new System.Drawing.Size(571, 29);
             this.lblusuarioActual.TabIndex = 17;
             this.lblusuarioActual.Text = "ll";
             this.lblusuarioActual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -807,7 +836,7 @@
             this.panelDetallesUsuario.Controls.Add(this.label14);
             this.panelDetallesUsuario.Controls.Add(this.imgUsuario2);
             this.panelDetallesUsuario.Controls.Add(this.panel12);
-            this.panelDetallesUsuario.Location = new System.Drawing.Point(461, 120);
+            this.panelDetallesUsuario.Location = new System.Drawing.Point(1108, 97);
             this.panelDetallesUsuario.Name = "panelDetallesUsuario";
             this.panelDetallesUsuario.Size = new System.Drawing.Size(399, 393);
             this.panelDetallesUsuario.TabIndex = 17;
@@ -1233,7 +1262,7 @@
             this.panelNovedades.Controls.Add(this.label46);
             this.panelNovedades.Controls.Add(this.label61);
             this.panelNovedades.Controls.Add(this.panel22);
-            this.panelNovedades.Location = new System.Drawing.Point(431, 124);
+            this.panelNovedades.Location = new System.Drawing.Point(1107, 110);
             this.panelNovedades.Name = "panelNovedades";
             this.panelNovedades.Size = new System.Drawing.Size(458, 384);
             this.panelNovedades.TabIndex = 19;
@@ -1269,7 +1298,7 @@
             // 
             // lblNovedadesNuevasFunciones
             // 
-            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNovedadesNuevasFunciones.Location = new System.Drawing.Point(20, 191);
             this.lblNovedadesNuevasFunciones.Name = "lblNovedadesNuevasFunciones";
             this.lblNovedadesNuevasFunciones.Size = new System.Drawing.Size(413, 165);
@@ -1279,7 +1308,7 @@
             // 
             // lblFechaInstalacion
             // 
-            this.lblFechaInstalacion.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaInstalacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaInstalacion.Location = new System.Drawing.Point(198, 108);
             this.lblFechaInstalacion.Name = "lblFechaInstalacion";
             this.lblFechaInstalacion.Size = new System.Drawing.Size(149, 15);
@@ -1289,7 +1318,7 @@
             // 
             // lblVersionSistema
             // 
-            this.lblVersionSistema.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersionSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersionSistema.Location = new System.Drawing.Point(198, 75);
             this.lblVersionSistema.Name = "lblVersionSistema";
             this.lblVersionSistema.Size = new System.Drawing.Size(149, 15);
@@ -1300,30 +1329,30 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(19, 165);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(204, 15);
+            this.label22.Size = new System.Drawing.Size(204, 16);
             this.label22.TabIndex = 15;
             this.label22.Text = "Nuevas funcione o Cambios:";
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label45.Location = new System.Drawing.Point(20, 108);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(154, 15);
+            this.label45.Size = new System.Drawing.Size(155, 16);
             this.label45.TabIndex = 14;
             this.label45.Text = "Fecha de Instalación:";
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label46.Location = new System.Drawing.Point(19, 75);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(149, 15);
+            this.label46.Size = new System.Drawing.Size(148, 16);
             this.label46.TabIndex = 13;
             this.label46.Text = "Versión del sistema:";
             // 
@@ -1422,7 +1451,7 @@
             this.panelConfiguracion.Controls.Add(this.btnUsuarios);
             this.panelConfiguracion.Controls.Add(this.label30);
             this.panelConfiguracion.Controls.Add(this.panel18);
-            this.panelConfiguracion.Location = new System.Drawing.Point(278, 92);
+            this.panelConfiguracion.Location = new System.Drawing.Point(1106, 149);
             this.panelConfiguracion.Name = "panelConfiguracion";
             this.panelConfiguracion.Size = new System.Drawing.Size(764, 448);
             this.panelConfiguracion.TabIndex = 18;
@@ -1478,7 +1507,7 @@
             this.label29.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label29.Location = new System.Drawing.Point(582, 421);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(166, 16);
+            this.label29.Size = new System.Drawing.Size(165, 16);
             this.label29.TabIndex = 46;
             this.label29.Text = "@ Copyright​ Arenas S.R.L.";
             // 
@@ -2065,6 +2094,10 @@
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.datalistadoBusquedaOrdenProduccionPorFecha_Externo);
+            this.panel10.Controls.Add(this.datalistadoExcelOrdenProduccion);
+            this.panel10.Controls.Add(this.datalistadoExcelPedido);
+            this.panel10.Controls.Add(this.datalistadoBusquedaPedidoPorFecha_Externo);
             this.panel10.Controls.Add(this.pictureBox17);
             this.panel10.Controls.Add(this.panel4);
             this.panel10.Controls.Add(this.label6);
@@ -2073,6 +2106,204 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1083, 251);
             this.panel10.TabIndex = 14;
+            // 
+            // datalistadoBusquedaOrdenProduccionPorFecha_Externo
+            // 
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.AllowUserToAddRows = false;
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.AllowUserToDeleteRows = false;
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.Location = new System.Drawing.Point(372, 21);
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.Name = "datalistadoBusquedaOrdenProduccionPorFecha_Externo";
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.ReadOnly = true;
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.RowHeadersVisible = false;
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.RowHeadersWidth = 51;
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.Size = new System.Drawing.Size(10, 26);
+            this.datalistadoBusquedaOrdenProduccionPorFecha_Externo.TabIndex = 29;
+            // 
+            // datalistadoExcelOrdenProduccion
+            // 
+            this.datalistadoExcelOrdenProduccion.AllowUserToAddRows = false;
+            this.datalistadoExcelOrdenProduccion.AllowUserToDeleteRows = false;
+            this.datalistadoExcelOrdenProduccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoExcelOrdenProduccion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.datalistadoExcelOrdenProduccion.Location = new System.Drawing.Point(447, 21);
+            this.datalistadoExcelOrdenProduccion.Name = "datalistadoExcelOrdenProduccion";
+            this.datalistadoExcelOrdenProduccion.ReadOnly = true;
+            this.datalistadoExcelOrdenProduccion.RowHeadersVisible = false;
+            this.datalistadoExcelOrdenProduccion.RowHeadersWidth = 51;
+            this.datalistadoExcelOrdenProduccion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoExcelOrdenProduccion.Size = new System.Drawing.Size(618, 189);
+            this.datalistadoExcelOrdenProduccion.TabIndex = 28;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "N° DE PEDIDO";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "FECHA DE INICIO";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "FECHA DE VENCIMIENTO";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "CLIENTE";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "TOTAL";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "N° DE COTIZACION";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "CANTIDAD DE ITEMS";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "UNIDAD";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "ORDEN DE COMPRA";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "ESTADO";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            // 
+            // datalistadoExcelPedido
+            // 
+            this.datalistadoExcelPedido.AllowUserToAddRows = false;
+            this.datalistadoExcelPedido.AllowUserToDeleteRows = false;
+            this.datalistadoExcelPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoExcelPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.numeroPedido,
+            this.fechaInicio,
+            this.fechaVencimiento,
+            this.cliente,
+            this.total,
+            this.numeroCotizacion,
+            this.cantidadItems,
+            this.unidad,
+            this.ordenCompra,
+            this.estado});
+            this.datalistadoExcelPedido.Location = new System.Drawing.Point(419, 20);
+            this.datalistadoExcelPedido.Name = "datalistadoExcelPedido";
+            this.datalistadoExcelPedido.ReadOnly = true;
+            this.datalistadoExcelPedido.RowHeadersVisible = false;
+            this.datalistadoExcelPedido.RowHeadersWidth = 51;
+            this.datalistadoExcelPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoExcelPedido.Size = new System.Drawing.Size(10, 26);
+            this.datalistadoExcelPedido.TabIndex = 27;
+            // 
+            // numeroPedido
+            // 
+            this.numeroPedido.HeaderText = "N° DE PEDIDO";
+            this.numeroPedido.Name = "numeroPedido";
+            this.numeroPedido.ReadOnly = true;
+            // 
+            // fechaInicio
+            // 
+            this.fechaInicio.HeaderText = "FECHA DE INICIO";
+            this.fechaInicio.Name = "fechaInicio";
+            this.fechaInicio.ReadOnly = true;
+            // 
+            // fechaVencimiento
+            // 
+            this.fechaVencimiento.HeaderText = "FECHA DE VENCIMIENTO";
+            this.fechaVencimiento.Name = "fechaVencimiento";
+            this.fechaVencimiento.ReadOnly = true;
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "CLIENTE";
+            this.cliente.Name = "cliente";
+            this.cliente.ReadOnly = true;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "TOTAL";
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            // 
+            // numeroCotizacion
+            // 
+            this.numeroCotizacion.HeaderText = "N° DE COTIZACION";
+            this.numeroCotizacion.Name = "numeroCotizacion";
+            this.numeroCotizacion.ReadOnly = true;
+            // 
+            // cantidadItems
+            // 
+            this.cantidadItems.HeaderText = "CANTIDAD DE ITEMS";
+            this.cantidadItems.Name = "cantidadItems";
+            this.cantidadItems.ReadOnly = true;
+            // 
+            // unidad
+            // 
+            this.unidad.HeaderText = "UNIDAD";
+            this.unidad.Name = "unidad";
+            this.unidad.ReadOnly = true;
+            // 
+            // ordenCompra
+            // 
+            this.ordenCompra.HeaderText = "ORDEN DE COMPRA";
+            this.ordenCompra.Name = "ordenCompra";
+            this.ordenCompra.ReadOnly = true;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "ESTADO";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            // 
+            // datalistadoBusquedaPedidoPorFecha_Externo
+            // 
+            this.datalistadoBusquedaPedidoPorFecha_Externo.AllowUserToAddRows = false;
+            this.datalistadoBusquedaPedidoPorFecha_Externo.AllowUserToDeleteRows = false;
+            this.datalistadoBusquedaPedidoPorFecha_Externo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoBusquedaPedidoPorFecha_Externo.Location = new System.Drawing.Point(388, 20);
+            this.datalistadoBusquedaPedidoPorFecha_Externo.Name = "datalistadoBusquedaPedidoPorFecha_Externo";
+            this.datalistadoBusquedaPedidoPorFecha_Externo.ReadOnly = true;
+            this.datalistadoBusquedaPedidoPorFecha_Externo.RowHeadersVisible = false;
+            this.datalistadoBusquedaPedidoPorFecha_Externo.RowHeadersWidth = 51;
+            this.datalistadoBusquedaPedidoPorFecha_Externo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoBusquedaPedidoPorFecha_Externo.Size = new System.Drawing.Size(10, 26);
+            this.datalistadoBusquedaPedidoPorFecha_Externo.TabIndex = 26;
             // 
             // pictureBox17
             // 
@@ -2306,10 +2537,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(20, 15);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(260, 32);
+            this.label6.Size = new System.Drawing.Size(242, 31);
             this.label6.TabIndex = 13;
             this.label6.Text = "Accesos Directos";
             // 
@@ -2443,14 +2674,40 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(246)))), ((int)(((byte)(169)))));
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.lblReportes4);
             this.panel7.Controls.Add(this.label20);
             this.panel7.Controls.Add(this.label21);
+            this.panel7.Controls.Add(this.lblReportes4);
             this.panel7.Location = new System.Drawing.Point(21, 279);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(303, 182);
             this.panel7.TabIndex = 10;
+            // 
+            // label20
+            // 
+            this.label20.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label20.Location = new System.Drawing.Point(0, 111);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(301, 42);
+            this.label20.TabIndex = 5;
+            this.label20.Text = "Ordenes de Compra";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label21
+            // 
+            this.label21.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label21.Location = new System.Drawing.Point(0, 0);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(301, 105);
+            this.label21.TabIndex = 4;
+            this.label21.Text = "Datos No Visibles";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lblReportes4
             // 
@@ -2467,32 +2724,6 @@
             this.lblReportes4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblReportes4.Click += new System.EventHandler(this.lblReportes4_Click);
             // 
-            // label20
-            // 
-            this.label20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label20.Location = new System.Drawing.Point(0, 103);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(301, 79);
-            this.label20.TabIndex = 5;
-            this.label20.Text = "Ordenes de Compra Registradas";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label21
-            // 
-            this.label21.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label21.Location = new System.Drawing.Point(0, 0);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(301, 103);
-            this.label21.TabIndex = 4;
-            this.label21.Text = "NN";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // DesdeFecha
             // 
             this.DesdeFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -2507,14 +2738,40 @@
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.lblReportes5);
             this.panel8.Controls.Add(this.label23);
             this.panel8.Controls.Add(this.label24);
+            this.panel8.Controls.Add(this.lblReportes5);
             this.panel8.Location = new System.Drawing.Point(342, 279);
             this.panel8.Margin = new System.Windows.Forms.Padding(4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(303, 182);
             this.panel8.TabIndex = 11;
+            // 
+            // label23
+            // 
+            this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label23.Location = new System.Drawing.Point(0, 111);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(301, 42);
+            this.label23.TabIndex = 6;
+            this.label23.Text = "Modelos Registrados";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label24
+            // 
+            this.label24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label24.Location = new System.Drawing.Point(0, 0);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(301, 105);
+            this.label24.TabIndex = 5;
+            this.label24.Text = "Datos No Visibles";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lblReportes5
             // 
@@ -2530,32 +2787,6 @@
             this.lblReportes5.Text = "Ver más detalles  ";
             this.lblReportes5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblReportes5.Click += new System.EventHandler(this.lblReportes5_Click);
-            // 
-            // label23
-            // 
-            this.label23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label23.Location = new System.Drawing.Point(0, 103);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(301, 79);
-            this.label23.TabIndex = 6;
-            this.label23.Text = "Modelos Registrados en el Sistema";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label24
-            // 
-            this.label24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label24.Location = new System.Drawing.Point(0, 0);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(301, 103);
-            this.label24.TabIndex = 5;
-            this.label24.Text = "NN";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelDatos3
             // 
@@ -2610,11 +2841,11 @@
             // lblTituloPrincipal
             // 
             this.lblTituloPrincipal.AutoSize = true;
-            this.lblTituloPrincipal.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloPrincipal.Location = new System.Drawing.Point(26, 16);
             this.lblTituloPrincipal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloPrincipal.Name = "lblTituloPrincipal";
-            this.lblTituloPrincipal.Size = new System.Drawing.Size(223, 32);
+            this.lblTituloPrincipal.Size = new System.Drawing.Size(206, 31);
             this.lblTituloPrincipal.TabIndex = 6;
             this.lblTituloPrincipal.Text = "Datos Rápidos";
             // 
@@ -2622,14 +2853,40 @@
             // 
             this.panelDatos1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.panelDatos1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelDatos1.Controls.Add(this.lblReportes1);
             this.panelDatos1.Controls.Add(this.label7);
-            this.panelDatos1.Controls.Add(this.lblReporteProducto);
+            this.panelDatos1.Controls.Add(this.lblReportePedidos);
+            this.panelDatos1.Controls.Add(this.lblReportes1);
             this.panelDatos1.Location = new System.Drawing.Point(21, 73);
             this.panelDatos1.Margin = new System.Windows.Forms.Padding(4);
             this.panelDatos1.Name = "panelDatos1";
             this.panelDatos1.Size = new System.Drawing.Size(303, 182);
             this.panelDatos1.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(0, 111);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(301, 42);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Pedidos Generados";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblReportePedidos
+            // 
+            this.lblReportePedidos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblReportePedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportePedidos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblReportePedidos.Location = new System.Drawing.Point(0, 0);
+            this.lblReportePedidos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReportePedidos.Name = "lblReportePedidos";
+            this.lblReportePedidos.Size = new System.Drawing.Size(301, 105);
+            this.lblReportePedidos.TabIndex = 4;
+            this.lblReportePedidos.Text = "NN";
+            this.lblReportePedidos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lblReportes1
             // 
@@ -2642,48 +2899,47 @@
             this.lblReportes1.Name = "lblReportes1";
             this.lblReportes1.Size = new System.Drawing.Size(301, 27);
             this.lblReportes1.TabIndex = 10;
-            this.lblReportes1.Text = "Ver más detalles  ";
+            this.lblReportes1.Text = "Descargar en Excel  ";
             this.lblReportes1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblReportes1.Click += new System.EventHandler(this.lblReportes1_Click);
-            // 
-            // label7
-            // 
-            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(0, 111);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(301, 79);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Ordenes Registradas";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblReporteProducto
-            // 
-            this.lblReporteProducto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReporteProducto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblReporteProducto.Location = new System.Drawing.Point(0, 0);
-            this.lblReporteProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblReporteProducto.Name = "lblReporteProducto";
-            this.lblReporteProducto.Size = new System.Drawing.Size(301, 111);
-            this.lblReporteProducto.TabIndex = 4;
-            this.lblReporteProducto.Text = "NN";
-            this.lblReporteProducto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelDatos2
             // 
             this.panelDatos2.BackColor = System.Drawing.Color.Yellow;
             this.panelDatos2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelDatos2.Controls.Add(this.lblReportes2);
+            this.panelDatos2.Controls.Add(this.lblReporteOrdenesProduccion);
             this.panelDatos2.Controls.Add(this.label9);
-            this.panelDatos2.Controls.Add(this.lblReporteFormulacion);
+            this.panelDatos2.Controls.Add(this.lblReportes2);
             this.panelDatos2.Location = new System.Drawing.Point(342, 73);
             this.panelDatos2.Margin = new System.Windows.Forms.Padding(4);
             this.panelDatos2.Name = "panelDatos2";
             this.panelDatos2.Size = new System.Drawing.Size(303, 182);
             this.panelDatos2.TabIndex = 8;
+            // 
+            // lblReporteOrdenesProduccion
+            // 
+            this.lblReporteOrdenesProduccion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblReporteOrdenesProduccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteOrdenesProduccion.Location = new System.Drawing.Point(0, 0);
+            this.lblReporteOrdenesProduccion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReporteOrdenesProduccion.Name = "lblReporteOrdenesProduccion";
+            this.lblReporteOrdenesProduccion.Size = new System.Drawing.Size(301, 105);
+            this.lblReporteOrdenesProduccion.TabIndex = 5;
+            this.lblReporteOrdenesProduccion.Text = "NN";
+            this.lblReporteOrdenesProduccion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(0, 111);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(301, 42);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Ordenes de Producción";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblReportes2
             // 
@@ -2696,34 +2952,9 @@
             this.lblReportes2.Name = "lblReportes2";
             this.lblReportes2.Size = new System.Drawing.Size(301, 27);
             this.lblReportes2.TabIndex = 11;
-            this.lblReportes2.Text = "Ver más detalles  ";
+            this.lblReportes2.Text = "Descargar en Excel  ";
             this.lblReportes2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblReportes2.Click += new System.EventHandler(this.lblReportes2_Click);
-            // 
-            // label9
-            // 
-            this.label9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(0, 103);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(301, 79);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Movimientos Registrados en Almacen";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblReporteFormulacion
-            // 
-            this.lblReporteFormulacion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteFormulacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReporteFormulacion.Location = new System.Drawing.Point(0, 0);
-            this.lblReporteFormulacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblReporteFormulacion.Name = "lblReporteFormulacion";
-            this.lblReporteFormulacion.Size = new System.Drawing.Size(301, 103);
-            this.lblReporteFormulacion.TabIndex = 5;
-            this.lblReporteFormulacion.Text = "NN";
-            this.lblReporteFormulacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelConfiguracionUsuario
             // 
@@ -2849,8 +3080,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNovedades)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaUusario)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -2899,6 +3130,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaOrdenProduccionPorFecha_Externo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcelOrdenProduccion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoExcelPedido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaPedidoPorFecha_Externo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel25.ResumeLayout(false);
@@ -2997,11 +3232,11 @@
         private System.Windows.Forms.Panel panelDatos1;
         private System.Windows.Forms.Label lblReportes1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblReporteProducto;
+        private System.Windows.Forms.Label lblReportePedidos;
         private System.Windows.Forms.Panel panelDatos2;
         private System.Windows.Forms.Label lblReportes2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblReporteFormulacion;
+        private System.Windows.Forms.Label lblReporteOrdenesProduccion;
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel4;
@@ -3133,5 +3368,29 @@
         private System.Windows.Forms.Panel panel32;
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.Panel panel34;
+        private System.Windows.Forms.DataGridView datalistadoBusquedaPedidoPorFecha_Externo;
+        private System.Windows.Forms.DataGridView datalistadoExcelPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaVencimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroCotizacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordenCompra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridView datalistadoBusquedaOrdenProduccionPorFecha_Externo;
+        private System.Windows.Forms.DataGridView datalistadoExcelOrdenProduccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
     }
 }

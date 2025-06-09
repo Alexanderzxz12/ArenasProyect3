@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -63,6 +65,8 @@ namespace ArenasProyect3.Modulos.Logistica
             //FUNCION PARA CARGAR DATOS DEL USUARIO
             DatosUsuario();
             CargarNovedades();
+            CargarReportePedidos();
+            CargarReporteOrdenProduccion();
 
             //AJUSTAR FECHAS DESDE EL PRIEMRO AL ULTIMO DEIA DEL MES
             DateTime date = DateTime.Now;
@@ -228,13 +232,13 @@ namespace ArenasProyect3.Modulos.Logistica
         //BUSQUEDA DE REPORTES SEGÚN LA FECH ASELECCIONADA - DESDE
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            //ReporteMenuComercial(DesdeFecha.Value, HastaFecha.Value);
+            CargarReportePedidos();
         }
 
         //BUSQUEDA DE REPORTES SEGÚN LA FECH ASELECCIONADA - HASTA
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            //ReporteMenuComercial(DesdeFecha.Value, HastaFecha.Value);
+            CargarReportePedidos();
         }
 
         //BLOQUEO DE ACCESOS------------------------------------------------------
@@ -248,44 +252,117 @@ namespace ArenasProyect3.Modulos.Logistica
         //BLOEQUEO HACI EL REPORTE NÚMERO 1
         private void lblReportes1_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = false;
+            MostrarExcelPedido();
+
+            SLDocument sl = new SLDocument();
+            SLStyle style = new SLStyle();
+            SLStyle styleC = new SLStyle();
+
+            //COLUMNAS
+            sl.SetColumnWidth(1, 15);
+            sl.SetColumnWidth(2, 20);
+            sl.SetColumnWidth(3, 20);
+            sl.SetColumnWidth(4, 50);
+            sl.SetColumnWidth(5, 18);
+            sl.SetColumnWidth(6, 15);
+            sl.SetColumnWidth(7, 15);
+            sl.SetColumnWidth(8, 25);
+            sl.SetColumnWidth(9, 25);
+            sl.SetColumnWidth(10, 35);
+
+            //CABECERA
+            style.Font.FontSize = 11;
+            style.Font.Bold = true;
+            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+            style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+            style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+            style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+            style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+            style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+            //FILAS
+            styleC.Font.FontSize = 10;
+            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+            styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+            styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+            styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+            styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+            int ic = 1;
+            foreach (DataGridViewColumn column in datalistadoExcelPedido.Columns)
+            {
+                sl.SetCellValue(1, ic, column.HeaderText.ToString());
+                sl.SetCellStyle(1, ic, style);
+                ic++;
+            }
+
+            int ir = 2;
+            foreach (DataGridViewRow row in datalistadoExcelPedido.Rows)
+            {
+                sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+                sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+                sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+                sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+                sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
+                sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
+                sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
+                sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
+                sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
+                sl.SetCellValue(ir, 10, row.Cells[9].Value.ToString());
+                sl.SetCellStyle(ir, 1, styleC);
+                sl.SetCellStyle(ir, 2, styleC);
+                sl.SetCellStyle(ir, 3, styleC);
+                sl.SetCellStyle(ir, 4, styleC);
+                sl.SetCellStyle(ir, 5, styleC);
+                sl.SetCellStyle(ir, 6, styleC);
+                sl.SetCellStyle(ir, 7, styleC);
+                sl.SetCellStyle(ir, 8, styleC);
+                sl.SetCellStyle(ir, 9, styleC);
+                sl.SetCellStyle(ir, 10, styleC);
+                ir++;
+            }
+
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            sl.SaveAs(desktopPath + @"\Reporte de pedidos.xlsx");
+            MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
         }
 
         //BLOEQUEO HACI EL REPORTE NÚMERO 2
         private void lblReportes2_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = false;
+            
         }
 
         //BLOEQUEO HACI EL REPORTE NÚMERO 3
         private void lblReportes3_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = false;
+            panelProhibicion.Visible = true;
         }
 
         //BLOEQUEO HACI EL REPORTE NÚMERO 4
         private void lblReportes4_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = false;
+            panelProhibicion.Visible = true;
         }
 
         //BLOEQUEO HACI EL REPORTE NÚMERO 5
         private void lblReportes5_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = false;
+            panelProhibicion.Visible = true;
         }
 
         //BLOEQUEO HACI EL REPORTE NÚMERO 6
         private void lblGeneracionGraficos_Click(object sender, EventArgs e)
         {
-            panelProhibicion.Visible = false;
+            panelProhibicion.Visible = true;
         }
 
         //ACCIONES DE ENTRADA Y SALIDA DE MENUS Y SUBMENUS DEL SISTEMA-------------------
         //ABRIR EL MENÚ Y MANTENIMEINTO
         private void btnOrdenesLogistica_Click(object sender, EventArgs e)
         {
-
+            panelProhibicion.Visible = true;
         }
 
         //ABRIR EL MENÚ Y MANTENIMENTO ALMACEN
@@ -323,13 +400,13 @@ namespace ArenasProyect3.Modulos.Logistica
         //ABRIR EL MENÚ Y MANTENIMENTO DESPACHOS
         private void btnDespacho_Click(object sender, EventArgs e)
         {
-
+            panelProhibicion.Visible = true;
         }
 
         //ABRIR EL MENÚ Y MANTENIMENTO LINEAS
         private void btnLineas_Click(object sender, EventArgs e)
         {
-
+            panelProhibicion.Visible = true;
         }
 
         //ABRIR EL MENÚ Y MANTENIMENTO REQUERIMIENTOS
@@ -351,7 +428,7 @@ namespace ArenasProyect3.Modulos.Logistica
         //ABRIR EL MENÚ Y MANTENIMENTO REPORTES
         private void btnReportes_Click(object sender, EventArgs e)
         {
-
+            panelProhibicion.Visible = true;
         }
 
         //ABRIR LA OPCION DE MAS DETALLES DE LA NOTIFICACIONES
@@ -407,6 +484,92 @@ namespace ArenasProyect3.Modulos.Logistica
 
             lblusuarioActual.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
             Program.NombreUsuarioCompleto = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+        }
+
+        //BUSQUEDA DE PEDIDOS POR FECHA
+        public void CargarReportePedidos()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("SP_LISTADO_GENERA_PEDIDO_FECHAS", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@DESCLI", "");
+            cmd.Parameters.AddWithValue("@DESDE", DesdeFecha.Value);
+            cmd.Parameters.AddWithValue("@HASTA", HastaFecha.Value);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBusquedaPedidoPorFecha_Externo.DataSource = dt;
+            con.Close();
+            lblReportePedidos.Text = Convert.ToString(datalistadoBusquedaPedidoPorFecha_Externo.RowCount);
+        }
+
+        //BUSQUEDA DE PEDIDOS POR FECHA
+        public void CargarReporteOrdenProduccion()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("SP_LISTADO_ORDEN_PRODUCCION_FECHAS", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@DESCLI", "");
+            cmd.Parameters.AddWithValue("@DESDE", DesdeFecha.Value);
+            cmd.Parameters.AddWithValue("@HASTA", HastaFecha.Value);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBusquedaOrdenProduccionPorFecha_Externo.DataSource = dt;
+            con.Close();
+            lblReporteOrdenesProduccion.Text = Convert.ToString(datalistadoBusquedaOrdenProduccionPorFecha_Externo.RowCount);
+        }
+
+        //VIZUALIZAR DATOS EXCEL PEDIDO--------------------------------------------------------------------
+        public void MostrarExcelPedido()
+        {
+            datalistadoExcelPedido.Rows.Clear();
+
+            foreach (DataGridViewRow dgv in datalistadoBusquedaPedidoPorFecha_Externo.Rows)
+            {
+                string numeroPedido = dgv.Cells[0].Value.ToString();
+                string fechaInicio = dgv.Cells[1].Value.ToString();
+                string fechaVencimiento = dgv.Cells[2].Value.ToString();
+                string cliente = dgv.Cells[3].Value.ToString();
+                string total = dgv.Cells[4].Value.ToString();
+                string numeroCotizacion = dgv.Cells[5].Value.ToString();
+                string cantidadItems = dgv.Cells[6].Value.ToString();
+                string unidad = dgv.Cells[7].Value.ToString();
+                string ordenCOmpra = dgv.Cells[8].Value.ToString();
+                string estado = dgv.Cells[16].Value.ToString();
+
+                datalistadoExcelPedido.Rows.Add(new[] { numeroPedido, fechaInicio, fechaVencimiento, cliente, total, numeroCotizacion, cantidadItems, unidad, ordenCOmpra, estado });
+            }
+        }
+
+        //VIZUALIZAR DATOS EXCEL PEDIDO--------------------------------------------------------------------
+        public void MostrarExcelOrdenProduccion()
+        {
+            datalistadoExcelOrdenProduccion.Rows.Clear();
+
+            foreach (DataGridViewRow dgv in datalistadoBusquedaOrdenProduccionPorFecha_Externo.Rows)
+            {
+                string numeroOrdenProduccion = dgv.Cells[0].Value.ToString();
+                string fechaInicio = dgv.Cells[1].Value.ToString();
+                string fechaEntrega = dgv.Cells[2].Value.ToString();
+                string cliente = dgv.Cells[3].Value.ToString();
+                string unidad = dgv.Cells[4].Value.ToString();
+                string item = dgv.Cells[5].Value.ToString();
+                string descripcionProducto = dgv.Cells[6].Value.ToString();
+                string cantidad = dgv.Cells[7].Value.ToString();
+                string color = dgv.Cells[8].Value.ToString();
+                string numeroPedido = dgv.Cells[9].Value.ToString();
+                string cantidadRealizada = dgv.Cells[10].Value.ToString();
+                string estado = dgv.Cells[11].Value.ToString();
+
+                datalistadoExcelOrdenProduccion.Rows.Add(new[] { numeroOrdenProduccion, fechaInicio, fechaEntrega, cliente, unidad, item, descripcionProducto, cantidad, color, numeroPedido, cantidadRealizada, estado });
+            }
         }
 
         ////REPORTE DE MENUS
@@ -503,87 +666,85 @@ namespace ArenasProyect3.Modulos.Logistica
         //BOTON DE ORDENES LOGISTICAS
         private void btnOrdenesLogistica_MouseHover(object sender, EventArgs e)
         {
-            btnOrdenesLogistica.BackColor = Color.FromArgb(243, 243, 243);
+            btnOrdenesLogistica.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
         }
 
         //LEVANTAR MOUSE
         private void btnOrdenesLogistica_MouseLeave(object sender, EventArgs e)
         {
-            btnOrdenesLogistica.BackColor = Color.White;
+            btnOrdenesLogistica.BackColor = System.Drawing.Color.White;
         }
 
         //BOTON DE ALMACENES
         private void btnAlmacen_MouseHover(object sender, EventArgs e)
         {
-            btnAlmacen.BackColor = Color.FromArgb(243, 243, 243);
+            btnAlmacen.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
         }
 
         //LEVANTAR MOUSE
         private void btnAlmacen_MouseLeave(object sender, EventArgs e)
         {
-            btnAlmacen.BackColor = Color.White;
+            btnAlmacen.BackColor = System.Drawing.Color.White;
         }
 
         //BOTON DE COMPRAS
         private void btnCompras_MouseHover(object sender, EventArgs e)
         {
-            btnCompras.BackColor = Color.FromArgb(243, 243, 243);
+            btnCompras.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
         }
 
         //LEVANTAR MOUSE
         private void btnCompras_MouseLeave(object sender, EventArgs e)
         {
-            btnCompras.BackColor = Color.White;
+            btnCompras.BackColor = System.Drawing.Color.White;
         }
 
         //BOTON DE DESPACHOS
         private void btnDespacho_MouseHover(object sender, EventArgs e)
         {
-            btnDespacho.BackColor = Color.FromArgb(243, 243, 243);
+            btnDespacho.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
         }
 
         //LEVANTAR MOUSE
         private void btnDespacho_MouseLeave(object sender, EventArgs e)
         {
-            btnDespacho.BackColor = Color.White;
+            btnDespacho.BackColor = System.Drawing.Color.White;
         }
 
         //BOTON DE LINEAS
         private void btnLineas_MouseHover(object sender, EventArgs e)
         {
-            btnLineas.BackColor = Color.FromArgb(243, 243, 243);
+            btnLineas.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
         }
 
         //LEVANTAR MOUSE
         private void btnLineas_MouseLeave(object sender, EventArgs e)
         {
-            btnLineas.BackColor = Color.White;
+            btnLineas.BackColor = System.Drawing.Color.White;
         }
 
         //BOTON DE REQUERIMIENTO
         private void btnRequerimientos_MouseHover(object sender, EventArgs e)
         {
-            btnRequerimientos.BackColor = Color.FromArgb(243, 243, 243);
+            btnRequerimientos.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
         }
 
         //LEVANTAR MOUSE
         private void btnRequerimientos_MouseLeave(object sender, EventArgs e)
         {
-            btnRequerimientos.BackColor = Color.White;
+            btnRequerimientos.BackColor = System.Drawing.Color.White;
         }
 
         //BOTON DE REPORTES
         private void btnReportes_MouseHover(object sender, EventArgs e)
         {
-            btnReportes.BackColor = Color.FromArgb(243, 243, 243);
+            btnReportes.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
         }
 
         //LEVANTAR MOUSE
         private void btnReportes_MouseLeave(object sender, EventArgs e)
         {
-            btnReportes.BackColor = Color.White;
+            btnReportes.BackColor = System.Drawing.Color.White;
         }
-
-
     }
 }

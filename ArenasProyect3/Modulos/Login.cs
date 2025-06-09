@@ -30,6 +30,7 @@ namespace ArenasProyect3.Modulos
         int contadorInicioIngieneria;
         int contadorInicioLogistica;
         int contadorInicioContabilidad;
+        int contadorInicioMantenimiento;
         //int contadorInicioCalidad;
         //int contadorInicioSIG;
         //int contadorInicioMantenimiento;
@@ -97,7 +98,7 @@ namespace ArenasProyect3.Modulos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de conexión con el servidor de base de datos, no se encuentra conexión a internet o a la red. " + ex.Message,"Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Error de conexión con el servidor de base de datos, no se encuentra conexión a internet o a la red. " + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -398,7 +399,34 @@ namespace ArenasProyect3.Modulos
         //SELECCION DEL ÁREA DE MANTENIMIENTO
         private void btnMantenimiento_Click(object sender, EventArgs e)
         {
-            //AUN EN PROCESO
+            //VALIDAR SI EL USUARIO TIENE LICENCIA
+            if (datalistadoVerificacionLicencia.RowCount > 0)
+            {
+
+                //ABRIR EL PANEL DEL AREA SELECCIONADA
+                area = "Mantenimiento";
+                if (panelUsuarios.Controls.Count < 1)
+                {
+                    panelUsuarios.Controls.Clear();
+                    flpAreas.Visible = false;
+                    panelCuentas.Visible = true;
+                    ImgRegresar.Visible = true;
+                    DibujarUsuario();
+                }
+                else
+                {
+                    panelUsuarios.Controls.Clear();
+                    flpAreas.Visible = false;
+                    panelCuentas.Visible = true;
+                    ImgRegresar.Visible = true;
+                    DibujarUsuario();
+                }
+            }
+            else
+            {
+                //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+            }
         }
 
         //SELECCION DEL´ÁREA DE ADMINISTRADOR
@@ -407,32 +435,24 @@ namespace ArenasProyect3.Modulos
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
             {
-                //SI EL ESTADO DEL SISTEMA ES ACTIVO
-                if (estadoSistema == "ACTIVO - CORRIENDO")
+
+                //ABRIR EL PANEL DEL AREA SELECCIONADA
+                area = "Administrador";
+                if (panelUsuarios.Controls.Count < 1)
                 {
-                    //ABRIR EL PANEL DEL AREA SELECCIONADA
-                    area = "Administrador";
-                    if (panelUsuarios.Controls.Count < 1)
-                    {
-                        panelUsuarios.Controls.Clear();
-                        flpAreas.Visible = false;
-                        panelCuentas.Visible = true;
-                        ImgRegresar.Visible = true;
-                        DibujarUsuario();
-                    }
-                    else
-                    {
-                        panelUsuarios.Controls.Clear();
-                        flpAreas.Visible = false;
-                        panelCuentas.Visible = true;
-                        ImgRegresar.Visible = true;
-                        DibujarUsuario();
-                    }
+                    panelUsuarios.Controls.Clear();
+                    flpAreas.Visible = false;
+                    panelCuentas.Visible = true;
+                    ImgRegresar.Visible = true;
+                    DibujarUsuario();
                 }
                 else
                 {
-                    //SI EL ESTADO DEL SISITEMA NO ESTA ACTIVO
-                    panelMantenimiento.Visible = true;
+                    panelUsuarios.Controls.Clear();
+                    flpAreas.Visible = false;
+                    panelCuentas.Visible = true;
+                    ImgRegresar.Visible = true;
+                    DibujarUsuario();
                 }
             }
             else
@@ -618,6 +638,21 @@ namespace ArenasProyect3.Modulos
                 Ingenieria.ShowDialog();
             }
         }
+
+        //MANTENIMIENO
+        private void timerMantenimiento_Tick(object sender, EventArgs e)
+        {
+            contadorInicioMantenimiento = contadorInicioMantenimiento - 1;
+            this.lblContadorInicio.Text = contadorInicioMantenimiento.ToString();
+            if (contadorInicioMantenimiento == 0)
+            {
+                this.timerMantenimiento.Enabled = false;
+                Modulos.Mantenimiento.MenuMantenimiento Mantenimiento = new Modulos.Mantenimiento.MenuMantenimiento();
+
+                this.Hide();
+                Mantenimiento.ShowDialog();
+            }
+        }
         //----------------------------------------------------------------------------------------------------------
 
         //CARGA DE METODOS PARA EL FUNCIONAMIENTO DEL LOGIN------------------------------------------------------------
@@ -789,6 +824,14 @@ namespace ArenasProyect3.Modulos
                     this.lblContadorInicio.Text = Convert.ToInt32(contadorInicioIngieneria).ToString();
                     this.timerIngenieria.Enabled = true;
                 }
+                else if (Program.AreaUsuario == "Mantenimiento")
+                {
+                    lblNombre.Text = Program.UnoNombreUnoApellidoUsuario;
+                    panelBienvenida.Visible = true;
+                    contadorInicioMantenimiento = 20;
+                    this.lblContadorInicio.Text = Convert.ToInt32(contadorInicioMantenimiento).ToString();
+                    this.timerMantenimiento.Enabled = true;
+                }
                 else
                 {
                     MessageBox.Show("Ocurrio un error inesperado.", "Ingreso al Sistema", MessageBoxButtons.OKCancel);
@@ -954,6 +997,8 @@ namespace ArenasProyect3.Modulos
             btnAdministrador.BackColor = Color.Black;
             lblLeyendaAdmin.BackColor = Color.Black;
         }
+
+
         //-----------------------------------------------------------------------------------------------
     }
 }

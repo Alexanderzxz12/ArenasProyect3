@@ -1,9 +1,16 @@
-﻿using SpreadsheetLight;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Drawing.Wordprocessing;
+using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,12 +18,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Spreadsheet;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using System.Diagnostics;
-using ArenasProyect3.Modulos.ManGeneral;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace ArenasProyect3.Modulos.Comercial.Ventas
 {
@@ -398,6 +401,21 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
+        //CARGAR BROCHURES
+        public void CargarBrochures()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand comando = new SqlCommand("SELECT IdBrochures,Nombre,Ruta FROM Brochures WHERE Estado = 1", con);
+            SqlDataAdapter data = new SqlDataAdapter(comando);
+            DataTable dt = new DataTable();
+            data.Fill(dt);
+            cboBrochures.ValueMember = "IdBrochures";
+            cboBrochures.DisplayMember = "Nombre";
+            cboBrochures.DataSource = dt;
+        }
+
         //LISTADO DE COTIZACIONES Y SELECCION DE DETALLES Y ESTADO DE COTIZACIONES---------------------
         //CARGAR TODAS LAS COTIZACIONES INGRESADAS
         public void CargarCotizaciones(DateTime fechaInicio, DateTime fechaTermino)
@@ -495,6 +513,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             DGV.Columns[30].Visible = false;
             DGV.Columns[31].Visible = false;
             DGV.Columns[32].Visible = false;
+            DGV.Columns[34].Visible = false;
+            DGV.Columns[35].Visible = false;
 
             //CARGAR EL MÉTODO QUE COLOREA LAS FILAS
             CargarColoresListadoCotizacionesGeneral();
@@ -550,7 +570,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     if (estadoItems == 1)
                     {
                         //VENCIDO -> PLOMO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Gray;
+                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
                     }
                     //SI MI COTIZACIÓN ESTA EN ESTADO 2
                     else if (estadoItems == 2)
@@ -846,6 +866,17 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
         }
 
+        //VALIDAR SI EL ITEM YA CUENTA CON PEDIDO CREADA, SI ES ASÍ NO SE VA A PODER MODIFICAR.
+        private void datalistadoItemsCotizacion_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            // Verificar
+            if (datalistadoItemsCotizacion.Rows[e.RowIndex].Cells[8].Value.ToString() == "PEDIDO GENERADO")
+            {
+                e.Cancel = true; // Cancelar la edición de la celda
+            }
+        }
+
+
         //ACCIONES PARA CREAR UNA NUEVA COTIZACION--------------------------------------------
         //ABRIR VENTANA DE NUEVA COTIZACION
         private void btnNuevaCotizacion_Click(object sender, EventArgs e)
@@ -859,6 +890,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             dateFechaEmision.Value = DateTime.Now;
 
             LimpiarCotizacion();
+            CargarBrochures();
 
             btnGuardarCotizacion.Visible = true;
             lblGuardar.Visible = true;
@@ -868,6 +900,23 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             datalistadoCotizacion.Columns[1].ReadOnly = true;
             datalistadoCotizacion.Columns[2].ReadOnly = true;
             datalistadoCotizacion.Columns[6].ReadOnly = true;
+        }
+
+        //CHECK PARA APLICAR BROCHURES
+        private void ckAplicarBrochure_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckAplicarBrochure.Checked == true)
+            {
+                lblAplicaBrochure.Visible = true;
+                CargarBrochures();
+                cboBrochures.Visible = true;
+            }
+            else
+            {
+                lblAplicaBrochure.Visible = false;
+                CargarBrochures();
+                cboBrochures.Visible = false;
+            }
         }
 
         //EDITAR MI COTIZACION YA INGRESADA
@@ -930,6 +979,18 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 txtIgv.Text = dataListadiCotiXCodigo.SelectedCells[24].Value.ToString();
                 txtTotalDescuento.Text = dataListadiCotiXCodigo.SelectedCells[25].Value.ToString();
                 txtTotal.Text = dataListadiCotiXCodigo.SelectedCells[26].Value.ToString();
+
+                CargarBrochures();
+                int estadoBrochure = Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[34].Value.ToString());
+                if (estadoBrochure == 1)
+                {
+                    ckAplicarBrochure.Checked = false;
+                }
+                else
+                {
+                    ckAplicarBrochure.Checked = true;
+                    cboBrochures.SelectedValue = estadoBrochure;
+                }
 
                 //CARGAR DETALLES DE LA COTIZACION
                 datalistadoCotizacion.Rows.Clear();
@@ -1667,6 +1728,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                             cmd.Parameters.AddWithValue("@idcondicionpago", cboCondicionPagoCliente.SelectedValue.ToString());
                             CodigoGeneracionCotizacion();
                             cmd.Parameters.AddWithValue("@codigocotizacion", CodigoGeneradoCotizacion);
+                            cmd.Parameters.AddWithValue("@idBrochure", cboBrochures.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@rutaFinal", "");
                             cmd.ExecuteNonQuery();
                             con.Close();
                         }
@@ -1818,6 +1881,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                             cmd.Parameters.AddWithValue("@idcontacto", cboContactoCliente.SelectedValue.ToString());
                             cmd.Parameters.AddWithValue("@idformapago", cboFormaPagoCliente.SelectedValue.ToString());
                             cmd.Parameters.AddWithValue("@idcondicionpago", cboCondicionPagoCliente.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@idBrochure", cboBrochures.SelectedValue.ToString());
+
                             cmd.ExecuteNonQuery();
                             con.Close();
 
@@ -1903,6 +1968,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                         if (estado == "COMPLETADO" || estado == "ADJUDICADO PARCIALMENTE")
                         {
                             MessageBox.Show("Esta cotización ya tiene un pedido generado, por favor anular por el mantenimiento de pedidos.", "Validación del Sistema", MessageBoxButtons.OK);
+                            return;
                         }
                         else
                         {
@@ -1953,7 +2019,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoTodasCotiaciones.CurrentRow != null)
             {
-                //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL
+                //SI LA CORIZACIÓN SE ENUENTRA ANULADA
                 if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
                 {
                     string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
@@ -1962,14 +2028,54 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
                     frm.Show();
                 }
-                //SI EL REQUERIMEINTO ESTÁ EN UN ESTADO DIFERENTE
+                //SI LA COTIZACIÓN SE ENCUENTRA EN UN ESTADO DIFERENTE
                 else
                 {
-                    string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
-                    frm.lblCodigo.Text = ccodigoCotizacion;
+                    if (Convert.ToInt32(datalistadoTodasCotiaciones.SelectedCells[35].Value.ToString()) == 1)
+                    {
+                        string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
+                        frm.lblCodigo.Text = ccodigoCotizacion;
 
-                    frm.Show();
+                        frm.Show();
+                    }
+                    else
+                    {
+                        string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
+                        frm.lblCodigo.Text = ccodigoCotizacion;
+
+                        frm.Show();
+
+                        string rutaReporte = @"C:\Reportes\Cotizacion.pdf";
+                        string rutaOtroPDF = datalistadoTodasCotiaciones.SelectedCells[34].Value.ToString();
+                        string rutaFinal = @"C:\Reportes\ReporteFinal.pdf";
+
+                        using (FileStream stream = new FileStream(rutaFinal, FileMode.Create))
+                        {
+                            Document document = new Document();
+                            PdfCopy copy = new PdfCopy(document, stream);
+                            document.Open();
+
+                            void AgregarPDF(string path)
+                            {
+                                PdfReader reader = new PdfReader(path);
+                                for (int i = 1; i <= reader.NumberOfPages; i++)
+                                {
+                                    copy.AddPage(copy.GetImportedPage(reader, i));
+                                }
+                                reader.Close();
+                            }
+
+                            AgregarPDF(rutaOtroPDF);
+                            AgregarPDF(rutaReporte);
+
+                            document.Close();
+                        }
+
+                        // Abrir el archivo después de la ejecución
+                        Process.Start(new ProcessStartInfo(rutaFinal) { UseShellExecute = true });
+                    }
                 }
             }
             else
@@ -2202,9 +2308,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             cboContactoCliente.DataSource = null;
             cboCondicionPagoCliente.DataSource = null;
             cboFormaPagoCliente.DataSource = null;
+
             if (cboComercial.SelectedIndex != -1) { cboComercial.SelectedIndex = 0; }
             if (cboMoneda.SelectedIndex != -1) { cboMoneda.SelectedIndex = 0; }
             if (cboAlmacen.SelectedIndex != -1) { cboAlmacen.SelectedIndex = 0; }
+
+            ckAplicarBrochure.Checked = false;
+            cboBrochures.SelectedIndex = 0;
 
             txtObservaciones.Text = "Campo Opcional";
             txtTiempoEntrega.Text = "Campo Opcional";
@@ -2825,7 +2935,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //BOTON PARA GUARADR EL MI PEDIDO Y GENERAR EL DOCUMENTO RESPECTIVO
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
-            if(txtTotalPedido.Text == "0" || txtTotalPedido.Text == "" || txtSubTotalPedido.Text == "0" || txtSubTotalPedido.Text == "" || datalistadoGeneracionPedido.Rows.Count == 0)
+            if (txtTotalPedido.Text == "0" || txtTotalPedido.Text == "" || txtSubTotalPedido.Text == "0" || txtSubTotalPedido.Text == "" || datalistadoGeneracionPedido.Rows.Count == 0)
             {
                 MessageBox.Show("Debe ingresar o cargar el subtotal y total o debe seleccionar los respectivos productos.", "Validación del Sistema");
             }
@@ -3021,7 +3131,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             //CABECERA
             style.Font.FontSize = 11;
             style.Font.Bold = true;
-            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+            //style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
             style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
             style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
             style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
@@ -3030,7 +3140,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
             //FILAS
             styleC.Font.FontSize = 10;
-            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+            //styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
 
             styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
             styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;

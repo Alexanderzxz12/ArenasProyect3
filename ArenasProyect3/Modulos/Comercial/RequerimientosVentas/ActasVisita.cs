@@ -1817,7 +1817,5 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             Process.Start(ruta);
         }
-
-
     }
 }

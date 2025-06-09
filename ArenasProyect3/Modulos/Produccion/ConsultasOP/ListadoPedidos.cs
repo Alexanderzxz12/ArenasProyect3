@@ -337,18 +337,18 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     cmd = new SqlCommand("CambioEstadoPedido", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idPedido", IdPedido);
-                    cmd.Parameters.AddWithValue("@estadoPedido", 3);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 2);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
-                else if (estados.Contains(4))
+                else if (estados.All(e => e == 4))
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     cmd = new SqlCommand("CambioEstadoPedido", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idPedido", IdPedido);
-                    cmd.Parameters.AddWithValue("@estadoPedido", 4);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 3);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
@@ -634,6 +634,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
 
             ColoresListadoPedidos();
+            ColoresListadoPedidos();
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO PEDIDOS
@@ -650,21 +651,17 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     {
                         datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
                     }
-                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "OP GENERADA")
-                    {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
-                    }
                     else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "INCOMPLETA")
                     {
                         datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(192, 192, 0);
                     }
                     else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "CULMINADA")
                     {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
                     }
                     else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "DESPACHADO")
                     {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
                     }
                     else
                     {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArenasProyect3.Reportes;
+using CrystalDecisions.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Reportes;
 
 namespace ArenasProyect3.Visualizadores
 {
@@ -26,6 +27,9 @@ namespace ArenasProyect3.Visualizadores
             reporteD.DataSourceConnections[0].SetLogon("sa", "Arenas.2020!");
             reporteD.SetParameterValue("@idCotizacion", codigo);
             CrvVisualizarActaVisita.ReportSource = reporteD;
+
+            string rutaReporte = @"C:\Reportes\Cotizacion.pdf";
+            reporteD.ExportToDisk(ExportFormatType.PortableDocFormat, rutaReporte);
         }
     }
 }

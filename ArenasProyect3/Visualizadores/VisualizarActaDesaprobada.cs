@@ -20,12 +20,12 @@ namespace ArenasProyect3.Visualizadores
 
         private void VisualizarActaDesaprobada_Load(object sender, EventArgs e)
         {
-            int codigo = Convert.ToInt32(lblCodigo.Text);
+            //int codigo = Convert.ToInt32(lblCodigo.Text);
 
-            InformeActaDesaprobada reporteD = new InformeActaDesaprobada();
-            reporteD.DataSourceConnections[0].SetLogon("sa", "Arenas.2020!");
-            reporteD.SetParameterValue("@idActa", codigo);
-            CrvVisualizarActaVisitaDesaprobada.ReportSource = reporteD;
+            //InformeActaDesaprobada reporteD = new InformeActaDesaprobada();
+            //reporteD.DataSourceConnections[0].SetLogon("sa", "Arenas.2020!");
+            //reporteD.SetParameterValue("@idActa", codigo);
+            //CrvVisualizarActaVisitaDesaprobada.ReportSource = reporteD;
         }
     }
 }

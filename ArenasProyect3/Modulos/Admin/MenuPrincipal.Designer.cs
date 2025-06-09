@@ -123,10 +123,13 @@ namespace ArenasProyect3.Modulos.Admin
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.btnCerrarDetallesUsuario = new System.Windows.Forms.Button();
             this.panelConfiguracion = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
+            this.btnEstadoNovedades = new System.Windows.Forms.Button();
+            this.btnEstadoLicencias = new System.Windows.Forms.Button();
+            this.btnEstadoSistema = new System.Windows.Forms.Button();
             this.btnUltimosCambios = new System.Windows.Forms.Button();
             this.btnAdministrarNotificaciones = new System.Windows.Forms.Button();
-            this.label29 = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panel28 = new System.Windows.Forms.Panel();
@@ -861,7 +864,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // lblNovedadesNuevasFunciones
             // 
-            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNovedadesNuevasFunciones.Location = new System.Drawing.Point(20, 191);
             this.lblNovedadesNuevasFunciones.Name = "lblNovedadesNuevasFunciones";
             this.lblNovedadesNuevasFunciones.Size = new System.Drawing.Size(413, 165);
@@ -871,7 +874,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // lblFechaInstalacion
             // 
-            this.lblFechaInstalacion.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaInstalacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaInstalacion.Location = new System.Drawing.Point(198, 108);
             this.lblFechaInstalacion.Name = "lblFechaInstalacion";
             this.lblFechaInstalacion.Size = new System.Drawing.Size(149, 15);
@@ -881,7 +884,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // lblVersionSistema
             // 
-            this.lblVersionSistema.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersionSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersionSistema.Location = new System.Drawing.Point(198, 75);
             this.lblVersionSistema.Name = "lblVersionSistema";
             this.lblVersionSistema.Size = new System.Drawing.Size(149, 15);
@@ -892,30 +895,30 @@ namespace ArenasProyect3.Modulos.Admin
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(19, 165);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(204, 15);
+            this.label17.Size = new System.Drawing.Size(204, 16);
             this.label17.TabIndex = 15;
             this.label17.Text = "Nuevas funcione o Cambios:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(20, 108);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(154, 15);
+            this.label15.Size = new System.Drawing.Size(155, 16);
             this.label15.TabIndex = 14;
             this.label15.Text = "Fecha de Instalación:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(19, 75);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(149, 15);
+            this.label14.Size = new System.Drawing.Size(148, 16);
             this.label14.TabIndex = 13;
             this.label14.Text = "Versión del sistema:";
             // 
@@ -1384,10 +1387,13 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.panelConfiguracion.BackColor = System.Drawing.SystemColors.Menu;
             this.panelConfiguracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelConfiguracion.Controls.Add(this.label29);
             this.panelConfiguracion.Controls.Add(this.label60);
+            this.panelConfiguracion.Controls.Add(this.btnEstadoNovedades);
+            this.panelConfiguracion.Controls.Add(this.btnEstadoLicencias);
+            this.panelConfiguracion.Controls.Add(this.btnEstadoSistema);
             this.panelConfiguracion.Controls.Add(this.btnUltimosCambios);
             this.panelConfiguracion.Controls.Add(this.btnAdministrarNotificaciones);
-            this.panelConfiguracion.Controls.Add(this.label29);
             this.panelConfiguracion.Controls.Add(this.panel29);
             this.panelConfiguracion.Controls.Add(this.pictureBox10);
             this.panelConfiguracion.Controls.Add(this.panel28);
@@ -1431,17 +1437,74 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelConfiguracion.TabIndex = 2020;
             this.panelConfiguracion.Visible = false;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label29.Location = new System.Drawing.Point(620, 426);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(134, 13);
+            this.label29.TabIndex = 46;
+            this.label29.Text = "@ Copyright​ Arenas S.R.L.";
+            // 
             // label60
             // 
             this.label60.AutoSize = true;
             this.label60.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label60.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label60.Location = new System.Drawing.Point(423, 347);
+            this.label60.Location = new System.Drawing.Point(420, 418);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(233, 26);
+            this.label60.Size = new System.Drawing.Size(199, 24);
             this.label60.TabIndex = 1959;
             this.label60.Text = "Haga click aquí para poder reportar un \r\nproblema o sugerencia";
+            // 
+            // btnEstadoNovedades
+            // 
+            this.btnEstadoNovedades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadoNovedades.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadoNovedades.Image = ((System.Drawing.Image)(resources.GetObject("btnEstadoNovedades.Image")));
+            this.btnEstadoNovedades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEstadoNovedades.Location = new System.Drawing.Point(426, 334);
+            this.btnEstadoNovedades.Name = "btnEstadoNovedades";
+            this.btnEstadoNovedades.Size = new System.Drawing.Size(142, 36);
+            this.btnEstadoNovedades.TabIndex = 1962;
+            this.btnEstadoNovedades.Text = "Estado Novedades";
+            this.btnEstadoNovedades.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEstadoNovedades.UseVisualStyleBackColor = true;
+            this.btnEstadoNovedades.Click += new System.EventHandler(this.btnEstadoNovedades_Click);
+            // 
+            // btnEstadoLicencias
+            // 
+            this.btnEstadoLicencias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadoLicencias.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadoLicencias.Image = ((System.Drawing.Image)(resources.GetObject("btnEstadoLicencias.Image")));
+            this.btnEstadoLicencias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEstadoLicencias.Location = new System.Drawing.Point(577, 333);
+            this.btnEstadoLicencias.Name = "btnEstadoLicencias";
+            this.btnEstadoLicencias.Size = new System.Drawing.Size(127, 36);
+            this.btnEstadoLicencias.TabIndex = 1961;
+            this.btnEstadoLicencias.Text = "Estado Licencias";
+            this.btnEstadoLicencias.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEstadoLicencias.UseVisualStyleBackColor = true;
+            this.btnEstadoLicencias.Click += new System.EventHandler(this.btnEstadoLicencias_Click);
+            // 
+            // btnEstadoSistema
+            // 
+            this.btnEstadoSistema.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadoSistema.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadoSistema.Image = ((System.Drawing.Image)(resources.GetObject("btnEstadoSistema.Image")));
+            this.btnEstadoSistema.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEstadoSistema.Location = new System.Drawing.Point(426, 376);
+            this.btnEstadoSistema.Name = "btnEstadoSistema";
+            this.btnEstadoSistema.Size = new System.Drawing.Size(142, 36);
+            this.btnEstadoSistema.TabIndex = 1960;
+            this.btnEstadoSistema.Text = "Estado del Sistema";
+            this.btnEstadoSistema.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEstadoSistema.UseVisualStyleBackColor = true;
+            this.btnEstadoSistema.Click += new System.EventHandler(this.btnEstadoSistema_Click);
             // 
             // btnUltimosCambios
             // 
@@ -1449,7 +1512,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.btnUltimosCambios.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUltimosCambios.Image = ((System.Drawing.Image)(resources.GetObject("btnUltimosCambios.Image")));
             this.btnUltimosCambios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUltimosCambios.Location = new System.Drawing.Point(613, 297);
+            this.btnUltimosCambios.Location = new System.Drawing.Point(613, 292);
             this.btnUltimosCambios.Name = "btnUltimosCambios";
             this.btnUltimosCambios.Size = new System.Drawing.Size(133, 36);
             this.btnUltimosCambios.TabIndex = 48;
@@ -1464,7 +1527,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.btnAdministrarNotificaciones.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdministrarNotificaciones.Image = ((System.Drawing.Image)(resources.GetObject("btnAdministrarNotificaciones.Image")));
             this.btnAdministrarNotificaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdministrarNotificaciones.Location = new System.Drawing.Point(426, 297);
+            this.btnAdministrarNotificaciones.Location = new System.Drawing.Point(426, 292);
             this.btnAdministrarNotificaciones.Name = "btnAdministrarNotificaciones";
             this.btnAdministrarNotificaciones.Size = new System.Drawing.Size(181, 36);
             this.btnAdministrarNotificaciones.TabIndex = 47;
@@ -1472,18 +1535,6 @@ namespace ArenasProyect3.Modulos.Admin
             this.btnAdministrarNotificaciones.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdministrarNotificaciones.UseVisualStyleBackColor = true;
             this.btnAdministrarNotificaciones.Click += new System.EventHandler(this.btnAdministrarNotificaciones_Click);
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label29.Location = new System.Drawing.Point(582, 421);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(166, 16);
-            this.label29.TabIndex = 46;
-            this.label29.Text = "@ Copyright​ Arenas S.R.L.";
             // 
             // panel29
             // 
@@ -2266,10 +2317,10 @@ namespace ArenasProyect3.Modulos.Admin
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(20, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(260, 32);
+            this.label4.Size = new System.Drawing.Size(242, 31);
             this.label4.TabIndex = 11;
             this.label4.Text = "Accesos Directos";
             // 
@@ -2528,10 +2579,10 @@ namespace ArenasProyect3.Modulos.Admin
             // lblTituloPrincipal
             // 
             this.lblTituloPrincipal.AutoSize = true;
-            this.lblTituloPrincipal.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloPrincipal.Location = new System.Drawing.Point(26, 16);
             this.lblTituloPrincipal.Name = "lblTituloPrincipal";
-            this.lblTituloPrincipal.Size = new System.Drawing.Size(223, 32);
+            this.lblTituloPrincipal.Size = new System.Drawing.Size(206, 31);
             this.lblTituloPrincipal.TabIndex = 6;
             this.lblTituloPrincipal.Text = "Datos Rápidos";
             // 
@@ -3187,5 +3238,8 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Panel panelPrincipalAdministrador;
+        private System.Windows.Forms.Button btnEstadoLicencias;
+        private System.Windows.Forms.Button btnEstadoSistema;
+        private System.Windows.Forms.Button btnEstadoNovedades;
     }
 }

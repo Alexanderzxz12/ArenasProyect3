@@ -24,9 +24,9 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
-    <MinimumRequiredVersion>1.0.0.69</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.72</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>70</ApplicationRevision>
+    <ApplicationRevision>74</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -76,6 +76,9 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="itextsharp, Version=5.0.5.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.0.5\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -119,6 +122,12 @@
     </Compile>
     <Compile Include="Modulos\Admin\ManLicencias.Designer.cs">
       <DependentUpon>ManLicencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Admin\MenuAdministracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Admin\MenuAdministracion.Designer.cs">
+      <DependentUpon>MenuAdministracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Admin\MenuPrincipal.cs">
       <SubType>Form</SubType>
@@ -344,6 +353,12 @@
     <Compile Include="Modulos\Mantenimientos\ValidacionRequerimientoSimple.Designer.cs">
       <DependentUpon>ValidacionRequerimientoSimple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Mantenimiento\MenuMantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Mantenimiento\MenuMantenimiento.Designer.cs">
+      <DependentUpon>MenuMantenimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Procesos\Fornulacion\CreacionFormulacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -494,12 +509,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InformeActaAprobada.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reportes\InformeActaDesaprobada.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InformeActaDesaprobada.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\InformeCotizacionVenta.cs">
@@ -694,6 +703,9 @@
     <EmbeddedResource Include="Modulos\Admin\ManLicencias.resx">
       <DependentUpon>ManLicencias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Admin\MenuAdministracion.resx">
+      <DependentUpon>MenuAdministracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Admin\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -805,6 +817,9 @@
     <EmbeddedResource Include="Modulos\Mantenimientos\ValidacionRequerimientoSimple.resx">
       <DependentUpon>ValidacionRequerimientoSimple.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Mantenimiento\MenuMantenimiento.resx">
+      <DependentUpon>MenuMantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Procesos\Fornulacion\CreacionFormulacion.resx">
       <DependentUpon>CreacionFormulacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -891,10 +906,6 @@
     <EmbeddedResource Include="Reportes\InformeActaAprobada.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeActaAprobada.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\InformeActaDesaprobada.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>InformeActaDesaprobada.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\InformeCotizacionVenta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
