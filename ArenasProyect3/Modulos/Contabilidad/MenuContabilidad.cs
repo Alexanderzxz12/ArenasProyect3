@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace ArenasProyect3.Modulos.Contabilidad
     public partial class MenuContabilidad : Form
     {
         //VARIABLES GENERALES
+        //VARIABLES GLOBALES PARA EL MANTENIMIENTO
+        string ruta = ManGeneral.Manual.manualAreaComercial;
         string maquina = Environment.MachineName;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU COMERCIAL
@@ -464,6 +467,11 @@ namespace ArenasProyect3.Modulos.Contabilidad
             this.panelPrincipalContabilidad.Controls.Add(frm);
             this.panelPrincipalContabilidad.Tag = frm;
             frm.Show();
+        }
+
+        private void btnAbrirManual_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
         }
 
 

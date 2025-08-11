@@ -40,29 +40,27 @@ namespace ArenasProyect3.Visualizadores
             this.CrvVisualizarActaVisitaAprobada.Cursor = System.Windows.Forms.Cursors.Default;
             this.CrvVisualizarActaVisitaAprobada.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CrvVisualizarActaVisitaAprobada.Location = new System.Drawing.Point(0, 0);
-            this.CrvVisualizarActaVisitaAprobada.Margin = new System.Windows.Forms.Padding(4);
             this.CrvVisualizarActaVisitaAprobada.Name = "CrvVisualizarActaVisitaAprobada";
-            this.CrvVisualizarActaVisitaAprobada.Size = new System.Drawing.Size(1320, 647);
+            this.CrvVisualizarActaVisitaAprobada.Size = new System.Drawing.Size(990, 526);
             this.CrvVisualizarActaVisitaAprobada.TabIndex = 4;
-            this.CrvVisualizarActaVisitaAprobada.ToolPanelWidth = 267;
             // 
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(1066, 9);
-            this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigo.Location = new System.Drawing.Point(800, 7);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(50, 17);
+            this.lblCodigo.Size = new System.Drawing.Size(39, 13);
             this.lblCodigo.TabIndex = 6;
             this.lblCodigo.Text = "codigo";
             // 
             // VisualizarActaAprobada
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 647);
-            this.Controls.Add(this.lblCodigo);
+            this.ClientSize = new System.Drawing.Size(990, 526);
             this.Controls.Add(this.CrvVisualizarActaVisitaAprobada);
+            this.Controls.Add(this.lblCodigo);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "VisualizarActaAprobada";
             this.Text = "Visualizar Acta Aprobada";
             this.Load += new System.EventHandler(this.VisualizarActaAprobada_Load);

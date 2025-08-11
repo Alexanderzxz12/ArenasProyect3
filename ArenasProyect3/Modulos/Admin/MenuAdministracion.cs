@@ -16,7 +16,7 @@ namespace ArenasProyect3.Modulos.Admin
     public partial class MenuAdministracion : Form
     {
         //VARIABLES GLOBALES
-        string ruta = ManGeneral.Manual.manualVentas;
+        string ruta = ManGeneral.Manual.manualAreaAdmin;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU DE COTIZACIONES Y PEDIDOS
         public MenuAdministracion()

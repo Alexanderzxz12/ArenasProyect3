@@ -57,7 +57,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd = new SqlCommand("OP_CambiarEstado", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idOP", codigoOP);
                             cmd.Parameters.AddWithValue("@estadoOP", 2);
@@ -71,7 +71,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd = new SqlCommand("OP_CambiarEstado", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idOP", codigoOP);
                             cmd.Parameters.AddWithValue("@estadoOP", 3);
@@ -85,7 +85,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd = new SqlCommand("OP_CambiarEstado", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idOP", codigoOP);
                             cmd.Parameters.AddWithValue("@estadoOP", 1);
@@ -100,7 +100,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOP", con);
+                            cmd = new SqlCommand("OP_CambiarEstado", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idOP", codigoOP);
                             cmd.Parameters.AddWithValue("@estadoOP", 4);
@@ -156,8 +156,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             foreach (DataGridViewRow dgv in datalistadoTodasOP.Rows)
             {
                 string numeroOP = dgv.Cells[2].Value.ToString();
-                string fechaInicio = dgv.Cells[3].Value.ToString();
-                string fechaFinal = dgv.Cells[4].Value.ToString();
+                DateTime fechaInicio = Convert.ToDateTime(dgv.Cells[3].Value.ToString()).Date;
+                DateTime fechaFinal = Convert.ToDateTime(dgv.Cells[4].Value.ToString()).Date;
                 string cliente = dgv.Cells[5].Value.ToString();
                 string unidad = dgv.Cells[6].Value.ToString();
                 string item = dgv.Cells[7].Value.ToString();
@@ -168,8 +168,26 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 string cantidadRealizada = dgv.Cells[12].Value.ToString();
                 string estado = dgv.Cells[12].Value.ToString();
                 string estadoOC = dgv.Cells[14].Value.ToString();
+                //COLUMNAS EXTRAS DE MI REPORTE
+                string fechaCulminacionV = dgv.Cells[22].Value.ToString();
+                string fechaCulminacion;
+                int diferenciasDias = 0;
 
-                datalistadoExcel.Rows.Add(new[] { numeroOP, fechaInicio, fechaFinal, cliente, unidad, item, descripcionDescripcion, cantidad, color, numeroPedido, estado, cantidadRealizada, estado, estadoOC });
+                if (fechaCulminacionV == "SIN REGISTRO")
+                {
+                    fechaCulminacion = "SIN FECHA REGISTRADA";
+                    diferenciasDias = 0;
+                }
+                else
+                {
+                    DateTime fechaCulminacionO = Convert.ToDateTime(fechaCulminacionV).Date;
+                    diferenciasDias = (fechaCulminacionO - fechaFinal).Days;
+                    fechaCulminacion = Convert.ToString(fechaCulminacionO);
+                }
+
+                string area = dgv.Cells[23].Value.ToString();
+
+                datalistadoExcel.Rows.Add(new[] { numeroOP, Convert.ToString(fechaInicio), Convert.ToString(fechaFinal), Convert.ToString(fechaCulminacion), Convert.ToString(diferenciasDias), area, cliente, unidad, item, descripcionDescripcion, cantidad, color, numeroPedido, estado, cantidadRealizada, estado, estadoOC });
             }
         }
 
@@ -204,7 +222,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarCantidadesSegunOP", con);
+            cmd = new SqlCommand("OP_MostrarCantidades", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -256,7 +274,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenProduccionPorFecha", con);
+            cmd = new SqlCommand("OP_MostrarPorFecha", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -275,7 +293,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenProduccionPorCliente", con);
+            cmd = new SqlCommand("OP_MostrarPorCliente", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -295,7 +313,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenProduccionPorCodigoOP", con);
+            cmd = new SqlCommand("OP_MostrarPorCodigo", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -315,7 +333,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenProduccionPorDescripcion", con);
+            cmd = new SqlCommand("OP_MostrarPorDescripcion", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -355,6 +373,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[19].Visible = false;
             DGV.Columns[20].Visible = false;
             DGV.Columns[21].Visible = false;
+            DGV.Columns[22].Visible = false;
+            DGV.Columns[23].Visible = false;
             //SE BLOQUEA MI LISTADO
             DGV.Columns[2].ReadOnly = true;
             DGV.Columns[3].ReadOnly = true;
@@ -578,7 +598,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("IngresarRegistroCantidad", con);
+                            cmd = new SqlCommand("OP_IngresarRegistroCantidad", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idOrdenProduccion", lblIdOP.Text);
                             cmd.Parameters.AddWithValue("@cantidad", txtCantidadRealizada.Text);
@@ -629,7 +649,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("IngresarRegistroCantidad", con);
+                            cmd = new SqlCommand("OP_IngresarRegistroCantidad", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idOrdenProduccion", idOp);
                             cmd.Parameters.AddWithValue("@cantidad", TotalCantidad);
@@ -785,7 +805,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         SqlCommand cmd = new SqlCommand();
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
-                        cmd = new SqlCommand("ModificarFechaOrdenProduccion", con);
+                        cmd = new SqlCommand("OP_ModificarFecha", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
                         cmd.Parameters.AddWithValue("@fechaEntrega", dtpModiFechaEntrega.Value);
@@ -844,16 +864,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             sl.SetColumnWidth(1, 15);
             sl.SetColumnWidth(2, 20);
             sl.SetColumnWidth(3, 20);
-            sl.SetColumnWidth(4, 50);
-            sl.SetColumnWidth(5, 35);
-            sl.SetColumnWidth(6, 10);
+            sl.SetColumnWidth(4, 23);
+            sl.SetColumnWidth(5, 17);
+            sl.SetColumnWidth(6, 30);
             sl.SetColumnWidth(7, 50);
-            sl.SetColumnWidth(8, 15);
-            sl.SetColumnWidth(9, 15);
-            sl.SetColumnWidth(10, 15);
+            sl.SetColumnWidth(8, 35);
+            sl.SetColumnWidth(9, 10);
+            sl.SetColumnWidth(10, 50);
             sl.SetColumnWidth(11, 15);
-            sl.SetColumnWidth(12, 20);
+            sl.SetColumnWidth(12, 15);
             sl.SetColumnWidth(13, 15);
+            sl.SetColumnWidth(14, 20);
+            sl.SetColumnWidth(15, 20);
+            sl.SetColumnWidth(16, 15);
 
             //CABECERA
             style.Font.FontSize = 11;
@@ -898,6 +921,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 sl.SetCellValue(ir, 11, row.Cells[10].Value.ToString());
                 sl.SetCellValue(ir, 12, row.Cells[11].Value.ToString());
                 sl.SetCellValue(ir, 13, row.Cells[12].Value.ToString());
+                sl.SetCellValue(ir, 14, row.Cells[13].Value.ToString());
+                sl.SetCellValue(ir, 15, row.Cells[14].Value.ToString());
+                sl.SetCellValue(ir, 16, row.Cells[15].Value.ToString());
                 sl.SetCellStyle(ir, 1, styleC);
                 sl.SetCellStyle(ir, 2, styleC);
                 sl.SetCellStyle(ir, 3, styleC);
@@ -911,11 +937,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 sl.SetCellStyle(ir, 11, styleC);
                 sl.SetCellStyle(ir, 12, styleC);
                 sl.SetCellStyle(ir, 13, styleC);
+                sl.SetCellStyle(ir, 14, styleC);
+                sl.SetCellStyle(ir, 15, styleC);
+                sl.SetCellStyle(ir, 16, styleC);
                 ir++;
             }
 
+            string desde = DesdeFecha.Value.ToShortDateString();
+            string desdeFormateada = desde.Replace("/", "-");
+            string hasta = HastaFecha.Value.ToShortDateString();
+            string hastaFormateada = hasta.Replace("/", "-");
+
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de ordenes de producción.xlsx");
+            sl.SaveAs(desktopPath + @"\Reporte de ordenes de producción del " + desdeFormateada + " al " + hastaFormateada + ".xlsx");
             MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
         }
 

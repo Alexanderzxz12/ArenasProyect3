@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArenasProyect3.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ArenasProyect3.Modulos.Resourses;
 
 namespace ArenasProyect3.Modulos
 {
@@ -31,7 +33,7 @@ namespace ArenasProyect3.Modulos
         int contadorInicioLogistica;
         int contadorInicioContabilidad;
         int contadorInicioMantenimiento;
-        //int contadorInicioCalidad;
+        int contadorInicioCalidad;
         //int contadorInicioSIG;
         //int contadorInicioMantenimiento;
         //ESTADO INICIAL DEL SISTEMA
@@ -40,41 +42,52 @@ namespace ArenasProyect3.Modulos
         //PRIEMRA CARGA DEL LOGIN
         private void Login_Load(object sender, EventArgs e)
         {
-            //BUSCAR EL ESTADO DEL SISTEMA EN EL SERVIDOR DE BASE DE DATOS
-            CargarEstadoSitema();
-            //OCULTAR EL PANEL DE LOGIN
-            panelLogin.Visible = false;
-            //RECUPERAR EL NOMBRE DE LA MAQUINA EN DONDE ESTA CORRIENDO
-            string maquinaInicioLicencia = Environment.MachineName;
+            try
+            {
+                //BUSCAR EL ESTADO DEL SISTEMA EN EL SERVIDOR DE BASE DE DATOS
+                CargarEstadoSitema();
+                //OCULTAR EL PANEL DE LOGIN
+                panelLogin.Visible = false;
+                //RECUPERAR EL NOMBRE DE LA MAQUINA EN DONDE ESTA CORRIENDO
+                string maquinaInicioLicencia = Environment.MachineName;
 
-            //CONSULTA AL SERVIDOR - VALIDAR LICENCIA Y EXSISTENCIA DE LA MAQUINA EN EL SERVIDOR
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("ValidarLicencia", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@maquina", maquinaInicioLicencia);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoVerificacionLicencia.DataSource = dt;
-            con.Close();
-            //VALIDAR SI LA MAQUINA ESTA REGISTRADA EN EL SERVIDOR
-            if (datalistadoVerificacionLicencia.RowCount > 0)
-            {
-                //SI EXSITE
-                panelValidacionLicencia.Visible = false;
-                imgValidacionCorrecta.Visible = true;
-                imgValidacionIncorrecta.Visible = false;
+                //CONSULTA AL SERVIDOR - VALIDAR LICENCIA Y EXSISTENCIA DE LA MAQUINA EN EL SERVIDOR
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("ValidarLicencia", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@maquina", maquinaInicioLicencia);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoVerificacionLicencia.DataSource = dt;
+                con.Close();
+                //VALIDAR SI LA MAQUINA ESTA REGISTRADA EN EL SERVIDOR
+                if (datalistadoVerificacionLicencia.RowCount > 0)
+                {
+                    //SI EXSITE
+                    panelValidacionLicencia.Visible = false;
+                    imgValidacionCorrecta.Visible = true;
+                    imgValidacionIncorrecta.Visible = false;
+                }
+                else
+                {
+                    //SI NO EXISTE
+                    MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                    panelValidacionLicencia.Visible = true;
+                    imgValidacionCorrecta.Visible = false;
+                    imgValidacionIncorrecta.Visible = true;
+                }
+
+                //INGRESO DE AUDITORA
+                ClassResourses.RegistrarAuditora(9,this.Name,1,Program.IdUsuario = 0,"",0); 
             }
-            else
+            catch (Exception ex)
             {
-                //SI NO EXISTE
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
-                panelValidacionLicencia.Visible = true;
-                imgValidacionCorrecta.Visible = false;
-                imgValidacionIncorrecta.Visible = true;
+                MessageBox.Show("Error de conexión con el servidor de base de datos, no se encuentra conexión a internet o a la red. " + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
 
@@ -99,6 +112,7 @@ namespace ArenasProyect3.Modulos
             catch (Exception ex)
             {
                 MessageBox.Show("Error de conexión con el servidor de base de datos, no se encuentra conexión a internet o a la red. " + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
 
@@ -653,58 +667,81 @@ namespace ArenasProyect3.Modulos
                 Mantenimiento.ShowDialog();
             }
         }
+
+        //CALIDAD
+        private void timerCalidad_Tick(object sender, EventArgs e)
+        {
+            contadorInicioCalidad = contadorInicioCalidad - 1;
+            this.lblContadorInicio.Text = contadorInicioCalidad.ToString();
+            if (contadorInicioCalidad == 0)
+            {
+                this.timerCalidad.Enabled = false;
+                Modulos.Calidad.MenuCalidad Calidad = new Modulos.Calidad.MenuCalidad();
+
+                this.Hide();
+                Calidad.ShowDialog();
+            }
+        }
         //----------------------------------------------------------------------------------------------------------
 
         //CARGA DE METODOS PARA EL FUNCIONAMIENTO DEL LOGIN------------------------------------------------------------
         //CARGA DE USUARIOS
         public void DibujarUsuario()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("Select * from Usuarios where Estado = 'Activo' AND VisibleUsuario = 1 AND Area = '" + area + "'", con);
-            SqlDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
+            try
             {
-                Label b = new Label();
-                Panel pl = new Panel();
-                PictureBox I1 = new PictureBox();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Select * from Usuarios where Estado = 'Activo' AND VisibleUsuario = 1 AND Area = '" + area + "'", con);
+                SqlDataReader rdr = cmd.ExecuteReader();
 
-                b.Text = rdr["Login"].ToString();
-                b.Name = rdr["IdUsuarios"].ToString();
-                b.Size = new System.Drawing.Size(160, 25);
-                b.Font = new System.Drawing.Font("Microsoft Sans Serif", 14);
-                b.BackColor = Color.FromArgb(20, 20, 20);
-                b.ForeColor = Color.White;
-                b.Dock = DockStyle.Bottom;
-                b.TextAlign = ContentAlignment.MiddleCenter;
-                b.Cursor = Cursors.Hand;
+                while (rdr.Read())
+                {
+                    Label b = new Label();
+                    Panel pl = new Panel();
+                    PictureBox I1 = new PictureBox();
 
-                pl.Size = new System.Drawing.Size(160, 184);
-                pl.BorderStyle = BorderStyle.None;
-                pl.BackColor = Color.FromArgb(20, 20, 20);
+                    b.Text = rdr["Login"].ToString();
+                    b.Name = rdr["IdUsuarios"].ToString();
+                    b.Size = new System.Drawing.Size(160, 25);
+                    b.Font = new System.Drawing.Font("Microsoft Sans Serif", 14);
+                    b.BackColor = Color.FromArgb(20, 20, 20);
+                    b.ForeColor = Color.White;
+                    b.Dock = DockStyle.Bottom;
+                    b.TextAlign = ContentAlignment.MiddleCenter;
+                    b.Cursor = Cursors.Hand;
 
-                I1.Size = new System.Drawing.Size(160, 145);
-                I1.Dock = DockStyle.Top;
-                I1.BackgroundImage = null;
-                byte[] bi = (Byte[])rdr["Icono"];
-                MemoryStream ms = new MemoryStream(bi);
-                I1.Image = Image.FromStream(ms);
-                I1.SizeMode = PictureBoxSizeMode.Zoom;
-                I1.Tag = rdr["Login"].ToString();
-                I1.Cursor = Cursors.Hand;
+                    pl.Size = new System.Drawing.Size(160, 184);
+                    pl.BorderStyle = BorderStyle.None;
+                    pl.BackColor = Color.FromArgb(20, 20, 20);
 
-                pl.Controls.Add(b);
-                pl.Controls.Add(I1);
-                b.BringToFront();
-                panelUsuarios.Controls.Add(pl);
+                    I1.Size = new System.Drawing.Size(160, 145);
+                    I1.Dock = DockStyle.Top;
+                    I1.BackgroundImage = null;
+                    byte[] bi = (Byte[])rdr["Icono"];
+                    MemoryStream ms = new MemoryStream(bi);
+                    I1.Image = Image.FromStream(ms);
+                    I1.SizeMode = PictureBoxSizeMode.Zoom;
+                    I1.Tag = rdr["Login"].ToString();
+                    I1.Cursor = Cursors.Hand;
 
-                b.Click += new EventHandler(mieventolabel);
-                I1.Click += new EventHandler(mieventoimagen);
+                    pl.Controls.Add(b);
+                    pl.Controls.Add(I1);
+                    b.BringToFront();
+                    panelUsuarios.Controls.Add(pl);
+
+                    b.Click += new EventHandler(mieventolabel);
+                    I1.Click += new EventHandler(mieventoimagen);
+                }
+                con.Close();
             }
-            con.Close();
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error inesperado: " + ex.Message,"Validación del sistema",MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
+            }
         }
 
         //COMPLEMENTO PARA EL METODO DIBUJAR USUARIOS
@@ -749,6 +786,7 @@ namespace ArenasProyect3.Modulos
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
 
@@ -832,15 +870,25 @@ namespace ArenasProyect3.Modulos
                     this.lblContadorInicio.Text = Convert.ToInt32(contadorInicioMantenimiento).ToString();
                     this.timerMantenimiento.Enabled = true;
                 }
+                else if (Program.AreaUsuario == "Calidad")
+                {
+                    lblNombre.Text = Program.UnoNombreUnoApellidoUsuario;
+                    panelBienvenida.Visible = true;
+                    contadorInicioCalidad = 20;
+                    this.lblContadorInicio.Text = Convert.ToInt32(contadorInicioCalidad).ToString();
+                    this.timerCalidad.Enabled = true;
+                }
                 else
                 {
-                    MessageBox.Show("Ocurrio un error inesperado.", "Ingreso al Sistema", MessageBoxButtons.OKCancel);
+                    MessageBox.Show("Ocurrio un error inesperado.", "Ingreso al Sistema", MessageBoxButtons.OK);
                     txtPassword.Focus();
                 }
+
+                ClassResourses.RegistrarAuditora(12, this.Name, 1, Program.IdUsuario, "", 0);
             }
             else if (txtPassword.Text == "")
             {
-                MessageBox.Show("Debe ingresar una contraseña, ingrese una contraseña válida.", "Ingreso al Sistema", MessageBoxButtons.OKCancel);
+                MessageBox.Show("Debe ingresar una contraseña, ingrese una contraseña válida.", "Ingreso al Sistema", MessageBoxButtons.OK);
                 txtPassword.Focus();
             }
             else
@@ -998,7 +1046,11 @@ namespace ArenasProyect3.Modulos
             lblLeyendaAdmin.BackColor = Color.Black;
         }
 
-
+        //EVENTAO PARA CERRAR MI FORMULARIO
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ClassResourses.RegistrarAuditora(10, this.Name, 1, Program.IdUsuario = 0, "", 0);
+        }
         //-----------------------------------------------------------------------------------------------
     }
 }

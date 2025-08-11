@@ -109,6 +109,7 @@
             this.timerProduccion = new System.Windows.Forms.Timer(this.components);
             this.timerIngenieria = new System.Windows.Forms.Timer(this.components);
             this.timerMantenimiento = new System.Windows.Forms.Timer(this.components);
+            this.timerCalidad = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnLogoArenas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgRegresar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgValidacionIncorrecta)).BeginInit();
@@ -1059,6 +1060,11 @@
             this.timerMantenimiento.Interval = 50;
             this.timerMantenimiento.Tick += new System.EventHandler(this.timerMantenimiento_Tick);
             // 
+            // timerCalidad
+            // 
+            this.timerCalidad.Interval = 50;
+            this.timerCalidad.Tick += new System.EventHandler(this.timerCalidad_Tick);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1087,6 +1093,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "  Inicio de Sesión";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnLogoArenas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgRegresar)).EndInit();
@@ -1217,5 +1224,6 @@
         private System.Windows.Forms.Timer timerProduccion;
         private System.Windows.Forms.Timer timerIngenieria;
         private System.Windows.Forms.Timer timerMantenimiento;
+        private System.Windows.Forms.Timer timerCalidad;
     }
 }

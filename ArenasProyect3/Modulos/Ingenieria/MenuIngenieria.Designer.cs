@@ -31,9 +31,9 @@ namespace ArenasProyect3.Modulos.Ingenieria
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuIngenieria));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle82 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle83 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle84 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.btnPaginaArenas = new System.Windows.Forms.PictureBox();
             this.datalistadoNovedades = new System.Windows.Forms.DataGridView();
@@ -231,6 +231,8 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.btnInformacionUsuario = new System.Windows.Forms.Button();
+            this.btnAbrirManual = new System.Windows.Forms.Button();
+            this.label69 = new System.Windows.Forms.Label();
             this.panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPaginaArenas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNovedades)).BeginInit();
@@ -330,35 +332,35 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.datalistadoNovedades.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoNovedades.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoNovedades.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle82.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle82.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle82.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle82.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle82.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle82.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle82.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle82;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.datalistadoNovedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle83.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle83.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle83.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle83.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle83.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle83.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle83.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle83;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle5;
             this.datalistadoNovedades.Location = new System.Drawing.Point(80, 14);
             this.datalistadoNovedades.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoNovedades.Name = "datalistadoNovedades";
             this.datalistadoNovedades.ReadOnly = true;
-            dataGridViewCellStyle84.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle84.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle84.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle84.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle84.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle84.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle84.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle84;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.datalistadoNovedades.RowHeadersVisible = false;
             this.datalistadoNovedades.RowHeadersWidth = 20;
             this.datalistadoNovedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -647,7 +649,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.panelNovedades.Controls.Add(this.label14);
             this.panelNovedades.Controls.Add(this.label13);
             this.panelNovedades.Controls.Add(this.panel22);
-            this.panelNovedades.Location = new System.Drawing.Point(432, 125);
+            this.panelNovedades.Location = new System.Drawing.Point(1105, 276);
             this.panelNovedades.Name = "panelNovedades";
             this.panelNovedades.Size = new System.Drawing.Size(458, 384);
             this.panelNovedades.TabIndex = 25;
@@ -683,7 +685,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             // 
             // lblNovedadesNuevasFunciones
             // 
-            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNovedadesNuevasFunciones.Location = new System.Drawing.Point(20, 191);
             this.lblNovedadesNuevasFunciones.Name = "lblNovedadesNuevasFunciones";
             this.lblNovedadesNuevasFunciones.Size = new System.Drawing.Size(413, 165);
@@ -693,7 +695,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             // 
             // lblFechaInstalacion
             // 
-            this.lblFechaInstalacion.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaInstalacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaInstalacion.Location = new System.Drawing.Point(198, 108);
             this.lblFechaInstalacion.Name = "lblFechaInstalacion";
             this.lblFechaInstalacion.Size = new System.Drawing.Size(149, 15);
@@ -703,7 +705,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             // 
             // lblVersionSistema
             // 
-            this.lblVersionSistema.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersionSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersionSistema.Location = new System.Drawing.Point(198, 75);
             this.lblVersionSistema.Name = "lblVersionSistema";
             this.lblVersionSistema.Size = new System.Drawing.Size(149, 15);
@@ -714,30 +716,30 @@ namespace ArenasProyect3.Modulos.Ingenieria
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(19, 165);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(204, 15);
+            this.label17.Size = new System.Drawing.Size(204, 16);
             this.label17.TabIndex = 15;
             this.label17.Text = "Nuevas funcione o Cambios:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(20, 108);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(154, 15);
+            this.label15.Size = new System.Drawing.Size(155, 16);
             this.label15.TabIndex = 14;
             this.label15.Text = "Fecha de Instalación:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(19, 75);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(149, 15);
+            this.label14.Size = new System.Drawing.Size(148, 16);
             this.label14.TabIndex = 13;
             this.label14.Text = "Versión del sistema:";
             // 
@@ -804,7 +806,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.panelProhibicion.Controls.Add(this.panel15);
             this.panelProhibicion.Controls.Add(this.label44);
             this.panelProhibicion.Controls.Add(this.pictureBox5);
-            this.panelProhibicion.Location = new System.Drawing.Point(483, 218);
+            this.panelProhibicion.Location = new System.Drawing.Point(1105, 241);
             this.panelProhibicion.Name = "panelProhibicion";
             this.panelProhibicion.Size = new System.Drawing.Size(356, 198);
             this.panelProhibicion.TabIndex = 27;
@@ -938,7 +940,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.panelDetallesUsuario.Controls.Add(this.label41);
             this.panelDetallesUsuario.Controls.Add(this.imgUsuario2);
             this.panelDetallesUsuario.Controls.Add(this.panel12);
-            this.panelDetallesUsuario.Location = new System.Drawing.Point(462, 121);
+            this.panelDetallesUsuario.Location = new System.Drawing.Point(1099, 263);
             this.panelDetallesUsuario.Name = "panelDetallesUsuario";
             this.panelDetallesUsuario.Size = new System.Drawing.Size(399, 393);
             this.panelDetallesUsuario.TabIndex = 26;
@@ -1327,6 +1329,8 @@ namespace ArenasProyect3.Modulos.Ingenieria
             // 
             this.panelConfiguracion.BackColor = System.Drawing.SystemColors.Menu;
             this.panelConfiguracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelConfiguracion.Controls.Add(this.btnAbrirManual);
+            this.panelConfiguracion.Controls.Add(this.label69);
             this.panelConfiguracion.Controls.Add(this.label60);
             this.panelConfiguracion.Controls.Add(this.btnUltimosCambios);
             this.panelConfiguracion.Controls.Add(this.btnAdministrarNotificaciones);
@@ -1424,7 +1428,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.label29.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label29.Location = new System.Drawing.Point(582, 421);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(166, 16);
+            this.label29.Size = new System.Drawing.Size(165, 16);
             this.label29.TabIndex = 46;
             this.label29.Text = "@ Copyright​ Arenas S.R.L.";
             // 
@@ -2042,10 +2046,10 @@ namespace ArenasProyect3.Modulos.Ingenieria
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(20, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(260, 32);
+            this.label4.Size = new System.Drawing.Size(242, 31);
             this.label4.TabIndex = 11;
             this.label4.Text = "Accesos Directos";
             // 
@@ -2307,10 +2311,10 @@ namespace ArenasProyect3.Modulos.Ingenieria
             // lblTituloPrincipal
             // 
             this.lblTituloPrincipal.AutoSize = true;
-            this.lblTituloPrincipal.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloPrincipal.Location = new System.Drawing.Point(26, 16);
             this.lblTituloPrincipal.Name = "lblTituloPrincipal";
-            this.lblTituloPrincipal.Size = new System.Drawing.Size(223, 32);
+            this.lblTituloPrincipal.Size = new System.Drawing.Size(206, 31);
             this.lblTituloPrincipal.TabIndex = 6;
             this.lblTituloPrincipal.Text = "Datos Rápidos";
             // 
@@ -2687,6 +2691,27 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.btnInformacionUsuario.UseVisualStyleBackColor = true;
             this.btnInformacionUsuario.Click += new System.EventHandler(this.btnInformacionUsuario_Click);
             // 
+            // btnAbrirManual
+            // 
+            this.btnAbrirManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbrirManual.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirManual.Image")));
+            this.btnAbrirManual.Location = new System.Drawing.Point(691, 155);
+            this.btnAbrirManual.Name = "btnAbrirManual";
+            this.btnAbrirManual.Size = new System.Drawing.Size(49, 32);
+            this.btnAbrirManual.TabIndex = 1965;
+            this.btnAbrirManual.UseVisualStyleBackColor = true;
+            this.btnAbrirManual.Click += new System.EventHandler(this.btnAbrirManual_Click);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(531, 164);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(142, 15);
+            this.label69.TabIndex = 1964;
+            this.label69.Text = "Abrir manual de usuario";
+            // 
             // MenuIngenieria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2986,5 +3011,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnCerrarSesion;
         private System.Windows.Forms.Button btnInformacionUsuario;
+        private System.Windows.Forms.Button btnAbrirManual;
+        private System.Windows.Forms.Label label69;
     }
 }

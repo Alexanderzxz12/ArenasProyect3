@@ -1,22 +1,23 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
+using ArenasProyect3.Visualizadores;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Visualizadores;
-using ArenasProyect3.Modulos.ManGeneral;
-using SpreadsheetLight;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Spreadsheet;
-using CrystalDecisions.CrystalReports.Engine;
-using System.IO;
-using CrystalDecisions.Shared;
 
 namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 {
@@ -26,7 +27,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         int numeroActa = 0;
         int idLiquidacion = 0;
         private Cursor curAnterior = null;
-        string ruta = Manual.manualVentas;
+        string ruta = Manual.manualAreaComercial;
+        int idJefatura = 0;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - LIQUIDACION DE VENTA
         public LiquidacionVenta()
@@ -62,94 +64,135 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //CARGAR RESPONSABLES PARA GENERAR LA LIQUIDACION Y REQUERIMEINTO
         public void CargarResponsableLiqui(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "NOMBRES";
-            cbo.ValueMember = "IdUsuarios";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "NOMBRES";
+                cbo.ValueMember = "IdUsuarios";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR VEHIVULOS PARA GENERAR LA LIQUIDACIÓN Y REQUERIMEINTO
         public void CargarVehiculos(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdVehiculo, Descripcion FROM Vehiculos WHERE Estado = 1 ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "Descripcion";
-            cbo.ValueMember = "IdVehiculo";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdVehiculo, Descripcion FROM Vehiculos WHERE Estado = 1 ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "Descripcion";
+                cbo.ValueMember = "IdVehiculo";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPO DE MONEDA PARA GENERAR LA LIQUIDACIÓN Y REQUERIMEINTO
         public void CargarTipoMoneda(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMonedas, Abreviatura FROM TipoMonedas WHERE Estado = 1 ORDER BY Abreviatura DESC", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "Abreviatura";
-            cbo.ValueMember = "IdTipoMonedas";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoMonedas, Abreviatura FROM TipoMonedas WHERE Estado = 1 ORDER BY Abreviatura DESC", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "Abreviatura";
+                cbo.ValueMember = "IdTipoMonedas";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGA Y BUSQUEDA DE DATOS - CARGA DE COMBOS Y DATOS ANEXOS----------------------------------------------------
         //CARGA DE COMBOS PARA VEHICULOS Y RESPONSABLES
         public void CargarResponsables(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "NOMBRES";
-            cbo.ValueMember = "IdUsuarios";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "NOMBRES";
+                cbo.ValueMember = "IdUsuarios";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //fFUNCION PARA CARGAR LA JEFATURA ACTUAL
-        int idJefatura = 0;
         public void CargarJefaturaActual()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdUsuarios FROM Usuarios WHERE Rol = 1  AND Area = 'Comercial' AND Estado = 'Activo'", con);
-            da.Fill(dt);
-            datalistadoJefatura.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdUsuarios FROM Usuarios WHERE Rol = 1  AND Area = 'Comercial' AND Estado = 'Activo'", con);
+                da.Fill(dt);
+                datalistadoJefatura.DataSource = dt;
+                con.Close();
 
-            idJefatura = Convert.ToInt32(datalistadoJefatura.SelectedCells[0].Value.ToString());
+                idJefatura = Convert.ToInt32(datalistadoJefatura.SelectedCells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR Y VALIDAR LA CANTIDAD DE LIQUIDACIONES APROBADAS
         public void CargarCantidadLiquidacionesNoAprobadas()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT COUNT(IdLiquidacion) FROM LiquidacionVenta LIQUI INNER JOIN Usuarios USU ON USU.IdUsuarios = LIQUI.IdVendedor WHERE EstadoComercial = 1 AND LIQUI.Estado = 1 AND LIQUI.IdVendedor = @idusuario", con);
-            comando.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            data.Fill(dt);
-            datalistadoCantidadLiquidacionesNoAprobadas.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT COUNT(IdLiquidacion) FROM LiquidacionVenta LIQUI INNER JOIN Usuarios USU ON USU.IdUsuarios = LIQUI.IdVendedor WHERE EstadoComercial = 1 AND LIQUI.Estado = 1 AND LIQUI.IdVendedor = @idusuario", con);
+                comando.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                data.Fill(dt);
+                datalistadoCantidadLiquidacionesNoAprobadas.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGA CONTACTOS DEL CLIENTE
@@ -175,6 +218,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
             }
         }
@@ -203,6 +247,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
             }
         }
@@ -231,6 +276,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
             }
         }
@@ -259,6 +305,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
             }
         }
@@ -266,28 +313,36 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //CARGAR CODIGOS PARA ALMACENAR LA NUEVA ACTA Y LA RESPECTIVA VALIDACION
         public void codigoActa()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdActa FROM Acta WHERE IdActa = (SELECT MAX(IdActa) FROM Acta)", con);
-            da.Fill(dt);
-            datalistadoCodigoActa.DataSource = dt;
-            con.Close();
-
-            if (datalistadoCodigoActa.Rows.Count != 0)
+            try
             {
-                numeroActa = Convert.ToInt32(datalistadoCodigoActa.SelectedCells[0].Value.ToString());
-                int numeroActa2 = 0;
-                numeroActa2 = Convert.ToInt32(numeroActa);
-                numeroActa2 = numeroActa2 + 1;
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdActa FROM Acta WHERE IdActa = (SELECT MAX(IdActa) FROM Acta)", con);
+                da.Fill(dt);
+                datalistadoCodigoActa.DataSource = dt;
+                con.Close();
 
-                numeroActa = numeroActa2;
+                if (datalistadoCodigoActa.Rows.Count != 0)
+                {
+                    numeroActa = Convert.ToInt32(datalistadoCodigoActa.SelectedCells[0].Value.ToString());
+                    int numeroActa2 = 0;
+                    numeroActa2 = Convert.ToInt32(numeroActa);
+                    numeroActa2 = numeroActa2 + 1;
+
+                    numeroActa = numeroActa2;
+                }
+                else
+                {
+                    MessageBox.Show("Se debe inicializar la tabla ACTAS.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Se debe inicializar la tabla ACTAS.", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
             }
         }
 
@@ -324,15 +379,50 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //MOSTRAR REQUERIMIENTOS AL INCIO 
         public void MostrarLiquidación(DateTime fechaInicio, DateTime fechaTermino)
         {
-            if (lblCarga.Text == "0")
+            try
+            {
+                if (lblCarga.Text == "0")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("MostrarLiquidacionesVentasPorFecha_Jefatura", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoTodasLiquidacion.DataSource = dt;
+                    con.Close();
+                    RedimensionarListado(datalistadoTodasLiquidacion);
+                }
+                else
+                {
+                    lblCarga.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
+            }
+        }
+
+        //MOSTRAR REQUERIMIENTOS POR RESPONSABLE
+        public void MostrarLiquidacionesResponsable(string resopnsable, DateTime fechaInicio, DateTime fechaTermino)
+        {
+            try
             {
                 DataTable dt = new DataTable();
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarLiquidacionesVentasPorFecha_Jefatura", con);
+                cmd = new SqlCommand("MostrarLiquidacionVentasPorResponsable", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@responsable", resopnsable);
                 cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                 cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -341,50 +431,37 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 con.Close();
                 RedimensionarListado(datalistadoTodasLiquidacion);
             }
-            else
+            catch (Exception ex)
             {
-                lblCarga.Text = "0";
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
             }
-        }
-
-        //MOSTRAR REQUERIMIENTOS POR RESPONSABLE
-        public void MostrarLiquidacionesResponsable(string resopnsable, DateTime fechaInicio, DateTime fechaTermino)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarLiquidacionVentasPorResponsable", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@responsable", resopnsable);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasLiquidacion.DataSource = dt;
-            con.Close();
-            RedimensionarListado(datalistadoTodasLiquidacion);
         }
 
         //MOSTRAR REQUERIMIENTOS POR ESTADOS
         public void MostrarLiquidacionesEstados(int estados, DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarLiquidacionesVentasPorEstados_Jefatura", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@estado", estados);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasLiquidacion.DataSource = dt;
-            con.Close();
-            RedimensionarListado(datalistadoTodasLiquidacion);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarLiquidacionesVentasPorEstados_Jefatura", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@estado", estados);
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasLiquidacion.DataSource = dt;
+                con.Close();
+                RedimensionarListado(datalistadoTodasLiquidacion);
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //FINCION PARA REDIMENCIONAR MI LISTADO
@@ -446,6 +523,19 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //SIRVE PARA EVALUAR SI BUSCAR POR TRES FILTROS O DOS
+        public void BusquedaDependiente()
+        {
+            if (txtBusquedaResponsable.Text == "")
+            {
+                MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+            }
+            else
+            {
+                MostrarLiquidacionesResponsable(txtBusquedaResponsable.Text, DesdeFecha.Value, HastaFecha.Value);
+            }
+        }
+
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN DE GENERACIÓN DEL PDF
         private void datalistadoTodasLiquidacion_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -463,43 +553,43 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //MOSTRAR LIQUIDACIONES POR RESPONSABLE
         private void txtBusquedaResponsable_TextChanged(object sender, EventArgs e)
         {
-            MostrarLiquidacionesResponsable(txtBusquedaResponsable.Text, DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //MOSTRAR LIQUIDACIONES AL MONENTO DE CAMBIO DE FECHAS
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //MOSTRAR LIQUIDACIONES AL MONENTO DE CAMBIO DE FECHAS
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //MOSTRAR LIQUIDACIONES AL MONENTO DE CAMBIO DE FECHAS
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //MOSTRAR LIQUIDACOPMES A MOEMNTO DE APLICAR UN FILTRO
         private void btnBusquedaPendientes_Click(object sender, EventArgs e)
         {
-            MostrarLiquidacionesEstados(1, DesdeFecha.Value, HastaFecha.Value);
+            //
         }
 
         //MOSTRAR LIQUIDACOPMES A MOEMNTO DE APLICAR UN FILTRO
         private void btnBusquedaAprobados_Click(object sender, EventArgs e)
         {
-            MostrarLiquidacionesEstados(2, DesdeFecha.Value, HastaFecha.Value);
+            //
         }
 
         //MOSTRAR LIQUIDACOPMES A MOEMNTO DE APLICAR UN FILTRO
         private void btnBusquedaDesaprobado_Click(object sender, EventArgs e)
         {
-            MostrarLiquidacionesEstados(0, DesdeFecha.Value, HastaFecha.Value);
+            //
         }
 
         //MOSTRAR PDF DE LA LIQUIDACION SIN FIRMA DE JEFATURA
@@ -664,7 +754,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     txtNumeroRequerimeintoLiquidacion.Text = datalistadoBusquedaLiquidacionGeneral.SelectedCells[0].Value.ToString();
 
                     //DATOS Y CLIENTES DEL REQUERIMEINTO
-                    foreach (DataGridViewRow row in datalistadoBusquedaLiquidacionCLientes.Rows)                         
+                    foreach (DataGridViewRow row in datalistadoBusquedaLiquidacionCLientes.Rows)
                     {
                         string codigoCliente = row.Cells[2].Value.ToString();
                         string ClienteDes = row.Cells[3].Value.ToString();
@@ -1148,7 +1238,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 cmd.ExecuteNonQuery();
                                 con.Close();
 
-                                MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+                                BusquedaDependiente();
                             }
                             catch (Exception ex)
                             {
@@ -1214,9 +1304,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
                             cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
                             cmd.ExecuteNonQuery();
-                            con.Close(); 
+                            con.Close();
 
-                            MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+                            BusquedaDependiente();
                         }
                         catch (Exception ex)
                         {
@@ -1327,7 +1417,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 {
                     string codigoActaReporte = datalistadoLiquidacionActas.Rows[datalistadoLiquidacionActas.CurrentRow.Index].Cells[11].Value.ToString();
                     Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
-                    //frm.lblCodigo.Text = codigoActaReporte;
+                    frm.lblCodigo.Text = codigoActaReporte;
 
                     frm.Show();
                 }
@@ -1392,7 +1482,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
 
             datalistadoTodasLiquidacion.Enabled = true;
-            MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+
+            BusquedaDependiente();
         }
         //-----------------------------------------------------------------------------------------
 

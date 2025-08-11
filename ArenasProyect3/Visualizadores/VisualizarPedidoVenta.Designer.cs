@@ -58,8 +58,8 @@ namespace ArenasProyect3.Visualizadores
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 526);
-            this.Controls.Add(this.lblCodigo);
             this.Controls.Add(this.CrvVisualizarPedido);
+            this.Controls.Add(this.lblCodigo);
             this.Name = "VisualizarPedidoVenta";
             this.Text = "Visualizar Pedido Venta";
             this.Load += new System.EventHandler(this.VisualizarPedidoVenta_Load);

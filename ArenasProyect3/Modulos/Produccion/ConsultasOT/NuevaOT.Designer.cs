@@ -303,7 +303,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             this.panelGenerarOP.Controls.Add(this.panel31);
             this.panelGenerarOP.Controls.Add(this.panel32);
             this.panelGenerarOP.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelGenerarOP.Location = new System.Drawing.Point(982, 564);
+            this.panelGenerarOP.Location = new System.Drawing.Point(1041, 569);
             this.panelGenerarOP.Name = "panelGenerarOP";
             this.panelGenerarOP.Size = new System.Drawing.Size(1118, 616);
             this.panelGenerarOP.TabIndex = 2030;

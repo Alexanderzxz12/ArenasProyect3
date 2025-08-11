@@ -234,7 +234,6 @@ C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyec
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.NuevaOT.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.MenuProduccion.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.UsuariosPermisos.Usuarios.resources
-C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Properties.Resources.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Visualizadores.VisualizarActa.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Visualizadores.VisualizarActaAprobada.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Visualizadores.VisualizarActaDesaprobada.resources
@@ -262,3 +261,10 @@ C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyec
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Admin.MenuAdministracion.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Mantenimiento.MenuMantenimiento.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\bin\Debug\itextsharp.dll
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Properties.Resources.resources
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Calidad.MenuCalidad.resources
+Z:\ALEXANDER HUAMAN\Escritorio\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.csproj.AssemblyReference.cache
+Z:\ALEXANDER HUAMAN\Escritorio\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.exe
+Z:\ALEXANDER HUAMAN\Escritorio\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.pdb
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Calidad.Revision.ListadoOrdenProduccion.resources
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Calidad.Revision.MenuConsultasOP.resources

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace ArenasProyect3.Modulos.Logistica
     {
         //VARIABLES GENERALES
         string maquina = Environment.MachineName;
+        //VARIABLES GLOBALES PARA EL MANTENIMIENTO
+        string ruta = ManGeneral.Manual.manualAreaLogistica;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU COMERCIAL
         public MenuLogistcia()
@@ -745,6 +748,11 @@ namespace ArenasProyect3.Modulos.Logistica
         private void btnReportes_MouseLeave(object sender, EventArgs e)
         {
             btnReportes.BackColor = System.Drawing.Color.White;
+        }
+
+        private void btnAbrirManual_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
         }
     }
 }

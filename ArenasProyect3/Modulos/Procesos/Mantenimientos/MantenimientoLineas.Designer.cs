@@ -30,10 +30,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoLineas));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -89,14 +89,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(28, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 18);
             this.label2.TabIndex = 2;
             this.label2.Text = "LINEAS";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
             // 
@@ -137,7 +137,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(185, 41);
+            this.panel2.Location = new System.Drawing.Point(179, 41);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(797, 560);
             this.panel2.TabIndex = 1984;
@@ -170,7 +170,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.CancelarF.FlatAppearance.BorderSize = 0;
             this.CancelarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelarF.Image = ((System.Drawing.Image)(resources.GetObject("CancelarF.Image")));
-            this.CancelarF.Location = new System.Drawing.Point(591, 131);
+            this.CancelarF.Location = new System.Drawing.Point(612, 130);
             this.CancelarF.Name = "CancelarF";
             this.CancelarF.Size = new System.Drawing.Size(38, 38);
             this.CancelarF.TabIndex = 1991;
@@ -189,7 +189,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.groupBox1.Controls.Add(this.btnGuardar2F);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(652, 84);
+            this.groupBox1.Location = new System.Drawing.Point(669, 84);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -201,22 +201,22 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(18, 71);
+            this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(21, 71);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 14);
+            this.label7.Size = new System.Drawing.Size(50, 13);
             this.label7.TabIndex = 1990;
             this.label7.Text = "AGREGAR";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(24, 145);
+            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(27, 145);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 14);
+            this.label9.Size = new System.Drawing.Size(38, 13);
             this.label9.TabIndex = 1991;
             this.label9.Text = "EDITAR";
             // 
@@ -271,11 +271,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // lblCancelar
             // 
             this.lblCancelar.AutoSize = true;
-            this.lblCancelar.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancelar.Location = new System.Drawing.Point(581, 174);
+            this.lblCancelar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancelar.Location = new System.Drawing.Point(604, 171);
             this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(59, 14);
+            this.lblCancelar.Size = new System.Drawing.Size(54, 13);
             this.lblCancelar.TabIndex = 1990;
             this.lblCancelar.Text = "CANCELAR";
             this.lblCancelar.Visible = false;
@@ -283,36 +283,36 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(44, 532);
+            this.label12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(43, 532);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(142, 14);
+            this.label12.Size = new System.Drawing.Size(127, 13);
             this.label12.TabIndex = 1987;
             this.label12.Text = "BÚSQUEDA GENERAL POR:";
             // 
             // cboBusquedaLinea
             // 
             this.cboBusquedaLinea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBusquedaLinea.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBusquedaLinea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBusquedaLinea.FormattingEnabled = true;
             this.cboBusquedaLinea.Items.AddRange(new object[] {
             "DESCRIPCIÓN",
             "ABREVIATURA"});
-            this.cboBusquedaLinea.Location = new System.Drawing.Point(194, 528);
+            this.cboBusquedaLinea.Location = new System.Drawing.Point(178, 528);
             this.cboBusquedaLinea.Margin = new System.Windows.Forms.Padding(4);
             this.cboBusquedaLinea.Name = "cboBusquedaLinea";
-            this.cboBusquedaLinea.Size = new System.Drawing.Size(149, 23);
+            this.cboBusquedaLinea.Size = new System.Drawing.Size(149, 22);
             this.cboBusquedaLinea.TabIndex = 1985;
             // 
             // txtBusquedaLinea
             // 
             this.txtBusquedaLinea.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBusquedaLinea.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusquedaLinea.Location = new System.Drawing.Point(351, 528);
+            this.txtBusquedaLinea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusquedaLinea.Location = new System.Drawing.Point(335, 528);
             this.txtBusquedaLinea.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusquedaLinea.Name = "txtBusquedaLinea";
-            this.txtBusquedaLinea.Size = new System.Drawing.Size(399, 23);
+            this.txtBusquedaLinea.Size = new System.Drawing.Size(415, 22);
             this.txtBusquedaLinea.TabIndex = 1986;
             this.txtBusquedaLinea.TextChanged += new System.EventHandler(this.txtBusquedaLinea_TextChanged);
             // 
@@ -325,40 +325,40 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoLineas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoLineas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoLineas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.datalistadoLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle14;
             this.datalistadoLineas.Location = new System.Drawing.Point(46, 274);
             this.datalistadoLineas.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoLineas.MultiSelect = false;
             this.datalistadoLineas.Name = "datalistadoLineas";
             this.datalistadoLineas.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.datalistadoLineas.RowHeadersVisible = false;
             this.datalistadoLineas.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.datalistadoLineas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoLineas.Size = new System.Drawing.Size(703, 246);
             this.datalistadoLineas.TabIndex = 1982;
@@ -367,22 +367,22 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // cboEstado
             // 
             this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEstado.FormattingEnabled = true;
             this.cboEstado.Items.AddRange(new object[] {
             "ACTIVO",
             "INACTIVO"});
-            this.cboEstado.Location = new System.Drawing.Point(170, 232);
+            this.cboEstado.Location = new System.Drawing.Point(198, 217);
             this.cboEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(132, 23);
+            this.cboEstado.Size = new System.Drawing.Size(132, 22);
             this.cboEstado.TabIndex = 1976;
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(81, 236);
+            this.label28.Location = new System.Drawing.Point(115, 220);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(50, 14);
@@ -393,12 +393,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.txtAbreviatura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAbreviatura.Enabled = false;
-            this.txtAbreviatura.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAbreviatura.Location = new System.Drawing.Point(170, 194);
+            this.txtAbreviatura.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAbreviatura.Location = new System.Drawing.Point(198, 182);
             this.txtAbreviatura.Margin = new System.Windows.Forms.Padding(4);
             this.txtAbreviatura.MaxLength = 2;
             this.txtAbreviatura.Name = "txtAbreviatura";
-            this.txtAbreviatura.Size = new System.Drawing.Size(100, 23);
+            this.txtAbreviatura.Size = new System.Drawing.Size(100, 22);
             this.txtAbreviatura.TabIndex = 1975;
             this.txtAbreviatura.TextChanged += new System.EventHandler(this.txtAbreviatura_TextChanged);
             // 
@@ -406,7 +406,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(50, 198);
+            this.label6.Location = new System.Drawing.Point(84, 185);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 14);
@@ -416,12 +416,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // cboTipoMercaderia
             // 
             this.cboTipoMercaderia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoMercaderia.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoMercaderia.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMercaderia.FormattingEnabled = true;
-            this.cboTipoMercaderia.Location = new System.Drawing.Point(170, 155);
+            this.cboTipoMercaderia.Location = new System.Drawing.Point(198, 148);
             this.cboTipoMercaderia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipoMercaderia.Name = "cboTipoMercaderia";
-            this.cboTipoMercaderia.Size = new System.Drawing.Size(299, 23);
+            this.cboTipoMercaderia.Size = new System.Drawing.Size(299, 22);
             this.cboTipoMercaderia.TabIndex = 1974;
             this.cboTipoMercaderia.SelectedIndexChanged += new System.EventHandler(this.cboTipoMercaderia_SelectedIndexChanged);
             // 
@@ -429,7 +429,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(81, 159);
+            this.label4.Location = new System.Drawing.Point(115, 151);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 14);
@@ -439,11 +439,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigo.Location = new System.Drawing.Point(167, 82);
+            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.Location = new System.Drawing.Point(195, 84);
             this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(19, 16);
+            this.lblCodigo.Size = new System.Drawing.Size(17, 15);
             this.lblCodigo.TabIndex = 1972;
             this.lblCodigo.Text = "N";
             // 
@@ -451,7 +451,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(80, 84);
+            this.label5.Location = new System.Drawing.Point(114, 86);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 14);
@@ -462,11 +462,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDescripcion.Enabled = false;
-            this.txtDescripcion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(170, 116);
+            this.txtDescripcion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Location = new System.Drawing.Point(198, 114);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(329, 23);
+            this.txtDescripcion.Size = new System.Drawing.Size(329, 22);
             this.txtDescripcion.TabIndex = 1973;
             this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
@@ -474,7 +474,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(75, 120);
+            this.label3.Location = new System.Drawing.Point(109, 117);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 14);
@@ -484,10 +484,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(222, 55);
+            this.panel6.Location = new System.Drawing.Point(232, 48);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(350, 1);
+            this.panel6.Size = new System.Drawing.Size(330, 1);
             this.panel6.TabIndex = 1971;
             // 
             // pictureBox1
@@ -495,10 +495,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(259, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(277, 25);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 22);
+            this.pictureBox1.Size = new System.Drawing.Size(32, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1970;
             this.pictureBox1.TabStop = false;
@@ -506,11 +506,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(298, 25);
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(313, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(238, 23);
+            this.label1.Size = new System.Drawing.Size(205, 19);
             this.label1.TabIndex = 1969;
             this.label1.Text = "MANTENIMIENTO DE LÍNEAS";
             // 

@@ -1,22 +1,23 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
+using ArenasProyect3.Visualizadores;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Visualizadores;
-using System.Diagnostics;
-using ArenasProyect3.Modulos.ManGeneral;
-using SpreadsheetLight;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Spreadsheet;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using System.IO;
 
 namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 {
@@ -29,7 +30,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private Cursor curAnterior = null;
         int numeroLiquidacion = 0;
         int numeroRequerimiento = 0;
-        string ruta = ManGeneral.Manual.manualViajes;
+        string ruta = ManGeneral.Manual.manualAreaComercial;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - REQUERIMIENTOS DE VENTA
         public RequerimientoVenta()
@@ -97,158 +98,207 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //CARGAR RESPONSABLES PARA GENERAR LA LIQUIDACION Y REQUERIMEINTO
         public void CargarResponsables(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "NOMBRES";
-            cbo.ValueMember = "IdUsuarios";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "NOMBRES";
+                cbo.ValueMember = "IdUsuarios";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR VEHIVULOS PARA GENERAR EL REQUERIMEINTO
         public void CargarVehiculosReque(ComboBox cbo)
         {
-            //CARGAR EL COMBO
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdVehiculo, Descripcion FROM Vehiculos WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "Descripcion";
-            cbo.ValueMember = "IdVehiculo";
-            cbo.DataSource = dt;
-            con.Close();
+            try
+            {
+                //CARGAR EL COMBO
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdVehiculo, Descripcion FROM Vehiculos WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "Descripcion";
+                cbo.ValueMember = "IdVehiculo";
+                cbo.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR VEHIVULOS PARA GENERAR EL LIQUIDACIÓN
         public void CargarVehiculosLiqui(ComboBox cbo)
         {
-            //CARGAR EL COMBO
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdVehiculo, Descripcion FROM Vehiculos WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "Descripcion";
-            cbo.ValueMember = "IdVehiculo";
-            cbo.DataSource = dt;
-            con.Close();
+            try
+            {
+                //CARGAR EL COMBO
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdVehiculo, Descripcion FROM Vehiculos WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "Descripcion";
+                cbo.ValueMember = "IdVehiculo";
+                cbo.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPO DE MONEDA PARA GENERAR LA LIQUIDACIÓN Y REQUERIMEINTO
         public void CargarTipoMoneda(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMonedas, Abreviatura FROM TipoMonedas WHERE Estado = 1 ORDER BY Abreviatura DESC", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "Abreviatura";
-            cbo.ValueMember = "IdTipoMonedas";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoMonedas, Abreviatura FROM TipoMonedas WHERE Estado = 1 ORDER BY Abreviatura DESC", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "Abreviatura";
+                cbo.ValueMember = "IdTipoMonedas";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR JEFATURA Y RECONOCER EL TIPO DE USUARIO PARA LA APROBACIÓN Y ANULACIÓN
         public void CargarJefaturaActual()
         {
-            //SI EL ÁREA DEL USUARIO ES ADMINISTRADOR
-            if (Program.AreaUsuario == "Administrador")
+            try
             {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT USU.IdUsuarios, R.Alias FROM Usuarios USU INNER JOIN Perfil R ON R.IdPerfil = USU.Rol WHERE USU.IdUsuarios = @idusuario ", con);
-                comando.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                datalistadoJefatura.DataSource = dt;
-                con.Close();
-                //CARGAR EL CÓDIGO DEL USUARIO Y SU ALIAS O CARGO
-                idJefatura = Convert.ToInt32(datalistadoJefatura.SelectedCells[0].Value.ToString());
-                alias = datalistadoJefatura.SelectedCells[1].Value.ToString();
+                //SI EL ÁREA DEL USUARIO ES ADMINISTRADOR
+                if (Program.AreaUsuario == "Administrador")
+                {
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand comando = new SqlCommand("SELECT USU.IdUsuarios, R.Alias FROM Usuarios USU INNER JOIN Perfil R ON R.IdPerfil = USU.Rol WHERE USU.IdUsuarios = @idusuario ", con);
+                    comando.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
+                    SqlDataAdapter data = new SqlDataAdapter(comando);
+                    DataTable dt = new DataTable();
+                    data.Fill(dt);
+                    datalistadoJefatura.DataSource = dt;
+                    con.Close();
+                    //CARGAR EL CÓDIGO DEL USUARIO Y SU ALIAS O CARGO
+                    idJefatura = Convert.ToInt32(datalistadoJefatura.SelectedCells[0].Value.ToString());
+                    alias = datalistadoJefatura.SelectedCells[1].Value.ToString();
+                }
+                //SI EL ÁREA DEL USUARIO ES DIFERENTE, OSEA ES UN USUARIO PERTENECE AL ÁREA COMERCIAL
+                else
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da;
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    da = new SqlDataAdapter("SELECT USU.IdUsuarios, R.Alias FROM Usuarios USU INNER JOIN Perfil R ON R.IdPerfil = USU.Rol WHERE Rol = 1", con);
+                    da.Fill(dt);
+                    datalistadoJefatura.DataSource = dt;
+                    con.Close();
+                    //CARGAR EL CÓDIGO DEL USUARIO Y SU ALIAS O CARGO
+                    idJefatura = Convert.ToInt32(datalistadoJefatura.SelectedCells[0].Value.ToString());
+                    alias = datalistadoJefatura.SelectedCells[1].Value.ToString();
+                }
             }
-            //SI EL ÁREA DEL USUARIO ES DIFERENTE, OSEA ES UN USUARIO PERTENECE AL ÁREA COMERCIAL
-            else
+            catch (Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlDataAdapter da;
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                da = new SqlDataAdapter("SELECT USU.IdUsuarios, R.Alias FROM Usuarios USU INNER JOIN Perfil R ON R.IdPerfil = USU.Rol WHERE Rol = 1", con);
-                da.Fill(dt);
-                datalistadoJefatura.DataSource = dt;
-                con.Close();
-                //CARGAR EL CÓDIGO DEL USUARIO Y SU ALIAS O CARGO
-                idJefatura = Convert.ToInt32(datalistadoJefatura.SelectedCells[0].Value.ToString());
-                alias = datalistadoJefatura.SelectedCells[1].Value.ToString();
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE LIQUIDACIÓN Y LA RESPECTIVA VALIDACION
         public void codigoLiquidacion()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdLiquidacion FROM LiquidacionVenta WHERE IdLiquidacion = (SELECT MAX(IdLiquidacion) FROM LiquidacionVenta)", con);
-            da.Fill(dt);
-            datalistadoCodigoLiquidacion.DataSource = dt;
-            con.Close();
-
-            if (datalistadoCodigoLiquidacion.Rows.Count != 0)
+            try
             {
-                numeroLiquidacion = Convert.ToInt32(datalistadoCodigoLiquidacion.SelectedCells[0].Value.ToString());
-                int numeroLiquidacion2 = 0;
-                numeroLiquidacion2 = Convert.ToInt32(numeroLiquidacion);
-                numeroLiquidacion2 = numeroLiquidacion2 + 1;
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdLiquidacion FROM LiquidacionVenta WHERE IdLiquidacion = (SELECT MAX(IdLiquidacion) FROM LiquidacionVenta)", con);
+                da.Fill(dt);
+                datalistadoCodigoLiquidacion.DataSource = dt;
+                con.Close();
 
-                numeroLiquidacion = numeroLiquidacion2;
+                if (datalistadoCodigoLiquidacion.Rows.Count != 0)
+                {
+                    numeroLiquidacion = Convert.ToInt32(datalistadoCodigoLiquidacion.SelectedCells[0].Value.ToString());
+                    int numeroLiquidacion2 = 0;
+                    numeroLiquidacion2 = Convert.ToInt32(numeroLiquidacion);
+                    numeroLiquidacion2 = numeroLiquidacion2 + 1;
+
+                    numeroLiquidacion = numeroLiquidacion2;
+                }
+                else
+                {
+                    MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE REQUERIMIENTO Y LA RESPECTIVA VALIDACION
         public void codigoRequerimeinto()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdRequerimientoVenta FROM RequerimientoVenta WHERE IdRequerimientoVenta = (SELECT MAX(IdRequerimientoVenta) FROM RequerimientoVenta)", con);
-            da.Fill(dt);
-            datalistadoCodigoRequerimiento.DataSource = dt;
-            con.Close();
-
-            if (datalistadoCodigoRequerimiento.Rows.Count != 0)
+            try
             {
-                numeroRequerimiento = Convert.ToInt32(datalistadoCodigoRequerimiento.SelectedCells[0].Value.ToString());
-                int numeroRequerimiento2 = 0;
-                numeroRequerimiento2 = Convert.ToInt32(numeroRequerimiento);
-                numeroRequerimiento2 = numeroRequerimiento2 + 1;
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdRequerimientoVenta FROM RequerimientoVenta WHERE IdRequerimientoVenta = (SELECT MAX(IdRequerimientoVenta) FROM RequerimientoVenta)", con);
+                da.Fill(dt);
+                datalistadoCodigoRequerimiento.DataSource = dt;
+                con.Close();
 
-                numeroRequerimiento = numeroRequerimiento2;
+                if (datalistadoCodigoRequerimiento.Rows.Count != 0)
+                {
+                    numeroRequerimiento = Convert.ToInt32(datalistadoCodigoRequerimiento.SelectedCells[0].Value.ToString());
+                    int numeroRequerimiento2 = 0;
+                    numeroRequerimiento2 = Convert.ToInt32(numeroRequerimiento);
+                    numeroRequerimiento2 = numeroRequerimiento2 + 1;
+
+                    numeroRequerimiento = numeroRequerimiento2;
+                }
+                else
+                {
+                    MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
@@ -304,15 +354,109 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //MOSTRAR REQUERIMIENTOS AL INCIO Y POR FECHAS
         public void MostrarRequerimientos(DateTime fechaInicio, DateTime fechaTermino)
         {
-            //SI EL NÚMERO DE CARGA ESTA EN 0, ESTO SE HACE PARA EVIAR LA CARGA DE LOS REQUERIMIENTOS SIN COLORES
-            if (lblCarga.Text == "0")
+            try
+            {
+                //SI EL NÚMERO DE CARGA ESTA EN 0, ESTO SE HACE PARA EVIAR LA CARGA DE LOS REQUERIMIENTOS SIN COLORES
+                if (lblCarga.Text == "0")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("RequerimientoViaje_MostrarPorFecha", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoTodasRequerimientos.DataSource = dt;
+                    con.Close();
+                    RedimensionarListado(datalistadoTodasRequerimientos);
+                }
+                else
+                {
+                    lblCarga.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //MOSTRAR REQUERIMIENTOS AL INCIO Y POR FECHAS PARA EXPORTAR
+        public void MostrarRequerimientosExcel(DateTime fechaInicio, DateTime fechaTermino)
+        {
+            try
+            {
+                //SI EL NÚMERO DE CARGA ESTA EN 0, ESTO SE HACE PARA EVIAR LA CARGA DE LOS REQUERIMIENTOS SIN COLORES
+                if (lblCarga.Text == "0")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("RequerimientoViaje_MostrarPorFechaExcel", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoTodasRequerimientosExportacion.DataSource = dt;
+                    con.Close();
+                }
+                else
+                {
+                    lblCarga.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //MOSTRAR REQUERIMIENTOS POR RESPONSABLE DE ACUERDO A LAS FECHAS SELECCIONADAS
+        public void MostrarRequerimientosResponsable(string resopnsable, DateTime fechaInicio, DateTime fechaTermino)
+        {
+            try
             {
                 DataTable dt = new DataTable();
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarRequerimientosVentasPorFecha_Jefatura", con);
+                cmd = new SqlCommand("RequerimientoVenta_MostrarPorResponsable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@responsable", resopnsable);
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasRequerimientos.DataSource = dt;
+                con.Close();
+                RedimensionarListado(datalistadoTodasRequerimientos);
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //MOSTRAR REQUERIMIENTOS POR ESTADOS---------------------------------------------------------------------------------------------------
+        //MOSTRAR REQUERIMIENTOS PEDIENTE DE ACUERDO A LAS FECHAS SELECCIONADAS
+        public void MostrarRequerimientosEstadosPendiente(DateTime fechaInicio, DateTime fechaTermino)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("RequerimientoViaje_MostrarPorEstadosPendiente", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                 cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -322,115 +466,63 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 con.Close();
                 RedimensionarListado(datalistadoTodasRequerimientos);
             }
-            else
+            catch (Exception ex)
             {
-                lblCarga.Text = "0";
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
-        //MOSTRAR REQUERIMIENTOS AL INCIO Y POR FECHAS PARA EXPORTAR
-        public void MostrarRequerimientosExcel(DateTime fechaInicio, DateTime fechaTermino)
+        //MOSTRAR REQUERIMIENTOS POR ESTADO DE ACUERDO A LAS FECHAS SELECCIONADAS
+        public void MostrarRequerimientosEstados(int estado, DateTime fechaInicio, DateTime fechaTermino)
         {
-            //SI EL NÚMERO DE CARGA ESTA EN 0, ESTO SE HACE PARA EVIAR LA CARGA DE LOS REQUERIMIENTOS SIN COLORES
-            if (lblCarga.Text == "0")
+            try
             {
                 DataTable dt = new DataTable();
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarRequerimientosVentasPorFecha_Excel", con);
+                cmd = new SqlCommand("RequerimientoViaje_MostrarPorEstados", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@estado", estado);
                 cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                 cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
-                datalistadoTodasRequerimientosExportacion.DataSource = dt;
+                datalistadoTodasRequerimientos.DataSource = dt;
                 con.Close();
+                RedimensionarListado(datalistadoTodasRequerimientos);
             }
-            else
+            catch (Exception ex)
             {
-                lblCarga.Text = "0";
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
-        }
-
-        //MOSTRAR REQUERIMIENTOS POR RESPONSABLE DE ACUERDO A LAS FECHAS SELECCIONADAS
-        public void MostrarRequerimientosResponsable(string resopnsable, DateTime fechaInicio, DateTime fechaTermino)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarRequerimientosVentasPorResponsable", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@responsable", resopnsable);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasRequerimientos.DataSource = dt;
-            con.Close();
-            RedimensionarListado(datalistadoTodasRequerimientos);
-        }
-
-        //MOSTRAR REQUERIMIENTOS POR ESTADOS---------------------------------------------------------------------------------------------------
-        //MOSTRAR REQUERIMIENTOS PEDIENTE DE ACUERDO A LAS FECHAS SELECCIONADAS
-        public void MostrarRequerimientosEstadosPendiente(DateTime fechaInicio, DateTime fechaTermino)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarRequerimientosVentasPorEstados_Pendiente_Jefatura", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasRequerimientos.DataSource = dt;
-            con.Close();
-            RedimensionarListado(datalistadoTodasRequerimientos);
-        }
-
-        //MOSTRAR REQUERIMIENTOS POR ESTADO DE ACUERDO A LAS FECHAS SELECCIONADAS
-        public void MostrarRequerimientosEstados(int estado, DateTime fechaInicio, DateTime fechaTermino)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarRequerimientosVentasPorEstados_Jefatura", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@estado", estado);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasRequerimientos.DataSource = dt;
-            con.Close();
-            RedimensionarListado(datalistadoTodasRequerimientos);
         }
 
         //MOSTRAR REQUERIMIENTOS DESAPROBADOS
         public void MostrarRequerimientosEstadoDesaprobado(DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarRequerimientosVentasPorEstadosDesaprobado_Jefatura", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasRequerimientos.DataSource = dt;
-            con.Close();
-            RedimensionarListado(datalistadoTodasRequerimientos);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("RequerimientoViaje_MostrarPorEstadosDesaprobado", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasRequerimientos.DataSource = dt;
+                con.Close();
+                RedimensionarListado(datalistadoTodasRequerimientos);
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //FUNCION PARA REDIMENSIONAR MI LISTADO
@@ -496,49 +588,62 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //SIRVE PARA EVALUAR SI BUSCAR POR TRES FILTROS O DOS
+        public void BusquedaDependiente()
+        {
+            if (txtBusquedaResponsable.Text == "")
+            {
+                MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+            }
+            else
+            {
+                MostrarRequerimientosResponsable(txtBusquedaResponsable.Text, DesdeFecha.Value, HastaFecha.Value);
+            }
+        }
+
         //BÚSQUEDA DE REQUERIMIENTOS POR RESPONSABLE DE ACUERDO A LAS FECHAS SELECCIONADAS
         private void txtBusquedaResponsable_TextChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientosResponsable(txtBusquedaResponsable.Text, DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //BÚSQUEDA DE REQUERIMEINTOS POR FECHAS
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
             MostrarRequerimientosExcel(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //BÚSQUEDA DE REQUERIMEINTOS POR FECHAS
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
             MostrarRequerimientosExcel(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //BÚSQUEDA DE REQUERIMEINTOS POR FECHAS
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
             MostrarRequerimientosExcel(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //BÚSQUEDA DE REQUERIMIENTOS PEDIENTE DE ACUERDO A LAS FECHAS SELECCIONADAS
         private void btnBusquedaPendientes_Click(object sender, EventArgs e)
         {
-            MostrarRequerimientosEstadosPendiente(DesdeFecha.Value, HastaFecha.Value);
+            //
         }
 
         //BÚSQUEDA DE REQUERIMIENTOS APROBADOS DE ACUERDO A LAS FECHAS SELECCIONADAS
         private void btnBusquedaAprobados_Click(object sender, EventArgs e)
         {
-            MostrarRequerimientosEstados(2, DesdeFecha.Value, HastaFecha.Value);
+            //;
         }
 
         //BÚSQUEDA DE REQUERIMEINTOS DESAPROBADOS DE ACUERDO A LAS FECHAS SELECCIONADAS
         private void btnBusquedaDesaprobado_Click(object sender, EventArgs e)
         {
-            MostrarRequerimientosEstadoDesaprobado(DesdeFecha.Value, HastaFecha.Value);
+            //
         }
         //------------------------------------------------------------------------------------------------------------------------------------
 
@@ -546,53 +651,64 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //GENERACIÓN DEL PDF DEL REQUERIMEINTO
         private void btnVerRequerimiento_Click(object sender, EventArgs e)
         {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasRequerimientos.CurrentRow != null)
+            try
             {
-                //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL Y YA TIENE LIQUIDACIÓN CREADA
-                if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO" && Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString()) == true)
+                //SI NO HAY NINGUN REGISTRO SELECCIONADO
+                if (datalistadoTodasRequerimientos.CurrentRow != null)
                 {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
+                    string codigoCotizacionReporte = "0";
+
+                    //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL Y YA TIENE LIQUIDACIÓN CREADA
+                    if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO" && Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString()) == true)
+                    {
+                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
+                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        //CARGAR VENTANA
+                        frm.Show();
+                    }
+                    //SI EL REQUERIMEINTO ESTÁ EN PENDIENTE
+                    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
+                    {
+                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
+                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta();
+                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        //CARGAR VENTANA
+                        frm.Show();
+                    }
+                    //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL O ESTA EN PENDIENTE
+                    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
+                    {
+                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
+                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado();
+                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        //CARGAR VENTANA
+                        frm.Show();
+                    }
+                    //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
+                    else
+                    {
+                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
+                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        //CARGAR VENTANA
+                        frm.Show();
+                    }
+
+                    ClassResourses.RegistrarAuditora(6, this.Name, 4, Program.IdUsuario, "Visualización de requerimiento de viaje PDF", Convert.ToInt32(codigoCotizacionReporte));
                 }
-                //SI EL REQUERIMEINTO ESTÁ EN PENDIENTE
-                else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
-                {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
-                }
-                //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL O ESTA EN PENDIENTE
-                else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
-                {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
-                }
-                //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
                 else
                 {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
+                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema");
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
@@ -613,56 +729,67 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //GENERACIÓN DEL PDF DEL REQUERIMEINTO YA APROBADO CON CONFIRMACIÓN DE LA JEFATURA COMERCIAL
         private void datalistadoTodasRequerimientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewColumn currentColumn = datalistadoTodasRequerimientos.Columns[e.ColumnIndex];
-
-            //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
-            if (currentColumn.Name == "btnGenerarPdf")
+            try
             {
-                if (datalistadoTodasRequerimientos.CurrentRow != null)
+                DataGridViewColumn currentColumn = datalistadoTodasRequerimientos.Columns[e.ColumnIndex];
+
+                //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
+                if (currentColumn.Name == "btnGenerarPdf")
                 {
-                    //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
-                    if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO")
+                    if (datalistadoTodasRequerimientos.CurrentRow != null)
                     {
-                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                        string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
+                        string codigoCotizacionReporte = "0";
+
+                        //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
+                        if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO")
+                        {
+                            //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+                            codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
+                            frm.lblCodigo.Text = codigoCotizacionReporte;
+                            //CARGAR VENTANA
+                            frm.Show();
+                        }
+                        //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
+                        else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
+                        {
+                            codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado();
+                            frm.lblCodigo.Text = codigoCotizacionReporte;
+                            //CARGAR VENTANA
+                            frm.Show();
+                        }
+                        //SI EL REQUERIMEINTO ESTÁ PENDIENTE POR EL ÁREA COMERCIAL
+                        else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
+                        {
+                            codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta();
+                            frm.lblCodigo.Text = codigoCotizacionReporte;
+                            //CARGAR VENTANA
+                            frm.Show();
+                        }
+                        //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
+                        else
+                        {
+                            //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+                            codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
+                            frm.lblCodigo.Text = codigoCotizacionReporte;
+                            //CARGAR VENTANA
+                            frm.Show();
+                        }
+
+                        ClassResourses.RegistrarAuditora(6, this.Name, 4, Program.IdUsuario, "Visualización de requerimiento de viaje PDF", Convert.ToInt32(codigoCotizacionReporte));
                     }
-                    //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
-                    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
-                    {
-                        string codigoRequerimeintoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado();
-                        frm.lblCodigo.Text = codigoRequerimeintoReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
-                    }
-                    //SI EL REQUERIMEINTO ESTÁ PENDIENTE POR EL ÁREA COMERCIAL
-                    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
-                    {
-                        string codigoRequerimeintoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta();
-                        frm.lblCodigo.Text = codigoRequerimeintoReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
-                    }
-                    //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
                     else
                     {
-                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                        string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
+                        MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema");
-                }
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
         //-----------------------------------------------------------------------------------------------------------------------------------
@@ -757,9 +884,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             CargarResponsables(cboResponsable);
             cboResponsable.SelectedValue = Program.IdUsuario;
 
-            if(cboResponsable.SelectedValue == null)
+            if (cboResponsable.SelectedValue == null)
             {
-                MessageBox.Show("Usted no esta autorizado para generar un requerimiento de viaje, por favor pedir más información a su jefatura inmediata.","Validación del Sistema");
+                MessageBox.Show("Usted no esta autorizado para generar un requerimiento de viaje, por favor pedir más información a su jefatura inmediata.", "Validación del Sistema");
             }
             else
             {
@@ -1140,7 +1267,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 MessageBox.Show("No hay registro en el presupuesto para poder remover.", "Validación del Sistema");
             }
         }
-
         //---------------------------------------------------------------------------------------------------------------------------------
 
         //PROCESO DE GUARDADO DEL REQUERIMEINTO---------------------------------------------------------------------------------------------
@@ -1279,7 +1405,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarRequerimientoVenta", con);
+                    cmd = new SqlCommand("RequerimientoViaje_Insertar", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     codigoRequerimeinto();
@@ -1320,7 +1446,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     {
                         //PROCEDIMIENTO ALMACENADO PARA GUARDAR EL PRESUPUESTO DEL VIAJE
                         con.Open();
-                        cmd = new SqlCommand("InsertarRequerimientoVenta_DetalleRequerimiento", con);
+                        cmd = new SqlCommand("RequerimientoViaje_InsertarDetalles", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
                         cmd.Parameters.AddWithValue("@fechaRequerimeinto", Convert.ToString(row.Cells[1].Value));
@@ -1345,7 +1471,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS CLIENTES Y SUS DATOS ANEXOS
                         con.Open();
-                        cmd = new SqlCommand("InsertarRequerimientoVenta_DetalleCliente", con);
+                        cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleCliente", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
                         cmd.Parameters.AddWithValue("@idClienteDetalle", codigoDetalleCliente);
@@ -1363,7 +1489,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS VENDEODRES O COLABORADORES
                         con.Open();
-                        cmd = new SqlCommand("InsertarRequerimientoVenta_DetalleVendedores", con);
+                        cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleVendedores", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
                         cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
@@ -1392,11 +1518,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     datalistadoColaboradores.DataSource = null;
                     datalistadoTodasRequerimientos.Enabled = true;
 
-                    MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+                    BusquedaDependiente();
+                    ClassResourses.RegistrarAuditora(1, this.Name, 4, Program.IdUsuario, "Guardar requerimiento de viaje", numeroRequerimiento);
                 }
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message, "Error en el servidor.");
             }
         }
@@ -1428,62 +1556,70 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //APROBAR REQUERIMIENTO
         private void btnAprobarRequerimiento_Click(object sender, EventArgs e)
         {
-            //SI NO SE HA SELECCIONADO NINGUN REQUERIMIENTO
-            if (datalistadoTodasRequerimientos.CurrentRow != null)
+            try
             {
-                //MENSAJE DE CONFIRMACIÓN PARA LA APROBACIÓN DEL REQUERIMIENTO
-                DialogResult boton = MessageBox.Show("¿Realmente desea aprobar este requerimiento?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
+                //SI NO SE HA SELECCIONADO NINGUN REQUERIMIENTO
+                if (datalistadoTodasRequerimientos.CurrentRow != null)
                 {
-                    //RECOPILACIÓN DE LOS DATOS PARA LA VALIDACIÓN
-                    int idRequerimiento = Convert.ToInt32(datalistadoTodasRequerimientos.SelectedCells[1].Value.ToString());
-                    string estadoJefatura = datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString();
-                    string estadoContabilidad = datalistadoTodasRequerimientos.SelectedCells[10].Value.ToString();
-                    int estadoAtrasado = Convert.ToInt32(datalistadoTodasRequerimientos.SelectedCells[12].Value.ToString());
-                    string mensajeAtrasado = datalistadoTodasRequerimientos.SelectedCells[13].Value.ToString();
+                    //MENSAJE DE CONFIRMACIÓN PARA LA APROBACIÓN DEL REQUERIMIENTO
+                    DialogResult boton = MessageBox.Show("¿Realmente desea aprobar este requerimiento?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
+                    {
+                        //RECOPILACIÓN DE LOS DATOS PARA LA VALIDACIÓN
+                        int idRequerimiento = Convert.ToInt32(datalistadoTodasRequerimientos.SelectedCells[1].Value.ToString());
+                        string estadoJefatura = datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString();
+                        string estadoContabilidad = datalistadoTodasRequerimientos.SelectedCells[10].Value.ToString();
+                        int estadoAtrasado = Convert.ToInt32(datalistadoTodasRequerimientos.SelectedCells[12].Value.ToString());
+                        string mensajeAtrasado = datalistadoTodasRequerimientos.SelectedCells[13].Value.ToString();
 
-                    //SI ESTADO DE COMERCIAL ESTA APROBADO Y EL ESTADO DE CONTABILIDAD ESTA ATENDIDO
-                    if (estadoJefatura == "APROBADO" && estadoContabilidad == "ATENDIDO")
-                    {
-                        MessageBox.Show("Este requerimiento ya está aprobado por las diferentes áreas.", "Validación del Sistema");
-                    }
-                    else
-                    {
-                        //SI EL USUARIO A QUIEN VA A REALIZAR ESTA ACCIÓN PERTENECE AL ÁREA COMERCIAL O AL ÁREA DE GENRENCIA (ADMINISTRADOR)
-                        if (Program.AreaUsuario == "Comercial" || Program.AreaUsuario == "Administrador")
+                        //SI ESTADO DE COMERCIAL ESTA APROBADO Y EL ESTADO DE CONTABILIDAD ESTA ATENDIDO
+                        if (estadoJefatura == "APROBADO" && estadoContabilidad == "ATENDIDO")
                         {
-                            //SI EL ESTADO DE JEFATURA COMERCIAL ESTA APROBADO
-                            if (estadoJefatura == "APROBADO")
+                            MessageBox.Show("Este requerimiento ya está aprobado por las diferentes áreas.", "Validación del Sistema");
+                        }
+                        else
+                        {
+                            //SI EL USUARIO A QUIEN VA A REALIZAR ESTA ACCIÓN PERTENECE AL ÁREA COMERCIAL O AL ÁREA DE GENRENCIA (ADMINISTRADOR)
+                            if (Program.AreaUsuario == "Comercial" || Program.AreaUsuario == "Administrador")
                             {
-                                MessageBox.Show("Este requerimiento ya ha sido aprobado por la jefatura del área comercial.", "Validación del Sistema");
-                            }
-                            //SI EL ESTADO DE JEFATURA COMERCIAL ESTA ANULADO O EL ESTADO DE CONTABILIDAD ESTA ANULADA
-                            else if (estadoJefatura == "ANULADO" || estadoContabilidad == "ANULADO")
-                            {
-                                MessageBox.Show("Este requerimiento ha sido desaprobado por el área comercial o el área contable.", "Validación del Sistema");
-                            }
-                            else
-                            {
-                                //SI EL REQUERIMIENTO ESTA ATRASADO
-                                if (estadoAtrasado == 1)
+                                //SI EL ESTADO DE JEFATURA COMERCIAL ESTA APROBADO
+                                if (estadoJefatura == "APROBADO")
                                 {
-                                    //SE MUESTRA EL PANEL DE OBERVACIONES Y EL MENSAJE
-                                    panelAprobacionDetalleFueraFecha.Visible = true;
-                                    txtAprobacionRazonesFueraFecha.Text = mensajeAtrasado;
+                                    MessageBox.Show("Este requerimiento ya ha sido aprobado por la jefatura del área comercial.", "Validación del Sistema");
+                                }
+                                //SI EL ESTADO DE JEFATURA COMERCIAL ESTA ANULADO O EL ESTADO DE CONTABILIDAD ESTA ANULADA
+                                else if (estadoJefatura == "ANULADO" || estadoContabilidad == "ANULADO")
+                                {
+                                    MessageBox.Show("Este requerimiento ha sido desaprobado por el área comercial o el área contable.", "Validación del Sistema");
                                 }
                                 else
                                 {
-                                    //SI TODO ESTA OK
-                                    AprobacionJefaturas(idRequerimiento, 2);
+                                    //SI EL REQUERIMIENTO ESTA ATRASADO
+                                    if (estadoAtrasado == 1)
+                                    {
+                                        //SE MUESTRA EL PANEL DE OBERVACIONES Y EL MENSAJE
+                                        panelAprobacionDetalleFueraFecha.Visible = true;
+                                        txtAprobacionRazonesFueraFecha.Text = mensajeAtrasado;
+                                    }
+                                    else
+                                    {
+                                        //SI TODO ESTA OK
+                                        AprobacionJefaturas(idRequerimiento, 2);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un requerimiento para poder aprobarlo.", "Validación del Sistema");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder aprobarlo.", "Validación del Sistema");
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message, "Error en el servidor.");
             }
         }
 
@@ -1514,40 +1650,24 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                cmd = new SqlCommand("CambioEstadoRequerimientoVenta_Comercial", con);
+                cmd = new SqlCommand("RequerimientoVenta_CambioEstado", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idrequerimiento", idRequerimiento);
+                cmd.Parameters.AddWithValue("@idRequerimiento", idRequerimiento);
                 cmd.Parameters.AddWithValue("@estado", estadoJefatura);
-                cmd.Parameters.AddWithValue("@idjefatura", idJefatura);
-                cmd.Parameters.AddWithValue("@aliasjefatura", alias);
+                cmd.Parameters.AddWithValue("@idJefatura", idJefatura);
+                cmd.Parameters.AddWithValue("@aliasJefatura", alias);
                 cmd.Parameters.AddWithValue("@mensajeAnulacion", DBNull.Value);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
                 MessageBox.Show("Requerimiento aprobado exitosamente.", "Validación del Sistema");
+                BusquedaDependiente();
 
-                //INGRESO DE LA TABLA AUDITORA
-                con.Open();
-                cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Requerimientos y Liquidación - Requerimiento Venta");
-                cmd.Parameters.AddWithValue("@accion", "Aprobación del requerimiento de viaje número " + idRequerimiento);
-                cmd.Parameters.AddWithValue("@descripcion", "Requerimiento de viaje aprobado por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                cmd.Parameters.AddWithValue("@codigoRequerimiento", idRequerimiento);
-                cmd.Parameters.AddWithValue("@codigoLiquidacion", DBNull.Value);
-                cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
-                cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+                ClassResourses.RegistrarAuditora(3, this.Name, 4, Program.IdUsuario, "Aprobar requerimiento de viaje", idRequerimiento);
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -1577,12 +1697,19 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 {
                     //RECOPILACIÓN DE VARIABLES
                     int idRequerimiento = Convert.ToInt32(datalistadoTodasRequerimientos.SelectedCells[1].Value.ToString());
+                    string estadoReque = datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString();
                     bool estadoLiquidacion = Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString());
 
                     //SI EL ESTADO DE LIQUIDACIÓN DE MI REQUERIMIENTO ES TRUE
                     if (estadoLiquidacion == true)
                     {
                         MessageBox.Show("Este requerimiento tiene una liquidación hecha, por favor anular por la liquidación o en su defecto por el acta.", "Validación del Sistema");
+                        txtJustificacionAnulacion.Text = "";
+                        panleAnulacion.Visible = false;
+                    }
+                    else if (estadoReque == "ANULADO")
+                    {
+                        MessageBox.Show("Este requerimiento ya se encuentra anulado.", "Validación del Sistema");
                         txtJustificacionAnulacion.Text = "";
                         panleAnulacion.Visible = false;
                     }
@@ -1597,46 +1724,30 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("CambioEstadoRequerimientoVenta_Comercial", con);
+                            cmd = new SqlCommand("RequerimientoVenta_CambioEstado", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idrequerimiento", idRequerimiento);
+                            cmd.Parameters.AddWithValue("@idRequerimiento", idRequerimiento);
                             cmd.Parameters.AddWithValue("@estado", 0);
-                            cmd.Parameters.AddWithValue("@idjefatura", idJefatura);
-                            cmd.Parameters.AddWithValue("@aliasjefatura", alias);
+                            cmd.Parameters.AddWithValue("@idJefatura", idJefatura);
+                            cmd.Parameters.AddWithValue("@aliasJefatura", alias);
                             cmd.Parameters.AddWithValue("@mensajeAnulacion", txtJustificacionAnulacion.Text);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
                             MessageBox.Show("Requerimiento anulado exitosamente.", "Validación del Sistema");
 
-                            //INGRESO DE LA TABLA AUDITORA
-                            con.Open();
-                            cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                            cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Requerimientos y Liquidación - Requerimiento de Venta");
-                            cmd.Parameters.AddWithValue("@accion", "Anulación del requerimiento de viaje número " + idRequerimiento);
-                            cmd.Parameters.AddWithValue("@descripcion", "Requerimiento de viaje anulado por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                            cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                            cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                            cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                            cmd.Parameters.AddWithValue("@codigoRequerimiento", idRequerimiento);
-                            cmd.Parameters.AddWithValue("@codigoLiquidacion", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+                            BusquedaDependiente();
                             panleAnulacion.Visible = false;
                             txtJustificacionAnulacion.Text = "";
+
+                            ClassResourses.RegistrarAuditora(2, this.Name, 4, Program.IdUsuario, "Anular requerimiento de viaje", idRequerimiento);
 
                             Enviar("vcornejo@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
                             Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
                         }
                         catch (Exception ex)
                         {
+                            ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                             MessageBox.Show(ex.Message);
                         }
                     }
@@ -1682,37 +1793,20 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("CambiarEstadoHabilitacionJefatura", con);
+                            cmd = new SqlCommand("RequerimientoVenta_CambiarEstadoHabilitacion", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idrequerimiento", idRequerimiento);
+                            cmd.Parameters.AddWithValue("@idRequerimiento", idRequerimiento);
                             cmd.ExecuteNonQuery();
                             con.Close();
-                            MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+                            BusquedaDependiente();
 
                             MessageBox.Show("Requerimiento liberado exitosamente.", "Validación del Sistema");
-
-                            //INGRESO DE LA TABLA AUDITORA
-                            con.Open();
-                            cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                            cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Requerimientos y Liquidación - Requerimiento de Venta");
-                            cmd.Parameters.AddWithValue("@accion", "Liberación del requerimiento de viaje número " + idRequerimiento);
-                            cmd.Parameters.AddWithValue("@descripcion", "Requerimiento de viaje liberado por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                            cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                            cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                            cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                            cmd.Parameters.AddWithValue("@codigoRequerimiento", idRequerimiento);
-                            cmd.Parameters.AddWithValue("@codigoLiquidacion", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
+                            ClassResourses.RegistrarAuditora(14, this.Name, 4, Program.IdUsuario, "Liberar requerimiento de viaje", idRequerimiento);
                         }
                     }
                     catch (Exception ex)
                     {
+                        ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                         MessageBox.Show(ex.Message);
                     }
                 }
@@ -1740,69 +1834,97 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //CARGAR PARTE GENERAL DEL REQUERIEINTO
         public void BuscarRequerimeintoGeneral(int codigoRequerimiento)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaReuqerimientoGeneral.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaReuqerimientoGeneral.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGA DE CLIENTES DEL REQUERIMIENTO
         public void BuscarRequerimeintoClientes(int codigoRequerimiento)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigoClientes", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaRequerimientoCLientes.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigoClientes", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaRequerimientoCLientes.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGA DE COLABORADORES DEL REQUERIMIETNO
         public void BuscarRequerimeintoColaboradores(int codigoRequerimiento)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigoColaboradores", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaRequerimeintoColaboradores.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigoColaboradores", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaRequerimeintoColaboradores.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGA DE DETALLES DEL REQUERIMEINTO
         public void BuscarRequerimeintoDetalles(int codigoRequerimiento)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigoDetalles", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            dataliostadoBusquedaRequerimientoDetalles.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarRequerimeintoVentaPorCodigoDetalles", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigo", codigoRequerimiento);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                dataliostadoBusquedaRequerimientoDetalles.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //GENERACIÓN DE LA LIQUIDACIÓN Y CARGA DE LOS DATOS
@@ -1844,18 +1966,25 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     //SI LA FECHA DE TÉRMINO MÁS 10 DIAS ES MAYOR 
                     else if (fechaTermino < DateTime.Now && estadoHabilitadoJefatura == 0)
                     {
-                        SqlConnection con = new SqlConnection();
-                        SqlCommand cmd = new SqlCommand();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("CambiarEstadoFechaLiquidacion", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idrequerimiento", codigoRequerimeinto);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("CambiarEstadoFechaLiquidacion", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idrequerimiento", codigoRequerimeinto);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            BusquedaDependiente();
 
-                        MessageBox.Show("Este requerimiento se pasó de la cantidad de dias habilitados para poder generar la liquidación, por favor comunicar a su jefatura para que lo pueda liberar.", "Validación del Sistema");
+                            MessageBox.Show("Este requerimiento se pasó de la cantidad de dias habilitados para poder generar la liquidación, por favor comunicar a su jefatura para que lo pueda liberar.", "Validación del Sistema");
+                        }
+                        catch (Exception ex)
+                        {
+                            ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+                        }
                     }
                     else
                     {
@@ -2094,7 +2223,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     datatimeCalculador2.Value = datatimeCalculador2.Value.Subtract(TimeSpan.FromDays(Convert.ToDouble(txtNumFecha2.Text)));
                     //direccion(datalistadoDetallesLiquidacion);
                 }
-
             }
         }
 
@@ -2386,10 +2514,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         DateTime fechaInicio = Convert.ToDateTime(row.Cells["txtFechaInicioLiquidacionF"].Value);
                         DateTime fechaTermino = Convert.ToDateTime(row.Cells["txtFechaTerminoLiquidacionF"].Value);
 
-                        if (fechaInicio == null || fechaTermino == null)
+                        if (fechaInicio == null || fechaTermino == null || fechaInicio == Convert.ToDateTime("1/01/0001 00:00:00") || fechaTermino == Convert.ToDateTime("1/01/0001 00:00:00"))
                         {
                             sinFecha = true;
-                            return;
                         }
                     }
 
@@ -2513,25 +2640,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         MessageBox.Show("Se registró la liquidación exitosamente.", "Validación del Sistema");
 
-                        //INGRESO DE LA TABLA AUDITORA
-                        con.Open();
-                        cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                        cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Requerimientos y Liquidación - Requerimiento de Venta");
-                        cmd.Parameters.AddWithValue("@accion", "Nueva liquidación con código " + numeroLiquidacion + " para el requerimiento " + txtNumeroRequerimeintoLiquidacion.Text);
-                        cmd.Parameters.AddWithValue("@descripcion", "Liquidación creada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                        cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                        cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                        cmd.Parameters.AddWithValue("@codigoRequerimiento", Convert.ToInt32(txtNumeroRequerimeintoLiquidacion.Text));
-                        cmd.Parameters.AddWithValue("@codigoLiquidacion", numeroLiquidacion);
-                        cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
                         //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
                         panelNuevaLiquidadcion.Visible = false;
                         datalistadoTodasRequerimientos.Enabled = true;
@@ -2549,8 +2657,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         panelObservacionesLiquiFueraFecha.Visible = false;
                         txtRazononObservaciones2.Text = "";
 
-
-                        MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+                        BusquedaDependiente();
+                        ClassResourses.RegistrarAuditora(4, this.Name, 4, Program.IdUsuario, "Generar liquidación de viaje", numeroLiquidacion);
                     }
                     else
                     {
@@ -2560,6 +2668,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message, "Error en el servidor.");
             }
         }
@@ -2666,25 +2775,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                     MessageBox.Show("Se registró el requerimiento exitosamente.", "Validación del Sistema");
 
-                    //INGRESO DE LA TABLA AUDITORA
-                    con.Open();
-                    cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                    cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Requerimientos y Liquidación - Requerimiento de Venta");
-                    cmd.Parameters.AddWithValue("@accion", "Edición de requerimiento con código " + codigoRequerimeinto);
-                    cmd.Parameters.AddWithValue("@descripcion", "Requerimiento editado por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                    cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                    cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                    cmd.Parameters.AddWithValue("@codigoRequerimiento", codigoRequerimeinto);
-                    cmd.Parameters.AddWithValue("@codigoLiquidacion", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
                     //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
                     panelNuevoRequerimiento.Visible = false;
                     panelObservacionesRequeAtrasado.Visible = false;
@@ -2704,11 +2794,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     datalistadoColaboradores.DataSource = null;
                     datalistadoTodasRequerimientos.Enabled = true;
 
-                    MostrarRequerimientos(DesdeFecha.Value, HastaFecha.Value);
+                    BusquedaDependiente();
+                    ClassResourses.RegistrarAuditora(8, this.Name, 4, Program.IdUsuario, "Editar requerimiento de viaje", 0);
                 }
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message, "Error en el servidor.");
             }
         }
@@ -2776,196 +2868,224 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //BUSQUEDA DE CLIENTE POR NOMBRE/APELLIDOS Y DNI
         private void txtBusqeudaCliente_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaClientes.Text == "NOMBRES")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarClientePorNombre_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@nombre", txtBusqeudaCliente.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoClientes.DataSource = dt;
-                con.Close();
+                if (cboBusquedaClientes.Text == "NOMBRES")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarClientePorNombre_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombre", txtBusqeudaCliente.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoClientes.DataSource = dt;
+                    con.Close();
 
-                datalistadoClientes.Columns[1].Visible = false;
-                datalistadoClientes.Columns[3].Visible = false;
-                datalistadoClientes.Columns[3].Visible = false;
-                datalistadoClientes.Columns[5].Visible = false;
+                    datalistadoClientes.Columns[1].Visible = false;
+                    datalistadoClientes.Columns[3].Visible = false;
+                    datalistadoClientes.Columns[3].Visible = false;
+                    datalistadoClientes.Columns[5].Visible = false;
 
-                datalistadoClientes.Columns[2].Width = 300;
-                datalistadoClientes.Columns[4].Width = 150;
-                datalistadoClientes.Columns[6].Width = 150;
+                    datalistadoClientes.Columns[2].Width = 300;
+                    datalistadoClientes.Columns[4].Width = 150;
+                    datalistadoClientes.Columns[6].Width = 150;
 
+                }
+                else if (cboBusquedaClientes.Text == "DOCUMENTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarClientePorDocumento_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", txtBusqeudaCliente.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoClientes.DataSource = dt;
+                    con.Close();
+
+                    datalistadoClientes.Columns[1].Visible = false;
+                    datalistadoClientes.Columns[3].Visible = false;
+                    datalistadoClientes.Columns[3].Visible = false;
+                    datalistadoClientes.Columns[5].Visible = false;
+
+                    datalistadoClientes.Columns[2].Width = 300;
+                    datalistadoClientes.Columns[4].Width = 150;
+                    datalistadoClientes.Columns[6].Width = 150;
+                }
             }
-            else if (cboBusquedaClientes.Text == "DOCUMENTO")
+            catch (Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarClientePorDocumento_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@documento", txtBusqeudaCliente.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoClientes.DataSource = dt;
-                con.Close();
-
-                datalistadoClientes.Columns[1].Visible = false;
-                datalistadoClientes.Columns[3].Visible = false;
-                datalistadoClientes.Columns[3].Visible = false;
-                datalistadoClientes.Columns[5].Visible = false;
-
-                datalistadoClientes.Columns[2].Width = 300;
-                datalistadoClientes.Columns[4].Width = 150;
-                datalistadoClientes.Columns[6].Width = 150;
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //BUSQUEDA DE LOS COLABORADORES POR NOMBRE/APELLIDOS Y DNI
         private void txtBusquedaColaborador_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusqeudaColaborador.Text == "NOMBRES")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarColaboradorPorNombre_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@nombre", txtBusquedaColaborador.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoColaboradores.DataSource = dt;
-                con.Close();
+                if (cboBusqeudaColaborador.Text == "NOMBRES")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarColaboradorPorNombre_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombre", txtBusquedaColaborador.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoColaboradores.DataSource = dt;
+                    con.Close();
 
-                datalistadoColaboradores.Columns[1].Visible = false;
+                    datalistadoColaboradores.Columns[1].Visible = false;
 
-                datalistadoColaboradores.Columns[2].Width = 420;
+                    datalistadoColaboradores.Columns[2].Width = 420;
 
+                }
+                else if (cboBusqeudaColaborador.Text == "DOCUMENTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarColaboradorPorDocumento_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", txtBusquedaColaborador.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoColaboradores.DataSource = dt;
+                    con.Close();
+
+                    datalistadoColaboradores.Columns[1].Visible = false;
+
+                    datalistadoColaboradores.Columns[2].Width = 420;
+                }
             }
-            else if (cboBusqeudaColaborador.Text == "DOCUMENTO")
+            catch (Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarColaboradorPorDocumento_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@documento", txtBusquedaColaborador.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoColaboradores.DataSource = dt;
-                con.Close();
-
-                datalistadoColaboradores.Columns[1].Visible = false;
-
-                datalistadoColaboradores.Columns[2].Width = 420;
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //BUSQUEDA DE CLIENTE POR NOMBRE/APELLIDOS Y DNI
         private void txtBusquedaCLienteLiquidacion_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaClientesLiquidacion.Text == "NOMBRES")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarClientePorNombre_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@nombre", txtBusquedaCLienteLiquidacion.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaClietneLiquidacion.DataSource = dt;
-                con.Close();
+                if (cboBusquedaClientesLiquidacion.Text == "NOMBRES")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarClientePorNombre_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombre", txtBusquedaCLienteLiquidacion.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaClietneLiquidacion.DataSource = dt;
+                    con.Close();
 
-                datalistadoBusquedaClietneLiquidacion.Columns[1].Visible = false;
-                datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                datalistadoBusquedaClietneLiquidacion.Columns[5].Visible = false;
+                    datalistadoBusquedaClietneLiquidacion.Columns[1].Visible = false;
+                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
+                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
+                    datalistadoBusquedaClietneLiquidacion.Columns[5].Visible = false;
 
-                datalistadoBusquedaClietneLiquidacion.Columns[2].Width = 300;
-                datalistadoBusquedaClietneLiquidacion.Columns[4].Width = 150;
-                datalistadoBusquedaClietneLiquidacion.Columns[6].Width = 150;
+                    datalistadoBusquedaClietneLiquidacion.Columns[2].Width = 300;
+                    datalistadoBusquedaClietneLiquidacion.Columns[4].Width = 150;
+                    datalistadoBusquedaClietneLiquidacion.Columns[6].Width = 150;
 
+                }
+                else if (cboBusquedaClientesLiquidacion.Text == "DOCUMENTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarClientePorDocumento_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", txtBusquedaCLienteLiquidacion.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaClietneLiquidacion.DataSource = dt;
+                    con.Close();
+
+                    datalistadoBusquedaClietneLiquidacion.Columns[1].Visible = false;
+                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
+                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
+                    datalistadoBusquedaClietneLiquidacion.Columns[5].Visible = false;
+
+                    datalistadoBusquedaClietneLiquidacion.Columns[2].Width = 300;
+                    datalistadoBusquedaClietneLiquidacion.Columns[4].Width = 150;
+                    datalistadoBusquedaClietneLiquidacion.Columns[6].Width = 150;
+                }
             }
-            else if (cboBusquedaClientesLiquidacion.Text == "DOCUMENTO")
+            catch (Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarClientePorDocumento_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@documento", txtBusquedaCLienteLiquidacion.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaClietneLiquidacion.DataSource = dt;
-                con.Close();
-
-                datalistadoBusquedaClietneLiquidacion.Columns[1].Visible = false;
-                datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                datalistadoBusquedaClietneLiquidacion.Columns[5].Visible = false;
-
-                datalistadoBusquedaClietneLiquidacion.Columns[2].Width = 300;
-                datalistadoBusquedaClietneLiquidacion.Columns[4].Width = 150;
-                datalistadoBusquedaClietneLiquidacion.Columns[6].Width = 150;
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //BUSQUEDA DE LOS COLABORADORES POR NOMBRE/APELLIDOS Y DNI
         private void txtBusquedaColaboradorLiquidacion_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaColaboradorLiquidacion.Text == "NOMBRES")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarColaboradorPorNombre_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@nombre", txtBusquedaColaboradorLiquidacion.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaColaboradorLiquidacion.DataSource = dt;
-                con.Close();
+                if (cboBusquedaColaboradorLiquidacion.Text == "NOMBRES")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarColaboradorPorNombre_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombre", txtBusquedaColaboradorLiquidacion.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaColaboradorLiquidacion.DataSource = dt;
+                    con.Close();
 
-                datalistadoBusquedaColaboradorLiquidacion.Columns[1].Visible = false;
+                    datalistadoBusquedaColaboradorLiquidacion.Columns[1].Visible = false;
 
-                datalistadoBusquedaColaboradorLiquidacion.Columns[2].Width = 420;
+                    datalistadoBusquedaColaboradorLiquidacion.Columns[2].Width = 420;
 
+                }
+                else if (cboBusquedaColaboradorLiquidacion.Text == "DOCUMENTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarColaboradorPorDocumento_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", txtBusquedaColaboradorLiquidacion.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaColaboradorLiquidacion.DataSource = dt;
+                    con.Close();
+
+                    datalistadoBusquedaColaboradorLiquidacion.Columns[1].Visible = false;
+
+                    datalistadoBusquedaColaboradorLiquidacion.Columns[2].Width = 420;
+                }
             }
-            else if (cboBusquedaColaboradorLiquidacion.Text == "DOCUMENTO")
+            catch (Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarColaboradorPorDocumento_Requerimiento", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@documento", txtBusquedaColaboradorLiquidacion.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaColaboradorLiquidacion.DataSource = dt;
-                con.Close();
-
-                datalistadoBusquedaColaboradorLiquidacion.Columns[1].Visible = false;
-
-                datalistadoBusquedaColaboradorLiquidacion.Columns[2].Width = 420;
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
@@ -3015,186 +3135,202 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //METODO PARA EXPORTAR A EXCEL MI LISTADO
         public void btnExportacionBasica_Click(object sender, EventArgs e)
         {
-            MostrarExcel();
-
-            SLDocument sl = new SLDocument();
-            SLStyle style = new SLStyle();
-            SLStyle styleC = new SLStyle();
-
-            //COLUMNAS
-            sl.SetColumnWidth(1, 15);
-            sl.SetColumnWidth(2, 20);
-            sl.SetColumnWidth(3, 20);
-            sl.SetColumnWidth(4, 20);
-            sl.SetColumnWidth(5, 35);
-            sl.SetColumnWidth(6, 50);
-            sl.SetColumnWidth(7, 20);
-            sl.SetColumnWidth(8, 20);
-            sl.SetColumnWidth(9, 35);
-            sl.SetColumnWidth(10, 35);
-
-            //CABECERA
-            style.Font.FontSize = 11;
-            style.Font.Bold = true;
-            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-            style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
-            style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            //FILAS
-            styleC.Font.FontSize = 10;
-            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-
-            styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            int ic = 1;
-            foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+            try
             {
-                sl.SetCellValue(1, ic, column.HeaderText.ToString());
-                sl.SetCellStyle(1, ic, style);
-                ic++;
-            }
+                MostrarExcel();
 
-            int ir = 2;
-            foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                SLDocument sl = new SLDocument();
+                SLStyle style = new SLStyle();
+                SLStyle styleC = new SLStyle();
+
+                //COLUMNAS
+                sl.SetColumnWidth(1, 15);
+                sl.SetColumnWidth(2, 20);
+                sl.SetColumnWidth(3, 20);
+                sl.SetColumnWidth(4, 20);
+                sl.SetColumnWidth(5, 35);
+                sl.SetColumnWidth(6, 50);
+                sl.SetColumnWidth(7, 20);
+                sl.SetColumnWidth(8, 20);
+                sl.SetColumnWidth(9, 35);
+                sl.SetColumnWidth(10, 35);
+
+                //CABECERA
+                style.Font.FontSize = 11;
+                style.Font.Bold = true;
+                style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+                style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+                style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                //FILAS
+                styleC.Font.FontSize = 10;
+                styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+                styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                int ic = 1;
+                foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+                {
+                    sl.SetCellValue(1, ic, column.HeaderText.ToString());
+                    sl.SetCellStyle(1, ic, style);
+                    ic++;
+                }
+
+                int ir = 2;
+                foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                {
+                    sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+                    sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+                    sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+                    sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+                    sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
+                    sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
+                    sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
+                    sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
+                    sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
+                    sl.SetCellValue(ir, 10, row.Cells[9].Value.ToString());
+                    sl.SetCellStyle(ir, 1, styleC);
+                    sl.SetCellStyle(ir, 2, styleC);
+                    sl.SetCellStyle(ir, 3, styleC);
+                    sl.SetCellStyle(ir, 4, styleC);
+                    sl.SetCellStyle(ir, 5, styleC);
+                    sl.SetCellStyle(ir, 6, styleC);
+                    sl.SetCellStyle(ir, 7, styleC);
+                    sl.SetCellStyle(ir, 8, styleC);
+                    sl.SetCellStyle(ir, 9, styleC);
+                    sl.SetCellStyle(ir, 10, styleC);
+                    ir++;
+                }
+
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                sl.SaveAs(desktopPath + @"\Reporte de Requerimientos.xlsx");
+                MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+
+                panelExportacionOpciones.Visible = false;
+                ClassResourses.RegistrarAuditora(5, this.Name, 4, Program.IdUsuario, "Exportar listado de requerimientos de ventas EXCEL", 0);
+            }
+            catch (Exception ex)
             {
-                sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
-                sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
-                sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
-                sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
-                sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
-                sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
-                sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
-                sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
-                sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
-                sl.SetCellValue(ir, 10, row.Cells[9].Value.ToString());
-                sl.SetCellStyle(ir, 1, styleC);
-                sl.SetCellStyle(ir, 2, styleC);
-                sl.SetCellStyle(ir, 3, styleC);
-                sl.SetCellStyle(ir, 4, styleC);
-                sl.SetCellStyle(ir, 5, styleC);
-                sl.SetCellStyle(ir, 6, styleC);
-                sl.SetCellStyle(ir, 7, styleC);
-                sl.SetCellStyle(ir, 8, styleC);
-                sl.SetCellStyle(ir, 9, styleC);
-                sl.SetCellStyle(ir, 10, styleC);
-                ir++;
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
-
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de Requerimientos.xlsx");
-            MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
-
-            panelExportacionOpciones.Visible = false;
         }
 
         //FUNCION PAARA EXPORTAR A EXCEL MI LISTADO COMPLETO
         private void btnExportacionCompleta_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarRequerimientosVentasPorFecha_Excel", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", DesdeFecha.Value);
-            cmd.Parameters.AddWithValue("@fechaTermino", HastaFecha.Value);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoExcelCompleto.DataSource = dt;
-            con.Close();
-
-            MostrarExcelCompleto();
-
-            SLDocument sl = new SLDocument();
-            SLStyle style = new SLStyle();
-            SLStyle styleC = new SLStyle();
-
-            //COLUMNAS
-            sl.SetColumnWidth(1, 15);
-            sl.SetColumnWidth(2, 20);
-            sl.SetColumnWidth(3, 20);
-            sl.SetColumnWidth(4, 20);
-            sl.SetColumnWidth(5, 35);
-            sl.SetColumnWidth(6, 35);
-            sl.SetColumnWidth(7, 50);
-            sl.SetColumnWidth(8, 20);
-            sl.SetColumnWidth(9, 20);
-            sl.SetColumnWidth(10, 60);
-            sl.SetColumnWidth(11, 20);
-            sl.SetColumnWidth(12, 20);
-            sl.SetColumnWidth(13, 35);
-
-            //CABECERA
-            style.Font.FontSize = 11;
-            style.Font.Bold = true;
-            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-            style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
-            style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            //FILAS
-            styleC.Font.FontSize = 10;
-            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-
-            styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            int ic = 1;
-            foreach (DataGridViewColumn column in datalistadoExcelCompleto.Columns)
+            try
             {
-                sl.SetCellValue(1, ic, column.HeaderText.ToString());
-                sl.SetCellStyle(1, ic, style);
-                ic++;
-            }
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarRequerimientosVentasPorFecha_Excel", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fechaInicio", DesdeFecha.Value);
+                cmd.Parameters.AddWithValue("@fechaTermino", HastaFecha.Value);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoExcelCompleto.DataSource = dt;
+                con.Close();
 
-            int ir = 2;
-            foreach (DataGridViewRow row in datalistadoExcelCompleto.Rows)
+                MostrarExcelCompleto();
+
+                SLDocument sl = new SLDocument();
+                SLStyle style = new SLStyle();
+                SLStyle styleC = new SLStyle();
+
+                //COLUMNAS
+                sl.SetColumnWidth(1, 15);
+                sl.SetColumnWidth(2, 20);
+                sl.SetColumnWidth(3, 20);
+                sl.SetColumnWidth(4, 20);
+                sl.SetColumnWidth(5, 35);
+                sl.SetColumnWidth(6, 35);
+                sl.SetColumnWidth(7, 50);
+                sl.SetColumnWidth(8, 20);
+                sl.SetColumnWidth(9, 20);
+                sl.SetColumnWidth(10, 60);
+                sl.SetColumnWidth(11, 20);
+                sl.SetColumnWidth(12, 20);
+                sl.SetColumnWidth(13, 35);
+
+                //CABECERA
+                style.Font.FontSize = 11;
+                style.Font.Bold = true;
+                style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+                style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+                style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                //FILAS
+                styleC.Font.FontSize = 10;
+                styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+                styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                int ic = 1;
+                foreach (DataGridViewColumn column in datalistadoExcelCompleto.Columns)
+                {
+                    sl.SetCellValue(1, ic, column.HeaderText.ToString());
+                    sl.SetCellStyle(1, ic, style);
+                    ic++;
+                }
+
+                int ir = 2;
+                foreach (DataGridViewRow row in datalistadoExcelCompleto.Rows)
+                {
+                    sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+                    sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+                    sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+                    sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+                    sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
+                    sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
+                    sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
+                    sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
+                    sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
+                    sl.SetCellValue(ir, 10, row.Cells[9].Value.ToString());
+                    sl.SetCellValue(ir, 11, row.Cells[10].Value.ToString());
+                    sl.SetCellValue(ir, 12, row.Cells[11].Value.ToString());
+                    sl.SetCellValue(ir, 13, row.Cells[12].Value.ToString());
+                    sl.SetCellStyle(ir, 1, styleC);
+                    sl.SetCellStyle(ir, 2, styleC);
+                    sl.SetCellStyle(ir, 3, styleC);
+                    sl.SetCellStyle(ir, 4, styleC);
+                    sl.SetCellStyle(ir, 5, styleC);
+                    sl.SetCellStyle(ir, 6, styleC);
+                    sl.SetCellStyle(ir, 7, styleC);
+                    sl.SetCellStyle(ir, 8, styleC);
+                    sl.SetCellStyle(ir, 9, styleC);
+                    sl.SetCellStyle(ir, 10, styleC);
+                    sl.SetCellStyle(ir, 11, styleC);
+                    sl.SetCellStyle(ir, 12, styleC);
+                    sl.SetCellStyle(ir, 13, styleC);
+                    ir++;
+                }
+
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                sl.SaveAs(desktopPath + @"\Reporte de Requerimientos Completo.xlsx");
+                MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+
+                panelExportacionOpciones.Visible = false;
+                ClassResourses.RegistrarAuditora(5, this.Name, 4, Program.IdUsuario, "Exportar listado de requerimientos de ventas EXCEL", 0);
+            }
+            catch (Exception ex)
             {
-                sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
-                sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
-                sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
-                sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
-                sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
-                sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
-                sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
-                sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
-                sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
-                sl.SetCellValue(ir, 10, row.Cells[9].Value.ToString());
-                sl.SetCellValue(ir, 11, row.Cells[10].Value.ToString());
-                sl.SetCellValue(ir, 12, row.Cells[11].Value.ToString());
-                sl.SetCellValue(ir, 13, row.Cells[12].Value.ToString());
-                sl.SetCellStyle(ir, 1, styleC);
-                sl.SetCellStyle(ir, 2, styleC);
-                sl.SetCellStyle(ir, 3, styleC);
-                sl.SetCellStyle(ir, 4, styleC);
-                sl.SetCellStyle(ir, 5, styleC);
-                sl.SetCellStyle(ir, 6, styleC);
-                sl.SetCellStyle(ir, 7, styleC);
-                sl.SetCellStyle(ir, 8, styleC);
-                sl.SetCellStyle(ir, 9, styleC);
-                sl.SetCellStyle(ir, 10, styleC);
-                sl.SetCellStyle(ir, 11, styleC);
-                sl.SetCellStyle(ir, 12, styleC);
-                sl.SetCellStyle(ir, 13, styleC);
-                ir++;
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
-
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de Requerimientos Completo.xlsx");
-            MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
-
-            panelExportacionOpciones.Visible = false;
         }
 
         //MÉTODO PARA ENVIAR CORREOS POR LA ANULACIÓN DE UN REQUERIMIENTO
@@ -3301,9 +3437,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
 
                 MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClassResourses.RegistrarAuditora(5, this.Name, 4, Program.IdUsuario, "Exportar requerimiento de viaje PDF", idRequerimiento);
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

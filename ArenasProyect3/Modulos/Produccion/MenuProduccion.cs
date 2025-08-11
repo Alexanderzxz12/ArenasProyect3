@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace ArenasProyect3.Modulos.Produccion
     {
         //VARIABLES GENERALES
         string maquina = Environment.MachineName;
+        //VARIABLES GLOBALES PARA EL MANTENIMIENTO
+        string ruta = ManGeneral.Manual.manualAreaProduccion;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU PRODUCCION
         public MenuProduccion()
@@ -521,6 +524,11 @@ namespace ArenasProyect3.Modulos.Produccion
         private void btnReportesProduccion_MouseLeave(object sender, EventArgs e)
         {
             btnReportesProduccion.BackColor = Color.White;
+        }
+
+        private void btnAbrirManual_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
         }
     }
 }

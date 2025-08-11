@@ -15,7 +15,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
     public partial class MenuConsultaOT : Form
     {
         //VARIABLES GLOBALES
-        string ruta = Manual.manualProduccion;
+        string ruta = Manual.manualAreaProduccion;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU CONSULTAS DE OT
         public MenuConsultaOT()

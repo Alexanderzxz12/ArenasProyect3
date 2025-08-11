@@ -25,7 +25,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         int idJefatura = 0;
         string alias = "";
         private Cursor curAnterior = null;
-        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
+        string ruta = ManGeneral.Manual.manualAreaLogistica;
 
         //CONSTRUCTRO DE MI FORMULAROI
         public ListadoRequerimientoSimple()

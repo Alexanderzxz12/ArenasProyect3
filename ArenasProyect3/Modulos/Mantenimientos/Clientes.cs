@@ -30,7 +30,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         bool EstadoRuc = false;
         bool EstadoOtro = false;
 
-        string Manual = ManGeneral.Manual.manualClientes;
+        string Manual = ManGeneral.Manual.manualAreaComercial;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - CLIENTES
         public Clientes()

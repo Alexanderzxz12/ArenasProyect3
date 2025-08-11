@@ -40,31 +40,27 @@
             this.CrvVisualizarRequerimientoVenta.Cursor = System.Windows.Forms.Cursors.Default;
             this.CrvVisualizarRequerimientoVenta.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CrvVisualizarRequerimientoVenta.Location = new System.Drawing.Point(0, 0);
-            this.CrvVisualizarRequerimientoVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CrvVisualizarRequerimientoVenta.Name = "CrvVisualizarRequerimientoVenta";
-            this.CrvVisualizarRequerimientoVenta.Size = new System.Drawing.Size(1320, 647);
+            this.CrvVisualizarRequerimientoVenta.Size = new System.Drawing.Size(990, 526);
             this.CrvVisualizarRequerimientoVenta.TabIndex = 1;
-            this.CrvVisualizarRequerimientoVenta.ToolPanelWidth = 267;
             // 
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(1053, 11);
-            this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigo.Location = new System.Drawing.Point(790, 9);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(50, 17);
+            this.lblCodigo.Size = new System.Drawing.Size(39, 13);
             this.lblCodigo.TabIndex = 3;
             this.lblCodigo.Text = "codigo";
             // 
             // VisualizarRequerimientoVenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 647);
-            this.Controls.Add(this.lblCodigo);
+            this.ClientSize = new System.Drawing.Size(990, 526);
             this.Controls.Add(this.CrvVisualizarRequerimientoVenta);
+            this.Controls.Add(this.lblCodigo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "VisualizarRequerimientoVenta";
             this.Text = "Visualizar Requerimiento de Viajes";
             this.Load += new System.EventHandler(this.VisualizarRequerimientoVenta_Load);

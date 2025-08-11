@@ -39,15 +39,22 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.datalistadoModeloRecienIngresado = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.Cancelar = new System.Windows.Forms.Button();
             this.label32 = new System.Windows.Forms.Label();
             this.cboBusquedaModelo = new System.Windows.Forms.ComboBox();
-            this.txtBusquedaModelo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtBusquedaModelo = new System.Windows.Forms.TextBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnEditar2 = new System.Windows.Forms.Button();
+            this.CargarAtributos = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnGuardar2 = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.datalistadoLineas = new System.Windows.Forms.DataGridView();
             this.label35 = new System.Windows.Forms.Label();
             this.lblCodigoLinea = new System.Windows.Forms.Label();
@@ -67,6 +74,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelDefinicionAtributos = new System.Windows.Forms.Panel();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnGuardarAtributos = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -181,16 +191,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel26 = new System.Windows.Forms.Panel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEditar2 = new System.Windows.Forms.Button();
-            this.btnGuardar2 = new System.Windows.Forms.Button();
-            this.CargarAtributos = new System.Windows.Forms.Button();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
-            this.Cancelar = new System.Windows.Forms.Button();
-            this.btnGuardarAtributos = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoModeloRecienIngresado)).BeginInit();
@@ -237,14 +237,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 0);
+            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(26, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 18);
+            this.label2.Size = new System.Drawing.Size(138, 18);
             this.label2.TabIndex = 2;
             this.label2.Text = "MODELOS";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
             // 
@@ -255,7 +255,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox3.Location = new System.Drawing.Point(0, 0);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(29, 18);
+            this.pictureBox3.Size = new System.Drawing.Size(26, 18);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 1973;
             this.pictureBox3.TabStop = false;
@@ -306,19 +306,43 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(185, 41);
+            this.panel2.Location = new System.Drawing.Point(192, 41);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(797, 560);
             this.panel2.TabIndex = 1985;
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
+            this.btnExportarExcel.Location = new System.Drawing.Point(738, 367);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(38, 38);
+            this.btnExportarExcel.TabIndex = 2005;
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
+            // Cancelar
+            // 
+            this.Cancelar.FlatAppearance.BorderSize = 0;
+            this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Cancelar.Image")));
+            this.Cancelar.Location = new System.Drawing.Point(637, 95);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.Size = new System.Drawing.Size(38, 38);
+            this.Cancelar.TabIndex = 2003;
+            this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(26, 531);
+            this.label32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(30, 532);
             this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(142, 14);
+            this.label32.Size = new System.Drawing.Size(127, 13);
             this.label32.TabIndex = 2002;
             this.label32.Text = "BÚSQUEDA GENERAL POR:";
             // 
@@ -330,42 +354,42 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboBusquedaModelo.Items.AddRange(new object[] {
             "DESCRIPCIÓN",
             "ABREVIATURA"});
-            this.cboBusquedaModelo.Location = new System.Drawing.Point(176, 529);
+            this.cboBusquedaModelo.Location = new System.Drawing.Point(165, 529);
             this.cboBusquedaModelo.Margin = new System.Windows.Forms.Padding(4);
             this.cboBusquedaModelo.Name = "cboBusquedaModelo";
             this.cboBusquedaModelo.Size = new System.Drawing.Size(133, 21);
             this.cboBusquedaModelo.TabIndex = 2000;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(728, 408);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(60, 14);
+            this.label11.TabIndex = 1999;
+            this.label11.Text = "EXPORTAR";
+            // 
             // txtBusquedaModelo
             // 
             this.txtBusquedaModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusquedaModelo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusquedaModelo.Location = new System.Drawing.Point(317, 529);
+            this.txtBusquedaModelo.Location = new System.Drawing.Point(311, 529);
             this.txtBusquedaModelo.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusquedaModelo.Name = "txtBusquedaModelo";
-            this.txtBusquedaModelo.Size = new System.Drawing.Size(452, 21);
+            this.txtBusquedaModelo.Size = new System.Drawing.Size(413, 21);
             this.txtBusquedaModelo.TabIndex = 2001;
             this.txtBusquedaModelo.TextChanged += new System.EventHandler(this.txtBusquedaModelo_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(728, 408);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 15);
-            this.label11.TabIndex = 1999;
-            this.label11.Text = "EXPORTAR";
             // 
             // lblCancelar
             // 
             this.lblCancelar.AutoSize = true;
-            this.lblCancelar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancelar.Location = new System.Drawing.Point(626, 135);
+            this.lblCancelar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancelar.Location = new System.Drawing.Point(630, 136);
             this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(61, 15);
+            this.lblCancelar.Size = new System.Drawing.Size(54, 13);
             this.lblCancelar.TabIndex = 1997;
             this.lblCancelar.Text = "CANCELAR";
             this.lblCancelar.Visible = false;
@@ -392,38 +416,98 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ACCIONES";
             // 
+            // btnEditar2
+            // 
+            this.btnEditar2.FlatAppearance.BorderSize = 0;
+            this.btnEditar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar2.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2.Image")));
+            this.btnEditar2.Location = new System.Drawing.Point(26, 88);
+            this.btnEditar2.Name = "btnEditar2";
+            this.btnEditar2.Size = new System.Drawing.Size(30, 30);
+            this.btnEditar2.TabIndex = 2002;
+            this.btnEditar2.UseVisualStyleBackColor = true;
+            this.btnEditar2.Click += new System.EventHandler(this.btnEditar2_Click);
+            // 
+            // CargarAtributos
+            // 
+            this.CargarAtributos.FlatAppearance.BorderSize = 0;
+            this.CargarAtributos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CargarAtributos.Image = ((System.Drawing.Image)(resources.GetObject("CargarAtributos.Image")));
+            this.CargarAtributos.Location = new System.Drawing.Point(26, 155);
+            this.CargarAtributos.Name = "CargarAtributos";
+            this.CargarAtributos.Size = new System.Drawing.Size(30, 30);
+            this.CargarAtributos.TabIndex = 2004;
+            this.CargarAtributos.UseVisualStyleBackColor = true;
+            this.CargarAtributos.Click += new System.EventHandler(this.CargarAtributos_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.Location = new System.Drawing.Point(26, 26);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(30, 30);
+            this.btnGuardar.TabIndex = 2000;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(6, 188);
+            this.label30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(11, 188);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(71, 15);
+            this.label30.Size = new System.Drawing.Size(60, 13);
             this.label30.TabIndex = 1930;
             this.label30.Text = "DEFINICIÓN";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(19, 121);
+            this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(22, 121);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 15);
+            this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 1926;
             this.label7.Text = "EDITAR";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(13, 59);
+            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(16, 59);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 15);
+            this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 1925;
             this.label9.Text = "AGREGAR";
+            // 
+            // btnGuardar2
+            // 
+            this.btnGuardar2.FlatAppearance.BorderSize = 0;
+            this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
+            this.btnGuardar2.Location = new System.Drawing.Point(26, 26);
+            this.btnGuardar2.Name = "btnGuardar2";
+            this.btnGuardar2.Size = new System.Drawing.Size(30, 30);
+            this.btnGuardar2.TabIndex = 2003;
+            this.btnGuardar2.UseVisualStyleBackColor = true;
+            this.btnGuardar2.Click += new System.EventHandler(this.btnGuardar2_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.FlatAppearance.BorderSize = 0;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
+            this.btnEditar.Location = new System.Drawing.Point(26, 88);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(30, 30);
+            this.btnEditar.TabIndex = 2001;
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // datalistadoLineas
             // 
@@ -445,7 +529,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -486,7 +570,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // lblCodigoLinea
             // 
-            this.lblCodigoLinea.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoLinea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigoLinea.Location = new System.Drawing.Point(495, 194);
             this.lblCodigoLinea.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigoLinea.Name = "lblCodigoLinea";
@@ -498,7 +582,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // cboEstado
             // 
             this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEstado.FormattingEnabled = true;
             this.cboEstado.Items.AddRange(new object[] {
             "ACTIVO",
@@ -506,7 +590,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboEstado.Location = new System.Drawing.Point(170, 230);
             this.cboEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(164, 23);
+            this.cboEstado.Size = new System.Drawing.Size(164, 22);
             this.cboEstado.TabIndex = 1984;
             // 
             // label28
@@ -546,12 +630,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.txtAbreviatura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAbreviatura.Enabled = false;
-            this.txtAbreviatura.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAbreviatura.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAbreviatura.Location = new System.Drawing.Point(170, 192);
             this.txtAbreviatura.Margin = new System.Windows.Forms.Padding(4);
             this.txtAbreviatura.MaxLength = 2;
             this.txtAbreviatura.Name = "txtAbreviatura";
-            this.txtAbreviatura.Size = new System.Drawing.Size(132, 23);
+            this.txtAbreviatura.Size = new System.Drawing.Size(132, 22);
             this.txtAbreviatura.TabIndex = 1983;
             this.txtAbreviatura.TextChanged += new System.EventHandler(this.txtAbreviatura_TextChanged);
             // 
@@ -569,12 +653,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // cboTipoLinea
             // 
             this.cboTipoLinea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoLinea.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoLinea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoLinea.FormattingEnabled = true;
             this.cboTipoLinea.Location = new System.Drawing.Point(170, 153);
             this.cboTipoLinea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipoLinea.Name = "cboTipoLinea";
-            this.cboTipoLinea.Size = new System.Drawing.Size(444, 23);
+            this.cboTipoLinea.Size = new System.Drawing.Size(444, 22);
             this.cboTipoLinea.TabIndex = 1982;
             this.cboTipoLinea.SelectedIndexChanged += new System.EventHandler(this.cboTipoLinea_SelectedIndexChanged);
             this.cboTipoLinea.SelectionChangeCommitted += new System.EventHandler(this.cboTipoLinea_SelectionChangeCommitted);
@@ -593,11 +677,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigo.Location = new System.Drawing.Point(167, 82);
             this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(19, 16);
+            this.lblCodigo.Size = new System.Drawing.Size(15, 14);
             this.lblCodigo.TabIndex = 1980;
             this.lblCodigo.Text = "N";
             // 
@@ -616,11 +700,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDescripcion.Enabled = false;
-            this.txtDescripcion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(170, 113);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(421, 23);
+            this.txtDescripcion.Size = new System.Drawing.Size(421, 22);
             this.txtDescripcion.TabIndex = 1981;
             this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
@@ -638,10 +722,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(222, 55);
+            this.panel6.Location = new System.Drawing.Point(232, 48);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(350, 1);
+            this.panel6.Size = new System.Drawing.Size(330, 1);
             this.panel6.TabIndex = 1979;
             // 
             // pictureBox1
@@ -649,10 +733,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(241, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(262, 22);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 26);
+            this.pictureBox1.Size = new System.Drawing.Size(37, 22);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1977;
             this.pictureBox1.TabStop = false;
@@ -660,11 +744,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(290, 25);
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(307, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(263, 23);
+            this.label1.Size = new System.Drawing.Size(226, 19);
             this.label1.TabIndex = 1976;
             this.label1.Text = "MANTENIMIENTO DE MODELOS";
             // 
@@ -687,20 +771,56 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelDefinicionAtributos.Controls.Add(this.panel26);
             this.panelDefinicionAtributos.Controls.Add(this.panel27);
             this.panelDefinicionAtributos.Controls.Add(this.label31);
-            this.panelDefinicionAtributos.Location = new System.Drawing.Point(125, 30);
+            this.panelDefinicionAtributos.Location = new System.Drawing.Point(125, 40);
             this.panelDefinicionAtributos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDefinicionAtributos.Name = "panelDefinicionAtributos";
             this.panelDefinicionAtributos.Size = new System.Drawing.Size(930, 589);
             this.panelDefinicionAtributos.TabIndex = 1986;
             this.panelDefinicionAtributos.Visible = false;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.Location = new System.Drawing.Point(783, 530);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(38, 38);
+            this.btnCancelar.TabIndex = 2006;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.FlatAppearance.BorderSize = 0;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(858, 530);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(38, 38);
+            this.btnSalir.TabIndex = 2005;
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // btnGuardarAtributos
+            // 
+            this.btnGuardarAtributos.FlatAppearance.BorderSize = 0;
+            this.btnGuardarAtributos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarAtributos.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarAtributos.Image")));
+            this.btnGuardarAtributos.Location = new System.Drawing.Point(693, 530);
+            this.btnGuardarAtributos.Name = "btnGuardarAtributos";
+            this.btnGuardarAtributos.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardarAtributos.TabIndex = 2004;
+            this.btnGuardarAtributos.UseVisualStyleBackColor = true;
+            this.btnGuardarAtributos.Click += new System.EventHandler(this.btnGuardarAtributos_Click);
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel4.Location = new System.Drawing.Point(265, 38);
+            this.panel4.Location = new System.Drawing.Point(280, 34);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(400, 1);
+            this.panel4.Size = new System.Drawing.Size(370, 1);
             this.panel4.TabIndex = 1980;
             // 
             // pictureBox2
@@ -708,10 +828,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(282, 7);
+            this.pictureBox2.Location = new System.Drawing.Point(329, 8);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(44, 31);
+            this.pictureBox2.Size = new System.Drawing.Size(25, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1975;
             this.pictureBox2.TabStop = false;
@@ -728,33 +848,33 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(860, 567);
+            this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(864, 571);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(36, 15);
+            this.label34.Size = new System.Drawing.Size(32, 13);
             this.label34.TabIndex = 1933;
             this.label34.Text = "SALIR";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(777, 567);
+            this.label33.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(780, 571);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(52, 15);
+            this.label33.Size = new System.Drawing.Size(45, 13);
             this.label33.TabIndex = 1932;
             this.label33.Text = "LIMPIAR";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(684, 567);
+            this.label29.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(689, 571);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(59, 15);
+            this.label29.Size = new System.Drawing.Size(52, 13);
             this.label29.TabIndex = 1931;
             this.label29.Text = "GUARDAR";
             // 
@@ -762,12 +882,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label25.AutoSize = true;
             this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label25.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Blue;
-            this.label25.Location = new System.Drawing.Point(13, 519);
+            this.label25.Location = new System.Drawing.Point(10, 530);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(372, 62);
+            this.label25.Size = new System.Drawing.Size(320, 54);
             this.label25.TabIndex = 110;
             this.label25.Text = resources.GetString("label25.Text");
             // 
@@ -1736,7 +1856,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.groupBox1.Controls.Add(this.ckCamposMedida2);
             this.groupBox1.Controls.Add(this.ckCamposDiametros2);
             this.groupBox1.Controls.Add(this.ckCamposFormas2);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(10, 64);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -1750,11 +1870,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckGenerales.AutoSize = true;
             this.ckGenerales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckGenerales.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckGenerales.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckGenerales.Location = new System.Drawing.Point(13, 305);
             this.ckGenerales.Margin = new System.Windows.Forms.Padding(4);
             this.ckGenerales.Name = "ckGenerales";
-            this.ckGenerales.Size = new System.Drawing.Size(92, 18);
+            this.ckGenerales.Size = new System.Drawing.Size(83, 17);
             this.ckGenerales.TabIndex = 1926;
             this.ckGenerales.Text = "C. Generales";
             this.ckGenerales.UseVisualStyleBackColor = true;
@@ -1774,11 +1894,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCaracteristicas1.AutoSize = true;
             this.ckCaracteristicas1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ckCaracteristicas1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCaracteristicas1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCaracteristicas1.Location = new System.Drawing.Point(13, 33);
             this.ckCaracteristicas1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCaracteristicas1.Name = "ckCaracteristicas1";
-            this.ckCaracteristicas1.Size = new System.Drawing.Size(126, 18);
+            this.ckCaracteristicas1.Size = new System.Drawing.Size(116, 17);
             this.ckCaracteristicas1.TabIndex = 88;
             this.ckCaracteristicas1.Text = "C. Caracteristicas 1";
             this.ckCaracteristicas1.UseVisualStyleBackColor = false;
@@ -1787,11 +1907,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // ckCamposMedida1
             // 
             this.ckCamposMedida1.AutoSize = true;
-            this.ckCamposMedida1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposMedida1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposMedida1.Location = new System.Drawing.Point(13, 65);
             this.ckCamposMedida1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposMedida1.Name = "ckCamposMedida1";
-            this.ckCamposMedida1.Size = new System.Drawing.Size(106, 18);
+            this.ckCamposMedida1.Size = new System.Drawing.Size(95, 17);
             this.ckCamposMedida1.TabIndex = 82;
             this.ckCamposMedida1.Text = "C. de Medida 1";
             this.ckCamposMedida1.UseVisualStyleBackColor = true;
@@ -1801,11 +1921,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckVariosO2.AutoSize = true;
             this.ckVariosO2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckVariosO2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckVariosO2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckVariosO2.Location = new System.Drawing.Point(170, 271);
             this.ckVariosO2.Margin = new System.Windows.Forms.Padding(4);
             this.ckVariosO2.Name = "ckVariosO2";
-            this.ckVariosO2.Size = new System.Drawing.Size(102, 18);
+            this.ckVariosO2.Size = new System.Drawing.Size(91, 17);
             this.ckVariosO2.TabIndex = 97;
             this.ckVariosO2.Text = "C. Varios y 0 - 2";
             this.ckVariosO2.UseVisualStyleBackColor = true;
@@ -1814,11 +1934,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // ckCamposDiametros1
             // 
             this.ckCamposDiametros1.AutoSize = true;
-            this.ckCamposDiametros1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposDiametros1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposDiametros1.Location = new System.Drawing.Point(13, 98);
             this.ckCamposDiametros1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiametros1.Name = "ckCamposDiametros1";
-            this.ckCamposDiametros1.Size = new System.Drawing.Size(121, 18);
+            this.ckCamposDiametros1.Size = new System.Drawing.Size(109, 17);
             this.ckCamposDiametros1.TabIndex = 84;
             this.ckCamposDiametros1.Text = "C. de Diametros 1";
             this.ckCamposDiametros1.UseVisualStyleBackColor = true;
@@ -1827,11 +1947,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // ckCamposFormas1
             // 
             this.ckCamposFormas1.AutoSize = true;
-            this.ckCamposFormas1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposFormas1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposFormas1.Location = new System.Drawing.Point(13, 132);
             this.ckCamposFormas1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposFormas1.Name = "ckCamposFormas1";
-            this.ckCamposFormas1.Size = new System.Drawing.Size(104, 18);
+            this.ckCamposFormas1.Size = new System.Drawing.Size(94, 17);
             this.ckCamposFormas1.TabIndex = 83;
             this.ckCamposFormas1.Text = "C. de Formas 1";
             this.ckCamposFormas1.UseVisualStyleBackColor = true;
@@ -1841,11 +1961,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposEspesores1.AutoSize = true;
             this.ckCamposEspesores1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposEspesores1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposEspesores1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposEspesores1.Location = new System.Drawing.Point(13, 165);
             this.ckCamposEspesores1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposEspesores1.Name = "ckCamposEspesores1";
-            this.ckCamposEspesores1.Size = new System.Drawing.Size(117, 18);
+            this.ckCamposEspesores1.Size = new System.Drawing.Size(104, 17);
             this.ckCamposEspesores1.TabIndex = 90;
             this.ckCamposEspesores1.Text = "C. de Espesores 1";
             this.ckCamposEspesores1.UseVisualStyleBackColor = true;
@@ -1855,11 +1975,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposNTipos2.AutoSize = true;
             this.ckCamposNTipos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposNTipos2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposNTipos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposNTipos2.Location = new System.Drawing.Point(170, 235);
             this.ckCamposNTipos2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposNTipos2.Name = "ckCamposNTipos2";
-            this.ckCamposNTipos2.Size = new System.Drawing.Size(113, 18);
+            this.ckCamposNTipos2.Size = new System.Drawing.Size(100, 17);
             this.ckCamposNTipos2.TabIndex = 95;
             this.ckCamposNTipos2.Text = "C. de N. y Tipos 2";
             this.ckCamposNTipos2.UseVisualStyleBackColor = true;
@@ -1869,11 +1989,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposDiseñoAcabado1.AutoSize = true;
             this.ckCamposDiseñoAcabado1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposDiseñoAcabado1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposDiseñoAcabado1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposDiseñoAcabado1.Location = new System.Drawing.Point(13, 200);
             this.ckCamposDiseñoAcabado1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiseñoAcabado1.Name = "ckCamposDiseñoAcabado1";
-            this.ckCamposDiseñoAcabado1.Size = new System.Drawing.Size(135, 18);
+            this.ckCamposDiseñoAcabado1.Size = new System.Drawing.Size(120, 17);
             this.ckCamposDiseñoAcabado1.TabIndex = 92;
             this.ckCamposDiseñoAcabado1.Text = "C. Diseño/Acabado 1";
             this.ckCamposDiseñoAcabado1.UseVisualStyleBackColor = true;
@@ -1883,11 +2003,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckVariosO1.AutoSize = true;
             this.ckVariosO1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckVariosO1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckVariosO1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckVariosO1.Location = new System.Drawing.Point(13, 271);
             this.ckVariosO1.Margin = new System.Windows.Forms.Padding(4);
             this.ckVariosO1.Name = "ckVariosO1";
-            this.ckVariosO1.Size = new System.Drawing.Size(102, 18);
+            this.ckVariosO1.Size = new System.Drawing.Size(91, 17);
             this.ckVariosO1.TabIndex = 96;
             this.ckVariosO1.Text = "C. Varios y 0 - 1";
             this.ckVariosO1.UseVisualStyleBackColor = true;
@@ -1897,11 +2017,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposNTipos1.AutoSize = true;
             this.ckCamposNTipos1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposNTipos1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposNTipos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposNTipos1.Location = new System.Drawing.Point(13, 235);
             this.ckCamposNTipos1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposNTipos1.Name = "ckCamposNTipos1";
-            this.ckCamposNTipos1.Size = new System.Drawing.Size(113, 18);
+            this.ckCamposNTipos1.Size = new System.Drawing.Size(100, 17);
             this.ckCamposNTipos1.TabIndex = 94;
             this.ckCamposNTipos1.Text = "C. de N. y Tipos 1";
             this.ckCamposNTipos1.UseVisualStyleBackColor = true;
@@ -1911,11 +2031,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposDiseñoAcabado2.AutoSize = true;
             this.ckCamposDiseñoAcabado2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposDiseñoAcabado2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposDiseñoAcabado2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposDiseñoAcabado2.Location = new System.Drawing.Point(170, 200);
             this.ckCamposDiseñoAcabado2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiseñoAcabado2.Name = "ckCamposDiseñoAcabado2";
-            this.ckCamposDiseñoAcabado2.Size = new System.Drawing.Size(152, 18);
+            this.ckCamposDiseñoAcabado2.Size = new System.Drawing.Size(134, 17);
             this.ckCamposDiseñoAcabado2.TabIndex = 93;
             this.ckCamposDiseñoAcabado2.Text = "C. de Diseño/Acabado 2";
             this.ckCamposDiseñoAcabado2.UseVisualStyleBackColor = true;
@@ -1925,11 +2045,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCaracteristicas2.AutoSize = true;
             this.ckCaracteristicas2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCaracteristicas2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCaracteristicas2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCaracteristicas2.Location = new System.Drawing.Point(170, 32);
             this.ckCaracteristicas2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCaracteristicas2.Name = "ckCaracteristicas2";
-            this.ckCaracteristicas2.Size = new System.Drawing.Size(123, 18);
+            this.ckCaracteristicas2.Size = new System.Drawing.Size(113, 17);
             this.ckCaracteristicas2.TabIndex = 89;
             this.ckCaracteristicas2.Text = "C. Caracteristicas 2";
             this.ckCaracteristicas2.UseVisualStyleBackColor = true;
@@ -1939,11 +2059,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposEspesores2.AutoSize = true;
             this.ckCamposEspesores2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposEspesores2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposEspesores2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposEspesores2.Location = new System.Drawing.Point(170, 165);
             this.ckCamposEspesores2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposEspesores2.Name = "ckCamposEspesores2";
-            this.ckCamposEspesores2.Size = new System.Drawing.Size(117, 18);
+            this.ckCamposEspesores2.Size = new System.Drawing.Size(104, 17);
             this.ckCamposEspesores2.TabIndex = 91;
             this.ckCamposEspesores2.Text = "C. de Espesores 2";
             this.ckCamposEspesores2.UseVisualStyleBackColor = true;
@@ -1953,11 +2073,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposMedida2.AutoSize = true;
             this.ckCamposMedida2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposMedida2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposMedida2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposMedida2.Location = new System.Drawing.Point(170, 64);
             this.ckCamposMedida2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposMedida2.Name = "ckCamposMedida2";
-            this.ckCamposMedida2.Size = new System.Drawing.Size(103, 18);
+            this.ckCamposMedida2.Size = new System.Drawing.Size(92, 17);
             this.ckCamposMedida2.TabIndex = 85;
             this.ckCamposMedida2.Text = "C. de Medida 2";
             this.ckCamposMedida2.UseVisualStyleBackColor = true;
@@ -1967,11 +2087,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposDiametros2.AutoSize = true;
             this.ckCamposDiametros2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposDiametros2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposDiametros2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposDiametros2.Location = new System.Drawing.Point(170, 97);
             this.ckCamposDiametros2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiametros2.Name = "ckCamposDiametros2";
-            this.ckCamposDiametros2.Size = new System.Drawing.Size(118, 18);
+            this.ckCamposDiametros2.Size = new System.Drawing.Size(106, 17);
             this.ckCamposDiametros2.TabIndex = 87;
             this.ckCamposDiametros2.Text = "C. de Diametros 2";
             this.ckCamposDiametros2.UseVisualStyleBackColor = true;
@@ -1981,11 +2101,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposFormas2.AutoSize = true;
             this.ckCamposFormas2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckCamposFormas2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCamposFormas2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckCamposFormas2.Location = new System.Drawing.Point(170, 131);
             this.ckCamposFormas2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposFormas2.Name = "ckCamposFormas2";
-            this.ckCamposFormas2.Size = new System.Drawing.Size(101, 18);
+            this.ckCamposFormas2.Size = new System.Drawing.Size(91, 17);
             this.ckCamposFormas2.TabIndex = 86;
             this.ckCamposFormas2.Text = "C. de Formas 2";
             this.ckCamposFormas2.UseVisualStyleBackColor = true;
@@ -2014,133 +2134,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(334, 15);
+            this.label31.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(356, 15);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(314, 19);
+            this.label31.Size = new System.Drawing.Size(246, 15);
             this.label31.TabIndex = 4;
             this.label31.Text = "Asignación de Atributos y campos al Modelo";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.FlatAppearance.BorderSize = 0;
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(26, 26);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(30, 30);
-            this.btnGuardar.TabIndex = 2000;
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.FlatAppearance.BorderSize = 0;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(26, 88);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(30, 30);
-            this.btnEditar.TabIndex = 2001;
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnEditar2
-            // 
-            this.btnEditar2.FlatAppearance.BorderSize = 0;
-            this.btnEditar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar2.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2.Image")));
-            this.btnEditar2.Location = new System.Drawing.Point(26, 88);
-            this.btnEditar2.Name = "btnEditar2";
-            this.btnEditar2.Size = new System.Drawing.Size(30, 30);
-            this.btnEditar2.TabIndex = 2002;
-            this.btnEditar2.UseVisualStyleBackColor = true;
-            this.btnEditar2.Click += new System.EventHandler(this.btnEditar2_Click);
-            // 
-            // btnGuardar2
-            // 
-            this.btnGuardar2.FlatAppearance.BorderSize = 0;
-            this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
-            this.btnGuardar2.Location = new System.Drawing.Point(26, 26);
-            this.btnGuardar2.Name = "btnGuardar2";
-            this.btnGuardar2.Size = new System.Drawing.Size(30, 30);
-            this.btnGuardar2.TabIndex = 2003;
-            this.btnGuardar2.UseVisualStyleBackColor = true;
-            this.btnGuardar2.Click += new System.EventHandler(this.btnGuardar2_Click);
-            // 
-            // CargarAtributos
-            // 
-            this.CargarAtributos.FlatAppearance.BorderSize = 0;
-            this.CargarAtributos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CargarAtributos.Image = ((System.Drawing.Image)(resources.GetObject("CargarAtributos.Image")));
-            this.CargarAtributos.Location = new System.Drawing.Point(26, 155);
-            this.CargarAtributos.Name = "CargarAtributos";
-            this.CargarAtributos.Size = new System.Drawing.Size(30, 30);
-            this.CargarAtributos.TabIndex = 2004;
-            this.CargarAtributos.UseVisualStyleBackColor = true;
-            this.CargarAtributos.Click += new System.EventHandler(this.CargarAtributos_Click);
-            // 
-            // btnExportarExcel
-            // 
-            this.btnExportarExcel.FlatAppearance.BorderSize = 0;
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
-            this.btnExportarExcel.Location = new System.Drawing.Point(738, 367);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(38, 38);
-            this.btnExportarExcel.TabIndex = 2005;
-            this.btnExportarExcel.UseVisualStyleBackColor = true;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
-            // 
-            // Cancelar
-            // 
-            this.Cancelar.FlatAppearance.BorderSize = 0;
-            this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Cancelar.Image")));
-            this.Cancelar.Location = new System.Drawing.Point(637, 95);
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.Size = new System.Drawing.Size(38, 38);
-            this.Cancelar.TabIndex = 2003;
-            this.Cancelar.UseVisualStyleBackColor = true;
-            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
-            // 
-            // btnGuardarAtributos
-            // 
-            this.btnGuardarAtributos.FlatAppearance.BorderSize = 0;
-            this.btnGuardarAtributos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarAtributos.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarAtributos.Image")));
-            this.btnGuardarAtributos.Location = new System.Drawing.Point(693, 530);
-            this.btnGuardarAtributos.Name = "btnGuardarAtributos";
-            this.btnGuardarAtributos.Size = new System.Drawing.Size(38, 38);
-            this.btnGuardarAtributos.TabIndex = 2004;
-            this.btnGuardarAtributos.UseVisualStyleBackColor = true;
-            this.btnGuardarAtributos.Click += new System.EventHandler(this.btnGuardarAtributos_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.FlatAppearance.BorderSize = 0;
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(858, 530);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(38, 38);
-            this.btnSalir.TabIndex = 2005;
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(783, 530);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(38, 38);
-            this.btnCancelar.TabIndex = 2006;
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // MantenimientoModelos
             // 

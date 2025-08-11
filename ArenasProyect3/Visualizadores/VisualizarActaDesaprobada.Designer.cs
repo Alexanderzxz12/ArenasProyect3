@@ -40,29 +40,27 @@ namespace ArenasProyect3.Visualizadores
             this.CrvVisualizarActaVisitaDesaprobada.Cursor = System.Windows.Forms.Cursors.Default;
             this.CrvVisualizarActaVisitaDesaprobada.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CrvVisualizarActaVisitaDesaprobada.Location = new System.Drawing.Point(0, 0);
-            this.CrvVisualizarActaVisitaDesaprobada.Margin = new System.Windows.Forms.Padding(4);
             this.CrvVisualizarActaVisitaDesaprobada.Name = "CrvVisualizarActaVisitaDesaprobada";
-            this.CrvVisualizarActaVisitaDesaprobada.Size = new System.Drawing.Size(1320, 647);
+            this.CrvVisualizarActaVisitaDesaprobada.Size = new System.Drawing.Size(990, 526);
             this.CrvVisualizarActaVisitaDesaprobada.TabIndex = 5;
-            this.CrvVisualizarActaVisitaDesaprobada.ToolPanelWidth = 267;
             // 
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(1094, 9);
-            this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigo.Location = new System.Drawing.Point(820, 7);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(50, 17);
+            this.lblCodigo.Size = new System.Drawing.Size(39, 13);
             this.lblCodigo.TabIndex = 7;
             this.lblCodigo.Text = "codigo";
             // 
             // VisualizarActaDesaprobada
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 647);
-            this.Controls.Add(this.lblCodigo);
+            this.ClientSize = new System.Drawing.Size(990, 526);
             this.Controls.Add(this.CrvVisualizarActaVisitaDesaprobada);
+            this.Controls.Add(this.lblCodigo);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "VisualizarActaDesaprobada";
             this.Text = "Visualizar Acta Desaprobada";
             this.Load += new System.EventHandler(this.VisualizarActaDesaprobada_Load);

@@ -52,7 +52,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarDetallePedidoXOPorFecha", con);
+            cmd = new SqlCommand("OP_MostrarDetallePedidoXOPorFecha", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -71,7 +71,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarDetallePedidoXOPorCodigoPedido", con);
+            cmd = new SqlCommand("OP_MostrarDetallePedidoXOPorCodigoPedido", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);

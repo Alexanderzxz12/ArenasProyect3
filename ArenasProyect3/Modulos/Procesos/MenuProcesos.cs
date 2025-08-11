@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.Procesos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,7 +12,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Modulos.Procesos;
 
 namespace ArenasProyect3.Modulos.Procesos
 {
@@ -18,8 +19,10 @@ namespace ArenasProyect3.Modulos.Procesos
     {
         //VARIABLES GENERALES
         string maquina = Environment.MachineName;
+        //VARIABLES GLOBALES PARA EL MANTENIMIENTO
+        string ruta = ManGeneral.Manual.manualAreaProcesos;
 
-        //CONSTRUCTOR DEL MANTENIMIENTO - MENU COMERCIAL
+        //CONSTRUCTOR DEL MANTENIMIENTO - MENU PROCESOS
         public MenuProcesos()
         {
             InitializeComponent();
@@ -539,9 +542,11 @@ namespace ArenasProyect3.Modulos.Procesos
         {
             btnReportes.BackColor = Color.White;
         }
+
+        private void btnAbrirManual_Click(object sender, EventArgs e)
+        {
+            Process.Start(ruta);
+        }
         //--------------------------------------------------------------------------------------------------------
-
-
-
     }
 }

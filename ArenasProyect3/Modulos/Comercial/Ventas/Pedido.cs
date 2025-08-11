@@ -15,13 +15,14 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using CrystalDecisions.Shared;
+using ArenasProyect3.Modulos.Resourses;
 
 namespace ArenasProyect3.Modulos.Comercial.Ventas
 {
     public partial class Pedido : Form
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
-        string ruta = ManGeneral.Manual.manualVentas;
+        string ruta = ManGeneral.Manual.manualAreaComercial;
         private Cursor curAnterior = null;
 
         //CONMSTRUCTOR DE MI FORMULARIO
@@ -59,7 +60,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarOPxPedidoAnulacion", con);
+            cmd = new SqlCommand("Pedido_BuscarOPxPedidoAnulacion", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idPedido", idPedido);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -99,7 +100,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarOPporPedido", con);
+            cmd = new SqlCommand("Pedido_BuscarOP", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idPedido", IdPedido);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -121,21 +122,21 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd = new SqlCommand("Pedido_CambioEstado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idPedido", IdPedido);
-                    cmd.Parameters.AddWithValue("@estadoPedido", 3);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 2);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
-                else if (estados.Contains(4))
+                else if (estados.All(e => e == 4))
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd = new SqlCommand("Pedido_CambioEstado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idPedido", IdPedido);
-                    cmd.Parameters.AddWithValue("@estadoPedido", 4);
+                    cmd.Parameters.AddWithValue("@estadoPedido", 3);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
@@ -143,7 +144,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    cmd = new SqlCommand("CambioEstadoPedido", con);
+                    cmd = new SqlCommand("Pedido_CambioEstado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idPedido", IdPedido);
                     cmd.Parameters.AddWithValue("@estadoPedido", 2);
@@ -155,7 +156,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             {
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                cmd = new SqlCommand("CambioEstadoPedido", con);
+                cmd = new SqlCommand("Pedido_CambioEstado", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idPedido", IdPedido);
                 cmd.Parameters.AddWithValue("@estadoPedido", 1);
@@ -173,7 +174,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarPedidoPorFecha_Jefatura", con);
+            cmd = new SqlCommand("Pedido_MostrarPorFecha", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -192,7 +193,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarPedidoPorCliente_Jefatura", con);
+            cmd = new SqlCommand("Pedido_MostrarPorCliente", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@cliente", cliente);
             cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
@@ -223,6 +224,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             DGV.Columns[1].Visible = false;
             DGV.Columns[13].Visible = false;
             DGV.Columns[14].Visible = false;
+            DGV.Columns[15].Visible = false;
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
             foreach (DataGridViewColumn column in DGV.Columns)
@@ -271,6 +273,35 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS Y ITEMS DE MI DASHBOARD
+        public void ColoresListadoItemsPedidos(DataGridView DGV, int posicion)
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= DGV.RowCount - 1; i++)
+                {
+                    if (DGV.Rows[i].Cells[posicion].Value.ToString() == "CULMINADO")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                    }
+                    else
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                }
+
+                foreach (DataGridViewColumn column in DGV.Columns)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
+
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoTodasPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -285,11 +316,776 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
+        //REACCION AL MOMENTO DE ENVONTRAR MI COTIZACION
+        private void lblCodigoCotizacionDash_TextChanged(object sender, EventArgs e)
+        {
+            string codigoCotizacion = lblCodigoCotizacionDash.Text;
+            CargarCotizacionDashCodigo(codigoCotizacion);
+
+            txtEstadoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[2].Value.ToString();
+            txtMontoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[3].Value.ToString();
+            txtResponsableCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[4].Value.ToString();
+
+            CargarPedidoDash(codigoCotizacion);
+            cboCodigoPedidoDash.Items.Clear(); // Limpia los valores anteriores
+
+            foreach (DataGridViewRow fila in datalistadoDetallePedidoDash.Rows)
+            {
+                if (fila.Cells["CODIGO PEDIDO"].Value != null)
+                {
+                    cboCodigoPedidoDash.Items.Add(fila.Cells["CODIGO PEDIDO"].Value.ToString());
+                }
+            }
+            //VALIDAR SI HAY PEDIDO
+            if (cboCodigoPedidoDash.Items.Count != 0)
+            {
+                cboCodigoPedidoDash.SelectedIndex = 0;
+            }
+            else
+            {
+                txtEstadoPedidoDash.Text = "";
+                txtMontoPedidoDash.Text = "";
+                txtResponsablePedidoDash.Text = "";
+                flechaPedidoMono.Visible = true;
+                flechaPedidoIncompleta.Visible = false;
+                flechaPedidoColor.Visible = false;
+                lblEstadoPedidoDash.Text = "SIN REGISTRO";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+        //REACCION AL MOMENTO DE ENVONTRAR MI PEDIDO
+        private void cboCodigoPedidoDash_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string codigoPedido = cboCodigoPedidoDash.Text;
+            CargarPedidoDashCodigo(codigoPedido);
+            MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+
+            txtEstadoPedidoDash.Text = "";
+            txtEstadoPedidoDash.Text = datalistadoDetallePedidoDash.SelectedCells[2].Value.ToString();
+            txtMontoPedidoDash.Text = "";
+            txtMontoPedidoDash.Text = datalistadoDetallePedidoDash.SelectedCells[3].Value.ToString();
+            txtResponsablePedidoDash.Text = "";
+            txtResponsablePedidoDash.Text = datalistadoDetallePedidoDash.SelectedCells[4].Value.ToString();
+
+            CargarOrdenProduccionDash(codigoPedido);
+            cboCodigoOPDash.Items.Clear(); // Limpia los valores anteriores
+
+            foreach (DataGridViewRow fila in datalistadoOrdenProduccionDash.Rows)
+            {
+                if (fila.Cells["N°. OP"].Value != null)
+                {
+                    cboCodigoOPDash.Items.Add(fila.Cells["N°. OP"].Value.ToString());
+                }
+            }
+            //VALIDAR SI HAY OP
+            if (cboCodigoOPDash.Items.Count != 0)
+            {
+                cboCodigoOPDash.SelectedIndex = 0;
+            }
+            else
+            {
+                txtEstadoOPDash.Text = "";
+                txtCantidadOPDash.Text = "";
+                txtCantidadRealizadaOPDash.Text = "";
+                flechaOPMono.Visible = true;
+                flechaOPIncompleto.Visible = false;
+                flechaOPColor.Visible = false;
+                lblEstadoOPDash.Text = "SIN REGISTRO";
+                lblEstadoOPDash.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+        //REACCION AL MOMENTO DE SELECCIONAR LA OP
+        private void cboCodigoOPDash_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string codigoOP = cboCodigoOPDash.Text;
+            CargarOrdenProduccionDashCodigo(codigoOP);
+            MostrarItemsSegunOP(cboCodigoOPDash.Text);
+
+            txtEstadoOPDash.Text = datalistadoOrdenProduccionDash.SelectedCells[2].Value.ToString();
+            txtCantidadOPDash.Text = datalistadoOrdenProduccionDash.SelectedCells[3].Value.ToString();
+            txtCantidadRealizadaOPDash.Text = datalistadoOrdenProduccionDash.SelectedCells[4].Value.ToString();
+        }
+
+        //COLORES DE IMAGENES DEPENDIENDO EL ESTAOD --------------------------------------------------------------
+        //COTIZACION
+        private void lblEstadoCotizacionDash_Click(object sender, EventArgs e)
+        {
+            if (txtEstadoCotizacionDash.Text == "ANULADO" || txtEstadoCotizacionDash.Text == "PENDIENTE" || txtEstadoCotizacionDash.Text == "ERROR")
+            {
+                //ACCION DE FLECHAS
+                flechaCotizacionMono.Visible = true;
+                flechaCotizacionIncompleta.Visible = false;
+                flechaCotizacionColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgCotizacionMono.Visible = true;
+                imgCotizacionMixto.Visible = false;
+                imgCotizacionColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoCotizacionDash.Text = "PENDIENTE";
+                lblEstadoCotizacionDash.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (txtEstadoCotizacionDash.Text == "INCOMPLETA" || txtEstadoCotizacionDash.Text == "FUERA DE FECHA")
+            {
+                //ACCION DE FLECHAS
+                flechaCotizacionMono.Visible = false;
+                flechaCotizacionIncompleta.Visible = true;
+                flechaCotizacionColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgCotizacionMono.Visible = false;
+                imgCotizacionMixto.Visible = true;
+                imgCotizacionColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoCotizacionDash.Text = "INCOMPLETA";
+                lblEstadoCotizacionDash.ForeColor = System.Drawing.Color.Peru;
+            }
+            else
+            {
+                //ACCION DE FLECHAS
+                flechaCotizacionMono.Visible = false;
+                flechaCotizacionIncompleta.Visible = false;
+                flechaCotizacionColor.Visible = true;
+
+                //ACCION DE LA IMGAEN
+                imgCotizacionMono.Visible = false;
+                imgCotizacionMixto.Visible = false;
+                imgCotizacionColor.Visible = true;
+
+                //ACCION DEL TEXTO
+                lblEstadoCotizacionDash.Text = "COMPLETO";
+                lblEstadoCotizacionDash.ForeColor = System.Drawing.Color.ForestGreen;
+            }
+        }
+
+        //ORDEN DE PRODUCCION
+        private void lblEstadoPedidoDash_Click(object sender, EventArgs e)
+        {
+            if (txtEstadoPedidoDash.Text == "ANULADO" || txtEstadoPedidoDash.Text == "PENDIENTE" || txtEstadoPedidoDash.Text == "ERROR")
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = true;
+                flechaPedidoIncompleta.Visible = false;
+                flechaPedidoColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = true;
+                imgPedidoMixto.Visible = false;
+                imgPedidoColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "PENDIENTE";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (txtEstadoPedidoDash.Text == "INCOMPLETA")
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = false;
+                flechaPedidoIncompleta.Visible = true;
+                flechaPedidoColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = false;
+                imgPedidoMixto.Visible = true;
+                imgPedidoColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "INCOMPLETA";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Peru;
+            }
+            else if (txtEstadoPedidoDash.Text == "CULMINADA")
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = false;
+                flechaPedidoIncompleta.Visible = false;
+                flechaPedidoColor.Visible = true;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = false;
+                imgPedidoMixto.Visible = false;
+                imgPedidoColor.Visible = true;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "COMPLETO";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.ForestGreen;
+            }
+            else
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = true;
+                flechaPedidoIncompleta.Visible = false;
+                flechaPedidoColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = true;
+                imgPedidoMixto.Visible = false;
+                imgPedidoColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "SIN REGISTRO";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+        //--------------------------------------------------------------------------------------------------------
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoTodasPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoTodasPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
+                DataGridViewColumn currentColumnT = datalistadoTodasPedido.Columns[e.ColumnIndex];
+
+                if (currentColumnT.Name == "detalles")
+                {
+                    cboTipoVisualizacion.SelectedIndex = 0;
+                    panelDetalleOP.Visible = true;
+                    CargarItemsGeneral(idPedido);
+                    CargarItemsGeneraoOP(idPedido);
+                    CargarCotizacionDash(idPedido);
+
+                    lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                    lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                    MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                    MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+                }
+            }
+        }
+
         //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
         private void datalistadoTodasPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //LIMPIAR MI LISTADO
+            datalistadooItemsOP.DataSource = null;
+            datalistadooItemsPedido.DataSource = null;
+            datalistadooItemsCotizacion.DataSource = null;
 
+            if (datalistadoTodasPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
+
+                cboTipoVisualizacion.SelectedIndex = 0;
+                panelDetalleOP.Visible = true;
+                CargarItemsGeneral(idPedido);
+                CargarItemsGeneraoOP(idPedido);
+                CargarCotizacionDash(idPedido);
+
+                lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+
+            }
         }
+
+        //COLORES DE IMAGENES DEPENDIENDO EL ESTAOD --------------------------------------------------------------
+        //COTIZACION
+        private void txtEstadoCotizacionDash_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEstadoCotizacionDash.Text == "ANULADO" || txtEstadoCotizacionDash.Text == "PENDIENTE" || txtEstadoCotizacionDash.Text == "ERROR")
+            {
+                //ACCION DE FLECHAS
+                flechaCotizacionMono.Visible = true;
+                flechaCotizacionIncompleta.Visible = false;
+                flechaCotizacionColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgCotizacionMono.Visible = true;
+                imgCotizacionMixto.Visible = false;
+                imgCotizacionColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoCotizacionDash.Text = "PENDIENTE";
+                lblEstadoCotizacionDash.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (txtEstadoCotizacionDash.Text == "INCOMPLETA" || txtEstadoCotizacionDash.Text == "FUERA DE FECHA")
+            {
+                //ACCION DE FLECHAS
+                flechaCotizacionMono.Visible = false;
+                flechaCotizacionIncompleta.Visible = true;
+                flechaCotizacionColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgCotizacionMono.Visible = false;
+                imgCotizacionMixto.Visible = true;
+                imgCotizacionColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoCotizacionDash.Text = "INCOMPLETA";
+                lblEstadoCotizacionDash.ForeColor = System.Drawing.Color.Peru;
+            }
+            else
+            {
+                //ACCION DE FLECHAS
+                flechaCotizacionMono.Visible = false;
+                flechaCotizacionIncompleta.Visible = false;
+                flechaCotizacionColor.Visible = true;
+
+                //ACCION DE LA IMGAEN
+                imgCotizacionMono.Visible = false;
+                imgCotizacionMixto.Visible = false;
+                imgCotizacionColor.Visible = true;
+
+                //ACCION DEL TEXTO
+                lblEstadoCotizacionDash.Text = "COMPLETO";
+                lblEstadoCotizacionDash.ForeColor = System.Drawing.Color.ForestGreen;
+            }
+        }
+
+        //PEDIDOS
+        private void txtEstadoPedidoDash_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEstadoPedidoDash.Text == "ANULADO" || txtEstadoPedidoDash.Text == "PENDIENTE" || txtEstadoPedidoDash.Text == "ERROR")
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = true;
+                flechaPedidoIncompleta.Visible = false;
+                flechaPedidoColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = true;
+                imgPedidoMixto.Visible = false;
+                imgPedidoColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "PENDIENTE";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (txtEstadoPedidoDash.Text == "INCOMPLETA")
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = false;
+                flechaPedidoIncompleta.Visible = true;
+                flechaPedidoColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = false;
+                imgPedidoMixto.Visible = true;
+                imgPedidoColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "INCOMPLETA";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Peru;
+            }
+            else if (txtEstadoPedidoDash.Text == "CULMINADA")
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = false;
+                flechaPedidoIncompleta.Visible = false;
+                flechaPedidoColor.Visible = true;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = false;
+                imgPedidoMixto.Visible = false;
+                imgPedidoColor.Visible = true;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "COMPLETO";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.ForestGreen;
+            }
+            else
+            {
+                //ACCION DE FLECHAS
+                flechaPedidoMono.Visible = true;
+                flechaPedidoIncompleta.Visible = false;
+                flechaPedidoColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgPedidoMono.Visible = true;
+                imgPedidoMixto.Visible = false;
+                imgPedidoColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoPedidoDash.Text = "SIN REGISTRO";
+                lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+        //ORDEN DE PRODUCCION
+        private void txtEstadoOPDash_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEstadoOPDash.Text == "ANULADO" || txtEstadoOPDash.Text == "PENDIENTE" || txtEstadoOPDash.Text == "NO DEFINIDO")
+            {
+                //ACCION DE FLECHAS
+                flechaOPMono.Visible = true;
+                flechaOPIncompleto.Visible = false;
+                flechaOPColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgProduccionMono.Visible = true;
+                imgProduccionMixto.Visible = false;
+                imgProduccionColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoOPDash.Text = "PENDIENTE";
+                lblEstadoOPDash.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (txtEstadoOPDash.Text == "LÍMITE" || txtEstadoOPDash.Text == "FUERA DE FECHA")
+            {
+                //ACCION DE FLECHAS
+                flechaOPMono.Visible = false;
+                flechaOPIncompleto.Visible = true;
+                flechaOPColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgProduccionMono.Visible = false;
+                imgProduccionMixto.Visible = true;
+                imgProduccionColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoOPDash.Text = "INCOMPLETA";
+                lblEstadoOPDash.ForeColor = System.Drawing.Color.Peru;
+            }
+            else if (txtEstadoOPDash.Text == "CULMINADO")
+            {
+                //ACCION DE FLECHAS
+                flechaOPMono.Visible = false;
+                flechaOPIncompleto.Visible = false;
+                flechaOPColor.Visible = true;
+
+                //ACCION DE LA IMGAEN
+                imgProduccionMono.Visible = false;
+                imgProduccionMixto.Visible = false;
+                imgProduccionColor.Visible = true;
+
+                //ACCION DEL TEXTO
+                lblEstadoOPDash.Text = "CULMINADO";
+                lblEstadoOPDash.ForeColor = System.Drawing.Color.ForestGreen;
+            }
+            else
+            {
+                //ACCION DE FLECHAS
+                flechaOPMono.Visible = true;
+                flechaOPIncompleto.Visible = false;
+                flechaOPColor.Visible = false;
+
+                //ACCION DE LA IMGAEN
+                imgProduccionMono.Visible = true;
+                imgProduccionMixto.Visible = false;
+                imgProduccionColor.Visible = false;
+
+                //ACCION DEL TEXTO
+                lblEstadoOPDash.Text = "SIN REGISTRO";
+                lblEstadoOPDash.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+        //FUNCIONES PARA LAS CARGAS DEL SOCHBOARD
+        //COLOREAR MI LISTADO
+        public void alternarColorFilas(DataGridView dgv)
+        {
+            try
+            {
+                {
+                    var withBlock = dgv;
+                    withBlock.RowsDefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
+                    withBlock.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //deshabilitar el click y  reordenamiento por columnas
+            foreach (DataGridViewColumn column in dgv.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
+
+        //VER DETALLES (ITEMS) DE MI COTIZACION
+        public void MostrarItemsSegunCotizacion(int idcotizacion)
+        {
+            try
+            {
+                //LIMPIAR MI LISTADO
+                datalistadooItemsCotizacion.DataSource = null;
+
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Dashboard_CotizacionMostrarItems", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idCotizacion", idcotizacion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadooItemsCotizacion.DataSource = dt;
+                con.Close();
+                datalistadooItemsCotizacion.Columns[0].Width = 20;
+                datalistadooItemsCotizacion.Columns[3].Width = 300;
+                datalistadooItemsCotizacion.Columns[4].Width = 70;
+                datalistadooItemsCotizacion.Columns[5].Width = 70;
+                datalistadooItemsCotizacion.Columns[6].Width = 70;
+                datalistadooItemsCotizacion.Columns[7].Width = 70;
+
+                datalistadooItemsCotizacion.Columns[1].Visible = false;
+                datalistadooItemsCotizacion.Columns[2].Visible = false;
+                datalistadooItemsCotizacion.Columns[8].Visible = false;
+                datalistadooItemsCotizacion.Columns[9].Visible = false;
+                datalistadooItemsCotizacion.Columns[10].Visible = false;
+                datalistadooItemsCotizacion.Columns[11].Visible = false;
+
+                datalistadooItemsCotizacion.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                alternarColorFilas(datalistadooItemsCotizacion);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //VER DETALLES (ITEMS) DE MI PEDIDO
+        public void MostrarItemsSegunPedido(string codigoPedido)
+        {
+            try
+            {
+                //LIMPIAR MI LISTADO
+                datalistadooItemsPedido.DataSource = null;
+
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Pedido_MostrarItemsPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoPedido", codigoPedido);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadooItemsPedido.DataSource = dt;
+                con.Close();
+                datalistadooItemsPedido.Columns[0].Width = 20;
+                datalistadooItemsPedido.Columns[3].Width = 300;
+                datalistadooItemsPedido.Columns[4].Width = 70;
+                datalistadooItemsPedido.Columns[5].Width = 70;
+                datalistadooItemsPedido.Columns[6].Width = 70;
+                datalistadooItemsPedido.Columns[7].Width = 70;
+
+                datalistadooItemsPedido.Columns[1].Visible = false;
+                datalistadooItemsPedido.Columns[2].Visible = false;
+
+                datalistadooItemsPedido.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                alternarColorFilas(datalistadooItemsPedido);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //VER DETALLES (ITEMS) DE MI PEDIDO
+        public void MostrarItemsSegunOP(string codigoOP)
+        {
+            try
+            {
+                //LIMPIAR MI LISTADO
+                datalistadooItemsOP.DataSource = null;
+
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Pedido_MostrarItemsPorCodigoOP", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoOP", codigoOP);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadooItemsOP.DataSource = dt;
+                con.Close();
+                datalistadooItemsOP.Columns[0].Width = 20;
+                datalistadooItemsOP.Columns[1].Width = 300;
+                datalistadooItemsOP.Columns[2].Width = 70;
+                datalistadooItemsOP.Columns[3].Width = 70;
+                datalistadooItemsOP.Columns[4].Width = 70;
+
+                datalistadooItemsOP.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                alternarColorFilas(datalistadooItemsOP);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //CARGA DE ITEMS GENERTA
+        public void CargarItemsGeneral(int idPedido)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_PedidoCargaItems", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoItemsGeneral.DataSource = dt;
+            con.Close();
+            datalistadoItemsGeneral.Columns[1].Width = 32;
+            datalistadoItemsGeneral.Columns[2].Width = 550;
+            datalistadoItemsGeneral.Columns[3].Width = 65;
+            datalistadoItemsGeneral.Columns[4].Width = 70;
+            datalistadoItemsGeneral.Columns[5].Width = 70;
+            datalistadoItemsGeneral.Columns[6].Width = 70;
+            datalistadoItemsGeneral.Columns[7].Width = 65;
+            datalistadoItemsGeneral.Columns[8].Width = 85;
+            datalistadoItemsGeneral.Columns[9].Width = 75;
+
+            //COLUMNAS NO VISIBLES
+            datalistadoItemsGeneral.Columns[0].Visible = false;
+            ColoresListadoItemsPedidos(datalistadoItemsGeneral, 8);
+        }
+
+        //CARGA DE ITEMS GENERTA CONTROL OP
+        public void CargarItemsGeneraoOP(int idPedido)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_CargaItemsControlOP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoItemsProduccion.DataSource = dt;
+            con.Close();
+            datalistadoItemsProduccion.Columns[0].Width = 85;
+            datalistadoItemsProduccion.Columns[1].Width = 130;
+            datalistadoItemsProduccion.Columns[1].Width = 130;
+
+            ColoresListadoItemsPedidos(datalistadoItemsProduccion, 1);
+        }
+
+        //COTIZACION
+        //CARGA DETALLES DE MI COTIZACION
+        public void CargarCotizacionDash(int idPedido)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_CargarDetallesCoti", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoDetalleCotiDash.DataSource = null;
+            datalistadoDetalleCotiDash.DataSource = dt;
+            con.Close();
+        }
+
+        //CARGA DETALLES DE MI COTIZACION CODIGOO
+        public void CargarCotizacionDashCodigo(string codigoCotizacion)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_CargarCotizacionCodigo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoCotizacion", codigoCotizacion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoDetalleCotiDash.DataSource = null;
+            datalistadoDetalleCotiDash.DataSource = dt;
+            con.Close();
+        }
+
+        //PEDIDO
+        //CARGA DETALLES DE MI COTIZACION CODIGOO
+        public void CargarPedidoDash(string codigoCotizacion)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_CargarDetallesPedido", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoCotizacion", codigoCotizacion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoDetallePedidoDash.DataSource = null;
+            datalistadoDetallePedidoDash.DataSource = dt;
+            con.Close();
+        }
+
+        //CARGA DETALLES DE MI PEDIDO
+        public void CargarPedidoDashCodigo(string codigoPedido)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_CargarPedidoCodigo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoPedido", codigoPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoDetallePedidoDash.DataSource = null;
+            datalistadoDetallePedidoDash.DataSource = dt;
+            con.Close();
+        }
+
+        //ORDEN DE PRODUCCION
+        //CARGA DETALLES DE MI COTIZACION CODIGOO
+        public void CargarOrdenProduccionDash(string codigoPedido)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_CargarDetallesOP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoPedido", codigoPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoOrdenProduccionDash.DataSource = null;
+            datalistadoOrdenProduccionDash.DataSource = dt;
+            con.Close();
+        }
+
+        //CARGA DETALLES DE MI PEDIDO
+        public void CargarOrdenProduccionDashCodigo(string codigoOP)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Dashboard_CargarOPCodigo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoOP", codigoOP);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoOrdenProduccionDash.DataSource = null;
+            datalistadoOrdenProduccionDash.DataSource = dt;
+            con.Close();
+        }
+        //------------------------------------------------------------------------------------------------------------------
 
         //MOSTRAR PEDIDOS SEGUN LAS FECHAS
         private void btnMostrarTodo_Click(object sender, EventArgs e)
@@ -363,7 +1159,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 string idCotizacion = datalistadoTodasPedido.SelectedCells[13].Value.ToString();
                 int ordenProduccion = 0;
 
-                VerificarOPxPedidoAnulacion(idPedido); 
+                VerificarOPxPedidoAnulacion(idPedido);
 
                 if (datalistadoBuscarOPxPedidoAnulacion.RowCount > 0)
                 {
@@ -385,7 +1181,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("AnularPedido", con);
+                            cmd = new SqlCommand("Pedido_Anular", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idPedido", idPedido);
                             cmd.Parameters.AddWithValue("@idCotizacion", idCotizacion);
@@ -476,7 +1272,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("ModificarOrdenCompra", con);
+                    cmd = new SqlCommand("Pedido_ModificarOrdenCompra", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     //MODIFICACION
                     cmd.Parameters.AddWithValue("@idPedido", datalistadoTodasPedido.SelectedCells[1].Value.ToString());
@@ -511,6 +1307,33 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             txtRutaOrdenCompraModi.Text = "";
             txtCodigoOrdenCompraModi.Text = "";
+        }
+
+        //SELECCIONAR UN TIPO DE VISUALIZACION
+        private void cboTipoVisualizacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboTipoVisualizacion.Text == "DETALLADA")
+            {
+                panelVisualizacionClaseca.Visible = true;
+                panelVisualizacionNueva.Visible = false;
+            }
+            else
+            {
+                panelVisualizacionClaseca.Visible = false;
+                panelVisualizacionNueva.Visible = true;
+            }
+        }
+
+        //SALIR DEL VISUALIZADOR
+        private void btnSalirSeguimiento_Click(object sender, EventArgs e)
+        {
+            panelDetalleOP.Visible = false;
+        }
+
+        //SALIR DEL VISUALIZADOR
+        private void btnSalirSeguimiento2_Click(object sender, EventArgs e)
+        {
+            panelDetalleOP.Visible = false;
         }
         //----------------------------------------------------------------------------------------------------------
 
@@ -611,7 +1434,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //FUNCION PARA ABRIR EL MANUAL DE USUARIO
         private void btnInfoEdicionOrdenCOmpra_Click(object sender, EventArgs e)
         {
-
+            Process.Start(ruta);
         }
 
         //EXPORTAR DOCUMENTO SELECCIOANDO

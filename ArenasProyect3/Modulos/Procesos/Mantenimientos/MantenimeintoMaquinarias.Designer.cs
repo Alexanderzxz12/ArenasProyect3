@@ -39,34 +39,34 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.lblCancelar = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.Cancelar = new System.Windows.Forms.Button();
             this.datalistado = new System.Windows.Forms.DataGridView();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cboBusquedaMaquinara = new System.Windows.Forms.ComboBox();
             this.txtBusquedaMaquinarias = new System.Windows.Forms.TextBox();
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnGuardar2 = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnEditar2 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEditar2 = new System.Windows.Forms.Button();
-            this.btnGuardar2 = new System.Windows.Forms.Button();
-            this.Cancelar = new System.Windows.Forms.Button();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistado)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,14 +85,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(31, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 18);
             this.label2.TabIndex = 2;
             this.label2.Text = "MAQUINARIAS";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
             // 
@@ -129,7 +129,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(179, 43);
+            this.panel2.Location = new System.Drawing.Point(192, 43);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(797, 560);
             this.panel2.TabIndex = 1985;
@@ -137,67 +137,37 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(140, 208);
+            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(140, 210);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 15);
+            this.label11.Size = new System.Drawing.Size(60, 14);
             this.label11.TabIndex = 1986;
             this.label11.Text = "EXPORTAR";
             // 
-            // lblCancelar
+            // btnExportarExcel
             // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.lblCancelar.Location = new System.Drawing.Point(629, 163);
-            this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(62, 13);
-            this.lblCancelar.TabIndex = 1993;
-            this.lblCancelar.Text = "CANCELAR";
-            this.lblCancelar.Visible = false;
+            this.btnExportarExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
+            this.btnExportarExcel.Location = new System.Drawing.Point(95, 196);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(38, 38);
+            this.btnExportarExcel.TabIndex = 1995;
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
-            // groupBox2
+            // Cancelar
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox2.Controls.Add(this.btnGuardar);
-            this.groupBox2.Controls.Add(this.btnGuardar2);
-            this.groupBox2.Controls.Add(this.btnEditar);
-            this.groupBox2.Controls.Add(this.btnEditar2);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox2.Location = new System.Drawing.Point(699, 77);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(82, 152);
-            this.groupBox2.TabIndex = 1992;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "ACCIONES";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(19, 126);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 14);
-            this.label8.TabIndex = 1926;
-            this.label8.Text = "EDITAR";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 63);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 14);
-            this.label7.TabIndex = 1925;
-            this.label7.Text = "AGREGAR";
+            this.Cancelar.FlatAppearance.BorderSize = 0;
+            this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Cancelar.Image")));
+            this.Cancelar.Location = new System.Drawing.Point(643, 122);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.Size = new System.Drawing.Size(38, 38);
+            this.Cancelar.TabIndex = 1994;
+            this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
             // datalistado
             // 
@@ -247,44 +217,56 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistado.TabIndex = 1984;
             this.datalistado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistado_CellDoubleClick);
             // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancelar.Location = new System.Drawing.Point(637, 162);
+            this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(54, 13);
+            this.lblCancelar.TabIndex = 1993;
+            this.lblCancelar.Text = "CANCELAR";
+            this.lblCancelar.Visible = false;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(51, 532);
+            this.label12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(43, 529);
             this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(142, 14);
+            this.label12.Size = new System.Drawing.Size(127, 13);
             this.label12.TabIndex = 1983;
             this.label12.Text = "BÚSQUEDA GENERAL POR:";
             // 
             // cboBusquedaMaquinara
             // 
             this.cboBusquedaMaquinara.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBusquedaMaquinara.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBusquedaMaquinara.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBusquedaMaquinara.FormattingEnabled = true;
             this.cboBusquedaMaquinara.Items.AddRange(new object[] {
             "DESCRIPCIÓN"});
-            this.cboBusquedaMaquinara.Location = new System.Drawing.Point(203, 529);
+            this.cboBusquedaMaquinara.Location = new System.Drawing.Point(180, 525);
             this.cboBusquedaMaquinara.Margin = new System.Windows.Forms.Padding(5);
             this.cboBusquedaMaquinara.Name = "cboBusquedaMaquinara";
-            this.cboBusquedaMaquinara.Size = new System.Drawing.Size(143, 22);
+            this.cboBusquedaMaquinara.Size = new System.Drawing.Size(143, 21);
             this.cboBusquedaMaquinara.TabIndex = 1982;
             // 
             // txtBusquedaMaquinarias
             // 
-            this.txtBusquedaMaquinarias.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusquedaMaquinarias.Location = new System.Drawing.Point(356, 529);
+            this.txtBusquedaMaquinarias.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusquedaMaquinarias.Location = new System.Drawing.Point(333, 525);
             this.txtBusquedaMaquinarias.Margin = new System.Windows.Forms.Padding(5);
             this.txtBusquedaMaquinarias.Name = "txtBusquedaMaquinarias";
-            this.txtBusquedaMaquinarias.Size = new System.Drawing.Size(388, 22);
+            this.txtBusquedaMaquinarias.Size = new System.Drawing.Size(416, 21);
             this.txtBusquedaMaquinarias.TabIndex = 1981;
             this.txtBusquedaMaquinarias.TextChanged += new System.EventHandler(this.txtBusquedaMaquinarias_TextChanged);
             // 
             // cboEstado
             // 
             this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEstado.FormattingEnabled = true;
             this.cboEstado.Items.AddRange(new object[] {
             "ACTIVO",
@@ -292,7 +274,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboEstado.Location = new System.Drawing.Point(182, 153);
             this.cboEstado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(120, 23);
+            this.cboEstado.Size = new System.Drawing.Size(120, 22);
             this.cboEstado.TabIndex = 1980;
             // 
             // label28
@@ -310,79 +292,33 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDescripcion.Enabled = false;
-            this.txtDescripcion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(182, 114);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(5);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(421, 23);
+            this.txtDescripcion.Size = new System.Drawing.Size(421, 22);
             this.txtDescripcion.TabIndex = 1978;
             this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
-            // label3
+            // groupBox2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(87, 120);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 14);
-            this.label3.TabIndex = 1977;
-            this.label3.Text = "NOMBRE:";
-            // 
-            // lblCodigo
-            // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigo.Location = new System.Drawing.Point(179, 82);
-            this.lblCodigo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(20, 18);
-            this.lblCodigo.TabIndex = 1976;
-            this.lblCodigo.Text = "N";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(92, 84);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 14);
-            this.label5.TabIndex = 1975;
-            this.label5.Text = "CÓDIGO:";
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(202, 57);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(390, 1);
-            this.panel6.TabIndex = 1974;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(227, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(37, 38);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1973;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(273, 30);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(294, 23);
-            this.label1.TabIndex = 1972;
-            this.label1.Text = "MANTENIMIENTO DE MAQUINARIA";
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox2.Controls.Add(this.btnGuardar);
+            this.groupBox2.Controls.Add(this.btnGuardar2);
+            this.groupBox2.Controls.Add(this.btnEditar);
+            this.groupBox2.Controls.Add(this.btnEditar2);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox2.Location = new System.Drawing.Point(699, 77);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(82, 152);
+            this.groupBox2.TabIndex = 1992;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "ACCIONES";
             // 
             // btnGuardar
             // 
@@ -395,6 +331,18 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnGuardar.TabIndex = 1987;
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnGuardar2
+            // 
+            this.btnGuardar2.FlatAppearance.BorderSize = 0;
+            this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
+            this.btnGuardar2.Location = new System.Drawing.Point(22, 22);
+            this.btnGuardar2.Name = "btnGuardar2";
+            this.btnGuardar2.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardar2.TabIndex = 1988;
+            this.btnGuardar2.UseVisualStyleBackColor = true;
+            this.btnGuardar2.Click += new System.EventHandler(this.btnGuardar2_Click);
             // 
             // btnEditar
             // 
@@ -420,41 +368,93 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnEditar2.UseVisualStyleBackColor = true;
             this.btnEditar2.Click += new System.EventHandler(this.btnEditar2_Click);
             // 
-            // btnGuardar2
+            // label8
             // 
-            this.btnGuardar2.FlatAppearance.BorderSize = 0;
-            this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
-            this.btnGuardar2.Location = new System.Drawing.Point(22, 22);
-            this.btnGuardar2.Name = "btnGuardar2";
-            this.btnGuardar2.Size = new System.Drawing.Size(38, 38);
-            this.btnGuardar2.TabIndex = 1988;
-            this.btnGuardar2.UseVisualStyleBackColor = true;
-            this.btnGuardar2.Click += new System.EventHandler(this.btnGuardar2_Click);
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(22, 126);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 13);
+            this.label8.TabIndex = 1926;
+            this.label8.Text = "EDITAR";
             // 
-            // Cancelar
+            // label7
             // 
-            this.Cancelar.FlatAppearance.BorderSize = 0;
-            this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Cancelar.Image")));
-            this.Cancelar.Location = new System.Drawing.Point(643, 122);
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.Size = new System.Drawing.Size(38, 38);
-            this.Cancelar.TabIndex = 1994;
-            this.Cancelar.UseVisualStyleBackColor = true;
-            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(16, 63);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 13);
+            this.label7.TabIndex = 1925;
+            this.label7.Text = "AGREGAR";
             // 
-            // btnExportarExcel
+            // label3
             // 
-            this.btnExportarExcel.FlatAppearance.BorderSize = 0;
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
-            this.btnExportarExcel.Location = new System.Drawing.Point(95, 196);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(38, 38);
-            this.btnExportarExcel.TabIndex = 1995;
-            this.btnExportarExcel.UseVisualStyleBackColor = true;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(87, 120);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 14);
+            this.label3.TabIndex = 1977;
+            this.label3.Text = "NOMBRE:";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.Location = new System.Drawing.Point(179, 82);
+            this.lblCodigo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(15, 14);
+            this.lblCodigo.TabIndex = 1976;
+            this.lblCodigo.Text = "N";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(92, 84);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 14);
+            this.label5.TabIndex = 1975;
+            this.label5.Text = "CÓDIGO:";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel6.Location = new System.Drawing.Point(202, 53);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(390, 1);
+            this.panel6.TabIndex = 1974;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(256, 19);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1973;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(289, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(250, 19);
+            this.label1.TabIndex = 1972;
+            this.label1.Text = "MANTENIMIENTO DE MAQUINARIA";
             // 
             // MantenimeintoMaquinarias
             // 
@@ -472,9 +472,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistado)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

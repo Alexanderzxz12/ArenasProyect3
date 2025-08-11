@@ -118,6 +118,8 @@
             this.label44 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panelConfiguracion = new System.Windows.Forms.Panel();
+            this.btnAbrirManual = new System.Windows.Forms.Button();
+            this.label69 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.btnUltimosCambios = new System.Windows.Forms.Button();
             this.btnAdministrarNotificaciones = new System.Windows.Forms.Button();
@@ -315,7 +317,7 @@
             this.btnPaginaArenas.Image = ((System.Drawing.Image)(resources.GetObject("btnPaginaArenas.Image")));
             this.btnPaginaArenas.Location = new System.Drawing.Point(0, 0);
             this.btnPaginaArenas.Name = "btnPaginaArenas";
-            this.btnPaginaArenas.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.btnPaginaArenas.Padding = new System.Windows.Forms.Padding(10);
             this.btnPaginaArenas.Size = new System.Drawing.Size(117, 35);
             this.btnPaginaArenas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnPaginaArenas.TabIndex = 1;
@@ -350,7 +352,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle2;
             this.datalistadoNovedades.Location = new System.Drawing.Point(80, 14);
-            this.datalistadoNovedades.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.datalistadoNovedades.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoNovedades.Name = "datalistadoNovedades";
             this.datalistadoNovedades.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -728,7 +730,7 @@
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.Location = new System.Drawing.Point(34, 74);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(295, 32);
+            this.label39.Size = new System.Drawing.Size(294, 32);
             this.label39.TabIndex = 35;
             this.label39.Text = "Esta acción puede generar vulnerabilidades de \r\nseguridad.";
             // 
@@ -739,7 +741,7 @@
             this.label38.ForeColor = System.Drawing.Color.Brown;
             this.label38.Location = new System.Drawing.Point(5, 54);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(353, 16);
+            this.label38.Size = new System.Drawing.Size(352, 16);
             this.label38.TabIndex = 34;
             this.label38.Text = "¿Esta seguro que desea visualizar la contraseña?";
             // 
@@ -772,7 +774,7 @@
             this.label40.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label40.Location = new System.Drawing.Point(29, 0);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(91, 16);
+            this.label40.Size = new System.Drawing.Size(90, 16);
             this.label40.TabIndex = 35;
             this.label40.Text = "Advertencia";
             // 
@@ -782,7 +784,7 @@
             this.pictureBox14.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
             this.pictureBox14.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(29, 17);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -802,7 +804,7 @@
             this.pictureBox12.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
             this.pictureBox12.Location = new System.Drawing.Point(77, 28);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(32, 27);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1022,7 +1024,7 @@
             this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
             this.pictureBox13.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(39, 20);
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1095,7 +1097,7 @@
             // 
             // lblNovedadesNuevasFunciones
             // 
-            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNovedadesNuevasFunciones.Location = new System.Drawing.Point(20, 191);
             this.lblNovedadesNuevasFunciones.Name = "lblNovedadesNuevasFunciones";
             this.lblNovedadesNuevasFunciones.Size = new System.Drawing.Size(413, 165);
@@ -1105,7 +1107,7 @@
             // 
             // lblFechaInstalacion
             // 
-            this.lblFechaInstalacion.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaInstalacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaInstalacion.Location = new System.Drawing.Point(198, 108);
             this.lblFechaInstalacion.Name = "lblFechaInstalacion";
             this.lblFechaInstalacion.Size = new System.Drawing.Size(149, 15);
@@ -1115,7 +1117,7 @@
             // 
             // lblVersionSistema
             // 
-            this.lblVersionSistema.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersionSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersionSistema.Location = new System.Drawing.Point(198, 75);
             this.lblVersionSistema.Name = "lblVersionSistema";
             this.lblVersionSistema.Size = new System.Drawing.Size(149, 15);
@@ -1126,30 +1128,30 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(19, 165);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(204, 15);
+            this.label17.Size = new System.Drawing.Size(204, 16);
             this.label17.TabIndex = 15;
             this.label17.Text = "Nuevas funcione o Cambios:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(20, 108);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(154, 15);
+            this.label15.Size = new System.Drawing.Size(155, 16);
             this.label15.TabIndex = 14;
             this.label15.Text = "Fecha de Instalación:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(19, 75);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(149, 15);
+            this.label14.Size = new System.Drawing.Size(148, 16);
             this.label14.TabIndex = 13;
             this.label14.Text = "Versión del sistema:";
             // 
@@ -1180,7 +1182,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(7, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(10);
             this.pictureBox1.Size = new System.Drawing.Size(78, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
@@ -1328,6 +1330,8 @@
             // 
             this.panelConfiguracion.BackColor = System.Drawing.SystemColors.Menu;
             this.panelConfiguracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelConfiguracion.Controls.Add(this.btnAbrirManual);
+            this.panelConfiguracion.Controls.Add(this.label69);
             this.panelConfiguracion.Controls.Add(this.label60);
             this.panelConfiguracion.Controls.Add(this.btnUltimosCambios);
             this.panelConfiguracion.Controls.Add(this.btnAdministrarNotificaciones);
@@ -1373,6 +1377,27 @@
             this.panelConfiguracion.Size = new System.Drawing.Size(764, 448);
             this.panelConfiguracion.TabIndex = 10;
             this.panelConfiguracion.Visible = false;
+            // 
+            // btnAbrirManual
+            // 
+            this.btnAbrirManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbrirManual.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirManual.Image")));
+            this.btnAbrirManual.Location = new System.Drawing.Point(690, 155);
+            this.btnAbrirManual.Name = "btnAbrirManual";
+            this.btnAbrirManual.Size = new System.Drawing.Size(49, 32);
+            this.btnAbrirManual.TabIndex = 1967;
+            this.btnAbrirManual.UseVisualStyleBackColor = true;
+            this.btnAbrirManual.Click += new System.EventHandler(this.btnAbrirManual_Click);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(531, 164);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(142, 15);
+            this.label69.TabIndex = 1966;
+            this.label69.Text = "Abrir manual de usuario";
             // 
             // label60
             // 
@@ -1424,7 +1449,7 @@
             this.label29.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label29.Location = new System.Drawing.Point(582, 421);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(166, 16);
+            this.label29.Size = new System.Drawing.Size(165, 16);
             this.label29.TabIndex = 46;
             this.label29.Text = "@ Copyright​ Arenas S.R.L.";
             // 
@@ -1441,7 +1466,7 @@
             this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
             this.pictureBox10.Location = new System.Drawing.Point(436, 204);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(29, 31);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1539,7 +1564,7 @@
             this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.Location = new System.Drawing.Point(50, 208);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(21, 22);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1569,7 +1594,7 @@
             this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(50, 37);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(21, 22);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1858,7 +1883,7 @@
             this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
             this.pictureBox11.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(36, 23);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1901,7 +1926,7 @@
             this.pictureBox19.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox19.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox19.Image")));
             this.pictureBox19.Location = new System.Drawing.Point(1275, 595);
-            this.pictureBox19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox19.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox19.Name = "pictureBox19";
             this.pictureBox19.Size = new System.Drawing.Size(37, 31);
             this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2062,7 +2087,7 @@
             this.pictureBox17.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox17.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox17.Image")));
             this.pictureBox17.Location = new System.Drawing.Point(278, 16);
-            this.pictureBox17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox17.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(37, 31);
             this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2072,10 +2097,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(20, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(260, 32);
+            this.label4.Size = new System.Drawing.Size(242, 31);
             this.label4.TabIndex = 11;
             this.label4.Text = "Accesos Directos";
             // 
@@ -2217,7 +2242,7 @@
             this.panel5.Controls.Add(this.panelDatos1);
             this.panel5.Controls.Add(this.panelDatos2);
             this.panel5.Location = new System.Drawing.Point(16, 276);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1083, 354);
             this.panel5.TabIndex = 24;
@@ -2227,7 +2252,7 @@
             this.pictureBox18.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox18.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox18.Image")));
             this.pictureBox18.Location = new System.Drawing.Point(250, 16);
-            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(37, 31);
             this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2239,7 +2264,7 @@
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(1020, 20);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -2251,7 +2276,7 @@
             this.pictureBox25.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox25.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox25.Image")));
             this.pictureBox25.Location = new System.Drawing.Point(796, 20);
-            this.pictureBox25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox25.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox25.Name = "pictureBox25";
             this.pictureBox25.Size = new System.Drawing.Size(20, 20);
             this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -2319,7 +2344,7 @@
             this.panel6.Controls.Add(this.lblGeneracionGraficos);
             this.panel6.Controls.Add(this.label9);
             this.panel6.Location = new System.Drawing.Point(665, 279);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(303, 182);
             this.panel6.TabIndex = 12;
@@ -2363,7 +2388,7 @@
             this.panel7.Controls.Add(this.label20);
             this.panel7.Controls.Add(this.lblReporteLineas);
             this.panel7.Location = new System.Drawing.Point(21, 279);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(303, 182);
             this.panel7.TabIndex = 10;
@@ -2418,7 +2443,7 @@
             this.panel8.Controls.Add(this.label23);
             this.panel8.Controls.Add(this.lblReporteModelos);
             this.panel8.Location = new System.Drawing.Point(342, 279);
-            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(303, 182);
             this.panel8.TabIndex = 11;
@@ -2468,11 +2493,11 @@
             // lblTituloPrincipal
             // 
             this.lblTituloPrincipal.AutoSize = true;
-            this.lblTituloPrincipal.Font = new System.Drawing.Font("Lucida Fax", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloPrincipal.Location = new System.Drawing.Point(26, 16);
             this.lblTituloPrincipal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloPrincipal.Name = "lblTituloPrincipal";
-            this.lblTituloPrincipal.Size = new System.Drawing.Size(223, 32);
+            this.lblTituloPrincipal.Size = new System.Drawing.Size(206, 31);
             this.lblTituloPrincipal.TabIndex = 6;
             this.lblTituloPrincipal.Text = "Datos Rápidos";
             // 
@@ -2483,7 +2508,7 @@
             this.panelDatos3.Controls.Add(this.lblReportes3);
             this.panelDatos3.Controls.Add(this.label11);
             this.panelDatos3.Location = new System.Drawing.Point(665, 73);
-            this.panelDatos3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelDatos3.Margin = new System.Windows.Forms.Padding(4);
             this.panelDatos3.Name = "panelDatos3";
             this.panelDatos3.Size = new System.Drawing.Size(303, 182);
             this.panelDatos3.TabIndex = 9;
@@ -2525,7 +2550,7 @@
             this.panelDatos1.Controls.Add(this.label10);
             this.panelDatos1.Controls.Add(this.lblReporteProducto);
             this.panelDatos1.Location = new System.Drawing.Point(21, 73);
-            this.panelDatos1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelDatos1.Margin = new System.Windows.Forms.Padding(4);
             this.panelDatos1.Name = "panelDatos1";
             this.panelDatos1.Size = new System.Drawing.Size(303, 182);
             this.panelDatos1.TabIndex = 7;
@@ -2580,7 +2605,7 @@
             this.panelDatos2.Controls.Add(this.label12);
             this.panelDatos2.Controls.Add(this.lblReporteFormulacion);
             this.panelDatos2.Location = new System.Drawing.Point(342, 73);
-            this.panelDatos2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelDatos2.Margin = new System.Windows.Forms.Padding(4);
             this.panelDatos2.Name = "panelDatos2";
             this.panelDatos2.Size = new System.Drawing.Size(303, 182);
             this.panelDatos2.TabIndex = 8;
@@ -2757,7 +2782,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuProcesos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MenuProcesos";
@@ -3044,5 +3069,7 @@
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Button btnAbrirManual;
+        private System.Windows.Forms.Label label69;
     }
 }

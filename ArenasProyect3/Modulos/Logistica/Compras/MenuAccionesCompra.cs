@@ -14,7 +14,7 @@ namespace ArenasProyect3.Modulos.Logistica.Compras
     public partial class MenuAccionesCompra : Form
     {
         //VARIABLES GLOBALES
-        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
+        string ruta = ManGeneral.Manual.manualAreaLogistica;
 
         //CONSTRUCTOR DE MI FORM
         public MenuAccionesCompra()

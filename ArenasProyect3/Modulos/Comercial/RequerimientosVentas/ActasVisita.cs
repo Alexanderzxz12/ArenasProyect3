@@ -22,7 +22,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         string reconocerImagen2 = "";
         string reconocerImagen3 = "";
         private Cursor curAnterior = null;
-        string ruta = ManGeneral.Manual.manualViajes;
+        string ruta = ManGeneral.Manual.manualAreaComercial;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - ACTAS DE VISITA
         public ActasVisita()
@@ -323,6 +323,19 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //SIRVE PARA EVALUAR SI BUSCAR POR TRES FILTROS O DOS
+        public void BusquedaDependiente()
+        {
+            if (txtBusquedaResponsable.Text == "")
+            {
+                MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            }
+            else
+            {
+                MostrarActasResponsable(txtBusquedaResponsable.Text, DesdeFecha.Value, HastaFecha.Value);
+            }
+        }
+
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN DE GENERACIÓN DEL PDF
         private void datalistadoTodasActas_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -340,25 +353,25 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //MOSTRAR ACTAS DE VISITA POR RESPONSABLE
         private void txtBusquedaResponsable_TextChanged(object sender, EventArgs e)
         {
-            MostrarActasResponsable(txtBusquedaResponsable.Text, DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //MOSTRAR ACTAS DE VISITA POR FECHAS
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //MOSTRAR ACTAS DE VISITA POR FECHAS
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //MOSTRAR ACTAS
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            BusquedaDependiente();
         }
 
         //SELECCION DE LA ACTA Y CARGA DE SUS LINEA DE TRABAJO---------------------------
@@ -1053,7 +1066,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            BusquedaDependiente();
                         }
                     }
                 }

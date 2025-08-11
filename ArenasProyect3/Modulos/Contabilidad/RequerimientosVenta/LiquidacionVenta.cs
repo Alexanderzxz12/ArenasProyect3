@@ -22,7 +22,7 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
     public partial class LiquidacionVenta : Form
     {
         //VARIABLES GLOBALES PARA MIS ACTAS DE VISITA
-        string ruta = ManGeneral.Manual.manualViajes;
+        string ruta = ManGeneral.Manual.manualAreaComercial;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - LIQUIDACION DE VENTA
         public LiquidacionVenta()

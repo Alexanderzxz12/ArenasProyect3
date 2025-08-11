@@ -117,8 +117,10 @@
             this.label68 = new System.Windows.Forms.Label();
             this.panel38 = new System.Windows.Forms.Panel();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCerrarNovedadesF = new System.Windows.Forms.Button();
             this.panelConfiguracion = new System.Windows.Forms.Panel();
+            this.btnAbrirManual = new System.Windows.Forms.Button();
+            this.label69 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.btnUltimosCambios = new System.Windows.Forms.Button();
             this.btnAdministrarNotificaciones = new System.Windows.Forms.Button();
@@ -732,7 +734,7 @@
             this.panelConfirmacioncontrasena.Controls.Add(this.label38);
             this.panelConfirmacioncontrasena.Controls.Add(this.label37);
             this.panelConfirmacioncontrasena.Controls.Add(this.panel13);
-            this.panelConfirmacioncontrasena.Location = new System.Drawing.Point(16, 112);
+            this.panelConfirmacioncontrasena.Location = new System.Drawing.Point(16, 121);
             this.panelConfirmacioncontrasena.Name = "panelConfirmacioncontrasena";
             this.panelConfirmacioncontrasena.Size = new System.Drawing.Size(365, 149);
             this.panelConfirmacioncontrasena.TabIndex = 12;
@@ -1323,7 +1325,7 @@
             // 
             this.panel38.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panel38.Controls.Add(this.pictureBox15);
-            this.panel38.Controls.Add(this.button2);
+            this.panel38.Controls.Add(this.btnCerrarNovedadesF);
             this.panel38.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel38.Location = new System.Drawing.Point(0, 0);
             this.panel38.Name = "panel38";
@@ -1342,26 +1344,29 @@
             this.pictureBox15.TabIndex = 2;
             this.pictureBox15.TabStop = false;
             // 
-            // button2
+            // btnCerrarNovedadesF
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(427, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(29, 20);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "X";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCerrarNovedadesF.BackColor = System.Drawing.Color.Transparent;
+            this.btnCerrarNovedadesF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarNovedadesF.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCerrarNovedadesF.FlatAppearance.BorderSize = 0;
+            this.btnCerrarNovedadesF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarNovedadesF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarNovedadesF.ForeColor = System.Drawing.Color.White;
+            this.btnCerrarNovedadesF.Location = new System.Drawing.Point(427, 0);
+            this.btnCerrarNovedadesF.Name = "btnCerrarNovedadesF";
+            this.btnCerrarNovedadesF.Size = new System.Drawing.Size(29, 20);
+            this.btnCerrarNovedadesF.TabIndex = 0;
+            this.btnCerrarNovedadesF.Text = "X";
+            this.btnCerrarNovedadesF.UseVisualStyleBackColor = false;
+            this.btnCerrarNovedadesF.Click += new System.EventHandler(this.btnCerrarNovedadesF_Click);
             // 
             // panelConfiguracion
             // 
             this.panelConfiguracion.BackColor = System.Drawing.SystemColors.Menu;
             this.panelConfiguracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelConfiguracion.Controls.Add(this.btnAbrirManual);
+            this.panelConfiguracion.Controls.Add(this.label69);
             this.panelConfiguracion.Controls.Add(this.label60);
             this.panelConfiguracion.Controls.Add(this.btnUltimosCambios);
             this.panelConfiguracion.Controls.Add(this.btnAdministrarNotificaciones);
@@ -1408,6 +1413,27 @@
             this.panelConfiguracion.Size = new System.Drawing.Size(764, 448);
             this.panelConfiguracion.TabIndex = 10;
             this.panelConfiguracion.Visible = false;
+            // 
+            // btnAbrirManual
+            // 
+            this.btnAbrirManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbrirManual.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirManual.Image")));
+            this.btnAbrirManual.Location = new System.Drawing.Point(688, 154);
+            this.btnAbrirManual.Name = "btnAbrirManual";
+            this.btnAbrirManual.Size = new System.Drawing.Size(49, 32);
+            this.btnAbrirManual.TabIndex = 1961;
+            this.btnAbrirManual.UseVisualStyleBackColor = true;
+            this.btnAbrirManual.Click += new System.EventHandler(this.btnAbrirManual_Click);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(531, 164);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(142, 15);
+            this.label69.TabIndex = 1960;
+            this.label69.Text = "Abrir manual de usuario";
             // 
             // label60
             // 
@@ -3311,10 +3337,12 @@
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Panel panel38;
         private System.Windows.Forms.PictureBox pictureBox15;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Button btnCerrarConfiguracion;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Button btnAbrirManual;
+        private System.Windows.Forms.Button btnCerrarNovedadesF;
     }
 }

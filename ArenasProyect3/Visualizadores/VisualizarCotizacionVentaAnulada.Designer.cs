@@ -39,29 +39,27 @@
             this.CrvVisualizarActaVisita.Cursor = System.Windows.Forms.Cursors.Default;
             this.CrvVisualizarActaVisita.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CrvVisualizarActaVisita.Location = new System.Drawing.Point(0, 0);
-            this.CrvVisualizarActaVisita.Margin = new System.Windows.Forms.Padding(4);
             this.CrvVisualizarActaVisita.Name = "CrvVisualizarActaVisita";
-            this.CrvVisualizarActaVisita.Size = new System.Drawing.Size(1320, 647);
+            this.CrvVisualizarActaVisita.Size = new System.Drawing.Size(990, 526);
             this.CrvVisualizarActaVisita.TabIndex = 8;
-            this.CrvVisualizarActaVisita.ToolPanelWidth = 267;
             // 
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(1082, 9);
-            this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigo.Location = new System.Drawing.Point(812, 7);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(50, 17);
+            this.lblCodigo.Size = new System.Drawing.Size(39, 13);
             this.lblCodigo.TabIndex = 9;
             this.lblCodigo.Text = "codigo";
             // 
             // VisualizarCotizacionVentaAnulada
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 647);
-            this.Controls.Add(this.lblCodigo);
+            this.ClientSize = new System.Drawing.Size(990, 526);
             this.Controls.Add(this.CrvVisualizarActaVisita);
+            this.Controls.Add(this.lblCodigo);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "VisualizarCotizacionVentaAnulada";
             this.Text = "VisualizarCotizacionVentaAnulada";
             this.Load += new System.EventHandler(this.VisualizarCotizacionVentaAnulada_Load);

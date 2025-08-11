@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</PublishUrl>
+    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,12 +23,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
-    <MinimumRequiredVersion>1.0.0.72</MinimumRequiredVersion>
+    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</UpdateUrl>
+    <PublisherName>Arenas SRL</PublisherName>
+    <MinimumRequiredVersion>1.0.0.88</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>74</ApplicationRevision>
+    <ApplicationRevision>90</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -140,6 +142,24 @@
     </Compile>
     <Compile Include="Modulos\Admin\MnEstadoNovedades.Designer.cs">
       <DependentUpon>MnEstadoNovedades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Calidad\MenuCalidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Calidad\MenuCalidad.Designer.cs">
+      <DependentUpon>MenuCalidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Calidad\Revision\ListadoOrdenProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Calidad\Revision\ListadoOrdenProduccion.Designer.cs">
+      <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Calidad\Revision\MenuConsultasOP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Calidad\Revision\MenuConsultasOP.Designer.cs">
+      <DependentUpon>MenuConsultasOP.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Comercial\ReportesAuditora\Auditora.cs">
       <SubType>Form</SubType>
@@ -491,6 +511,7 @@
     <Compile Include="Modulos\Produccion\MenuProduccion.Designer.cs">
       <DependentUpon>MenuProduccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Resourses\ClassResourses.cs" />
     <Compile Include="Modulos\UsuariosPermisos\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -711,6 +732,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Admin\MnEstadoNovedades.resx">
       <DependentUpon>MnEstadoNovedades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Calidad\MenuCalidad.resx">
+      <DependentUpon>MenuCalidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Calidad\Revision\ListadoOrdenProduccion.resx">
+      <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Calidad\Revision\MenuConsultasOP.resx">
+      <DependentUpon>MenuConsultasOP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Comercial\MenuComercial.resx">
       <DependentUpon>MenuComercial.cs</DependentUpon>
@@ -1049,9 +1079,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modulos\Calidad\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="panel.ico" />
   </ItemGroup>

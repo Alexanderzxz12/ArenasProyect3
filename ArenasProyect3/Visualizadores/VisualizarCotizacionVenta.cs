@@ -28,7 +28,7 @@ namespace ArenasProyect3.Visualizadores
             reporteD.SetParameterValue("@idCotizacion", codigo);
             CrvVisualizarActaVisita.ReportSource = reporteD;
 
-            string rutaReporte = @"C:\Reportes\Cotizacion.pdf";
+            string rutaReporte = @"C:\ArenasSoftBrochure\Cotizacion.pdf";
             reporteD.ExportToDisk(ExportFormatType.PortableDocFormat, rutaReporte);
         }
     }

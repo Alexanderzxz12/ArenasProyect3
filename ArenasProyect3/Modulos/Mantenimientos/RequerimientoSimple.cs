@@ -23,7 +23,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         string cantidadRequerimiento2 = "";
         int IdUsuario = 0;
         string area = "";
-        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
+        string ruta = ManGeneral.Manual.manualAreaLogistica;
 
         //CONSTRUCTOR DE MI MANTENIMIENTO
         public RequerimientoSimple()
@@ -61,6 +61,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             else if (area == "Ingienería")
             {
                 DatosJefaturas(14);
+            }
+            else if (area == "Calidad")
+            {
+                DatosJefaturas(23);
             }
 
             CargarCentroCostos();

@@ -26,7 +26,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         string area = "";
         int IdUsuario = 0;
         private Cursor curAnterior = null;
-        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
+        string ruta = ManGeneral.Manual.manualAreaLogistica;
 
         public ValidacionRequerimientoSimple()
         {

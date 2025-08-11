@@ -15,7 +15,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
     public partial class MenuAccionesAlmacen : Form
     {
         //VARIABLES GLOBALES
-        string ruta = ManGeneral.Manual.manualRequerimientosSimples;
+        string ruta = ManGeneral.Manual.manualAreaLogistica;
 
         //CONSTRUCTOR DE MI FORM
         public MenuAccionesAlmacen()

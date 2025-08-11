@@ -512,15 +512,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(34, 0);
+            this.label3.Location = new System.Drawing.Point(26, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(135, 18);
+            this.label3.Size = new System.Drawing.Size(151, 18);
             this.label3.TabIndex = 10;
             this.label3.Text = "LISTADO DE PRODUTOS";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox2
             // 
@@ -531,7 +531,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 18);
+            this.pictureBox2.Size = new System.Drawing.Size(26, 18);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1966;
             this.pictureBox2.TabStop = false;
@@ -541,10 +541,10 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.pictureBox4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(589, 26);
+            this.pictureBox4.Location = new System.Drawing.Point(596, 31);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(23, 25);
+            this.pictureBox4.Size = new System.Drawing.Size(20, 20);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 1988;
             this.pictureBox4.TabStop = false;
@@ -563,7 +563,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lbl.AutoSize = true;
             this.lbl.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbl.Location = new System.Drawing.Point(708, 39);
+            this.lbl.Location = new System.Drawing.Point(701, 39);
             this.lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(33, 13);
@@ -573,11 +573,11 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(612, 31);
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(616, 32);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 23);
+            this.label2.Size = new System.Drawing.Size(85, 19);
             this.label2.TabIndex = 1985;
             this.label2.Text = "PRODUTOS";
             // 
@@ -680,12 +680,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             // txtAnotaciones
             // 
-            this.txtAnotaciones.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAnotaciones.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnotaciones.Location = new System.Drawing.Point(711, 76);
             this.txtAnotaciones.Margin = new System.Windows.Forms.Padding(4);
             this.txtAnotaciones.Name = "txtAnotaciones";
             this.txtAnotaciones.ReadOnly = true;
-            this.txtAnotaciones.Size = new System.Drawing.Size(222, 22);
+            this.txtAnotaciones.Size = new System.Drawing.Size(222, 21);
             this.txtAnotaciones.TabIndex = 90;
             this.txtAnotaciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -715,12 +715,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.cboDiferencial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDiferencial.Enabled = false;
-            this.cboDiferencial.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDiferencial.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDiferencial.FormattingEnabled = true;
             this.cboDiferencial.Location = new System.Drawing.Point(711, 49);
             this.cboDiferencial.Margin = new System.Windows.Forms.Padding(4);
             this.cboDiferencial.Name = "cboDiferencial";
-            this.cboDiferencial.Size = new System.Drawing.Size(246, 22);
+            this.cboDiferencial.Size = new System.Drawing.Size(246, 21);
             this.cboDiferencial.TabIndex = 85;
             // 
             // label5
@@ -763,37 +763,37 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.cboTipoMedida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoMedida.Enabled = false;
-            this.cboTipoMedida.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoMedida.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMedida.ForeColor = System.Drawing.SystemColors.Info;
             this.cboTipoMedida.FormattingEnabled = true;
             this.cboTipoMedida.Location = new System.Drawing.Point(711, 20);
             this.cboTipoMedida.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoMedida.Name = "cboTipoMedida";
-            this.cboTipoMedida.Size = new System.Drawing.Size(246, 22);
+            this.cboTipoMedida.Size = new System.Drawing.Size(246, 21);
             this.cboTipoMedida.TabIndex = 80;
             // 
             // cboTipoMercaderia
             // 
             this.cboTipoMercaderia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoMercaderia.Enabled = false;
-            this.cboTipoMercaderia.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoMercaderia.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMercaderia.FormattingEnabled = true;
             this.cboTipoMercaderia.Location = new System.Drawing.Point(332, 20);
             this.cboTipoMercaderia.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoMercaderia.Name = "cboTipoMercaderia";
-            this.cboTipoMercaderia.Size = new System.Drawing.Size(223, 22);
+            this.cboTipoMercaderia.Size = new System.Drawing.Size(223, 21);
             this.cboTipoMercaderia.TabIndex = 81;
             // 
             // cboLineas
             // 
             this.cboLineas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLineas.Enabled = false;
-            this.cboLineas.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLineas.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLineas.FormattingEnabled = true;
             this.cboLineas.Location = new System.Drawing.Point(332, 49);
             this.cboLineas.Margin = new System.Windows.Forms.Padding(4);
             this.cboLineas.Name = "cboLineas";
-            this.cboLineas.Size = new System.Drawing.Size(223, 22);
+            this.cboLineas.Size = new System.Drawing.Size(223, 21);
             this.cboLineas.TabIndex = 77;
             this.cboLineas.SelectedIndexChanged += new System.EventHandler(this.cboLineas_SelectedIndexChanged);
             // 
@@ -823,12 +823,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.cboModelos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboModelos.Enabled = false;
-            this.cboModelos.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModelos.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboModelos.FormattingEnabled = true;
             this.cboModelos.Location = new System.Drawing.Point(332, 78);
             this.cboModelos.Margin = new System.Windows.Forms.Padding(4);
             this.cboModelos.Name = "cboModelos";
-            this.cboModelos.Size = new System.Drawing.Size(223, 22);
+            this.cboModelos.Size = new System.Drawing.Size(223, 21);
             this.cboModelos.TabIndex = 79;
             // 
             // label35
@@ -977,7 +977,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panelCamposProducto.Controls.Add(this.panel13);
             this.panelCamposProducto.Controls.Add(this.btnSalirCamposProducto);
             this.panelCamposProducto.Controls.Add(this.panelCamposGenerales);
-            this.panelCamposProducto.Location = new System.Drawing.Point(71, 233);
+            this.panelCamposProducto.Location = new System.Drawing.Point(68, 241);
             this.panelCamposProducto.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposProducto.Name = "panelCamposProducto";
             this.panelCamposProducto.Size = new System.Drawing.Size(904, 464);
@@ -1249,11 +1249,11 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.Location = new System.Drawing.Point(66, 175);
+            this.label63.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(85, 177);
             this.label63.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(185, 14);
+            this.label63.Size = new System.Drawing.Size(168, 13);
             this.label63.TabIndex = 1991;
             this.label63.Text = "PREVISUALIZACIÓN DEL PRODUCTO";
             // 
@@ -1710,6 +1710,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(4, 24);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -1762,7 +1763,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label16.Location = new System.Drawing.Point(227, 247);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(43, 13);
+            this.label16.Size = new System.Drawing.Size(46, 13);
             this.label16.TabIndex = 29;
             this.label16.Text = "Minimo:";
             // 
@@ -1772,7 +1773,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label17.Location = new System.Drawing.Point(223, 217);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(46, 13);
+            this.label17.Size = new System.Drawing.Size(48, 13);
             this.label17.TabIndex = 30;
             this.label17.Text = "Maximo:";
             // 
@@ -1823,7 +1824,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.label23.BackColor = System.Drawing.Color.DimGray;
             this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label23.Location = new System.Drawing.Point(0, 0);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1840,7 +1841,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lblSiNo7.Location = new System.Drawing.Point(134, 145);
             this.lblSiNo7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSiNo7.Name = "lblSiNo7";
-            this.lblSiNo7.Size = new System.Drawing.Size(21, 13);
+            this.lblSiNo7.Size = new System.Drawing.Size(20, 13);
             this.lblSiNo7.TabIndex = 14;
             this.lblSiNo7.Text = "No";
             // 
@@ -1851,7 +1852,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lblSiNo6.Location = new System.Drawing.Point(321, 112);
             this.lblSiNo6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSiNo6.Name = "lblSiNo6";
-            this.lblSiNo6.Size = new System.Drawing.Size(21, 13);
+            this.lblSiNo6.Size = new System.Drawing.Size(20, 13);
             this.lblSiNo6.TabIndex = 14;
             this.lblSiNo6.Text = "No";
             // 
@@ -1862,7 +1863,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtMinimo.Margin = new System.Windows.Forms.Padding(4);
             this.txtMinimo.MaxLength = 4;
             this.txtMinimo.Name = "txtMinimo";
-            this.txtMinimo.Size = new System.Drawing.Size(73, 20);
+            this.txtMinimo.Size = new System.Drawing.Size(73, 21);
             this.txtMinimo.TabIndex = 15;
             this.txtMinimo.Text = "0.0000";
             this.txtMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimo_KeyPress);
@@ -1873,7 +1874,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtUbicacion.Location = new System.Drawing.Point(90, 248);
             this.txtUbicacion.Margin = new System.Windows.Forms.Padding(4);
             this.txtUbicacion.Name = "txtUbicacion";
-            this.txtUbicacion.Size = new System.Drawing.Size(107, 20);
+            this.txtUbicacion.Size = new System.Drawing.Size(107, 21);
             this.txtUbicacion.TabIndex = 15;
             // 
             // txtMaximo
@@ -1882,7 +1883,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtMaximo.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaximo.MaxLength = 4;
             this.txtMaximo.Name = "txtMaximo";
-            this.txtMaximo.Size = new System.Drawing.Size(72, 20);
+            this.txtMaximo.Size = new System.Drawing.Size(72, 21);
             this.txtMaximo.TabIndex = 15;
             this.txtMaximo.Text = "0.0000";
             this.txtMaximo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaximo_KeyPress);
@@ -1893,7 +1894,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label13.Location = new System.Drawing.Point(24, 250);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(58, 13);
+            this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 16;
             this.label13.Text = "Ubicación:";
             // 
@@ -1903,7 +1904,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label14.Location = new System.Drawing.Point(24, 218);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(34, 13);
+            this.label14.Size = new System.Drawing.Size(33, 13);
             this.label14.TabIndex = 14;
             this.label14.Text = "Peso:";
             // 
@@ -1914,7 +1915,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtPeso.Margin = new System.Windows.Forms.Padding(4);
             this.txtPeso.MaxLength = 4;
             this.txtPeso.Name = "txtPeso";
-            this.txtPeso.Size = new System.Drawing.Size(64, 20);
+            this.txtPeso.Size = new System.Drawing.Size(64, 21);
             this.txtPeso.TabIndex = 15;
             this.txtPeso.Tag = "";
             this.txtPeso.Text = "0.000";
@@ -1926,7 +1927,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckReposicion.Location = new System.Drawing.Point(28, 144);
             this.ckReposicion.Margin = new System.Windows.Forms.Padding(4);
             this.ckReposicion.Name = "ckReposicion";
-            this.ckReposicion.Size = new System.Drawing.Size(79, 17);
+            this.ckReposicion.Size = new System.Drawing.Size(78, 17);
             this.ckReposicion.TabIndex = 18;
             this.ckReposicion.Text = "Reposición";
             this.ckReposicion.UseVisualStyleBackColor = true;
@@ -1939,7 +1940,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lblSiNo5.Location = new System.Drawing.Point(134, 113);
             this.lblSiNo5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSiNo5.Name = "lblSiNo5";
-            this.lblSiNo5.Size = new System.Drawing.Size(21, 13);
+            this.lblSiNo5.Size = new System.Drawing.Size(20, 13);
             this.lblSiNo5.TabIndex = 14;
             this.lblSiNo5.Text = "No";
             // 
@@ -1957,7 +1958,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.label15.BackColor = System.Drawing.Color.DimGray;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label15.Location = new System.Drawing.Point(0, 0);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1973,7 +1974,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckServicio.Location = new System.Drawing.Point(213, 48);
             this.ckServicio.Margin = new System.Windows.Forms.Padding(4);
             this.ckServicio.Name = "ckServicio";
-            this.ckServicio.Size = new System.Drawing.Size(64, 17);
+            this.ckServicio.Size = new System.Drawing.Size(63, 17);
             this.ckServicio.TabIndex = 14;
             this.ckServicio.Text = "Servicio";
             this.ckServicio.UseVisualStyleBackColor = true;
@@ -1985,7 +1986,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckControlarSerie.Location = new System.Drawing.Point(213, 111);
             this.ckControlarSerie.Margin = new System.Windows.Forms.Padding(4);
             this.ckControlarSerie.Name = "ckControlarSerie";
-            this.ckControlarSerie.Size = new System.Drawing.Size(95, 17);
+            this.ckControlarSerie.Size = new System.Drawing.Size(97, 17);
             this.ckControlarSerie.TabIndex = 6;
             this.ckControlarSerie.Text = "Controlar Serie";
             this.ckControlarSerie.UseVisualStyleBackColor = true;
@@ -1997,7 +1998,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckAfectoIGV.Location = new System.Drawing.Point(28, 48);
             this.ckAfectoIGV.Margin = new System.Windows.Forms.Padding(4);
             this.ckAfectoIGV.Name = "ckAfectoIGV";
-            this.ckAfectoIGV.Size = new System.Drawing.Size(87, 17);
+            this.ckAfectoIGV.Size = new System.Drawing.Size(82, 17);
             this.ckAfectoIGV.TabIndex = 5;
             this.ckAfectoIGV.Text = "Afecto a IGV";
             this.ckAfectoIGV.UseVisualStyleBackColor = true;
@@ -2009,7 +2010,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckJuego.Location = new System.Drawing.Point(28, 112);
             this.ckJuego.Margin = new System.Windows.Forms.Padding(4);
             this.ckJuego.Name = "ckJuego";
-            this.ckJuego.Size = new System.Drawing.Size(55, 17);
+            this.ckJuego.Size = new System.Drawing.Size(53, 17);
             this.ckJuego.TabIndex = 8;
             this.ckJuego.Text = "Juego";
             this.ckJuego.UseVisualStyleBackColor = true;
@@ -2022,7 +2023,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lblSiNo4.Location = new System.Drawing.Point(321, 81);
             this.lblSiNo4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSiNo4.Name = "lblSiNo4";
-            this.lblSiNo4.Size = new System.Drawing.Size(21, 13);
+            this.lblSiNo4.Size = new System.Drawing.Size(20, 13);
             this.lblSiNo4.TabIndex = 14;
             this.lblSiNo4.Text = "No";
             // 
@@ -2042,7 +2043,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lblSiNo2.Location = new System.Drawing.Point(321, 49);
             this.lblSiNo2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSiNo2.Name = "lblSiNo2";
-            this.lblSiNo2.Size = new System.Drawing.Size(21, 13);
+            this.lblSiNo2.Size = new System.Drawing.Size(20, 13);
             this.lblSiNo2.TabIndex = 14;
             this.lblSiNo2.Text = "No";
             // 
@@ -2053,7 +2054,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lblSiNo3.Location = new System.Drawing.Point(134, 80);
             this.lblSiNo3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSiNo3.Name = "lblSiNo3";
-            this.lblSiNo3.Size = new System.Drawing.Size(21, 13);
+            this.lblSiNo3.Size = new System.Drawing.Size(20, 13);
             this.lblSiNo3.TabIndex = 14;
             this.lblSiNo3.Text = "No";
             // 
@@ -2063,7 +2064,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckControlarStock.Location = new System.Drawing.Point(28, 79);
             this.ckControlarStock.Margin = new System.Windows.Forms.Padding(4);
             this.ckControlarStock.Name = "ckControlarStock";
-            this.ckControlarStock.Size = new System.Drawing.Size(99, 17);
+            this.ckControlarStock.Size = new System.Drawing.Size(98, 17);
             this.ckControlarStock.TabIndex = 7;
             this.ckControlarStock.Text = "Controlar Stock";
             this.ckControlarStock.UseVisualStyleBackColor = true;
@@ -2075,7 +2076,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckControlarLote.Location = new System.Drawing.Point(213, 80);
             this.ckControlarLote.Margin = new System.Windows.Forms.Padding(4);
             this.ckControlarLote.Name = "ckControlarLote";
-            this.ckControlarLote.Size = new System.Drawing.Size(97, 17);
+            this.ckControlarLote.Size = new System.Drawing.Size(99, 17);
             this.ckControlarLote.TabIndex = 12;
             this.ckControlarLote.Text = "Controlar Lotes";
             this.ckControlarLote.UseVisualStyleBackColor = true;
@@ -2088,7 +2089,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.lblSiNo1.Location = new System.Drawing.Point(134, 49);
             this.lblSiNo1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSiNo1.Name = "lblSiNo1";
-            this.lblSiNo1.Size = new System.Drawing.Size(21, 13);
+            this.lblSiNo1.Size = new System.Drawing.Size(20, 13);
             this.lblSiNo1.TabIndex = 14;
             this.lblSiNo1.Text = "No";
             // 
@@ -2173,7 +2174,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.label39.BackColor = System.Drawing.Color.DimGray;
             this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label39.Location = new System.Drawing.Point(0, 0);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -2197,7 +2198,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.label37.BackColor = System.Drawing.Color.DimGray;
             this.label37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label37.Location = new System.Drawing.Point(0, 0);
             this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -2213,7 +2214,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label27.Location = new System.Drawing.Point(241, 206);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(50, 13);
+            this.label27.Size = new System.Drawing.Size(51, 13);
             this.label27.TabIndex = 19;
             this.label27.Text = "Medidas:";
             // 
@@ -2223,7 +2224,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label26.Location = new System.Drawing.Point(21, 206);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(91, 13);
+            this.label26.Size = new System.Drawing.Size(90, 13);
             this.label26.TabIndex = 17;
             this.label26.Text = "Peso contenedor:";
             // 
@@ -2234,7 +2235,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtContenedor.Location = new System.Drawing.Point(120, 168);
             this.txtContenedor.Margin = new System.Windows.Forms.Padding(4);
             this.txtContenedor.Name = "txtContenedor";
-            this.txtContenedor.Size = new System.Drawing.Size(113, 20);
+            this.txtContenedor.Size = new System.Drawing.Size(113, 21);
             this.txtContenedor.TabIndex = 16;
             // 
             // label25
@@ -2243,7 +2244,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label25.Location = new System.Drawing.Point(21, 173);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(65, 13);
+            this.label25.Size = new System.Drawing.Size(66, 13);
             this.label25.TabIndex = 15;
             this.label25.Text = "Contenedor:";
             // 
@@ -2255,7 +2256,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtPesoContenedor.Margin = new System.Windows.Forms.Padding(4);
             this.txtPesoContenedor.MaxLength = 4;
             this.txtPesoContenedor.Name = "txtPesoContenedor";
-            this.txtPesoContenedor.Size = new System.Drawing.Size(51, 20);
+            this.txtPesoContenedor.Size = new System.Drawing.Size(51, 21);
             this.txtPesoContenedor.TabIndex = 13;
             this.txtPesoContenedor.Text = "0.00";
             this.txtPesoContenedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPesoContenedor_KeyPress);
@@ -2268,7 +2269,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtMedidas.Margin = new System.Windows.Forms.Padding(4);
             this.txtMedidas.MaxLength = 8;
             this.txtMedidas.Name = "txtMedidas";
-            this.txtMedidas.Size = new System.Drawing.Size(62, 20);
+            this.txtMedidas.Size = new System.Drawing.Size(62, 21);
             this.txtMedidas.TabIndex = 11;
             // 
             // label20
@@ -2277,7 +2278,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label20.Location = new System.Drawing.Point(46, 94);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(106, 13);
+            this.label20.Size = new System.Drawing.Size(105, 13);
             this.label20.TabIndex = 7;
             this.label20.Text = "Términos de compra:";
             // 
@@ -2391,7 +2392,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label22
             // 
             this.label22.BackColor = System.Drawing.Color.DimGray;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label22.Location = new System.Drawing.Point(18, 292);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -2404,7 +2405,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label21
             // 
             this.label21.BackColor = System.Drawing.Color.DimGray;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label21.Location = new System.Drawing.Point(18, 232);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -2417,7 +2418,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label19
             // 
             this.label19.BackColor = System.Drawing.Color.DimGray;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label19.Location = new System.Drawing.Point(18, 17);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -2455,7 +2456,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtPorcentajeISC.Margin = new System.Windows.Forms.Padding(4);
             this.txtPorcentajeISC.MaxLength = 4;
             this.txtPorcentajeISC.Name = "txtPorcentajeISC";
-            this.txtPorcentajeISC.Size = new System.Drawing.Size(65, 20);
+            this.txtPorcentajeISC.Size = new System.Drawing.Size(65, 21);
             this.txtPorcentajeISC.TabIndex = 24;
             this.txtPorcentajeISC.Text = "0.00";
             this.txtPorcentajeISC.Visible = false;
@@ -2467,7 +2468,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckSujetoISC.Location = new System.Drawing.Point(39, 263);
             this.ckSujetoISC.Margin = new System.Windows.Forms.Padding(4);
             this.ckSujetoISC.Name = "ckSujetoISC";
-            this.ckSujetoISC.Size = new System.Drawing.Size(76, 17);
+            this.ckSujetoISC.Size = new System.Drawing.Size(72, 17);
             this.ckSujetoISC.TabIndex = 23;
             this.ckSujetoISC.Text = "Sujeto ISC";
             this.ckSujetoISC.UseVisualStyleBackColor = true;
@@ -2479,7 +2480,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtPorcentajeDetraccion.Margin = new System.Windows.Forms.Padding(4);
             this.txtPorcentajeDetraccion.MaxLength = 4;
             this.txtPorcentajeDetraccion.Name = "txtPorcentajeDetraccion";
-            this.txtPorcentajeDetraccion.Size = new System.Drawing.Size(64, 20);
+            this.txtPorcentajeDetraccion.Size = new System.Drawing.Size(64, 21);
             this.txtPorcentajeDetraccion.TabIndex = 21;
             this.txtPorcentajeDetraccion.Text = "0.00";
             this.txtPorcentajeDetraccion.Visible = false;
@@ -2488,7 +2489,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label40
             // 
             this.label40.BackColor = System.Drawing.Color.DimGray;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label40.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label40.Location = new System.Drawing.Point(18, 116);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -2505,7 +2506,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtPorcentajePercepcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtPorcentajePercepcion.MaxLength = 4;
             this.txtPorcentajePercepcion.Name = "txtPorcentajePercepcion";
-            this.txtPorcentajePercepcion.Size = new System.Drawing.Size(65, 20);
+            this.txtPorcentajePercepcion.Size = new System.Drawing.Size(65, 21);
             this.txtPorcentajePercepcion.TabIndex = 18;
             this.txtPorcentajePercepcion.Text = "0.00";
             this.txtPorcentajePercepcion.Visible = false;
@@ -2517,7 +2518,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.textBox18.Location = new System.Drawing.Point(1064, 65);
             this.textBox18.Margin = new System.Windows.Forms.Padding(4);
             this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(104, 13);
+            this.textBox18.Size = new System.Drawing.Size(104, 14);
             this.textBox18.TabIndex = 18;
             // 
             // label33
@@ -2536,7 +2537,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.checkBox2.Location = new System.Drawing.Point(1039, 27);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(76, 17);
+            this.checkBox2.Size = new System.Drawing.Size(72, 17);
             this.checkBox2.TabIndex = 16;
             this.checkBox2.Text = "Sujeto ISC";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -2547,7 +2548,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.skSujetoDetraccion.Location = new System.Drawing.Point(39, 322);
             this.skSujetoDetraccion.Margin = new System.Windows.Forms.Padding(4);
             this.skSujetoDetraccion.Name = "skSujetoDetraccion";
-            this.skSujetoDetraccion.Size = new System.Drawing.Size(111, 17);
+            this.skSujetoDetraccion.Size = new System.Drawing.Size(110, 17);
             this.skSujetoDetraccion.TabIndex = 16;
             this.skSujetoDetraccion.Text = "Sujeto Detracción";
             this.skSujetoDetraccion.UseVisualStyleBackColor = true;
@@ -2587,7 +2588,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.textBox16.Location = new System.Drawing.Point(431, 124);
             this.textBox16.Margin = new System.Windows.Forms.Padding(4);
             this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(104, 13);
+            this.textBox16.Size = new System.Drawing.Size(104, 14);
             this.textBox16.TabIndex = 12;
             // 
             // ckSujetoPercepcion
@@ -2596,7 +2597,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckSujetoPercepcion.Location = new System.Drawing.Point(35, 149);
             this.ckSujetoPercepcion.Margin = new System.Windows.Forms.Padding(4);
             this.ckSujetoPercepcion.Name = "ckSujetoPercepcion";
-            this.ckSujetoPercepcion.Size = new System.Drawing.Size(113, 17);
+            this.ckSujetoPercepcion.Size = new System.Drawing.Size(111, 17);
             this.ckSujetoPercepcion.TabIndex = 10;
             this.ckSujetoPercepcion.Text = "Sujeto Percepción";
             this.ckSujetoPercepcion.UseVisualStyleBackColor = true;
@@ -2608,7 +2609,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtCodigoUNSPCS.Location = new System.Drawing.Point(133, 78);
             this.txtCodigoUNSPCS.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigoUNSPCS.Name = "txtCodigoUNSPCS";
-            this.txtCodigoUNSPCS.Size = new System.Drawing.Size(133, 20);
+            this.txtCodigoUNSPCS.Size = new System.Drawing.Size(133, 21);
             this.txtCodigoUNSPCS.TabIndex = 9;
             // 
             // label30
@@ -2617,7 +2618,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label30.Location = new System.Drawing.Point(29, 84);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(90, 13);
+            this.label30.Size = new System.Drawing.Size(80, 13);
             this.label30.TabIndex = 8;
             this.label30.Text = "Codigo UNSPCS:";
             // 
@@ -2627,41 +2628,41 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label28.Location = new System.Drawing.Point(29, 51);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(96, 13);
+            this.label28.Size = new System.Drawing.Size(95, 13);
             this.label28.TabIndex = 0;
             this.label28.Text = "Tipo de existencia:";
             // 
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label59.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.label59.Location = new System.Drawing.Point(15, 421);
             this.label59.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(227, 26);
+            this.label59.Size = new System.Drawing.Size(181, 26);
             this.label59.TabIndex = 1959;
             this.label59.Text = "Datos anexados al producto y detalles \r\ninportantes sobre este";
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label58.Location = new System.Drawing.Point(354, 450);
             this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(32, 13);
+            this.label58.Size = new System.Drawing.Size(27, 13);
             this.label58.TabIndex = 1958;
             this.label58.Text = "Salir";
             // 
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label57.Location = new System.Drawing.Point(297, 450);
             this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(52, 13);
+            this.label57.Size = new System.Drawing.Size(44, 13);
             this.label57.TabIndex = 1957;
             this.label57.Text = "Guardar";
             // 
@@ -2720,7 +2721,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // panelBarraDatosAnexos
             // 
             this.panelBarraDatosAnexos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBarraDatosAnexos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelBarraDatosAnexos.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelBarraDatosAnexos.Location = new System.Drawing.Point(0, 0);
             this.panelBarraDatosAnexos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.panelBarraDatosAnexos.Name = "panelBarraDatosAnexos";
@@ -2757,7 +2758,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(46, 172);
+            this.pictureBox10.Location = new System.Drawing.Point(58, 172);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(20, 20);
