@@ -72,12 +72,9 @@
             this.btnAdministrador = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.panelBienvenida = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnIniciarSesion = new System.Windows.Forms.Button();
-            this.btnCambiarusuarioIcono = new System.Windows.Forms.PictureBox();
-            this.lblCambiarCuenta = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblContrasenaIncorrecta = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -86,6 +83,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnIniciarSesion = new System.Windows.Forms.Button();
+            this.btnCambiarusuarioIcono = new System.Windows.Forms.PictureBox();
+            this.lblCambiarCuenta = new System.Windows.Forms.Label();
             this.panelValidacionLicencia = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.datalistadoVerificacionLicencia = new System.Windows.Forms.DataGridView();
@@ -139,9 +139,9 @@
             this.panelLogin.SuspendLayout();
             this.panelBienvenida.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCambiarusuarioIcono)).BeginInit();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCambiarusuarioIcono)).BeginInit();
             this.panelValidacionLicencia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoVerificacionLicencia)).BeginInit();
@@ -167,12 +167,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(244, 50);
+            this.label1.Location = new System.Drawing.Point(269, 50);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(511, 39);
+            this.label1.Size = new System.Drawing.Size(460, 42);
             this.label1.TabIndex = 30;
             this.label1.Text = "¿Quién está iniciando sesión? ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,11 +194,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label12.Location = new System.Drawing.Point(669, 515);
+            this.label12.Location = new System.Drawing.Point(725, 516);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(268, 18);
+            this.label12.Size = new System.Drawing.Size(212, 18);
             this.label12.TabIndex = 1998;
             this.label12.Text = "Made by Arenas S.R.L - v1.1.0.158";
             // 
@@ -227,7 +227,7 @@
             // panelCuentas
             // 
             this.panelCuentas.Controls.Add(this.panelUsuarios);
-            this.panelCuentas.Location = new System.Drawing.Point(130, 102);
+            this.panelCuentas.Location = new System.Drawing.Point(115, 115);
             this.panelCuentas.Name = "panelCuentas";
             this.panelCuentas.Size = new System.Drawing.Size(769, 385);
             this.panelCuentas.TabIndex = 2001;
@@ -236,7 +236,7 @@
             // panelUsuarios
             // 
             this.panelUsuarios.AutoScroll = true;
-            this.panelUsuarios.Location = new System.Drawing.Point(47, 6);
+            this.panelUsuarios.Location = new System.Drawing.Point(43, 6);
             this.panelUsuarios.Name = "panelUsuarios";
             this.panelUsuarios.Size = new System.Drawing.Size(683, 379);
             this.panelUsuarios.TabIndex = 0;
@@ -253,7 +253,7 @@
             this.flpAreas.Controls.Add(this.panel15);
             this.flpAreas.Controls.Add(this.panel16);
             this.flpAreas.Controls.Add(this.panel10);
-            this.flpAreas.Location = new System.Drawing.Point(161, 119);
+            this.flpAreas.Location = new System.Drawing.Point(157, 115);
             this.flpAreas.Name = "flpAreas";
             this.flpAreas.Size = new System.Drawing.Size(688, 321);
             this.flpAreas.TabIndex = 2002;
@@ -273,7 +273,7 @@
             // 
             this.lblLeyendaProcesos.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaProcesos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaProcesos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaProcesos.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaProcesos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaProcesos.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaProcesos.Name = "lblLeyendaProcesos";
@@ -311,7 +311,7 @@
             // 
             this.lblleyendaComercial.BackColor = System.Drawing.Color.Transparent;
             this.lblleyendaComercial.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblleyendaComercial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblleyendaComercial.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblleyendaComercial.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblleyendaComercial.Location = new System.Drawing.Point(0, 121);
             this.lblleyendaComercial.Name = "lblleyendaComercial";
@@ -349,7 +349,7 @@
             // 
             this.lblLeyendaProduccion.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaProduccion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaProduccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaProduccion.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaProduccion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaProduccion.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaProduccion.Name = "lblLeyendaProduccion";
@@ -387,7 +387,7 @@
             // 
             this.lblLeyendaIngieneria.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaIngieneria.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaIngieneria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaIngieneria.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaIngieneria.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaIngieneria.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaIngieneria.Name = "lblLeyendaIngieneria";
@@ -425,7 +425,7 @@
             // 
             this.lblLeyendaLogistica.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaLogistica.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaLogistica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaLogistica.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaLogistica.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaLogistica.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaLogistica.Name = "lblLeyendaLogistica";
@@ -463,13 +463,13 @@
             // 
             this.lblLeyendaContabilidad.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaContabilidad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaContabilidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblLeyendaContabilidad.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaContabilidad.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaContabilidad.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaContabilidad.Name = "lblLeyendaContabilidad";
             this.lblLeyendaContabilidad.Size = new System.Drawing.Size(129, 31);
             this.lblLeyendaContabilidad.TabIndex = 1;
-            this.lblLeyendaContabilidad.Text = "CONTABILIDA...";
+            this.lblLeyendaContabilidad.Text = "CONTABILIDA..";
             this.lblLeyendaContabilidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnContabilidad
@@ -501,7 +501,7 @@
             // 
             this.lblLeyendaCalidad.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaCalidad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaCalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaCalidad.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaCalidad.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaCalidad.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaCalidad.Name = "lblLeyendaCalidad";
@@ -539,7 +539,7 @@
             // 
             this.lblLeyendaSIG.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaSIG.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaSIG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaSIG.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaSIG.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaSIG.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaSIG.Name = "lblLeyendaSIG";
@@ -577,13 +577,13 @@
             // 
             this.lblLeyendaMantenimiento.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaMantenimiento.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaMantenimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblLeyendaMantenimiento.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaMantenimiento.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaMantenimiento.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaMantenimiento.Name = "lblLeyendaMantenimiento";
             this.lblLeyendaMantenimiento.Size = new System.Drawing.Size(129, 31);
             this.lblLeyendaMantenimiento.TabIndex = 1;
-            this.lblLeyendaMantenimiento.Text = "MANTENIMIE...";
+            this.lblLeyendaMantenimiento.Text = "MANTENIMIE..";
             this.lblLeyendaMantenimiento.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMantenimiento
@@ -615,13 +615,13 @@
             // 
             this.lblLeyendaAdmin.BackColor = System.Drawing.Color.Transparent;
             this.lblLeyendaAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLeyendaAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblLeyendaAdmin.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeyendaAdmin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLeyendaAdmin.Location = new System.Drawing.Point(0, 121);
             this.lblLeyendaAdmin.Name = "lblLeyendaAdmin";
             this.lblLeyendaAdmin.Size = new System.Drawing.Size(129, 31);
             this.lblLeyendaAdmin.TabIndex = 1;
-            this.lblLeyendaAdmin.Text = "ADMINISTRAD...";
+            this.lblLeyendaAdmin.Text = "ADMINISTRA..";
             this.lblLeyendaAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnAdministrador
@@ -642,28 +642,41 @@
             // 
             this.panelLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelLogin.Controls.Add(this.panelBienvenida);
+            this.panelLogin.Controls.Add(this.panel3);
+            this.panelLogin.Controls.Add(this.label2);
             this.panelLogin.Controls.Add(this.btnIniciarSesion);
             this.panelLogin.Controls.Add(this.btnCambiarusuarioIcono);
             this.panelLogin.Controls.Add(this.lblCambiarCuenta);
-            this.panelLogin.Controls.Add(this.panel3);
-            this.panelLogin.Controls.Add(this.label2);
-            this.panelLogin.Location = new System.Drawing.Point(206, 57);
+            this.panelLogin.Location = new System.Drawing.Point(206, 55);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(586, 378);
+            this.panelLogin.Size = new System.Drawing.Size(586, 381);
             this.panelLogin.TabIndex = 2003;
             this.panelLogin.Visible = false;
             // 
             // panelBienvenida
             // 
             this.panelBienvenida.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelBienvenida.Controls.Add(this.pictureBox2);
             this.panelBienvenida.Controls.Add(this.lblNombre);
+            this.panelBienvenida.Controls.Add(this.pictureBox2);
             this.panelBienvenida.Controls.Add(this.label11);
-            this.panelBienvenida.Location = new System.Drawing.Point(159, 58);
+            this.panelBienvenida.Location = new System.Drawing.Point(159, 100);
             this.panelBienvenida.Name = "panelBienvenida";
             this.panelBienvenida.Size = new System.Drawing.Size(266, 176);
             this.panelBienvenida.TabIndex = 9;
             this.panelBienvenida.Visible = false;
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblNombre.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblNombre.Location = new System.Drawing.Point(0, 129);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(264, 45);
+            this.lblNombre.TabIndex = 0;
+            this.lblNombre.Text = "NOMBRE----------";
+            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBox2
             // 
@@ -675,75 +688,16 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // lblNombre
-            // 
-            this.lblNombre.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblNombre.Location = new System.Drawing.Point(0, 129);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(264, 45);
-            this.lblNombre.TabIndex = 0;
-            this.lblNombre.Text = "NOMBRE----------";
-            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label11.Location = new System.Drawing.Point(72, 104);
+            this.label11.Location = new System.Drawing.Point(71, 104);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(125, 24);
+            this.label11.Size = new System.Drawing.Size(123, 26);
             this.label11.TabIndex = 0;
             this.label11.Text = "BIENVENIDO";
-            // 
-            // btnIniciarSesion
-            // 
-            this.btnIniciarSesion.BackColor = System.Drawing.Color.Firebrick;
-            this.btnIniciarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIniciarSesion.FlatAppearance.BorderSize = 0;
-            this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciarSesion.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnIniciarSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciarSesion.Image")));
-            this.btnIniciarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIniciarSesion.Location = new System.Drawing.Point(155, 224);
-            this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Padding = new System.Windows.Forms.Padding(45, 0, 40, 0);
-            this.btnIniciarSesion.Size = new System.Drawing.Size(274, 61);
-            this.btnIniciarSesion.TabIndex = 2;
-            this.btnIniciarSesion.Text = "Iniciar Sesión";
-            this.btnIniciarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnIniciarSesion.UseVisualStyleBackColor = false;
-            this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
-            // 
-            // btnCambiarusuarioIcono
-            // 
-            this.btnCambiarusuarioIcono.BackColor = System.Drawing.Color.Transparent;
-            this.btnCambiarusuarioIcono.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCambiarusuarioIcono.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiarusuarioIcono.Image")));
-            this.btnCambiarusuarioIcono.Location = new System.Drawing.Point(340, 299);
-            this.btnCambiarusuarioIcono.Name = "btnCambiarusuarioIcono";
-            this.btnCambiarusuarioIcono.Size = new System.Drawing.Size(50, 33);
-            this.btnCambiarusuarioIcono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCambiarusuarioIcono.TabIndex = 1995;
-            this.btnCambiarusuarioIcono.TabStop = false;
-            this.btnCambiarusuarioIcono.Click += new System.EventHandler(this.btnCambiarusuarioIcono_Click);
-            // 
-            // lblCambiarCuenta
-            // 
-            this.lblCambiarCuenta.AutoSize = true;
-            this.lblCambiarCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCambiarCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCambiarCuenta.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblCambiarCuenta.Location = new System.Drawing.Point(194, 303);
-            this.lblCambiarCuenta.Name = "lblCambiarCuenta";
-            this.lblCambiarCuenta.Size = new System.Drawing.Size(146, 20);
-            this.lblCambiarCuenta.TabIndex = 3;
-            this.lblCambiarCuenta.Text = "Cambiar de usuario";
-            this.lblCambiarCuenta.Click += new System.EventHandler(this.lblCambiarCuenta_Click);
             // 
             // panel3
             // 
@@ -761,11 +715,11 @@
             // 
             this.lblContrasenaIncorrecta.AutoSize = true;
             this.lblContrasenaIncorrecta.BackColor = System.Drawing.Color.Transparent;
-            this.lblContrasenaIncorrecta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContrasenaIncorrecta.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContrasenaIncorrecta.ForeColor = System.Drawing.Color.Red;
             this.lblContrasenaIncorrecta.Location = new System.Drawing.Point(37, 86);
             this.lblContrasenaIncorrecta.Name = "lblContrasenaIncorrecta";
-            this.lblContrasenaIncorrecta.Size = new System.Drawing.Size(293, 20);
+            this.lblContrasenaIncorrecta.Size = new System.Drawing.Size(249, 18);
             this.lblContrasenaIncorrecta.TabIndex = 3;
             this.lblContrasenaIncorrecta.Text = "- La contraseña ingresada es incorrecta.";
             this.lblContrasenaIncorrecta.Visible = false;
@@ -819,12 +773,12 @@
             // 
             this.txtPassword.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.SystemColors.Menu;
             this.txtPassword.Location = new System.Drawing.Point(57, 43);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(428, 28);
+            this.txtPassword.Size = new System.Drawing.Size(428, 26);
             this.txtPassword.TabIndex = 0;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
@@ -832,7 +786,7 @@
             // 
             this.label2.Cursor = System.Windows.Forms.Cursors.Default;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
@@ -840,6 +794,52 @@
             this.label2.TabIndex = 0;
             this.label2.Text = " Inicio de sesión ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnIniciarSesion
+            // 
+            this.btnIniciarSesion.BackColor = System.Drawing.Color.Firebrick;
+            this.btnIniciarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIniciarSesion.FlatAppearance.BorderSize = 0;
+            this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIniciarSesion.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciarSesion.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnIniciarSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciarSesion.Image")));
+            this.btnIniciarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIniciarSesion.Location = new System.Drawing.Point(155, 224);
+            this.btnIniciarSesion.Name = "btnIniciarSesion";
+            this.btnIniciarSesion.Padding = new System.Windows.Forms.Padding(58, 0, 55, 0);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(274, 61);
+            this.btnIniciarSesion.TabIndex = 2;
+            this.btnIniciarSesion.Text = "Iniciar Sesión";
+            this.btnIniciarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnIniciarSesion.UseVisualStyleBackColor = false;
+            this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
+            // 
+            // btnCambiarusuarioIcono
+            // 
+            this.btnCambiarusuarioIcono.BackColor = System.Drawing.Color.Transparent;
+            this.btnCambiarusuarioIcono.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCambiarusuarioIcono.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiarusuarioIcono.Image")));
+            this.btnCambiarusuarioIcono.Location = new System.Drawing.Point(338, 299);
+            this.btnCambiarusuarioIcono.Name = "btnCambiarusuarioIcono";
+            this.btnCambiarusuarioIcono.Size = new System.Drawing.Size(50, 33);
+            this.btnCambiarusuarioIcono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnCambiarusuarioIcono.TabIndex = 1995;
+            this.btnCambiarusuarioIcono.TabStop = false;
+            this.btnCambiarusuarioIcono.Click += new System.EventHandler(this.btnCambiarusuarioIcono_Click);
+            // 
+            // lblCambiarCuenta
+            // 
+            this.lblCambiarCuenta.AutoSize = true;
+            this.lblCambiarCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCambiarCuenta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCambiarCuenta.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblCambiarCuenta.Location = new System.Drawing.Point(196, 306);
+            this.lblCambiarCuenta.Name = "lblCambiarCuenta";
+            this.lblCambiarCuenta.Size = new System.Drawing.Size(141, 19);
+            this.lblCambiarCuenta.TabIndex = 3;
+            this.lblCambiarCuenta.Text = "Cambiar de usuario";
+            this.lblCambiarCuenta.Click += new System.EventHandler(this.lblCambiarCuenta_Click);
             // 
             // panelValidacionLicencia
             // 
@@ -943,11 +943,11 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label14.Location = new System.Drawing.Point(31, 113);
+            this.label14.Location = new System.Drawing.Point(43, 113);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(202, 48);
+            this.label14.Size = new System.Drawing.Size(179, 46);
             this.label14.TabIndex = 0;
             this.label14.Text = "           MÓDULO \r\nEN MANTENIMIENTO";
             // 
@@ -1071,15 +1071,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(999, 558);
+            this.Controls.Add(this.panelValidacionLicencia);
+            this.Controls.Add(this.panelLogin);
+            this.Controls.Add(this.panelMantenimiento);
+            this.Controls.Add(this.flpAreas);
             this.Controls.Add(this.btnLogoArenas);
             this.Controls.Add(this.dataListado);
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.lblContadorInicio);
             this.Controls.Add(this.datalistadoEstadoSistema);
-            this.Controls.Add(this.panelMantenimiento);
-            this.Controls.Add(this.panelValidacionLicencia);
-            this.Controls.Add(this.panelLogin);
-            this.Controls.Add(this.flpAreas);
             this.Controls.Add(this.panelCuentas);
             this.Controls.Add(this.imgValidacionIncorrecta);
             this.Controls.Add(this.imgValidacionCorrecta);
@@ -1126,11 +1126,11 @@
             this.panelBienvenida.ResumeLayout(false);
             this.panelBienvenida.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCambiarusuarioIcono)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCambiarusuarioIcono)).EndInit();
             this.panelValidacionLicencia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoVerificacionLicencia)).EndInit();
