@@ -61,78 +61,113 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGA DE LINEA N1
         public void CargarLineas1()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLinea, Descripcion FROM LINEAS WHERE Estado = 1 ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboLinea1.ValueMember = "IdLinea";
-            cboLinea1.DisplayMember = "Descripcion";
-            cboLinea1.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLinea, Descripcion FROM LINEAS WHERE Estado = 1 ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboLinea1.ValueMember = "IdLinea";
+                cboLinea1.DisplayMember = "Descripcion";
+                cboLinea1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CATGA DE OPERACIONES N1
         public void CargarOperacion1()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdOperaciones, Descripcion FROM Operaciones where Estado = 1 ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboOperacion1.ValueMember = "IdOperaciones";
-            cboOperacion1.DisplayMember = "Descripcion";
-            cboOperacion1.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdOperaciones, Descripcion FROM Operaciones where Estado = 1 ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboOperacion1.ValueMember = "IdOperaciones";
+                cboOperacion1.DisplayMember = "Descripcion";
+                cboOperacion1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //SEGUNDA PARTE-------------
         //CARGA DE LINEA N2
         public void CargarLineas2()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLinea, Descripcion FROM LINEAS WHERE Estado = 1 ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboLinea2.ValueMember = "IdLinea";
-            cboLinea2.DisplayMember = "Descripcion";
-            cboLinea2.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLinea, Descripcion FROM LINEAS WHERE Estado = 1 ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboLinea2.ValueMember = "IdLinea";
+                cboLinea2.DisplayMember = "Descripcion";
+                cboLinea2.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CATGA DE OPERACIONES N2
         public void CargarOperacion2(string idlinea)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT LxO.IdLineaXOperacion,O.IdOperaciones, O.Descripcion FROM LineaXOperacion LxO INNER JOIN Operaciones O ON O.IdOperaciones = LxO.IdOperacion where LxO.Estado = 1 AND IdLinea = @idlinea ORDER BY Descripcion", con);
-            comando.Parameters.AddWithValue("@idlinea", idlinea);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboOperacion2.ValueMember = "O.IdOperaciones";
-            cboOperacion2.DisplayMember = "Descripcion";
-            cboOperacion2.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT LxO.IdLineaXOperacion,O.IdOperaciones, O.Descripcion FROM LineaXOperacion LxO INNER JOIN Operaciones O ON O.IdOperaciones = LxO.IdOperacion where LxO.Estado = 1 AND IdLinea = @idlinea ORDER BY Descripcion", con);
+                comando.Parameters.AddWithValue("@idlinea", idlinea);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboOperacion2.ValueMember = "O.IdOperaciones";
+                cboOperacion2.DisplayMember = "Descripcion";
+                cboOperacion2.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGA DE MAQUINARIAS N2
         public void CargarMaquinarias()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdMaquinarias,Descripcion from Maquinarias where Estado = 1 ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboMaquinaria2.ValueMember = "IdMaquinarias";
-            cboMaquinaria2.DisplayMember = "Descripcion";
-            cboMaquinaria2.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdMaquinarias,Descripcion from Maquinarias where Estado = 1 ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboMaquinaria2.ValueMember = "IdMaquinarias";
+                cboMaquinaria2.DisplayMember = "Descripcion";
+                cboMaquinaria2.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //VALIDACIONES-------------------------------------------------------------------
@@ -189,46 +224,60 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //MOSTRAR LINEA POR OPERACIÓN SEGUN LA LINEA SELECCIOANDA
         public void Mostrar1(string idlinea)
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT LxO.IdLineaxOperacion, L.IdLinea, O.IdOperaciones, L.Descripcion AS [LINEA], O.Descripcion AS [OPERACIÓN] FROM LineaxOperacion LxO INNER JOIN LINEAS L ON L.IdLinea = LxO.IdLinea INNER JOIN Operaciones O ON O.IdOperaciones = LxO.IdOperacion WHERE L.IdLinea = @idlinea and LxO.Estado = 1", con);
-            comando.Parameters.AddWithValue("@idlinea", idlinea);
-            da = new SqlDataAdapter(comando);
-            da.Fill(dt);
-            datalistadoLineaXOperacion.DataSource = dt;
-            con.Close();
-            datalistadoLineaXOperacion.Columns[0].Visible = false;
-            datalistadoLineaXOperacion.Columns[1].Visible = false;
-            datalistadoLineaXOperacion.Columns[2].Visible = false;
-            datalistadoLineaXOperacion.Columns[3].Width = 220;
-            datalistadoLineaXOperacion.Columns[4].Width = 350;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT LxO.IdLineaxOperacion, L.IdLinea, O.IdOperaciones, L.Descripcion AS [LINEA], O.Descripcion AS [OPERACIÓN] FROM LineaxOperacion LxO INNER JOIN LINEAS L ON L.IdLinea = LxO.IdLinea INNER JOIN Operaciones O ON O.IdOperaciones = LxO.IdOperacion WHERE L.IdLinea = @idlinea and LxO.Estado = 1", con);
+                comando.Parameters.AddWithValue("@idlinea", idlinea);
+                da = new SqlDataAdapter(comando);
+                da.Fill(dt);
+                datalistadoLineaXOperacion.DataSource = dt;
+                con.Close();
+                datalistadoLineaXOperacion.Columns[0].Visible = false;
+                datalistadoLineaXOperacion.Columns[1].Visible = false;
+                datalistadoLineaXOperacion.Columns[2].Visible = false;
+                datalistadoLineaXOperacion.Columns[3].Width = 220;
+                datalistadoLineaXOperacion.Columns[4].Width = 350;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //MOSTRAR LINEA POR OPERACIÓN POR MAQUINARIA SEGÚN LA LÍNEA Y LA OPERACIÓN SELECCIONADA
         public void Mostrar2(string idlinea, string idoperacion)
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT LOM.IdLineaXOperacioXMaquinaria, LOM.IdLinea, L.Descripcion AS [LINEA], LOM.IdOperacion, O.Descripcion AS [OPERACIÓN], LOM.IdMaquinaria, M.Descripcion AS [MAQUINARIA] FROM LineaXOperacionXMaquinaria LOM INNER JOIN LINEAS L ON L.IdLinea = LOM.IdLinea INNER JOIN Operaciones O ON O.IdOperaciones = LOM.IdOperacion INNER JOIN Maquinarias M ON M.IdMaquinarias = LOM.IdMaquinaria WHERE LOM.IdLinea = @idlinea AND LOM.IdOperacion = @idoperacion AND LOM.Estado = 1", con);
-            comando.Parameters.AddWithValue("@idlinea", idlinea);
-            comando.Parameters.AddWithValue("@idoperacion", idoperacion);
-            da = new SqlDataAdapter(comando);
-            da.Fill(dt);
-            datalistadoLineaXOperacionXMaquinaria.DataSource = dt;
-            con.Close();
-            datalistadoLineaXOperacionXMaquinaria.Columns[0].Visible = false;
-            datalistadoLineaXOperacionXMaquinaria.Columns[1].Visible = false;
-            datalistadoLineaXOperacionXMaquinaria.Columns[3].Visible = false;
-            datalistadoLineaXOperacionXMaquinaria.Columns[5].Visible = false;
-            datalistadoLineaXOperacionXMaquinaria.Columns[2].Width = 140;
-            datalistadoLineaXOperacionXMaquinaria.Columns[4].Width = 200;
-            datalistadoLineaXOperacionXMaquinaria.Columns[6].Width = 290;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT LOM.IdLineaXOperacioXMaquinaria, LOM.IdLinea, L.Descripcion AS [LINEA], LOM.IdOperacion, O.Descripcion AS [OPERACIÓN], LOM.IdMaquinaria, M.Descripcion AS [MAQUINARIA] FROM LineaXOperacionXMaquinaria LOM INNER JOIN LINEAS L ON L.IdLinea = LOM.IdLinea INNER JOIN Operaciones O ON O.IdOperaciones = LOM.IdOperacion INNER JOIN Maquinarias M ON M.IdMaquinarias = LOM.IdMaquinaria WHERE LOM.IdLinea = @idlinea AND LOM.IdOperacion = @idoperacion AND LOM.Estado = 1", con);
+                comando.Parameters.AddWithValue("@idlinea", idlinea);
+                comando.Parameters.AddWithValue("@idoperacion", idoperacion);
+                da = new SqlDataAdapter(comando);
+                da.Fill(dt);
+                datalistadoLineaXOperacionXMaquinaria.DataSource = dt;
+                con.Close();
+                datalistadoLineaXOperacionXMaquinaria.Columns[0].Visible = false;
+                datalistadoLineaXOperacionXMaquinaria.Columns[1].Visible = false;
+                datalistadoLineaXOperacionXMaquinaria.Columns[3].Visible = false;
+                datalistadoLineaXOperacionXMaquinaria.Columns[5].Visible = false;
+                datalistadoLineaXOperacionXMaquinaria.Columns[2].Width = 140;
+                datalistadoLineaXOperacionXMaquinaria.Columns[4].Width = 200;
+                datalistadoLineaXOperacionXMaquinaria.Columns[6].Width = 290;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //VISUALIZACION DEL REGISTRO SELECCIONADO----------------------------------------------
@@ -268,39 +317,43 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
             if (DetalleRepetido == false)
             {
-                try
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar este producto por operación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarLineaxOperacion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("InsertarLineaxOperacion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@idlinea", Convert.ToInt32(cboLinea1.SelectedValue.ToString()));
-                    cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion1.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@idlinea", Convert.ToInt32(cboLinea1.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion1.SelectedValue.ToString()));
 
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    Mostrar1(idlinea1);
-                    CargarOperacion2(idlinea2);
-                    MessageBox.Show("Registro ingresado exitosamente", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        Mostrar1(idlinea1);
+                        CargarOperacion2(idlinea2);
+                        MessageBox.Show("Registro ingresado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //METODO PARA ELIMINAR LINEA X OPERACIÓN
         private void btnEliminar1_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("Realmente desea eliminar", "Validación del Sistema", MessageBoxButtons.OKCancel);
+            DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este registro?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
                 if (datalistadoLineaXOperacion.CurrentRow != null)
@@ -317,7 +370,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.ExecuteNonQuery();
                         con.Close();
                         Mostrar1(idlinea1);
-                        MessageBox.Show("Eliminacion correcta, operación echa satisfactoriamente", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     catch (Exception ex)
                     {
@@ -326,7 +379,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un registro para poder eliminar", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe seleccionar un registro para poder eliminar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
         }
@@ -360,46 +413,51 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
             if (DetalleRepetido2 == false)
             {
-                try
+
+                if (cboOperacion2.SelectedValue == null || cboOperacion2.Text == "")
                 {
-                    if (cboOperacion2.SelectedValue == null || cboOperacion2.Text == "")
-                    {
-                        MessageBox.Show("No se puede ingresar sin escoger una operación", "Validación del Sistema", MessageBoxButtons.OK);
-                    }
-                    else
-                    {
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarLineaxOperacionxMaquinaria", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@idlinea", Convert.ToInt32(cboLinea2.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion2.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@idmaquinaria", Convert.ToInt32(cboMaquinaria2.SelectedValue.ToString()));
-
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        Mostrar2(idlinea2, idoperacion2);
-                        MessageBox.Show("Registro ingresado exitosamente", "Validación del Sistema", MessageBoxButtons.OK);
-                    }
+                    MessageBox.Show("No se puede ingresar sin escoger una operación.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    DialogResult boton = MessageBox.Show("¿Realmente desea guardar este producto por maquinaria?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
+                    {
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("InsertarLineaxOperacionxMaquinaria", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@idlinea", Convert.ToInt32(cboLinea2.SelectedValue.ToString()));
+                            cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion2.SelectedValue.ToString()));
+                            cmd.Parameters.AddWithValue("@idmaquinaria", Convert.ToInt32(cboMaquinaria2.SelectedValue.ToString()));
+
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            Mostrar2(idlinea2, idoperacion2);
+                            MessageBox.Show("Registro ingresado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //METODO PARA ELIMINAR LINEA X OPERACIÓN
         private void btnEliminar2_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("Realmente deseae Eliminar", "Validación del Sistema", MessageBoxButtons.OKCancel);
+            DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este registro?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
                 if (datalistadoLineaXOperacionXMaquinaria.CurrentRow != null)
@@ -417,7 +475,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.Close();
 
                         Mostrar2(idlinea2, idoperacion2);
-                        MessageBox.Show("Eliminación correcta, operación echa satisfactoriamente", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     catch (Exception ex)
                     {
@@ -426,7 +484,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un registro para poder eliminar", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe seleccionar un registro para poder eliminar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
         }

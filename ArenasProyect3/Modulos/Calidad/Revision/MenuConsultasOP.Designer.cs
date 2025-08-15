@@ -62,7 +62,7 @@
             // 
             this.btnListadoOP.FlatAppearance.BorderSize = 0;
             this.btnListadoOP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoOP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoOP.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoOP.Image")));
             this.btnListadoOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -70,9 +70,9 @@
             this.btnListadoOP.Margin = new System.Windows.Forms.Padding(4);
             this.btnListadoOP.Name = "btnListadoOP";
             this.btnListadoOP.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnListadoOP.Size = new System.Drawing.Size(168, 53);
+            this.btnListadoOP.Size = new System.Drawing.Size(169, 53);
             this.btnListadoOP.TabIndex = 8;
-            this.btnListadoOP.Text = "  LISTADO \r\n  ORDEN \r\n  PRODUCCIÓN";
+            this.btnListadoOP.Text = "  LISTADO ORDEN PRODUCCIÓN";
             this.btnListadoOP.UseVisualStyleBackColor = true;
             this.btnListadoOP.Click += new System.EventHandler(this.btnListadoOP_Click);
             // 
@@ -80,11 +80,11 @@
             // 
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManualUsuario.Location = new System.Drawing.Point(4, 336);
+            this.btnManualUsuario.Location = new System.Drawing.Point(4, 327);
             this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnManualUsuario.Name = "btnManualUsuario";
             this.btnManualUsuario.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -125,7 +125,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 75);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Área de Producción";
+            this.label1.Text = "Área de Calidad";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelMantenimientos

@@ -52,18 +52,25 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //METODO PARA VISUALIZAR LOS DATOS, LISTADO DE DATOS EN MI GRILLA
         public void Mostrar()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT Case When Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End AS [ESTADO],  IdMaquinarias AS [CÓDIGO], Descripcion AS [NOMBRE] FROM MAQUINARIAS", con);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
-            datalistado.Columns[0].Width = 110;
-            datalistado.Columns[1].Width = 140;
-            datalistado.Columns[2].Width = 609;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT Case When Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End AS [ESTADO],  IdMaquinarias AS [CÓDIGO], Descripcion AS [NOMBRE] FROM MAQUINARIAS", con);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                datalistado.Columns[0].Width = 110;
+                datalistado.Columns[1].Width = 140;
+                datalistado.Columns[2].Width = 609;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //EVENTO DE DOBLE CLICK PARA PODER VISUALIZAR LOS DATOS DE UN REGISTRO
@@ -73,7 +80,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             txtDescripcion.Text = datalistado.SelectedCells[2].Value.ToString();
             string estado = datalistado.SelectedCells[0].Value.ToString();
 
-            if (estado == "ACTIVO"){cboEstado.Text = "ACTIVO";}else{cboEstado.Text = "INACTIVO";}
+            if (estado == "ACTIVO") { cboEstado.Text = "ACTIVO"; } else { cboEstado.Text = "INACTIVO"; }
             txtDescripcion.Enabled = false;
 
             btnEditar.Visible = true;
@@ -130,41 +137,52 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if (repetidoDescripcion == true)
             {
-                MessageBox.Show("No se puede ingresar dos registros iguales", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("No se puede ingresar dos registros iguales.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
-                if (txtDescripcion.Text != "")
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta maquinaria?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarMaquinarias", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    Mostrar();
-                    MessageBox.Show("Se ingreso el nuevo registro correctamente", "Registro Nuevo", MessageBoxButtons.OK);
-                    ColorDescripcion();
+                    if (txtDescripcion.Text != "")
+                    {
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("InsertarMaquinarias", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            Mostrar();
+                            MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
+                            ColorDescripcion();
 
-                    txtDescripcion.Enabled = false;
+                            txtDescripcion.Enabled = false;
 
-                    btnEditar.Visible = true;
-                    btnEditar2.Visible = false;
+                            btnEditar.Visible = true;
+                            btnEditar2.Visible = false;
 
-                    btnGuardar.Visible = true;
-                    btnGuardar2.Visible = false;
+                            btnGuardar.Visible = true;
+                            btnGuardar2.Visible = false;
 
-                    cboEstado.SelectedIndex = -1;
-                    Cancelar.Visible = false;
-                    lblCancelar.Visible = false;
-                }
-                else
-                {
-                    MessageBox.Show("Debe ingresar todos los campos necesarios", "Validación del Sistema", MessageBoxButtons.OK);
-                    txtDescripcion.Focus();
+                            cboEstado.SelectedIndex = -1;
+                            Cancelar.Visible = false;
+                            lblCancelar.Visible = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
+                        txtDescripcion.Focus();
+                    }
                 }
             }
         }
@@ -186,52 +204,56 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if (txtDescripcion.Text != "" || lblCodigo.Text != "N")
             {
-                try
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta maquinaria?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EditarMaquinarias", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-
-                    if (cboEstado.Text == "ACTIVO")
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@estado", 1);
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("EditarMaquinarias", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
+                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+
+                        if (cboEstado.Text == "ACTIVO")
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 1);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 0);
+                        }
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        Mostrar();
+                        MessageBox.Show("Se editó correctamente el registro.", "Validación del Sistema", MessageBoxButtons.OK);
+                        ColorDescripcion();
+
+                        txtDescripcion.Enabled = false;
+
+                        btnEditar.Visible = true;
+                        btnEditar2.Visible = false;
+
+                        btnGuardar.Visible = true;
+                        btnGuardar2.Visible = false;
+
+                        cboEstado.SelectedIndex = -1;
+                        Cancelar.Visible = false;
+                        lblCancelar.Visible = false;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        cmd.Parameters.AddWithValue("@estado", 0);
+                        MessageBox.Show(ex.Message);
                     }
-
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    Mostrar();
-                    MessageBox.Show("Se editÓ correctamente el registro", "Validación del Sistema", MessageBoxButtons.OK);
-                    ColorDescripcion();
-
-                    txtDescripcion.Enabled = false;
-
-                    btnEditar.Visible = true;
-                    btnEditar2.Visible = false;
-
-                    btnGuardar.Visible = true;
-                    btnGuardar2.Visible = false;
-
-                    cboEstado.SelectedIndex = -1;
-                    Cancelar.Visible = false;
-                    lblCancelar.Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("Los campos no pueden estar vacios", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -299,24 +321,30 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BÚSQUEDA DE OPERACIONES POR DESCRIPCIÓN - SENSITICO
         private void txtBusquedaMaquinarias_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaMaquinara.Text == "DESCRIPCIÓN")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarMaquinariaSegunDescripcion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaMaquinarias.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-
-                datalistado.Columns[0].Width = 110;
-                datalistado.Columns[1].Width = 140;
-                datalistado.Columns[2].Width = 609;
+                if (cboBusquedaMaquinara.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarMaquinariaSegunDescripcion", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaMaquinarias.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                    datalistado.Columns[0].Width = 110;
+                    datalistado.Columns[1].Width = 140;
+                    datalistado.Columns[2].Width = 609;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
         }
     }

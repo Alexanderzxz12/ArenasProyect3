@@ -52,20 +52,27 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //METODO PARA LISTAR TODAS MIS CUENTAS GUARDADAS EN EL SISTEMA
         public void Mostrar()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT Case When Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End As ESTADO, IdTipoMercaderias AS [CÓDIGO], Desciripcion AS [NOMBRE], Abreviatura AS [ABREVIATURA], CodSunet AS [C. SUNAT] FROM TIPOMERCADERIAS", con);
-            da.Fill(dt);
-            datalistadoTipomer.DataSource = dt;
-            con.Close();
-            datalistadoTipomer.Columns[0].Width = 90;
-            datalistadoTipomer.Columns[1].Width = 90;
-            datalistadoTipomer.Columns[2].Width = 325;
-            datalistadoTipomer.Columns[3].Width = 90;
-            datalistadoTipomer.Columns[4].Width = 90;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT Case When Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End As ESTADO, IdTipoMercaderias AS [CÓDIGO], Desciripcion AS [NOMBRE], Abreviatura AS [ABREVIATURA], CodSunet AS [C. SUNAT] FROM TIPOMERCADERIAS", con);
+                da.Fill(dt);
+                datalistadoTipomer.DataSource = dt;
+                con.Close();
+                datalistadoTipomer.Columns[0].Width = 90;
+                datalistadoTipomer.Columns[1].Width = 90;
+                datalistadoTipomer.Columns[2].Width = 325;
+                datalistadoTipomer.Columns[3].Width = 90;
+                datalistadoTipomer.Columns[4].Width = 90;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //DOBLE CLICK EN EL REGISTRO PARA MOSTRAR DETALLES DE MI CUENTA
@@ -85,6 +92,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 cboEstado.Text = "INACTIVO";
             }
+
             txtDescripcion.Enabled = false;
             txtAbreviatura.Enabled = false;
             txtCodSunat.Enabled = false;
@@ -173,41 +181,52 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || txtCodSunat.Text != "")
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta cuenta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarCuentas", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                    cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                    cmd.Parameters.AddWithValue("@codigosunat", txtCodSunat.Text);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    Mostrar();
-                    MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro nuevo", MessageBoxButtons.OK);
-                    ColorDescripcion();
+                    if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || txtCodSunat.Text != "")
+                    {
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("InsertarCuentas", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                            cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
+                            cmd.Parameters.AddWithValue("@codigosunat", txtCodSunat.Text);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            Mostrar();
+                            MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro nuevo", MessageBoxButtons.OK);
+                            ColorDescripcion();
 
-                    txtDescripcion.Enabled = false;
-                    txtAbreviatura.Enabled = false;
-                    txtCodSunat.Enabled = false;
+                            txtDescripcion.Enabled = false;
+                            txtAbreviatura.Enabled = false;
+                            txtCodSunat.Enabled = false;
 
-                    btnEditarF.Visible = true;
-                    btnEditar2F.Visible = false;
+                            btnEditarF.Visible = true;
+                            btnEditar2F.Visible = false;
 
-                    btnGuardar.Visible = true;
-                    btnGuardar2F.Visible = false;
+                            btnGuardar.Visible = true;
+                            btnGuardar2F.Visible = false;
 
-                    cboEstado.SelectedIndex = -1;
-                    CancelarF.Visible = false;
-                    lblCancelar.Visible = false;
-                }
-                else
-                {
-                    MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
-                    txtDescripcion.Focus();
+                            cboEstado.SelectedIndex = -1;
+                            CancelarF.Visible = false;
+                            lblCancelar.Visible = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
+                        txtDescripcion.Focus();
+                    }
                 }
             }
         }
@@ -239,51 +258,55 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || txtCodSunat.Text != "" || lblCodigo.Text != "N")
             {
-                try
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta cuenta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EditarCuenta", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                    cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                    cmd.Parameters.AddWithValue("@codigosunat", txtCodSunat.Text);
-
-                    if (cboEstado.Text == "ACTIVO")
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@estado", 1);
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("EditarCuenta", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
+                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
+                        cmd.Parameters.AddWithValue("@codigosunat", txtCodSunat.Text);
+
+                        if (cboEstado.Text == "ACTIVO")
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 1);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 0);
+                        }
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        Mostrar();
+                        MessageBox.Show("Se editó correctamente el registro.", "Nueva Edición", MessageBoxButtons.OK);
+                        ColorDescripcion();
+
+                        txtDescripcion.Enabled = false;
+                        txtAbreviatura.Enabled = false;
+                        txtCodSunat.Enabled = false;
+
+                        btnEditarF.Visible = true;
+                        btnEditar2F.Visible = false;
+
+                        btnGuardar.Visible = true;
+                        btnGuardar2F.Visible = false;
+
+                        cboEstado.SelectedIndex = -1;
+                        CancelarF.Visible = false;
+                        lblCancelar.Visible = false;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        cmd.Parameters.AddWithValue("@estado", 0);
+                        MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                     }
-
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    Mostrar();
-                    MessageBox.Show("Se editó correctamente el registro.", "Nueva Edición", MessageBoxButtons.OK);
-                    ColorDescripcion();
-
-                    txtDescripcion.Enabled = false;
-                    txtAbreviatura.Enabled = false;
-                    txtCodSunat.Enabled = false;
-
-                    btnEditarF.Visible = true;
-                    btnEditar2F.Visible = false;
-
-                    btnGuardar.Visible = true;
-                    btnGuardar2F.Visible = false;
-
-                    cboEstado.SelectedIndex = -1;
-                    CancelarF.Visible = false;
-                    lblCancelar.Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
                 }
             }
             else

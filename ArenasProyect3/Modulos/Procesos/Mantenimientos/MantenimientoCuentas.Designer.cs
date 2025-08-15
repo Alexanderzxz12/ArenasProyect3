@@ -30,10 +30,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoCuentas));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -269,40 +269,40 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoTipomer.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTipomer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoTipomer.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTipomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTipomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.datalistadoTipomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTipomer.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTipomer.DefaultCellStyle = dataGridViewCellStyle6;
             this.datalistadoTipomer.Location = new System.Drawing.Point(46, 274);
             this.datalistadoTipomer.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoTipomer.MultiSelect = false;
             this.datalistadoTipomer.Name = "datalistadoTipomer";
             this.datalistadoTipomer.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTipomer.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTipomer.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.datalistadoTipomer.RowHeadersVisible = false;
             this.datalistadoTipomer.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.datalistadoTipomer.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.datalistadoTipomer.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.datalistadoTipomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoTipomer.Size = new System.Drawing.Size(703, 276);
             this.datalistadoTipomer.TabIndex = 1980;
@@ -360,6 +360,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // CancelarF
             // 
+            this.CancelarF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CancelarF.FlatAppearance.BorderSize = 0;
             this.CancelarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelarF.Image = ((System.Drawing.Image)(resources.GetObject("CancelarF.Image")));
@@ -416,10 +417,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnEditarF
             // 
+            this.btnEditarF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditarF.FlatAppearance.BorderSize = 0;
             this.btnEditarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarF.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarF.Image")));
-            this.btnEditarF.Location = new System.Drawing.Point(27, 101);
+            this.btnEditarF.Location = new System.Drawing.Point(27, 102);
             this.btnEditarF.Name = "btnEditarF";
             this.btnEditarF.Size = new System.Drawing.Size(38, 38);
             this.btnEditarF.TabIndex = 1987;
@@ -428,6 +430,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnEditar2F
             // 
+            this.btnEditar2F.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar2F.FlatAppearance.BorderSize = 0;
             this.btnEditar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2F.Image")));
@@ -451,6 +454,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnGuardar
             // 
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
@@ -463,6 +467,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnGuardar2F
             // 
+            this.btnGuardar2F.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar2F.FlatAppearance.BorderSize = 0;
             this.btnGuardar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2F.Image")));
