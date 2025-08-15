@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Mozilla;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 
 namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
@@ -110,7 +112,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
+                cmd = new SqlCommand("Modelos_MostrarSegunLinea", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@linea", cboTipoLinea.SelectedValue.ToString());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -140,7 +142,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
+                cmd = new SqlCommand("Modelos_MostrarSegunLinea", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@linea", idlinea);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -257,8 +259,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlDataAdapter da;
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)", con);
+                con.Open();        
+                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)\r\n", con);
                 da.Fill(dt);
                 datalistadoModeloRecienIngresado.DataSource = dt;
                 con.Close();
@@ -293,8 +295,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
         }
 
-        //GUARDAR UNA NUEVO MDOELO EN MI BASE DE DATOS CON SUS ATRIBUTOS Y DETALLE DE ESTOS
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        public void AgregarModelos(string descripcion, string abreavitura, string codigolinea)
         {
             if (repetidoDescripcion == true)
             {
@@ -322,15 +323,15 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarModelos", con);
+                            cmd = new SqlCommand("Modelos_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                            cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                            cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                            cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
+                            cmd.Parameters.AddWithValue("@codigolinea", codigolinea);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
+                            int linea = Convert.ToInt32(codigolinea);
                             Mostrar(linea);
 
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
@@ -366,7 +367,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarAtributosXModelo", con);
+                            cmd = new SqlCommand("Modelos_InsertarAtributosXModelo", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
@@ -528,7 +529,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             //INGRESAMOS DETALLES
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("InsertarAtributosXModeloDetalle", con);
+                            cmd = new SqlCommand("Modelos_InsertarAtributosXModeloDetalle", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
@@ -816,7 +817,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             //EDITAMOS EL ESTADO DE MI MODELO
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("EditarEstadoAtributoModelo", con);
+                            cmd = new SqlCommand("Modelos_EditarEstadoAtributo", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
                             cmd.ExecuteNonQuery();
@@ -837,6 +838,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
+        }
+
+        //GUARDAR UNA NUEVO MDOELO EN MI BASE DE DATOS CON SUS ATRIBUTOS Y DETALLE DE ESTOS
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarModelos(txtDescripcion.Text,txtAbreviatura.Text,cboTipoLinea.SelectedValue.ToString());
         }
 
         //HABILITAR EDICIÓN PARA MODIFICAR UNA MODELO YA INGRESADA
@@ -860,10 +867,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
-        //EDITAR UN MODELO DE MI BASE DE DATOS
-        private void btnEditar2_Click(object sender, EventArgs e)
+        public void EditarModelos(string descripcion, string abreavitura, string codigolinea, string codigo)
         {
-            if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || lblCodigo.Text != "N")
+            if (descripcion != "" || abreavitura != "" || codigo != "N")
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar este modelo?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -874,12 +880,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarModelo", con);
+                        cmd = new SqlCommand("Modelos_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                        cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(codigo));
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
+                        cmd.Parameters.AddWithValue("@codigolinea", codigolinea);
 
                         if (cboEstado.Text == "ACTIVO")
                         {
@@ -893,7 +899,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
+                        int linea = Convert.ToInt32(codigolinea);
                         Mostrar(linea);
 
                         MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
@@ -922,6 +928,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+        //EDITAR UN MODELO DE MI BASE DE DATOS
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarModelos(txtDescripcion.Text, txtAbreviatura.Text, cboTipoLinea.SelectedValue.ToString(), lblCodigo.Text);
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
@@ -1623,8 +1634,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             panelDefinicionAtributos.Visible = false;
         }
 
-        //BUSQUEDA DE MODELO------------------------------------------------------------
-        private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
+        public void FiltrarModelos(string busquedamodelo)
         {
             try
             {
@@ -1635,9 +1645,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaModeloPorDescripcion", con);
+                    cmd = new SqlCommand("Modelos_BusquedaModeloPorDescripcion", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaModelo.Text);
+                    cmd.Parameters.AddWithValue("@descripcion", busquedamodelo);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                     datalistadoLineas.DataSource = dt;
@@ -1651,9 +1661,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaModeloPorAbreviatura", con);
+                    cmd = new SqlCommand("Modelos_BusquedaModeloPorAbreviatura", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@abreviatura", txtBusquedaModelo.Text);
+                    cmd.Parameters.AddWithValue("@abreviatura", busquedamodelo);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                     datalistadoLineas.DataSource = dt;
@@ -1665,6 +1675,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        //BUSQUEDA DE MODELO------------------------------------------------------------
+        private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarModelos(txtBusquedaModelo.Text);
         }
 
         //FUNCION PARA ORDENAR MIS COLUMNAS DE MI BUSQUEDAS

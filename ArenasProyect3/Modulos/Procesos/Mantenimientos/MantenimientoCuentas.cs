@@ -174,7 +174,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblCodigo.Text = "N";
         }
 
-        private void AgregarCuentas()
+        public void AgregarCuentas(string descripcion, string abreavitura, string codigosunat)
         {
             if (repetidoDescripcion == true)
             {
@@ -185,7 +185,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta cuenta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || txtCodSunat.Text != "")
+                    if (descripcion != "" || abreavitura != "" || codigosunat != "")
                     {
                         try
                         {
@@ -195,9 +195,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             SqlCommand cmd = new SqlCommand();
                             cmd = new SqlCommand("Cuentas_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                            cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                            cmd.Parameters.AddWithValue("@codigosunat", txtCodSunat.Text);
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                            cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
+                            cmd.Parameters.AddWithValue("@codigosunat", codigosunat);
                             if(cboEstado.Text == "ACTIVO")
                             {
                                 cmd.Parameters.AddWithValue("@estado", 1);
@@ -243,7 +243,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //GUARDAR UNA NUEVA CUENTA EN MI BASE DE DATOS
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
-            AgregarCuentas();
+            AgregarCuentas(txtDescripcion.Text,txtAbreviatura.Text,txtCodSunat.Text);
         }
 
         //HABILITAR EDICIÓN PARA MODIFICAR UNA CUENTA YA INGRESADA
@@ -267,9 +267,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardar.Enabled = true;
             }
         }
-        private void EditarCuentas()
+        public void EditarCuentas(string descripcion, string abreviatura, string codigosunat, string codigo)
         {
-            if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || txtCodSunat.Text != "" || lblCodigo.Text != "N")
+            if (descripcion != "" || abreviatura != "" || codigosunat != "" || codigo != "N")
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta cuenta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -282,10 +282,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         SqlCommand cmd = new SqlCommand();
                         cmd = new SqlCommand("Cuentas_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                        cmd.Parameters.AddWithValue("@codigosunat", txtCodSunat.Text);
+                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(codigo));
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
+                        cmd.Parameters.AddWithValue("@codigosunat", codigosunat);
 
                         if (cboEstado.Text == "ACTIVO")
                         {
@@ -331,7 +331,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EDITAR UNA CUENTA DE MI BASE DE DATOS
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarCuentas();
+            EditarCuentas(txtDescripcion.Text, txtAbreviatura.Text,txtCodSunat.Text, lblCodigo.Text);
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
