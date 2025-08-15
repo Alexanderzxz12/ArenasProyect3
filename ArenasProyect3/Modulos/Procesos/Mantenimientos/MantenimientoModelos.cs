@@ -105,31 +105,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BÚSQUEDA DE LINEAS SEGÚN EL TIPO DE MERCADERIA SELECIONARA - EVENTO SELECCIÓN
         private void cboTipoLinea_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Modelos_MostrarSegunLinea", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@linea", cboTipoLinea.SelectedValue.ToString());
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoLineas.DataSource = dt;
-                con.Close();
-                datalistadoLineas.Columns[0].Width = 80;
-                datalistadoLineas.Columns[1].Width = 80;
-                datalistadoLineas.Columns[2].Width = 100;
-                datalistadoLineas.Columns[3].Width = 220;
-                datalistadoLineas.Columns[4].Visible = false;
-                datalistadoLineas.Columns[5].Width = 218;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
-            }
+            Mostrar(Convert.ToInt32(cboTipoLinea.SelectedValue));
+           
         }
 
         //MOSTRAR TODAS MIS LÍNEAS SUGUN EL TIPO DE CUENTA SELECCIOANDO - METODO
