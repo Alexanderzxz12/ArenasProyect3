@@ -275,35 +275,35 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(47, 523);
+            this.label12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(43, 524);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(150, 15);
+            this.label12.Size = new System.Drawing.Size(127, 13);
             this.label12.TabIndex = 1999;
             this.label12.Text = "BÚSQUEDA GENERAL POR:";
             // 
             // cboBusquedaOperaciones
             // 
             this.cboBusquedaOperaciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBusquedaOperaciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBusquedaOperaciones.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBusquedaOperaciones.FormattingEnabled = true;
             this.cboBusquedaOperaciones.Items.AddRange(new object[] {
             "DESCRIPCIÓN",
             "ABREVIATURA"});
-            this.cboBusquedaOperaciones.Location = new System.Drawing.Point(210, 520);
+            this.cboBusquedaOperaciones.Location = new System.Drawing.Point(178, 519);
             this.cboBusquedaOperaciones.Margin = new System.Windows.Forms.Padding(4);
             this.cboBusquedaOperaciones.Name = "cboBusquedaOperaciones";
-            this.cboBusquedaOperaciones.Size = new System.Drawing.Size(149, 23);
+            this.cboBusquedaOperaciones.Size = new System.Drawing.Size(149, 22);
             this.cboBusquedaOperaciones.TabIndex = 1998;
             // 
             // txtBusquedaOperaciones
             // 
-            this.txtBusquedaOperaciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusquedaOperaciones.Location = new System.Drawing.Point(367, 520);
+            this.txtBusquedaOperaciones.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusquedaOperaciones.Location = new System.Drawing.Point(335, 520);
             this.txtBusquedaOperaciones.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusquedaOperaciones.Name = "txtBusquedaOperaciones";
-            this.txtBusquedaOperaciones.Size = new System.Drawing.Size(380, 23);
+            this.txtBusquedaOperaciones.Size = new System.Drawing.Size(414, 22);
             this.txtBusquedaOperaciones.TabIndex = 1997;
             this.txtBusquedaOperaciones.TextChanged += new System.EventHandler(this.txtBusquedaOperaciones_TextChanged);
             // 
@@ -318,7 +318,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -406,11 +406,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lblCodigo.Location = new System.Drawing.Point(167, 82);
             this.lblCodigo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(15, 14);
+            this.lblCodigo.Size = new System.Drawing.Size(17, 15);
             this.lblCodigo.TabIndex = 1988;
             this.lblCodigo.Text = "N";
             // 

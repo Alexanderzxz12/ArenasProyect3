@@ -53,85 +53,111 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGA DE DATOS - TIPO DE LINEA
         public void CargarTipoLinea()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLinea,L.Descripcion, IdTipMer, TM.Desciripcion FROM LINEAS L INNER JOIN TIPOMERCADERIAS TM ON TM.IdTipoMercaderias = L.IdTipMer WHERE L.Estado = 1 ORDER BY L.Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoLinea.DisplayMember = "Descripcion";
-            cboTipoLinea.ValueMember = "IdLinea";
-            DataRow row = dt.Rows[0];
-            lblCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
-            cboTipoLinea.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLinea,L.Descripcion, IdTipMer, TM.Desciripcion FROM LINEAS L INNER JOIN TIPOMERCADERIAS TM ON TM.IdTipoMercaderias = L.IdTipMer WHERE L.Estado = 1 ORDER BY L.Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoLinea.DisplayMember = "Descripcion";
+                cboTipoLinea.ValueMember = "IdLinea";
+                DataRow row = dt.Rows[0];
+                lblCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
+                cboTipoLinea.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //EVENTO DE CAMBIO DE DATO EN EL COMBO DE MIS LINEAS
         private void cboTipoLinea_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLinea,Descripcion, IdTipMer, TM.Desciripcion FROM LINEAS L INNER JOIN TIPOMERCADERIAS TM ON TM.IdTipoMercaderias = L.IdTipMer WHERE L.Estado = 1 AND IdLinea = @idlinea ORDER BY L.Descripcion", con);
-            comando.Parameters.AddWithValue("@idlinea", System.Convert.ToString(cboTipoLinea.SelectedValue));
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-
-            if (dt.Rows.Count > 0)
+            try
             {
-                DataRow row = dt.Rows[0];
-                lblCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLinea,Descripcion, IdTipMer, TM.Desciripcion FROM LINEAS L INNER JOIN TIPOMERCADERIAS TM ON TM.IdTipoMercaderias = L.IdTipMer WHERE L.Estado = 1 AND IdLinea = @idlinea ORDER BY L.Descripcion", con);
+                comando.Parameters.AddWithValue("@idlinea", System.Convert.ToString(cboTipoLinea.SelectedValue));
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    lblCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
         }
 
         //BÚSQUEDA DE LINEAS SEGÚN EL TIPO DE MERCADERIA SELECIONARA - EVENTO SELECCIÓN
         private void cboTipoLinea_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarModeloSegunLinea", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@linea", cboTipoLinea.SelectedValue.ToString());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoLineas.DataSource = dt;
-            con.Close();
-
-            datalistadoLineas.Columns[0].Width = 80;
-            datalistadoLineas.Columns[1].Width = 80;
-            datalistadoLineas.Columns[2].Width = 100;
-            datalistadoLineas.Columns[3].Width = 220;
-            datalistadoLineas.Columns[4].Visible = false;
-            datalistadoLineas.Columns[5].Width = 218;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@linea", cboTipoLinea.SelectedValue.ToString());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoLineas.DataSource = dt;
+                con.Close();
+                datalistadoLineas.Columns[0].Width = 80;
+                datalistadoLineas.Columns[1].Width = 80;
+                datalistadoLineas.Columns[2].Width = 100;
+                datalistadoLineas.Columns[3].Width = 220;
+                datalistadoLineas.Columns[4].Visible = false;
+                datalistadoLineas.Columns[5].Width = 218;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //MOSTRAR TODAS MIS LÍNEAS SUGUN EL TIPO DE CUENTA SELECCIOANDO - METODO
         public void Mostrar(int idlinea)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarModeloSegunLinea", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@linea", idlinea);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoLineas.DataSource = dt;
-            con.Close();
-
-            datalistadoLineas.Columns[0].Width = 80;
-            datalistadoLineas.Columns[1].Width = 80;
-            datalistadoLineas.Columns[2].Width = 100;
-            datalistadoLineas.Columns[3].Width = 220;
-            datalistadoLineas.Columns[4].Visible = false;
-            datalistadoLineas.Columns[5].Width = 218;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@linea", idlinea);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoLineas.DataSource = dt;
+                con.Close();
+                datalistadoLineas.Columns[0].Width = 80;
+                datalistadoLineas.Columns[1].Width = 80;
+                datalistadoLineas.Columns[2].Width = 100;
+                datalistadoLineas.Columns[3].Width = 220;
+                datalistadoLineas.Columns[4].Visible = false;
+                datalistadoLineas.Columns[5].Width = 218;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //EVENTO DE DOBLE CLICK PARA EN MI LISTADO DE LINEAS
@@ -141,6 +167,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
             txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
             cboTipoLinea.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
+
             if (datalistadoLineas.SelectedCells[6].Value.ToString() == "NO DEFINIDO")
             {
                 lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
@@ -162,6 +189,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 cboEstado.Text = "INACTIVO";
             }
+
             txtDescripcion.Enabled = false;
             txtAbreviatura.Enabled = false;
 
@@ -194,7 +222,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     repetidoDescripcion = false;
                 }
             }
-
             txtDescripcion.ForeColor = Color.Green;
             repetidoDescripcion = false;
         }
@@ -224,17 +251,24 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //TRAER EL ÚLTIMO REGISTRO INGRESADO PARA GENERARLE LOS ATRIBUTOS AL MODELO
         public void CargarModeloRecienIngresado()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)", con);
-            da.Fill(dt);
-            datalistadoModeloRecienIngresado.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)", con);
+                da.Fill(dt);
+                datalistadoModeloRecienIngresado.DataSource = dt;
+                con.Close();
 
-            lblCodigo.Text = datalistadoModeloRecienIngresado.SelectedCells[0].Value.ToString();
+                lblCodigo.Text = datalistadoModeloRecienIngresado.SelectedCells[0].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //ACCIONES Y FUNCONES DEL SISITEMA------------------------------------------------------
@@ -264,7 +298,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if (repetidoDescripcion == true)
             {
-                MessageBox.Show("No se puede ingresar dos registros iguales", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("No se puede ingresar dos registros iguales.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -274,528 +308,532 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 && ckCamposEspesores1.Checked == false && ckCamposEspesores2.Checked == false && ckCamposDiseñoAcabado1.Checked == false && ckCamposDiseñoAcabado2.Checked == false
                 && ckCamposNTipos1.Checked == false && ckCamposNTipos2.Checked == false && ckVariosO1.Checked == false && ckVariosO2.Checked == false && ckGenerales.Checked == false)
                 {
-                    MessageBox.Show("Debe ingresar todos los campos necesarios para pode continuar", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe ingresar todos los campos necesarios para pode continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                     txtDescripcion.Focus();
                 }
                 else
                 {
-                    try
+                    DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar este modelo?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
                     {
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarModelos", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                        cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
-                        Mostrar(linea);
-
-                        MessageBox.Show("Se ingreso el nuevo registro correctamente", "Registro Nuevo", MessageBoxButtons.OK);
-                        ColorDescripcion();
-
-                        txtDescripcion.Enabled = false;
-                        txtAbreviatura.Enabled = false;
-
-                        btnEditar.Visible = true;
-                        btnEditar2.Visible = false;
-
-                        btnGuardar.Visible = true;
-                        btnGuardar2.Visible = false;
-
-                        cboEstado.SelectedIndex = -1;
-                        Cancelar.Visible = false;
-                        lblCancelar.Visible = false;
-
-                        lblEstadoAtributo.Text = "***";
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-
-                    CargarModeloRecienIngresado();
-
-                    try
-                    {
-                        //INGRESAMOS LOS CAMPOS GENERALES
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarAtributosXModelo", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
-
-                        if (ckCaracteristicas1.Checked == true)
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@campcaracteristicas1", 1);
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("InsertarModelos", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                            cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
+                            cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
+                            Mostrar(linea);
+
+                            MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
+                            ColorDescripcion();
+
+                            txtDescripcion.Enabled = false;
+                            txtAbreviatura.Enabled = false;
+
+                            btnEditar.Visible = true;
+                            btnEditar2.Visible = false;
+
+                            btnGuardar.Visible = true;
+                            btnGuardar2.Visible = false;
+
+                            cboEstado.SelectedIndex = -1;
+                            Cancelar.Visible = false;
+                            lblCancelar.Visible = false;
+
+                            lblEstadoAtributo.Text = "***";
+
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            cmd.Parameters.AddWithValue("@campcaracteristicas1", 0);
+                            MessageBox.Show(ex.Message);
                         }
 
-                        if (ckCaracteristicas2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campcaracteristicas2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campcaracteristicas2", 0);
-                        }
+                        CargarModeloRecienIngresado();
 
-                        if (ckCamposMedida1.Checked == true)
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@campmedidas1", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campmedidas1", 0);
-                        }
+                            //INGRESAMOS LOS CAMPOS GENERALES
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("InsertarAtributosXModelo", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
-                        if (ckCamposMedida2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campmedidas2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campmedidas2", 0);
-                        }
+                            if (ckCaracteristicas1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campcaracteristicas1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campcaracteristicas1", 0);
+                            }
 
-                        if (ckCamposDiametros1.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campdiametro1", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campdiametro1", 0);
-                        }
+                            if (ckCaracteristicas2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campcaracteristicas2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campcaracteristicas2", 0);
+                            }
 
-                        if (ckCamposDiametros2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campdiametro2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campdiametro2", 0);
-                        }
+                            if (ckCamposMedida1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campmedidas1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campmedidas1", 0);
+                            }
 
-                        if (ckCamposFormas1.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campformas1", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campformas1", 0);
-                        }
+                            if (ckCamposMedida2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campmedidas2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campmedidas2", 0);
+                            }
 
-                        if (ckCamposFormas2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campformas2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campformas2", 0);
-                        }
+                            if (ckCamposDiametros1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campdiametro1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campdiametro1", 0);
+                            }
 
-                        if (ckCamposEspesores1.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campespesores1", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campespesores1", 0);
-                        }
+                            if (ckCamposDiametros2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campdiametro2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campdiametro2", 0);
+                            }
 
-                        if (ckCamposEspesores2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campespesores2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campespesores2", 0);
-                        }
+                            if (ckCamposFormas1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campformas1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campformas1", 0);
+                            }
 
-                        if (ckCamposDiseñoAcabado1.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campdiseñoacabados1", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campdiseñoacabados1", 0);
-                        }
+                            if (ckCamposFormas2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campformas2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campformas2", 0);
+                            }
 
-                        if (ckCamposDiseñoAcabado2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campdiseñoacabados2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campdiseñoacabados2", 0);
-                        }
+                            if (ckCamposEspesores1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campespesores1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campespesores1", 0);
+                            }
 
-                        if (ckCamposNTipos1.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campntipos1", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campntipos1", 0);
-                        }
+                            if (ckCamposEspesores2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campespesores2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campespesores2", 0);
+                            }
 
-                        if (ckCamposNTipos2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campntipos2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campntipos2", 0);
-                        }
+                            if (ckCamposDiseñoAcabado1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campdiseñoacabados1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campdiseñoacabados1", 0);
+                            }
 
-                        if (ckVariosO1.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campvarios1", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campvarios1", 0);
-                        }
+                            if (ckCamposDiseñoAcabado2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campdiseñoacabados2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campdiseñoacabados2", 0);
+                            }
 
-                        if (ckVariosO2.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campvarios2", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campvarios2", 0);
-                        }
+                            if (ckCamposNTipos1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campntipos1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campntipos1", 0);
+                            }
 
-                        if (ckGenerales.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@campgenerales", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campgenerales", 0);
-                        }
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                            if (ckCamposNTipos2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campntipos2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campntipos2", 0);
+                            }
 
-                        //INGRESAMOS DETALLES
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("InsertarAtributosXModeloDetalle", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
+                            if (ckVariosO1.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campvarios1", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campvarios1", 0);
+                            }
 
-                        if (cboTipoCaracteristicas1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia1", cboTipoCaracteristicas1.SelectedValue.ToString());
-                        }
+                            if (ckVariosO2.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campvarios2", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campvarios2", 0);
+                            }
 
-                        if (cboTipoCaracteristicas2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia2", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia2", cboTipoCaracteristicas2.SelectedValue.ToString());
-                        }
+                            if (ckGenerales.Checked == true)
+                            {
+                                cmd.Parameters.AddWithValue("@campgenerales", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campgenerales", 0);
+                            }
+                            cmd.ExecuteNonQuery();
+                            con.Close();
 
-                        if (cboTipoCaracteristicas3.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia3", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia3", cboTipoCaracteristicas3.SelectedValue.ToString());
-                        }
+                            //INGRESAMOS DETALLES
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("InsertarAtributosXModeloDetalle", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
-                        if (cboTipoCaracteristicas4.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia4", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomercaderia4", cboTipoCaracteristicas4.SelectedValue.ToString());
-                        }
+                            if (cboTipoCaracteristicas1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia1", cboTipoCaracteristicas1.SelectedValue.ToString());
+                            }
 
-                        if (cboTipoMedida1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida1", cboTipoMedida1.SelectedValue.ToString());
-                        }
+                            if (cboTipoCaracteristicas2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia2", cboTipoCaracteristicas2.SelectedValue.ToString());
+                            }
 
-                        if (cboTipoMedida2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida2", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida2", cboTipoMedida2.SelectedValue.ToString());
-                        }
+                            if (cboTipoCaracteristicas3.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia3", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia3", cboTipoCaracteristicas3.SelectedValue.ToString());
+                            }
 
-                        if (cboTipoMedida3.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida3", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida3", cboTipoMedida3.SelectedValue.ToString());
-                        }
+                            if (cboTipoCaracteristicas4.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia4", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomercaderia4", cboTipoCaracteristicas4.SelectedValue.ToString());
+                            }
 
-                        if (cboTipoMedida4.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida4", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipomedida4", cboTipoMedida4.SelectedValue.ToString());
-                        }
+                            if (cboTipoMedida1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida1", cboTipoMedida1.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiametros1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro1", cboTiposDiametros1.SelectedValue.ToString());
-                        }
+                            if (cboTipoMedida2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida2", cboTipoMedida2.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiametros2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro2", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro2", cboTiposDiametros2.SelectedValue.ToString());
-                        }
+                            if (cboTipoMedida3.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida3", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida3", cboTipoMedida3.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiametros3.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro3", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro3", cboTiposDiametros3.SelectedValue.ToString());
-                        }
+                            if (cboTipoMedida4.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida4", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipomedida4", cboTipoMedida4.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiametros4.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro4", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametro4", cboTiposDiametros4.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiametros1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro1", cboTiposDiametros1.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposFormas1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas1", cboTiposFormas1.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiametros2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro2", cboTiposDiametros2.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposFormas2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas2", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas2", cboTiposFormas2.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiametros3.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro3", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro3", cboTiposDiametros3.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposFormas3.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas3", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas3", cboTiposFormas3.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiametros4.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro4", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametro4", cboTiposDiametros4.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposFormas4.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas4", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoformas4", cboTiposFormas4.SelectedValue.ToString());
-                        }
+                            if (cboTiposFormas1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas1", cboTiposFormas1.SelectedValue.ToString());
+                            }
 
-                        if (cbooTipoEspesores1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores1", cbooTipoEspesores1.SelectedValue.ToString());
-                        }
+                            if (cboTiposFormas2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas2", cboTiposFormas2.SelectedValue.ToString());
+                            }
 
-                        if (cbooTipoEspesores2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores2", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores2", cbooTipoEspesores2.SelectedValue.ToString());
-                        }
+                            if (cboTiposFormas3.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas3", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas3", cboTiposFormas3.SelectedValue.ToString());
+                            }
 
-                        if (cbooTipoEspesores3.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores3", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores3", cbooTipoEspesores3.SelectedValue.ToString());
-                        }
+                            if (cboTiposFormas4.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas4", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoformas4", cboTiposFormas4.SelectedValue.ToString());
+                            }
 
-                        if (cbooTipoEspesores4.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores4", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipoespesores4", cbooTipoEspesores4.SelectedValue.ToString());
-                        }
+                            if (cbooTipoEspesores1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores1", cbooTipoEspesores1.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiseñosAcabados1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados1", cboTiposDiseñosAcabados1.SelectedValue.ToString());
-                        }
+                            if (cbooTipoEspesores2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores2", cbooTipoEspesores2.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiseñosAcabados2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados2", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados2", cboTiposDiseñosAcabados2.SelectedValue.ToString());
-                        }
+                            if (cbooTipoEspesores3.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores3", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores3", cbooTipoEspesores3.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiseñosAcabados3.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados3", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados3", cboTiposDiseñosAcabados3.SelectedValue.ToString());
-                        }
+                            if (cbooTipoEspesores4.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores4", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipoespesores4", cbooTipoEspesores4.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposDiseñosAcabados4.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados4", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipodiametroacabados4", cboTiposDiseñosAcabados4.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiseñosAcabados1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados1", cboTiposDiseñosAcabados1.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposNTipos1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos1", cboTiposNTipos1.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiseñosAcabados2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados2", cboTiposDiseñosAcabados2.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposNTipos2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos2", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos2", cboTiposNTipos2.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiseñosAcabados3.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados3", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados3", cboTiposDiseñosAcabados3.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposNTipos3.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos3", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos3", cboTiposNTipos3.SelectedValue.ToString());
-                        }
+                            if (cboTiposDiseñosAcabados4.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados4", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipodiametroacabados4", cboTiposDiseñosAcabados4.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposNTipos4.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos4", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtipontipos4", cboTiposNTipos4.SelectedValue.ToString());
-                        }
+                            if (cboTiposNTipos1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos1", cboTiposNTipos1.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposVariosO1.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtpovarios1", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@idtpovarios1", cboTiposVariosO1.SelectedValue.ToString());
-                        }
+                            if (cboTiposNTipos2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos2", cboTiposNTipos2.SelectedValue.ToString());
+                            }
 
-                        if (cboTiposVariosO2.SelectedValue == null)
-                        {
-                            cmd.Parameters.AddWithValue("@idtpovarios2", DBNull.Value);
+                            if (cboTiposNTipos3.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos3", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos3", cboTiposNTipos3.SelectedValue.ToString());
+                            }
+
+                            if (cboTiposNTipos4.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos4", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtipontipos4", cboTiposNTipos4.SelectedValue.ToString());
+                            }
+
+                            if (cboTiposVariosO1.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtpovarios1", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtpovarios1", cboTiposVariosO1.SelectedValue.ToString());
+                            }
+
+                            if (cboTiposVariosO2.SelectedValue == null)
+                            {
+                                cmd.Parameters.AddWithValue("@idtpovarios2", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@idtpovarios2", cboTiposVariosO2.SelectedValue.ToString());
+                            }
+
+                            if (ckGenerales.Checked == false)
+                            {
+                                cmd.Parameters.AddWithValue("@campogeneral", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@campogeneral", DBNull.Value);
+                            }
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            //EDITAMOS EL ESTADO DE MI MODELO
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("EditarEstadoAtributoModelo", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
+                            Mostrar(linea);
+
+                            lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
+
+                            MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
+                            Limpiar();
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            cmd.Parameters.AddWithValue("@idtpovarios2", cboTiposVariosO2.SelectedValue.ToString());
+                            MessageBox.Show(ex.Message);
                         }
-
-                        if (ckGenerales.Checked == false)
-                        {
-                            cmd.Parameters.AddWithValue("@campogeneral", DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@campogeneral", DBNull.Value);
-                        }
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        //EDITAMOS EL ESTADO DE MI MODELO
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("EditarEstadoAtributoModelo", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
-                        Mostrar(linea);
-
-                        lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
-
-                        MessageBox.Show("Se ingreso el nuevo registro correctamente", "Registro Nuevo", MessageBoxButtons.OK);
-                        Limpiar();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -806,7 +844,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if (lblCodigo.Text == "N" || lblCodigo.Text == "")
             {
-                MessageBox.Show("Debe seleccionar un registro para poder editar", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -827,58 +865,62 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || lblCodigo.Text != "N")
             {
-                try
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar este modelo?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EditarModelo", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                    cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                    cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
-
-                    if (cboEstado.Text == "ACTIVO")
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@estado", 1);
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("EditarModelo", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
+                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
+                        cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+
+                        if (cboEstado.Text == "ACTIVO")
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 1);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 0);
+                        }
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
+                        Mostrar(linea);
+
+                        MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
+                        ColorDescripcion();
+
+                        txtDescripcion.Enabled = true;
+                        txtAbreviatura.Enabled = false;
+
+                        btnEditar.Visible = true;
+                        btnEditar2.Visible = false;
+
+                        btnGuardar.Visible = true;
+                        btnGuardar2.Visible = false;
+
+                        cboEstado.SelectedIndex = -1;
+                        Cancelar.Visible = false;
+                        lblCancelar.Visible = false;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        cmd.Parameters.AddWithValue("@estado", 0);
+                        MessageBox.Show(ex.Message);
                     }
-
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
-                    int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
-                    Mostrar(linea);
-
-                    MessageBox.Show("Se edito correctamente el registro", "Edición", MessageBoxButtons.OK);
-                    ColorDescripcion();
-
-                    txtDescripcion.Enabled = true;
-                    txtAbreviatura.Enabled = false;
-
-                    btnEditar.Visible = true;
-                    btnEditar2.Visible = false;
-
-                    btnGuardar.Visible = true;
-                    btnGuardar2.Visible = false;
-
-                    cboEstado.SelectedIndex = -1;
-                    Cancelar.Visible = false;
-                    lblCancelar.Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("Los campos no pueden estar vacios", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -957,7 +999,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if (lblEstadoAtributo.Text == "MODELO YA DEFINIDO" || lblEstadoAtributo.Text == "***")
             {
-                MessageBox.Show("Este modelo ya ha sido definido", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Este modelo ya ha sido definido.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -978,16 +1020,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE CARACTERISTUCAS-------------------------
         public void CargarTiposCaracteriticas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoCaracteristicas,Descripcion FROM TiposCaracteristicas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoCaracteristicas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoCaracteristicas,Descripcion FROM TiposCaracteristicas WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoCaracteristicas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS CARACTERISTICAS 1
@@ -1008,7 +1057,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCaracteristicas1.Checked = false;
             }
         }
@@ -1031,7 +1080,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCaracteristicas2.Checked = false;
             }
         }
@@ -1039,16 +1088,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE MEDIDAS--------------------------
         public void CargarTiposMedidas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMedidas,Descripcion FROM TiposMedidas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoMedidas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoMedidas,Descripcion FROM TiposMedidas WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoMedidas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS MEDIDAS 1
@@ -1069,7 +1125,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposMedida1.Checked = false;
             }
         }
@@ -1092,7 +1148,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposMedida2.Checked = false;
             }
         }
@@ -1100,16 +1156,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE DIAMETRO--------------------------
         public void CargarTiposDiametros(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoDiametros,Descripcion FROM TiposDiametros WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoDiametros";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoDiametros,Descripcion FROM TiposDiametros WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoDiametros";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS DIAMETRO 1
@@ -1130,7 +1193,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposDiametros1.Checked = false;
             }
         }
@@ -1153,7 +1216,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposDiametros2.Checked = false;
             }
         }
@@ -1161,16 +1224,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE FORMAS--------------------------
         public void CargarTiposFormas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoFormas,Descripcion FROM TiposFormas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoFormas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoFormas,Descripcion FROM TiposFormas WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoFormas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS FORMAS 1
@@ -1191,7 +1261,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposFormas1.Checked = false;
             }
         }
@@ -1214,7 +1284,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposFormas2.Checked = false;
             }
         }
@@ -1222,16 +1292,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE ESPESORES--------------------------
         public void CargarTiposEspesores(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoEspesores,Descripcion FROM TiposEspesores WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoEspesores";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoEspesores,Descripcion FROM TiposEspesores WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoEspesores";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS ESPESORES 1
@@ -1252,7 +1329,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposEspesores1.Checked = false;
             }
         }
@@ -1275,7 +1352,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposEspesores2.Checked = false;
             }
         }
@@ -1283,16 +1360,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE DISEÑO Y ACABADOS--------------------------
         public void CargarTiposDiseñoAcabado(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoDiseñoAcabado,Descripcion FROM TiposDiseñoAcabado WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoDiseñoAcabado";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoDiseñoAcabado,Descripcion FROM TiposDiseñoAcabado WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoDiseñoAcabado";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS DISEÑO ACABADO 1
@@ -1313,7 +1397,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposDiseñoAcabado1.Checked = false;
             }
         }
@@ -1336,7 +1420,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposDiseñoAcabado2.Checked = false;
             }
         }
@@ -1344,16 +1428,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE TIPOS U NÚMERO DE TIPOS--------------------------
         public void CargarTiposNTipos(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoNTipos,Descripcion FROM TiposNTipos WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoNTipos";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoNTipos,Descripcion FROM TiposNTipos WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoNTipos";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS TIPOS Y NÚMERO 1
@@ -1374,7 +1465,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposNTipos1.Checked = false;
             }
         }
@@ -1397,7 +1488,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckCamposNTipos2.Checked = false;
             }
         }
@@ -1405,16 +1496,23 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CARGAS DE VARIOS Y 0--------------------------
         public void CargarTiposVariosO(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoVariosO,Descripcion FROM TiposVariosO WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoVariosO";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoVariosO,Descripcion FROM TiposVariosO WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoVariosO";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //SELECCION DEL GRUPO DE CAMPOS VARIOS Y 0 1
@@ -1434,7 +1532,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckVariosO1.Checked = false;
             }
         }
@@ -1456,7 +1554,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckVariosO2.Checked = false;
             }
         }
@@ -1480,7 +1578,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre general o campos especificos", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("El modelo solo puede tener dos definiciones, campo libre(general) o campos especificos.", "Validación del Sistema", MessageBoxButtons.OK);
                 ckGenerales.Checked = false;
             }
         }
@@ -1528,50 +1626,56 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BUSQUEDA DE MODELO------------------------------------------------------------
         private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaModelo.Text == "DESCRIPCIÓN")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BusquedaModeloPorDescripcion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaModelo.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoLineas.DataSource = dt;
-                con.Close();
-
-                datalistadoLineas.Columns[0].Width = 80;
-                datalistadoLineas.Columns[1].Width = 80;
-                datalistadoLineas.Columns[2].Width = 100;
-                datalistadoLineas.Columns[3].Width = 220;
-                datalistadoLineas.Columns[4].Visible = false;
-                datalistadoLineas.Columns[5].Width = 218;
+                if (cboBusquedaModelo.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BusquedaModeloPorDescripcion", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaModelo.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoLineas.DataSource = dt;
+                    con.Close();
+                    OrdenarColumnasModelo(datalistadoLineas);
+                }
+                else
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BusquedaModeloPorAbreviatura", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@abreviatura", txtBusquedaModelo.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoLineas.DataSource = dt;
+                    con.Close();
+                    OrdenarColumnasModelo(datalistadoLineas);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BusquedaModeloPorAbreviatura", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@abreviatura", txtBusquedaModelo.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoLineas.DataSource = dt;
-                con.Close();
-
-                datalistadoLineas.Columns[0].Width = 80;
-                datalistadoLineas.Columns[1].Width = 80;
-                datalistadoLineas.Columns[2].Width = 100;
-                datalistadoLineas.Columns[3].Width = 220;
-                datalistadoLineas.Columns[4].Visible = false;
-                datalistadoLineas.Columns[5].Width = 218;
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        //FUNCION PARA ORDENAR MIS COLUMNAS DE MI BUSQUEDAS
+        public void OrdenarColumnasModelo(DataGridView DGV)
+        {
+            DGV.Columns[0].Width = 80;
+            DGV.Columns[1].Width = 80;
+            DGV.Columns[2].Width = 100;
+            DGV.Columns[3].Width = 220;
+            DGV.Columns[4].Visible = false;
+            DGV.Columns[5].Width = 218;
         }
     }
 }

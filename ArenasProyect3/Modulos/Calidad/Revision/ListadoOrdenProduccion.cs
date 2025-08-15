@@ -180,13 +180,15 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             da.Fill(dt);
             datalistadoHistorial.DataSource = dt;
             con.Close();
-            datalistadoHistorial.Columns[0].Width = 40;
-            datalistadoHistorial.Columns[1].Width = 80;
-            datalistadoHistorial.Columns[2].Width = 70;
-            datalistadoHistorial.Columns[3].Width = 80;
-            datalistadoHistorial.Columns[4].Width = 300;
+            //REORDENAMIENTO DE COLUMNAS
+            datalistadoHistorial.Columns[1].Width = 60;
+            datalistadoHistorial.Columns[2].Width = 50;
+            datalistadoHistorial.Columns[3].Width = 300;
+            datalistadoHistorial.Columns[4].Width = 80;
             datalistadoHistorial.Columns[5].Width = 80;
-            //alternarColorFilas(datalistadoHistorial);
+            //COLUMNAS NO VISIBLES
+            datalistadoHistorial.Columns[0].Visible = false;
+            ColoresListadoCantidades();
 
 
             //CONTAR CUANTAS CANTIDADES HAY
@@ -357,10 +359,11 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
                     txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
                     txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[8].Value.ToString();
-                    txtCantidadTotalPedido.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
+                    txtCantidadTotalPedido.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
                     int IdOrdenProduccion = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value.ToString());
                     MostrarCantidadesSegunOP(IdOrdenProduccion);
-                    txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadTotalPedido.Text) - Convert.ToInt32(datalistadoTodasOP.SelectedCells[13].Value.ToString()));
+                    lblCantidadRealizada.Text = datalistadoTodasOP.SelectedCells[13].Value.ToString();
+                    txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadTotalPedido.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
                     txtPesoTeorico.Text = "0.00";
                     txtPesoReal.Text = "0.00";
                     txtObservaciones.Text = "";
@@ -372,6 +375,18 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         private void btnCerrarDetallesOPCantidades_Click(object sender, EventArgs e)
         {
             panelControlCalidad.Visible = false;
+            LimpiarCantidades();
+            MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+        }
+
+        //CERRAR MI PANEL DE CONTROL DE CALIDAD
+        private void btnRegresarControl_Click(object sender, EventArgs e)
+        {
+            panelControlCalidad.Visible = false;
+            LimpiarCantidades();
+            MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
         }
 
         //MOSTRAR OP SEGUN LAS FECHAS
@@ -465,9 +480,9 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoTodasOP.CurrentRow != null)
             {
-                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0")
+                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "")
                 {
-                    MessageBox.Show("Debe ingresar una cantidad válida para poder aprobar o desaprobar.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe ingresar una cantidad u obserbación válida para poder aprobar o desaprobar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else if (Convert.ToInt32(txtCantidadInspeccionar.Text) > Convert.ToInt32(txtCantidadRestante.Text))
                 {
@@ -489,13 +504,16 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                             cmd.Parameters.AddWithValue("@idOrdenProduccion", Convert.ToInt32(lblIdOP.Text));
                             cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(txtCantidadInspeccionar.Text));
                             cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                            cmd.Parameters.AddWithValue("@pesoTeorico", Convert.ToDecimal(txtPesoTeorico.Text));
+                            cmd.Parameters.AddWithValue("@pesoReal", Convert.ToDecimal(txtPesoReal.Text));
+                            cmd.Parameters.AddWithValue("@observaciones", txtObservaciones.Text);
+                            cmd.Parameters.AddWithValue("@estadoAD", 1);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
                             MessageBox.Show("Cantidd revisada correctamente.", "Validación del Sistema");
-                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-                            //LimpiarCantidades();
+                            txtCantidadRestante.Text = Convert.ToString(Convert.ToInt16(txtCantidadRestante.Text) - Convert.ToInt16(txtCantidadInspeccionar.Text));
+                            LimpiarCantidades();
                         }
                         catch (Exception ex)
                         {
@@ -513,9 +531,107 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         //DESAPROBAR LAS CANTIDADES INGRESADAS
         private void btnDesaprobar_Click(object sender, EventArgs e)
         {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoTodasOP.CurrentRow != null)
+            {
+                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "")
+                {
+                    MessageBox.Show("Debe ingresar una cantidad u obserbación válida para poder aprobar o desaprobar.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else if (Convert.ToInt32(txtCantidadInspeccionar.Text) > Convert.ToInt32(txtCantidadRestante.Text))
+                {
+                    MessageBox.Show("No se puede revisar más de la cantidad restante", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult boton = MessageBox.Show("¿Realmente desea desaprobar esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
+                    {
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("Calidad_IngresarRegistroCantidad", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOrdenProduccion", Convert.ToInt32(lblIdOP.Text));
+                            cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(txtCantidadInspeccionar.Text));
+                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                            cmd.Parameters.AddWithValue("@pesoTeorico", Convert.ToDecimal(txtPesoTeorico.Text));
+                            cmd.Parameters.AddWithValue("@pesoReal", Convert.ToDecimal(txtPesoReal.Text));
+                            cmd.Parameters.AddWithValue("@observaciones", txtObservaciones.Text);
+                            cmd.Parameters.AddWithValue("@estadoAD", 0);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
 
+                            MessageBox.Show("Cantidd revisada correctamente.", "Validación del Sistema");
+                            txtCantidadRestante.Text = Convert.ToString(Convert.ToInt16(txtCantidadRestante.Text) - Convert.ToInt16(txtCantidadInspeccionar.Text));
+                            LimpiarCantidades();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema");
+            }
         }
 
+        //LIMPIAR MIS DATOS DE MI INGRESO DE CANTIDADES
+        public void LimpiarCantidades()
+        {
+            txtCantidadInspeccionar.Text = "";
+            txtPesoReal.Text = "0.00";
+            MostrarCantidadesSegunOP(Convert.ToInt16(lblIdOP.Text));
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
+        public void ColoresListadoCantidades()
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= datalistadoHistorial.RowCount - 1; i++)
+                {
+                    if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "APROBADO")
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "DESAPROBADO")
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
+
+        //SELECCIONAR MI REGISTRO SI ESTA DESAPROBADO
+        private void datalistadoHistorial_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoHistorial.SelectedCells[5].Value.ToString() == "DESAPROBADO")
+            {
+                btnGenerarCSM.Visible = true;
+                lblGenerarCSM.Visible = true;
+            }
+            else
+            {
+                btnGenerarCSM.Visible = false;
+                lblGenerarCSM.Visible = false;
+            }
+        }
 
         //VALIDAR QUE SOLO INGRESE NÚMEROS ENTEROS
         private void txtCantidadInspeccionar_KeyPress(object sender, KeyPressEventArgs e)
@@ -526,9 +642,5 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 e.Handled = true; // Bloquea el carácter
             }
         }
-
-
-
-
     }
 }

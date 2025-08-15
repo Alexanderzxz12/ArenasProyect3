@@ -73,7 +73,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.btnMaquinarias.FlatAppearance.BorderSize = 0;
             this.btnMaquinarias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaquinarias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaquinarias.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaquinarias.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnMaquinarias.Image = ((System.Drawing.Image)(resources.GetObject("btnMaquinarias.Image")));
             this.btnMaquinarias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -91,7 +91,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.btnOperaciones.FlatAppearance.BorderSize = 0;
             this.btnOperaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOperaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOperaciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOperaciones.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOperaciones.Image = ((System.Drawing.Image)(resources.GetObject("btnOperaciones.Image")));
             this.btnOperaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -109,7 +109,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.btnSubproductoPorOperacion.FlatAppearance.BorderSize = 0;
             this.btnSubproductoPorOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubproductoPorOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubproductoPorOperacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubproductoPorOperacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubproductoPorOperacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubproductoPorOperacion.Location = new System.Drawing.Point(0, 394);
@@ -125,7 +125,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.btnProductoPorOperacion.FlatAppearance.BorderSize = 0;
             this.btnProductoPorOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProductoPorOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductoPorOperacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductoPorOperacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnProductoPorOperacion.Image = ((System.Drawing.Image)(resources.GetObject("btnProductoPorOperacion.Image")));
             this.btnProductoPorOperacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -143,7 +143,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.btnModelo.FlatAppearance.BorderSize = 0;
             this.btnModelo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModelo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModelo.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnModelo.Image = ((System.Drawing.Image)(resources.GetObject("btnModelo.Image")));
             this.btnModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -161,7 +161,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.btnLinea.FlatAppearance.BorderSize = 0;
             this.btnLinea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLinea.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLinea.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinea.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLinea.Image = ((System.Drawing.Image)(resources.GetObject("btnLinea.Image")));
             this.btnLinea.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -179,7 +179,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.btnCuenta.FlatAppearance.BorderSize = 0;
             this.btnCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCuenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCuenta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCuenta.Image = ((System.Drawing.Image)(resources.GetObject("btnCuenta.Image")));
             this.btnCuenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

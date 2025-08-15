@@ -169,7 +169,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(269, 50);
+            this.label1.Location = new System.Drawing.Point(273, 50);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(460, 42);
@@ -647,7 +647,7 @@
             this.panelLogin.Controls.Add(this.btnIniciarSesion);
             this.panelLogin.Controls.Add(this.btnCambiarusuarioIcono);
             this.panelLogin.Controls.Add(this.lblCambiarCuenta);
-            this.panelLogin.Location = new System.Drawing.Point(206, 55);
+            this.panelLogin.Location = new System.Drawing.Point(206, 60);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(586, 381);
             this.panelLogin.TabIndex = 2003;
@@ -659,7 +659,7 @@
             this.panelBienvenida.Controls.Add(this.lblNombre);
             this.panelBienvenida.Controls.Add(this.pictureBox2);
             this.panelBienvenida.Controls.Add(this.label11);
-            this.panelBienvenida.Location = new System.Drawing.Point(159, 100);
+            this.panelBienvenida.Location = new System.Drawing.Point(159, 80);
             this.panelBienvenida.Name = "panelBienvenida";
             this.panelBienvenida.Size = new System.Drawing.Size(266, 176);
             this.panelBienvenida.TabIndex = 9;
