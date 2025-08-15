@@ -406,11 +406,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             ExportarDatos(datalistadoLineas);
         }
-        public void FiltrarLineas(string busquedalinea)
+        public void FiltrarLineas(string busquedalinea,DataGridView dgv, ComboBox cbo)
         {
             try
             {
-                if (cboBusquedaLinea.Text == "DESCRIPCIÓN")
+                if (cbo.Text == "DESCRIPCIÓN")
                 {
                     DataTable dt = new DataTable();
                     SqlConnection con = new SqlConnection();
@@ -422,9 +422,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     cmd.Parameters.AddWithValue("@descripcion", busquedalinea);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
+                    dgv.DataSource = dt;
                     con.Close();
-                    ReordenarFilas(datalistadoLineas);
+                    ReordenarFilas(dgv);
                 }
                 else
                 {
@@ -438,9 +438,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     cmd.Parameters.AddWithValue("@abreviatura", busquedalinea);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
+                    dgv.DataSource = dt;
                     con.Close();
-                    ReordenarFilas(datalistadoLineas);
+                    ReordenarFilas(dgv);
                 }
             }
             catch (Exception ex)
@@ -451,7 +451,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BÚSQUEDA DE LINEAS SEGUN LA DESCIPCIÓN O LA ABREVIATURA
         private void txtBusquedaLinea_TextChanged(object sender, EventArgs e)
         {
-            FiltrarLineas(txtBusquedaLinea.Text);
+            FiltrarLineas(txtBusquedaLinea.Text,datalistadoLineas,cboBusquedaLinea);
         }
 
         //METODO PARA EXPORTAR LAS CUENTAS A EXCEL
