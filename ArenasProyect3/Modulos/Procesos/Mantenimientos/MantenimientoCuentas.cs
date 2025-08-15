@@ -267,7 +267,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardar.Enabled = true;
             }
         }
-        private void EditarCuenta()
+        private void EditarCuentas()
         {
             if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || txtCodSunat.Text != "" || lblCodigo.Text != "N")
             {
@@ -331,7 +331,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EDITAR UNA CUENTA DE MI BASE DE DATOS
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarCuenta();
+            EditarCuentas();
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO

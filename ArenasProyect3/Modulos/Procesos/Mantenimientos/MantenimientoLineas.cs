@@ -226,8 +226,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblCodigo.Text = "N";
         }
 
-        //GUARDAR UNA NUEVA LÍNEA EN MI BASE DE DATOS
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        private void AgregarLineas()
         {
             if (repetidoDescripcion == true)
             {
@@ -246,11 +245,20 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarLineas", con);
+                            cmd = new SqlCommand("Lineas_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
                             cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
                             cmd.Parameters.AddWithValue("@codigotipomercaderia", cboTipoMercaderia.SelectedValue.ToString());
+                            if(cboEstado.Text == "ACTIVO")
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 0);
+                            }
+
                             cmd.ExecuteNonQuery();
                             con.Close();
 
@@ -271,6 +279,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
+        }
+        //GUARDAR UNA NUEVA LÍNEA EN MI BASE DE DATOS
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarLineas();
         }
 
         //HABILITAR EDICIÓN PARA MODIFICAR UNA LÍNEA YA INGRESADA
@@ -293,9 +306,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardarF.Enabled = true;
             }
         }
-
-        //EDITAR UNA CUENTA DE MI BASE DE DATOS
-        private void btnEditar2_Click(object sender, EventArgs e)
+        private void EditarLineas()
         {
             if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || lblCodigo.Text != "N")
             {
@@ -308,7 +319,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarLinea", con);
+                        cmd = new SqlCommand("Lineas_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
                         cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
@@ -344,6 +355,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+        //EDITAR UNA CUENTA DE MI BASE DE DATOS
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarLineas();
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
@@ -390,9 +406,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             ExportarDatos(datalistadoLineas);
         }
-
-        //BÚSQUEDA DE LINEAS SEGUN LA DESCIPCIÓN O LA ABREVIATURA
-        private void txtBusquedaLinea_TextChanged(object sender, EventArgs e)
+        private void FiltrarLineas()
         {
             try
             {
@@ -403,7 +417,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaLineaPorDescripcion", con);
+                    cmd = new SqlCommand("Lineas_BusquedaPorDescripcion", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLinea.Text);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -419,7 +433,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaLineaPorAbreviatura", con);
+                    cmd = new SqlCommand("Lineas_BusquedaPorAbreviatura", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@abreviatura", txtBusquedaLinea.Text);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -433,6 +447,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        //BÚSQUEDA DE LINEAS SEGUN LA DESCIPCIÓN O LA ABREVIATURA
+        private void txtBusquedaLinea_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarLineas();
         }
 
         //METODO PARA EXPORTAR LAS CUENTAS A EXCEL
