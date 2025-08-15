@@ -1634,11 +1634,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             panelDefinicionAtributos.Visible = false;
         }
 
-        public void FiltrarModelos(string busquedamodelo)
+        public void FiltrarModelos(string busquedamodelo,DataGridView dgv, ComboBox cbo)
         {
             try
             {
-                if (cboBusquedaModelo.Text == "DESCRIPCIÓN")
+                if (cbo.Text == "DESCRIPCIÓN")
                 {
                     DataTable dt = new DataTable();
                     SqlConnection con = new SqlConnection();
@@ -1650,9 +1650,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     cmd.Parameters.AddWithValue("@descripcion", busquedamodelo);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
+                    dgv.DataSource = dt;
                     con.Close();
-                    OrdenarColumnasModelo(datalistadoLineas);
+                    OrdenarColumnasModelo(dgv);
                 }
                 else
                 {
@@ -1666,9 +1666,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     cmd.Parameters.AddWithValue("@abreviatura", busquedamodelo);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
+                    dgv.DataSource = dt;
                     con.Close();
-                    OrdenarColumnasModelo(datalistadoLineas);
+                    OrdenarColumnasModelo(dgv);
                 }
             }
             catch (Exception ex)
@@ -1680,7 +1680,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BUSQUEDA DE MODELO------------------------------------------------------------
         private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
         {
-            FiltrarModelos(txtBusquedaModelo.Text);
+            FiltrarModelos(txtBusquedaModelo.Text,datalistadoLineas,cboBusquedaModelo);
         }
 
         //FUNCION PARA ORDENAR MIS COLUMNAS DE MI BUSQUEDAS
