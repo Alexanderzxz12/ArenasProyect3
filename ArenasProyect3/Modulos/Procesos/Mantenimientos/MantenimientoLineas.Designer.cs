@@ -304,6 +304,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboBusquedaLinea.Name = "cboBusquedaLinea";
             this.cboBusquedaLinea.Size = new System.Drawing.Size(149, 22);
             this.cboBusquedaLinea.TabIndex = 1985;
+            this.cboBusquedaLinea.SelectedIndexChanged += new System.EventHandler(this.cboBusquedaLinea_SelectedIndexChanged);
             // 
             // txtBusquedaLinea
             // 

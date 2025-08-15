@@ -426,6 +426,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     con.Close();
                     ReordenarFilas(dgv);
                 }
+                else if(txtBusquedaLinea.Text == "")
+                {
+                    Mostrar(Convert.ToInt32(cboTipoMercaderia.SelectedValue.ToString()));
+                }
                 else
                 {
                     DataTable dt = new DataTable();
@@ -481,6 +485,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
             }
             exportarexcel.Visible = true;
+        }
+
+        private void cboBusquedaLinea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaLinea.Text = "";
         }
     }
 }
