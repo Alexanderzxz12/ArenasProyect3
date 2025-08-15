@@ -68,8 +68,8 @@ namespace ArenasProyect3.Modulos.Logistica
             //FUNCION PARA CARGAR DATOS DEL USUARIO
             DatosUsuario();
             CargarNovedades();
-            CargarReportePedidos();
-            CargarReporteOrdenProduccion();
+            //CargarReportePedidos();
+            //CargarReporteOrdenProduccion();
 
             //AJUSTAR FECHAS DESDE EL PRIEMRO AL ULTIMO DEIA DEL MES
             DateTime date = DateTime.Now;
@@ -235,13 +235,13 @@ namespace ArenasProyect3.Modulos.Logistica
         //BUSQUEDA DE REPORTES SEGÚN LA FECH ASELECCIONADA - DESDE
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            CargarReportePedidos();
+            //CargarReportePedidos();
         }
 
         //BUSQUEDA DE REPORTES SEGÚN LA FECH ASELECCIONADA - HASTA
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            CargarReportePedidos();
+            //CargarReportePedidos();
         }
 
         //BLOQUEO DE ACCESOS------------------------------------------------------
@@ -490,44 +490,44 @@ namespace ArenasProyect3.Modulos.Logistica
         }
 
         //BUSQUEDA DE PEDIDOS POR FECHA
-        public void CargarReportePedidos()
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("SP_LISTADO_GENERA_PEDIDO_FECHAS", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@DESCLI", "");
-            cmd.Parameters.AddWithValue("@DESDE", DesdeFecha.Value);
-            cmd.Parameters.AddWithValue("@HASTA", HastaFecha.Value);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaPedidoPorFecha_Externo.DataSource = dt;
-            con.Close();
-            lblReportePedidos.Text = Convert.ToString(datalistadoBusquedaPedidoPorFecha_Externo.RowCount);
-        }
+        //public void CargarReportePedidos()
+        //{
+        //    DataTable dt = new DataTable();
+        //    SqlConnection con = new SqlConnection();
+        //    con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd = new SqlCommand("SP_LISTADO_GENERA_PEDIDO_FECHAS", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@DESCLI", "");
+        //    cmd.Parameters.AddWithValue("@DESDE", DesdeFecha.Value);
+        //    cmd.Parameters.AddWithValue("@HASTA", HastaFecha.Value);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(dt);
+        //    datalistadoBusquedaPedidoPorFecha_Externo.DataSource = dt;
+        //    con.Close();
+        //    lblReportePedidos.Text = Convert.ToString(datalistadoBusquedaPedidoPorFecha_Externo.RowCount);
+        //}
 
         //BUSQUEDA DE PEDIDOS POR FECHA
-        public void CargarReporteOrdenProduccion()
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("SP_LISTADO_ORDEN_PRODUCCION_FECHAS", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@DESCLI", "");
-            cmd.Parameters.AddWithValue("@DESDE", DesdeFecha.Value);
-            cmd.Parameters.AddWithValue("@HASTA", HastaFecha.Value);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaOrdenProduccionPorFecha_Externo.DataSource = dt;
-            con.Close();
-            lblReporteOrdenesProduccion.Text = Convert.ToString(datalistadoBusquedaOrdenProduccionPorFecha_Externo.RowCount);
-        }
+        //public void CargarReporteOrdenProduccion()
+        //{
+        //    DataTable dt = new DataTable();
+        //    SqlConnection con = new SqlConnection();
+        //    con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd = new SqlCommand("SP_LISTADO_ORDEN_PRODUCCION_FECHAS", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@DESCLI", "");
+        //    cmd.Parameters.AddWithValue("@DESDE", DesdeFecha.Value);
+        //    cmd.Parameters.AddWithValue("@HASTA", HastaFecha.Value);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(dt);
+        //    datalistadoBusquedaOrdenProduccionPorFecha_Externo.DataSource = dt;
+        //    con.Close();
+        //    lblReporteOrdenesProduccion.Text = Convert.ToString(datalistadoBusquedaOrdenProduccionPorFecha_Externo.RowCount);
+        //}
 
         //VIZUALIZAR DATOS EXCEL PEDIDO--------------------------------------------------------------------
         public void MostrarExcelPedido()

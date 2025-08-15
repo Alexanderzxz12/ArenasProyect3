@@ -55,11 +55,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             try
             {
                 DataTable dt = new DataTable();
-                SqlDataAdapter da;
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter("SELECT Case When Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End As ESTADO, IdTipoMercaderias AS [CÓDIGO], Desciripcion AS [NOMBRE], Abreviatura AS [ABREVIATURA], CodSunet AS [C. SUNAT] FROM TIPOMERCADERIAS", con);
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cuentas_Mostrar", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 datalistadoTipomer.DataSource = dt;
                 con.Close();
@@ -172,8 +174,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblCodigo.Text = "N";
         }
 
-        //GUARDAR UNA NUEVA CUENTA EN MI BASE DE DATOS
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        private void AgregarCuentas()
         {
             if (repetidoDescripcion == true)
             {
@@ -192,11 +193,19 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarCuentas", con);
+                            cmd = new SqlCommand("Cuentas_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
                             cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
                             cmd.Parameters.AddWithValue("@codigosunat", txtCodSunat.Text);
+                            if(cboEstado.Text == "ACTIVO")
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 0);
+                            }
                             cmd.ExecuteNonQuery();
                             con.Close();
                             Mostrar();
@@ -231,6 +240,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
+        //GUARDAR UNA NUEVA CUENTA EN MI BASE DE DATOS
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarCuentas();
+        }
+
         //HABILITAR EDICIÓN PARA MODIFICAR UNA CUENTA YA INGRESADA
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -252,9 +267,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardar.Enabled = true;
             }
         }
-
-        //EDITAR UNA CUENTA DE MI BASE DE DATOS
-        private void btnEditar2_Click(object sender, EventArgs e)
+        private void EditarCuenta()
         {
             if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || txtCodSunat.Text != "" || lblCodigo.Text != "N")
             {
@@ -267,7 +280,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarCuenta", con);
+                        cmd = new SqlCommand("Cuentas_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
                         cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
@@ -313,6 +326,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+
+        //EDITAR UNA CUENTA DE MI BASE DE DATOS
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarCuenta();
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
