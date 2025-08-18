@@ -299,33 +299,23 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckCamposMedida2 = new System.Windows.Forms.CheckBox();
             this.ckCamposDiametros2 = new System.Windows.Forms.CheckBox();
             this.ckCaracteristicas2 = new System.Windows.Forms.CheckBox();
-            this.btnCancelarPlano = new System.Windows.Forms.PictureBox();
             this.txtFile = new System.Windows.Forms.TextBox();
-            this.btnCargarPdf = new System.Windows.Forms.PictureBox();
             this.lblCodigoReferenciaPlano = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.btnAbrirDatosAnexos = new System.Windows.Forms.PictureBox();
-            this.btnSalir = new System.Windows.Forms.PictureBox();
-            this.btnGuardar = new System.Windows.Forms.PictureBox();
             this.panelCamposGenerales = new System.Windows.Forms.Panel();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panelNuevoValores = new System.Windows.Forms.Panel();
             this.label76 = new System.Windows.Forms.Label();
-            this.btnCancelarNuevosValores = new System.Windows.Forms.PictureBox();
             this.label66 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel20 = new System.Windows.Forms.Panel();
-            this.lblCodigoTipoIngreso = new System.Windows.Forms.Label();
             this.txtTipoOngreso = new System.Windows.Forms.TextBox();
             this.label65 = new System.Windows.Forms.Label();
-            this.lblCodigoModelo = new System.Windows.Forms.Label();
-            this.btnIngresarNuevosValores = new System.Windows.Forms.PictureBox();
             this.txtModeloIngreso = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.txtValorIngreso = new System.Windows.Forms.TextBox();
@@ -413,15 +403,27 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
-            this.label75 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.btCancelarDatosAnexos = new System.Windows.Forms.PictureBox();
-            this.btnAceptarDatosAnexos = new System.Windows.Forms.PictureBox();
             this.panel35 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelBarraDatosAnexos = new System.Windows.Forms.Label();
             this.txtDescripcionGeneradaProducto = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label78 = new System.Windows.Forms.Label();
+            this.btCancelarDatosAnexos = new System.Windows.Forms.Button();
+            this.btnAceptarDatosAnexos = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.btnCancelarNuevosValores = new System.Windows.Forms.Button();
+            this.btnIngresarNuevosValores = new System.Windows.Forms.Button();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.btnCancelarPlano = new System.Windows.Forms.Button();
+            this.btnCargarPdf = new System.Windows.Forms.Button();
+            this.lblCodigoTipoIngreso = new System.Windows.Forms.Label();
+            this.lblCodigoModelo = new System.Windows.Forms.Label();
+            this.btnAbrirDatosAnexos = new System.Windows.Forms.Button();
             this.panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNombreProducto)).BeginInit();
             this.panel14.SuspendLayout();
@@ -483,16 +485,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panel18.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel34.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancelarPlano)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCargarPdf)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAbrirDatosAnexos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGuardar)).BeginInit();
             this.panelCamposGenerales.SuspendLayout();
             this.panelNuevoValores.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancelarNuevosValores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnIngresarNuevosValores)).BeginInit();
             this.panelDatosAnexos.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -503,8 +498,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panel25.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btCancelarDatosAnexos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAceptarDatosAnexos)).BeginInit();
             this.panel35.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -3881,52 +3874,26 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckCaracteristicas2.UseVisualStyleBackColor = true;
             this.ckCaracteristicas2.CheckedChanged += new System.EventHandler(this.ckCaracteristicas2_CheckedChanged);
             // 
-            // btnCancelarPlano
-            // 
-            this.btnCancelarPlano.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelarPlano.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarPlano.Image")));
-            this.btnCancelarPlano.Location = new System.Drawing.Point(337, 542);
-            this.btnCancelarPlano.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancelarPlano.Name = "btnCancelarPlano";
-            this.btnCancelarPlano.Size = new System.Drawing.Size(28, 20);
-            this.btnCancelarPlano.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCancelarPlano.TabIndex = 1973;
-            this.btnCancelarPlano.TabStop = false;
-            this.btnCancelarPlano.Visible = false;
-            this.btnCancelarPlano.Click += new System.EventHandler(this.btnCancelarPlano_Click);
-            // 
             // txtFile
             // 
             this.txtFile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFile.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFile.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFile.Location = new System.Drawing.Point(66, 542);
+            this.txtFile.Font = new System.Drawing.Font("Calibri", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFile.Location = new System.Drawing.Point(66, 543);
             this.txtFile.Margin = new System.Windows.Forms.Padding(4);
             this.txtFile.Name = "txtFile";
-            this.txtFile.Size = new System.Drawing.Size(243, 21);
+            this.txtFile.Size = new System.Drawing.Size(243, 18);
             this.txtFile.TabIndex = 1972;
-            // 
-            // btnCargarPdf
-            // 
-            this.btnCargarPdf.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarPdf.Image")));
-            this.btnCargarPdf.Location = new System.Drawing.Point(308, 542);
-            this.btnCargarPdf.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCargarPdf.Name = "btnCargarPdf";
-            this.btnCargarPdf.Size = new System.Drawing.Size(28, 20);
-            this.btnCargarPdf.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCargarPdf.TabIndex = 1971;
-            this.btnCargarPdf.TabStop = false;
-            this.btnCargarPdf.Click += new System.EventHandler(this.btnCargarPdf_Click);
             // 
             // lblCodigoReferenciaPlano
             // 
+            this.lblCodigoReferenciaPlano.AutoSize = true;
             this.lblCodigoReferenciaPlano.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigoReferenciaPlano.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCodigoReferenciaPlano.Location = new System.Drawing.Point(141, 564);
+            this.lblCodigoReferenciaPlano.Location = new System.Drawing.Point(140, 567);
             this.lblCodigoReferenciaPlano.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigoReferenciaPlano.Name = "lblCodigoReferenciaPlano";
-            this.lblCodigoReferenciaPlano.Size = new System.Drawing.Size(141, 19);
+            this.lblCodigoReferenciaPlano.Size = new System.Drawing.Size(22, 13);
             this.lblCodigoReferenciaPlano.TabIndex = 1970;
             this.lblCodigoReferenciaPlano.Text = "***";
             this.lblCodigoReferenciaPlano.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3953,22 +3920,11 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label25.TabIndex = 1968;
             this.label25.Text = "PLANO:";
             // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(247, 623);
-            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(47, 14);
-            this.label69.TabIndex = 1979;
-            this.label69.Text = "Guardar";
-            // 
             // label68
             // 
             this.label68.AutoSize = true;
             this.label68.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(309, 623);
+            this.label68.Location = new System.Drawing.Point(315, 620);
             this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(37, 14);
@@ -3985,47 +3941,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label36.Size = new System.Drawing.Size(79, 13);
             this.label36.TabIndex = 1977;
             this.label36.Text = "DATOS ANEXOS:";
-            // 
-            // btnAbrirDatosAnexos
-            // 
-            this.btnAbrirDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAbrirDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirDatosAnexos.Image")));
-            this.btnAbrirDatosAnexos.Location = new System.Drawing.Point(87, 593);
-            this.btnAbrirDatosAnexos.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAbrirDatosAnexos.Name = "btnAbrirDatosAnexos";
-            this.btnAbrirDatosAnexos.Size = new System.Drawing.Size(33, 30);
-            this.btnAbrirDatosAnexos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAbrirDatosAnexos.TabIndex = 1976;
-            this.btnAbrirDatosAnexos.TabStop = false;
-            this.btnAbrirDatosAnexos.Click += new System.EventHandler(this.btnAbrirDatosAnexos_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(311, 587);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(35, 32);
-            this.btnSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnSalir.TabIndex = 1975;
-            this.btnSalir.TabStop = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(254, 587);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(35, 32);
-            this.btnGuardar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnGuardar.TabIndex = 1974;
-            this.btnGuardar.TabStop = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // panelCamposGenerales
             // 
@@ -4069,15 +3984,17 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // panelNuevoValores
             // 
             this.panelNuevoValores.Controls.Add(this.label76);
+            this.panelNuevoValores.Controls.Add(this.lblCodigoModelo);
+            this.panelNuevoValores.Controls.Add(this.lblCodigoTipoIngreso);
             this.panelNuevoValores.Controls.Add(this.btnCancelarNuevosValores);
+            this.panelNuevoValores.Controls.Add(this.btnIngresarNuevosValores);
+            this.panelNuevoValores.Controls.Add(this.label75);
+            this.panelNuevoValores.Controls.Add(this.label77);
             this.panelNuevoValores.Controls.Add(this.label66);
             this.panelNuevoValores.Controls.Add(this.pictureBox2);
             this.panelNuevoValores.Controls.Add(this.panel20);
-            this.panelNuevoValores.Controls.Add(this.lblCodigoTipoIngreso);
             this.panelNuevoValores.Controls.Add(this.txtTipoOngreso);
             this.panelNuevoValores.Controls.Add(this.label65);
-            this.panelNuevoValores.Controls.Add(this.lblCodigoModelo);
-            this.panelNuevoValores.Controls.Add(this.btnIngresarNuevosValores);
             this.panelNuevoValores.Controls.Add(this.txtModeloIngreso);
             this.panelNuevoValores.Controls.Add(this.label67);
             this.panelNuevoValores.Controls.Add(this.txtValorIngreso);
@@ -4098,25 +4015,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label76.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label76.Location = new System.Drawing.Point(4, 163);
+            this.label76.Location = new System.Drawing.Point(9, 161);
             this.label76.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(183, 26);
             this.label76.TabIndex = 1971;
             this.label76.Text = "Los datos se ingresan según el formato \r\nestablecido";
-            // 
-            // btnCancelarNuevosValores
-            // 
-            this.btnCancelarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarNuevosValores.Image")));
-            this.btnCancelarNuevosValores.Location = new System.Drawing.Point(404, 159);
-            this.btnCancelarNuevosValores.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancelarNuevosValores.Name = "btnCancelarNuevosValores";
-            this.btnCancelarNuevosValores.Size = new System.Drawing.Size(33, 30);
-            this.btnCancelarNuevosValores.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCancelarNuevosValores.TabIndex = 1932;
-            this.btnCancelarNuevosValores.TabStop = false;
-            this.btnCancelarNuevosValores.Click += new System.EventHandler(this.btnCancelarNuevosValores_Click);
             // 
             // label66
             // 
@@ -4151,17 +4055,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panel20.Size = new System.Drawing.Size(300, 2);
             this.panel20.TabIndex = 1938;
             // 
-            // lblCodigoTipoIngreso
-            // 
-            this.lblCodigoTipoIngreso.AutoSize = true;
-            this.lblCodigoTipoIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoTipoIngreso.Location = new System.Drawing.Point(413, 176);
-            this.lblCodigoTipoIngreso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoTipoIngreso.Name = "lblCodigoTipoIngreso";
-            this.lblCodigoTipoIngreso.Size = new System.Drawing.Size(22, 13);
-            this.lblCodigoTipoIngreso.TabIndex = 1937;
-            this.lblCodigoTipoIngreso.Text = "***";
-            // 
             // txtTipoOngreso
             // 
             this.txtTipoOngreso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -4185,30 +4078,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label65.Size = new System.Drawing.Size(31, 13);
             this.label65.TabIndex = 1935;
             this.label65.Text = "TIPO:";
-            // 
-            // lblCodigoModelo
-            // 
-            this.lblCodigoModelo.AutoSize = true;
-            this.lblCodigoModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoModelo.Location = new System.Drawing.Point(401, 163);
-            this.lblCodigoModelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoModelo.Name = "lblCodigoModelo";
-            this.lblCodigoModelo.Size = new System.Drawing.Size(22, 13);
-            this.lblCodigoModelo.TabIndex = 1934;
-            this.lblCodigoModelo.Text = "***";
-            // 
-            // btnIngresarNuevosValores
-            // 
-            this.btnIngresarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIngresarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresarNuevosValores.Image")));
-            this.btnIngresarNuevosValores.Location = new System.Drawing.Point(357, 159);
-            this.btnIngresarNuevosValores.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIngresarNuevosValores.Name = "btnIngresarNuevosValores";
-            this.btnIngresarNuevosValores.Size = new System.Drawing.Size(33, 30);
-            this.btnIngresarNuevosValores.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnIngresarNuevosValores.TabIndex = 1931;
-            this.btnIngresarNuevosValores.TabStop = false;
-            this.btnIngresarNuevosValores.Click += new System.EventHandler(this.btnIngresarNuevosValores_Click);
             // 
             // txtModeloIngreso
             // 
@@ -4301,12 +4170,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // panelDatosAnexos
             // 
             this.panelDatosAnexos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelDatosAnexos.Controls.Add(this.tabControl1);
-            this.panelDatosAnexos.Controls.Add(this.label74);
-            this.panelDatosAnexos.Controls.Add(this.label75);
-            this.panelDatosAnexos.Controls.Add(this.label77);
             this.panelDatosAnexos.Controls.Add(this.btCancelarDatosAnexos);
             this.panelDatosAnexos.Controls.Add(this.btnAceptarDatosAnexos);
+            this.panelDatosAnexos.Controls.Add(this.label3);
+            this.panelDatosAnexos.Controls.Add(this.label69);
+            this.panelDatosAnexos.Controls.Add(this.tabControl1);
+            this.panelDatosAnexos.Controls.Add(this.label74);
             this.panelDatosAnexos.Controls.Add(this.panel35);
             this.panelDatosAnexos.Location = new System.Drawing.Point(459, 85);
             this.panelDatosAnexos.Margin = new System.Windows.Forms.Padding(4);
@@ -4390,33 +4259,33 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label71
             // 
             this.label71.AutoSize = true;
-            this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label71.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label71.Location = new System.Drawing.Point(351, 249);
             this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(20, 12);
+            this.label71.Size = new System.Drawing.Size(20, 13);
             this.label71.TabIndex = 28;
             this.label71.Text = "KG";
             // 
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label70.Location = new System.Drawing.Point(348, 217);
             this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(20, 12);
+            this.label70.Size = new System.Drawing.Size(20, 13);
             this.label70.TabIndex = 27;
             this.label70.Text = "KG";
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(162, 219);
+            this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(160, 220);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(24, 13);
+            this.label34.Size = new System.Drawing.Size(20, 13);
             this.label34.TabIndex = 24;
             this.label34.Text = "KG";
             // 
@@ -4731,22 +4600,22 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // label72
             // 
             this.label72.AutoSize = true;
-            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label72.Location = new System.Drawing.Point(174, 209);
             this.label72.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(20, 12);
+            this.label72.Size = new System.Drawing.Size(20, 13);
             this.label72.TabIndex = 33;
             this.label72.Text = "KG";
             // 
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label73.Location = new System.Drawing.Point(297, 188);
+            this.label73.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label73.Location = new System.Drawing.Point(302, 189);
             this.label73.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(65, 12);
+            this.label73.Size = new System.Drawing.Size(55, 13);
             this.label73.TabIndex = 32;
             this.label73.Text = "A. X L. X A.";
             // 
@@ -4955,11 +4824,11 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // lblLeyendaBienesPercepcion
             // 
             this.lblLeyendaBienesPercepcion.AutoSize = true;
-            this.lblLeyendaBienesPercepcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeyendaBienesPercepcion.Location = new System.Drawing.Point(163, 202);
+            this.lblLeyendaBienesPercepcion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaBienesPercepcion.Location = new System.Drawing.Point(167, 203);
             this.lblLeyendaBienesPercepcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLeyendaBienesPercepcion.Name = "lblLeyendaBienesPercepcion";
-            this.lblLeyendaBienesPercepcion.Size = new System.Drawing.Size(61, 13);
+            this.lblLeyendaBienesPercepcion.Size = new System.Drawing.Size(53, 14);
             this.lblLeyendaBienesPercepcion.TabIndex = 31;
             this.lblLeyendaBienesPercepcion.Text = "No aplica";
             // 
@@ -5254,54 +5123,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label74.TabIndex = 1959;
             this.label74.Text = "Datos anexados al producto y detalles \r\ninportantes sobre este";
             // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(354, 450);
-            this.label75.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(27, 13);
-            this.label75.TabIndex = 1958;
-            this.label75.Text = "Salir";
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(297, 450);
-            this.label77.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(44, 13);
-            this.label77.TabIndex = 1957;
-            this.label77.Text = "Guardar";
-            // 
-            // btCancelarDatosAnexos
-            // 
-            this.btCancelarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btCancelarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btCancelarDatosAnexos.Image")));
-            this.btCancelarDatosAnexos.Location = new System.Drawing.Point(351, 418);
-            this.btCancelarDatosAnexos.Margin = new System.Windows.Forms.Padding(4);
-            this.btCancelarDatosAnexos.Name = "btCancelarDatosAnexos";
-            this.btCancelarDatosAnexos.Size = new System.Drawing.Size(35, 29);
-            this.btCancelarDatosAnexos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btCancelarDatosAnexos.TabIndex = 40;
-            this.btCancelarDatosAnexos.TabStop = false;
-            this.btCancelarDatosAnexos.Click += new System.EventHandler(this.btCancelarDatosAnexos_Click);
-            // 
-            // btnAceptarDatosAnexos
-            // 
-            this.btnAceptarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAceptarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptarDatosAnexos.Image")));
-            this.btnAceptarDatosAnexos.Location = new System.Drawing.Point(304, 418);
-            this.btnAceptarDatosAnexos.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAceptarDatosAnexos.Name = "btnAceptarDatosAnexos";
-            this.btnAceptarDatosAnexos.Size = new System.Drawing.Size(35, 29);
-            this.btnAceptarDatosAnexos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAceptarDatosAnexos.TabIndex = 40;
-            this.btnAceptarDatosAnexos.TabStop = false;
-            this.btnAceptarDatosAnexos.Click += new System.EventHandler(this.btnAceptarDatosAnexos_Click);
-            // 
             // panel35
             // 
             this.panel35.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -5323,7 +5144,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 20);
+            this.pictureBox1.Size = new System.Drawing.Size(27, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1968;
             this.pictureBox1.TabStop = false;
@@ -5353,27 +5174,221 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalir.FlatAppearance.BorderSize = 0;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(316, 586);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(33, 33);
+            this.btnSalir.TabIndex = 2042;
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.Location = new System.Drawing.Point(263, 586);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(31, 31);
+            this.btnGuardar.TabIndex = 2041;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label78.Location = new System.Drawing.Point(251, 620);
+            this.label78.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(54, 13);
+            this.label78.TabIndex = 2039;
+            this.label78.Text = "GUARDAR";
+            // 
+            // btCancelarDatosAnexos
+            // 
+            this.btCancelarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btCancelarDatosAnexos.FlatAppearance.BorderSize = 0;
+            this.btCancelarDatosAnexos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btCancelarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btCancelarDatosAnexos.Image")));
+            this.btCancelarDatosAnexos.Location = new System.Drawing.Point(352, 416);
+            this.btCancelarDatosAnexos.Name = "btCancelarDatosAnexos";
+            this.btCancelarDatosAnexos.Size = new System.Drawing.Size(33, 33);
+            this.btCancelarDatosAnexos.TabIndex = 2042;
+            this.btCancelarDatosAnexos.UseVisualStyleBackColor = true;
+            this.btCancelarDatosAnexos.Click += new System.EventHandler(this.btCancelarDatosAnexos_Click);
+            // 
+            // btnAceptarDatosAnexos
+            // 
+            this.btnAceptarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAceptarDatosAnexos.FlatAppearance.BorderSize = 0;
+            this.btnAceptarDatosAnexos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptarDatosAnexos.Image")));
+            this.btnAceptarDatosAnexos.Location = new System.Drawing.Point(292, 418);
+            this.btnAceptarDatosAnexos.Name = "btnAceptarDatosAnexos";
+            this.btnAceptarDatosAnexos.Size = new System.Drawing.Size(31, 31);
+            this.btnAceptarDatosAnexos.TabIndex = 2041;
+            this.btnAceptarDatosAnexos.UseVisualStyleBackColor = true;
+            this.btnAceptarDatosAnexos.Click += new System.EventHandler(this.btnAceptarDatosAnexos_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(354, 451);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 2040;
+            this.label3.Text = "SALIR";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(281, 451);
+            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(54, 13);
+            this.label69.TabIndex = 2039;
+            this.label69.Text = "GUARDAR";
+            // 
+            // btnCancelarNuevosValores
+            // 
+            this.btnCancelarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelarNuevosValores.FlatAppearance.BorderSize = 0;
+            this.btnCancelarNuevosValores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarNuevosValores.Image")));
+            this.btnCancelarNuevosValores.Location = new System.Drawing.Point(394, 147);
+            this.btnCancelarNuevosValores.Name = "btnCancelarNuevosValores";
+            this.btnCancelarNuevosValores.Size = new System.Drawing.Size(33, 33);
+            this.btnCancelarNuevosValores.TabIndex = 2046;
+            this.btnCancelarNuevosValores.UseVisualStyleBackColor = true;
+            this.btnCancelarNuevosValores.Click += new System.EventHandler(this.btnCancelarNuevosValores_Click);
+            // 
+            // btnIngresarNuevosValores
+            // 
+            this.btnIngresarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIngresarNuevosValores.FlatAppearance.BorderSize = 0;
+            this.btnIngresarNuevosValores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIngresarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresarNuevosValores.Image")));
+            this.btnIngresarNuevosValores.Location = new System.Drawing.Point(338, 148);
+            this.btnIngresarNuevosValores.Name = "btnIngresarNuevosValores";
+            this.btnIngresarNuevosValores.Size = new System.Drawing.Size(31, 31);
+            this.btnIngresarNuevosValores.TabIndex = 2045;
+            this.btnIngresarNuevosValores.UseVisualStyleBackColor = true;
+            this.btnIngresarNuevosValores.Click += new System.EventHandler(this.btnIngresarNuevosValores_Click);
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label75.Location = new System.Drawing.Point(395, 182);
+            this.label75.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(33, 13);
+            this.label75.TabIndex = 2044;
+            this.label75.Text = "SALIR";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label77.Location = new System.Drawing.Point(327, 181);
+            this.label77.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(54, 13);
+            this.label77.TabIndex = 2043;
+            this.label77.Text = "GUARDAR";
+            // 
+            // btnCancelarPlano
+            // 
+            this.btnCancelarPlano.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelarPlano.FlatAppearance.BorderSize = 0;
+            this.btnCancelarPlano.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarPlano.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarPlano.Image")));
+            this.btnCancelarPlano.Location = new System.Drawing.Point(344, 540);
+            this.btnCancelarPlano.Name = "btnCancelarPlano";
+            this.btnCancelarPlano.Size = new System.Drawing.Size(25, 25);
+            this.btnCancelarPlano.TabIndex = 2044;
+            this.btnCancelarPlano.UseVisualStyleBackColor = true;
+            this.btnCancelarPlano.Click += new System.EventHandler(this.btnCancelarPlano_Click);
+            // 
+            // btnCargarPdf
+            // 
+            this.btnCargarPdf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargarPdf.FlatAppearance.BorderSize = 0;
+            this.btnCargarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarPdf.Image")));
+            this.btnCargarPdf.Location = new System.Drawing.Point(313, 542);
+            this.btnCargarPdf.Name = "btnCargarPdf";
+            this.btnCargarPdf.Size = new System.Drawing.Size(25, 21);
+            this.btnCargarPdf.TabIndex = 2045;
+            this.btnCargarPdf.UseVisualStyleBackColor = true;
+            this.btnCargarPdf.Click += new System.EventHandler(this.btnCargarPdf_Click);
+            // 
+            // lblCodigoTipoIngreso
+            // 
+            this.lblCodigoTipoIngreso.AutoSize = true;
+            this.lblCodigoTipoIngreso.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoTipoIngreso.Location = new System.Drawing.Point(4, 168);
+            this.lblCodigoTipoIngreso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoTipoIngreso.Name = "lblCodigoTipoIngreso";
+            this.lblCodigoTipoIngreso.Size = new System.Drawing.Size(22, 13);
+            this.lblCodigoTipoIngreso.TabIndex = 2047;
+            this.lblCodigoTipoIngreso.Text = "***";
+            // 
+            // lblCodigoModelo
+            // 
+            this.lblCodigoModelo.AutoSize = true;
+            this.lblCodigoModelo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoModelo.Location = new System.Drawing.Point(31, 168);
+            this.lblCodigoModelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoModelo.Name = "lblCodigoModelo";
+            this.lblCodigoModelo.Size = new System.Drawing.Size(22, 13);
+            this.lblCodigoModelo.TabIndex = 2048;
+            this.lblCodigoModelo.Text = "***";
+            // 
+            // btnAbrirDatosAnexos
+            // 
+            this.btnAbrirDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAbrirDatosAnexos.FlatAppearance.BorderSize = 0;
+            this.btnAbrirDatosAnexos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbrirDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirDatosAnexos.Image")));
+            this.btnAbrirDatosAnexos.Location = new System.Drawing.Point(88, 591);
+            this.btnAbrirDatosAnexos.Name = "btnAbrirDatosAnexos";
+            this.btnAbrirDatosAnexos.Size = new System.Drawing.Size(31, 33);
+            this.btnAbrirDatosAnexos.TabIndex = 2047;
+            this.btnAbrirDatosAnexos.UseVisualStyleBackColor = true;
+            this.btnAbrirDatosAnexos.Click += new System.EventHandler(this.btnAbrirDatosAnexos_Click);
+            // 
             // AgregarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1331, 639);
+            this.Controls.Add(this.btnAbrirDatosAnexos);
+            this.Controls.Add(this.btnCargarPdf);
+            this.Controls.Add(this.btnCancelarPlano);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.label78);
             this.Controls.Add(this.panelNuevoValores);
             this.Controls.Add(this.txtDescripcionGeneradaProducto);
             this.Controls.Add(this.panelDatosAnexos);
             this.Controls.Add(this.panel27);
             this.Controls.Add(this.panelCamposGenerales);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label69);
             this.Controls.Add(this.label68);
             this.Controls.Add(this.label36);
-            this.Controls.Add(this.btnAbrirDatosAnexos);
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.btnCancelarPlano);
             this.Controls.Add(this.txtFile);
-            this.Controls.Add(this.btnCargarPdf);
             this.Controls.Add(this.lblCodigoReferenciaPlano);
             this.Controls.Add(this.label50);
             this.Controls.Add(this.label25);
@@ -5467,17 +5482,10 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.groupBox2.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancelarPlano)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCargarPdf)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAbrirDatosAnexos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGuardar)).EndInit();
             this.panelCamposGenerales.ResumeLayout(false);
             this.panelNuevoValores.ResumeLayout(false);
             this.panelNuevoValores.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancelarNuevosValores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnIngresarNuevosValores)).EndInit();
             this.panelDatosAnexos.ResumeLayout(false);
             this.panelDatosAnexos.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -5492,8 +5500,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btCancelarDatosAnexos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAceptarDatosAnexos)).EndInit();
             this.panel35.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -5770,18 +5776,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         private System.Windows.Forms.CheckBox ckCamposDiametros1;
         private System.Windows.Forms.CheckBox ckCamposFormas1;
         private System.Windows.Forms.CheckBox ckCamposMedida1;
-        private System.Windows.Forms.PictureBox btnCancelarPlano;
         private System.Windows.Forms.TextBox txtFile;
-        private System.Windows.Forms.PictureBox btnCargarPdf;
         private System.Windows.Forms.Label lblCodigoReferenciaPlano;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.PictureBox btnAbrirDatosAnexos;
-        private System.Windows.Forms.PictureBox btnSalir;
-        private System.Windows.Forms.PictureBox btnGuardar;
         private System.Windows.Forms.Panel panelCamposGenerales;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Panel panel27;
@@ -5790,12 +5790,8 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         private System.Windows.Forms.Panel panelNuevoValores;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.Label lblCodigoTipoIngreso;
         private System.Windows.Forms.TextBox txtTipoOngreso;
         private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Label lblCodigoModelo;
-        private System.Windows.Forms.PictureBox btnCancelarNuevosValores;
-        private System.Windows.Forms.PictureBox btnIngresarNuevosValores;
         private System.Windows.Forms.TextBox txtModeloIngreso;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.TextBox txtValorIngreso;
@@ -5884,15 +5880,27 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label74;
-        private System.Windows.Forms.Label label75;
-        private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.PictureBox btCancelarDatosAnexos;
-        private System.Windows.Forms.PictureBox btnAceptarDatosAnexos;
         private System.Windows.Forms.Panel panel35;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label panelBarraDatosAnexos;
         private System.Windows.Forms.TextBox txtDescripcionGeneradaProducto;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DataGridView datalistadoNombreProducto;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Button btCancelarDatosAnexos;
+        private System.Windows.Forms.Button btnAceptarDatosAnexos;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Button btnCancelarNuevosValores;
+        private System.Windows.Forms.Button btnIngresarNuevosValores;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Button btnCancelarPlano;
+        private System.Windows.Forms.Button btnCargarPdf;
+        private System.Windows.Forms.Label lblCodigoTipoIngreso;
+        private System.Windows.Forms.Label lblCodigoModelo;
+        private System.Windows.Forms.Button btnAbrirDatosAnexos;
     }
 }

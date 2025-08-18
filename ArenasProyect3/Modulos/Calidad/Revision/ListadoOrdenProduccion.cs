@@ -166,8 +166,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         //FUNCION PARA VERIFICAR SI HAY UNA CANTIDAD 
         public void MostrarCantidadesSegunOP(int idOrdenProduccion)
         {
-            totalCantidades = 0;
-
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
@@ -189,13 +187,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             //COLUMNAS NO VISIBLES
             datalistadoHistorial.Columns[0].Visible = false;
             ColoresListadoCantidades();
-
-
-            //CONTAR CUANTAS CANTIDADES HAY
-            foreach (DataGridViewRow row in datalistadoHistorial.Rows)
-            {
-                totalCantidades = totalCantidades + Convert.ToInt32(row.Cells[1].Value.ToString());
-            }
         }
 
         //LISTADO DE OP Y SELECCION DE PDF Y ESTADO DE OP---------------------
@@ -360,8 +351,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
                     txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[8].Value.ToString();
                     txtCantidadTotalPedido.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
-                    int IdOrdenProduccion = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value.ToString());
-                    MostrarCantidadesSegunOP(IdOrdenProduccion);
+                    MostrarCantidadesSegunOP(Convert.ToInt32(lblIdOP.Text));
                     lblCantidadRealizada.Text = datalistadoTodasOP.SelectedCells[13].Value.ToString();
                     txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadTotalPedido.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
                     txtPesoTeorico.Text = "0.00";

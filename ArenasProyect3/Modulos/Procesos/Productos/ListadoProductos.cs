@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -3684,6 +3685,10 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
                 Zen.Barcode.CodeQrBarcodeDraw mGenerarQr = Zen.Barcode.BarcodeDrawFactory.CodeQr;
                 ptQR.Image = mGenerarQr.Draw(txtDetalleProducto.Text, 250);
+
+                string serial = DateTime.Now.ToString("yyyyMMddHHmmss"); // Ej: "20250815105530"
+                lblNumeroSerial.Text = serial;
+
             }
             else
             {
@@ -3695,6 +3700,33 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         private void btnOcultarGenradorQR_Click(object sender, EventArgs e)
         {
             panelCodigoQr.Visible = false;
+        }
+
+        //BOTON PARA VALIDAR Y ACCIONR MI IMPRESION
+        private void btnImprimirQR_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(ImprimirPagina);
+            PrintDialog printDlg = new PrintDialog
+            {
+                Document = pd
+            };
+
+            if (printDlg.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
+
+        }
+
+        //FUNCION PARA MANDAR A IMPRIMIR MI QR
+        private void ImprimirPagina(object sender, PrintPageEventArgs e)
+        {
+            if (ptQR.Image != null)
+            {
+                // Dibuja la imagen en la página impresa
+                e.Graphics.DrawImage(ptQR.Image, new Point(100, 100));
+            }
         }
 
         //COPIAR CODIGO DE MI PRODUCTO EN PORTAPATELES

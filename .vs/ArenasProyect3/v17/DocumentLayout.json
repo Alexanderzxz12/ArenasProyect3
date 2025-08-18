@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimeintomaquinarias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimeintomaquinarias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimeintomaquinarias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimeintomaquinarias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientocuentas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientocuentas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\productos\\listadoproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\productos\\listadoproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,55 +18,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MantenimeintoMaquinarias.cs",
-              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs",
-              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAC4AAAANAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ListadoOrdenProduccion.cs",
+              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAIAwwLwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T13:38:11.401Z",
+              "WhenOpened": "2025-08-18T13:00:42.881Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MantenimeintoMaquinarias.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs",
-              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimeintoMaquinarias.cs [Dise\u00F1o]",
+              "DocumentIndex": 0,
+              "Title": "ListadoOrdenProduccion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T13:38:09.636Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ListadoProductos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Productos\\ListadoProductos.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Productos\\ListadoProductos.cs",
-              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Productos\\ListadoProductos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Productos\\ListadoProductos.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T13:13:33.946Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MantenimientoCuentas.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs",
-              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T13:22:00.374Z",
+              "WhenOpened": "2025-08-18T13:00:32.479Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]
