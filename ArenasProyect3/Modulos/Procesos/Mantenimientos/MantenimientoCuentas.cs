@@ -188,12 +188,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
                 else
                 {
-
                     DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta cuenta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                     if (boton == DialogResult.OK)
                     {
-                        if (descripcion != "" || abreavitura != "" || codigosunat != "")
-                        {
                             try
                             {
                                 SqlConnection con = new SqlConnection();
@@ -238,15 +235,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
-                            txtDescripcion.Focus();
-                        }
                     }
                 }
             }
-        }
 
         //GUARDAR UNA NUEVA CUENTA EN MI BASE DE DATOS
         private void btnGuardar2_Click(object sender, EventArgs e)
