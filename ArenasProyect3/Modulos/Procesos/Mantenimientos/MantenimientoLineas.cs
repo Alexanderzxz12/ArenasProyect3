@@ -421,8 +421,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
                 else
                 {
-
-
                     if (cbo.Text == "DESCRIPCIÓN")
                     {
                         DataTable dt = new DataTable();
