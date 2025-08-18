@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -248,7 +249,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //HABILITAR EDICIÓN PARA MODIFICAR UNA CUENTA YA INGRESADA
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (lblCodigo.Text == "N" || lblCodigo.Text == "")
+            if (txtDescripcion.Text == "" || txtAbreviatura.Text == "" || txtCodSunat.Text == "" || lblCodigo.Text == "N" || lblCodigo.Text == "")
             {
                 MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
@@ -266,71 +267,73 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardar.Enabled = true;
             }
         }
-        public void EditarCuentas(string descripcion, string abreviatura, string codigosunat, string codigo)
+       
+        public void EditarCuentas(string descripcion, string abreviatura, string codigosunat, int codigo)
         {
-            if (descripcion != "" || abreviatura != "" || codigosunat != "" || codigo != "N")
-            {
-                DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta cuenta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
+                //Verificación si los campos estan vacios
+                if (descripcion == "" || abreviatura == "" || codigosunat == "" || Convert.ToString(codigo) == "N")
                 {
-                    try
+                    MessageBox.Show("No puedke dejar campos vacios al editar una Cuenta", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta cuenta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
                     {
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cuentas_Editar", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(codigo));
-                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                        cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
-                        cmd.Parameters.AddWithValue("@codigosunat", codigosunat);
-
-                        if (cboEstado.Text == "ACTIVO")
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@estado", 1);
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("Cuentas_Editar", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@codigo", codigo);
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                            cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
+                            cmd.Parameters.AddWithValue("@codigosunat", codigosunat);
+
+                            if (cboEstado.Text == "ACTIVO")
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 0);
+                            }
+
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            Mostrar();
+                            MessageBox.Show("Se editó correctamente el registro.", "Nueva Edición", MessageBoxButtons.OK);
+                            ColorDescripcion();
+
+                            txtDescripcion.Enabled = false;
+                            txtAbreviatura.Enabled = false;
+                            txtCodSunat.Enabled = false;
+
+                            btnEditarF.Visible = true;
+                            btnEditar2F.Visible = false;
+
+                            btnGuardar.Visible = true;
+                            btnGuardar2F.Visible = false;
+
+                            cboEstado.SelectedIndex = -1;
+                            CancelarF.Visible = false;
+                            lblCancelar.Visible = false;
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            cmd.Parameters.AddWithValue("@estado", 0);
+                            MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                         }
-
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        Mostrar();
-                        MessageBox.Show("Se editó correctamente el registro.", "Nueva Edición", MessageBoxButtons.OK);
-                        ColorDescripcion();
-
-                        txtDescripcion.Enabled = false;
-                        txtAbreviatura.Enabled = false;
-                        txtCodSunat.Enabled = false;
-
-                        btnEditarF.Visible = true;
-                        btnEditar2F.Visible = false;
-
-                        btnGuardar.Visible = true;
-                        btnGuardar2F.Visible = false;
-
-                        cboEstado.SelectedIndex = -1;
-                        CancelarF.Visible = false;
-                        lblCancelar.Visible = false;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
+        
         //EDITAR UNA CUENTA DE MI BASE DE DATOS
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarCuentas(txtDescripcion.Text, txtAbreviatura.Text,txtCodSunat.Text, lblCodigo.Text);
+            EditarCuentas(txtDescripcion.Text, txtAbreviatura.Text,txtCodSunat.Text, Convert.ToInt32(lblCodigo.Text));
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
