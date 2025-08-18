@@ -185,7 +185,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 if (descripcion == "" || abreavitura == "" || codigosunat == "")
                 {
-                    MessageBox.Show("Debe ingresar datos para la Cuenta", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -249,7 +249,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //HABILITAR EDICIÓN PARA MODIFICAR UNA CUENTA YA INGRESADA
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (txtDescripcion.Text == "" || txtAbreviatura.Text == "" || txtCodSunat.Text == "" || lblCodigo.Text == "N" || lblCodigo.Text == "")
+            if (lblCodigo.Text == "N" || lblCodigo.Text == "")
             {
                 MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
@@ -273,7 +273,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 //Verificación si los campos estan vacios
                 if (descripcion == "" || abreviatura == "" || codigosunat == "" || Convert.ToString(codigo) == "N")
                 {
-                    MessageBox.Show("No puedke dejar campos vacios al editar una Cuenta", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {

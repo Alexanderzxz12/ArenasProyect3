@@ -234,52 +234,54 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta línea?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
+                //Verificación de campos vacíos 
+                if (descripcion == "" || abreviatura == "")
                 {
-                    if (descripcion != "" || abreviatura != "")
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta línea?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
                     {
-                        try
-                        {
-                            SqlConnection con = new SqlConnection();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("Lineas_Insertar", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                            cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
-                            cmd.Parameters.AddWithValue("@codigotipomercaderia", codigotipomercaderia);
-                            if(cboEstado.Text == "ACTIVO")
+                        
+                            try
                             {
-                                cmd.Parameters.AddWithValue("@estado", 1);
+                                SqlConnection con = new SqlConnection();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                SqlCommand cmd = new SqlCommand();
+                                cmd = new SqlCommand("Lineas_Insertar", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                                cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
+                                cmd.Parameters.AddWithValue("@codigotipomercaderia", codigotipomercaderia);
+                                if (cboEstado.Text == "ACTIVO")
+                                {
+                                    cmd.Parameters.AddWithValue("@estado", 1);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("@estado", 0);
+                                }
+
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+
+                                int cuenta = Convert.ToInt32(codigotipomercaderia);
+                                Mostrar(cuenta);
+                                MessageBox.Show("Se ingresÓ el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
+                                CamposBloqueados();
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                cmd.Parameters.AddWithValue("@estado", 0);
+                                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                             }
-
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            int cuenta = Convert.ToInt32(codigotipomercaderia);
-                            Mostrar(cuenta);
-                            MessageBox.Show("Se ingresÓ el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
-                            CamposBloqueados();
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Hubo un error inesperado, " + ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
-                        txtDescripcion.Focus();
                     }
                 }
             }
-        }
+      
         //GUARDAR UNA NUEVA LÍNEA EN MI BASE DE DATOS
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
@@ -297,6 +299,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 txtDescripcion.Enabled = true;
                 txtAbreviatura.Enabled = true;
+                cboTipoMercaderia.Enabled = false;
 
                 btnEditarF.Visible = false;
                 btnEditar2F.Visible = true;
@@ -306,9 +309,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardarF.Enabled = true;
             }
         }
-        public void EditarLineas(string codigo,string descripcion, string abreviatura, string idtipomercaderia)
+        public void EditarLineas(int codigo, string descripcion, string abreviatura, string idtipomercaderia)
         {
-            if (descripcion != "" || abreviatura != "" || codigo != "N")
+            if (descripcion == "" || abreviatura == "" || Convert.ToString(codigo) == "N")
+            {
+                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta línea?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -321,7 +328,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         SqlCommand cmd = new SqlCommand();
                         cmd = new SqlCommand("Lineas_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(codigo));
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
                         cmd.Parameters.AddWithValue("@descripcion", descripcion);
                         cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
                         cmd.Parameters.AddWithValue("@idtipomercaderia", idtipomercaderia);
@@ -343,6 +350,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
                         MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
 
+                        cboTipoMercaderia.Enabled = true;
                         CamposBloqueados();
                     }
                     catch (Exception ex)
@@ -351,15 +359,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
         }
         //EDITAR UNA CUENTA DE MI BASE DE DATOS
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarLineas(lblCodigo.Text,txtDescripcion.Text,txtAbreviatura.Text,cboTipoMercaderia.SelectedValue.ToString());
+            EditarLineas(Convert.ToInt32(lblCodigo.Text),txtDescripcion.Text,txtAbreviatura.Text,cboTipoMercaderia.SelectedValue.ToString());
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
@@ -380,6 +384,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
             btnEditarF.Visible = true;
             btnEditar2F.Visible = false;
+
 
             btnGuardarF.Visible = true;
             btnGuardar2F.Visible = false;
