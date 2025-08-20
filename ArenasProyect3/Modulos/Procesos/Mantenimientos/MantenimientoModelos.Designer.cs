@@ -41,7 +41,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.Cancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.label32 = new System.Windows.Forms.Label();
             this.cboBusquedaModelo = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnEditar2 = new System.Windows.Forms.Button();
             this.CargarAtributos = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -338,19 +338,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.Cancelar.Visible = false;
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.FlatAppearance.BorderSize = 0;
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(26, 26);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(30, 30);
-            this.btnGuardar.TabIndex = 2000;
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
             // label32
             // 
             this.label32.AutoSize = true;
@@ -457,6 +444,19 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.CargarAtributos.TabIndex = 2004;
             this.CargarAtributos.UseVisualStyleBackColor = true;
             this.CargarAtributos.Click += new System.EventHandler(this.CargarAtributos_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.Location = new System.Drawing.Point(26, 26);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(30, 30);
+            this.btnGuardar.TabIndex = 2000;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label30
             // 

@@ -274,6 +274,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
         }
 
+        //METODO ENCARGADO DE AGREGAR UN NUEVO MODELO A MI BASE DE DATOS
         public void AgregarModelos(string descripcion, string abreavitura, int codigolinea)
         {
             if (repetidoDescripcion == true)
@@ -845,6 +846,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
+        //METODO ENCARGADO DE LA EDICIÓN DE MODELOS
         public void EditarModelos(string descripcion, string abreavitura, string codigolinea, int codigo)
         {
             if (descripcion == "" || abreavitura == "" || Convert.ToString(codigo) == "N")
@@ -1684,7 +1686,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             DGV.Columns[5].Width = 218;
         }
 
-        //VALIDACIONES PARA LOS GRUPOS DE CAMPOS DE MI MODELO 
+        //METODO ENCARGADO DE VALIDAR QUE LOS ATRIBUTOS NO SE (REPITAN, TENGAN ESPACIO EN BLANCO O ESTE EN NO APLICA) ESTE SERA INVOCADO EN EL BOTON DE GUARDAR ATRIBUTOS
         private void ValidacionGruposCampos()
         {
             //CARACTERISTICAS
@@ -2074,7 +2076,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
 
-        //VALIDACIONES TIEMPO REAL DE LOS GRUPOS DE CAMPOS DE MI MODELO
+        //VALIDACIONES TIEMPO REAL PARA LA DEFINICIÓN DE ATRIBUTOS
         private void ValidacionesCaracteristicas_TiempoReal(CheckBox ckCaracteri1,CheckBox ckCaracteri2, ComboBox cbcaracteristicas1, ComboBox cbcaracteristicas2, ComboBox cbcaracteristicas3 , ComboBox cbcaracteristicas4)
         {
             if (ckCaracteri1.Checked == true)
@@ -2361,7 +2363,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
-        //EVENTOS DE CIERRE DE COMBOS PARA VALIDACIONES TIEMPO REAL
+        //EVENTOS DE CIERRE DE COMBOS PARA VALIDACIONES EN TIEMPO REAL
         private void cboTipoCaracteristicas2_DropDownClosed(object sender, EventArgs e)
         {
             ValidacionesCaracteristicas_TiempoReal(ckCaracteristicas1,ckCaracteristicas2,cboTipoCaracteristicas1,cboTipoCaracteristicas2,cboTipoCaracteristicas3,cboTipoCaracteristicas4);
