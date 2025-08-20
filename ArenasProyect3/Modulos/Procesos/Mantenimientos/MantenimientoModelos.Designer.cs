@@ -30,10 +30,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoModelos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -41,6 +41,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.Cancelar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.label32 = new System.Windows.Forms.Label();
             this.cboBusquedaModelo = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnEditar2 = new System.Windows.Forms.Button();
             this.CargarAtributos = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -338,6 +338,19 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.Cancelar.Visible = false;
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.Location = new System.Drawing.Point(26, 26);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(30, 30);
+            this.btnGuardar.TabIndex = 2000;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // label32
             // 
             this.label32.AutoSize = true;
@@ -445,19 +458,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.CargarAtributos.UseVisualStyleBackColor = true;
             this.CargarAtributos.Click += new System.EventHandler(this.CargarAtributos_Click);
             // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.FlatAppearance.BorderSize = 0;
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(26, 26);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(30, 30);
-            this.btnGuardar.TabIndex = 2000;
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -526,40 +526,40 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoLineas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoLineas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoLineas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle85.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle85.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle85.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle85.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle85.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle85.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.datalistadoLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle86.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle86.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle86.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle86.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle86.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle86.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle14;
             this.datalistadoLineas.Location = new System.Drawing.Point(33, 266);
             this.datalistadoLineas.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoLineas.MultiSelect = false;
             this.datalistadoLineas.Name = "datalistadoLineas";
             this.datalistadoLineas.ReadOnly = true;
-            dataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle87.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle87.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle87.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle87.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle87.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.datalistadoLineas.RowHeadersVisible = false;
             this.datalistadoLineas.RowHeadersWidth = 51;
-            dataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.datalistadoLineas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoLineas.Size = new System.Drawing.Size(702, 255);
             this.datalistadoLineas.TabIndex = 1994;
@@ -1030,6 +1030,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposVariosO1.Name = "cboTiposVariosO1";
             this.cboTiposVariosO1.Size = new System.Drawing.Size(160, 20);
             this.cboTiposVariosO1.TabIndex = 1900;
+            this.cboTiposVariosO1.DropDownClosed += new System.EventHandler(this.cboTiposVariosO1_DropDownClosed);
             // 
             // panelCamposVariosO2
             // 
@@ -1117,6 +1118,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposNTipos2.Name = "cboTiposNTipos2";
             this.cboTiposNTipos2.Size = new System.Drawing.Size(160, 20);
             this.cboTiposNTipos2.TabIndex = 1895;
+            this.cboTiposNTipos2.DropDownClosed += new System.EventHandler(this.cboTiposNTipos2_DropDownClosed);
             // 
             // cboTiposNTipos1
             // 
@@ -1172,6 +1174,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposNTipos4.Name = "cboTiposNTipos4";
             this.cboTiposNTipos4.Size = new System.Drawing.Size(160, 20);
             this.cboTiposNTipos4.TabIndex = 1895;
+            this.cboTiposNTipos4.DropDownClosed += new System.EventHandler(this.cboTiposNTipos4_DropDownClosed);
             // 
             // cboTiposNTipos3
             // 
@@ -1227,6 +1230,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cbooTipoEspesores2.Name = "cbooTipoEspesores2";
             this.cbooTipoEspesores2.Size = new System.Drawing.Size(160, 20);
             this.cbooTipoEspesores2.TabIndex = 1895;
+            this.cbooTipoEspesores2.DropDownClosed += new System.EventHandler(this.cbooTipoEspesores2_DropDownClosed);
             // 
             // cbooTipoEspesores1
             // 
@@ -1282,6 +1286,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cbooTipoEspesores4.Name = "cbooTipoEspesores4";
             this.cbooTipoEspesores4.Size = new System.Drawing.Size(160, 20);
             this.cbooTipoEspesores4.TabIndex = 1895;
+            this.cbooTipoEspesores4.DropDownClosed += new System.EventHandler(this.cbooTipoEspesores4_DropDownClosed);
             // 
             // cbooTipoEspesores3
             // 
@@ -1337,6 +1342,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposFormas2.Name = "cboTiposFormas2";
             this.cboTiposFormas2.Size = new System.Drawing.Size(160, 20);
             this.cboTiposFormas2.TabIndex = 1895;
+            this.cboTiposFormas2.DropDownClosed += new System.EventHandler(this.cboTiposFormas2_DropDownClosed);
             // 
             // cboTiposFormas1
             // 
@@ -1392,6 +1398,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposFormas4.Name = "cboTiposFormas4";
             this.cboTiposFormas4.Size = new System.Drawing.Size(160, 20);
             this.cboTiposFormas4.TabIndex = 1895;
+            this.cboTiposFormas4.DropDownClosed += new System.EventHandler(this.cboTiposFormas4_DropDownClosed);
             // 
             // cboTiposFormas3
             // 
@@ -1447,6 +1454,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiametros4.Name = "cboTiposDiametros4";
             this.cboTiposDiametros4.Size = new System.Drawing.Size(160, 20);
             this.cboTiposDiametros4.TabIndex = 1895;
+            this.cboTiposDiametros4.DropDownClosed += new System.EventHandler(this.cboTiposDiametros4_DropDownClosed);
             // 
             // cboTiposDiametros3
             // 
@@ -1502,6 +1510,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiametros2.Name = "cboTiposDiametros2";
             this.cboTiposDiametros2.Size = new System.Drawing.Size(160, 20);
             this.cboTiposDiametros2.TabIndex = 1895;
+            this.cboTiposDiametros2.DropDownClosed += new System.EventHandler(this.cboTiposDiametros2_DropDownClosed);
             // 
             // cboTiposDiametros1
             // 
@@ -1557,6 +1566,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiseñosAcabados2.Name = "cboTiposDiseñosAcabados2";
             this.cboTiposDiseñosAcabados2.Size = new System.Drawing.Size(160, 20);
             this.cboTiposDiseñosAcabados2.TabIndex = 1895;
+            this.cboTiposDiseñosAcabados2.DropDownClosed += new System.EventHandler(this.cboTiposDiseñosAcabados2_DropDownClosed);
             // 
             // cboTiposDiseñosAcabados1
             // 
@@ -1612,6 +1622,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiseñosAcabados4.Name = "cboTiposDiseñosAcabados4";
             this.cboTiposDiseñosAcabados4.Size = new System.Drawing.Size(160, 20);
             this.cboTiposDiseñosAcabados4.TabIndex = 1895;
+            this.cboTiposDiseñosAcabados4.DropDownClosed += new System.EventHandler(this.cboTiposDiseñosAcabados4_DropDownClosed);
             // 
             // cboTiposDiseñosAcabados3
             // 
@@ -1667,6 +1678,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoMedida2.Name = "cboTipoMedida2";
             this.cboTipoMedida2.Size = new System.Drawing.Size(160, 20);
             this.cboTipoMedida2.TabIndex = 1895;
+            this.cboTipoMedida2.DropDownClosed += new System.EventHandler(this.cboTipoMedida2_DropDownClosed);
             // 
             // cboTipoMedida1
             // 
@@ -1713,6 +1725,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoMedida4.Name = "cboTipoMedida4";
             this.cboTipoMedida4.Size = new System.Drawing.Size(160, 20);
             this.cboTipoMedida4.TabIndex = 1895;
+            this.cboTipoMedida4.DropDownClosed += new System.EventHandler(this.cboTipoMedida4_DropDownClosed);
             // 
             // cboTipoMedida3
             // 
@@ -1777,6 +1790,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoCaracteristicas4.Name = "cboTipoCaracteristicas4";
             this.cboTipoCaracteristicas4.Size = new System.Drawing.Size(160, 20);
             this.cboTipoCaracteristicas4.TabIndex = 1895;
+            this.cboTipoCaracteristicas4.DropDownClosed += new System.EventHandler(this.cboTipoCaracteristicas4_DropDownClosed);
             // 
             // cboTipoCaracteristicas3
             // 
@@ -1832,6 +1846,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoCaracteristicas2.Name = "cboTipoCaracteristicas2";
             this.cboTipoCaracteristicas2.Size = new System.Drawing.Size(160, 20);
             this.cboTipoCaracteristicas2.TabIndex = 1895;
+            this.cboTipoCaracteristicas2.DropDownClosed += new System.EventHandler(this.cboTipoCaracteristicas2_DropDownClosed);
             // 
             // cboTipoCaracteristicas1
             // 
