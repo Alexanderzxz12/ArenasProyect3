@@ -38,6 +38,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
             alternarColorFilas(datalistadoModeloXOperacion);
             alternarColorFilas(datalistadoModeloXOperacionXMaquinaria);
+
+          
         }
 
         //METODO PARA PINTAR DE COLORES LAS FILAS DE MI LSITADO
@@ -232,7 +234,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                SqlCommand comando = new SqlCommand("SELECT MO.IdModeloxOperacion, M.IdModelo,O.IdOperaciones,M.Descripcion AS MODELO,O.Descripcion AS OPERACIÓN FROM ModeloxOperacion MO INNER JOIN Modelos M ON M.IdModelo = MO.IdModelo INNER JOIN Operaciones O ON O.IdOperaciones = MO.IdOperacion WHERE MO.Estado = 1 AND MO.IdModelo = @idmodelo", con);
+                SqlCommand comando = new SqlCommand("ModeloXOperacion_Mostrar", con);
+                comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@idmodelo", idmodelo);
                 da = new SqlDataAdapter(comando);
                 da.Fill(dt);
@@ -260,7 +263,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                SqlCommand comando = new SqlCommand("SELECT MOM.IdModeloXOperacionXMaquinaria,MOM.IdModelo,M.Descripcion AS MODELO,MOM.IdOperacion,O.Descripcion AS OPERACIÓN,MOM.IdMaquinaria,MA.Descripcion AS MAQUINARIA FROM ModeloxOperacionxMaquinaria MOM INNER JOIN Modelos M ON M.IdModelo = MOM.IdModelo INNER JOIN Operaciones O ON O.IdOperaciones = MOM.IdOperacion INNER JOIN Maquinarias MA ON MA.IdMaquinarias = MOM.IdMaquinaria WHERE MOM.IdModelo = @idmodelo AND MOM.IdOperacion = @idoperacion AND MOM.Estado = 1", con);
+                SqlCommand comando = new SqlCommand("ModeloXOperacionXMaquinaria_Mostrar", con);
+                comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@idmodelo", idmodelo);
                 comando.Parameters.AddWithValue("@idoperacion", idoperacion);
                 da = new SqlDataAdapter(comando);
@@ -326,7 +330,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarModeloxOperacion", con);
+                        cmd = new SqlCommand("ModeloXOperacion_Insertar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("@idmodelo", idmodeloo1);
@@ -348,6 +352,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+
+
         }
         private void btnGuardar1_Click(object sender, EventArgs e)
         {
@@ -355,7 +361,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
         //METODO PARA ELIMINAR MODELO X OPERACIÓN
-        private void btnEliminar1_Click(object sender, EventArgs e)
+        public void EliminarModeloXOperacion()
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este registro?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
@@ -368,12 +374,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarModeloxOperacion", con);
+                        cmd = new SqlCommand("ModeloXOperacion_Eliminar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@id", idmodeloxoperacion1);
                         cmd.ExecuteNonQuery();
                         con.Close();
                         Mostrar1(idmodelo1);
+                        CargarOperacion2(idmodelo2);
                         MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     catch (Exception ex)
@@ -386,6 +393,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     MessageBox.Show("Debe seleccionar un registro para poder eliminar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
+        }
+        private void btnEliminar1_Click(object sender, EventArgs e)
+        {
+          EliminarModeloXOperacion();
         }
 
         //MOSTREO DE DATOS CON FILTROS---------------------------------------------------------
@@ -411,7 +422,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
         //ACCIONES DE CRUD SEGUNDA PARTE----------------------------------------------------------
         //METODO PARA GAURDAR MODELO X OPERACIÓN X MAQUINARIA
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        public void AgregarModeloXOperacionXMaquinaria(int idmodelo, int idoperacion, int idmaquinaria)
         {
             ValidarExisitencia2();
 
@@ -432,12 +443,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarModeloxOperacionxMaquinaria", con);
+                            cmd = new SqlCommand("ModeloXOperacionXMaquinaria_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
 
-                            cmd.Parameters.AddWithValue("@idmodelo", Convert.ToInt32(cboModelo2.SelectedValue.ToString()));
-                            cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion2.SelectedValue.ToString()));
-                            cmd.Parameters.AddWithValue("@idmaquinaria", Convert.ToInt32(cboMaquinaria2.SelectedValue.ToString()));
+                            cmd.Parameters.AddWithValue("@idmodelo", idmodelo);
+                            cmd.Parameters.AddWithValue("@idoperacion", idoperacion);
+                            cmd.Parameters.AddWithValue("@idmaquinaria", idmaquinaria);
 
                             cmd.ExecuteNonQuery();
                             con.Close();
@@ -456,9 +467,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+           AgregarModeloXOperacionXMaquinaria(Convert.ToInt32(cboModelo2.SelectedValue), Convert.ToInt32(cboOperacion2.SelectedValue), Convert.ToInt32(cboMaquinaria2.SelectedValue));
+        }
 
         //METODO PARA ELIMINAR MODELO X OPERACIÓN
-        private void btnEliminar2_Click(object sender, EventArgs e)
+        public void EliminarModeloXOperacionXMaquinaria()
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este registro?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
@@ -471,7 +486,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarModeloxOperacionxMaquinaria", con);
+                        cmd = new SqlCommand("ModeloXOperacionXMaquinaria_Eliminar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@id", idmodeloxoperacionxmequinaria);
                         cmd.ExecuteNonQuery();
@@ -490,6 +505,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     MessageBox.Show("Debe seleccionar un registro para poder eliminar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
+        }
+        private void btnEliminar2_Click(object sender, EventArgs e)
+        {
+          EliminarModeloXOperacionXMaquinaria();
         }
     }
 }
