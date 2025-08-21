@@ -268,3 +268,4 @@ Z:\ALEXANDER HUAMAN\Escritorio\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasPro
 Z:\ALEXANDER HUAMAN\Escritorio\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.pdb
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Calidad.Revision.ListadoOrdenProduccion.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Calidad.Revision.MenuConsultasOP.resources
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3\obj\Debug\ArenasProyect3.Visualizadores.VisualizarSNC.resources

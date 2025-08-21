@@ -71,6 +71,7 @@
             this.lblLeyendaAdmin = new System.Windows.Forms.Label();
             this.btnAdministrador = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.lblCambiarCuenta = new System.Windows.Forms.Label();
             this.panelBienvenida = new System.Windows.Forms.Panel();
             this.lblNombre = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -85,7 +86,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
             this.btnCambiarusuarioIcono = new System.Windows.Forms.PictureBox();
-            this.lblCambiarCuenta = new System.Windows.Forms.Label();
             this.panelValidacionLicencia = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.datalistadoVerificacionLicencia = new System.Windows.Forms.DataGridView();
@@ -253,7 +253,7 @@
             this.flpAreas.Controls.Add(this.panel15);
             this.flpAreas.Controls.Add(this.panel16);
             this.flpAreas.Controls.Add(this.panel10);
-            this.flpAreas.Location = new System.Drawing.Point(157, 115);
+            this.flpAreas.Location = new System.Drawing.Point(160, 115);
             this.flpAreas.Name = "flpAreas";
             this.flpAreas.Size = new System.Drawing.Size(688, 321);
             this.flpAreas.TabIndex = 2002;
@@ -641,17 +641,30 @@
             // panelLogin
             // 
             this.panelLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLogin.Controls.Add(this.lblCambiarCuenta);
             this.panelLogin.Controls.Add(this.panelBienvenida);
             this.panelLogin.Controls.Add(this.panel3);
             this.panelLogin.Controls.Add(this.label2);
             this.panelLogin.Controls.Add(this.btnIniciarSesion);
             this.panelLogin.Controls.Add(this.btnCambiarusuarioIcono);
-            this.panelLogin.Controls.Add(this.lblCambiarCuenta);
             this.panelLogin.Location = new System.Drawing.Point(206, 60);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(586, 381);
             this.panelLogin.TabIndex = 2003;
             this.panelLogin.Visible = false;
+            // 
+            // lblCambiarCuenta
+            // 
+            this.lblCambiarCuenta.AutoSize = true;
+            this.lblCambiarCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCambiarCuenta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCambiarCuenta.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblCambiarCuenta.Location = new System.Drawing.Point(201, 306);
+            this.lblCambiarCuenta.Name = "lblCambiarCuenta";
+            this.lblCambiarCuenta.Size = new System.Drawing.Size(141, 19);
+            this.lblCambiarCuenta.TabIndex = 3;
+            this.lblCambiarCuenta.Text = "Cambiar de usuario";
+            this.lblCambiarCuenta.Click += new System.EventHandler(this.lblCambiarCuenta_Click);
             // 
             // panelBienvenida
             // 
@@ -820,26 +833,13 @@
             this.btnCambiarusuarioIcono.BackColor = System.Drawing.Color.Transparent;
             this.btnCambiarusuarioIcono.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCambiarusuarioIcono.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiarusuarioIcono.Image")));
-            this.btnCambiarusuarioIcono.Location = new System.Drawing.Point(338, 299);
+            this.btnCambiarusuarioIcono.Location = new System.Drawing.Point(334, 299);
             this.btnCambiarusuarioIcono.Name = "btnCambiarusuarioIcono";
             this.btnCambiarusuarioIcono.Size = new System.Drawing.Size(50, 33);
             this.btnCambiarusuarioIcono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnCambiarusuarioIcono.TabIndex = 1995;
             this.btnCambiarusuarioIcono.TabStop = false;
             this.btnCambiarusuarioIcono.Click += new System.EventHandler(this.btnCambiarusuarioIcono_Click);
-            // 
-            // lblCambiarCuenta
-            // 
-            this.lblCambiarCuenta.AutoSize = true;
-            this.lblCambiarCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCambiarCuenta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCambiarCuenta.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblCambiarCuenta.Location = new System.Drawing.Point(196, 306);
-            this.lblCambiarCuenta.Name = "lblCambiarCuenta";
-            this.lblCambiarCuenta.Size = new System.Drawing.Size(141, 19);
-            this.lblCambiarCuenta.TabIndex = 3;
-            this.lblCambiarCuenta.Text = "Cambiar de usuario";
-            this.lblCambiarCuenta.Click += new System.EventHandler(this.lblCambiarCuenta_Click);
             // 
             // panelValidacionLicencia
             // 

@@ -179,7 +179,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             datalistadoHistorial.DataSource = dt;
             con.Close();
             //REORDENAMIENTO DE COLUMNAS
-            datalistadoHistorial.Columns[1].Width = 60;
+            datalistadoHistorial.Columns[1].Width = 70;
             datalistadoHistorial.Columns[2].Width = 50;
             datalistadoHistorial.Columns[3].Width = 300;
             datalistadoHistorial.Columns[4].Width = 80;
@@ -357,6 +357,8 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     txtPesoTeorico.Text = "0.00";
                     txtPesoReal.Text = "0.00";
                     txtObservaciones.Text = "";
+                    btnGenerarCSM.Visible = false;
+                    lblGenerarCSM.Visible = false;
                 }
             }
         }
@@ -476,7 +478,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 }
                 else if (Convert.ToInt32(txtCantidadInspeccionar.Text) > Convert.ToInt32(txtCantidadRestante.Text))
                 {
-                    MessageBox.Show("No se puede revisar más de la cantidad restante", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("No se puede revisar más de la cantidad restante.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -497,11 +499,11 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                             cmd.Parameters.AddWithValue("@pesoTeorico", Convert.ToDecimal(txtPesoTeorico.Text));
                             cmd.Parameters.AddWithValue("@pesoReal", Convert.ToDecimal(txtPesoReal.Text));
                             cmd.Parameters.AddWithValue("@observaciones", txtObservaciones.Text);
-                            cmd.Parameters.AddWithValue("@estadoAD", 1);
+                            cmd.Parameters.AddWithValue("@estadoAD", 2);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MessageBox.Show("Cantidd revisada correctamente.", "Validación del Sistema");
+                            MessageBox.Show("Cantidad revisada correctamente.", "Validación del Sistema");
                             txtCantidadRestante.Text = Convert.ToString(Convert.ToInt16(txtCantidadRestante.Text) - Convert.ToInt16(txtCantidadInspeccionar.Text));
                             LimpiarCantidades();
                         }
@@ -530,7 +532,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 }
                 else if (Convert.ToInt32(txtCantidadInspeccionar.Text) > Convert.ToInt32(txtCantidadRestante.Text))
                 {
-                    MessageBox.Show("No se puede revisar más de la cantidad restante", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("No se puede revisar más de la cantidad restante.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -555,7 +557,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MessageBox.Show("Cantidd revisada correctamente.", "Validación del Sistema");
+                            MessageBox.Show("Cantidad revisada correctamente.", "Validación del Sistema");
                             txtCantidadRestante.Text = Convert.ToString(Convert.ToInt16(txtCantidadRestante.Text) - Convert.ToInt16(txtCantidadInspeccionar.Text));
                             LimpiarCantidades();
                         }
@@ -572,12 +574,144 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             }
         }
 
+        //CARGAR PERSONA QUE AUTORIZA
+        public void CargarResposnableAutoriza()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' ORDER BY Nombres", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboAutorizaSNC.ValueMember = "IdUsuarios";
+                cboAutorizaSNC.DisplayMember = "NOMBRES";
+                cboAutorizaSNC.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
         //LIMPIAR MIS DATOS DE MI INGRESO DE CANTIDADES
         public void LimpiarCantidades()
         {
             txtCantidadInspeccionar.Text = "";
             txtPesoReal.Text = "0.00";
+            txtObservaciones.Text = "";
             MostrarCantidadesSegunOP(Convert.ToInt16(lblIdOP.Text));
+        }
+
+        //GENERA UNA SALIDA NO CONFORME
+        private void btnGenerarCSM_Click(object sender, EventArgs e)
+        {
+            panelSNC.Visible = true;
+            txtReponsableRegistro.Text = Program.UnoNombreUnoApellidoUsuario;
+            txtOrdenProduccionSNC.Text = txtCodigoOP.Text;
+            CargarResposnableAutoriza();
+            LimpiarSNC();
+        }
+
+        //FUNCION PARA LIMPIAR MI SNC
+        public void LimpiarSNC()
+        {
+            txtDescripcionSNC.Text = "";
+            txtAccionesTomadasSNC.Text = "";
+            dtpInicioSNC.Value = DateTime.Now;
+            dtpFinalSNC.Value = DateTime.Now;
+            txtImagen1.Text = "";
+            txtImagen2.Text = "";
+            txtImagen3.Text = "";
+            txtOtrosSNC.Text = "";
+            ckLiberacion.Checked = false;
+            ckRectificacion.Checked = false;
+            ckCorrecion.Checked = false;
+            ckRecuperacionComponetntes.Checked = false;
+            ckReproceso.Checked = false;
+            ckDestruccion.Checked = false;
+            ckOtros.Checked = false;
+        }
+
+        //BOTON PARA GUARDAR MI SNC
+        private void btnGuardarSNC_Click(object sender, EventArgs e)
+        {
+            //SI LOS CAMPOS ESTAN VACIOS
+            if (txtReponsableRegistro.Text == "" || txtOrdenProduccionSNC.Text == "0" || txtDescripcionSNC.Text == "" || txtAccionesTomadasSNC.Text == "")
+            {
+                MessageBox.Show("Debe ingresar todos los campos para poder registrar la SNC.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                DialogResult boton = MessageBox.Show("¿Realmente desea generar esta SNC?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
+                {
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        SqlCommand cmd = new SqlCommand();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        cmd = new SqlCommand("Calidad_IngresarSNC", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idDetalleCantidadCalidad", Convert.ToInt32(datalistadoHistorial.SelectedCells[0].Value.ToString()));
+                        cmd.Parameters.AddWithValue("@idUsuarioResponsable", Program.IdUsuario);
+                        cmd.Parameters.AddWithValue("@fechaHallazgo", dtpFechaHallazgo.Value);
+                        cmd.Parameters.AddWithValue("@IdOp", Convert.ToInt32(lblIdOP.Text));
+                        cmd.Parameters.AddWithValue("@descripcionSNC", txtDescripcionSNC.Text);
+                        cmd.Parameters.AddWithValue("@descripcionAcciones", txtAccionesTomadasSNC.Text);
+                        cmd.Parameters.AddWithValue("@idUsuarioAutorizacion", cboAutorizaSNC.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@inicio", dtpInicioSNC.Value);
+                        cmd.Parameters.AddWithValue("@finaliza", dtpFinalSNC.Value);
+                        cmd.Parameters.AddWithValue("@imagen1", txtImagen1.Text);
+                        cmd.Parameters.AddWithValue("@imagen2", txtImagen2.Text);
+                        cmd.Parameters.AddWithValue("@imagen3", txtImagen3.Text);
+                        cmd.Parameters.AddWithValue("@skLiberacion", ckLiberacion.Checked);
+                        cmd.Parameters.AddWithValue("@skCorrecion", ckCorrecion.Checked);
+                        cmd.Parameters.AddWithValue("@skReproceso", ckReproceso.Checked);
+                        cmd.Parameters.AddWithValue("@skReclasificacion", ckRectificacion.Checked);
+                        cmd.Parameters.AddWithValue("@skRecuperacion", ckRecuperacionComponetntes.Checked);
+                        cmd.Parameters.AddWithValue("@skDestruccion", ckDestruccion.Checked);
+                        cmd.Parameters.AddWithValue("@skOtros", ckOtros.Checked);
+                        cmd.Parameters.AddWithValue("@descripcionOtros", txtOtrosSNC.Text);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Salida No Conforme registrada correctamente.", "Validación del Sistema");
+                        MostrarCantidadesSegunOP(Convert.ToInt16(lblIdOP.Text));
+                        panelSNC.Visible = false;
+                        LimpiarSNC();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
+        //BOTON PARA SALIR DE MI SNC
+        private void btnCerrarSNC_Click(object sender, EventArgs e)
+        {
+            panelSNC.Visible = false;
+            LimpiarSNC();
+        }
+
+        //VISUALIZAR DOCUMETNOS DEL CONTROL DE CALIDAD
+        private void btnVisualizar_Click(object sender, EventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoHistorial.CurrentRow != null)
+            {
+                //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+                string codigoDetalleCantidadCalidad = datalistadoHistorial.Rows[datalistadoHistorial.CurrentRow.Index].Cells[0].Value.ToString();
+                Visualizadores.VisualizarSNC frm = new Visualizadores.VisualizarSNC();
+                frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
+                //CARGAR VENTANA
+                frm.Show();
+            }
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
@@ -595,6 +729,10 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     else if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "DESAPROBADO")
                     {
                         datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "SNC GENERADA")
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkOrange;
                     }
                     else
                     {
@@ -621,6 +759,17 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 btnGenerarCSM.Visible = false;
                 lblGenerarCSM.Visible = false;
             }
+
+            if(datalistadoHistorial.SelectedCells[5].Value.ToString() == "SNC GENERADA")
+            {
+                btnVisualizar.Visible = true;
+                lblLeyendaVisualizar.Visible = true;
+            }
+            else
+            {
+                btnVisualizar.Visible = false;
+                lblLeyendaVisualizar.Visible = false;
+            }
         }
 
         //VALIDAR QUE SOLO INGRESE NÚMEROS ENTEROS
@@ -630,6 +779,19 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true; // Bloquea el carácter
+            }
+        }
+
+        //ACCIONAR EL CK OTROS PARA QUE PUEDA INGRESAR UN TEXTO
+        private void ckOtros_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckOtros.Checked == true)
+            {
+                txtOtrosSNC.ReadOnly = false;
+            }
+            else
+            {
+                txtOtrosSNC.ReadOnly = true;
             }
         }
     }

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoOrdenProduccion));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -65,6 +65,7 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.label54 = new System.Windows.Forms.Label();
             this.datalistadoTodasOP = new System.Windows.Forms.DataGridView();
+            this.detalles = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnOC = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPlano = new System.Windows.Forms.Button();
@@ -76,8 +77,8 @@
             this.lblCantidadRealizada = new System.Windows.Forms.Label();
             this.btnRegresarControl = new System.Windows.Forms.Button();
             this.lblRegresarControl = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label38 = new System.Windows.Forms.Label();
+            this.btnVisualizar = new System.Windows.Forms.Button();
+            this.lblLeyendaVisualizar = new System.Windows.Forms.Label();
             this.btnGenerarCSM = new System.Windows.Forms.Button();
             this.lblGenerarCSM = new System.Windows.Forms.Label();
             this.btnDesaprobar = new System.Windows.Forms.Button();
@@ -115,20 +116,20 @@
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSNC = new System.Windows.Forms.Panel();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCerrarSNC = new System.Windows.Forms.Button();
+            this.btnGuardarSNC = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtOtrosSNC = new System.Windows.Forms.TextBox();
+            this.ckOtros = new System.Windows.Forms.CheckBox();
+            this.ckDestruccion = new System.Windows.Forms.CheckBox();
+            this.ckRecuperacionComponetntes = new System.Windows.Forms.CheckBox();
+            this.ckRectificacion = new System.Windows.Forms.CheckBox();
+            this.ckReproceso = new System.Windows.Forms.CheckBox();
+            this.ckCorrecion = new System.Windows.Forms.CheckBox();
+            this.ckLiberacion = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -147,27 +148,26 @@
             this.btnVisualizarImagen3 = new System.Windows.Forms.Button();
             this.btnCargarImagen3 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFinalSNC = new System.Windows.Forms.DateTimePicker();
+            this.dtpInicioSNC = new System.Windows.Forms.DateTimePicker();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboAutorizaSNC = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtAccionesTomadasSNC = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtDescripcionSNC = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtOrdenProduccionSNC = new System.Windows.Forms.TextBox();
             this.txtReponsableRegistro = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaHallazgo = new System.Windows.Forms.DateTimePicker();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
-            this.detalles = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).BeginInit();
@@ -190,7 +190,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelSNC.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -591,25 +591,25 @@
             this.datalistadoTodasOP.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasOP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasOP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.datalistadoTodasOP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasOP.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.detalles});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasOP.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasOP.DefaultCellStyle = dataGridViewCellStyle13;
             this.datalistadoTodasOP.Location = new System.Drawing.Point(5, 190);
             this.datalistadoTodasOP.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoTodasOP.MultiSelect = false;
@@ -622,6 +622,21 @@
             this.datalistadoTodasOP.TabIndex = 215;
             this.datalistadoTodasOP.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoTodasOP_CellClick);
             this.datalistadoTodasOP.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoTodasOP_CellMouseMove);
+            // 
+            // detalles
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle12.NullValue")));
+            dataGridViewCellStyle12.Padding = new System.Windows.Forms.Padding(2);
+            this.detalles.DefaultCellStyle = dataGridViewCellStyle12;
+            this.detalles.HeaderText = "SEL.";
+            this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
+            this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.detalles.MinimumWidth = 6;
+            this.detalles.Name = "detalles";
+            this.detalles.ReadOnly = true;
+            this.detalles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.detalles.Width = 30;
             // 
             // btnOC
             // 
@@ -698,12 +713,13 @@
             // panelControlCalidad
             // 
             this.panelControlCalidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelControlCalidad.Controls.Add(this.panelSNC);
             this.panelControlCalidad.Controls.Add(this.datalistadoHistorial);
             this.panelControlCalidad.Controls.Add(this.lblCantidadRealizada);
             this.panelControlCalidad.Controls.Add(this.btnRegresarControl);
             this.panelControlCalidad.Controls.Add(this.lblRegresarControl);
-            this.panelControlCalidad.Controls.Add(this.button3);
-            this.panelControlCalidad.Controls.Add(this.label38);
+            this.panelControlCalidad.Controls.Add(this.btnVisualizar);
+            this.panelControlCalidad.Controls.Add(this.lblLeyendaVisualizar);
             this.panelControlCalidad.Controls.Add(this.btnGenerarCSM);
             this.panelControlCalidad.Controls.Add(this.lblGenerarCSM);
             this.panelControlCalidad.Controls.Add(this.btnDesaprobar);
@@ -754,23 +770,23 @@
             this.datalistadoHistorial.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoHistorial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoHistorial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.datalistadoHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoHistorial.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoHistorial.DefaultCellStyle = dataGridViewCellStyle15;
             this.datalistadoHistorial.Location = new System.Drawing.Point(39, 366);
             this.datalistadoHistorial.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoHistorial.MultiSelect = false;
@@ -818,28 +834,31 @@
             this.lblRegresarControl.TabIndex = 2088;
             this.lblRegresarControl.Text = "RETROCEDER";
             // 
-            // button3
+            // btnVisualizar
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(520, 251);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(31, 31);
-            this.button3.TabIndex = 2087;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnVisualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVisualizar.FlatAppearance.BorderSize = 0;
+            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizar.Image")));
+            this.btnVisualizar.Location = new System.Drawing.Point(520, 251);
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Size = new System.Drawing.Size(31, 31);
+            this.btnVisualizar.TabIndex = 2087;
+            this.btnVisualizar.UseVisualStyleBackColor = true;
+            this.btnVisualizar.Visible = false;
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
             // 
-            // label38
+            // lblLeyendaVisualizar
             // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(513, 283);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(45, 13);
-            this.label38.TabIndex = 2086;
-            this.label38.Text = "PDF SNC";
+            this.lblLeyendaVisualizar.AutoSize = true;
+            this.lblLeyendaVisualizar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaVisualizar.Location = new System.Drawing.Point(522, 283);
+            this.lblLeyendaVisualizar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLeyendaVisualizar.Name = "lblLeyendaVisualizar";
+            this.lblLeyendaVisualizar.Size = new System.Drawing.Size(25, 13);
+            this.lblLeyendaVisualizar.TabIndex = 2086;
+            this.lblLeyendaVisualizar.Text = "PDF";
+            this.lblLeyendaVisualizar.Visible = false;
             // 
             // btnGenerarCSM
             // 
@@ -853,6 +872,7 @@
             this.btnGenerarCSM.TabIndex = 2083;
             this.btnGenerarCSM.UseVisualStyleBackColor = true;
             this.btnGenerarCSM.Visible = false;
+            this.btnGenerarCSM.Click += new System.EventHandler(this.btnGenerarCSM_Click);
             // 
             // lblGenerarCSM
             // 
@@ -917,7 +937,7 @@
             // txtObservaciones
             // 
             this.txtObservaciones.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservaciones.Location = new System.Drawing.Point(273, 146);
+            this.txtObservaciones.Location = new System.Drawing.Point(280, 146);
             this.txtObservaciones.Margin = new System.Windows.Forms.Padding(4);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
@@ -929,7 +949,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(288, 129);
+            this.label25.Location = new System.Drawing.Point(295, 129);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(77, 13);
@@ -1270,23 +1290,23 @@
             this.pictureBox8.TabIndex = 54;
             this.pictureBox8.TabStop = false;
             // 
-            // panel1
+            // panelSNC
             // 
-            this.panel1.Controls.Add(this.label37);
-            this.panel1.Controls.Add(this.label36);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.groupBox5);
-            this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.label26);
-            this.panel1.Location = new System.Drawing.Point(1144, 614);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(584, 527);
-            this.panel1.TabIndex = 2048;
-            this.panel1.Visible = false;
+            this.panelSNC.Controls.Add(this.label37);
+            this.panelSNC.Controls.Add(this.label36);
+            this.panelSNC.Controls.Add(this.btnCerrarSNC);
+            this.panelSNC.Controls.Add(this.btnGuardarSNC);
+            this.panelSNC.Controls.Add(this.groupBox5);
+            this.panelSNC.Controls.Add(this.groupBox4);
+            this.panelSNC.Controls.Add(this.groupBox3);
+            this.panelSNC.Controls.Add(this.panel4);
+            this.panelSNC.Controls.Add(this.label26);
+            this.panelSNC.Location = new System.Drawing.Point(1, 21);
+            this.panelSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.panelSNC.Name = "panelSNC";
+            this.panelSNC.Size = new System.Drawing.Size(584, 527);
+            this.panelSNC.TabIndex = 2048;
+            this.panelSNC.Visible = false;
             // 
             // label37
             // 
@@ -1310,40 +1330,42 @@
             this.label36.TabIndex = 2096;
             this.label36.Text = "GENERAR";
             // 
-            // button2
+            // btnCerrarSNC
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(521, 466);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(41, 35);
-            this.button2.TabIndex = 2095;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCerrarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarSNC.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSNC.Image")));
+            this.btnCerrarSNC.Location = new System.Drawing.Point(521, 466);
+            this.btnCerrarSNC.Name = "btnCerrarSNC";
+            this.btnCerrarSNC.Size = new System.Drawing.Size(41, 35);
+            this.btnCerrarSNC.TabIndex = 2095;
+            this.btnCerrarSNC.UseVisualStyleBackColor = true;
+            this.btnCerrarSNC.Click += new System.EventHandler(this.btnCerrarSNC_Click);
             // 
-            // button1
+            // btnGuardarSNC
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(521, 408);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(41, 35);
-            this.button1.TabIndex = 2094;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGuardarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardarSNC.FlatAppearance.BorderSize = 0;
+            this.btnGuardarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarSNC.Image")));
+            this.btnGuardarSNC.Location = new System.Drawing.Point(521, 408);
+            this.btnGuardarSNC.Name = "btnGuardarSNC";
+            this.btnGuardarSNC.Size = new System.Drawing.Size(41, 35);
+            this.btnGuardarSNC.TabIndex = 2094;
+            this.btnGuardarSNC.UseVisualStyleBackColor = true;
+            this.btnGuardarSNC.Click += new System.EventHandler(this.btnGuardarSNC_Click);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.textBox6);
-            this.groupBox5.Controls.Add(this.checkBox7);
-            this.groupBox5.Controls.Add(this.checkBox6);
-            this.groupBox5.Controls.Add(this.checkBox5);
-            this.groupBox5.Controls.Add(this.checkBox4);
-            this.groupBox5.Controls.Add(this.checkBox3);
-            this.groupBox5.Controls.Add(this.checkBox2);
-            this.groupBox5.Controls.Add(this.checkBox1);
+            this.groupBox5.Controls.Add(this.txtOtrosSNC);
+            this.groupBox5.Controls.Add(this.ckOtros);
+            this.groupBox5.Controls.Add(this.ckDestruccion);
+            this.groupBox5.Controls.Add(this.ckRecuperacionComponetntes);
+            this.groupBox5.Controls.Add(this.ckRectificacion);
+            this.groupBox5.Controls.Add(this.ckReproceso);
+            this.groupBox5.Controls.Add(this.ckCorrecion);
+            this.groupBox5.Controls.Add(this.ckLiberacion);
             this.groupBox5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(11, 397);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
@@ -1354,105 +1376,106 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tipo de acción";
             // 
-            // textBox6
+            // txtOtrosSNC
             // 
-            this.textBox6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(137, 88);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(226, 21);
-            this.textBox6.TabIndex = 2093;
-            this.textBox6.Tag = "";
+            this.txtOtrosSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOtrosSNC.Location = new System.Drawing.Point(137, 88);
+            this.txtOtrosSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOtrosSNC.Name = "txtOtrosSNC";
+            this.txtOtrosSNC.ReadOnly = true;
+            this.txtOtrosSNC.Size = new System.Drawing.Size(226, 21);
+            this.txtOtrosSNC.TabIndex = 2093;
+            this.txtOtrosSNC.Tag = "";
             // 
-            // checkBox7
+            // ckOtros
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox7.Location = new System.Drawing.Point(19, 90);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(52, 17);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "Otros";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.ckOtros.AutoSize = true;
+            this.ckOtros.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckOtros.Location = new System.Drawing.Point(19, 90);
+            this.ckOtros.Name = "ckOtros";
+            this.ckOtros.Size = new System.Drawing.Size(52, 17);
+            this.ckOtros.TabIndex = 6;
+            this.ckOtros.Text = "Otros";
+            this.ckOtros.UseVisualStyleBackColor = true;
+            this.ckOtros.CheckedChanged += new System.EventHandler(this.ckOtros_CheckedChanged);
             // 
-            // checkBox6
+            // ckDestruccion
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox6.Location = new System.Drawing.Point(137, 67);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(83, 17);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "Destrucción";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.ckDestruccion.AutoSize = true;
+            this.ckDestruccion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDestruccion.Location = new System.Drawing.Point(137, 67);
+            this.ckDestruccion.Name = "ckDestruccion";
+            this.ckDestruccion.Size = new System.Drawing.Size(83, 17);
+            this.ckDestruccion.TabIndex = 5;
+            this.ckDestruccion.Text = "Destrucción";
+            this.ckDestruccion.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // ckRecuperacionComponetntes
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox5.Location = new System.Drawing.Point(137, 45);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(213, 17);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "Recuperación de componentes o partes";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.ckRecuperacionComponetntes.AutoSize = true;
+            this.ckRecuperacionComponetntes.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckRecuperacionComponetntes.Location = new System.Drawing.Point(137, 45);
+            this.ckRecuperacionComponetntes.Name = "ckRecuperacionComponetntes";
+            this.ckRecuperacionComponetntes.Size = new System.Drawing.Size(213, 17);
+            this.ckRecuperacionComponetntes.TabIndex = 4;
+            this.ckRecuperacionComponetntes.Text = "Recuperación de componentes o partes";
+            this.ckRecuperacionComponetntes.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // ckRectificacion
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.Location = new System.Drawing.Point(137, 22);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(97, 17);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Reclasificación";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.ckRectificacion.AutoSize = true;
+            this.ckRectificacion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckRectificacion.Location = new System.Drawing.Point(137, 22);
+            this.ckRectificacion.Name = "ckRectificacion";
+            this.ckRectificacion.Size = new System.Drawing.Size(97, 17);
+            this.ckRectificacion.TabIndex = 3;
+            this.ckRectificacion.Text = "Reclasificación";
+            this.ckRectificacion.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // ckReproceso
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.Location = new System.Drawing.Point(19, 67);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(76, 17);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Reproceso";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.ckReproceso.AutoSize = true;
+            this.ckReproceso.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckReproceso.Location = new System.Drawing.Point(19, 67);
+            this.ckReproceso.Name = "ckReproceso";
+            this.ckReproceso.Size = new System.Drawing.Size(76, 17);
+            this.ckReproceso.TabIndex = 2;
+            this.ckReproceso.Text = "Reproceso";
+            this.ckReproceso.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // ckCorrecion
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(19, 45);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Correción";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.ckCorrecion.AutoSize = true;
+            this.ckCorrecion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCorrecion.Location = new System.Drawing.Point(19, 45);
+            this.ckCorrecion.Name = "ckCorrecion";
+            this.ckCorrecion.Size = new System.Drawing.Size(72, 17);
+            this.ckCorrecion.TabIndex = 1;
+            this.ckCorrecion.Text = "Correción";
+            this.ckCorrecion.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // ckLiberacion
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(19, 22);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(76, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Liberación";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ckLiberacion.AutoSize = true;
+            this.ckLiberacion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckLiberacion.Location = new System.Drawing.Point(19, 22);
+            this.ckLiberacion.Name = "ckLiberacion";
+            this.ckLiberacion.Size = new System.Drawing.Size(76, 17);
+            this.ckLiberacion.TabIndex = 0;
+            this.ckLiberacion.Text = "Liberación";
+            this.ckLiberacion.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.tabControl2);
             this.groupBox4.Controls.Add(this.label35);
-            this.groupBox4.Controls.Add(this.dateTimePicker3);
-            this.groupBox4.Controls.Add(this.dateTimePicker2);
+            this.groupBox4.Controls.Add(this.dtpFinalSNC);
+            this.groupBox4.Controls.Add(this.dtpInicioSNC);
             this.groupBox4.Controls.Add(this.label34);
             this.groupBox4.Controls.Add(this.label33);
-            this.groupBox4.Controls.Add(this.comboBox1);
+            this.groupBox4.Controls.Add(this.cboAutorizaSNC);
             this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Controls.Add(this.textBox5);
+            this.groupBox4.Controls.Add(this.txtAccionesTomadasSNC);
             this.groupBox4.Controls.Add(this.label27);
             this.groupBox4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(11, 181);
@@ -1672,27 +1695,25 @@
             this.label35.TabIndex = 2104;
             this.label35.Text = "Evidencia:";
             // 
-            // dateTimePicker3
+            // dtpFinalSNC
             // 
-            this.dateTimePicker3.Enabled = false;
-            this.dateTimePicker3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(477, 77);
-            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(77, 21);
-            this.dateTimePicker3.TabIndex = 2103;
+            this.dtpFinalSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFinalSNC.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFinalSNC.Location = new System.Drawing.Point(477, 77);
+            this.dtpFinalSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFinalSNC.Name = "dtpFinalSNC";
+            this.dtpFinalSNC.Size = new System.Drawing.Size(77, 21);
+            this.dtpFinalSNC.TabIndex = 2103;
             // 
-            // dateTimePicker2
+            // dtpInicioSNC
             // 
-            this.dateTimePicker2.Enabled = false;
-            this.dateTimePicker2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(383, 77);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(77, 21);
-            this.dateTimePicker2.TabIndex = 2101;
+            this.dtpInicioSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInicioSNC.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpInicioSNC.Location = new System.Drawing.Point(383, 77);
+            this.dtpInicioSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpInicioSNC.Name = "dtpInicioSNC";
+            this.dtpInicioSNC.Size = new System.Drawing.Size(77, 21);
+            this.dtpInicioSNC.TabIndex = 2101;
             // 
             // label34
             // 
@@ -1716,16 +1737,16 @@
             this.label33.TabIndex = 2099;
             this.label33.Text = "Inicia/Finaliza:";
             // 
-            // comboBox1
+            // cboAutorizaSNC
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(120, 77);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(162, 21);
-            this.comboBox1.TabIndex = 2098;
+            this.cboAutorizaSNC.BackColor = System.Drawing.SystemColors.Window;
+            this.cboAutorizaSNC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAutorizaSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAutorizaSNC.FormattingEnabled = true;
+            this.cboAutorizaSNC.Location = new System.Drawing.Point(120, 77);
+            this.cboAutorizaSNC.Name = "cboAutorizaSNC";
+            this.cboAutorizaSNC.Size = new System.Drawing.Size(176, 21);
+            this.cboAutorizaSNC.TabIndex = 2098;
             // 
             // label28
             // 
@@ -1738,16 +1759,16 @@
             this.label28.TabIndex = 2097;
             this.label28.Text = "Autorizado por:";
             // 
-            // textBox5
+            // txtAccionesTomadasSNC
             // 
-            this.textBox5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(120, 23);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(434, 49);
-            this.textBox5.TabIndex = 2096;
-            this.textBox5.Tag = "";
+            this.txtAccionesTomadasSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAccionesTomadasSNC.Location = new System.Drawing.Point(120, 23);
+            this.txtAccionesTomadasSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAccionesTomadasSNC.Multiline = true;
+            this.txtAccionesTomadasSNC.Name = "txtAccionesTomadasSNC";
+            this.txtAccionesTomadasSNC.Size = new System.Drawing.Size(434, 49);
+            this.txtAccionesTomadasSNC.TabIndex = 2096;
+            this.txtAccionesTomadasSNC.Tag = "";
             // 
             // label27
             // 
@@ -1762,15 +1783,15 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.txtDescripcionSNC);
             this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.txtOrdenProduccionSNC);
             this.groupBox3.Controls.Add(this.txtReponsableRegistro);
             this.groupBox3.Controls.Add(this.label31);
             this.groupBox3.Controls.Add(this.label30);
             this.groupBox3.Controls.Add(this.pictureBox3);
             this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.dateTimePicker1);
+            this.groupBox3.Controls.Add(this.dtpFechaHallazgo);
             this.groupBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(11, 37);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
@@ -1781,16 +1802,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Identificación";
             // 
-            // textBox4
+            // txtDescripcionSNC
             // 
-            this.textBox4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(153, 79);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(393, 49);
-            this.textBox4.TabIndex = 2095;
-            this.textBox4.Tag = "";
+            this.txtDescripcionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcionSNC.Location = new System.Drawing.Point(153, 79);
+            this.txtDescripcionSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcionSNC.Multiline = true;
+            this.txtDescripcionSNC.Name = "txtDescripcionSNC";
+            this.txtDescripcionSNC.Size = new System.Drawing.Size(393, 49);
+            this.txtDescripcionSNC.TabIndex = 2095;
+            this.txtDescripcionSNC.Tag = "";
             // 
             // label32
             // 
@@ -1803,17 +1824,17 @@
             this.label32.TabIndex = 2094;
             this.label32.Text = "Descripción de la SNC";
             // 
-            // textBox3
+            // txtOrdenProduccionSNC
             // 
-            this.textBox3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(450, 50);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(96, 21);
-            this.textBox3.TabIndex = 2093;
-            this.textBox3.Tag = "";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOrdenProduccionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrdenProduccionSNC.Location = new System.Drawing.Point(450, 50);
+            this.txtOrdenProduccionSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOrdenProduccionSNC.Name = "txtOrdenProduccionSNC";
+            this.txtOrdenProduccionSNC.ReadOnly = true;
+            this.txtOrdenProduccionSNC.Size = new System.Drawing.Size(96, 21);
+            this.txtOrdenProduccionSNC.TabIndex = 2093;
+            this.txtOrdenProduccionSNC.Tag = "";
+            this.txtOrdenProduccionSNC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtReponsableRegistro
             // 
@@ -1871,16 +1892,16 @@
             this.label29.TabIndex = 2088;
             this.label29.Text = "Fecha del hallazgo:";
             // 
-            // dateTimePicker1
+            // dtpFechaHallazgo
             // 
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(153, 50);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(95, 21);
-            this.dateTimePicker1.TabIndex = 2086;
+            this.dtpFechaHallazgo.Enabled = false;
+            this.dtpFechaHallazgo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaHallazgo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaHallazgo.Location = new System.Drawing.Point(153, 50);
+            this.dtpFechaHallazgo.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFechaHallazgo.Name = "dtpFechaHallazgo";
+            this.dtpFechaHallazgo.Size = new System.Drawing.Size(95, 21);
+            this.dtpFechaHallazgo.TabIndex = 2086;
             // 
             // panel4
             // 
@@ -1903,28 +1924,12 @@
             this.label26.TabIndex = 999;
             this.label26.Text = "Control de Salida No Conforme";
             // 
-            // detalles
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
-            this.detalles.DefaultCellStyle = dataGridViewCellStyle2;
-            this.detalles.HeaderText = "SEL.";
-            this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
-            this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.detalles.MinimumWidth = 6;
-            this.detalles.Name = "detalles";
-            this.detalles.ReadOnly = true;
-            this.detalles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.detalles.Width = 30;
-            // 
             // ListadoOrdenProduccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelControlCalidad);
             this.Controls.Add(this.btnOC);
             this.Controls.Add(this.label2);
@@ -1968,8 +1973,8 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelSNC.ResumeLayout(false);
+            this.panelSNC.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -2067,27 +2072,27 @@
         private System.Windows.Forms.Label lblGenerarCSM;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSNC;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtOrdenProduccionSNC;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtReponsableRegistro;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpFechaHallazgo;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtAccionesTomadasSNC;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtDescripcionSNC;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpFinalSNC;
+        private System.Windows.Forms.DateTimePicker dtpInicioSNC;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboAutorizaSNC;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TabControl tabControl2;
@@ -2108,19 +2113,19 @@
         private System.Windows.Forms.Button btnCargarImagen3;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCerrarSNC;
+        private System.Windows.Forms.Button btnGuardarSNC;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox ckDestruccion;
+        private System.Windows.Forms.CheckBox ckRecuperacionComponetntes;
+        private System.Windows.Forms.CheckBox ckRectificacion;
+        private System.Windows.Forms.CheckBox ckReproceso;
+        private System.Windows.Forms.CheckBox ckCorrecion;
+        private System.Windows.Forms.CheckBox ckLiberacion;
+        private System.Windows.Forms.TextBox txtOtrosSNC;
+        private System.Windows.Forms.CheckBox ckOtros;
+        private System.Windows.Forms.Label lblLeyendaVisualizar;
+        private System.Windows.Forms.Button btnVisualizar;
         private System.Windows.Forms.Button btnRegresarControl;
         private System.Windows.Forms.Label lblRegresarControl;
         private System.Windows.Forms.Label lblCantidadRealizada;

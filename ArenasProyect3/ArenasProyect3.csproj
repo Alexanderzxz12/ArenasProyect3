@@ -616,6 +616,12 @@
       <DependentUpon>InformeRequerimientoVentaAprobado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\InformeSNC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeSNC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Visualizadores\VisualizarActa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -717,6 +723,12 @@
     </Compile>
     <Compile Include="Visualizadores\VisualizarRequerimientoVenta.Designer.cs">
       <DependentUpon>VisualizarRequerimientoVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarSNC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarSNC.Designer.cs">
+      <DependentUpon>VisualizarSNC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Modulos\Admin\ManEstadoSistema.resx">
       <DependentUpon>ManEstadoSistema.cs</DependentUpon>
@@ -993,6 +1005,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeRequerimientoVentaAprobado.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InformeSNC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeSNC.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarActa.resx">
       <DependentUpon>VisualizarActa.cs</DependentUpon>
     </EmbeddedResource>
@@ -1043,6 +1059,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarRequerimientoVenta.resx">
       <DependentUpon>VisualizarRequerimientoVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visualizadores\VisualizarSNC.resx">
+      <DependentUpon>VisualizarSNC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ArenasProyect3_ClaveTemporal.pfx" />
     <None Include="packages.config" />

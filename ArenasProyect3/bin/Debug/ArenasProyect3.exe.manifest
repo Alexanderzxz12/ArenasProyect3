@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ArenasProyect3.exe" size="21957120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ArenasProyect3.exe" size="22044160">
       <assemblyIdentity name="ArenasProyect3" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GPDtuDn4j3oyBoYfKGAo07K5qWdz4SLusKnpR7MR8CM=</dsig:DigestValue>
+        <dsig:DigestValue>phLh5mbZADaUXWVQ4IL3X8mn6AhtTxlNeAIrYvneEmI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
