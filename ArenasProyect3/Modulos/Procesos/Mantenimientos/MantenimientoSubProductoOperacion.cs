@@ -311,7 +311,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
         //ACCIONES DE CRUD PRIMERA PARTE----------------------------------------------------------
         //METODO PARA GAURDAR MODELO X OPERACIÓN
-        private void btnGuardar1_Click(object sender, EventArgs e)
+        public void AgregarModeloXOperacion(int idmodeloo1,int operacion1)
         {
             ValidarExisitencia1();
 
@@ -329,8 +329,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd = new SqlCommand("InsertarModeloxOperacion", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@idmodelo", Convert.ToInt32(cboModelo1.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion1.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@idmodelo", idmodeloo1);
+                        cmd.Parameters.AddWithValue("@idoperacion", operacion1);
 
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -348,6 +348,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+        private void btnGuardar1_Click(object sender, EventArgs e)
+        {
+            AgregarModeloXOperacion(Convert.ToInt32(cboModelo1.SelectedValue),Convert.ToInt32(cboOperacion1.SelectedValue));
         }
 
         //METODO PARA ELIMINAR MODELO X OPERACIÓN

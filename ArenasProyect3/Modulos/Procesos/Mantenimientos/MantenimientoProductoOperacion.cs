@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Zen.Barcode;
 
 namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 {
@@ -231,7 +232,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                SqlCommand comando = new SqlCommand("SELECT LxO.IdLineaxOperacion, L.IdLinea, O.IdOperaciones, L.Descripcion AS [LINEA], O.Descripcion AS [OPERACIÓN] FROM LineaxOperacion LxO INNER JOIN LINEAS L ON L.IdLinea = LxO.IdLinea INNER JOIN Operaciones O ON O.IdOperaciones = LxO.IdOperacion WHERE L.IdLinea = @idlinea and LxO.Estado = 1", con);
+                SqlCommand comando = new SqlCommand("LineaXOperacion_Mostrar", con);
+                comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@idlinea", idlinea);
                 da = new SqlDataAdapter(comando);
                 da.Fill(dt);
@@ -259,7 +261,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                SqlCommand comando = new SqlCommand("SELECT LOM.IdLineaXOperacioXMaquinaria, LOM.IdLinea, L.Descripcion AS [LINEA], LOM.IdOperacion, O.Descripcion AS [OPERACIÓN], LOM.IdMaquinaria, M.Descripcion AS [MAQUINARIA] FROM LineaXOperacionXMaquinaria LOM INNER JOIN LINEAS L ON L.IdLinea = LOM.IdLinea INNER JOIN Operaciones O ON O.IdOperaciones = LOM.IdOperacion INNER JOIN Maquinarias M ON M.IdMaquinarias = LOM.IdMaquinaria WHERE LOM.IdLinea = @idlinea AND LOM.IdOperacion = @idoperacion AND LOM.Estado = 1", con);
+                SqlCommand comando = new SqlCommand("LineaXOperacionXMaquinaria_Mostrar", con);
+                comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@idlinea", idlinea);
                 comando.Parameters.AddWithValue("@idoperacion", idoperacion);
                 da = new SqlDataAdapter(comando);
@@ -311,7 +314,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
         //ACCIONES DE CRUD PRIMERA PARTE----------------------------------------------------------
         //METODO PARA GAURDAR LINEA X OPERACIÓN
-        private void btnGuardar1_Click(object sender, EventArgs e)
+        public void AgregarLineaXOperacion(int linea1, int operacion1)
         {
             ValidarExisitencia1();
 
@@ -326,11 +329,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarLineaxOperacion", con);
+                        cmd = new SqlCommand("LineaxOperacion_Insertar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@idlinea", Convert.ToInt32(cboLinea1.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion1.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@idlinea", linea1);
+                        cmd.Parameters.AddWithValue("@idoperacion", operacion1);
 
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -350,13 +353,18 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
+        private void btnGuardar1_Click(object sender, EventArgs e)
+        {
+            AgregarLineaXOperacion(Convert.ToInt32(cboLinea1.SelectedValue), Convert.ToInt32(cboOperacion1.SelectedValue));
+        }
+
         //METODO PARA ELIMINAR LINEA X OPERACIÓN
-        private void btnEliminar1_Click(object sender, EventArgs e)
+        public void EliminarLineaXOperacion(int id,DataGridView dgv)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este registro?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (datalistadoLineaXOperacion.CurrentRow != null)
+                if (dgv.CurrentRow != null)
                 {
                     try
                     {
@@ -364,12 +372,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarLineaxOperacion", con);
+                        cmd = new SqlCommand("LineaXOperacion_Eliminar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", idlineaxoperacion1);
+                        cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
                         con.Close();
                         Mostrar1(idlinea1);
+                        //RECARGAR DE LAS OPERACIONES PARA ACTUALIZAR LA ELIMINACIÓN DE LINEA X OPERACION
+                        CargarOperacion2(idlinea2);
                         MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     catch (Exception ex)
@@ -382,6 +392,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     MessageBox.Show("Debe seleccionar un registro para poder eliminar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
+        }
+        private void btnEliminar1_Click(object sender, EventArgs e)
+        {
+            EliminarLineaXOperacion(idlineaxoperacion1,datalistadoLineaXOperacion);
         }
 
         //MOSTREO DE DATOS CON FILTROS---------------------------------------------------------
@@ -404,17 +418,17 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 Mostrar2(idlinea2, idoperacion2);
             }
         }
-
+    
         //ACCIONES DE CRUD SEGUNDA PARTE----------------------------------------------------------
         //METODO PARA GAURDAR LINEA X OPERACIÓN X MAQUINARIA
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        public void AgregarLineaXOperacionXMaquinaria(int linea2, int operacion2, int maquinaria)
         {
             ValidarExisitencia2();
 
             if (DetalleRepetido2 == false)
             {
 
-                if (cboOperacion2.SelectedValue == null || cboOperacion2.Text == "")
+                if (operacion2 == 0 || Convert.ToString(operacion2) == "")
                 {
                     MessageBox.Show("No se puede ingresar sin escoger una operación.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
@@ -429,12 +443,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarLineaxOperacionxMaquinaria", con);
+                            cmd = new SqlCommand("LineaXOperacionXMaquinaria_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
 
-                            cmd.Parameters.AddWithValue("@idlinea", Convert.ToInt32(cboLinea2.SelectedValue.ToString()));
-                            cmd.Parameters.AddWithValue("@idoperacion", Convert.ToInt32(cboOperacion2.SelectedValue.ToString()));
-                            cmd.Parameters.AddWithValue("@idmaquinaria", Convert.ToInt32(cboMaquinaria2.SelectedValue.ToString()));
+                            cmd.Parameters.AddWithValue("@idlinea", linea2);
+                            cmd.Parameters.AddWithValue("@idoperacion", operacion2);
+                            cmd.Parameters.AddWithValue("@idmaquinaria", maquinaria);
 
                             cmd.ExecuteNonQuery();
                             con.Close();
@@ -454,13 +468,18 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+           AgregarLineaXOperacionXMaquinaria(Convert.ToInt32(cboLinea2.SelectedValue), Convert.ToInt32(cboOperacion2.SelectedValue), Convert.ToInt32(cboMaquinaria2.SelectedValue));
+        }
+
         //METODO PARA ELIMINAR LINEA X OPERACIÓN
-        private void btnEliminar2_Click(object sender, EventArgs e)
+        public void EliminarLineaXOperacionxMaquinaria(int id,DataGridView dgv)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este registro?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (datalistadoLineaXOperacionXMaquinaria.CurrentRow != null)
+                if (dgv.CurrentRow != null)
                 {
                     try
                     {
@@ -468,9 +487,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarLineaxOperacionxMaquinaria", con);
+                        cmd = new SqlCommand("LineaXOperacionXMaquinaria_Eliminar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", idlineaxoperacionxmequinaria);
+                        cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
@@ -487,6 +506,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     MessageBox.Show("Debe seleccionar un registro para poder eliminar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
+        }
+        private void btnEliminar2_Click(object sender, EventArgs e)
+        {
+            EliminarLineaXOperacionxMaquinaria(idlineaxoperacionxmequinaria,datalistadoLineaXOperacionXMaquinaria);
         }
     }
 }
