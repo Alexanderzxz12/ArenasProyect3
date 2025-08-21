@@ -1,12 +1,16 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2013.Drawing.Chart;
+using Org.BouncyCastle.Asn1.Mozilla;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 
 namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
@@ -103,31 +107,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BÚSQUEDA DE LINEAS SEGÚN EL TIPO DE MERCADERIA SELECIONARA - EVENTO SELECCIÓN
         private void cboTipoLinea_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@linea", cboTipoLinea.SelectedValue.ToString());
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoLineas.DataSource = dt;
-                con.Close();
-                datalistadoLineas.Columns[0].Width = 80;
-                datalistadoLineas.Columns[1].Width = 80;
-                datalistadoLineas.Columns[2].Width = 100;
-                datalistadoLineas.Columns[3].Width = 220;
-                datalistadoLineas.Columns[4].Visible = false;
-                datalistadoLineas.Columns[5].Width = 218;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
-            }
+            Mostrar(Convert.ToInt32(cboTipoLinea.SelectedValue));
+
         }
 
         //MOSTRAR TODAS MIS LÍNEAS SUGUN EL TIPO DE CUENTA SELECCIOANDO - METODO
@@ -140,7 +121,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
+                cmd = new SqlCommand("Modelos_MostrarSegunLinea", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@linea", idlinea);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -258,7 +239,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)", con);
+                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)\r\n", con);
                 da.Fill(dt);
                 datalistadoModeloRecienIngresado.DataSource = dt;
                 con.Close();
@@ -293,8 +274,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
         }
 
-        //GUARDAR UNA NUEVO MDOELO EN MI BASE DE DATOS CON SUS ATRIBUTOS Y DETALLE DE ESTOS
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        //METODO ENCARGADO DE AGREGAR UN NUEVO MODELO A MI BASE DE DATOS
+        public void AgregarModelos(string descripcion, string abreavitura, int codigolinea)
         {
             if (repetidoDescripcion == true)
             {
@@ -322,16 +303,15 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarModelos", con);
+                            cmd = new SqlCommand("Modelos_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                            cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                            cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                            cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
+                            cmd.Parameters.AddWithValue("@codigolinea", codigolinea);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
-                            Mostrar(linea);
+                            Mostrar(codigolinea);
 
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
                             ColorDescripcion();
@@ -366,7 +346,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarAtributosXModelo", con);
+                            cmd = new SqlCommand("Modelos_InsertarAtributosXModelo", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
@@ -528,7 +508,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             //INGRESAMOS DETALLES
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("InsertarAtributosXModeloDetalle", con);
+                            cmd = new SqlCommand("Modelos_InsertarAtributosXModeloDetalle", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
@@ -813,18 +793,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            //EDITAMOS EL ESTADO DE MI MODELO
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("EditarEstadoAtributoModelo", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
-                            Mostrar(linea);
-
+                            Mostrar(codigolinea);
                             lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
 
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
@@ -837,6 +806,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
+        }
+
+        //GUARDAR UNA NUEVO MDOELO EN MI BASE DE DATOS CON SUS ATRIBUTOS Y DETALLE DE ESTOS
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarModelos(txtDescripcion.Text, txtAbreviatura.Text, Convert.ToInt32(cboTipoLinea.SelectedValue));
         }
 
         //HABILITAR EDICIÓN PARA MODIFICAR UNA MODELO YA INGRESADA
@@ -860,10 +835,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
-        //EDITAR UN MODELO DE MI BASE DE DATOS
-        private void btnEditar2_Click(object sender, EventArgs e)
+        //METODO ENCARGADO DE LA EDICIÓN DE MODELOS
+        public void EditarModelos(string descripcion, string abreavitura, string codigolinea, int codigo)
         {
-            if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || lblCodigo.Text != "N")
+            if (descripcion == "" || abreavitura == "" || Convert.ToString(codigo) == "N")
+            {
+                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar este modelo?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -874,12 +853,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarModelo", con);
+                        cmd = new SqlCommand("Modelos_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                        cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
+                        cmd.Parameters.AddWithValue("@codigolinea", codigolinea);
 
                         if (cboEstado.Text == "ACTIVO")
                         {
@@ -893,7 +872,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
+                        int linea = Convert.ToInt32(codigolinea);
                         Mostrar(linea);
 
                         MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
@@ -918,10 +897,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
+        }
+
+
+
+        //EDITAR UN MODELO DE MI BASE DE DATOS
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarModelos(txtDescripcion.Text, txtAbreviatura.Text, cboTipoLinea.SelectedValue.ToString(), Convert.ToInt32(lblCodigo.Text));
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
@@ -1046,9 +1029,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 if (ckCaracteristicas1.Checked == true)
                 {
+
                     flowLayoutPanel.Controls.Add(panelCamposCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas2);
+
                 }
                 else
                 {
@@ -1586,7 +1571,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //ACCION DE GAURDAR LOS ATRIBUTOS ESCOGIDOS Y DEFINIDOS DE MI MODELO
         private void btnGuardarAtributos_Click(object sender, EventArgs e)
         {
-            panelDefinicionAtributos.Visible = false;
+            ValidacionGruposCampos();
         }
 
         //LIMPIAR Y BORRAR LAS SELECCIONAR ECHAS Y LOS CAMPOS ESCOGIDOS DE LA DEFINICIÓN DE ATRIBUTOS
@@ -1623,48 +1608,61 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             panelDefinicionAtributos.Visible = false;
         }
 
-        //BUSQUEDA DE MODELO------------------------------------------------------------
-        private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
+        //FILTRAR MDOELOS POR DIFERENTES CRITERIOS
+        public void FiltrarModelos(TextBox busquedamodelo, DataGridView dgv, ComboBox cbo)
         {
             try
             {
-                if (cboBusquedaModelo.Text == "DESCRIPCIÓN")
+                if (busquedamodelo.Text == "")
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaModeloPorDescripcion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaModelo.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
-                    con.Close();
-                    OrdenarColumnasModelo(datalistadoLineas);
+                    Mostrar(Convert.ToInt32(cboTipoLinea.SelectedValue));
                 }
                 else
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaModeloPorAbreviatura", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@abreviatura", txtBusquedaModelo.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
-                    con.Close();
-                    OrdenarColumnasModelo(datalistadoLineas);
+                    if (cbo.Text == "DESCRIPCIÓN")
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Modelos_BusquedaPorDescripcion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@descripcion", busquedamodelo.Text);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        OrdenarColumnasModelo(dgv);
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Modelos_BusquedaPorAbreviatura", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@abreviatura", busquedamodelo.Text);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        OrdenarColumnasModelo(dgv);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        //BUSQUEDA DE MODELO------------------------------------------------------------
+        private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarModelos(txtBusquedaModelo, datalistadoLineas, cboBusquedaModelo);
         }
 
         //FUNCION PARA ORDENAR MIS COLUMNAS DE MI BUSQUEDAS
@@ -1677,5 +1675,759 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             DGV.Columns[4].Visible = false;
             DGV.Columns[5].Width = 218;
         }
+
+        //METODO ENCARGADO DE VALIDAR QUE LOS ATRIBUTOS NO SE (REPITAN, TENGAN ESPACIO EN BLANCO O ESTE EN NO APLICA) ESTE SERA INVOCADO EN EL BOTON DE GUARDAR ATRIBUTOS
+        private void ValidacionGruposCampos()
+        {
+            //CARACTERISTICAS
+            string cbcaracteristicas1 = cboTipoCaracteristicas1.Text;
+            string cbcaracteristicas2 = cboTipoCaracteristicas2.Text;
+            string cbcaracteristicas3 = cboTipoCaracteristicas3.Text;
+            string cbcaracteristicas4 = cboTipoCaracteristicas4.Text;
+
+            if (ckCaracteristicas1.Checked == true)
+            {
+                if (cbcaracteristicas1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Caracteristicas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbcaracteristicas1 == cbcaracteristicas2 || cbcaracteristicas1 == cbcaracteristicas3 || cbcaracteristicas1 == cbcaracteristicas4
+               || cbcaracteristicas2 == cbcaracteristicas1 || cbcaracteristicas2 == cbcaracteristicas3 || cbcaracteristicas2 == cbcaracteristicas4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbcaracteristicas1 == "" || cbcaracteristicas2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            if (ckCaracteristicas2.Checked == true)
+            {
+                if (cbcaracteristicas3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Caracteristicas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbcaracteristicas3 == cbcaracteristicas1 || cbcaracteristicas3 == cbcaracteristicas2 || cbcaracteristicas3 == cbcaracteristicas4
+               || cbcaracteristicas4 == cbcaracteristicas1 || cbcaracteristicas4 == cbcaracteristicas2 || cbcaracteristicas4 == cbcaracteristicas3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbcaracteristicas3 == "" || cbcaracteristicas4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            //MEDIDAS
+            string cbmedidas1 = cboTipoMedida1.Text;
+            string cbmedidas2 = cboTipoMedida2.Text;
+            string cbmedidas3 = cboTipoMedida3.Text;
+            string cbmedidas4 = cboTipoMedida4.Text;
+
+            if (ckCamposMedida1.Checked == true || ckCamposMedida2.Checked == true)
+            {
+                if (cbmedidas1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Medidas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas1 == cbmedidas2 || cbmedidas1 == cbmedidas3 || cbmedidas1 == cbmedidas4
+               || cbmedidas2 == cbmedidas1 || cbmedidas2 == cbmedidas3 || cbmedidas2 == cbmedidas4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas1 == "" || cbmedidas2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+            }
+            if (ckCamposMedida2.Checked == true)
+            {
+                if (cbmedidas3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Medidas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas3 == cbmedidas1 || cbmedidas3 == cbmedidas2 || cbmedidas3 == cbmedidas4
+               || cbmedidas4 == cbmedidas1 || cbmedidas4 == cbmedidas2 || cbmedidas4 == cbmedidas3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas3 == "" || cbmedidas4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            //DIAMETRO
+            string cbdiametros1 = cboTiposDiametros1.Text;
+            string cbdiametros2 = cboTiposDiametros2.Text;
+            string cbdiametros3 = cboTiposDiametros3.Text;
+            string cbdiametros4 = cboTiposDiametros4.Text;
+
+            if (ckCamposDiametros1.Checked == true)
+            {
+                if (cbdiametros1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diametros.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiametros1 == cbdiametros2 || cbdiametros1 == cbdiametros3 || cbdiametros1 == cbdiametros4
+               || cbdiametros2 == cbdiametros1 || cbdiametros2 == cbdiametros3 || cbdiametros2 == cbdiametros4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validacion del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas1 == "" || cbdiametros2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            if (ckCamposDiametros2.Checked == true)
+            {
+                if (cbdiametros3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diametros.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiametros3 == cbdiametros1 || cbdiametros3 == cbdiametros2 || cbdiametros3 == cbdiametros4
+               || cbdiametros4 == cbdiametros1 || cbdiametros4 == cbdiametros2 || cbdiametros4 == cbdiametros3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validacion del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiametros3 == "" || cbdiametros4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            //FORMA
+            string cbformas1 = cboTiposFormas1.Text;
+            string cbformas2 = cboTiposFormas2.Text;
+            string cbformas3 = cboTiposFormas3.Text;
+            string cbformas4 = cboTiposFormas4.Text;
+
+            if (ckCamposFormas1.Checked == true)
+            {
+                if (cbformas1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Formas", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas1 == cbformas2 || cbformas1 == cbformas3 || cbformas1 == cbformas4
+               || cbformas2 == cbformas1 || cbformas2 == cbformas3 || cbformas2 == cbformas4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas1 == "" || cbformas2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }             
+            }
+
+            if (ckCamposFormas2.Checked == true)
+            {
+                if (cbformas3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Formas", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas3 == cbformas1 || cbformas3 == cbformas2 || cbformas3 == cbformas4
+               || cbformas4 == cbformas1 || cbformas4 == cbformas2 || cbformas4 == cbformas3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas3 == "" || cbformas4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }          
+            }
+
+            //ESPESORES
+            string cbespesores1 = cbooTipoEspesores1.Text;
+            string cbespesores2 = cbooTipoEspesores2.Text;
+            string cbespesores3 = cbooTipoEspesores3.Text;
+            string cbespesores4 = cbooTipoEspesores4.Text;
+
+            if (ckCamposEspesores1.Checked == true)
+            {
+                if (cbespesores1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Espesores", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores1 == cbespesores2 || cbespesores1 == cbespesores3 || cbespesores1 == cbespesores4
+               || cbespesores2 == cbespesores1 || cbespesores2 == cbespesores3 || cbespesores2 == cbespesores4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores1 == "" || cbespesores2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }        
+            }
+
+            if (ckCamposEspesores2.Checked == true)
+            {
+                if (cbespesores3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Espesores", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores3 == cbespesores1 || cbespesores3 == cbespesores2 || cbespesores3 == cbespesores4
+               || cbespesores4 == cbespesores1 || cbespesores4 == cbespesores2 || cbespesores4 == cbespesores3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores3 == "" || cbespesores4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }       
+            }
+
+            //DISEÑO Y ACABADO
+            string cbdiseñoacabado1 = cboTiposDiseñosAcabados1.Text;
+            string cbdiseñoacabado2 = cboTiposDiseñosAcabados2.Text;
+            string cbdiseñoacabado3 = cboTiposDiseñosAcabados3.Text;
+            string cbdiseñoacabado4 = cboTiposDiseñosAcabados4.Text;
+
+            if (ckCamposDiseñoAcabado1.Checked == true)
+            {
+                if (cbdiseñoacabado1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diseño Acabado.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado1 == cbdiseñoacabado2 || cbdiseñoacabado1 == cbdiseñoacabado3 || cbdiseñoacabado1 == cbdiseñoacabado4
+               || cbdiseñoacabado2 == cbdiseñoacabado1 || cbdiseñoacabado2 == cbdiseñoacabado3 || cbdiseñoacabado2 == cbdiseñoacabado4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado1 == "" || cbdiseñoacabado2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }       
+            }
+
+            if (ckCamposDiseñoAcabado2.Checked == true)
+            {
+                if (cbdiseñoacabado3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diseño Acabado.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado3 == cbdiseñoacabado1 || cbdiseñoacabado3 == cbdiseñoacabado2 || cbdiseñoacabado3 == cbdiseñoacabado4
+               || cbdiseñoacabado4 == cbdiseñoacabado1 || cbdiseñoacabado4 == cbdiseñoacabado2 || cbdiseñoacabado4 == cbdiseñoacabado3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado3 == "" || cbdiseñoacabado4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }          
+            }
+
+            //N TIPOS
+            string cbNtipos1 = cboTiposNTipos1.Text;
+            string cbNtipos2 = cboTiposNTipos2.Text;
+            string cbNtipos3 = cboTiposNTipos3.Text;
+            string cbNtipos4 = cboTiposNTipos4.Text;
+
+            if (ckCamposNTipos1.Checked == true)
+            {
+                if (cbNtipos1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Tipos.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos1 == cbNtipos2 || cbNtipos1 == cbNtipos3 || cbNtipos1 == cbNtipos4
+               || cbNtipos2 == cbNtipos1 || cbNtipos2 == cbNtipos3 || cbNtipos2 == cbNtipos4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos1 == "" || cbNtipos2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }            
+            }
+            if (ckCamposNTipos2.Checked == true)
+            {
+
+                if (cbNtipos3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Tipos.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos3 == cbNtipos1 || cbNtipos3 == cbNtipos2 || cbNtipos3 == cbNtipos4
+               || cbNtipos4 == cbNtipos1 || cbNtipos4 == cbNtipos2 || cbNtipos4 == cbNtipos3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos3 == "" || cbNtipos4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            //VARIOS
+            string cbVariosO1 = cboTiposVariosO1.Text;
+            string cbVariosO2 = cboTiposVariosO2.Text;
+
+            if (ckVariosO1.Checked == true)
+            {
+                if (cbVariosO1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en el primer campo del grupo de Varios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbVariosO1 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                } 
+            }
+
+            if (ckVariosO2.Checked == true)
+            {
+                if (cbVariosO2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbVariosO1 == cbVariosO2)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            panelDefinicionAtributos.Visible = false;
+        }
+
+
+        //VALIDACIONES TIEMPO REAL PARA LA DEFINICIÓN DE ATRIBUTOS
+        private void ValidacionesCaracteristicas_TiempoReal(CheckBox ckCaracteri1,CheckBox ckCaracteri2, ComboBox cbcaracteristicas1, ComboBox cbcaracteristicas2, ComboBox cbcaracteristicas3 , ComboBox cbcaracteristicas4)
+        {
+            if (ckCaracteri1.Checked == true)
+            {
+                if (cbcaracteristicas2.Text == "NO APLICA")
+                {
+                    ckCaracteri2.Checked = false;
+                    ckCaracteri2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbcaracteristicas2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Caracteristicas.", "Validación Del Sistema", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckCaracteri2.Enabled = true;
+                }
+            }
+            if (ckCaracteri1.Checked == true)
+            {
+                if (cbcaracteristicas1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckCaracteri2.Enabled = false;
+                    ckCaracteri2.Checked = false;
+                    cbcaracteristicas2.SelectedIndex = 0;
+                    cbcaracteristicas1.Focus();
+                }
+            }
+            if (ckCaracteri2.Checked == true)
+            {
+                if (cbcaracteristicas3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbcaracteristicas4.SelectedIndex = 0;
+                    cbcaracteristicas3.Focus();
+                }
+            }
+        }
+
+        public void ValidacionesMedidas_TiempoReal(CheckBox ckMedi1, CheckBox ckMedi2, ComboBox cbmedidas1, ComboBox cbmedidas2, ComboBox cbmedidas3, ComboBox cbmedidas4)
+        {
+
+          if(ckMedi1.Checked == true)
+            {
+                if(cbmedidas2.Text == "NO APLICA")
+                {
+                    ckMedi2.Checked = false;
+                    ckMedi2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbmedidas2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Medidas.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckMedi2.Enabled = true;
+                }
+            }
+            if (ckMedi1.Checked == true)
+            {
+                if (cbmedidas1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckMedi2.Enabled = false;
+                    ckMedi2.Checked = false;
+                    cbmedidas2.SelectedIndex = 0;
+                    cbmedidas1.Focus();
+                }
+            }
+            if (ckMedi2.Checked == true)
+            {
+                if (cbmedidas3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbmedidas4.SelectedIndex = 0;
+                    cbmedidas3.Focus();
+                }
+            }
+        }
+    
+        public void ValidacionesDiametros_TiempoReal(CheckBox ckDiametr1, CheckBox ckDiametr2, ComboBox cbdiametros1, ComboBox cbdiametros2, ComboBox cbdiametros3, ComboBox cbdiametros4)
+        {
+            if (ckDiametr1.Checked == true)
+            {
+                if (cbdiametros2.Text == "NO APLICA")
+                {
+                    ckDiametr2.Checked = false;
+                    ckDiametr2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbdiametros2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Diametros.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckDiametr2.Enabled = true;
+                }
+            }
+            if (ckDiametr1.Checked == true)
+            {
+                if (cbdiametros1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckDiametr2.Enabled = false;
+                    ckDiametr2.Checked = false;
+                    cbdiametros2.SelectedIndex = 0;
+                    ckDiametr1.Focus();
+                }
+            }
+            if (ckDiametr2.Checked == true)
+            {
+                if (cbdiametros3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbdiametros4.SelectedIndex = 0;
+                    cbdiametros3.Focus();
+                }
+            }
+        }
+
+        public void ValidacionesFormas_TiempoReal(CheckBox ckForm1, CheckBox ckForm2, ComboBox cbformas1, ComboBox cbformas2, ComboBox cbformas3, ComboBox cbformas4)
+        {
+            if (ckForm1.Checked == true)
+            {
+                if (cbformas2.Text == "NO APLICA")
+                {
+                    ckForm2.Checked = false;
+                    ckForm2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbformas2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Formas.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckForm2.Enabled = true;
+                }
+            }
+            if (ckForm1.Checked == true)
+            {
+                if (cbformas1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckForm2.Enabled = false;
+                    ckForm2.Checked = false;
+                    cbformas2.SelectedIndex = 0;
+                    cbformas1.Focus();
+                }
+            }
+            if (ckForm2.Checked == true)
+            {
+                if (cbformas3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbformas4.SelectedIndex = 0;
+                    cbformas3.Focus();
+                }
+            }
+        }
+
+        public void ValidacionesEspesores_TiempoReal(CheckBox ckEspe1, CheckBox ckEspe2, ComboBox cbespesores1, ComboBox cbespesores2, ComboBox cbespesores3, ComboBox cbespesores4)
+        {
+            if (ckEspe1.Checked == true)
+            {
+                if (cbespesores2.Text == "NO APLICA")
+                {
+                    ckEspe2.Checked = false;
+                    ckEspe2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbespesores2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Espesores.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckEspe2.Enabled = true;
+                }
+            }
+            if (ckEspe1.Checked == true)
+            {
+                if (cbespesores1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckEspe2.Enabled = false;
+                    ckEspe2.Checked = false;
+                    cbespesores2.SelectedIndex = 0;
+                    cbespesores1.Focus();
+                }
+            }
+            if (ckEspe2.Checked == true)
+            {
+                if (cbespesores3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbespesores4.SelectedIndex = 0;
+                    cbespesores3.Focus();
+                }
+            }
+        }
+
+        public void ValidacionesDiseñoAcabado_TiempoReal(CheckBox ckDiseAca1, CheckBox ckDiseAca2, ComboBox cbdiseñoacabado1, ComboBox cbdiseñoacabado2, ComboBox cbdiseñoacabado3, ComboBox cbdiseñoacabado4)
+        {
+            if (ckDiseAca1.Checked == true)
+            {
+                if (cbdiseñoacabado2.Text == "NO APLICA")
+                {
+                    ckDiseAca2.Checked = false;
+                    ckDiseAca2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbdiseñoacabado2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Diseño Acabado.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckDiseAca2.Enabled = true;
+                }
+            }
+            if (ckDiseAca1.Checked == true)
+            {
+                if (cbdiseñoacabado1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckDiseAca2.Enabled = false;
+                    ckDiseAca2.Checked = false;
+                    cbdiseñoacabado2.SelectedIndex = 0;
+                    cbdiseñoacabado1.Focus();
+                }
+            }
+            if (ckDiseAca2.Checked == true)
+            {
+                if (cbdiseñoacabado3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbdiseñoacabado4.SelectedIndex = 0;
+                    cbdiseñoacabado3.Focus();
+                }
+            }
+        }
+
+        public void ValidacionesNTipos_TiempoReal(CheckBox ckNtip1, CheckBox ckNtip2, ComboBox cbNtipos1, ComboBox cbNtipos2, ComboBox cbNtipos3, ComboBox cbNtipos4)
+        {
+            if (ckNtip1.Checked == true)
+            {
+                if (cbNtipos2.Text == "NO APLICA")
+                {
+                    ckNtip2.Checked = false;
+                    ckNtip2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbNtipos2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de N y Tipos.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckNtip2.Enabled = true;
+                }
+            }
+            if (ckNtip1.Checked == true)
+            {
+                if (cbNtipos1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckNtip2.Enabled = false;
+                    ckNtip2.Checked = false;
+                    cbNtipos2.SelectedIndex = 0;
+                    cbNtipos1.Focus();
+                }
+            }
+            if (ckNtip2.Checked == true)
+            {
+                if (cbNtipos3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbNtipos4.SelectedIndex = 0;
+                    cbNtipos3.Focus();
+                }
+            }
+        }
+
+        public void ValidacionesVarios_TiempoReal(CheckBox ckVari1, CheckBox ckVarios2, ComboBox cbVariosO1, ComboBox cbVariosO2)
+        {
+           
+            if (ckVari1.Checked == true)
+            {
+                if (cbVariosO1.Text == "NO APLICA")
+                {
+                    ckVarios2.Checked = false;
+                    ckVarios2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbVariosO1.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Varios.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckVarios2.Enabled = true;
+                }
+            }
+        }
+
+        //EVENTOS DE CIERRE DE COMBOS PARA VALIDACIONES EN TIEMPO REAL
+        private void cboTipoCaracteristicas2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesCaracteristicas_TiempoReal(ckCaracteristicas1,ckCaracteristicas2,cboTipoCaracteristicas1,cboTipoCaracteristicas2,cboTipoCaracteristicas3,cboTipoCaracteristicas4);
+        }
+
+        private void cboTipoCaracteristicas4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesCaracteristicas_TiempoReal(ckCaracteristicas1, ckCaracteristicas2, cboTipoCaracteristicas1, cboTipoCaracteristicas2, cboTipoCaracteristicas3, cboTipoCaracteristicas4);
+        }
+
+        private void cboTipoMedida2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesMedidas_TiempoReal(ckCamposMedida1, ckCamposMedida2, cboTipoMedida1, cboTipoMedida2, cboTipoMedida3, cboTipoMedida4);
+        }
+
+        private void cboTipoMedida4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesMedidas_TiempoReal(ckCamposMedida1, ckCamposMedida2, cboTipoMedida1, cboTipoMedida2, cboTipoMedida3, cboTipoMedida4);
+        }
+
+        private void cboTiposDiametros2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiametros_TiempoReal(ckCamposDiametros1, ckCamposDiametros2, cboTiposDiametros1, cboTiposDiametros2, cboTiposDiametros3, cboTiposDiametros4);
+        }
+
+        private void cboTiposDiametros4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiametros_TiempoReal(ckCamposDiametros1, ckCamposDiametros2, cboTiposDiametros1, cboTiposDiametros2, cboTiposDiametros3, cboTiposDiametros4);
+        }
+
+        private void cboTiposFormas2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesFormas_TiempoReal(ckCamposFormas1,ckCamposFormas2, cboTiposFormas1, cboTiposFormas2, cboTiposFormas3, cboTiposFormas4);
+        }
+
+        private void cboTiposFormas4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesFormas_TiempoReal(ckCamposFormas1, ckCamposFormas2, cboTiposFormas1, cboTiposFormas2, cboTiposFormas3, cboTiposFormas4);
+        }
+
+        private void cbooTipoEspesores2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesEspesores_TiempoReal(ckCamposEspesores1, ckCamposEspesores2, cbooTipoEspesores1, cbooTipoEspesores2, cbooTipoEspesores3, cbooTipoEspesores4);
+        }
+
+        private void cbooTipoEspesores4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesEspesores_TiempoReal(ckCamposEspesores1, ckCamposEspesores2, cbooTipoEspesores1, cbooTipoEspesores2, cbooTipoEspesores3, cbooTipoEspesores4);
+        }
+
+        private void cboTiposDiseñosAcabados2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiseñoAcabado_TiempoReal(ckCamposDiseñoAcabado1, ckCamposDiseñoAcabado2, cboTiposDiseñosAcabados1, cboTiposDiseñosAcabados2, cboTiposDiseñosAcabados3, cboTiposDiseñosAcabados4);
+        }
+
+        private void cboTiposDiseñosAcabados4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiseñoAcabado_TiempoReal(ckCamposDiseñoAcabado1, ckCamposDiseñoAcabado2, cboTiposDiseñosAcabados1, cboTiposDiseñosAcabados2, cboTiposDiseñosAcabados3, cboTiposDiseñosAcabados4);
+        }
+
+        private void cboTiposNTipos2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesNTipos_TiempoReal(ckCamposNTipos1, ckCamposNTipos2, cboTiposNTipos1, cboTiposNTipos2, cboTiposNTipos3, cboTiposNTipos4);
+        }
+
+        private void cboTiposNTipos4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesNTipos_TiempoReal(ckCamposNTipos1, ckCamposNTipos2, cboTiposNTipos1, cboTiposNTipos2, cboTiposNTipos3, cboTiposNTipos4);
+        }
+
+        private void cboTiposVariosO1_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesVarios_TiempoReal(ckVariosO1, ckVariosO2, cboTiposVariosO1, cboTiposVariosO2);
+        }
     }
 }
+

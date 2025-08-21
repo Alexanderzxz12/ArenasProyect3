@@ -81,7 +81,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarLineaSegunCuenta", con);
+                cmd = new SqlCommand("Lineas_MostrarSegunCuenta", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@cuenta", cboTipoMercaderia.SelectedValue.ToString());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -106,7 +106,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarLineaSegunCuenta", con);
+                cmd = new SqlCommand("Lineas_MostrarSegunCuenta", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@cuenta", cuenta);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -226,8 +226,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblCodigo.Text = "N";
         }
 
-        //GUARDAR UNA NUEVA LÍNEA EN MI BASE DE DATOS
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        //FUNCION PAR AAGREGAR LINEAS CON PARAMETROS
+        public void AgregarLineas(string descripcion, string abreviatura, int codigotipomercaderia)
         {
             if (repetidoDescripcion == true)
             {
@@ -235,42 +235,58 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta línea?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
+                //Verificación de campos vacíos 
+                if (descripcion == "" || abreviatura == "")
                 {
-                    if (txtDescripcion.Text != "" || txtAbreviatura.Text != "")
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta línea?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
                     {
-                        try
-                        {
-                            SqlConnection con = new SqlConnection();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarLineas", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                            cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                            cmd.Parameters.AddWithValue("@codigotipomercaderia", cboTipoMercaderia.SelectedValue.ToString());
-                            cmd.ExecuteNonQuery();
-                            con.Close();
+                        
+                            try
+                            {
+                                SqlConnection con = new SqlConnection();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                SqlCommand cmd = new SqlCommand();
+                                cmd = new SqlCommand("Lineas_Insertar", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                                cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
+                                cmd.Parameters.AddWithValue("@codigotipomercaderia", codigotipomercaderia);
+                                if (cboEstado.Text == "ACTIVO")
+                                {
+                                    cmd.Parameters.AddWithValue("@estado", 1);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("@estado", 0);
+                                }
 
-                            int cuenta = Convert.ToInt32(cboTipoMercaderia.SelectedValue.ToString());
-                            Mostrar(cuenta);
-                            MessageBox.Show("Se ingresÓ el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
-                            CamposBloqueados();
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+
+                                int cuenta = Convert.ToInt32(codigotipomercaderia);
+                                Mostrar(cuenta);
+                                MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
+                                CamposBloqueados();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Hubo un error inesperado, " + ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
-                        txtDescripcion.Focus();
                     }
                 }
             }
+      
+        //GUARDAR UNA NUEVA LÍNEA EN MI BASE DE DATOS
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarLineas(txtDescripcion.Text, txtAbreviatura.Text, Convert.ToInt32(cboTipoMercaderia.SelectedValue));
         }
 
         //HABILITAR EDICIÓN PARA MODIFICAR UNA LÍNEA YA INGRESADA
@@ -284,6 +300,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 txtDescripcion.Enabled = true;
                 txtAbreviatura.Enabled = true;
+                cboTipoMercaderia.Enabled = false;
 
                 btnEditarF.Visible = false;
                 btnEditar2F.Visible = true;
@@ -294,10 +311,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
-        //EDITAR UNA CUENTA DE MI BASE DE DATOS
-        private void btnEditar2_Click(object sender, EventArgs e)
+        //FUNCION PARA EDITAR LINEA
+        public void EditarLineas(int codigo, string descripcion, string abreviatura, int idtipomercaderia)
         {
-            if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || lblCodigo.Text != "N")
+            if (descripcion == "" || abreviatura == "" || Convert.ToString(codigo) == "N")
+            {
+                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta línea?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -308,12 +329,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarLinea", con);
+                        cmd = new SqlCommand("Lineas_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                        cmd.Parameters.AddWithValue("@idtipomercaderia", cboTipoMercaderia.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
+                        cmd.Parameters.AddWithValue("@idtipomercaderia", idtipomercaderia);
 
                         if (cboEstado.Text == "ACTIVO")
                         {
@@ -327,11 +348,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        int cuenta = Convert.ToInt32(cboTipoMercaderia.SelectedValue.ToString());
+                        int cuenta = Convert.ToInt32(idtipomercaderia);
                         Mostrar(cuenta);
 
                         MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
 
+                        cboTipoMercaderia.Enabled = true;
                         CamposBloqueados();
                     }
                     catch (Exception ex)
@@ -340,10 +362,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
+        }
+        //EDITAR UNA CUENTA DE MI BASE DE DATOS
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarLineas(Convert.ToInt32(lblCodigo.Text),txtDescripcion.Text,txtAbreviatura.Text,Convert.ToInt32(cboTipoMercaderia.SelectedValue));
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
@@ -364,6 +387,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
             btnEditarF.Visible = true;
             btnEditar2F.Visible = false;
+
 
             btnGuardarF.Visible = true;
             btnGuardar2F.Visible = false;
@@ -390,49 +414,59 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             ExportarDatos(datalistadoLineas);
         }
-
-        //BÚSQUEDA DE LINEAS SEGUN LA DESCIPCIÓN O LA ABREVIATURA
-        private void txtBusquedaLinea_TextChanged(object sender, EventArgs e)
+        public void FiltrarLineas(string busquedalinea,DataGridView dgv, ComboBox cbo)
         {
             try
             {
-                if (cboBusquedaLinea.Text == "DESCRIPCIÓN")
+                if (txtBusquedaLinea.Text == "")
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaLineaPorDescripcion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLinea.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
-                    con.Close();
-                    ReordenarFilas(datalistadoLineas);
+                    Mostrar(Convert.ToInt32(cboTipoMercaderia.SelectedValue));
                 }
                 else
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaLineaPorAbreviatura", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@abreviatura", txtBusquedaLinea.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
-                    con.Close();
-                    ReordenarFilas(datalistadoLineas);
+                    if (cbo.Text == "DESCRIPCIÓN")
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Lineas_BusquedaPorDescripcion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@descripcion", busquedalinea);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        ReordenarFilas(dgv);
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Lineas_BusquedaPorAbreviatura", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@abreviatura", busquedalinea);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        ReordenarFilas(dgv);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        //BÚSQUEDA DE LINEAS SEGUN LA DESCIPCIÓN O LA ABREVIATURA
+        private void txtBusquedaLinea_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarLineas(txtBusquedaLinea.Text,datalistadoLineas,cboBusquedaLinea);
         }
 
         //METODO PARA EXPORTAR LAS CUENTAS A EXCEL
@@ -462,6 +496,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
             }
             exportarexcel.Visible = true;
+        }
+
+        //LIMPIAR CAJA DE BUSQUEDA DE LINEA
+        private void cboBusquedaLinea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaLinea.Text = "";
         }
     }
 }
