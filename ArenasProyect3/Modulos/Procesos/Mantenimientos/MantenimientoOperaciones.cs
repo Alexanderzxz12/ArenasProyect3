@@ -397,16 +397,19 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
         }
+        //EVENTO DEL TEXTBOX PARA REALIZAR LA BÚSQUEDA DE OPERACIONES
         private void txtBusquedaOperaciones_TextChanged(object sender, EventArgs e)
         {
             FiltrarOperaciones(cboBusquedaOperaciones.Text, txtBusquedaOperaciones.Text,datalistado);
         }
 
+        //EVENTO DEL COMBOBOX PARA LIMPIAR EL CAMPO DE BÚSQUEDA
         private void cboBusquedaOperaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBusquedaOperaciones.Text = "";
         }
 
+        //EVENTO DEL TEXTBOX PARA VALIDAR EL INGRESO DE NÚMEROS EN EL CAMPO DE BÚSQUEDA
         private void txtBusquedaOperaciones_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(cboBusquedaOperaciones.Text == "CODIGO")
