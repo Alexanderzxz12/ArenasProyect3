@@ -360,7 +360,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             AgregarModeloXOperacion(Convert.ToInt32(cboModelo1.SelectedValue),Convert.ToInt32(cboOperacion1.SelectedValue));
         }
 
-        //METODO PARA ELIMINAR MODELO X OPERACIÓN
+        //METODO PARA ELIMINAR MODELO X OPERACIÓN 1
         public void EliminarModeloXOperacion()
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este registro?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
@@ -394,6 +394,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
             }
         }
+        //EVENTO DEL BOTON PARA ELIMINAR MODELO X OPERACIÓN
         private void btnEliminar1_Click(object sender, EventArgs e)
         {
           EliminarModeloXOperacion();
@@ -506,6 +507,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 }
             }
         }
+        //EVENTO DEL BOTON PARA ELIMINAR MODELO X OPERACIÓN X MAQUINARIA
         private void btnEliminar2_Click(object sender, EventArgs e)
         {
           EliminarModeloXOperacionXMaquinaria();
