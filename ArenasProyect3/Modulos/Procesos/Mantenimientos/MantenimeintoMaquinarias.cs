@@ -7,7 +7,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Util;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 {
@@ -342,23 +344,48 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             try
             {
-                if (cbobusquedamaquinarias == "DESCRIPCIÓN")
+                if(busquedamaquinarias == "")
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("Maquinarias_BuscarSegunDescripcion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", busquedamaquinarias);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    dgvlistado.DataSource = dt;
-                    con.Close();
-                    dgvlistado.Columns[0].Width = 110;
-                    dgvlistado.Columns[1].Width = 140;
-                    dgvlistado.Columns[2].Width = 609;
+                    Mostrar();
+                }
+                else
+                {
+                    if (cbobusquedamaquinarias == "DESCRIPCIÓN")
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Maquinarias_BuscarSegunDescripcion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@descripcion", busquedamaquinarias);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgvlistado.DataSource = dt;
+                        con.Close();
+                        dgvlistado.Columns[0].Width = 110;
+                        dgvlistado.Columns[1].Width = 140;
+                        dgvlistado.Columns[2].Width = 609;
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Maquinarias_BuscarPorCodigo", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idmaquinaria", busquedamaquinarias);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgvlistado.DataSource = dt;
+                        con.Close();
+                        dgvlistado.Columns[0].Width = 110;
+                        dgvlistado.Columns[1].Width = 140;
+                        dgvlistado.Columns[2].Width = 609;
+                    }
                 }
             }
             catch (Exception ex)
@@ -374,6 +401,30 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void cboBusquedaMaquinara_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBusquedaMaquinarias.Text = "";
+        }
+
+        private void txtBusquedaMaquinarias_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cboBusquedaMaquinara.Text == "CODIGO")
+            {
+                if(char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+
+                if (char.IsDigit(e.KeyChar))
+                {
+                    int digitoscontados = txtBusquedaMaquinarias.Text.Count(char.IsDigit);
+                    if(digitoscontados >= 6)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
     }
 }
