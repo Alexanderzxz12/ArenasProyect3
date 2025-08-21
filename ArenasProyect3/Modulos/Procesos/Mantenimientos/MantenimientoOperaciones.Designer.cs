@@ -289,7 +289,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboBusquedaOperaciones.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBusquedaOperaciones.FormattingEnabled = true;
             this.cboBusquedaOperaciones.Items.AddRange(new object[] {
-            "DESCRIPCIÓN"});
+            "DESCRIPCIÓN",
+            "CODIGO"});
             this.cboBusquedaOperaciones.Location = new System.Drawing.Point(178, 519);
             this.cboBusquedaOperaciones.Margin = new System.Windows.Forms.Padding(4);
             this.cboBusquedaOperaciones.Name = "cboBusquedaOperaciones";
@@ -306,6 +307,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.txtBusquedaOperaciones.Size = new System.Drawing.Size(414, 22);
             this.txtBusquedaOperaciones.TabIndex = 1997;
             this.txtBusquedaOperaciones.TextChanged += new System.EventHandler(this.txtBusquedaOperaciones_TextChanged);
+            this.txtBusquedaOperaciones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaOperaciones_KeyPress);
             // 
             // datalistado
             // 

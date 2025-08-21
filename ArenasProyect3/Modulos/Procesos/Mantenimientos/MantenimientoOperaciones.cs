@@ -344,27 +344,52 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
         //BÚSQUEDA DE OPERACIONES POR DESCRIPCIÓN - SENSITICO
-        public void FiltrarOperaciones(string cbobusquedaoperaciones, string descripcion,DataGridView dgv)
+        public void FiltrarOperaciones(string cbobusquedaoperaciones, string busquedaoperaciones,DataGridView dgv)
         {
             try
             {
-                if (cbobusquedaoperaciones == "DESCRIPCIÓN")
+                if(busquedaoperaciones == "")
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("Operaciones_BuscarSegunDescripcion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    dgv.DataSource = dt;
-                    con.Close();
-                    dgv.Columns[0].Width = 120;
-                    dgv.Columns[1].Width = 150;
-                    dgv.Columns[2].Width = 422;
+                    Mostrar();
+                }
+                else
+                {
+                    if (cbobusquedaoperaciones == "DESCRIPCIÓN")
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Operaciones_BuscarSegunDescripcion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@descripcion", busquedaoperaciones);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        dgv.Columns[0].Width = 120;
+                        dgv.Columns[1].Width = 150;
+                        dgv.Columns[2].Width = 422;
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Operaciones_BuscarPorCodigo", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idoperacion", busquedaoperaciones);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        dgv.Columns[0].Width = 120;
+                        dgv.Columns[1].Width = 150;
+                        dgv.Columns[2].Width = 422;
+                    }
                 }
             }
             catch (Exception ex)
@@ -380,6 +405,32 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void cboBusquedaOperaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBusquedaOperaciones.Text = "";
+        }
+
+        private void txtBusquedaOperaciones_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cboBusquedaOperaciones.Text == "CODIGO")
+            {
+                //VERIFICA EL INGRESO DE CONTROLES O NÚMEROS EN EL CAMPO DE BÚSQUEDA
+                if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;  //SI LA TECLA PRESIONADA ES UN CONTROL O UN NÚMERO, SE PERMITE
+                }
+                else
+                {
+                    e.Handled = true;  //SINO SE BLOQUEA Y NO SE INGRESA
+                }
+
+                //VERIFICA CUANTOS NUMEROS SE HA INGRESADO EN EL CAMPO DE BÚSQUEDA
+                if (char.IsDigit(e.KeyChar))
+                {
+                    int digitoscontados = txtBusquedaOperaciones.Text.Count(char.IsDigit);
+                    if (digitoscontados >= 6)
+                    {
+                        e.Handled = true;  //SI HAY MAS DE 3 DIGITOS, SE BLOQUEA
+                    }
+                }
+            }
         }
     }
 }
