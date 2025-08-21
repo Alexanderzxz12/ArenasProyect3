@@ -3,32 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientooperaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientooperaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientooperaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientooperaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientomodelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientomodelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientomodelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientomodelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientoproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientosubproductooperacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientocuentas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -37,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientocuentas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientocuentas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,19 +62,30 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "MantenimientoOperaciones.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs",
+              "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T13:56:33.213Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "MantenimientoSubProductoOperacion.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoSubProductoOperacion.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoSubProductoOperacion.cs",
               "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoSubProductoOperacion.cs [Dise\u00F1o]",
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoSubProductoOperacion.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T16:55:06.632Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-08-20T16:55:06.632Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "MantenimientoProductoOperacion.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoProductoOperacion.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoProductoOperacion.cs",
@@ -78,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "MantenimientoModelos.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
@@ -90,18 +109,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "MantenimientoLineas.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
               "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs [Dise\u00F1o]",
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T19:52:01.616Z"
+              "WhenOpened": "2025-08-15T19:52:01.616Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "MantenimientoCuentas.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs",
@@ -133,7 +153,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "MantenimientoOperaciones.cs",
+              "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs",
+              "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoOperaciones.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAAwKsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T13:56:36.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "MantenimientoSubProductoOperacion.cs",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoSubProductoOperacion.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoSubProductoOperacion.cs",
@@ -141,8 +174,7 @@
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoSubProductoOperacion.cs",
               "ViewState": "AgIAANgBAAAAAAAAAAAqwPABAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T16:55:41.613Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-20T16:55:41.613Z"
             },
             {
               "$type": "Document",
@@ -159,32 +191,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "MantenimientoModelos.cs",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
               "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
-              "ViewState": "AgIAAAMDAAAAAAAAAAAswB8DAABKAAAAAAAAAA==",
+              "ViewState": "AgIAAMcIAAAAAAAAAAAqwNsIAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-18T15:48:36.605Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "MantenimientoLineas.cs",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
               "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
-              "ViewState": "AgIAACgBAAAAAAAAAAAkwDcBAABqAAAAAAAAAA==",
+              "ViewState": "AgIAAKYBAAAAAAAAAAAgwLIBAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T19:52:03.392Z"
+              "WhenOpened": "2025-08-15T19:52:03.392Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "MantenimientoCuentas.cs",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoCuentas.cs",

@@ -793,18 +793,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            //EDITAMOS EL ESTADO DE MI MODELO
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("Modelos_EditarEstadoAtributo", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
+
 
 
                             Mostrar(codigolinea);
-
                             lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
 
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
