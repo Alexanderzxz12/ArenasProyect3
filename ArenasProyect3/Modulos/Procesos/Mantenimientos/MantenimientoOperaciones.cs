@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iTextSharp.text.pdf.codec.wmf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,7 +60,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter("SELECT Case When Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End AS [ESTADO], IdOperaciones AS [CÓDIGO], Descripcion AS [NOMBRE] FROM OPERACIONES", con);
+                SqlCommand cmd = new SqlCommand("Operaciones_Mostrar", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 datalistado.DataSource = dt;
                 con.Close();
@@ -139,7 +142,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
         //ACCION DE GAURDAR EN MI BASE DE DATOS LA NUEVA OPERACIÓN
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        public void AgregarOperacion(string descripcion, string estado)
         {
             if (repetidoDescripcion == true)
             {
@@ -150,7 +153,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta operación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    if (txtDescripcion.Text != "")
+                    if (descripcion != "")
                     {
                         try
                         {
@@ -158,16 +161,27 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarOperaciones", con);
+                            cmd = new SqlCommand("Operaciones_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+
+                            if (estado == "ACTIVO")
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 0);
+                            }
+
                             cmd.ExecuteNonQuery();
                             con.Close();
                             Mostrar();
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
                             ColorDescripcion();
 
-                            txtDescripcion.ReadOnly = false;
+                            //BLOQUEO DEL TEXTBOX DESCRIPCIÓN
+                            txtDescripcion.Enabled = false;
 
                             btnEditar.Visible = true;
                             btnEditar2.Visible = false;
@@ -192,6 +206,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
+        //BOTON QUE EJECUTA LA FUNCION DE AGREGAR OEPRACIONES
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarOperacion(txtDescripcion.Text,cboEstado.Text);
+        }
+
         //HABILITAR EL EDITADO DE MI MANTENIMIENTO
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -204,10 +224,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             btnGuardar.Enabled = true;
         }
 
-        //ACCION DE EDITADO EN MI BASE DE DATOS DE UNA OPERACIÓN
-        private void btnEditar2_Click(object sender, EventArgs e)
+        //METODO DE EDICION EN MI BASE DE DATOS PARA UNA OPERACION
+        public void EditarOperaciones(int codigo, string descripcion, string estado)
         {
-            if (txtDescripcion.Text != "" || lblCodigo.Text != "N")
+            if (descripcion != "" || Convert.ToString(codigo) != "N")
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta operación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -218,12 +238,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarOperaciones", con);
+                        cmd = new SqlCommand("Operaciones_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
 
-                        if (cboEstado.Text == "ACTIVO")
+                        if (estado == "ACTIVO")
                         {
                             cmd.Parameters.AddWithValue("@estado", 1);
                         }
@@ -259,6 +279,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+
+        //BOTON QUE EJECUTA LA FUNCION DE EDITAR OPERAICIONES
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarOperaciones(Convert.ToInt32(lblCodigo.Text),txtDescripcion.Text,cboEstado.Text);
         }
 
         //ACCIÓN DE CANCELAR LA OPERACIÓN 
@@ -322,32 +348,95 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
         //BÚSQUEDA DE OPERACIONES POR DESCRIPCIÓN - SENSITICO
-        private void txtBusquedaOperaciones_TextChanged(object sender, EventArgs e)
+        public void FiltrarOperaciones(string cbobusquedaoperaciones, string busquedaoperaciones,DataGridView dgv)
         {
             try
             {
-                if (cboBusquedaOperaciones.Text == "DESCRIPCIÓN")
+                if(busquedaoperaciones == "")
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BuscarOperacionesSegunDescripcion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaOperaciones.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistado.DataSource = dt;
-                    con.Close();
-                    datalistado.Columns[0].Width = 120;
-                    datalistado.Columns[1].Width = 150;
-                    datalistado.Columns[2].Width = 422;
+                    Mostrar();
+                }
+                else
+                {
+                    if (cbobusquedaoperaciones == "DESCRIPCIÓN")
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Operaciones_BuscarSegunDescripcion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@descripcion", busquedaoperaciones);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        dgv.Columns[0].Width = 120;
+                        dgv.Columns[1].Width = 150;
+                        dgv.Columns[2].Width = 422;
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Operaciones_BuscarPorCodigo", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idoperacion", busquedaoperaciones);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        dgv.Columns[0].Width = 120;
+                        dgv.Columns[1].Width = 150;
+                        dgv.Columns[2].Width = 422;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
+        }
+        //EVENTO DEL TEXTBOX PARA REALIZAR LA BÚSQUEDA DE OPERACIONES
+        private void txtBusquedaOperaciones_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarOperaciones(cboBusquedaOperaciones.Text, txtBusquedaOperaciones.Text,datalistado);
+        }
+
+        //EVENTO DEL COMBOBOX PARA LIMPIAR EL CAMPO DE BÚSQUEDA
+        private void cboBusquedaOperaciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaOperaciones.Text = "";
+        }
+
+        //EVENTO DEL TEXTBOX PARA VALIDAR EL INGRESO DE NÚMEROS EN EL CAMPO DE BÚSQUEDA
+        private void txtBusquedaOperaciones_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cboBusquedaOperaciones.Text == "CODIGO")
+            {
+                //VERIFICA EL INGRESO DE CONTROLES O NÚMEROS EN EL CAMPO DE BÚSQUEDA
+                if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;  //SI LA TECLA PRESIONADA ES UN CONTROL O UN NÚMERO, SE PERMITE
+                }
+                else
+                {
+                    e.Handled = true;  //SINO SE BLOQUEA Y NO SE INGRESA
+                }
+
+                //VERIFICA CUANTOS NUMEROS SE HA INGRESADO EN EL CAMPO DE BÚSQUEDA
+                if (char.IsDigit(e.KeyChar))
+                {
+                    int digitoscontados = txtBusquedaOperaciones.Text.Count(char.IsDigit);
+                    if (digitoscontados >= 6)
+                    {
+                        e.Handled = true;  //SI HAY MAS DE 3 DIGITOS, SE BLOQUEA
+                    }
+                }
             }
         }
     }

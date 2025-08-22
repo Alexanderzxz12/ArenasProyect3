@@ -7,7 +7,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Util;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 {
@@ -59,7 +61,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter("SELECT Case When Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End AS [ESTADO],  IdMaquinarias AS [CÓDIGO], Descripcion AS [NOMBRE] FROM MAQUINARIAS", con);
+                SqlCommand cmd = new SqlCommand("Maquinarias_Mostrar", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 datalistado.DataSource = dt;
                 con.Close();
@@ -133,7 +137,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
         //ACCION DE GAURDAR EN MI BASE DE DATOS LA NUEVA MAQUINARIA
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        public void AgregarMaquinarias(string descripcion,string estado)
         {
             if (repetidoDescripcion == true)
             {
@@ -144,7 +148,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta maquinaria?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    if (txtDescripcion.Text != "")
+                    if (descripcion != "")
                     {
                         try
                         {
@@ -152,9 +156,18 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarMaquinarias", con);
+                            cmd = new SqlCommand("Maquinarias_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+
+                            if (estado == "ACTIVO")
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 1);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 0);
+                            }
                             cmd.ExecuteNonQuery();
                             con.Close();
                             Mostrar();
@@ -187,6 +200,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
+        //BOTON PARA ACTIVAR MI FUNCION DE AGREGAR MAQUINARIASS
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarMaquinarias(txtDescripcion.Text,cboEstado.Text);
+        }
+
         //HABILITAR EL EDITADO DE MI MANTENIMIENTO
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -200,9 +219,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
         //ACCION DE EDITADO EN MI BASE DE DATOS DE UNA MAQUINARIA
-        private void btnEditar2_Click(object sender, EventArgs e)
+        public void EditarMaquinarias(int codigo, string descripcion, string estado)
         {
-            if (txtDescripcion.Text != "" || lblCodigo.Text != "N")
+            if (descripcion != "" || Convert.ToString(codigo) != "N")
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta maquinaria?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -213,12 +232,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarMaquinarias", con);
+                        cmd = new SqlCommand("Maquinarias_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
 
-                        if (cboEstado.Text == "ACTIVO")
+                        if (estado == "ACTIVO")
                         {
                             cmd.Parameters.AddWithValue("@estado", 1);
                         }
@@ -255,6 +274,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+
+        //BOTON PARA EDITAR MI MAQUINARIA
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarMaquinarias(Convert.ToInt32(lblCodigo.Text),txtDescripcion.Text,cboEstado.Text);
         }
 
         //ACCIÓN DE CANCELAR LA OPERACIÓN 
@@ -319,32 +344,94 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
 
         //BÚSQUEDA DE OPERACIONES POR DESCRIPCIÓN - SENSITICO
-        private void txtBusquedaMaquinarias_TextChanged(object sender, EventArgs e)
+        public void FiltrarMaquinarias(string cbobusquedamaquinarias, string busquedamaquinarias,DataGridView dgvlistado)
         {
             try
             {
-                if (cboBusquedaMaquinara.Text == "DESCRIPCIÓN")
+                if(busquedamaquinarias == "")
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BuscarMaquinariaSegunDescripcion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaMaquinarias.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistado.DataSource = dt;
-                    con.Close();
-                    datalistado.Columns[0].Width = 110;
-                    datalistado.Columns[1].Width = 140;
-                    datalistado.Columns[2].Width = 609;
+                    Mostrar();
+                }
+                else
+                {
+                    if (cbobusquedamaquinarias == "DESCRIPCIÓN")
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Maquinarias_BuscarSegunDescripcion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@descripcion", busquedamaquinarias);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgvlistado.DataSource = dt;
+                        con.Close();
+                        dgvlistado.Columns[0].Width = 110;
+                        dgvlistado.Columns[1].Width = 140;
+                        dgvlistado.Columns[2].Width = 609;
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Maquinarias_BuscarPorCodigo", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idmaquinaria", busquedamaquinarias);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgvlistado.DataSource = dt;
+                        con.Close();
+                        dgvlistado.Columns[0].Width = 110;
+                        dgvlistado.Columns[1].Width = 140;
+                        dgvlistado.Columns[2].Width = 609;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
+        }
+
+        //EVENTO DE CAMBIO DE ITEM DEN MI COMBOBOX
+        private void txtBusquedaMaquinarias_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarMaquinarias(cboBusquedaMaquinara.Text,txtBusquedaMaquinarias.Text,datalistado);
+        }
+
+        //EVENTO DE LIMPIEZA DE TXT
+        private void cboBusquedaMaquinara_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaMaquinarias.Text = "";
+        }
+
+        //FUNCION PARA QUE SOLO PERMITA NÚMEROS SI SE VA A BUSCAR POR COIDGO
+        private void txtBusquedaMaquinarias_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cboBusquedaMaquinara.Text == "CODIGO")
+            {
+                if(char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+
+                if (char.IsDigit(e.KeyChar))
+                {
+                    int digitoscontados = txtBusquedaMaquinarias.Text.Count(char.IsDigit);
+                    if(digitoscontados >= 6)
+                    {
+                        e.Handled = true;
+                    }
+                }
             }
         }
     }
