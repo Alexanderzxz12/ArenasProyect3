@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.InkML;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,9 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
 {
     public partial class DefinicionFormulacion : Form
     {
+        //VARIABLE GLOBAL PARA VALIDAR SI SE REPITE UNA FORMULACION CON EL MISMO TIPO
+        bool repetidalinea;
+
         //CONSTRUCTOR DEL MANTENIMIENTO - MANTENIEMINTO DE DEFINICION DE FORMULACION
         public DefinicionFormulacion()
         {
@@ -25,6 +29,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             cboBusqueda.SelectedIndex = 0;
             CargarLineas(cboLinea);
             CargarTipoFormulacion(cboTipo);
+            lineasrepetidas();
             MostrarTodos();
             alternarColorFilas(datalistadoDefinicionFormulacion);
             cboEstado.SelectedIndex = 1;
@@ -44,6 +49,22 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
+        }
+        public void lineasrepetidas()
+        {
+            repetidalinea = false;
+
+            foreach (DataGridViewRow dgv in datalistadoDefinicionFormulacion.Rows)
+            {
+                int valor1 = Convert.ToInt32(dgv.Cells["IdLinea"].Value);
+                int valor2 = Convert.ToInt32(dgv.Cells["IdTipo"].Value);
+
+                if (valor1 == Convert.ToInt32(cboLinea.SelectedValue) && valor2 == Convert.ToInt32(cboTipo.SelectedValue))
+                {
+                    repetidalinea = true;
+                    return;
+                }
             }
         }
 
@@ -80,12 +101,17 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //METODO PARA LISTAR TODAS MIS DEFINICIONES
         public void MostrarTodos()
         {
+            try
+            {
+
             DataTable dt = new DataTable();
             SqlDataAdapter da;
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            da = new SqlDataAdapter("SELECT Case When DF.Estado = 1 Then 'ACTIVO' Else 'INCATIVO' End As [ESTADO], DF.IdDefinicionFormulaciones AS [ID], L.IdLinea,L.Descripcion [LINEA], DF.IdTipo, TF.Descripcion AS[TIPO] FROM DefinicionFormulaciones DF INNER JOIN LINEAS L ON L.IdLinea = DF.IdLinea INNER JOIN TipoFormulacion TF ON TF.IdTipoFormulacion = DF.IdTipo", con);
+            SqlCommand cmd = new SqlCommand("DefinicionFormulacion_Mostrar", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             datalistadoDefinicionFormulacion.DataSource = dt;
             con.Close();
@@ -96,6 +122,13 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             datalistadoDefinicionFormulacion.Columns[1].Width = 60;
             datalistadoDefinicionFormulacion.Columns[3].Width = 240;
             datalistadoDefinicionFormulacion.Columns[5].Width = 240;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         //EVENTO DE DOBLE CLICK PARA EN MI LISTADO DE DEFINICIONES
@@ -116,62 +149,29 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             }
         }
 
-        //HABILITAR GUARDADO DE UNA NUEVA DEFINICION
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        //METODO PARA GUARDAR EN LA BASE DE DATOS UNA NUEVA DEFINICION DE FORMULACION
+        public void AgregarDefinicionFormulacion(int idlinea, int idtipo , ComboBox cbo)
         {
-            DialogResult boton = MessageBox.Show("Realmente desea guardar esta definición de formulación.", "Validación de Sistema", MessageBoxButtons.OKCancel);
-            if (boton == DialogResult.OK)
+            try
             {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("InsertarDefinicionFormulacion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idLinea", cboLinea.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@idTipo", cboTipo.SelectedValue.ToString());
-                if (cboEstado.Text == "ACTIVO")
+                if (repetidalinea == true)
                 {
-                    cmd.Parameters.AddWithValue("@estado", 1);
+                    MessageBox.Show("No se puede ingresar dos registros iguales.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    cmd.Parameters.AddWithValue("@estado", 0);
-                }
-
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                MessageBox.Show("Se ingreso el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
-                MostrarTodos();
-
-                cboEstado.SelectedIndex = -1;
-            }
-        }
-
-        //EDITAR UNA CUENTA DE MI BASE DE DATO
-        private void btnEditar2_Click(object sender, EventArgs e)
-        {
-            DialogResult boton = MessageBox.Show("Realmente desea editar el estado de esta definición de una formulación.", "Validación de Sistema", MessageBoxButtons.OKCancel);
-            if (boton == DialogResult.OK)
-            {
-                if (lblCodigo.Text == "N")
-                {
-                    MessageBox.Show("Debe seleccionar un registro para poder cambiar el estado.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    try
+                    DialogResult boton = MessageBox.Show("Realmente desea guardar esta definición de formulación.", "Validación de Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
                     {
                         SqlConnection con = new SqlConnection();
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarDefinicionFormulacion", con);
+                        cmd = new SqlCommand("DefinicionFormulacion_Insertar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-
-                        if (cboEstado.Text == "ACTIVO")
+                        cmd.Parameters.AddWithValue("@idLinea", idlinea);
+                        cmd.Parameters.AddWithValue("@idTipo", idtipo);
+                        if (cbo.Text == "ACTIVO")
                         {
                             cmd.Parameters.AddWithValue("@estado", 1);
                         }
@@ -183,10 +183,62 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MessageBox.Show("Se edito correctamente el registro.", "Edición", MessageBoxButtons.OK);
+                        MessageBox.Show("Se ingreso el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
                         MostrarTodos();
 
-                        cboEstado.SelectedIndex = 0;
+                        cbo.SelectedIndex = -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarDefinicionFormulacion(Convert.ToInt32(cboLinea.SelectedValue),Convert.ToInt32(cboTipo.SelectedValue),cboEstado);
+        }
+
+        //EDITAR UNA CUENTA DE MI BASE DE DATO
+        public void EditarDefinicionFormulacion(int codigo,ComboBox cbo)
+        {
+            DialogResult boton = MessageBox.Show("Realmente desea editar el estado de esta definición de una formulación.", "Validación de Sistema", MessageBoxButtons.OKCancel);
+            if (boton == DialogResult.OK)
+            {
+                if (Convert.ToString(codigo) == "N")
+                {
+                    MessageBox.Show("Debe seleccionar un registro para poder cambiar el estado.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("DefinicionFormulacion_Editar", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+
+                        if (cbo.Text == "ACTIVO")
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 1);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 0);
+                        }
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        MostrarTodos();
+                        MessageBox.Show("Se edito correctamente el registro.", "Edición", MessageBoxButtons.OK);
+                        lineasrepetidas();
+
+                        cbo.SelectedIndex = 0;
                     }
                     catch (Exception ex)
                     {
@@ -194,6 +246,10 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                     }
                 }
             }
+        }
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            EditarDefinicionFormulacion(Convert.ToInt32(lblCodigo.Text),cboEstado);
         }
 
         //VALIDACION Y BUSQUEDA DE DEFINICIONES SEGUN CRITERIOS-----------
@@ -204,28 +260,40 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //BUSQUEDA--------------------------------------------------------------------------------
-        //REALIZAR LA BUSQUEDA POR TEXTO
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        //METODO PARA REALIZAR LA BUSQUEDA POR TEXTO
+        public void FiltrarDefinicionFormulacion(string busqueda,DataGridView dgvlistadodefin)
         {
+            try
+            {
+
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarDefiniciónFormulacionPorCodigo", con);
+            cmd = new SqlCommand("DefinicionFormulacion_BuscarPorCodigo", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigo", txtBusqueda.Text);
+            cmd.Parameters.AddWithValue("@codigo", busqueda);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            datalistadoDefinicionFormulacion.DataSource = dt;
+            dgvlistadodefin.DataSource = dt;
             con.Close();
-            datalistadoDefinicionFormulacion.Columns[2].Visible = false;
-            datalistadoDefinicionFormulacion.Columns[4].Visible = false;
+            dgvlistadodefin.Columns[2].Visible = false;
+            dgvlistadodefin.Columns[4].Visible = false;
             //
-            datalistadoDefinicionFormulacion.Columns[0].Width = 90;
-            datalistadoDefinicionFormulacion.Columns[1].Width = 60;
-            datalistadoDefinicionFormulacion.Columns[3].Width = 240;
-            datalistadoDefinicionFormulacion.Columns[5].Width = 240;
+            dgvlistadodefin.Columns[0].Width = 90;
+            dgvlistadodefin.Columns[1].Width = 60;
+            dgvlistadodefin.Columns[3].Width = 240;
+            dgvlistadodefin.Columns[5].Width = 240;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarDefinicionFormulacion(txtBusqueda.Text,datalistadoDefinicionFormulacion);
         }
 
         //VALIDACIONES Y EXPRTACION DE DATOS-----------------------------
@@ -261,6 +329,42 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 }
             }
             exportarexcel.Visible = true;
+        }
+
+        private void cboLinea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lineasrepetidas();
+        }
+
+        private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lineasrepetidas();
+        }
+
+        private void cboEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lineasrepetidas();
+        }
+
+        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                int digitoscontados = txtBusqueda.Text.Count(char.IsDigit);
+                if(digitoscontados >= 6)
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }
