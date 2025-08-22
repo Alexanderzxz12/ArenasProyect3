@@ -899,8 +899,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
-
-
         //EDITAR UN MODELO DE MI BASE DE DATOS
         private void btnEditar2_Click(object sender, EventArgs e)
         {

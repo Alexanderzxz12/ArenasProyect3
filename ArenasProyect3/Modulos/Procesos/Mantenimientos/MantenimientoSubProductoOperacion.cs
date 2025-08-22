@@ -350,8 +350,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("El registro que intenta insertar ya se encuentra en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
             }
-
-
         }
 
         //EVENTO DE BOTON PARA EJECUTAR MI FUNCION DE AGREGAR MODELO X OPEARCION

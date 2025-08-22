@@ -64,7 +64,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.btnDefinicionFormulacion.BackColor = System.Drawing.Color.Transparent;
             this.btnDefinicionFormulacion.FlatAppearance.BorderSize = 0;
             this.btnDefinicionFormulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDefinicionFormulacion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDefinicionFormulacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDefinicionFormulacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDefinicionFormulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnDefinicionFormulacion.Image")));
             this.btnDefinicionFormulacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -82,7 +82,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.btnCreacionFormulacion.BackColor = System.Drawing.Color.Transparent;
             this.btnCreacionFormulacion.FlatAppearance.BorderSize = 0;
             this.btnCreacionFormulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreacionFormulacion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreacionFormulacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreacionFormulacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCreacionFormulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnCreacionFormulacion.Image")));
             this.btnCreacionFormulacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
