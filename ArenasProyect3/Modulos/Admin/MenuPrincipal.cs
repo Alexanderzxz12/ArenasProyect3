@@ -420,5 +420,42 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelPrincipalAdministrador.Tag = frm;
             frm.Show();
         }
+
+        //BOTON PARA CAMBIAR DE ESTILO O TEMA
+        private void btnCambiarEstilo_Click(object sender, EventArgs e)
+        {
+            if(rbClaro.Checked == true)
+            {
+                AplicarTemaClaro(this);
+            }
+            else
+            {
+                AplicarTemaOscuro(this);
+            }
+        }
+
+        void AplicarTemaClaro(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.BackColor = SystemColors.Control;
+                ctrl.ForeColor = SystemColors.ControlText;
+
+                if (ctrl.HasChildren)
+                    AplicarTemaClaro(ctrl);
+            }
+        }
+
+        void AplicarTemaOscuro(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.BackColor = Color.FromArgb(32, 32, 32);
+                ctrl.ForeColor = Color.White;
+
+                if (ctrl.HasChildren)
+                    AplicarTemaOscuro(ctrl);
+            }
+        }
     }
 }

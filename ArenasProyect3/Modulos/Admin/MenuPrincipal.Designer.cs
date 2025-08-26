@@ -31,20 +31,20 @@ namespace ArenasProyect3.Modulos.Admin
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.btnPaginaArenas = new System.Windows.Forms.PictureBox();
             this.datalistadoNovedades = new System.Windows.Forms.DataGridView();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSecundario = new System.Windows.Forms.Panel();
             this.panel35 = new System.Windows.Forms.Panel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNombreDash = new System.Windows.Forms.Label();
             this.imgUsuario = new System.Windows.Forms.PictureBox();
             this.lblHoraVivo = new System.Windows.Forms.Label();
             this.datalistadoBusquedaUusario = new System.Windows.Forms.DataGridView();
@@ -252,7 +252,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPaginaArenas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNovedades)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelSecundario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaUusario)).BeginInit();
@@ -355,35 +355,35 @@ namespace ArenasProyect3.Modulos.Admin
             this.datalistadoNovedades.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoNovedades.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoNovedades.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.datalistadoNovedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle5;
             this.datalistadoNovedades.Location = new System.Drawing.Point(80, 14);
             this.datalistadoNovedades.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoNovedades.Name = "datalistadoNovedades";
             this.datalistadoNovedades.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.datalistadoNovedades.RowHeadersVisible = false;
             this.datalistadoNovedades.RowHeadersWidth = 20;
             this.datalistadoNovedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -425,29 +425,29 @@ namespace ArenasProyect3.Modulos.Admin
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // panel1
+            // panelSecundario
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.panel35);
-            this.panel1.Controls.Add(this.panel31);
-            this.panel1.Controls.Add(this.pictureBox16);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.imgUsuario);
-            this.panel1.Controls.Add(this.lblHoraVivo);
-            this.panel1.Controls.Add(this.datalistadoBusquedaUusario);
-            this.panel1.Controls.Add(this.flowLayoutPanel2);
-            this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.lblFechaVivo);
-            this.panel1.Controls.Add(this.panel9);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.menuStrip3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 35);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1337, 38);
-            this.panel1.TabIndex = 7;
+            this.panelSecundario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panelSecundario.Controls.Add(this.panel35);
+            this.panelSecundario.Controls.Add(this.panel31);
+            this.panelSecundario.Controls.Add(this.pictureBox16);
+            this.panelSecundario.Controls.Add(this.panel2);
+            this.panelSecundario.Controls.Add(this.lblNombreDash);
+            this.panelSecundario.Controls.Add(this.imgUsuario);
+            this.panelSecundario.Controls.Add(this.lblHoraVivo);
+            this.panelSecundario.Controls.Add(this.datalistadoBusquedaUusario);
+            this.panelSecundario.Controls.Add(this.flowLayoutPanel2);
+            this.panelSecundario.Controls.Add(this.menuStrip1);
+            this.panelSecundario.Controls.Add(this.label25);
+            this.panelSecundario.Controls.Add(this.lblFechaVivo);
+            this.panelSecundario.Controls.Add(this.panel9);
+            this.panelSecundario.Controls.Add(this.panel3);
+            this.panelSecundario.Controls.Add(this.menuStrip3);
+            this.panelSecundario.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSecundario.Location = new System.Drawing.Point(0, 35);
+            this.panelSecundario.Name = "panelSecundario";
+            this.panelSecundario.Size = new System.Drawing.Size(1337, 38);
+            this.panelSecundario.TabIndex = 7;
             // 
             // panel35
             // 
@@ -486,15 +486,15 @@ namespace ArenasProyect3.Modulos.Admin
             this.panel2.Size = new System.Drawing.Size(1, 25);
             this.panel2.TabIndex = 18;
             // 
-            // label3
+            // lblNombreDash
             // 
-            this.label3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 29);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "ADMINISTRADOR";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNombreDash.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreDash.Location = new System.Drawing.Point(44, 5);
+            this.lblNombreDash.Name = "lblNombreDash";
+            this.lblNombreDash.Size = new System.Drawing.Size(118, 29);
+            this.lblNombreDash.TabIndex = 9;
+            this.lblNombreDash.Text = "ADMINISTRADOR";
+            this.lblNombreDash.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // imgUsuario
             // 
@@ -942,6 +942,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.btnCambiarEstilo.Text = "Aplicar cambios";
             this.btnCambiarEstilo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCambiarEstilo.UseVisualStyleBackColor = true;
+            this.btnCambiarEstilo.Click += new System.EventHandler(this.btnCambiarEstilo_Click);
             // 
             // label13
             // 
@@ -2947,7 +2948,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.Controls.Add(this.panel34);
             this.Controls.Add(this.panel33);
             this.Controls.Add(this.panel32);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelSecundario);
             this.Controls.Add(this.panelPrincipal);
             this.Controls.Add(this.panelPrincipalAdministrador);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -2958,8 +2959,8 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelPrincipal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPaginaArenas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNovedades)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelSecundario.ResumeLayout(false);
+            this.panelSecundario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaUusario)).EndInit();
@@ -3049,12 +3050,12 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.DataGridView datalistadoNovedades;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSecundario;
         private System.Windows.Forms.Panel panel35;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNombreDash;
         private System.Windows.Forms.PictureBox imgUsuario;
         private System.Windows.Forms.Label lblHoraVivo;
         private System.Windows.Forms.DataGridView datalistadoBusquedaUusario;

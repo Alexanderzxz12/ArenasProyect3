@@ -336,8 +336,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 datalistadoItemsCotizacion.Columns[6].ReadOnly = true;
                 datalistadoItemsCotizacion.Columns[8].ReadOnly = true;
 
-                datalistadoItemsCotizacion.Columns[1].Width = 70;
-                datalistadoItemsCotizacion.Columns[2].Width = 350;
+                datalistadoItemsCotizacion.Columns[1].Width = 80;
+                datalistadoItemsCotizacion.Columns[2].Width = 430;
                 datalistadoItemsCotizacion.Columns[3].Width = 70;
                 datalistadoItemsCotizacion.Columns[4].Width = 80;
                 datalistadoItemsCotizacion.Columns[5].Width = 80;
@@ -758,7 +758,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                             SqlCommand cmd = new SqlCommand();
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("Cotizacion_CambiarEstadoC", con);
+                            cmd = new SqlCommand("Cotizacion_CambiarEstado", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idCoti", codigoCoti);
                             cmd.Parameters.AddWithValue("@estadoCoti", 1);
@@ -4296,7 +4296,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
+                    cmd = new SqlCommand("Cotizacion_CambiarEstado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
                     cmd.Parameters.AddWithValue("@estadoCoti", 1);
@@ -4308,7 +4308,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
+                    cmd = new SqlCommand("Cotizacion_CambiarEstado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
                     cmd.Parameters.AddWithValue("@estadoCoti", 4);
@@ -4320,7 +4320,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
+                    cmd = new SqlCommand("Cotizacion_CambiarEstado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
                     cmd.Parameters.AddWithValue("@estadoCoti", 3);
@@ -4332,7 +4332,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 {
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
+                    cmd = new SqlCommand("Cotizacion_CambiarEstado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
                     cmd.Parameters.AddWithValue("@estadoCoti", 2);

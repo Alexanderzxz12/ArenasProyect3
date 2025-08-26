@@ -65,7 +65,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.btnPedidos.FlatAppearance.BorderSize = 0;
             this.btnPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedidos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidos.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
             this.btnPedidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -83,7 +83,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -101,7 +101,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             // 
             this.btnCotizaciones.FlatAppearance.BorderSize = 0;
             this.btnCotizaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCotizaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCotizaciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCotizaciones.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCotizaciones.Image = ((System.Drawing.Image)(resources.GetObject("btnCotizaciones.Image")));
             this.btnCotizaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

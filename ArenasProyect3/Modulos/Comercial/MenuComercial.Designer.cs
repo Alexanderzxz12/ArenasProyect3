@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuComercial));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.btnPaginaArenas = new System.Windows.Forms.PictureBox();
             this.datalistadoNovedades = new System.Windows.Forms.DataGridView();
@@ -360,35 +360,35 @@
             this.datalistadoNovedades.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoNovedades.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoNovedades.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle58.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle58.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle58.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle58;
             this.datalistadoNovedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle59.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle59.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle59.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle59.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle59;
             this.datalistadoNovedades.Location = new System.Drawing.Point(80, 14);
             this.datalistadoNovedades.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoNovedades.Name = "datalistadoNovedades";
             this.datalistadoNovedades.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle60.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle60.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle60.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle60.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle60.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle60;
             this.datalistadoNovedades.RowHeadersVisible = false;
             this.datalistadoNovedades.RowHeadersWidth = 20;
             this.datalistadoNovedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -493,7 +493,7 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(44, 5);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(118, 29);
@@ -516,14 +516,14 @@
             // 
             // lblHoraVivo
             // 
-            this.lblHoraVivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraVivo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraVivo.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblHoraVivo.Location = new System.Drawing.Point(1127, 9);
+            this.lblHoraVivo.Location = new System.Drawing.Point(1127, 8);
             this.lblHoraVivo.Name = "lblHoraVivo";
             this.lblHoraVivo.Size = new System.Drawing.Size(93, 24);
             this.lblHoraVivo.TabIndex = 11;
             this.lblHoraVivo.Text = "ll";
-            this.lblHoraVivo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblHoraVivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // datalistadoBusquedaUusario
             // 
@@ -548,7 +548,7 @@
             // 
             // lblusuarioActual
             // 
-            this.lblusuarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblusuarioActual.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblusuarioActual.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblusuarioActual.Location = new System.Drawing.Point(3, 0);
             this.lblusuarioActual.Name = "lblusuarioActual";
@@ -592,7 +592,7 @@
             // 
             // lblFechaVivo
             // 
-            this.lblFechaVivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaVivo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaVivo.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblFechaVivo.Location = new System.Drawing.Point(803, 8);
             this.lblFechaVivo.Name = "lblFechaVivo";
@@ -696,7 +696,7 @@
             this.panelDetallesUsuario.Controls.Add(this.label41);
             this.panelDetallesUsuario.Controls.Add(this.imgUsuario2);
             this.panelDetallesUsuario.Controls.Add(this.panel12);
-            this.panelDetallesUsuario.Location = new System.Drawing.Point(462, 121);
+            this.panelDetallesUsuario.Location = new System.Drawing.Point(1108, 566);
             this.panelDetallesUsuario.Name = "panelDetallesUsuario";
             this.panelDetallesUsuario.Size = new System.Drawing.Size(399, 393);
             this.panelDetallesUsuario.TabIndex = 16;
@@ -1118,24 +1118,24 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label8.Location = new System.Drawing.Point(85, 153);
+            this.label8.Location = new System.Drawing.Point(84, 153);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(184, 20);
+            this.label8.Size = new System.Drawing.Size(187, 23);
             this.label8.TabIndex = 44;
             this.label8.Text = "una mejor experiencia";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(104, 13);
+            this.label1.Location = new System.Drawing.Point(119, 13);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 20);
+            this.label1.Size = new System.Drawing.Size(116, 19);
             this.label1.TabIndex = 43;
             this.label1.Text = "NO DISPONIBLE";
             // 
@@ -1183,21 +1183,21 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label44.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label44.Location = new System.Drawing.Point(20, 131);
+            this.label44.Location = new System.Drawing.Point(24, 131);
             this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(314, 20);
+            this.label44.Size = new System.Drawing.Size(307, 23);
             this.label44.TabIndex = 37;
             this.label44.Text = "Estamos trabajando para poder darte ";
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(116, 39);
+            this.pictureBox5.Location = new System.Drawing.Point(129, 39);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(122, 81);
+            this.pictureBox5.Size = new System.Drawing.Size(97, 78);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 36;
             this.pictureBox5.TabStop = false;
@@ -1217,7 +1217,7 @@
             this.panel23.Controls.Add(this.label67);
             this.panel23.Controls.Add(this.label68);
             this.panel23.Controls.Add(this.panel38);
-            this.panel23.Location = new System.Drawing.Point(432, 125);
+            this.panel23.Location = new System.Drawing.Point(1109, 509);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(458, 384);
             this.panel23.TabIndex = 24;
@@ -1408,7 +1408,7 @@
             this.panelConfiguracion.Controls.Add(this.btnUsuarios);
             this.panelConfiguracion.Controls.Add(this.label30);
             this.panelConfiguracion.Controls.Add(this.panel11);
-            this.panelConfiguracion.Location = new System.Drawing.Point(279, 93);
+            this.panelConfiguracion.Location = new System.Drawing.Point(1108, 472);
             this.panelConfiguracion.Name = "panelConfiguracion";
             this.panelConfiguracion.Size = new System.Drawing.Size(764, 448);
             this.panelConfiguracion.TabIndex = 10;
@@ -1992,7 +1992,7 @@
             // 
             this.pictureBox17.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureBox17.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox17.Image")));
-            this.pictureBox17.Location = new System.Drawing.Point(278, 16);
+            this.pictureBox17.Location = new System.Drawing.Point(221, 17);
             this.pictureBox17.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(37, 31);
@@ -2196,9 +2196,9 @@
             // 
             this.btnRequerimientos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRequerimientos.Image = ((System.Drawing.Image)(resources.GetObject("btnRequerimientos.Image")));
-            this.btnRequerimientos.Location = new System.Drawing.Point(899, 32);
+            this.btnRequerimientos.Location = new System.Drawing.Point(907, 32);
             this.btnRequerimientos.Name = "btnRequerimientos";
-            this.btnRequerimientos.Size = new System.Drawing.Size(128, 98);
+            this.btnRequerimientos.Size = new System.Drawing.Size(115, 98);
             this.btnRequerimientos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnRequerimientos.TabIndex = 11;
             this.btnRequerimientos.TabStop = false;
@@ -2209,10 +2209,10 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(899, 133);
+            this.label19.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(913, 134);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(131, 15);
+            this.label19.Size = new System.Drawing.Size(103, 15);
             this.label19.TabIndex = 12;
             this.label19.Text = "REQUERIMIENTOS";
             // 
@@ -2220,10 +2220,10 @@
             // 
             this.btnActas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActas.Image = ((System.Drawing.Image)(resources.GetObject("btnActas.Image")));
-            this.btnActas.Location = new System.Drawing.Point(727, 32);
+            this.btnActas.Location = new System.Drawing.Point(735, 32);
             this.btnActas.Margin = new System.Windows.Forms.Padding(4);
             this.btnActas.Name = "btnActas";
-            this.btnActas.Size = new System.Drawing.Size(128, 98);
+            this.btnActas.Size = new System.Drawing.Size(115, 98);
             this.btnActas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnActas.TabIndex = 0;
             this.btnActas.TabStop = false;
@@ -2234,11 +2234,11 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(771, 134);
+            this.label21.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(778, 134);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(49, 15);
+            this.label21.Size = new System.Drawing.Size(41, 15);
             this.label21.TabIndex = 9;
             this.label21.Text = "ACTAS";
             // 
@@ -2246,7 +2246,7 @@
             // 
             this.btnReportesComercial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReportesComercial.Image = ((System.Drawing.Image)(resources.GetObject("btnReportesComercial.Image")));
-            this.btnReportesComercial.Location = new System.Drawing.Point(24, 190);
+            this.btnReportesComercial.Location = new System.Drawing.Point(36, 184);
             this.btnReportesComercial.Margin = new System.Windows.Forms.Padding(4);
             this.btnReportesComercial.Name = "btnReportesComercial";
             this.btnReportesComercial.Size = new System.Drawing.Size(115, 98);
@@ -2260,11 +2260,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(41, 292);
+            this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(62, 286);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 15);
+            this.label6.Size = new System.Drawing.Size(61, 15);
             this.label6.TabIndex = 10;
             this.label6.Text = "REPORTES";
             // 
@@ -2272,7 +2272,7 @@
             // 
             this.btnViajes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnViajes.Image = ((System.Drawing.Image)(resources.GetObject("btnViajes.Image")));
-            this.btnViajes.Location = new System.Drawing.Point(556, 32);
+            this.btnViajes.Location = new System.Drawing.Point(564, 32);
             this.btnViajes.Margin = new System.Windows.Forms.Padding(4);
             this.btnViajes.Name = "btnViajes";
             this.btnViajes.Size = new System.Drawing.Size(115, 98);
@@ -2287,10 +2287,10 @@
             // 
             this.btnPedidos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
-            this.btnPedidos.Location = new System.Drawing.Point(379, 32);
+            this.btnPedidos.Location = new System.Drawing.Point(387, 32);
             this.btnPedidos.Margin = new System.Windows.Forms.Padding(4);
             this.btnPedidos.Name = "btnPedidos";
-            this.btnPedidos.Size = new System.Drawing.Size(128, 98);
+            this.btnPedidos.Size = new System.Drawing.Size(115, 98);
             this.btnPedidos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnPedidos.TabIndex = 0;
             this.btnPedidos.TabStop = false;
@@ -2302,7 +2302,7 @@
             // 
             this.btnCotizaciones.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCotizaciones.Image = ((System.Drawing.Image)(resources.GetObject("btnCotizaciones.Image")));
-            this.btnCotizaciones.Location = new System.Drawing.Point(206, 32);
+            this.btnCotizaciones.Location = new System.Drawing.Point(214, 32);
             this.btnCotizaciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnCotizaciones.Name = "btnCotizaciones";
             this.btnCotizaciones.Size = new System.Drawing.Size(115, 98);
@@ -2316,11 +2316,11 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(582, 134);
+            this.label22.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(605, 134);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(52, 15);
+            this.label22.Size = new System.Drawing.Size(42, 15);
             this.label22.TabIndex = 7;
             this.label22.Text = "VIAJES";
             // 
@@ -2328,10 +2328,10 @@
             // 
             this.btnClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
-            this.btnClientes.Location = new System.Drawing.Point(28, 32);
+            this.btnClientes.Location = new System.Drawing.Point(36, 32);
             this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(128, 98);
+            this.btnClientes.Size = new System.Drawing.Size(115, 98);
             this.btnClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnClientes.TabIndex = 0;
             this.btnClientes.TabStop = false;
@@ -2342,43 +2342,43 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(407, 134);
+            this.label24.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(415, 134);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(68, 15);
+            this.label24.Size = new System.Drawing.Size(54, 15);
             this.label24.TabIndex = 6;
             this.label24.Text = "PEDIDOS";
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(54, 134);
+            this.label45.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(62, 134);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(73, 15);
+            this.label45.Size = new System.Drawing.Size(56, 15);
             this.label45.TabIndex = 3;
             this.label45.Text = "CLIENTES";
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(211, 134);
+            this.label46.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(229, 134);
             this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(105, 15);
+            this.label46.Size = new System.Drawing.Size(86, 15);
             this.label46.TabIndex = 4;
             this.label46.Text = "COTIZACIONES";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(20, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(242, 31);
+            this.label4.Size = new System.Drawing.Size(204, 33);
             this.label4.TabIndex = 11;
             this.label4.Text = "Accesos Directos";
             // 
@@ -2410,7 +2410,7 @@
             // 
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(1024, 15);
+            this.pictureBox3.Location = new System.Drawing.Point(1013, 15);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
@@ -2434,7 +2434,7 @@
             // 
             this.pictureBox18.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox18.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox18.Image")));
-            this.pictureBox18.Location = new System.Drawing.Point(250, 16);
+            this.pictureBox18.Location = new System.Drawing.Point(230, 15);
             this.pictureBox18.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(37, 31);
@@ -2445,40 +2445,42 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(877, 20);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 15);
+            this.label12.Size = new System.Drawing.Size(43, 14);
             this.label12.TabIndex = 17;
             this.label12.Text = "HASTA:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(668, 20);
+            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(685, 20);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 15);
+            this.label10.Size = new System.Drawing.Size(44, 14);
             this.label10.TabIndex = 16;
             this.label10.Text = "DESDE:";
             // 
             // DesdeFecha
             // 
+            this.DesdeFecha.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DesdeFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DesdeFecha.Location = new System.Drawing.Point(736, 16);
             this.DesdeFecha.Name = "DesdeFecha";
-            this.DesdeFecha.Size = new System.Drawing.Size(82, 20);
+            this.DesdeFecha.Size = new System.Drawing.Size(82, 21);
             this.DesdeFecha.TabIndex = 15;
             this.DesdeFecha.ValueChanged += new System.EventHandler(this.DesdeFecha_ValueChanged);
             // 
             // HastaFecha
             // 
+            this.HastaFecha.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HastaFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.HastaFecha.Location = new System.Drawing.Point(938, 16);
+            this.HastaFecha.Location = new System.Drawing.Point(927, 16);
             this.HastaFecha.Name = "HastaFecha";
-            this.HastaFecha.Size = new System.Drawing.Size(79, 20);
+            this.HastaFecha.Size = new System.Drawing.Size(82, 21);
             this.HastaFecha.TabIndex = 14;
             this.HastaFecha.ValueChanged += new System.EventHandler(this.HastaFecha_ValueChanged);
             // 
@@ -2511,7 +2513,7 @@
             this.lblGeneracionGraficos.BackColor = System.Drawing.Color.Transparent;
             this.lblGeneracionGraficos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGeneracionGraficos.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblGeneracionGraficos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGeneracionGraficos.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGeneracionGraficos.ForeColor = System.Drawing.Color.Blue;
             this.lblGeneracionGraficos.Location = new System.Drawing.Point(0, 158);
             this.lblGeneracionGraficos.Name = "lblGeneracionGraficos";
@@ -2526,7 +2528,7 @@
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
@@ -2551,7 +2553,7 @@
             // 
             this.lblReporte4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte4.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte4.Location = new System.Drawing.Point(0, 158);
             this.lblReporte4.Name = "lblReporte4";
@@ -2565,7 +2567,7 @@
             // label20
             // 
             this.label20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label20.Location = new System.Drawing.Point(0, 84);
             this.label20.Name = "label20";
@@ -2577,7 +2579,7 @@
             // lblReporteActasGeneradas
             // 
             this.lblReporteActasGeneradas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteActasGeneradas.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteActasGeneradas.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteActasGeneradas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblReporteActasGeneradas.Location = new System.Drawing.Point(0, 0);
             this.lblReporteActasGeneradas.Name = "lblReporteActasGeneradas";
@@ -2602,7 +2604,7 @@
             // 
             this.lblReporte5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte5.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte5.Location = new System.Drawing.Point(0, 158);
             this.lblReporte5.Name = "lblReporte5";
@@ -2616,7 +2618,7 @@
             // label23
             // 
             this.label23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label23.Location = new System.Drawing.Point(0, 84);
             this.label23.Name = "label23";
@@ -2628,7 +2630,7 @@
             // lblReporteRequerimeintosAtrasados
             // 
             this.lblReporteRequerimeintosAtrasados.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteRequerimeintosAtrasados.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteRequerimeintosAtrasados.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteRequerimeintosAtrasados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblReporteRequerimeintosAtrasados.Location = new System.Drawing.Point(0, 0);
             this.lblReporteRequerimeintosAtrasados.Name = "lblReporteRequerimeintosAtrasados";
@@ -2640,10 +2642,10 @@
             // lblTituloPrincipal
             // 
             this.lblTituloPrincipal.AutoSize = true;
-            this.lblTituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTituloPrincipal.Location = new System.Drawing.Point(26, 16);
+            this.lblTituloPrincipal.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloPrincipal.Location = new System.Drawing.Point(48, 16);
             this.lblTituloPrincipal.Name = "lblTituloPrincipal";
-            this.lblTituloPrincipal.Size = new System.Drawing.Size(206, 31);
+            this.lblTituloPrincipal.Size = new System.Drawing.Size(175, 33);
             this.lblTituloPrincipal.TabIndex = 6;
             this.lblTituloPrincipal.Text = "Datos Rápidos";
             // 
@@ -2662,7 +2664,7 @@
             // 
             this.lblReporte3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte3.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte3.Location = new System.Drawing.Point(0, 158);
             this.lblReporte3.Name = "lblReporte3";
@@ -2676,7 +2678,7 @@
             // label11
             // 
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label11.Location = new System.Drawing.Point(0, 0);
             this.label11.Name = "label11";
@@ -2701,7 +2703,7 @@
             // 
             this.lblReporte1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte1.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte1.Location = new System.Drawing.Point(0, 158);
             this.lblReporte1.Name = "lblReporte1";
@@ -2715,7 +2717,7 @@
             // label7
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label7.Location = new System.Drawing.Point(0, 84);
             this.label7.Name = "label7";
@@ -2727,7 +2729,7 @@
             // lblReporteRequerimeintosPendietens
             // 
             this.lblReporteRequerimeintosPendietens.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteRequerimeintosPendietens.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteRequerimeintosPendietens.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteRequerimeintosPendietens.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblReporteRequerimeintosPendietens.Location = new System.Drawing.Point(0, 0);
             this.lblReporteRequerimeintosPendietens.Name = "lblReporteRequerimeintosPendietens";
@@ -2752,7 +2754,7 @@
             // 
             this.lblReporte2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte2.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte2.Location = new System.Drawing.Point(0, 158);
             this.lblReporte2.Name = "lblReporte2";
@@ -2766,7 +2768,7 @@
             // label9
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label9.Location = new System.Drawing.Point(0, 84);
             this.label9.Name = "label9";
@@ -2778,7 +2780,7 @@
             // lblReporteLiquidacionesPendientes
             // 
             this.lblReporteLiquidacionesPendientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteLiquidacionesPendientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteLiquidacionesPendientes.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteLiquidacionesPendientes.Location = new System.Drawing.Point(0, 0);
             this.lblReporteLiquidacionesPendientes.Name = "lblReporteLiquidacionesPendientes";
             this.lblReporteLiquidacionesPendientes.Size = new System.Drawing.Size(301, 84);

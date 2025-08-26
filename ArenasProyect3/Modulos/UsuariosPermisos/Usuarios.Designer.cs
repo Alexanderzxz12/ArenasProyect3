@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrarUsuarios = new System.Windows.Forms.Button();
@@ -40,18 +40,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panelIcono = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pbImagen1 = new System.Windows.Forms.PictureBox();
-            this.pbImagen2 = new System.Windows.Forms.PictureBox();
-            this.pbImagen3 = new System.Windows.Forms.PictureBox();
-            this.pbImagen4 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pbImagen5 = new System.Windows.Forms.PictureBox();
-            this.pbImagen6 = new System.Windows.Forms.PictureBox();
-            this.pbImagen7 = new System.Windows.Forms.PictureBox();
-            this.pbImagen8 = new System.Windows.Forms.PictureBox();
-            this.pbCarga = new System.Windows.Forms.PictureBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnGuardarCambios = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnCargarImagen = new System.Windows.Forms.Button();
+            this.btnLimpiarRuta = new System.Windows.Forms.Button();
+            this.btnDescargarImagen = new System.Windows.Forms.Button();
             this.txtRutaFirma = new System.Windows.Forms.TextBox();
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.cboHabilitarRequerimeinto = new System.Windows.Forms.ComboBox();
@@ -74,6 +75,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cboRol = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.panelIcono = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pbImagen1 = new System.Windows.Forms.PictureBox();
+            this.pbImagen2 = new System.Windows.Forms.PictureBox();
+            this.pbImagen3 = new System.Windows.Forms.PictureBox();
+            this.pbImagen4 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pbImagen5 = new System.Windows.Forms.PictureBox();
+            this.pbImagen6 = new System.Windows.Forms.PictureBox();
+            this.pbImagen7 = new System.Windows.Forms.PictureBox();
+            this.pbImagen8 = new System.Windows.Forms.PictureBox();
+            this.pbCarga = new System.Windows.Forms.PictureBox();
             this.dlg = new System.Windows.Forms.OpenFileDialog();
             this.dlgFirma = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -83,23 +96,11 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.dataListado = new System.Windows.Forms.DataGridView();
             this.Eli = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnDescargarImagen = new System.Windows.Forms.Button();
-            this.btnLimpiarRuta = new System.Windows.Forms.Button();
-            this.btnCargarImagen = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnVolver = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnGuardarCambios = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Icono)).BeginInit();
             this.panelIcono.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen1)).BeginInit();
@@ -112,7 +113,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarga)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Icono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
@@ -201,6 +201,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel5.Controls.Add(this.panelIcono);
             this.panel5.Controls.Add(this.label17);
             this.panel5.Controls.Add(this.btnGuardarCambios);
             this.panel5.Controls.Add(this.button1);
@@ -241,147 +242,153 @@
             this.panel5.Size = new System.Drawing.Size(834, 527);
             this.panel5.TabIndex = 0;
             // 
-            // panelIcono
+            // label17
             // 
-            this.panelIcono.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panelIcono.Controls.Add(this.flowLayoutPanel1);
-            this.panelIcono.Controls.Add(this.flowLayoutPanel3);
-            this.panelIcono.Controls.Add(this.pbCarga);
-            this.panelIcono.Location = new System.Drawing.Point(1157, 40);
-            this.panelIcono.Name = "panelIcono";
-            this.panelIcono.Size = new System.Drawing.Size(759, 487);
-            this.panelIcono.TabIndex = 1;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(300, 14);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(235, 23);
+            this.label17.TabIndex = 2057;
+            this.label17.Text = "Datos Generales del Usuario";
             // 
-            // flowLayoutPanel1
+            // btnGuardarCambios
             // 
-            this.flowLayoutPanel1.Controls.Add(this.pbImagen1);
-            this.flowLayoutPanel1.Controls.Add(this.pbImagen2);
-            this.flowLayoutPanel1.Controls.Add(this.pbImagen3);
-            this.flowLayoutPanel1.Controls.Add(this.pbImagen4);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(78, 23);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(602, 146);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.btnGuardarCambios.AutoSize = true;
+            this.btnGuardarCambios.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarCambios.Location = new System.Drawing.Point(571, 489);
+            this.btnGuardarCambios.Name = "btnGuardarCambios";
+            this.btnGuardarCambios.Size = new System.Drawing.Size(65, 14);
+            this.btnGuardarCambios.TabIndex = 2056;
+            this.btnGuardarCambios.Text = "MODIFICAR";
             // 
-            // pbImagen1
+            // button1
             // 
-            this.pbImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen1.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen1.Image")));
-            this.pbImagen1.Location = new System.Drawing.Point(3, 3);
-            this.pbImagen1.Name = "pbImagen1";
-            this.pbImagen1.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen1.TabIndex = 0;
-            this.pbImagen1.TabStop = false;
-            this.pbImagen1.Click += new System.EventHandler(this.pbImagen1_Click);
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(587, 450);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 32);
+            this.button1.TabIndex = 2055;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnGuardarCambios_Click);
             // 
-            // pbImagen2
+            // label16
             // 
-            this.pbImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen2.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen2.Image")));
-            this.pbImagen2.Location = new System.Drawing.Point(152, 3);
-            this.pbImagen2.Name = "pbImagen2";
-            this.pbImagen2.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen2.TabIndex = 1;
-            this.pbImagen2.TabStop = false;
-            this.pbImagen2.Click += new System.EventHandler(this.pbImagen2_Click);
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(718, 489);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(46, 14);
+            this.label16.TabIndex = 2054;
+            this.label16.Text = "VOLVER";
             // 
-            // pbImagen3
+            // label15
             // 
-            this.pbImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen3.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen3.Image")));
-            this.pbImagen3.Location = new System.Drawing.Point(301, 3);
-            this.pbImagen3.Name = "pbImagen3";
-            this.pbImagen3.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen3.TabIndex = 2;
-            this.pbImagen3.TabStop = false;
-            this.pbImagen3.Click += new System.EventHandler(this.pbImagen3_Click);
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(642, 489);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 14);
+            this.label15.TabIndex = 2053;
+            this.label15.Text = "GUARDAR";
             // 
-            // pbImagen4
+            // btnVolver
             // 
-            this.pbImagen4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen4.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen4.Image")));
-            this.pbImagen4.Location = new System.Drawing.Point(450, 3);
-            this.pbImagen4.Name = "pbImagen4";
-            this.pbImagen4.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen4.TabIndex = 3;
-            this.pbImagen4.TabStop = false;
-            this.pbImagen4.Click += new System.EventHandler(this.pbImagen4_Click);
+            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVolver.FlatAppearance.BorderSize = 0;
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
+            this.btnVolver.Location = new System.Drawing.Point(721, 450);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(32, 32);
+            this.btnVolver.TabIndex = 2052;
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // flowLayoutPanel3
+            // btnGuardar
             // 
-            this.flowLayoutPanel3.Controls.Add(this.pbImagen5);
-            this.flowLayoutPanel3.Controls.Add(this.pbImagen6);
-            this.flowLayoutPanel3.Controls.Add(this.pbImagen7);
-            this.flowLayoutPanel3.Controls.Add(this.pbImagen8);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(78, 175);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(602, 147);
-            this.flowLayoutPanel3.TabIndex = 5;
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.Location = new System.Drawing.Point(655, 450);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(32, 32);
+            this.btnGuardar.TabIndex = 2051;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // pbImagen5
+            // label14
             // 
-            this.pbImagen5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen5.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen5.Image")));
-            this.pbImagen5.Location = new System.Drawing.Point(3, 3);
-            this.pbImagen5.Name = "pbImagen5";
-            this.pbImagen5.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen5.TabIndex = 0;
-            this.pbImagen5.TabStop = false;
-            this.pbImagen5.Click += new System.EventHandler(this.pbImagen5_Click);
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(734, 310);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 2050;
+            this.label14.Text = "Borrar";
             // 
-            // pbImagen6
+            // label13
             // 
-            this.pbImagen6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen6.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen6.Image")));
-            this.pbImagen6.Location = new System.Drawing.Point(152, 3);
-            this.pbImagen6.Name = "pbImagen6";
-            this.pbImagen6.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen6.TabIndex = 1;
-            this.pbImagen6.TabStop = false;
-            this.pbImagen6.Click += new System.EventHandler(this.pbImagen6_Click);
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(699, 310);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 2049;
+            this.label13.Text = "Subir";
             // 
-            // pbImagen7
+            // label9
             // 
-            this.pbImagen7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen7.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen7.Image")));
-            this.pbImagen7.Location = new System.Drawing.Point(301, 3);
-            this.pbImagen7.Name = "pbImagen7";
-            this.pbImagen7.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen7.TabIndex = 2;
-            this.pbImagen7.TabStop = false;
-            this.pbImagen7.Click += new System.EventHandler(this.pbImagen7_Click);
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(662, 247);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(55, 13);
+            this.label9.TabIndex = 2048;
+            this.label9.Text = "Descargar";
             // 
-            // pbImagen8
+            // btnCargarImagen
             // 
-            this.pbImagen8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbImagen8.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen8.Image")));
-            this.pbImagen8.Location = new System.Drawing.Point(450, 3);
-            this.pbImagen8.Name = "pbImagen8";
-            this.pbImagen8.Size = new System.Drawing.Size(143, 136);
-            this.pbImagen8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen8.TabIndex = 3;
-            this.pbImagen8.TabStop = false;
-            this.pbImagen8.Visible = false;
-            this.pbImagen8.Click += new System.EventHandler(this.pbImagen8_Click);
+            this.btnCargarImagen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargarImagen.FlatAppearance.BorderSize = 0;
+            this.btnCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarImagen.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen.Image")));
+            this.btnCargarImagen.Location = new System.Drawing.Point(697, 283);
+            this.btnCargarImagen.Name = "btnCargarImagen";
+            this.btnCargarImagen.Size = new System.Drawing.Size(32, 29);
+            this.btnCargarImagen.TabIndex = 2047;
+            this.btnCargarImagen.UseVisualStyleBackColor = true;
+            this.btnCargarImagen.Click += new System.EventHandler(this.btnCargarImagen_Click);
             // 
-            // pbCarga
+            // btnLimpiarRuta
             // 
-            this.pbCarga.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbCarga.Image = ((System.Drawing.Image)(resources.GetObject("pbCarga.Image")));
-            this.pbCarga.Location = new System.Drawing.Point(81, 328);
-            this.pbCarga.Name = "pbCarga";
-            this.pbCarga.Size = new System.Drawing.Size(143, 136);
-            this.pbCarga.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbCarga.TabIndex = 5;
-            this.pbCarga.TabStop = false;
-            this.pbCarga.Click += new System.EventHandler(this.pbCarga_Click);
+            this.btnLimpiarRuta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiarRuta.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarRuta.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarRuta.Image")));
+            this.btnLimpiarRuta.Location = new System.Drawing.Point(736, 283);
+            this.btnLimpiarRuta.Name = "btnLimpiarRuta";
+            this.btnLimpiarRuta.Size = new System.Drawing.Size(32, 29);
+            this.btnLimpiarRuta.TabIndex = 2046;
+            this.btnLimpiarRuta.UseVisualStyleBackColor = true;
+            this.btnLimpiarRuta.Click += new System.EventHandler(this.btnLimpiarRuta_Click);
+            // 
+            // btnDescargarImagen
+            // 
+            this.btnDescargarImagen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDescargarImagen.FlatAppearance.BorderSize = 0;
+            this.btnDescargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDescargarImagen.Image = ((System.Drawing.Image)(resources.GetObject("btnDescargarImagen.Image")));
+            this.btnDescargarImagen.Location = new System.Drawing.Point(624, 239);
+            this.btnDescargarImagen.Name = "btnDescargarImagen";
+            this.btnDescargarImagen.Size = new System.Drawing.Size(32, 29);
+            this.btnDescargarImagen.TabIndex = 2045;
+            this.btnDescargarImagen.UseVisualStyleBackColor = true;
+            this.btnDescargarImagen.Click += new System.EventHandler(this.btnDescargarImagen_Click);
             // 
             // txtRutaFirma
             // 
@@ -612,6 +619,148 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "Rol:";
             // 
+            // panelIcono
+            // 
+            this.panelIcono.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panelIcono.Controls.Add(this.flowLayoutPanel1);
+            this.panelIcono.Controls.Add(this.flowLayoutPanel3);
+            this.panelIcono.Controls.Add(this.pbCarga);
+            this.panelIcono.Location = new System.Drawing.Point(38, 20);
+            this.panelIcono.Name = "panelIcono";
+            this.panelIcono.Size = new System.Drawing.Size(759, 487);
+            this.panelIcono.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.pbImagen1);
+            this.flowLayoutPanel1.Controls.Add(this.pbImagen2);
+            this.flowLayoutPanel1.Controls.Add(this.pbImagen3);
+            this.flowLayoutPanel1.Controls.Add(this.pbImagen4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(78, 23);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(602, 146);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // pbImagen1
+            // 
+            this.pbImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen1.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen1.Image")));
+            this.pbImagen1.Location = new System.Drawing.Point(3, 3);
+            this.pbImagen1.Name = "pbImagen1";
+            this.pbImagen1.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen1.TabIndex = 0;
+            this.pbImagen1.TabStop = false;
+            this.pbImagen1.Click += new System.EventHandler(this.pbImagen1_Click);
+            // 
+            // pbImagen2
+            // 
+            this.pbImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen2.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen2.Image")));
+            this.pbImagen2.Location = new System.Drawing.Point(152, 3);
+            this.pbImagen2.Name = "pbImagen2";
+            this.pbImagen2.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen2.TabIndex = 1;
+            this.pbImagen2.TabStop = false;
+            this.pbImagen2.Click += new System.EventHandler(this.pbImagen2_Click);
+            // 
+            // pbImagen3
+            // 
+            this.pbImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen3.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen3.Image")));
+            this.pbImagen3.Location = new System.Drawing.Point(301, 3);
+            this.pbImagen3.Name = "pbImagen3";
+            this.pbImagen3.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen3.TabIndex = 2;
+            this.pbImagen3.TabStop = false;
+            this.pbImagen3.Click += new System.EventHandler(this.pbImagen3_Click);
+            // 
+            // pbImagen4
+            // 
+            this.pbImagen4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen4.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen4.Image")));
+            this.pbImagen4.Location = new System.Drawing.Point(450, 3);
+            this.pbImagen4.Name = "pbImagen4";
+            this.pbImagen4.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen4.TabIndex = 3;
+            this.pbImagen4.TabStop = false;
+            this.pbImagen4.Click += new System.EventHandler(this.pbImagen4_Click);
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.pbImagen5);
+            this.flowLayoutPanel3.Controls.Add(this.pbImagen6);
+            this.flowLayoutPanel3.Controls.Add(this.pbImagen7);
+            this.flowLayoutPanel3.Controls.Add(this.pbImagen8);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(78, 175);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(602, 147);
+            this.flowLayoutPanel3.TabIndex = 5;
+            // 
+            // pbImagen5
+            // 
+            this.pbImagen5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen5.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen5.Image")));
+            this.pbImagen5.Location = new System.Drawing.Point(3, 3);
+            this.pbImagen5.Name = "pbImagen5";
+            this.pbImagen5.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen5.TabIndex = 0;
+            this.pbImagen5.TabStop = false;
+            this.pbImagen5.Click += new System.EventHandler(this.pbImagen5_Click);
+            // 
+            // pbImagen6
+            // 
+            this.pbImagen6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen6.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen6.Image")));
+            this.pbImagen6.Location = new System.Drawing.Point(152, 3);
+            this.pbImagen6.Name = "pbImagen6";
+            this.pbImagen6.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen6.TabIndex = 1;
+            this.pbImagen6.TabStop = false;
+            this.pbImagen6.Click += new System.EventHandler(this.pbImagen6_Click);
+            // 
+            // pbImagen7
+            // 
+            this.pbImagen7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen7.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen7.Image")));
+            this.pbImagen7.Location = new System.Drawing.Point(301, 3);
+            this.pbImagen7.Name = "pbImagen7";
+            this.pbImagen7.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen7.TabIndex = 2;
+            this.pbImagen7.TabStop = false;
+            this.pbImagen7.Click += new System.EventHandler(this.pbImagen7_Click);
+            // 
+            // pbImagen8
+            // 
+            this.pbImagen8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbImagen8.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen8.Image")));
+            this.pbImagen8.Location = new System.Drawing.Point(450, 3);
+            this.pbImagen8.Name = "pbImagen8";
+            this.pbImagen8.Size = new System.Drawing.Size(143, 136);
+            this.pbImagen8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen8.TabIndex = 3;
+            this.pbImagen8.TabStop = false;
+            this.pbImagen8.Visible = false;
+            this.pbImagen8.Click += new System.EventHandler(this.pbImagen8_Click);
+            // 
+            // pbCarga
+            // 
+            this.pbCarga.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbCarga.Image = ((System.Drawing.Image)(resources.GetObject("pbCarga.Image")));
+            this.pbCarga.Location = new System.Drawing.Point(81, 328);
+            this.pbCarga.Name = "pbCarga";
+            this.pbCarga.Size = new System.Drawing.Size(143, 136);
+            this.pbCarga.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbCarga.TabIndex = 5;
+            this.pbCarga.TabStop = false;
+            this.pbCarga.Click += new System.EventHandler(this.pbCarga_Click);
+            // 
             // dlg
             // 
             this.dlg.FileName = "openFileDialog1";
@@ -689,25 +838,25 @@
             this.dataListado.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataListado.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataListado.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eli});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataListado.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataListado.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataListado.Location = new System.Drawing.Point(8, 127);
             this.dataListado.Margin = new System.Windows.Forms.Padding(4);
             this.dataListado.MultiSelect = false;
@@ -724,10 +873,10 @@
             // 
             // Eli
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle5.NullValue")));
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            this.Eli.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
+            this.Eli.DefaultCellStyle = dataGridViewCellStyle2;
             this.Eli.HeaderText = "SEL.";
             this.Eli.Image = ((System.Drawing.Image)(resources.GetObject("Eli.Image")));
             this.Eli.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -737,161 +886,12 @@
             this.Eli.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Eli.Width = 30;
             // 
-            // btnDescargarImagen
-            // 
-            this.btnDescargarImagen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDescargarImagen.FlatAppearance.BorderSize = 0;
-            this.btnDescargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDescargarImagen.Image = ((System.Drawing.Image)(resources.GetObject("btnDescargarImagen.Image")));
-            this.btnDescargarImagen.Location = new System.Drawing.Point(624, 239);
-            this.btnDescargarImagen.Name = "btnDescargarImagen";
-            this.btnDescargarImagen.Size = new System.Drawing.Size(32, 29);
-            this.btnDescargarImagen.TabIndex = 2045;
-            this.btnDescargarImagen.UseVisualStyleBackColor = true;
-            this.btnDescargarImagen.Click += new System.EventHandler(this.btnDescargarImagen_Click);
-            // 
-            // btnLimpiarRuta
-            // 
-            this.btnLimpiarRuta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiarRuta.FlatAppearance.BorderSize = 0;
-            this.btnLimpiarRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiarRuta.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarRuta.Image")));
-            this.btnLimpiarRuta.Location = new System.Drawing.Point(736, 283);
-            this.btnLimpiarRuta.Name = "btnLimpiarRuta";
-            this.btnLimpiarRuta.Size = new System.Drawing.Size(32, 29);
-            this.btnLimpiarRuta.TabIndex = 2046;
-            this.btnLimpiarRuta.UseVisualStyleBackColor = true;
-            this.btnLimpiarRuta.Click += new System.EventHandler(this.btnLimpiarRuta_Click);
-            // 
-            // btnCargarImagen
-            // 
-            this.btnCargarImagen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarImagen.FlatAppearance.BorderSize = 0;
-            this.btnCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarImagen.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen.Image")));
-            this.btnCargarImagen.Location = new System.Drawing.Point(697, 283);
-            this.btnCargarImagen.Name = "btnCargarImagen";
-            this.btnCargarImagen.Size = new System.Drawing.Size(32, 29);
-            this.btnCargarImagen.TabIndex = 2047;
-            this.btnCargarImagen.UseVisualStyleBackColor = true;
-            this.btnCargarImagen.Click += new System.EventHandler(this.btnCargarImagen_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(662, 247);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 13);
-            this.label9.TabIndex = 2048;
-            this.label9.Text = "Descargar";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(699, 310);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 13);
-            this.label13.TabIndex = 2049;
-            this.label13.Text = "Subir";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(734, 310);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(37, 13);
-            this.label14.TabIndex = 2050;
-            this.label14.Text = "Borrar";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.FlatAppearance.BorderSize = 0;
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(655, 450);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(32, 32);
-            this.btnGuardar.TabIndex = 2051;
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVolver.FlatAppearance.BorderSize = 0;
-            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
-            this.btnVolver.Location = new System.Drawing.Point(721, 450);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(32, 32);
-            this.btnVolver.TabIndex = 2052;
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(642, 489);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(59, 14);
-            this.label15.TabIndex = 2053;
-            this.label15.Text = "GUARDAR";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(718, 489);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 14);
-            this.label16.TabIndex = 2054;
-            this.label16.Text = "VOLVER";
-            // 
-            // button1
-            // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(587, 450);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 2055;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnGuardarCambios_Click);
-            // 
-            // btnGuardarCambios
-            // 
-            this.btnGuardarCambios.AutoSize = true;
-            this.btnGuardarCambios.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCambios.Location = new System.Drawing.Point(571, 489);
-            this.btnGuardarCambios.Name = "btnGuardarCambios";
-            this.btnGuardarCambios.Size = new System.Drawing.Size(65, 14);
-            this.btnGuardarCambios.TabIndex = 2056;
-            this.btnGuardarCambios.Text = "MODIFICAR";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(300, 14);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(235, 23);
-            this.label17.TabIndex = 2057;
-            this.label17.Text = "Datos Generales del Usuario";
-            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1171, 647);
-            this.Controls.Add(this.panelIcono);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.dataListado);
             this.Controls.Add(this.pictureBox3);
@@ -911,6 +911,7 @@
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Icono)).EndInit();
             this.panelIcono.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen1)).EndInit();
@@ -923,7 +924,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarga)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Icono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).EndInit();

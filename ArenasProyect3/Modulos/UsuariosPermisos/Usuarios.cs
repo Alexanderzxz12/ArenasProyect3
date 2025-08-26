@@ -427,17 +427,18 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
                     cmd.Parameters.AddWithValue("@apellidos", apellidos);
                     cmd.Parameters.AddWithValue("@login", login);
                     cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@documento", documento);
+                    cmd.Parameters.AddWithValue("@rutaFirma", rutaFirma);
+                    cmd.Parameters.AddWithValue("@habilitarRequerimeinto", hbailitadoReque);
+                    cmd.Parameters.AddWithValue("@area", area);
+                    cmd.Parameters.AddWithValue("@rol", rol);
 
                     System.IO.MemoryStream ms = new System.IO.MemoryStream();
                     Icono.Image.Save(ms, Icono.Image.RawFormat);
                     cmd.Parameters.AddWithValue("@icono", ms.GetBuffer());
 
                     cmd.Parameters.AddWithValue("@nombre_icono", nIcono);
-                    cmd.Parameters.AddWithValue("@area", area);
-                    cmd.Parameters.AddWithValue("@rol", rol);
-                    cmd.Parameters.AddWithValue("@habilitarRequerimeinto", hbailitadoReque);
-                    cmd.Parameters.AddWithValue("@documento", documento);
-                    cmd.Parameters.AddWithValue("@rutaFirma", rutaFirma);
+                    
                     cmd.ExecuteNonQuery();
                     con.Close();
 
