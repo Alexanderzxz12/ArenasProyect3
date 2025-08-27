@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Presentation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -240,7 +241,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("ValidacionProducto", con);
+            cmd = new SqlCommand("ListadoProductos_Validacion", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idmodelo", cboModelos.SelectedValue.ToString());
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -921,65 +922,73 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //MOSTRAR TODOS LOS PRODUCTOS INGRESADOS AL SISTEMA
         public void MostrarProductos()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT P.IdArt, P.Codcom AS [CÓDIGO], P.Descripcion AS [CÓDIGO BSS] ,P.Detalle AS [DESCRIPCIÓN], M.IdMedida, M.Descripcion AS [MEDIDA],  TM.IdTipoMercaderias, TM.Desciripcion AS[TIPO MERCADERIA], L.IdLinea, L.Descripcion AS [LÍNEA], MO.IdModelo, MO.Descripcion AS[MODELO], DI.IdDiferencial, DI.Descripcion AS[DIF.], /**CAMPOS ANEXOS - STOCK UBICACION**/ DAP_SU.AfectoIGV, DAP_SU.ControlStock, DAP_SU.Juego, DAP_SU.Servicio, DAP_SU.ControlarLotes, DAP_SU.ControlarSerie, DAP_SU.Peso, DAP_SU.Ubicacion, DAP_SU.Reposicion, DAP_SU.Minimo, DAP_SU.Maximo, /**CAMPOS ANEXOS - SUNTAT**/ DAP_S.IdTipoExistencia, DA_TE.IdTipoExistencia, DA_TE.Descripcion, DAP_S.CodigoUNSPCS, DAP_S.SujetoPercepcion, DAP_S.PorcentajePercepcion, DAP_S.SujetoDetraccion, DAP_S.PorcentajeDetraccion, DAP_S.SujetoISC, DAP_S.PorcentajeISC, DAP_S.IdBienesSujetoPercepcion, DA_BSP.IdBienesSujetoPercepcion, DA_BSP.Descripcion, /**CAMPOS ANEXOS - IMPORTACION**/ DAP_I.IdOrigen, DA_TO.IdOrigen, DA_TO.Descripcion, DAP_I.Contenedor, DAP_I.PesoContenedor, DAP_I.Medidas, DAP_I.IdTerminosCompra, DA_TC.IdTerminosCompra, DA_TC.Descripcion, P.SemiProducido, P.Descripcion, P.RutaImagen FROM PRODUCTOS P INNER JOIN MEDIDA M ON M.IdMedida = P.IdMedida INNER JOIN TIPOMERCADERIAS TM ON TM.IdTipoMercaderias = P.IdTipoMercaderias INNER JOIN LINEAS L ON L.IdLinea = P.IdLinea INNER JOIN MODELOS MO ON MO.IdModelo = P.IdModelo INNER JOIN DIFERENCIAL DI ON DI.IdDiferencial = P.IdDiferencial INNER JOIN DatosAnexosProducto_StockUbicacion DAP_SU ON DAP_SU.IdArt = P.IdArt INNER JOIN DatosAnexosProducto_Sunat DAP_S ON DAP_S.IdArt = P.IdArt INNER JOIN DatosAnexosProducto_Importacion DAP_I ON DAP_I.IdArt = P.IdArt INNER JOIN DatosAnexos_TipoExistencia DA_TE ON DA_TE.IdTipoExistencia = DAP_S.IdTipoExistencia INNER JOIN DatosAnexos_BienesSujetoPercepcion DA_BSP ON DA_BSP.IdBienesSujetoPercepcion = DAP_S.IdBienesSujetoPercepcion INNER JOIN DatosAnexos_Origen DA_TO ON DA_TO.IdOrigen = DAP_I.IdOrigen INNER JOIN DatosAnexos_TerminosCompra DA_TC ON DA_TC.IdTerminosCompra = DAP_I.IdTerminosCompra WHERE P.Estado = 1", con);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
-            datalistado.Columns[0].Visible = false;
-            datalistado.Columns[1].Width = 100;
-            datalistado.Columns[2].Width = 100;
-            datalistado.Columns[3].Width = 915;
-            datalistado.Columns[4].Visible = false;
-            datalistado.Columns[5].Width = 90;
-            datalistado.Columns[6].Visible = false;
-            datalistado.Columns[7].Width = 135;
-            datalistado.Columns[8].Visible = false;
-            datalistado.Columns[9].Visible = false;
-            datalistado.Columns[10].Visible = false;
-            datalistado.Columns[11].Visible = false;
-            datalistado.Columns[12].Visible = false;
-            datalistado.Columns[13].Width = 30;
-            datalistado.Columns[14].Visible = false;
-            datalistado.Columns[15].Visible = false;
-            datalistado.Columns[16].Visible = false;
-            datalistado.Columns[17].Visible = false;
-            datalistado.Columns[18].Visible = false;
-            datalistado.Columns[19].Visible = false;
-            datalistado.Columns[20].Visible = false;
-            datalistado.Columns[21].Visible = false;
-            datalistado.Columns[22].Visible = false;
-            datalistado.Columns[23].Visible = false;
-            datalistado.Columns[24].Visible = false;
-            datalistado.Columns[25].Visible = false;
-            datalistado.Columns[26].Visible = false;
-            datalistado.Columns[27].Visible = false;
-            datalistado.Columns[28].Visible = false;
-            datalistado.Columns[29].Visible = false;
-            datalistado.Columns[30].Visible = false;
-            datalistado.Columns[31].Visible = false;
-            datalistado.Columns[32].Visible = false;
-            datalistado.Columns[33].Visible = false;
-            datalistado.Columns[34].Visible = false;
-            datalistado.Columns[35].Visible = false;
-            datalistado.Columns[36].Visible = false;
-            datalistado.Columns[37].Visible = false;
-            datalistado.Columns[38].Visible = false;
-            datalistado.Columns[39].Visible = false;
-            datalistado.Columns[40].Visible = false;
-            datalistado.Columns[41].Visible = false;
-            datalistado.Columns[42].Visible = false;
-            datalistado.Columns[43].Visible = false;
-            datalistado.Columns[44].Visible = false;
-            datalistado.Columns[45].Visible = false;
-            datalistado.Columns[46].Visible = false;
-            datalistado.Columns[47].Visible = false;
-            datalistado.Columns[48].Visible = false;
-            datalistado.Columns[49].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("ListadoProductos_MostrarProductos", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                datalistado.Columns[0].Visible = false;
+                datalistado.Columns[1].Width = 100;
+                datalistado.Columns[2].Width = 100;
+                datalistado.Columns[3].Width = 915;
+                datalistado.Columns[4].Visible = false;
+                datalistado.Columns[5].Width = 90;
+                datalistado.Columns[6].Visible = false;
+                datalistado.Columns[7].Width = 135;
+                datalistado.Columns[8].Visible = false;
+                datalistado.Columns[9].Visible = false;
+                datalistado.Columns[10].Visible = false;
+                datalistado.Columns[11].Visible = false;
+                datalistado.Columns[12].Visible = false;
+                datalistado.Columns[13].Width = 30;
+                datalistado.Columns[14].Visible = false;
+                datalistado.Columns[15].Visible = false;
+                datalistado.Columns[16].Visible = false;
+                datalistado.Columns[17].Visible = false;
+                datalistado.Columns[18].Visible = false;
+                datalistado.Columns[19].Visible = false;
+                datalistado.Columns[20].Visible = false;
+                datalistado.Columns[21].Visible = false;
+                datalistado.Columns[22].Visible = false;
+                datalistado.Columns[23].Visible = false;
+                datalistado.Columns[24].Visible = false;
+                datalistado.Columns[25].Visible = false;
+                datalistado.Columns[26].Visible = false;
+                datalistado.Columns[27].Visible = false;
+                datalistado.Columns[28].Visible = false;
+                datalistado.Columns[29].Visible = false;
+                datalistado.Columns[30].Visible = false;
+                datalistado.Columns[31].Visible = false;
+                datalistado.Columns[32].Visible = false;
+                datalistado.Columns[33].Visible = false;
+                datalistado.Columns[34].Visible = false;
+                datalistado.Columns[35].Visible = false;
+                datalistado.Columns[36].Visible = false;
+                datalistado.Columns[37].Visible = false;
+                datalistado.Columns[38].Visible = false;
+                datalistado.Columns[39].Visible = false;
+                datalistado.Columns[40].Visible = false;
+                datalistado.Columns[41].Visible = false;
+                datalistado.Columns[42].Visible = false;
+                datalistado.Columns[43].Visible = false;
+                datalistado.Columns[44].Visible = false;
+                datalistado.Columns[45].Visible = false;
+                datalistado.Columns[46].Visible = false;
+                datalistado.Columns[47].Visible = false;
+                datalistado.Columns[48].Visible = false;
+                datalistado.Columns[49].Visible = false;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //---------------------------------------------
@@ -1309,35 +1318,45 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             btnAbrirPdf.Visible = true;
         }
 
-        //VISUALIZACION DE LA IMAGEN DEL PRODUCTO
-        private void btnVisualizarImagenProducto_Click(object sender, EventArgs e)
+        //METODO QUE REALIZARA LA VISUALIZACION DE LA IMAGEN DEL PRODUCTO
+        public void VisualizarImagenProducto(DataGridView DGV,string rutaimagen)
         {
-            if (datalistado.CurrentRow != null)
+            try
             {
-                string ruta = datalistado.SelectedCells[49].Value.ToString();
-                string ruta2 = txtRutaImagen.Text;
+                if (DGV.CurrentRow != null)
+                {
+                    string ruta = DGV.SelectedCells[49].Value.ToString();
+                    string ruta2 = rutaimagen;
 
-                if (ruta == "" && ruta2 == "")
-                {
-                    MessageBox.Show("No se encontró una imagen referente al producto.", "Abrir Imagen");
-                }
-                else if (ruta != "")
-                {
-                    Process.Start(ruta);
-                }
-                else if (ruta2 != "")
-                {
-                    Process.Start(ruta2);
+                    if (ruta == "" && ruta2 == "")
+                    {
+                        MessageBox.Show("No se encontró una imagen referente al producto.", "Abrir Imagen");
+                    }
+                    else if (ruta != "")
+                    {
+                        Process.Start(ruta);
+                    }
+                    else if (ruta2 != "")
+                    {
+                        Process.Start(ruta2);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al monento de intentar cargar la imagen.", "Abrir Imagen");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Error al monento de intentar cargar la imagen.", "Abrir Imagen");
+                    MessageBox.Show("Por favor, seleccione un producto para poder ver la imagen.", "Abrir Imagen");
                 }
-            }
-            else
+            }catch(Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione un producto para poder ver la imagen.", "Abrir Imagen");
+                MessageBox.Show(ex.Message);
             }
+        }
+        private void btnVisualizarImagenProducto_Click(object sender, EventArgs e)
+        {
+            VisualizarImagenProducto(datalistado,txtRutaImagen.Text);
         }
 
         //BOTON PARA CARGAR UNA IMAGEN AL PRODUCTO
@@ -1369,7 +1388,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //BOTON PARA GUARDAR LA IMAGEN ADJUNTADA A MI PRODUCTO SELECCIONADO
-        private void btnConfirmarImagenProducto_Click(object sender, EventArgs e)
+        public void AgregarImagenProducto(string codigoproducto,string rutaimagen,PictureBox btn1,PictureBox btn2)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea asignar esta imagen a este producto.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
@@ -1380,24 +1399,24 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarImagenProducto", con);
+                    cmd = new SqlCommand("ListadoProductos_InsertarImagen", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     string fechaHora = " Hora " + Convert.ToString(DateTime.Now.Hour) + " Minuto " + Convert.ToString(DateTime.Now.Minute);
-                    string nombreGenerado = "IMAGEN REFERENCIAL N - " + lblCodigoProducto.Text + fechaHora;
-                    string rutaOld = txtRutaImagen.Text;
+                    string nombreGenerado = "IMAGEN REFERENCIAL N - " + codigoproducto + fechaHora;
+                    string rutaOld = rutaimagen;
                     string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Productos\Imagenes\" + nombreGenerado + ".jpg";
 
                     File.Copy(rutaOld, RutaNew);
                     cmd.Parameters.AddWithValue("@iamgenProducto", RutaNew);
-                    cmd.Parameters.AddWithValue("@codigo", lblCodigoProducto.Text);
+                    cmd.Parameters.AddWithValue("@codigo", codigoproducto);
 
                     cmd.ExecuteNonQuery();
                     con.Close();
 
                     MessageBox.Show("Se ingresó la imagen de manera correcta.", "Validación del Sistema");
-                    btnConfirmarImagenProducto.Visible = false;
-                    btnCancelarImagenProducto.Visible = false;
+                    btn1.Visible = false;
+                    btn2.Visible = false;
                     MostrarProductos();
                 }
                 catch (Exception ex)
@@ -1405,6 +1424,10 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     MessageBox.Show(ex.Message, "Error en el servidor");
                 }
             }
+        }
+        private void btnConfirmarImagenProducto_Click(object sender, EventArgs e)
+        {
+            AgregarImagenProducto(lblCodigoProducto.Text,txtRutaImagen.Text,btnConfirmarImagenProducto,btnCancelarImagenProducto);
         }
 
         //BOTON PARA CANCELAR LA CARGA DE UNA IMAGEN
@@ -1767,7 +1790,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarCamposSeleccionados", con);
+            cmd = new SqlCommand("ListadoProductos_MostrarCamposSeleccionados", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idart", id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -2138,24 +2161,34 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
         //PROCESO, METODOS Y FUNCIOANES ASOCIADAS AL PLANO, CRUD DEL PLANO---------
         //ABRIR PLANO GUARDARO O SELECCIOANDO
-        private void btnAbrirPdf_Click(object sender, EventArgs e)
+        public void VisualizarPlano(DataGridView DGV)
         {
-            if (datalistadopdf.CurrentRow != null)
+            try
             {
-                string ruta = datalistadopdf.SelectedCells[2].Value.ToString();
-                if (ruta == "")
+                if (DGV.CurrentRow != null)
                 {
-                    MessageBox.Show("Seleccione un plano para continuar.", "Abrir Plano");
+                    string ruta = DGV.SelectedCells[2].Value.ToString();
+                    if (ruta == "")
+                    {
+                        MessageBox.Show("Seleccione un plano para continuar.", "Abrir Plano");
+                    }
+                    else
+                    {
+                        Process.Start(ruta);
+                    }
                 }
                 else
                 {
-                    Process.Start(ruta);
+                    MessageBox.Show("Por favor, seleccione un plano para poder abrirlo.", "Abrir Plano");
                 }
-            }
-            else
+            }catch(Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione un plano para poder abrirlo.", "Abrir Plano");
+                MessageBox.Show(ex.Message);
             }
+        }
+        private void btnAbrirPdf_Click(object sender, EventArgs e)
+        {
+            VisualizarPlano(datalistadopdf);
         }
 
         //AGREGAR UN PLANO NUEVO
@@ -2184,14 +2217,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             }
         }
 
-        //GAURDAR EL LANO NUEVO EN LA BASE DE DATOS ASOCIADO AL PRODUCTO
-        private void btnConfirmarPlano_Click(object sender, EventArgs e)
+        //METODO QUE GUARDA EL PLANO EN LA BASE DE DATOS RELACIONADO AL PRODUCTO    
+        public void AgregarPlano(string codigoproducto, string detalleproducto,string codigoreferencialplano,string file,string codigoplano,DataGridView DGV,
+            PictureBox btn1, PictureBox btn2, PictureBox btn3, PictureBox btn4)
         {
             try
             {
-                string NombreGenerado = lblCodigoProducto.Text + " - " + txtDetalleProducto.Text + " - " + lblCodigoReferenciaPlano.Text;
+                string NombreGenerado = codigoproducto + " - " + detalleproducto + " - " + codigoreferencialplano;
 
-                string RutaOld = txtFile.Text;
+                string RutaOld = file;
 
                 string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Productos\Planos\" + NombreGenerado + ".pdf";
 
@@ -2201,18 +2235,18 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("InsertarPlanoDiferente", con);
+                cmd = new SqlCommand("ListadoProductos_InsertarPlanoDiferente", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@doc", SqlDbType.VarBinary).Value = System.Data.SqlTypes.SqlBinary.Null;
-                cmd.Parameters.AddWithValue("@namereferences", lblCodigoReferenciaPlano.Text);
+                cmd.Parameters.AddWithValue("@namereferences", codigoreferencialplano);
                 cmd.Parameters.AddWithValue("@name", RutaNew);
                 cmd.Parameters.AddWithValue("@realname", NombreGenerado + ".pdf");
 
                 cmd.Parameters.AddWithValue("@idart", Convert.ToInt32(idart));
                 codigoPlano();
-                lblCodigoPlano.Text = datalistadoPlano.SelectedCells[0].Value.ToString();
-                cmd.Parameters.AddWithValue("@idplano", Convert.ToInt32(lblCodigoPlano.Text) + 1);
+                codigoplano = DGV.SelectedCells[0].Value.ToString();
+                cmd.Parameters.AddWithValue("@idplano", Convert.ToInt32(codigoplano) + 1);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -2220,19 +2254,25 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 MostrarSegunId(idart);
 
                 MessageBox.Show("Registro ingresado exitosamente.", "Nuevo plano", MessageBoxButtons.OK);
-                txtFile.Text = "";
+                file = "";
 
-                btnConfirmarPlano.Visible = false;
-                btnCancelarPlano.Visible = false;
+                btn1.Visible = false;
+                btn2.Visible = false;
 
-                btnAgregarPlano.Visible = true;
-                btnAbrirPdf.Visible = true;
+                btn3.Visible = true;
+                btn4.Visible = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnConfirmarPlano_Click(object sender, EventArgs e)
+        {
+            AgregarPlano(lblCodigoProducto.Text, txtDetalleProducto.Text, lblCodigoReferenciaPlano.Text, txtFile.Text, lblCodigoPlano.Text, datalistadoPlano
+                , btnConfirmarPlano, btnCancelarPlano, btnAgregarPlano, btnAbrirPdf);
+        }
+
 
         //CANCELAR LA ACCIÓN DE AGREGAR UN NUEVO PLANO
         private void btnCancelarPlano_Click(object sender, EventArgs e)
@@ -2249,79 +2289,99 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //MÉTODO PARA ELIMINAR EL PLANO SELECIOANDO DE UN PRODUCTO
+        public void EliminarPlano(DataGridView DGV)
+        {
+            try
+            {
+                string rutaplano = "";
+                int codigoplano = 0;
+
+                if (DGV.CurrentRow != null)
+                {
+                    rutaplano = DGV.Rows[DGV.CurrentRow.Index].Cells[3].Value.ToString();
+                    codigoplano = int.Parse(DGV.Rows[DGV.CurrentRow.Index].Cells[0].Value.ToString());
+
+                    if (codigoplano != 0)
+                    {
+                        DialogResult boton = MessageBox.Show("Realmente desea eliminar.", "Eliminar Plano", MessageBoxButtons.OKCancel);
+                        if (boton == DialogResult.OK)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("ListadoProductos_EliminarPlano", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idplano", codigoplano);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            File.Move(rutaplano, @"C:\Planos\Planos Eliminados\PlanoEliminado - " + codigoplano + ".pdf");
+
+                            MostrarSegunId(idart);
+                            MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Nueva", MessageBoxButtons.OK);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar.", "Eliminación de un plano", MessageBoxButtons.OKCancel);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un plano para poder eliminar.", "Eliminación de Plano", MessageBoxButtons.OK);
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void btnEliminarPlano_Click(object sender, EventArgs e)
         {
-            string rutaplano = "";
-            int codigoplano = 0;
+            EliminarPlano(datalistadopdf);
+        }
 
-            if (datalistadopdf.CurrentRow != null)
+        //PROCESO, METODOS Y FUNCIOANES ASOCIADAS AL PRODUCTO, CRUD DEL PRODUCTO---------
+        //ELIMINAR PRODUCTO GUARDARO O SELECCIOANDO
+        public void EliminarProducto()
+        {
+            DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este producto?.", "Eliminación de un Producto", MessageBoxButtons.OKCancel);
+            if (boton == DialogResult.OK)
             {
-                rutaplano = datalistadopdf.Rows[datalistadopdf.CurrentRow.Index].Cells[3].Value.ToString();
-                codigoplano = int.Parse(datalistadopdf.Rows[datalistadopdf.CurrentRow.Index].Cells[0].Value.ToString());
-
-                if (codigoplano != 0)
+                try
                 {
-                    DialogResult boton = MessageBox.Show("Realmente desea eliminar.", "Eliminar Plano", MessageBoxButtons.OKCancel);
-                    if (boton == DialogResult.OK)
+                    if (idart != 0)
                     {
                         SqlConnection con = new SqlConnection();
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarPlano", con);
+                        cmd = new SqlCommand("ListadoProductos_EliminarProducto", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idplano", codigoplano);
+                        cmd.Parameters.AddWithValue("@idart", idart);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        File.Move(rutaplano, @"C:\Planos\Planos Eliminados\PlanoEliminado - " + codigoplano + ".pdf");
-
-                        MostrarSegunId(idart);
-                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Nueva", MessageBoxButtons.OK);
+                        MostrarProductos();
+                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Producto", MessageBoxButtons.OK);
                     }
-                }
-                else
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar un producto para poder eliminarlo.", "Validación del Sistema", MessageBoxButtons.OK);
+                    }
+                }catch(Exception ex)
                 {
-                    MessageBox.Show("No se pudo eliminar.", "Eliminación de un plano", MessageBoxButtons.OKCancel);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un plano para poder eliminar.", "Eliminación de Plano", MessageBoxButtons.OK);
             }
         }
-
-        //PROCESO, METODOS Y FUNCIOANES ASOCIADAS AL PRODUCTO, CRUD DEL PRODUCTO---------
-        //ELIMINAR PRODUCTO GUARDARO O SELECCIOANDO
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este producto?.", "Eliminación de un Producto", MessageBoxButtons.OKCancel);
-            if (boton == DialogResult.OK)
-            {
-                if (idart != 0)
-                {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EliminarProducto", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idart", idart);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
-                    MostrarProductos();
-                    MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Producto", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar un producto para poder eliminarlo.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-            }
+            EliminarProducto();
         }
 
         //HABILITAR LA VENTANA DE EDICION
-        private void btnEditarProductoCampos_Click(object sender, EventArgs e)
+        public void EditarProducto(CheckBox ck,Panel pa, DataGridView DGV)
         {
             //SISTEMA DE VALIDACION DE CAMPOS VACIOS
             ValidarCamposVacios();
@@ -2342,38 +2402,43 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             }
             else
             {
-                DialogResult boton = MessageBox.Show("¿Realmente desea editar este producto?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
+                try
                 {
-                    if (idart != 0)
+                    DialogResult boton = MessageBox.Show("¿Realmente desea editar este producto?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
                     {
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarProductoPrincipal", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idArt", idart);
-                        cmd.Parameters.AddWithValue("@estadoSemiProducido", ckSemiProducidoEdicion.Checked);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                        if (idart != 0)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("ListadoProductos_Editar", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idArt", idart);
+                            cmd.Parameters.AddWithValue("@estadoSemiProducido", ck.Checked);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
 
-                        MostrarProductos();
-                        MessageBox.Show("Edición correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                        panelCamposProducto.Visible = false;
+                            MostrarProductos();
+                            MessageBox.Show("Edición correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                            pa.Visible = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe seleccionar un producto para poder editarlo.", "Validación del Sistema", MessageBoxButtons.OK);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Debe seleccionar un producto para poder editarlo.", "Validación del Sistema", MessageBoxButtons.OK);
-                    }
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            
-
-
-                
-
-            datalistado.Enabled = true;
+            DGV.Enabled = true;
+        }
+        private void btnEditarProductoCampos_Click(object sender, EventArgs e)
+        {
+            EditarProducto(ckSemiProducidoEdicion,panelCamposProducto,datalistado);
         }
 
         //SALIR DE LOS DETALLES Y CARACTERISTICAS DE MI PRODUCTO
@@ -2408,267 +2473,284 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //BÚSQUEDA DE PRODUCTOS SEGÚN EL MODELO SELECCIONADO
         private void cboFiltroModeloProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarProductoPorModelo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idmodelo", cboFiltroModeloProducto.SelectedValue.ToString());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
-            datalistado.Columns[0].Visible = false;
-            datalistado.Columns[1].Width = 100;
-            datalistado.Columns[2].Width = 100;
-            datalistado.Columns[3].Width = 915;
-            datalistado.Columns[4].Visible = false;
-            datalistado.Columns[5].Width = 90;
-            datalistado.Columns[6].Visible = false;
-            datalistado.Columns[7].Width = 135;
-            datalistado.Columns[8].Visible = false;
-            datalistado.Columns[9].Visible = false;
-            datalistado.Columns[10].Visible = false;
-            datalistado.Columns[11].Visible = false;
-            datalistado.Columns[12].Visible = false;
-            datalistado.Columns[13].Width = 30;
-            datalistado.Columns[14].Visible = false;
-            datalistado.Columns[15].Visible = false;
-            datalistado.Columns[16].Visible = false;
-            datalistado.Columns[17].Visible = false;
-            datalistado.Columns[18].Visible = false;
-            datalistado.Columns[19].Visible = false;
-            datalistado.Columns[20].Visible = false;
-            datalistado.Columns[21].Visible = false;
-            datalistado.Columns[22].Visible = false;
-            datalistado.Columns[23].Visible = false;
-            datalistado.Columns[24].Visible = false;
-            datalistado.Columns[25].Visible = false;
-            datalistado.Columns[26].Visible = false;
-            datalistado.Columns[27].Visible = false;
-            datalistado.Columns[28].Visible = false;
-            datalistado.Columns[29].Visible = false;
-            datalistado.Columns[30].Visible = false;
-            datalistado.Columns[31].Visible = false;
-            datalistado.Columns[32].Visible = false;
-            datalistado.Columns[33].Visible = false;
-            datalistado.Columns[34].Visible = false;
-            datalistado.Columns[35].Visible = false;
-            datalistado.Columns[36].Visible = false;
-            datalistado.Columns[37].Visible = false;
-            datalistado.Columns[38].Visible = false;
-            datalistado.Columns[39].Visible = false;
-            datalistado.Columns[40].Visible = false;
-            datalistado.Columns[41].Visible = false;
-            datalistado.Columns[42].Visible = false;
-            datalistado.Columns[43].Visible = false;
-            datalistado.Columns[44].Visible = false;
-            datalistado.Columns[45].Visible = false;
-            datalistado.Columns[46].Visible = false;
-            datalistado.Columns[47].Visible = false;
-            datalistado.Columns[48].Visible = false;
-            datalistado.Columns[49].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("ListadoProductos_BuscarPorModelo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idmodelo", cboFiltroModeloProducto.SelectedValue.ToString());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                datalistado.Columns[0].Visible = false;
+                datalistado.Columns[1].Width = 100;
+                datalistado.Columns[2].Width = 100;
+                datalistado.Columns[3].Width = 915;
+                datalistado.Columns[4].Visible = false;
+                datalistado.Columns[5].Width = 90;
+                datalistado.Columns[6].Visible = false;
+                datalistado.Columns[7].Width = 135;
+                datalistado.Columns[8].Visible = false;
+                datalistado.Columns[9].Visible = false;
+                datalistado.Columns[10].Visible = false;
+                datalistado.Columns[11].Visible = false;
+                datalistado.Columns[12].Visible = false;
+                datalistado.Columns[13].Width = 30;
+                datalistado.Columns[14].Visible = false;
+                datalistado.Columns[15].Visible = false;
+                datalistado.Columns[16].Visible = false;
+                datalistado.Columns[17].Visible = false;
+                datalistado.Columns[18].Visible = false;
+                datalistado.Columns[19].Visible = false;
+                datalistado.Columns[20].Visible = false;
+                datalistado.Columns[21].Visible = false;
+                datalistado.Columns[22].Visible = false;
+                datalistado.Columns[23].Visible = false;
+                datalistado.Columns[24].Visible = false;
+                datalistado.Columns[25].Visible = false;
+                datalistado.Columns[26].Visible = false;
+                datalistado.Columns[27].Visible = false;
+                datalistado.Columns[28].Visible = false;
+                datalistado.Columns[29].Visible = false;
+                datalistado.Columns[30].Visible = false;
+                datalistado.Columns[31].Visible = false;
+                datalistado.Columns[32].Visible = false;
+                datalistado.Columns[33].Visible = false;
+                datalistado.Columns[34].Visible = false;
+                datalistado.Columns[35].Visible = false;
+                datalistado.Columns[36].Visible = false;
+                datalistado.Columns[37].Visible = false;
+                datalistado.Columns[38].Visible = false;
+                datalistado.Columns[39].Visible = false;
+                datalistado.Columns[40].Visible = false;
+                datalistado.Columns[41].Visible = false;
+                datalistado.Columns[42].Visible = false;
+                datalistado.Columns[43].Visible = false;
+                datalistado.Columns[44].Visible = false;
+                datalistado.Columns[45].Visible = false;
+                datalistado.Columns[46].Visible = false;
+                datalistado.Columns[47].Visible = false;
+                datalistado.Columns[48].Visible = false;
+                datalistado.Columns[49].Visible = false;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //METODO QUE FILTRA LOS PRODUCTOS SEGÚN EL TIPO DE BÚSQUEDA SELECCIONADA
+        private void FiltrarProductos(ComboBox cbo,string busqueda)
+        {
+            try
+            {
+                if (cbo.Text == "CÓDIGO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListadoProductos_BuscarPorCodcom", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codcom", busqueda);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                    datalistado.Columns[0].Visible = false;
+                    datalistado.Columns[1].Width = 100;
+                    datalistado.Columns[2].Width = 100;
+                    datalistado.Columns[3].Width = 915;
+                    datalistado.Columns[4].Visible = false;
+                    datalistado.Columns[5].Width = 90;
+                    datalistado.Columns[6].Visible = false;
+                    datalistado.Columns[7].Width = 135;
+                    datalistado.Columns[8].Visible = false;
+                    datalistado.Columns[9].Visible = false;
+                    datalistado.Columns[10].Visible = false;
+                    datalistado.Columns[11].Visible = false;
+                    datalistado.Columns[12].Visible = false;
+                    datalistado.Columns[13].Width = 30;
+                    datalistado.Columns[14].Visible = false;
+                    datalistado.Columns[15].Visible = false;
+                    datalistado.Columns[16].Visible = false;
+                    datalistado.Columns[17].Visible = false;
+                    datalistado.Columns[18].Visible = false;
+                    datalistado.Columns[19].Visible = false;
+                    datalistado.Columns[20].Visible = false;
+                    datalistado.Columns[21].Visible = false;
+                    datalistado.Columns[22].Visible = false;
+                    datalistado.Columns[23].Visible = false;
+                    datalistado.Columns[24].Visible = false;
+                    datalistado.Columns[25].Visible = false;
+                    datalistado.Columns[26].Visible = false;
+                    datalistado.Columns[27].Visible = false;
+                    datalistado.Columns[28].Visible = false;
+                    datalistado.Columns[29].Visible = false;
+                    datalistado.Columns[30].Visible = false;
+                    datalistado.Columns[31].Visible = false;
+                    datalistado.Columns[32].Visible = false;
+                    datalistado.Columns[33].Visible = false;
+                    datalistado.Columns[34].Visible = false;
+                    datalistado.Columns[35].Visible = false;
+                    datalistado.Columns[36].Visible = false;
+                    datalistado.Columns[37].Visible = false;
+                    datalistado.Columns[38].Visible = false;
+                    datalistado.Columns[39].Visible = false;
+                    datalistado.Columns[40].Visible = false;
+                    datalistado.Columns[41].Visible = false;
+                    datalistado.Columns[42].Visible = false;
+                    datalistado.Columns[43].Visible = false;
+                    datalistado.Columns[44].Visible = false;
+                    datalistado.Columns[45].Visible = false;
+                    datalistado.Columns[46].Visible = false;
+                    datalistado.Columns[47].Visible = false;
+                    datalistado.Columns[48].Visible = false;
+                    datalistado.Columns[49].Visible = false;
+                }
+                else if (cbo.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListadoProductos_BuscarPorDescripcion", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", busqueda);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                    datalistado.Columns[0].Visible = false;
+                    datalistado.Columns[1].Width = 100;
+                    datalistado.Columns[2].Width = 100;
+                    datalistado.Columns[3].Width = 915;
+                    datalistado.Columns[4].Visible = false;
+                    datalistado.Columns[5].Width = 90;
+                    datalistado.Columns[6].Visible = false;
+                    datalistado.Columns[7].Width = 135;
+                    datalistado.Columns[8].Visible = false;
+                    datalistado.Columns[9].Visible = false;
+                    datalistado.Columns[10].Visible = false;
+                    datalistado.Columns[11].Visible = false;
+                    datalistado.Columns[12].Visible = false;
+                    datalistado.Columns[13].Width = 30;
+                    datalistado.Columns[14].Visible = false;
+                    datalistado.Columns[15].Visible = false;
+                    datalistado.Columns[16].Visible = false;
+                    datalistado.Columns[17].Visible = false;
+                    datalistado.Columns[18].Visible = false;
+                    datalistado.Columns[19].Visible = false;
+                    datalistado.Columns[20].Visible = false;
+                    datalistado.Columns[21].Visible = false;
+                    datalistado.Columns[22].Visible = false;
+                    datalistado.Columns[23].Visible = false;
+                    datalistado.Columns[24].Visible = false;
+                    datalistado.Columns[25].Visible = false;
+                    datalistado.Columns[26].Visible = false;
+                    datalistado.Columns[27].Visible = false;
+                    datalistado.Columns[28].Visible = false;
+                    datalistado.Columns[29].Visible = false;
+                    datalistado.Columns[30].Visible = false;
+                    datalistado.Columns[31].Visible = false;
+                    datalistado.Columns[32].Visible = false;
+                    datalistado.Columns[33].Visible = false;
+                    datalistado.Columns[34].Visible = false;
+                    datalistado.Columns[35].Visible = false;
+                    datalistado.Columns[36].Visible = false;
+                    datalistado.Columns[37].Visible = false;
+                    datalistado.Columns[38].Visible = false;
+                    datalistado.Columns[39].Visible = false;
+                    datalistado.Columns[40].Visible = false;
+                    datalistado.Columns[41].Visible = false;
+                    datalistado.Columns[42].Visible = false;
+                    datalistado.Columns[43].Visible = false;
+                    datalistado.Columns[44].Visible = false;
+                    datalistado.Columns[45].Visible = false;
+                    datalistado.Columns[46].Visible = false;
+                    datalistado.Columns[47].Visible = false;
+                    datalistado.Columns[48].Visible = false;
+                    datalistado.Columns[49].Visible = false;
+                }
+                else
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListadoProductos_BuscarPorCodigoBss", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", busqueda);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                    datalistado.Columns[0].Visible = false;
+                    datalistado.Columns[1].Width = 100;
+                    datalistado.Columns[2].Width = 100;
+                    datalistado.Columns[3].Width = 915;
+                    datalistado.Columns[4].Visible = false;
+                    datalistado.Columns[5].Width = 90;
+                    datalistado.Columns[6].Visible = false;
+                    datalistado.Columns[7].Width = 135;
+                    datalistado.Columns[8].Visible = false;
+                    datalistado.Columns[9].Visible = false;
+                    datalistado.Columns[10].Visible = false;
+                    datalistado.Columns[11].Visible = false;
+                    datalistado.Columns[12].Visible = false;
+                    datalistado.Columns[13].Width = 30;
+                    datalistado.Columns[14].Visible = false;
+                    datalistado.Columns[15].Visible = false;
+                    datalistado.Columns[16].Visible = false;
+                    datalistado.Columns[17].Visible = false;
+                    datalistado.Columns[18].Visible = false;
+                    datalistado.Columns[19].Visible = false;
+                    datalistado.Columns[20].Visible = false;
+                    datalistado.Columns[21].Visible = false;
+                    datalistado.Columns[22].Visible = false;
+                    datalistado.Columns[23].Visible = false;
+                    datalistado.Columns[24].Visible = false;
+                    datalistado.Columns[25].Visible = false;
+                    datalistado.Columns[26].Visible = false;
+                    datalistado.Columns[27].Visible = false;
+                    datalistado.Columns[28].Visible = false;
+                    datalistado.Columns[29].Visible = false;
+                    datalistado.Columns[30].Visible = false;
+                    datalistado.Columns[31].Visible = false;
+                    datalistado.Columns[32].Visible = false;
+                    datalistado.Columns[33].Visible = false;
+                    datalistado.Columns[34].Visible = false;
+                    datalistado.Columns[35].Visible = false;
+                    datalistado.Columns[36].Visible = false;
+                    datalistado.Columns[37].Visible = false;
+                    datalistado.Columns[38].Visible = false;
+                    datalistado.Columns[39].Visible = false;
+                    datalistado.Columns[40].Visible = false;
+                    datalistado.Columns[41].Visible = false;
+                    datalistado.Columns[42].Visible = false;
+                    datalistado.Columns[43].Visible = false;
+                    datalistado.Columns[44].Visible = false;
+                    datalistado.Columns[45].Visible = false;
+                    datalistado.Columns[46].Visible = false;
+                    datalistado.Columns[47].Visible = false;
+                    datalistado.Columns[48].Visible = false;
+                    datalistado.Columns[49].Visible = false;
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);   
+            }
         }
 
         private void txtBusquedaProducto_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaProducto.Text == "CÓDIGO")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorCodcom", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codcom", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-                datalistado.Columns[0].Visible = false;
-                datalistado.Columns[1].Width = 100;
-                datalistado.Columns[2].Width = 100;
-                datalistado.Columns[3].Width = 915;
-                datalistado.Columns[4].Visible = false;
-                datalistado.Columns[5].Width = 90;
-                datalistado.Columns[6].Visible = false;
-                datalistado.Columns[7].Width = 135;
-                datalistado.Columns[8].Visible = false;
-                datalistado.Columns[9].Visible = false;
-                datalistado.Columns[10].Visible = false;
-                datalistado.Columns[11].Visible = false;
-                datalistado.Columns[12].Visible = false;
-                datalistado.Columns[13].Width = 30;
-                datalistado.Columns[14].Visible = false;
-                datalistado.Columns[15].Visible = false;
-                datalistado.Columns[16].Visible = false;
-                datalistado.Columns[17].Visible = false;
-                datalistado.Columns[18].Visible = false;
-                datalistado.Columns[19].Visible = false;
-                datalistado.Columns[20].Visible = false;
-                datalistado.Columns[21].Visible = false;
-                datalistado.Columns[22].Visible = false;
-                datalistado.Columns[23].Visible = false;
-                datalistado.Columns[24].Visible = false;
-                datalistado.Columns[25].Visible = false;
-                datalistado.Columns[26].Visible = false;
-                datalistado.Columns[27].Visible = false;
-                datalistado.Columns[28].Visible = false;
-                datalistado.Columns[29].Visible = false;
-                datalistado.Columns[30].Visible = false;
-                datalistado.Columns[31].Visible = false;
-                datalistado.Columns[32].Visible = false;
-                datalistado.Columns[33].Visible = false;
-                datalistado.Columns[34].Visible = false;
-                datalistado.Columns[35].Visible = false;
-                datalistado.Columns[36].Visible = false;
-                datalistado.Columns[37].Visible = false;
-                datalistado.Columns[38].Visible = false;
-                datalistado.Columns[39].Visible = false;
-                datalistado.Columns[40].Visible = false;
-                datalistado.Columns[41].Visible = false;
-                datalistado.Columns[42].Visible = false;
-                datalistado.Columns[43].Visible = false;
-                datalistado.Columns[44].Visible = false;
-                datalistado.Columns[45].Visible = false;
-                datalistado.Columns[46].Visible = false;
-                datalistado.Columns[47].Visible = false;
-                datalistado.Columns[48].Visible = false;
-                datalistado.Columns[49].Visible = false;
-            }
-            else if (cboBusquedaProducto.Text == "DESCRIPCIÓN")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorDescripcion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-                datalistado.Columns[0].Visible = false;
-                datalistado.Columns[1].Width = 100;
-                datalistado.Columns[2].Width = 100;
-                datalistado.Columns[3].Width = 915;
-                datalistado.Columns[4].Visible = false;
-                datalistado.Columns[5].Width = 90;
-                datalistado.Columns[6].Visible = false;
-                datalistado.Columns[7].Width = 135;
-                datalistado.Columns[8].Visible = false;
-                datalistado.Columns[9].Visible = false;
-                datalistado.Columns[10].Visible = false;
-                datalistado.Columns[11].Visible = false;
-                datalistado.Columns[12].Visible = false;
-                datalistado.Columns[13].Width = 30;
-                datalistado.Columns[14].Visible = false;
-                datalistado.Columns[15].Visible = false;
-                datalistado.Columns[16].Visible = false;
-                datalistado.Columns[17].Visible = false;
-                datalistado.Columns[18].Visible = false;
-                datalistado.Columns[19].Visible = false;
-                datalistado.Columns[20].Visible = false;
-                datalistado.Columns[21].Visible = false;
-                datalistado.Columns[22].Visible = false;
-                datalistado.Columns[23].Visible = false;
-                datalistado.Columns[24].Visible = false;
-                datalistado.Columns[25].Visible = false;
-                datalistado.Columns[26].Visible = false;
-                datalistado.Columns[27].Visible = false;
-                datalistado.Columns[28].Visible = false;
-                datalistado.Columns[29].Visible = false;
-                datalistado.Columns[30].Visible = false;
-                datalistado.Columns[31].Visible = false;
-                datalistado.Columns[32].Visible = false;
-                datalistado.Columns[33].Visible = false;
-                datalistado.Columns[34].Visible = false;
-                datalistado.Columns[35].Visible = false;
-                datalistado.Columns[36].Visible = false;
-                datalistado.Columns[37].Visible = false;
-                datalistado.Columns[38].Visible = false;
-                datalistado.Columns[39].Visible = false;
-                datalistado.Columns[40].Visible = false;
-                datalistado.Columns[41].Visible = false;
-                datalistado.Columns[42].Visible = false;
-                datalistado.Columns[43].Visible = false;
-                datalistado.Columns[44].Visible = false;
-                datalistado.Columns[45].Visible = false;
-                datalistado.Columns[46].Visible = false;
-                datalistado.Columns[47].Visible = false;
-                datalistado.Columns[48].Visible = false;
-                datalistado.Columns[49].Visible = false;
-            }
-            else
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorCodigoBss", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-                datalistado.Columns[0].Visible = false;
-                datalistado.Columns[1].Width = 100;
-                datalistado.Columns[2].Width = 100;
-                datalistado.Columns[3].Width = 915;
-                datalistado.Columns[4].Visible = false;
-                datalistado.Columns[5].Width = 90;
-                datalistado.Columns[6].Visible = false;
-                datalistado.Columns[7].Width = 135;
-                datalistado.Columns[8].Visible = false;
-                datalistado.Columns[9].Visible = false;
-                datalistado.Columns[10].Visible = false;
-                datalistado.Columns[11].Visible = false;
-                datalistado.Columns[12].Visible = false;
-                datalistado.Columns[13].Width = 30;
-                datalistado.Columns[14].Visible = false;
-                datalistado.Columns[15].Visible = false;
-                datalistado.Columns[16].Visible = false;
-                datalistado.Columns[17].Visible = false;
-                datalistado.Columns[18].Visible = false;
-                datalistado.Columns[19].Visible = false;
-                datalistado.Columns[20].Visible = false;
-                datalistado.Columns[21].Visible = false;
-                datalistado.Columns[22].Visible = false;
-                datalistado.Columns[23].Visible = false;
-                datalistado.Columns[24].Visible = false;
-                datalistado.Columns[25].Visible = false;
-                datalistado.Columns[26].Visible = false;
-                datalistado.Columns[27].Visible = false;
-                datalistado.Columns[28].Visible = false;
-                datalistado.Columns[29].Visible = false;
-                datalistado.Columns[30].Visible = false;
-                datalistado.Columns[31].Visible = false;
-                datalistado.Columns[32].Visible = false;
-                datalistado.Columns[33].Visible = false;
-                datalistado.Columns[34].Visible = false;
-                datalistado.Columns[35].Visible = false;
-                datalistado.Columns[36].Visible = false;
-                datalistado.Columns[37].Visible = false;
-                datalistado.Columns[38].Visible = false;
-                datalistado.Columns[39].Visible = false;
-                datalistado.Columns[40].Visible = false;
-                datalistado.Columns[41].Visible = false;
-                datalistado.Columns[42].Visible = false;
-                datalistado.Columns[43].Visible = false;
-                datalistado.Columns[44].Visible = false;
-                datalistado.Columns[45].Visible = false;
-                datalistado.Columns[46].Visible = false;
-                datalistado.Columns[47].Visible = false;
-                datalistado.Columns[48].Visible = false;
-                datalistado.Columns[49].Visible = false;
-            }
+            FiltrarProductos(cboBusquedaProducto,txtBusquedaProducto.Text);
         }
         //----------------------------------------------------------------------------------
 
@@ -3676,19 +3758,29 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //FUNCION PARA GENERAR MI QR
+        public void GenerarCodigoQR(string codigoproducto, string detalleproducto, Panel codigoqr)
+        {
+            try
+            {
+                if (lblCodigoProducto.Text != "*")
+                {
+                    panelCodigoQr.Visible = true;
+
+                    Zen.Barcode.CodeQrBarcodeDraw mGenerarQr = Zen.Barcode.BarcodeDrawFactory.CodeQr;
+                    ptQR.Image = mGenerarQr.Draw(txtDetalleProducto.Text, 250);
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un producto para poder generar el QR de este.", "Validación del Sistema");
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void btnVerQr_Click(object sender, EventArgs e)
         {
-            if (lblCodigoProducto.Text != "*")
-            {
-                panelCodigoQr.Visible = true;
-
-                Zen.Barcode.CodeQrBarcodeDraw mGenerarQr = Zen.Barcode.BarcodeDrawFactory.CodeQr;
-                ptQR.Image = mGenerarQr.Draw(txtDetalleProducto.Text, 250);
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un producto para poder generar el QR de este.", "Validación del Sistema");
-            }
+            GenerarCodigoQR(lblCodigoProducto.Text,txtDetalleProducto.Text,panelCodigoQr);
         }
 
         //BOTON PARA CERRAR MI QR GENERADO
@@ -3698,13 +3790,23 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //COPIAR CODIGO DE MI PRODUCTO EN PORTAPATELES
+        public void CopiarCodigoProducto(string codigoproducto,Label notificacion)
+        {
+            try
+            {
+                Clipboard.Clear();
+                Clipboard.SetText(lblCodigoProducto.Text);
+
+                lblNotificacionCopiaPortapapeles.Visible = true;
+                this.timer.Enabled = true;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void btnCopiarCodigoProducto_Click(object sender, EventArgs e)
         {
-            Clipboard.Clear();
-            Clipboard.SetText(lblCodigoProducto.Text);
-
-            lblNotificacionCopiaPortapapeles.Visible = true;
-            this.timer.Enabled = true;
+            CopiarCodigoProducto(lblCodigoProducto.Text,lblNotificacionCopiaPortapapeles);
         }
 
         //FUNCION QUE REALIZA MI TIMER AL MOMENTO DE ACABAR
