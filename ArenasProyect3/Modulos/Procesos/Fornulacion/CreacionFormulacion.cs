@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Management;
 using System.Windows.Forms;
 
 namespace ArenasProyect3.Modulos.Procesos.Fornulacion
@@ -35,7 +36,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         private void CreacionFormulacion_Load(object sender, EventArgs e)
         {
             //CARGAR DEFINCIONES DE FORMUALCION
-            BusquedaDatosPrincipales();
+            BusquedaDatosPrincipales(cboDefinicionFormulacion,lblIdLinea);
         }
 
         //METODO PARA PINTAR DE COLORES LAS FILAS DE MI LSITADO
@@ -56,21 +57,28 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //BUSQUEDA DE FORMULACION Y CARGA DE MI COMBO
-        public void BusquedaDatosPrincipales()
+        public void BusquedaDatosPrincipales(ComboBox cbo, Label lbl)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT DF.IdDefinicionFormulaciones AS [ID], L.IdLinea ,L.Descripcion AS [LINEA], DF.IdTipo, TF.Descripcion AS [TIPO] FROM DefinicionFormulaciones DF INNER JOIN LINEAS L ON L.IdLinea = DF.IdLinea INNER JOIN TipoFormulacion TF ON TF.IdTipoFormulacion = DF.IdTipo WHERE DF.Estado = 1 ORDER BY L.IdLinea", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboDefinicionFormulacion.DisplayMember = "LINEA";
-            cboDefinicionFormulacion.ValueMember = "ID";
-            DataRow row = dt.Rows[0];
-            txtTipoFormulacion.Text = System.Convert.ToString(row["TIPO"]);
-            lblIdLinea.Text = System.Convert.ToString(row["IdLinea"]);
-            cboDefinicionFormulacion.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("CreacionFormulacion_MostrarTipos", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "LINEA";
+                cbo.ValueMember = "ID";
+                DataRow row = dt.Rows[0];
+                txtTipoFormulacion.Text = System.Convert.ToString(row["TIPO"]);
+                lbl.Text = System.Convert.ToString(row["IdLinea"]);
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //EVENTO DE CAMBIO DE DATO EN EL COMBO DE MIS DEFINICIONES CARGADAS
@@ -176,7 +184,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             lblTipoFormulacion.Text = txtTipoFormulacion.Text;
             lblIdDefinicion.Text = cboDefinicionFormulacion.SelectedValue.ToString();
 
-            if (txtTipoFormulacion.Text == "CON SEMIPRODUCIDO")
+            if (cboDefinicionFormulacion.Text.Contains("CON SEMIPRODUCIDO"))
             {
                 //VISUALIZACION ESPECIFICA
                 //VISUALIZACION DEL PRODUCTO
@@ -219,24 +227,28 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 imgOcultoPlanoSemiProducido.Visible = true;
             }
 
-            MostrarFormulaciones();
+            MostrarFormulaciones(cboDefinicionFormulacion,datalistadoFormulaciones);
             alternarColorFilas(datalistadoFormulaciones);
         }
 
         //-----------------------------------------------------------------------FORMULACION--------------------------------------------------------------
         //LISTAR FORMULACIONES INGRESADAS
-        public void MostrarFormulaciones()
+        public void MostrarFormulaciones(ComboBox cbo, DataGridView dgv)
         {
-            if (txtTipoFormulacion.Text == "CON SEMIPRODUCIDO")
+            try
+            {
+            if (cbo.Text.Contains("CON SEMIPRODUCIDO"))
             {
                 DataTable dt = new DataTable();
                 SqlDataAdapter da;
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter(" SELECT F.IdFormulacion, F.CodigoFormulacion as [COD. F.], P.IdArt, P.Codcom as [COD. P.], P.Detalle as [DESCRIPCIÓN P.], M.DESCRIPCION as [MEDIDA P.], P2.IdArt, P2.Codcom as [COD.SP.], P2.Detalle as [DESCRIPCIÓN S.], M2.DESCRIPCION as [MEDIDA S.], NamePlanoTecnico, NamePlanoSeguridad, PP.IdPlano, PP.NameReferences, PP.Name, PP2.IdPlano, PP2.NameReferences, PP2.Name FROM Formulacion F INNER JOIN PRODUCTOS P ON P.IdArt = F.IdProducto INNER JOIN PRODUCTOS P2 ON P2.IdArt = F.IdSemiProducido INNER JOIN MEDIDA M ON P.IdMedida = M.IdMedida INNER JOIN MEDIDA M2 ON P2.IdMedida = M2.IdMedida INNER JOIN PlanoProducto PP ON PP.IdPlano = F.IdPlanoProducto INNER JOIN PlanoProducto PP2 ON PP2.IdPlano = F.IdPlanoSemiproducido INNER JOIN DefinicionFormulaciones DF ON DF.IdDefinicionFormulaciones = F.IdDefinicionFormulacion WHERE F.Estado = 1 AND DF.IdTipo = 2 UNION ALL SELECT F.IdFormulacion, F.CodigoFormulacion as [COD.F.], P.IdArt, P.Codcom as [COD.P.], P.Detalle as [DESCRIPCIÓN P.], M.DESCRIPCION as [MEDIDA P.], P2.IdArt, P2.Codcom as [COD.SP.], P2.Detalle as [DESCRIPCIÓN S.], M2.DESCRIPCION as [MEDIDA S.], NamePlanoTecnico, NamePlanoSeguridad, NULL, NULL, NULL, NULL, NULL, NULL FROM Formulacion F INNER JOIN PRODUCTOS P ON P.IdArt = F.IdProducto INNER JOIN PRODUCTOS P2 ON P2.IdArt = F.IdSemiProducido INNER JOIN MEDIDA M ON P.IdMedida = M.IdMedida INNER JOIN MEDIDA M2 ON P2.IdMedida = M2.IdMedida INNER JOIN DefinicionFormulaciones DF ON DF.IdDefinicionFormulaciones = F.IdDefinicionFormulacion WHERE F.Estado = 1 AND DF.IdTipo = 2 AND F.IdPlanoProducto IS NULL", con);
+                SqlCommand cmd = new SqlCommand("CreacionFormulacion_MostrarConSemiProducido", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
-                datalistadoFormulaciones.DataSource = dt;
+                dgv.DataSource = dt;
                 con.Close();
             }
             else
@@ -246,18 +258,26 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter("SELECT F.IdFormulacion, F.CodigoFormulacion as [COD. F.], P.IdArt, P.Codcom as [COD. P.], P.Detalle as [DESCRIPCIÓN P.], M.DESCRIPCION as [MEDIDA P.], NamePlanoTecnico, NamePlanoSeguridad, PP.IdPlano, PP.NameReferences, PP.Name FROM Formulacion F INNER JOIN PRODUCTOS P ON P.IdArt = F.IdProducto INNER JOIN MEDIDA M ON P.IdMedida = M.IdMedida INNER JOIN PlanoProducto PP ON PP.IdPlano = F.IdPlanoProducto INNER JOIN DefinicionFormulaciones DF ON DF.IdDefinicionFormulaciones = F.IdDefinicionFormulacion WHERE F.Estado = 1 AND DF.IdTipo = 1 UNION SELECT F.IdFormulacion, F.CodigoFormulacion as [COD.F.], P.IdArt, P.Codcom as [COD.P.], P.Detalle as [DESCRIPCIÓN P.], M.DESCRIPCION as [MEDIDA P.], NamePlanoTecnico, NamePlanoSeguridad, NULL, NULL, NULL FROM Formulacion F INNER JOIN PRODUCTOS P ON P.IdArt = F.IdProducto INNER JOIN MEDIDA M ON P.IdMedida = M.IdMedida INNER JOIN DefinicionFormulaciones DF ON DF.IdDefinicionFormulaciones = F.IdDefinicionFormulacion WHERE F.Estado = 1 AND DF.IdTipo = 1 AND F.IdPlanoProducto IS NULL", con);
+                SqlCommand cmd = new SqlCommand("CreacionFormulacion_MostrarSinSemiProducido", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
-                datalistadoFormulaciones.DataSource = dt;
+                dgv.DataSource = dt;
                 con.Close();
             }
-            AjustesColunmasMostrarFormulaicones(datalistadoFormulaciones);
-            alternarColorFilas(datalistadoFormulaciones);
+            AjustesColunmasMostrarFormulaicones(dgv);
+            alternarColorFilas(dgv);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void AjustesColunmasMostrarFormulaicones(DataGridView dgv)
         {
-            if (txtTipoFormulacion.Text == "CON SEMIPRODUCIDO")
+            if (cboDefinicionFormulacion.Text.Contains("CON SEMIPRODUCIDO"))
             {
                 dgv.Columns[1].Visible = false;
                 dgv.Columns[3].Visible = false;
@@ -309,7 +329,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarPlanoPorId", con);
+            cmd = new SqlCommand("CreacionFormulacion_BuscarPlanoPorId", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idart", id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -325,43 +345,49 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //VISUALOIZAR PALNOS SELECCIOANDOS
         public void VisualizarPlanosSeleccionados(DataGridView dgv, TextBox txt)
         {
-            if (dgv != null)
+            try
             {
-                if (dgv.CurrentRow != null)
+                if (dgv != null)
                 {
-                    string ruta = dgv.SelectedCells[2].Value.ToString();
-                    if (ruta == "")
+                    if (dgv.CurrentRow != null)
                     {
-                        MessageBox.Show("Seleccione un plano para continuar", "Abrir Plano");
+                        string ruta = dgv.SelectedCells[2].Value.ToString();
+                        if (ruta == "")
+                        {
+                            MessageBox.Show("Seleccione un plano para continuar", "Abrir Plano");
+                        }
+                        else
+                        {
+                            Process.Start(ruta);
+                        }
                     }
                     else
                     {
-                        Process.Start(ruta);
+                        MessageBox.Show("Por favor, seleccione un plano para poder abrirlo", "Abrir Plano");
                     }
                 }
-                else
+                else if (txt != null)
                 {
-                    MessageBox.Show("Por favor, seleccione un plano para poder abrirlo", "Abrir Plano");
-                }
-            }
-            else if (txt != null)
-            {
-                if (txt.Text != "")
-                {
-                    string ruta = txt.Text;
-                    if (ruta == "")
+                    if (txt.Text != "")
                     {
-                        MessageBox.Show("Seleccione un plano para continuar", "Abrir Plano");
+                        string ruta = txt.Text;
+                        if (ruta == "")
+                        {
+                            MessageBox.Show("Seleccione un plano para continuar", "Abrir Plano");
+                        }
+                        else
+                        {
+                            Process.Start(ruta);
+                        }
                     }
                     else
                     {
-                        Process.Start(ruta);
+                        MessageBox.Show("No hay un plano para abrir", "Abrir Plano");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("No hay un plano para abrir", "Abrir Plano");
-                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -425,24 +451,44 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //SELECCIONAR LE PRODUCTO Y LELVARLO A MI FORMUALCION
+        public void SeleccionarProducto(Label codigo, DataGridView dgv,TextBox producto,Panel panelproductos, TextBox codigoplano, TextBox rutaplano)
+        {
+            try
+            {
+                codigo.Text = dgv.SelectedCells[0].Value.ToString();
+                idartproducto = Convert.ToInt32(dgv.SelectedCells[1].Value.ToString());
+                producto.Text = dgv.SelectedCells[2].Value.ToString();
+                panelproductos.Visible = false;
+                codigoplano.Text = "";
+                rutaplano.Text = "";
+                MostrarPlanosSegunIdProducto(idartproducto, datalistadopdfProducto);
+                ColorDescripcionProducto();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void datalistadoproductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigoProducto.Text = datalistadoproductos.SelectedCells[0].Value.ToString();
-            idartproducto = Convert.ToInt32(datalistadoproductos.SelectedCells[1].Value.ToString());
-            txtProducto.Text = datalistadoproductos.SelectedCells[2].Value.ToString();
-            panelBusquedaProducto.Visible = false;
-            txtCodigoPlanoProducto.Text = "";
-            txtRutaPlanoProducto.Text = "";
-            MostrarPlanosSegunIdProducto(idartproducto, datalistadopdfProducto);
-            ColorDescripcionProducto();
+            SeleccionarProducto(lblCodigoProducto,datalistadoproductos,txtProducto,panelBusquedaProducto,txtCodigoPlanoProducto,txtRutaPlanoProducto);
         }
 
         //SELECCIONAR UN PLANO DE PRODUCTO
+        public void SeleccionarPlanoProducto(Label codigoPlano, TextBox codigoPlanoText, TextBox rutaPlanoText,DataGridView dgv)
+        {
+            try
+            {
+                codigoPlano.Text = dgv.SelectedCells[0].Value.ToString();
+                codigoPlanoText.Text = dgv.SelectedCells[1].Value.ToString();
+                rutaPlanoText.Text = dgv.SelectedCells[2].Value.ToString();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void datalistadopdfProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigoPlanoProducto.Text = datalistadopdfProducto.SelectedCells[0].Value.ToString();
-            txtCodigoPlanoProducto.Text = datalistadopdfProducto.SelectedCells[1].Value.ToString();
-            txtRutaPlanoProducto.Text = datalistadopdfProducto.SelectedCells[2].Value.ToString();
+            SeleccionarPlanoProducto(lblCodigoPlanoProducto, txtCodigoPlanoProducto, txtRutaPlanoProducto, datalistadopdfProducto);
         }
 
         //VISUALIZAR PLANO
@@ -452,11 +498,15 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //LIMPIAR PLANO SELECCIONADO
+        public void LimpiarPlanoProducto(TextBox codigoplano,TextBox rutaplano, Label codigoplanoprod)
+        {
+            codigoplano.Text = "";
+            rutaplano.Text = "";
+            codigoplanoprod.Text = "*";
+        }
         private void btnLimpiarPlanoProducto_Click(object sender, EventArgs e)
         {
-            txtCodigoPlanoProducto.Text = "";
-            txtRutaPlanoProducto.Text = "";
-            lblCodigoPlanoProducto.Text = "*";
+            LimpiarPlanoProducto(txtCodigoPlanoProducto,txtRutaPlanoProducto,lblCodigoPlanoProducto);
         }
 
         //SALIR DE LA BUSQUEDA DE MI PRODUCTO
@@ -514,24 +564,44 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //SELECCIONAR EL SEMIPRODUCIDO LELVARLO A MI FORMUALCION
+        public void SeleccionarSemiProducido(object sender, DataGridViewCellEventArgs e , Label codigo, TextBox semiproducdo, Panel panel, TextBox codigoplanosemi, TextBox rutaplanosemi,DataGridView dgv)
+        {
+            try
+            {
+                codigo.Text = dgv.SelectedCells[0].Value.ToString();
+                idartsemiproducido = Convert.ToInt32(dgv.SelectedCells[1].Value.ToString());
+                semiproducdo.Text = dgv.SelectedCells[2].Value.ToString();
+                panel.Visible = false;
+                codigoplanosemi.Text = "";
+                rutaplanosemi.Text = "";
+                MostrarPlanosSegunIdProducto(idartsemiproducido, datalistadopdfSemiProducido);
+                ColorDescripcionSemiProducido();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void datalistadoSemiProducido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigoSemiProducido.Text = datalistadoSemiProducido.SelectedCells[0].Value.ToString();
-            idartsemiproducido = Convert.ToInt32(datalistadoSemiProducido.SelectedCells[1].Value.ToString());
-            txtSemiProducido.Text = datalistadoSemiProducido.SelectedCells[2].Value.ToString();
-            panelBusquedaSemiProducido.Visible = false;
-            txtCodigoPlanoSemiProducido.Text = "";
-            txtRutaPlanoSemiProducido.Text = "";
-            MostrarPlanosSegunIdProducto(idartsemiproducido, datalistadopdfSemiProducido);
-            ColorDescripcionSemiProducido();
+            SeleccionarSemiProducido(sender,e,lblCodigoSemiProducido,txtSemiProducido,panelBusquedaSemiProducido,txtCodigoPlanoSemiProducido,txtRutaPlanoSemiProducido,datalistadoSemiProducido);
         }
 
         //SELECCIONAR UN PLANO DEL SEMIPRODUCIDO
+        public void SeleccionarplanoSemiProducido(object sender, DataGridViewCellEventArgs e,Label codigoplansem, TextBox codigoplanosemi,TextBox rutaplanosemipr)
+        {
+            try
+            {
+                lblCodigoPlanoSemiProducido.Text = datalistadopdfSemiProducido.SelectedCells[0].Value.ToString();
+                txtCodigoPlanoSemiProducido.Text = datalistadopdfSemiProducido.SelectedCells[1].Value.ToString();
+                txtRutaPlanoSemiProducido.Text = datalistadopdfSemiProducido.SelectedCells[2].Value.ToString();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void datalistadopdfSemiProducido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigoPlanoSemiProducido.Text = datalistadopdfSemiProducido.SelectedCells[0].Value.ToString();
-            txtCodigoPlanoSemiProducido.Text = datalistadopdfSemiProducido.SelectedCells[1].Value.ToString();
-            txtRutaPlanoSemiProducido.Text = datalistadopdfSemiProducido.SelectedCells[2].Value.ToString();
+           SeleccionarplanoSemiProducido(sender,e,lblCodigoPlanoSemiProducido,txtCodigoPlanoSemiProducido,txtRutaPlanoSemiProducido);
         }
 
         //VISUALIZAR PLANO
@@ -541,11 +611,15 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //LIMPIAR PLANO SELECCIONADO
+        public void LimpiarPlanoSemiProducido(TextBox codigoplanosemi, TextBox rutaplanosemi, Label codigoplanoprod)
+        {
+            codigoplanosemi.Text = "";
+            rutaplanosemi.Text = "";
+            codigoplanoprod.Text = "*";
+        }
         private void btnLimpiarPlanoSemiPorducido_Click(object sender, EventArgs e)
         {
-            txtCodigoPlanoSemiProducido.Text = "";
-            txtRutaPlanoSemiProducido.Text = "";
-            lblCodigoPlanoSemiProducido.Text = "*";
+            LimpiarPlanoSemiProducido(txtCodigoPlanoSemiProducido,txtRutaPlanoSemiProducido,lblCodigoPlanoSemiProducido);
         }
 
         //BOTON PARA SALIR D ELA BUSQUEDA DE MI SEMI-PRODUCIDO
@@ -583,11 +657,12 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
 
         //ACCIONES DE LA FORMUALCION---------------------------------------------------------------------------
         //AGREGAR FORMULACION
-        private void btnAgregar_Click(object sender, EventArgs e)
+       
+        public void AgregarFormulacion(ComboBox cbodefinicionformulacion,TextBox producto,TextBox semiproducido,TextBox hojatecnica, TextBox hojaseguridad, decimal Cif, Label codigoplanoproducto, Label codigoplanosemiproducido,int definicion)
         {
-            if (txtTipoFormulacion.Text == "CON SEMIPRODUCIDO")
+            if (cbodefinicionformulacion.Text.Contains("CON SEMIPRODUCIDO"))
             {
-                if (txtProducto.Text == "" || txtSemiProducido.Text == "")
+                if (producto.Text == "" || semiproducido.Text == "")
                 {
                     MessageBox.Show("Debe seleccionar todos los datos necesarios (producto, semiproducido, plano del producto y plano del semiproducido), solo se selecciona el semiproducido si aplica", "Validación de Sistema");
                 }
@@ -599,7 +674,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarFormulacion", con);
+                        cmd = new SqlCommand("CreacionFormulacion_Insertar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         CrearCodigoFormulacion();
@@ -608,71 +683,71 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         cmd.Parameters.AddWithValue("@idsemiproducido", idartsemiproducido);
 
                         //plano hoja tecnica
-                        if (txtFileHojaTecnica.Text == "")
+                        if (hojatecnica.Text == "")
                         {
                             cmd.Parameters.AddWithValue("@rutaPlanoTecnico", DBNull.Value);
                         }
                         else
                         {
                             string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\PlanosTecnicos\" + textocodigoformulacion + " - " + "Plano Tecnico" + ".pdf";
-                            string RutaOld = txtFileHojaTecnica.Text;
+                            string RutaOld = hojatecnica.Text;
                             File.Copy(RutaOld, RutaNew);
                             cmd.Parameters.AddWithValue("@rutaPlanoTecnico", RutaNew);
                         }
 
                         //plano hoja de seguridad
-                        if (txtFileHojaSeguridad.Text == "")
+                        if (hojaseguridad.Text == "")
                         {
                             cmd.Parameters.AddWithValue("@rutaPlanoSeguridad", DBNull.Value);
                         }
                         else
                         {
                             string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\PlanosSeguridad\" + textocodigoformulacion + " - " + "Plano Seguridad" + ".pdf";
-                            string RutaOld = txtFileHojaSeguridad.Text;
+                            string RutaOld = hojaseguridad.Text;
                             File.Copy(RutaOld, RutaNew);
                             cmd.Parameters.AddWithValue("@rutaPlanoSeguridad", RutaNew);
                         }
 
-                        cmd.Parameters.AddWithValue("@cif", Convert.ToDecimal(txtCif.Text));
+                        cmd.Parameters.AddWithValue("@cif", Cif);
 
-                        if (lblCodigoPlanoProducto.Text == "*")
+                        if (codigoplanoproducto.Text == "*")
                         {
                             cmd.Parameters.AddWithValue("@idPlanoProducto", DBNull.Value);
                         }
                         else
                         {
-                            cmd.Parameters.AddWithValue("@idPlanoProducto", lblCodigoPlanoProducto.Text);
+                            cmd.Parameters.AddWithValue("@idPlanoProducto", codigoplanoproducto.Text);
                         }
 
-                        if (lblCodigoPlanoSemiProducido.Text == "*")
+                        if (codigoplanosemiproducido.Text == "*")
                         {
                             cmd.Parameters.AddWithValue("@idPlanoSemiproducido", DBNull.Value);
                         }
                         else
                         {
-                            cmd.Parameters.AddWithValue("@idPlanoSemiproducido", lblCodigoPlanoSemiProducido.Text);
+                            cmd.Parameters.AddWithValue("@idPlanoSemiproducido", codigoplanosemiproducido.Text);
                         }
 
-                        cmd.Parameters.AddWithValue("@idDefinicionFormulacion", Convert.ToInt32(lblIdDefinicion.Text));
+                        cmd.Parameters.AddWithValue("@idDefinicionFormulacion", definicion);
 
                         cmd.ExecuteNonQuery();
                         con.Close();
-                        MostrarFormulaciones();
+                        MostrarFormulaciones(cbodefinicionformulacion, datalistadoFormulaciones);
                         MessageBox.Show("Registro ingresado exitosamente", "Nueva Formulación", MessageBoxButtons.OK);
 
                         txtProducto.Text = "";
-                        lblCodigoProducto.Text = "*********";
+                        codigoplanoproducto.Text = "*********";
 
                         txtSemiProducido.Text = "";
-                        lblCodigoSemiProducido.Text = "*********";
+                        codigoplanosemiproducido.Text = "*********";
 
                         txtCodigoPlanoProducto.Text = "";
                         txtRutaPlanoProducto.Text = "";
-                        lblCodigoPlanoProducto.Text = "*";
+                        codigoplanoproducto.Text = "*";
 
                         txtCodigoPlanoSemiProducido.Text = "";
                         txtRutaPlanoSemiProducido.Text = "";
-                        lblCodigoPlanoSemiProducido.Text = "*";
+                        codigoplanosemiproducido.Text = "*";
 
                         txtFileHojaSeguridad.Text = "";
                         txtFileHojaTecnica.Text = "";
@@ -698,7 +773,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarFormulacion", con);
+                        cmd = new SqlCommand("CreacionFormulacion_Insertar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         CrearCodigoFormulacion();
@@ -707,74 +782,74 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         cmd.Parameters.AddWithValue("@idsemiproducido", DBNull.Value);
 
                         //plano hoja tecnica
-                        if (txtFileHojaTecnica.Text == "")
+                        if (hojatecnica.Text == "")
                         {
                             cmd.Parameters.AddWithValue("@rutaPlanoTecnico", DBNull.Value);
                         }
                         else
                         {
                             string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\PlanosTecnicos\" + textocodigoformulacion + " - " + "Plano Tecnico" + ".pdf";
-                            string RutaOld = txtFileHojaTecnica.Text;
+                            string RutaOld = hojatecnica.Text;
                             File.Copy(RutaOld, RutaNew);
                             cmd.Parameters.AddWithValue("@rutaPlanoTecnico", RutaNew);
                         }
 
                         //plano hoja de seguridad
-                        if (txtFileHojaSeguridad.Text == "")
+                        if (hojaseguridad.Text == "")
                         {
                             cmd.Parameters.AddWithValue("@rutaPlanoSeguridad", DBNull.Value);
                         }
                         else
                         {
                             string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\PlanosSeguridad\" + textocodigoformulacion + " - " + "Plano Seguridad" + ".pdf";
-                            string RutaOld = txtFileHojaSeguridad.Text;
+                            string RutaOld = hojaseguridad.Text;
                             File.Copy(RutaOld, RutaNew);
                             cmd.Parameters.AddWithValue("@rutaPlanoSeguridad", RutaNew);
                         }
 
-                        cmd.Parameters.AddWithValue("@cif", Convert.ToDecimal(txtCif.Text));
+                        cmd.Parameters.AddWithValue("@cif", Cif);
 
-                        if (lblCodigoPlanoProducto.Text == "*")
+                        if (codigoplanoproducto.Text == "*")
                         {
                             cmd.Parameters.AddWithValue("@idPlanoProducto", DBNull.Value);
                         }
                         else
                         {
-                            cmd.Parameters.AddWithValue("@idPlanoProducto", lblCodigoPlanoProducto.Text);
+                            cmd.Parameters.AddWithValue("@idPlanoProducto", codigoplanoproducto.Text);
                         }
 
-                        if (lblCodigoPlanoSemiProducido.Text == "*")
+                        if (codigoplanosemiproducido.Text == "*")
                         {
                             cmd.Parameters.AddWithValue("@idPlanoSemiproducido", DBNull.Value);
                         }
                         else
                         {
-                            cmd.Parameters.AddWithValue("@idPlanoSemiproducido", lblCodigoPlanoSemiProducido.Text);
+                            cmd.Parameters.AddWithValue("@idPlanoSemiproducido", codigoplanosemiproducido.Text);
                         }
 
-                        cmd.Parameters.AddWithValue("@idDefinicionFormulacion", Convert.ToInt32(lblIdDefinicion.Text));
+                        cmd.Parameters.AddWithValue("@idDefinicionFormulacion", definicion);
 
                         cmd.ExecuteNonQuery();
                         con.Close();
-                        MostrarFormulaciones();
+                        MostrarFormulaciones(cbodefinicionformulacion, datalistadoFormulaciones);
                         MessageBox.Show("Registro ingresado exitosamente", "Nueva Formulación", MessageBoxButtons.OK);
 
-                        txtProducto.Text = "";
-                        lblCodigoProducto.Text = "*********";
+                        producto.Text = "";
+                        codigoplanoproducto.Text = "*********";
 
-                        txtSemiProducido.Text = "";
-                        lblCodigoSemiProducido.Text = "*********";
+                        semiproducido.Text = "";
+                        codigoplanosemiproducido.Text = "*********";
 
                         txtCodigoPlanoProducto.Text = "";
                         txtRutaPlanoProducto.Text = "";
-                        lblCodigoPlanoProducto.Text = "*";
+                        codigoplanoproducto.Text = "*";
 
                         txtCodigoPlanoSemiProducido.Text = "";
                         txtRutaPlanoSemiProducido.Text = "";
-                        lblCodigoPlanoSemiProducido.Text = "*";
+                        codigoplanosemiproducido.Text = "*";
 
-                        txtFileHojaSeguridad.Text = "";
-                        txtFileHojaTecnica.Text = "";
+                        hojaseguridad.Text = "";
+                        hojatecnica.Text = "";
                     }
                     catch (Exception ex)
                     {
@@ -783,9 +858,13 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 }
             }
         }
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarFormulacion(cboDefinicionFormulacion, txtProducto, txtSemiProducido, txtFileHojaTecnica, txtFileHojaSeguridad, Convert.ToDecimal(txtCif.Text), lblCodigoPlanoProducto, lblCodigoPlanoSemiProducido, Convert.ToInt32(lblIdDefinicion.Text));
+        }
 
         //EDITAR LA FORMULACION
-        private void btnEditar_Click(object sender, EventArgs e)
+        public void EditarFormulacion(DataGridView dgv, string codigoplanoproducto, string codigoplanosemiproducido)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea editar esta formulación?.", "Validación de Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
@@ -796,33 +875,33 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EditarFormulacion", con);
+                    cmd = new SqlCommand("CreacionFormulacion_Editar", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idFormulacion", Convert.ToInt32(datalistadoFormulaciones.SelectedCells[1].Value.ToString()));
+                    cmd.Parameters.AddWithValue("@idFormulacion", Convert.ToInt32(dgv.SelectedCells[1].Value.ToString()));
 
-                    if (lblCodigoPlanoProducto.Text == "*")
+                    if (codigoplanoproducto == "*")
                     {
                         cmd.Parameters.AddWithValue("@idPlanoProducto", DBNull.Value);
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue("@idPlanoProducto", Convert.ToInt32(lblCodigoPlanoProducto.Text));
+                        cmd.Parameters.AddWithValue("@idPlanoProducto", Convert.ToString(codigoplanoproducto));
                     }
 
-                    if (lblCodigoPlanoSemiProducido.Text == "*")
+                    if (codigoplanosemiproducido == "*")
                     {
                         cmd.Parameters.AddWithValue("@idPlanoSemiProducido", DBNull.Value);
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue("@idPlanoSemiProducido", Convert.ToInt32(lblCodigoPlanoSemiProducido.Text));
+                        cmd.Parameters.AddWithValue("@idPlanoSemiProducido", Convert.ToString(codigoplanosemiproducido));
                     }
 
                     cmd.ExecuteNonQuery();
                     con.Close();
 
                     MessageBox.Show("Se editó correctamente la formulación seleccionada", "Validación del Sistema", MessageBoxButtons.OK);
-                    MostrarFormulaciones();
+                    MostrarFormulaciones(cboDefinicionFormulacion, datalistadoFormulaciones);
 
                     txtProducto.Text = "";
                     lblCodigoProducto.Text = "*********";
@@ -847,9 +926,13 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 }
             }
         }
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            EditarFormulacion(datalistadoFormulaciones,Convert.ToString(lblCodigoPlanoProducto.Text),Convert.ToString(lblCodigoPlanoSemiProducido.Text));
+        }
 
         //ANULAR FORMULACION
-        private void btnAnular_Click(object sender, EventArgs e)
+        public void AnularFormulacion(DataGridView dgv,ComboBox cbo)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea anular esta formulación?.", "Validación de Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
@@ -860,21 +943,25 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("AnularFormulacion", con);
+                    cmd = new SqlCommand("CreacionoFormulacion_Anular", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idFormulacion", Convert.ToInt32(datalistadoFormulaciones.SelectedCells[1].Value.ToString()));
+                    cmd.Parameters.AddWithValue("@idFormulacion", Convert.ToInt32(dgv.SelectedCells[1].Value.ToString()));
 
                     cmd.ExecuteNonQuery();
                     con.Close();
 
                     MessageBox.Show("Se eliminó correctamente la formulación seleccionada", "Validación del Sistema", MessageBoxButtons.OK);
-                    MostrarFormulaciones();
+                    MostrarFormulaciones(cbo, dgv);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+        private void btnAnular_Click(object sender, EventArgs e)
+        {
+            AnularFormulacion(datalistadoFormulaciones,cboDefinicionFormulacion);
         }
 
         //COMPARAR FORMULACION Y COPAIR ATRIBUTOS
@@ -905,7 +992,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         {
             DataGridViewColumn currentColumn = datalistadoFormulaciones.Columns[e.ColumnIndex];
 
-            if (txtTipoFormulacion.Text == "CON SEMIPRODUCIDO")
+            if (cboDefinicionFormulacion.Text.Contains("CON SEMIPRODUCIDO"))
             {
 
                 //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
@@ -1010,80 +1097,146 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //fFUNCION PARA BUSCAR POR CRITERIOS
+       
+        public void FiltrarFormulaciones(ComboBox cbo, DataGridView dgv, string busquedaformulaciones)
+        {
+            try
+            {
+                if (busquedaformulaciones == "")
+                {
+                    MostrarFormulaciones(cboDefinicionFormulacion, datalistadoFormulaciones);
+                }
+                else
+                {
+                    if (cboDefinicionFormulacion.Text.Contains("CON SEMIPRODUCIDO"))
+                    {
+
+                        if (cbo.Text == "DESCRIPCIÓN")
+                        {
+                            DataTable dt = new DataTable();
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("CreacionFormulacion_BuscarSemiProducidoPorDescripcion", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@descripcion", busquedaformulaciones);
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(dt);
+                            dgv.DataSource = dt;
+                            con.Close();
+                            dgv.Columns[1].Visible = false;
+                            dgv.Columns[3].Visible = false;
+                            dgv.Columns[7].Visible = false;
+                            dgv.Columns[11].Visible = false;
+                            dgv.Columns[12].Visible = false;
+                            dgv.Columns[13].Visible = false;
+                            dgv.Columns[14].Visible = false;
+                            dgv.Columns[15].Visible = false;
+                            dgv.Columns[16].Visible = false;
+                            dgv.Columns[17].Visible = false;
+                            dgv.Columns[18].Visible = false;
+
+                            dgv.Columns[2].Width = 70;
+                            dgv.Columns[4].Width = 101;
+                            dgv.Columns[5].Width = 320;
+                            dgv.Columns[6].Width = 90;
+
+                            dgv.Columns[8].Width = 101;
+                            dgv.Columns[9].Width = 320;
+                            dgv.Columns[10].Width = 90;
+                            alternarColorFilas(dgv);
+                        }
+                        else if (cbo.Text == "CÓDIGO")
+                        {
+                            DataTable dt = new DataTable();
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("CreacionFormulacion_BuscarSemiProducidoPorCodigo", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@codigo", busquedaformulaciones);
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(dt);
+                            dgv.DataSource = dt;
+                            con.Close();
+                            dgv.Columns[1].Visible = false;
+                            dgv.Columns[3].Visible = false;
+                            dgv.Columns[7].Visible = false;
+                            dgv.Columns[11].Visible = false;
+                            dgv.Columns[12].Visible = false;
+                            dgv.Columns[13].Visible = false;
+                            dgv.Columns[14].Visible = false;
+                            dgv.Columns[15].Visible = false;
+                            dgv.Columns[16].Visible = false;
+                            dgv.Columns[17].Visible = false;
+                            dgv.Columns[18].Visible = false;
+
+                            dgv.Columns[2].Width = 70;
+                            dgv.Columns[4].Width = 101;
+                            dgv.Columns[5].Width = 320;
+                            dgv.Columns[6].Width = 90;
+
+                            dgv.Columns[8].Width = 101;
+                            dgv.Columns[9].Width = 320;
+                            dgv.Columns[10].Width = 90;
+                            alternarColorFilas(dgv);
+                        }
+                    }
+                    else
+                    {
+                        if (cbo.Text == "DESCRIPCIÓN")
+                        {
+                            DataTable dt = new DataTable();
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("CreacionFormulacion_BuscarProductoPorDescripcion", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@descripcion", busquedaformulaciones);
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(dt);
+                            datalistadoFormulaciones.DataSource = dt;
+                            dgv.Columns[1].Visible = false;
+                            dgv.Columns[3].Visible = false;
+                            dgv.Columns[7].Visible = false;
+                            dgv.Columns[8].Visible = false;
+                            con.Close();
+
+                        }
+                        else if (cbo.Text == "CÓDIGO")
+                        {
+                            DataTable dt = new DataTable();
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("CreacionFormulacion_BuscarProductoPorCodigo", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@codigo", busquedaformulaciones);
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(dt);
+                            datalistadoFormulaciones.DataSource = dt;
+                            dgv.Columns[1].Visible = false;
+                            dgv.Columns[3].Visible = false;
+                            dgv.Columns[7].Visible = false;
+                            dgv.Columns[8].Visible = false;
+                            con.Close();
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void txtFormulaciones_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaFormulacion.Text == "DESCRIPCIÓN")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarFormulacionPorDescripcion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtFormulaciones.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoFormulaciones.DataSource = dt;
-                con.Close();
-                datalistadoFormulaciones.Columns[1].Visible = false;
-                datalistadoFormulaciones.Columns[3].Visible = false;
-                datalistadoFormulaciones.Columns[7].Visible = false;
-                datalistadoFormulaciones.Columns[11].Visible = false;
-                datalistadoFormulaciones.Columns[12].Visible = false;
-                datalistadoFormulaciones.Columns[13].Visible = false;
-                datalistadoFormulaciones.Columns[14].Visible = false;
-                datalistadoFormulaciones.Columns[15].Visible = false;
-                datalistadoFormulaciones.Columns[16].Visible = false;
-                datalistadoFormulaciones.Columns[17].Visible = false;
-                datalistadoFormulaciones.Columns[18].Visible = false;
-
-                datalistadoFormulaciones.Columns[2].Width = 70;
-                datalistadoFormulaciones.Columns[4].Width = 101;
-                datalistadoFormulaciones.Columns[5].Width = 320;
-                datalistadoFormulaciones.Columns[6].Width = 90;
-
-                datalistadoFormulaciones.Columns[8].Width = 101;
-                datalistadoFormulaciones.Columns[9].Width = 320;
-                datalistadoFormulaciones.Columns[10].Width = 90;
-                alternarColorFilas(datalistadoFormulaciones);
-            }
-            else if (cboBusquedaFormulacion.Text == "CÓDIGO")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarFormulacionPorCodigo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigo", txtFormulaciones.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoFormulaciones.DataSource = dt;
-                con.Close();
-                datalistadoFormulaciones.Columns[1].Visible = false;
-                datalistadoFormulaciones.Columns[3].Visible = false;
-                datalistadoFormulaciones.Columns[7].Visible = false;
-                datalistadoFormulaciones.Columns[11].Visible = false;
-                datalistadoFormulaciones.Columns[12].Visible = false;
-                datalistadoFormulaciones.Columns[13].Visible = false;
-                datalistadoFormulaciones.Columns[14].Visible = false;
-                datalistadoFormulaciones.Columns[15].Visible = false;
-                datalistadoFormulaciones.Columns[16].Visible = false;
-                datalistadoFormulaciones.Columns[17].Visible = false;
-                datalistadoFormulaciones.Columns[18].Visible = false;
-
-                datalistadoFormulaciones.Columns[2].Width = 70;
-                datalistadoFormulaciones.Columns[4].Width = 101;
-                datalistadoFormulaciones.Columns[5].Width = 320;
-                datalistadoFormulaciones.Columns[6].Width = 90;
-
-                datalistadoFormulaciones.Columns[8].Width = 101;
-                datalistadoFormulaciones.Columns[9].Width = 320;
-                datalistadoFormulaciones.Columns[10].Width = 90;
-                alternarColorFilas(datalistadoFormulaciones);
-            }
+            FiltrarFormulaciones(cboBusquedaFormulacion, datalistadoFormulaciones, txtFormulaciones.Text);
         }
 
         //LIMPIAR BUSQUEDA PARA REALIZARLO POR OTRO CRITERIO
@@ -1102,7 +1255,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorDescripcionFormulacion", con);
+                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorDescripcion", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1121,7 +1274,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorCodigoFormulacion", con);
+                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorCodigo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@codigo", txtBusquedaProducto.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1151,7 +1304,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorDescripcionFormulacion", con);
+                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorDescripcion", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@descripcion", txtBusquedaSemiProducido.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1170,7 +1323,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorCodigoFormulacion", con);
+                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorCodigo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@codigo", txtBusquedaSemiProducido.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1190,140 +1343,164 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //CARGA DE RECUROS - ACTIVIDADES PRODUCTO DETALLE
         public void MostrarDetalleFormulacionesProducto(DataGridView dgv, string idformulacion)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarFormulacionActividadProductos", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            dgv.DataSource = dt;
-            con.Close();
-            dgv.Columns[0].Visible = false;
-            dgv.Columns[1].Visible = false;
-            dgv.Columns[2].Visible = false;
-            dgv.Columns[3].Visible = false;
-            dgv.Columns[4].Visible = false;
-            dgv.Columns[5].Visible = false;
-            dgv.Columns[7].Visible = false;
-            dgv.Columns[9].Visible = false;
-            dgv.Columns[19].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CreacionFormulacion_MostrarActividadProductos", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                dgv.DataSource = dt;
+                con.Close();
+                dgv.Columns[0].Visible = false;
+                dgv.Columns[1].Visible = false;
+                dgv.Columns[2].Visible = false;
+                dgv.Columns[3].Visible = false;
+                dgv.Columns[4].Visible = false;
+                dgv.Columns[5].Visible = false;
+                dgv.Columns[7].Visible = false;
+                dgv.Columns[9].Visible = false;
+                dgv.Columns[19].Visible = false;
 
-            dgv.Columns[6].Width = 200;
-            dgv.Columns[8].Width = 250;
-            dgv.Columns[10].Width = 100;
-            dgv.Columns[11].Width = 65;
-            dgv.Columns[12].Width = 65;
-            dgv.Columns[13].Width = 90;
-            dgv.Columns[14].Width = 65;
-            dgv.Columns[15].Width = 65;
-            dgv.Columns[16].Width = 85;
-            dgv.Columns[17].Width = 85;
-            dgv.Columns[18].Width = 65;
-            dgv.Columns[20].Width = 65;
-            alternarColorFilas(dgv);
+                dgv.Columns[6].Width = 200;
+                dgv.Columns[8].Width = 250;
+                dgv.Columns[10].Width = 100;
+                dgv.Columns[11].Width = 65;
+                dgv.Columns[12].Width = 65;
+                dgv.Columns[13].Width = 90;
+                dgv.Columns[14].Width = 65;
+                dgv.Columns[15].Width = 65;
+                dgv.Columns[16].Width = 85;
+                dgv.Columns[17].Width = 85;
+                dgv.Columns[18].Width = 65;
+                dgv.Columns[20].Width = 65;
+                alternarColorFilas(dgv);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGA DE RECUROS - ACTIVIDADES SEMIPRODUCIDO DETALLE
         public void MostrarDetalleFormulacionesSemiProducido(DataGridView dgv, string idformulacion)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarFormulacionActividadSemiProducido", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            dgv.DataSource = dt;
-            con.Close();
-            dgv.Columns[0].Visible = false;
-            dgv.Columns[1].Visible = false;
-            dgv.Columns[2].Visible = false;
-            dgv.Columns[3].Visible = false;
-            dgv.Columns[4].Visible = false;
-            dgv.Columns[5].Visible = false;
-            dgv.Columns[7].Visible = false;
-            dgv.Columns[9].Visible = false;
-            dgv.Columns[19].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CreacionFormulacion_MostrarActividadSemiProducido", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                dgv.DataSource = dt;
+                con.Close();
+                dgv.Columns[0].Visible = false;
+                dgv.Columns[1].Visible = false;
+                dgv.Columns[2].Visible = false;
+                dgv.Columns[3].Visible = false;
+                dgv.Columns[4].Visible = false;
+                dgv.Columns[5].Visible = false;
+                dgv.Columns[7].Visible = false;
+                dgv.Columns[9].Visible = false;
+                dgv.Columns[19].Visible = false;
 
-            dgv.Columns[6].Width = 200;
-            dgv.Columns[8].Width = 250;
-            dgv.Columns[10].Width = 100;
-            dgv.Columns[11].Width = 65;
-            dgv.Columns[12].Width = 65;
-            dgv.Columns[13].Width = 90;
-            dgv.Columns[14].Width = 65;
-            dgv.Columns[15].Width = 65;
-            dgv.Columns[16].Width = 85;
-            dgv.Columns[17].Width = 85;
-            dgv.Columns[18].Width = 65;
-            dgv.Columns[20].Width = 65;
-            alternarColorFilas(dgv);
+                dgv.Columns[6].Width = 200;
+                dgv.Columns[8].Width = 250;
+                dgv.Columns[10].Width = 100;
+                dgv.Columns[11].Width = 65;
+                dgv.Columns[12].Width = 65;
+                dgv.Columns[13].Width = 90;
+                dgv.Columns[14].Width = 65;
+                dgv.Columns[15].Width = 65;
+                dgv.Columns[16].Width = 85;
+                dgv.Columns[17].Width = 85;
+                dgv.Columns[18].Width = 65;
+                dgv.Columns[20].Width = 65;
+                alternarColorFilas(dgv);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //MATERIALES----------------
         //BUSQUEDA DE MATERIALES DEL PRODUTO
         public void MostrarMaterialFormulacionesProducto(DataGridView DGV, string idformulacion)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarFormulacionMaterialProducto", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            DGV.DataSource = dt;
-            con.Close();
-            DGV.Columns[0].Visible = false;
-            DGV.Columns[1].Visible = false;
-            DGV.Columns[2].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CreacionFormulacion_MostrarMaterialProducto", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DGV.DataSource = dt;
+                con.Close();
+                DGV.Columns[0].Visible = false;
+                DGV.Columns[1].Visible = false;
+                DGV.Columns[2].Visible = false;
 
-            DGV.Columns[3].Width = 90;
-            DGV.Columns[4].Width = 60;
-            DGV.Columns[5].Width = 280;
-            DGV.Columns[6].Width = 100;
-            DGV.Columns[7].Width = 75;
-            DGV.Columns[8].Width = 75;
-            DGV.Columns[9].Width = 100;
-            alternarColorFilas(DGV);
+                DGV.Columns[3].Width = 90;
+                DGV.Columns[4].Width = 60;
+                DGV.Columns[5].Width = 280;
+                DGV.Columns[6].Width = 100;
+                DGV.Columns[7].Width = 75;
+                DGV.Columns[8].Width = 75;
+                DGV.Columns[9].Width = 100;
+                alternarColorFilas(DGV);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //BUSQUEDA DE MATERIALES DEL SEMIPRODUCIDO
         public void MostrarMaterialFormulacionesSemiProducido(DataGridView DGV, string idformulacion)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarFormulacionMaterialSemiProducido", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            DGV.DataSource = dt;
-            con.Close();
-            DGV.Columns[0].Visible = false;
-            DGV.Columns[1].Visible = false;
-            DGV.Columns[2].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CreacionFormulacion_MostrarMaterialSemiProducido", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DGV.DataSource = dt;
+                con.Close();
+                DGV.Columns[0].Visible = false;
+                DGV.Columns[1].Visible = false;
+                DGV.Columns[2].Visible = false;
 
-            DGV.Columns[3].Width = 90;
-            DGV.Columns[4].Width = 60;
-            DGV.Columns[5].Width = 280;
-            DGV.Columns[6].Width = 100;
-            DGV.Columns[7].Width = 75;
-            DGV.Columns[8].Width = 75;
-            DGV.Columns[9].Width = 100;
-            alternarColorFilas(DGV);
+                DGV.Columns[3].Width = 90;
+                DGV.Columns[4].Width = 60;
+                DGV.Columns[5].Width = 280;
+                DGV.Columns[6].Width = 100;
+                DGV.Columns[7].Width = 75;
+                DGV.Columns[8].Width = 75;
+                DGV.Columns[9].Width = 100;
+                alternarColorFilas(DGV);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //INGRESO, EDICION, ELIMINACION CON SUS RESPESCTIVOS BOTONES PRODUCTOS---------------------------
@@ -1384,7 +1561,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostarLOMValidacion", con);
+            cmd = new SqlCommand("CreacionFormulacion_MostrarLOMValidacion", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idlinea", idlinea);
             cmd.Parameters.AddWithValue("@idoperacion", idoperacion);
@@ -1577,11 +1754,13 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 }
             }
         }
-
+        
         //METODO PARA INGRESAR UNA NUEVA ACTIVIDAD A MI PRODUCTO
-        private void btnConfirmarActividadProducto_Click(object sender, EventArgs e)
+        public void AgregarActividadProducto(string codigoformulacion,DataGridView dgv,int idcorrelativo,int Tcosto, decimal Tsetup, decimal Toperacion, int Tpor,int Thoras
+            , int personal, decimal Cpersonal,int idtipo,string cbomaquin, string cboopera)
         {
-            if (cboMaquinaria.Text == "" || cboOperacion.Text == "" || txtTcosto.Text == "" || txtTsetup.Text == "" || txtToperacion.Text == "" || txtTpor.Text == "" || txtPersonal.Text == "" || txtCpersonal.Text == "")
+            if (cbomaquin == "" || cboopera == "" || Convert.ToString(Tcosto) == "" || Convert.ToString(Tsetup) == "" || Convert.ToString(Toperacion) == "" 
+                || Convert.ToString(Tpor) == "" || Convert.ToString(personal) == "" || Convert.ToString(Cpersonal) == "")
             {
                 MessageBox.Show("Debe llenar todos los campos para continuar.", "REGISTRO", MessageBoxButtons.OKCancel);
             }
@@ -1589,7 +1768,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             {
                 try
                 {
-                    if (datalistadoLOM.SelectedRows.Count != 1)
+                    if (dgv.SelectedRows.Count != 1)
                     {
                         MessageBox.Show("Se encontraron 2 o más registros repetidos, por favor verificar las líneas por operación por maquinaria ingresados.", "Error Inesperado", MessageBoxButtons.OK);
                     }
@@ -1602,22 +1781,22 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarFormulacionActividadProducto", con);
+                            cmd = new SqlCommand("CreacionFormulacion_InsertarActividadProducto", con);
                             cmd.CommandType = CommandType.StoredProcedure;
 
-                            cmd.Parameters.AddWithValue("@codigoformulacion", lblCodigoFormulacionVision.Text);
-                            cmd.Parameters.AddWithValue("@codigoLOM", Convert.ToInt32(datalistadoLOM.SelectedCells[0].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@idcorrelativo", cboCorrelativo.SelectedValue.ToString());
-                            cmd.Parameters.AddWithValue("@tcosto", Convert.ToInt32(txtTcosto.Text));
-                            cmd.Parameters.AddWithValue("@tsetup", Convert.ToDecimal(txtTsetup.Text));
-                            cmd.Parameters.AddWithValue("@toperacion", Convert.ToDecimal(txtToperacion.Text));
-                            cmd.Parameters.AddWithValue("@tpor", Convert.ToInt32(txtTpor.Text));
-                            cmd.Parameters.AddWithValue("@thoras", Convert.ToInt32(txtHoras.Text));
-                            cmd.Parameters.AddWithValue("@personal", Convert.ToInt32(txtPersonal.Text));
-                            cmd.Parameters.AddWithValue("@cpersonal", Convert.ToDecimal(txtCpersonal.Text));
-                            decimal ctotalsuma = Convert.ToDecimal(txtCpersonal.Text) + Convert.ToDecimal(txtPersonal.Text);
+                            cmd.Parameters.AddWithValue("@codigoformulacion", codigoformulacion);
+                            cmd.Parameters.AddWithValue("@codigoLOM", Convert.ToInt32(dgv.SelectedCells[0].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@idcorrelativo", idcorrelativo);
+                            cmd.Parameters.AddWithValue("@tcosto", Tcosto);
+                            cmd.Parameters.AddWithValue("@tsetup", Tsetup);
+                            cmd.Parameters.AddWithValue("@toperacion", Toperacion);
+                            cmd.Parameters.AddWithValue("@tpor", Tpor);
+                            cmd.Parameters.AddWithValue("@thoras", Thoras);
+                            cmd.Parameters.AddWithValue("@personal", personal);
+                            cmd.Parameters.AddWithValue("@cpersonal", Cpersonal);
+                            decimal ctotalsuma = Cpersonal + Convert.ToDecimal(personal);
                             cmd.Parameters.AddWithValue("@ctotal", ctotalsuma);
-                            cmd.Parameters.AddWithValue("@idtipo", cboTipoOperacion.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@idtipo", idtipo);
 
                             cmd.ExecuteNonQuery();
                             con.Close();
@@ -1633,7 +1812,9 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                             txtCpersonal.Text = "0";
                             AumentarPosicionCorrelativoProducto(datalistadoactividadproductosseleccionar, cboCorrelativo);
 
+
                             MessageBox.Show("Registro ingresado exitosamente.", "Nueva Actividad", MessageBoxButtons.OK);
+
                         }
                         else
                         {
@@ -1647,11 +1828,17 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 }
             }
         }
+        private void btnConfirmarActividadProducto_Click(object sender, EventArgs e)
+        {
+            AgregarActividadProducto(lblCodigoFormulacionVision.Text, datalistadoLOM, Convert.ToInt32(cboCorrelativo.SelectedValue), Convert.ToInt32(txtTcosto.Text), Convert.ToDecimal(txtTsetup.Text),
+                Convert.ToDecimal(txtToperacion.Text), Convert.ToInt32(txtTpor.Text), Convert.ToInt32(txtHoras.Text), Convert.ToInt32(txtPersonal.Text), Convert.ToDecimal(txtCpersonal.Text)
+                , Convert.ToInt32(cboTipoOperacion.SelectedValue), cboMaquinaria.Text, cboOperacion.Text);
+        }
 
         //METODO PARA ELIMINAR UNA ACTIVIDAD A MI PRODUCTO
-        private void btnEliminarActividadProducto_Click(object sender, EventArgs e)
+        public void EliminarActividadProducto(DataGridView DGV,string codigoformulacion)
         {
-            if (datalistadoactividadesproducto.CurrentRow != null)
+            if (DGV.CurrentRow != null)
             {
                 DialogResult boton = MessageBox.Show("¿Realmente desea eliminar esta actividad?.", "Validación de Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -1662,14 +1849,14 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("CambiarEstadoActividadProducto", con);
+                        cmd = new SqlCommand("CreacionFormulacion_CambiarEstadoActividadProducto", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idActividadProducto", Convert.ToInt32(datalistadoactividadesproducto.SelectedCells[0].Value.ToString()));
+                        cmd.Parameters.AddWithValue("@idActividadProducto", Convert.ToInt32(DGV.SelectedCells[0].Value.ToString()));
                         cmd.ExecuteNonQuery();
                         con.Close();
 
                         MessageBox.Show("Se eliminó correctamente", "Validación del Sistema", MessageBoxButtons.OK);
-                        MostrarDetalleFormulacionesProducto(datalistadoactividadesproducto, lblCodigoFormulacionVision.Text);
+                        MostrarDetalleFormulacionesProducto(DGV, codigoformulacion);
                     }
                     catch (Exception ex)
                     {
@@ -1681,6 +1868,10 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             {
                 MessageBox.Show("Debe seleccionar una actividad para poder borrarla.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+        private void btnEliminarActividadProducto_Click(object sender, EventArgs e)
+        {
+            EliminarActividadProducto(datalistadoactividadesproducto,lblCodigoFormulacionVision.Text);
         }
 
         //CERRAR LA VENANA DE ACTIVIDADES Y LIMPIAR LOS CAMPOS
@@ -1770,7 +1961,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostarMOMValidacion", con);
+            cmd = new SqlCommand("CreacionFormulacion_MostrarMOMValidacion", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idmodelo", idmodelo);
             cmd.Parameters.AddWithValue("@idoperacion", idoperacion);
@@ -1874,10 +2065,12 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             return;
         }
 
-        //METODO PARA INGRESAR UNA NUEVA ACTIVIDAD A MI PRODUCTO
-        private void btnConfirmarActividadSemiProducido_Click(object sender, EventArgs e)
+        //METODO PARA INGRESAR UNA NUEVA ACTIVIDAD A MI SEMIPRODUCIDO
+     
+        public void AgregarActividadSemiProducido(string codigoformulacion,DataGridView dgv,int idcorrelativo,int Tcosto,decimal Tsetup,decimal Toperacion,int Tpor,int Thoras,int personal,decimal Cpersonal,
+            int idtipo,string cbomaqui,string cboope)
         {
-            if (cboMaquinariaS.Text == "" || cboOperacionS.Text == "" || txtTcostoS.Text == "" || txtTsetupS.Text == "" || txtToperacionS.Text == "" || txtTporS.Text == "" || txtPersonalS.Text == "" || txtCpersonalS.Text == "")
+            if (cbomaqui == "" || cboope == "" || Convert.ToString(Tcosto) == "" || Convert.ToString(Tsetup) == "" || Convert.ToString(Toperacion) == "" || Convert.ToString(Tpor) == "" || Convert.ToString(personal)== "" || Convert.ToString(Cpersonal)== "")
             {
                 MessageBox.Show("Debe llenar todos los campos para continuar", "REGISTRO", MessageBoxButtons.OKCancel);
             }
@@ -1898,7 +2091,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarFormulacionActividadSemiProducido", con);
+                            cmd = new SqlCommand("CreacionFormulacion_InsertarActividadSemiProducido", con);
                             cmd.CommandType = CommandType.StoredProcedure;
 
                             cmd.Parameters.AddWithValue("@codigoformulacion", lblIdFormulacionS.Text);
@@ -1943,11 +2136,17 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 }
             }
         }
+        private void btnConfirmarActividadSemiProducido_Click(object sender, EventArgs e)
+        {
+            AgregarActividadSemiProducido(lblIdFormulacionS.Text, datalistadoMOM, Convert.ToInt32(cboCorrelativoS.SelectedValue), Convert.ToInt32(txtTcostoS.Text)
+                , Convert.ToDecimal(txtTsetupS.Text), Convert.ToDecimal(txtToperacionS.Text), Convert.ToInt32(txtTporS.Text), Convert.ToInt32(txtHorasS.Text), Convert.ToInt32(txtPersonalS.Text)
+                , Convert.ToInt32(txtCpersonalS.Text), Convert.ToInt32(cboTipoOperacionS.SelectedValue), cboMaquinariaS.Text, cboOperacionS.Text);
+        }
 
         //METODO PARA ELIMINAR UNA ACTIVIDAD A MI SEMI-PRODUCIDO
-        private void btnEliminarActividadSemiProducido_Click(object sender, EventArgs e)
+        public void EliminarActividadSemiProducido(DataGridView dgv, string codigoformulacion)
         {
-            if (datalistadoactividadsemiproducido.CurrentRow != null)
+            if (dgv.CurrentRow != null)
             {
                 DialogResult boton = MessageBox.Show("¿Realmente desea eliminar esta actividad?.", "Validación de Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -1958,15 +2157,15 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("CambiarEstadoActividadSemiProducto", con);
+                        cmd = new SqlCommand("CreacionFormulacion_CambiarEstadoActividadSemiProducto", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idActividadSemiProducto", Convert.ToInt32(datalistadoactividadsemiproducido.SelectedCells[0].Value.ToString()));
+                        cmd.Parameters.AddWithValue("@idActividadSemiProducto", Convert.ToInt32(dgv.SelectedCells[0].Value.ToString()));
 
                         cmd.ExecuteNonQuery();
                         con.Close();
 
                         MessageBox.Show("Se eliminó correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                        MostrarDetalleFormulacionesSemiProducido(datalistadoactividadsemiproducido, lblCodigoFormulacionVision.Text);
+                        MostrarDetalleFormulacionesSemiProducido(dgv, codigoformulacion);
                     }
                     catch (Exception ex)
                     {
@@ -1978,6 +2177,10 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             {
                 MessageBox.Show("Debe seleccionar una actividad para poder borrarla.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+        }
+        private void btnEliminarActividadSemiProducido_Click(object sender, EventArgs e)
+        {
+          EliminarActividadSemiProducido(datalistadoactividadsemiproducido, lblCodigoFormulacionVision.Text);
         }
 
         //CERRAR Y LIMPOAR EL PANEL DE ACTIVIADES DE SEMIPRODUCIDO
@@ -2036,7 +2239,58 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             txtMaterialUnidad.Text = datalistadomaterialseleccionarseleccionar.SelectedCells[0].Value.ToString();
             lblMaterialCodigo.Text = datalistadomaterialseleccionarseleccionar.SelectedCells[1].Value.ToString();
         }
+        //METODO QUE DEFINE LOS MATERIALES PARA MI PRODUCTO O SEMIPRODUCIDO
+        public void AgregarMaterial(string materialformulacion, int materialCodigoOperacion, int materialcodigo,decimal materialcantidad,int materialcorrelativo,string titulomateriales
+            ,int materialcantidadtotal,string materialnombre)
+        {
+           
+            
+                try
+                {
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_InsertarMaterialProducto", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("@codigoformulacion", materialformulacion);
+                    cmd.Parameters.AddWithValue("@idactividadproducto", materialCodigoOperacion);
+                    cmd.Parameters.AddWithValue("@idart", materialcodigo);
+                    cmd.Parameters.AddWithValue("@cantidad", materialcantidad);
+                    cmd.Parameters.AddWithValue("@posicion", materialcorrelativo);
+                    if (titulomateriales == "Materia Prima X Producto")
+                    {
+                        cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL PRODUCTO");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL SEMIPRODUCIDO");
+                    }
+
+                    cmd.Parameters.AddWithValue("@cantidadtotal", materialcantidadtotal);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    txtMaterialCantidad.Text = "";
+                    txtMaterialBusqueda.Text = "";
+                    //txtMaterialCantidadTotal.Text = "";
+                    txtMaterialNombre.Text = "";
+                    txtMaterialUnidad.Text = "";
+                    lblMaterialCodigo.Text = "**************";
+
+                    MessageBox.Show("Registro ingresado exitosamente", "Nuevo Material", MessageBoxButtons.OK);
+
+                    panelMaterialproducto.Visible = false;
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            
+            MostrarMaterialFormulacionesProducto(datalistadomaterialproducto, textocodigoformulacion);
+            MostrarMaterialFormulacionesSemiProducido(datalistadomaterialsemiproducido, textocodigoformulacion);
+        }
         private void btnConfirmarMaterial_Click(object sender, EventArgs e)
         {
             if (txtMaterialCantidad.Text == "" || txtMaterialCantidadTotal.Text == "" || txtMaterialNombre.Text == "")
@@ -2045,48 +2299,12 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             }
             else
             {
-
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("InsertarFormulacionMaterialProducto", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@codigoformulacion", lblMaterialFormulacion.Text);
-                cmd.Parameters.AddWithValue("@idactividadproducto", Convert.ToInt32(lblMaterialCodigoOperacion.Text));
-                cmd.Parameters.AddWithValue("@idart", Convert.ToInt32(lblMaterialCodigo.Text));
-                cmd.Parameters.AddWithValue("@cantidad", Convert.ToDecimal(txtMaterialCantidad.Text));
-                cmd.Parameters.AddWithValue("@posicion", Convert.ToInt32(txtMaterialCorrelativo.Text));
-                if (lblTituloMateriales.Text == "Materia Prima X Producto")
-                {
-                    cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL PRODUCTO");
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL SEMIPRODUCIDO");
-                }
-
-                cmd.Parameters.AddWithValue("@cantidadtotal", Convert.ToInt32(txtMaterialCantidadTotal.Text));
-
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                txtMaterialCantidad.Text = "";
-                txtMaterialBusqueda.Text = "";
-                //txtMaterialCantidadTotal.Text = "";
-                txtMaterialNombre.Text = "";
-                txtMaterialUnidad.Text = "";
-                lblMaterialCodigo.Text = "**************";
-
-                MessageBox.Show("Registro ingresado exitosamente", "Nuevo Material", MessageBoxButtons.OK);
-
-                panelMaterialproducto.Visible = false;
+                AgregarMaterial(lblMaterialFormulacion.Text, Convert.ToInt32(lblMaterialCodigoOperacion.Text), Convert.ToInt32(lblMaterialCodigo.Text)
+               , Convert.ToDecimal(txtMaterialCantidad.Text), Convert.ToInt32(txtMaterialCorrelativo.Text), lblTituloMateriales.Text, Convert.ToInt32(txtMaterialCantidadTotal.Text)
+               , txtMaterialNombre.Text);
             }
-
-            MostrarMaterialFormulacionesProducto(datalistadomaterialproducto, textocodigoformulacion);
-            MostrarMaterialFormulacionesSemiProducido(datalistadomaterialsemiproducido, textocodigoformulacion);
         }
+
 
         //BOTON PARA ELIMINAR EL MATERIAL ASIGNADOA  MI ACTIVIDAD
         private void btnEliminarMaterialProducto_Click(object sender, EventArgs e)
@@ -2130,7 +2348,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("CambioMaterialFormulacion", con);
+                        cmd = new SqlCommand("CreacionFormulacion_CambioMaterial", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idArt", Convert.ToInt32(datalistadobusquedamaterial.SelectedCells[1].Value.ToString()));
                         cmd.Parameters.AddWithValue("@idMaterial", Convert.ToInt32(DGV.SelectedCells[0].Value.ToString()));
@@ -2162,7 +2380,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("CambiarEstadoMaterialActividad", con);
+                    cmd = new SqlCommand("CreacionFormulacion_CambiarEstadoMaterialActividad", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idActividadMaterial", Convert.ToInt32(DGV.SelectedCells[0].Value.ToString()));
 
@@ -2187,6 +2405,8 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             MostrarMaterialFormulacionesProducto(datalistadomaterialproducto, textocodigoformulacion);
             txtMaterialBusqueda.Text = "";
             txtMaterialCantidad.Text = "";
+            txtMaterialNombre.Text = "";
+            txtMaterialUnidad.Text = "";
             //txtMaterialCantidadTotal.Text = "";
         }
 
@@ -2343,49 +2563,71 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //BUSCAR MATEIRALES POR DESCRIPCION
+        //METODO DE BUSQUEDA PARA EL INTERCAMBIO DE MATERIALES  
+        public void BusquedaMateriales_Intercambiar(string busquedamateriales,DataGridView DGV)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CreacionFormulacion_BuscarPorDetallesMaterial", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@detalle", busquedamateriales);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DGV.DataSource = dt;
+                con.Close();
+                DGV.Columns[1].Visible = false;
+                DGV.Columns[3].Visible = false;
+
+                DGV.Columns[0].Width = 90;
+                DGV.Columns[2].Width = 300;
+                DGV.Columns[4].Width = 150;
+                alternarColorFilas(DGV);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void txtBusquedaMateriales_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarPorDetallesMaterialformulacion", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@detalle", txtBusquedaMateriales.Text);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadobusquedamaterial.DataSource = dt;
-            con.Close();
-            datalistadobusquedamaterial.Columns[1].Visible = false;
-            datalistadobusquedamaterial.Columns[3].Visible = false;
-
-            datalistadobusquedamaterial.Columns[0].Width = 90;
-            datalistadobusquedamaterial.Columns[2].Width = 300;
-            datalistadobusquedamaterial.Columns[4].Width = 150;
-            alternarColorFilas(datalistadobusquedamaterial);
+            BusquedaMateriales_Intercambiar(txtBusquedaMateriales.Text,datalistadobusquedamaterial);
         }
 
         //BUSCAR MATEIRALES POR DESCRIPCION
+        //METODO DE BUSQUEDA PARA EL INGRESO DE MATERIALES
+        public void BusquedaMateriales(string busquedamateriales,DataGridView DGV)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CreacionFormulacion_BuscarPorDetallesMaterialF", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@detalle", busquedamateriales);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DGV.DataSource = dt;
+                con.Close();
+                DGV.Columns[0].Width = 100;
+                DGV.Columns[1].Width = 90;
+                DGV.Columns[2].Width = 445;
+                DGV.Columns[3].Width = 160;
+                alternarColorFilas(DGV);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void txtMaterialBusqueda_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarPorDetallesMaterialformulacionF", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@detalle", txtMaterialBusqueda.Text);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadomaterialseleccionarseleccionar.DataSource = dt;
-            con.Close();
-            datalistadomaterialseleccionarseleccionar.Columns[0].Width = 100;
-            datalistadomaterialseleccionarseleccionar.Columns[1].Width = 90;
-            datalistadomaterialseleccionarseleccionar.Columns[2].Width = 445;
-            datalistadomaterialseleccionarseleccionar.Columns[3].Width = 160;
-            alternarColorFilas(datalistadomaterialseleccionarseleccionar);
+            BusquedaMateriales(txtMaterialBusqueda.Text,datalistadomaterialseleccionarseleccionar);
         }
 
         //-------------------------------------------------------------------------------------------------------------
@@ -2406,7 +2648,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarCopiaCodigoFormulacion", con);
+                cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarCodigo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -2423,7 +2665,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarCopiaCodigoProductoFormulacion", con);
+                cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarCodigoProducto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -2440,7 +2682,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarCopiaDescripcionProductoFormulacion", con);
+                cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarDescripcionProducto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -2478,142 +2720,177 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //REGRESAR DE BUSQEUDA Y COPIA DE FOMRULACIONES
         private void btnRegresarBusquedaCopiaFormulacion_Click(object sender, EventArgs e)
         {
+            txtBusquedaCopiaFormulacion.Text = "";
+            datalistadoBusquedaCopiaFormulaciones.DataSource = null;
+            datalistadoItemsActividadesProductoBusquedaCopiaFormulacion.DataSource = null;
+            datalistadoItemsActividadesSemiProducidoBusquedaCopiaFormulacion.DataSource = null;
+            datalistadoItemsMaterialProducidoBusquedaCopiaFormulacion.DataSource = null;
+            datalistadoItemsMaterialSemiProducidoBusquedaCopiaFormulacion.DataSource = null;
             panelBusquedaCopiaFormulaciones.Visible = false;
         }
 
         //FUNCION PARA COPIAR LOS DATOS DE LA FORMULACION A OTRA
-        private void btnCopiarBusquedaCopiaFormulacion_Click(object sender, EventArgs e)
+        public void CopiarBusquedaFormulacion(DataGridView DGV1, DataGridView DGV2,DataGridView DGV3, DataGridView DGV4,DataGridView DGV5, DataGridView DGV6
+            ,DataGridView DGV7,DataGridView DGV8,string tipoformulacionCopia, string tipoformulacion,string codigoformulacionVision)
         {
-            if (lblTipoFormulacionCopia.Text == txtTipoFormulacion.Text)
+            if (datalistadoBusquedaCopiaFormulaciones.CurrentRow == null)
             {
-                if (datalistadoactividadesproducto.RowCount == 0 && datalistadoactividadsemiproducido.RowCount == 0)
-                {
-                    //INGRESAR ACTIVIDADES DEL PRODUCTO
-                    foreach (DataGridViewRow row in datalistadoItemsActividadesProductoBusquedaCopiaFormulacion.Rows)
-                    {
-                        try
-                        {
-
-                            SqlConnection con = new SqlConnection();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarFormulacionActividadProducto", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@codigoformulacion", lblCodigoFormulacionVision.Text);
-                            cmd.Parameters.AddWithValue("@codigoLOM", Convert.ToInt32(row.Cells[2].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@idcorrelativo", row.Cells[9].Value.ToString());
-                            cmd.Parameters.AddWithValue("@tcosto", Convert.ToInt32(row.Cells[11].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@tsetup", Convert.ToDecimal(row.Cells[12].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@toperacion", Convert.ToDecimal(row.Cells[13].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@tpor", Convert.ToInt32(row.Cells[14].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@thoras", Convert.ToInt32(row.Cells[15].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@personal", Convert.ToDecimal(row.Cells[17].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@cpersonal", Convert.ToDecimal(row.Cells[16].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@ctotal", Convert.ToDecimal(row.Cells[18].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@idtipo", Convert.ToInt32(row.Cells[19].Value.ToString()));
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                            MostrarDetalleFormulacionesProducto(datalistadoactividadesproducto, lblCodigoFormulacionVision.Text);
-
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error inesperado, " + ex.Message);
-                        }
-                    }
-
-                    //INGRESAR ACTIVIDADES DEL SEMIPRODUCIDO
-                    foreach (DataGridViewRow row in datalistadoItemsActividadesSemiProducidoBusquedaCopiaFormulacion.Rows)
-                    {
-                        try
-                        {
-                            SqlConnection con = new SqlConnection();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarFormulacionActividadSemiProducido", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@codigoformulacion", lblCodigoFormulacionVision.Text);
-                            cmd.Parameters.AddWithValue("@codigoMOM", Convert.ToInt32(row.Cells[2].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@idcorrelativo", row.Cells[9].Value.ToString());
-                            cmd.Parameters.AddWithValue("@tcosto", Convert.ToInt32(row.Cells[11].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@tsetup", Convert.ToDecimal(row.Cells[12].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@toperacion", Convert.ToDecimal(row.Cells[13].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@tpor", Convert.ToInt32(row.Cells[14].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@thoras", Convert.ToInt32(row.Cells[15].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@personal", Convert.ToDecimal(row.Cells[17].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@cpersonal", Convert.ToDecimal(row.Cells[16].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@ctotal", Convert.ToDecimal(row.Cells[18].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@idtipo", Convert.ToInt32(row.Cells[19].Value.ToString()));
-
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                            MostrarDetalleFormulacionesSemiProducido(datalistadoactividadsemiproducido, lblCodigoFormulacionVision.Text);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error inesperado, " + ex.Message);
-                        }
-                    }
-
-                    //INGRESAR MATERIALES DE MI PRODUCTO
-                    foreach (DataGridViewRow row in datalistadoItemsMaterialProducidoBusquedaCopiaFormulacion.Rows)
-                    {
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarFormulacionMaterialProducto", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@codigoformulacion", lblCodigoFormulacionVision.Text);
-                        cmd.Parameters.AddWithValue("@idactividadproducto", Convert.ToInt32(row.Cells[1].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@idart", Convert.ToInt32(row.Cells[4].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@cantidad", Convert.ToDecimal(row.Cells[8].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@posicion", Convert.ToInt32(row.Cells[7].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL PRODUCTO");
-                        cmd.Parameters.AddWithValue("@cantidadtotal", Convert.ToInt32("5"));
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        MostrarMaterialFormulacionesProducto(datalistadomaterialproducto, textocodigoformulacion);
-                    }
-
-                    //INGRESAR MATERIALES DE MI SEMIPRODUCIO
-                    foreach (DataGridViewRow row in datalistadoItemsMaterialSemiProducidoBusquedaCopiaFormulacion.Rows)
-                    {
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarFormulacionMaterialProducto", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@codigoformulacion", lblCodigoFormulacionVision.Text);
-                        cmd.Parameters.AddWithValue("@idactividadproducto", Convert.ToInt32(row.Cells[1].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@idart", Convert.ToInt32(row.Cells[4].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@cantidad", Convert.ToDecimal(row.Cells[8].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@posicion", Convert.ToInt32(row.Cells[7].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL SEMIPRODUCIDO");
-                        cmd.Parameters.AddWithValue("@cantidadtotal", Convert.ToInt32("5"));
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        MostrarMaterialFormulacionesSemiProducido(datalistadomaterialsemiproducido, textocodigoformulacion);
-                    }
-
-                    MessageBox.Show("Se copió la formulación exitosamente.", "Validación del Sistema");
-                    panelBusquedaCopiaFormulaciones.Visible = false;
-                }
-                else
-                {
-                    MessageBox.Show("La formulación en donde intenta copiar los datos ya tienen actividades o materiales ingresados, solo se puede copiar a formulaciones vaciias.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
+                MessageBox.Show("Debe seleccionar una formulación para copiar los datos.", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
             }
             else
             {
-                MessageBox.Show("No se puede copiar la formulación porque son formulaciones diferentes, SIN SEMIPRODUCIDO <> CON SEMIPRODUCIDO.", "Validación del Sistema", MessageBoxButtons.OK);
+                if (tipoformulacionCopia == tipoformulacion)
+                {
+                    if (DGV5.RowCount == 0 && DGV6.RowCount == 0)
+                    {
+                        //INGRESAR ACTIVIDADES DEL PRODUCTO
+                        foreach (DataGridViewRow row in DGV1.Rows)
+                        {
+                            try
+                            {
+
+                                SqlConnection con = new SqlConnection();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                SqlCommand cmd = new SqlCommand();
+                                cmd = new SqlCommand("CreacionFormulacion_InsertarActividadProducto", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                cmd.Parameters.AddWithValue("@codigoformulacion", codigoformulacionVision);
+                                cmd.Parameters.AddWithValue("@codigoLOM", Convert.ToInt32(row.Cells[2].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@idcorrelativo", row.Cells[9].Value.ToString());
+                                cmd.Parameters.AddWithValue("@tcosto", Convert.ToInt32(row.Cells[11].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@tsetup", Convert.ToDecimal(row.Cells[12].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@toperacion", Convert.ToDecimal(row.Cells[13].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@tpor", Convert.ToInt32(row.Cells[14].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@thoras", Convert.ToInt32(row.Cells[15].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@personal", Convert.ToDecimal(row.Cells[17].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@cpersonal", Convert.ToDecimal(row.Cells[16].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@ctotal", Convert.ToDecimal(row.Cells[18].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@idtipo", Convert.ToInt32(row.Cells[19].Value.ToString()));
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                                MostrarDetalleFormulacionesProducto(DGV4, codigoformulacionVision);
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error inesperado, " + ex.Message);
+                            }
+                        }
+
+                        //INGRESAR ACTIVIDADES DEL SEMIPRODUCIDO
+                        foreach (DataGridViewRow row in DGV2.Rows)
+                        {
+                            try
+                            {
+                                SqlConnection con = new SqlConnection();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                SqlCommand cmd = new SqlCommand();
+                                cmd = new SqlCommand("CreacionFormulacion_InsertarActividadSemiProducido", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                cmd.Parameters.AddWithValue("@codigoformulacion", codigoformulacionVision);
+                                cmd.Parameters.AddWithValue("@codigoMOM", Convert.ToInt32(row.Cells[2].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@idcorrelativo", row.Cells[9].Value.ToString());
+                                cmd.Parameters.AddWithValue("@tcosto", Convert.ToInt32(row.Cells[11].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@tsetup", Convert.ToDecimal(row.Cells[12].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@toperacion", Convert.ToDecimal(row.Cells[13].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@tpor", Convert.ToInt32(row.Cells[14].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@thoras", Convert.ToInt32(row.Cells[15].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@personal", Convert.ToDecimal(row.Cells[17].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@cpersonal", Convert.ToDecimal(row.Cells[16].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@ctotal", Convert.ToDecimal(row.Cells[18].Value.ToString()));
+                                cmd.Parameters.AddWithValue("@idtipo", Convert.ToInt32(row.Cells[19].Value.ToString()));
+
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                                MostrarDetalleFormulacionesSemiProducido(DGV6, codigoformulacionVision);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error inesperado, " + ex.Message);
+                            }
+                        }
+
+                        //INGRESAR MATERIALES DE MI PRODUCTO
+                        foreach (DataGridViewRow row in DGV3.Rows)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("CreacionFormulacion_InsertarMaterialProducto", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@codigoformulacion", codigoformulacionVision);
+                            cmd.Parameters.AddWithValue("@idactividadproducto", Convert.ToInt32(row.Cells[1].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@idart", Convert.ToInt32(row.Cells[4].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@cantidad", Convert.ToDecimal(row.Cells[8].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@posicion", Convert.ToInt32(row.Cells[7].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL PRODUCTO");
+                            cmd.Parameters.AddWithValue("@cantidadtotal", Convert.ToInt32("5"));
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            MostrarMaterialFormulacionesProducto(DGV7, textocodigoformulacion);
+                        }
+
+                        //INGRESAR MATERIALES DE MI SEMIPRODUCIO
+                        foreach (DataGridViewRow row in DGV4.Rows)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("CreacionFormulacion_InsertarMaterialProducto", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@codigoformulacion", codigoformulacionVision);
+                            cmd.Parameters.AddWithValue("@idactividadproducto", Convert.ToInt32(row.Cells[1].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@idart", Convert.ToInt32(row.Cells[4].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@cantidad", Convert.ToDecimal(row.Cells[8].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@posicion", Convert.ToInt32(row.Cells[7].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@tipomaterial", "MATERIAL SEMIPRODUCIDO");
+                            cmd.Parameters.AddWithValue("@cantidadtotal", Convert.ToInt32("5"));
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            MostrarMaterialFormulacionesSemiProducido(DGV8, textocodigoformulacion);
+                        }
+
+                        MessageBox.Show("Se copió la formulación exitosamente.", "Validación del Sistema");
+                        panelBusquedaCopiaFormulaciones.Visible = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("La formulación en donde intenta copiar los datos ya tienen actividades o materiales ingresados, solo se puede copiar a formulaciones vaciias.", "Validación del Sistema", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se puede copiar la formulación porque son formulaciones diferentes, SIN SEMIPRODUCIDO <> CON SEMIPRODUCIDO.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+            }
+        }
+        private void btnCopiarBusquedaCopiaFormulacion_Click(object sender, EventArgs e)
+        {
+            CopiarBusquedaFormulacion(datalistadoItemsActividadesProductoBusquedaCopiaFormulacion, datalistadoItemsActividadesSemiProducidoBusquedaCopiaFormulacion
+                , datalistadoItemsMaterialProducidoBusquedaCopiaFormulacion, datalistadoItemsMaterialSemiProducidoBusquedaCopiaFormulacion, datalistadoactividadesproducto
+                , datalistadoactividadsemiproducido, datalistadomaterialproducto, datalistadomaterialsemiproducido, lblTipoFormulacionCopia.Text, txtTipoFormulacion.Text
+                , lblCodigoFormulacionVision.Text);
+        }
+
+        //EVENTO DEL TEXTBOX PARA VALIDAR SOLO NÚMEROS EN EL INGRESO DE CANTIDAD DE MATERIALES
+        private void txtMaterialCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
     }
