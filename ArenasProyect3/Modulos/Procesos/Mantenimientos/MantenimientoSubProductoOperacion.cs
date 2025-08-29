@@ -339,7 +339,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.ExecuteNonQuery();
                         con.Close();
                         Mostrar1(idmodelo1);
-                        CargarOperacion2(idmodelo1);
+                        CargarOperacion2(idmodelo2);
                         MessageBox.Show("Registro ingresado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     catch (Exception ex)
