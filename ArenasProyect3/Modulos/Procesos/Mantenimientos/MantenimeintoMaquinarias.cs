@@ -143,13 +143,15 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("No se puede ingresar dos registros iguales.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+            if (string.IsNullOrWhiteSpace(descripcion))
+            {
+                MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
             else
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta maquinaria?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
-                {
-                    if (descripcion != "")
-                    {
+                {                
                         try
                         {
                             SqlConnection con = new SqlConnection();
@@ -191,14 +193,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
-                        txtDescripcion.Focus();
-                    }
+                    
                 }
             }
-        }
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
             AgregarMaquinarias(txtDescripcion.Text,cboEstado.Text);
@@ -219,7 +216,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //ACCION DE EDITADO EN MI BASE DE DATOS DE UNA MAQUINARIA
         public void EditarMaquinarias(int codigo, string descripcion, string estado)
         {
-            if (descripcion != "" || Convert.ToString(codigo) != "N")
+            if (string.IsNullOrWhiteSpace(descripcion)|| Convert.ToString(codigo) == "N")
+            {
+                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta maquinaria?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -268,10 +269,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
+           
         }
         private void btnEditar2_Click(object sender, EventArgs e)
         {
