@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.EMMA;
+using Org.BouncyCastle.Asn1.Ess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -153,6 +155,8 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+       
 
         //EVENTO PARA MOVER MI FORMUARIO 
         private void lblTituloNuevoProducto_MouseDown(object sender, MouseEventArgs e)
@@ -857,43 +861,46 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             }
         }
 
-        //ACCIONES INTERNAS DE MIS COMBOS PRINCIPALES----------------------------------------
-        //CARGA DE LÍNEAS SEGÚN EL TIPO DE CUENTA SELECCIOANDA
-        private void cboTipoMercaderia_SelectedIndexChanged(object sender, EventArgs e)
+        //ACCIONES INTERNAS DE MIS COMBOS PRINCIPALES---------------------------------------
+        //CARGA DE LAS CUENTAS
+        public void CargarCuentas(ComboBox cbo)
         {
-            if (cboTipoMercaderia.SelectedValue.ToString() != null)
+            if (cbo.SelectedValue.ToString() != null)
             {
-                idmercaderias = cboTipoMercaderia.SelectedValue.ToString();
+                idmercaderias = cbo.SelectedValue.ToString();
                 CargarLineas(idmercaderias);
             }
 
             GenerarCodigoProducto();
         }
-
-        private void cboLineas_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboTipoMercaderia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboLineas.SelectedValue.ToString() != null)
+            CargarCuentas(cboTipoMercaderia);
+        }
+
+        //CARGA DE LÍNEAS SEGÚN EL TIPO DE CUENTA SELECCIOANDA
+        public void CargarLineasXCuentaSeleccionada(ComboBox cbo)
+        {
+            if (cbo.SelectedValue.ToString() != null)
             {
-                idlinea = cboLineas.SelectedValue.ToString();
+                idlinea = cbo.SelectedValue.ToString();
                 CargarModelos(idlinea);
             }
 
             GenerarCodigoProducto();
         }
+        private void cboLineas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarLineasXCuentaSeleccionada(cboLineas);
+        }
+
+        //---------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------------------
+        //METODOS PARA LA CARGA DE LOS GRUPOS DE CAMPOS Y SUS DETALLES SEGÚN EL MODELO SELECCIONADO
 
         //CARGA DE MI GRUPO DE CAMPOS Y LOS CAMPOS CON SUS DETALLES SEGÚN EL MODELO SELECCIONADO
-        private void cboModelos_SelectedIndexChanged(object sender, EventArgs e)
+        public void LimpiezaCamposXModeloSeleccionado()
         {
-            GenerarCodigoProducto();
-
-
-            //DEFINICION DE NOMBRES Y DE UNOS CAMPOS MÁS SEGUN MODELO
-            DefinicionModelosAtributos();
-            //-------------------------------------------------------------
-
-            CargarGrupoCamposPredeterminados();
-            CargarCamposPredeterminados();
-
             //LIMPIEZA DE CAMPOS
             espacio1 = "";
             espacio2 = "";
@@ -957,293 +964,369 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             txtDescripcionNTipos4.Text = "";
             txtDescripcionVariosO1.Text = "";
             txtDescripcionVariosO2.Text = "";
+        }
 
-            //CARACTERISTICAS---------------------------------------
-            if (cboTipoCaracteristicas1.SelectedValue != null)
+        //CARACTERISTICAS---------------------------------------
+        public void CargarGrupoCaracteristicasXModeloSeleccionado(string modelos, string TipCaracteristicas1, string TipCaracteristicas2, string TipCaracteristicas3, string TipCaracteristicas4
+            ,ComboBox DesCaracteristicas1, ComboBox DesCaracteristicas2, ComboBox DesCaracteristicas3, ComboBox DesCaracteristicas4)
+        {
+            if (!string.IsNullOrWhiteSpace(TipCaracteristicas1))
             {
-                idtipocaracteristica = cboTipoCaracteristicas1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas1, idtipocaracteristica, idmodelo, "0");
-                cboDescripcionCaracteristicas1.SelectedIndex = -1;
+                idtipocaracteristica = TipCaracteristicas1;
+                idmodelo = modelos;
+                CargarDescripcionCaracteristicas(DesCaracteristicas1, idtipocaracteristica, idmodelo, "0");
+                DesCaracteristicas1.SelectedIndex = -1;
             }
 
-            if (cboTipoCaracteristicas2.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipCaracteristicas2))
             {
-                idtipocaracteristica = cboTipoCaracteristicas2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas2, idtipocaracteristica, idmodelo, "0");
-                cboDescripcionCaracteristicas2.SelectedIndex = -1;
+                idtipocaracteristica = TipCaracteristicas2;
+                idmodelo = modelos;
+                CargarDescripcionCaracteristicas(DesCaracteristicas2, idtipocaracteristica, idmodelo, "0");
+                DesCaracteristicas2.SelectedIndex = -1;
             }
 
-            if (cboTipoCaracteristicas3.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipCaracteristicas3))
             {
-                idtipocaracteristica = cboTipoCaracteristicas3.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas3, idtipocaracteristica, idmodelo, "0");
-                cboDescripcionCaracteristicas3.SelectedIndex = -1;
+                idtipocaracteristica = TipCaracteristicas3;
+                idmodelo = modelos;
+                CargarDescripcionCaracteristicas(DesCaracteristicas3, idtipocaracteristica, idmodelo, "0");
+                DesCaracteristicas3.SelectedIndex = -1;
             }
 
-            if (cboTipoCaracteristicas4.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipCaracteristicas4))
             {
-                idtipocaracteristica = cboTipoCaracteristicas4.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas4, idtipocaracteristica, idmodelo, "0");
-                cboDescripcionCaracteristicas4.SelectedIndex = -1;
+                idtipocaracteristica = TipCaracteristicas4;
+                idmodelo = modelos;
+                CargarDescripcionCaracteristicas(DesCaracteristicas4, idtipocaracteristica, idmodelo, "0");
+                DesCaracteristicas4.SelectedIndex = -1;
+            }
+        }
+
+        //MEDIDAS-----------------------------------------
+        public void CargarGrupoMedidasXModeloSeleccionado(string modelos,string TipMedidas1, string TipMedidas2, string TipMedidas3, string TipMedidas4
+            ,ComboBox Desmedidas1, ComboBox Desmedidas2, ComboBox Desmedidas3, ComboBox Desmedidas4)
+        {
+            if (!string.IsNullOrWhiteSpace(TipMedidas1))
+            {
+                idtipomedida = TipMedidas1;
+                idmodelo = modelos;
+                CargarDescripcionMedidas(Desmedidas1, idtipomedida, idmodelo);
+                Desmedidas1.SelectedIndex = -1;
             }
 
-            //MEDIDAS-----------------------------------------
-            if (cboTipoMedida1.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipMedidas2))
             {
-                idtipomedida = cboTipoMedida1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionMedidas(cboDescripcionMedida1, idtipomedida, idmodelo);
-                cboDescripcionMedida1.SelectedIndex = -1;
+                idtipomedida = TipMedidas2;
+                idmodelo = modelos;
+                CargarDescripcionMedidas(Desmedidas2, idtipomedida, idmodelo);
+                Desmedidas2.SelectedIndex = -1;
             }
 
-            if (cboTipoMedida2.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipMedidas3))
             {
-                idtipomedida = cboTipoMedida2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionMedidas(cboDescripcionMedida2, idtipomedida, idmodelo);
-                cboDescripcionMedida2.SelectedIndex = -1;
+                idtipomedida = TipMedidas3;
+                idmodelo = modelos;
+                CargarDescripcionMedidas(Desmedidas3, idtipomedida, idmodelo);
+                Desmedidas3.SelectedIndex = -1;
             }
 
-            if (cboTipoMedida3.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipMedidas4))
             {
-                idtipomedida = cboTipoMedida3.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionMedidas(cboDescripcionMedida3, idtipomedida, idmodelo);
-                cboDescripcionMedida3.SelectedIndex = -1;
+                idtipomedida = TipMedidas4;
+                idmodelo = modelos;
+                CargarDescripcionMedidas(Desmedidas4, idtipomedida, idmodelo);
+                Desmedidas4.SelectedIndex = -1;
+            }
+        }
+
+        //DIAMETROS--------------------------------
+        public void CargarGrupoDiametrosXModeloSeleccionado(string modelos,string TipDiametros1, string TipDiametros2, string TipDiametros3, string TipDiametros4
+            ,ComboBox DesDiametros1, ComboBox DesDiametros2, ComboBox DesDiametros3, ComboBox DesDiametros4)
+        {
+            if (!string.IsNullOrWhiteSpace(TipDiametros1))
+            {
+                iddiametros = TipDiametros1;
+                idmodelo = modelos;
+                CargarDescripcionDiametros(DesDiametros1, iddiametros, idmodelo);
+                DesDiametros1.SelectedIndex = -1;
             }
 
-            if (cboTipoMedida4.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipDiametros2))
             {
-                idtipomedida = cboTipoMedida4.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionMedidas(cboDescripcionMedida4, idtipomedida, idmodelo);
-                cboDescripcionMedida4.SelectedIndex = -1;
+                iddiametros = TipDiametros2;
+                idmodelo = modelos;
+                CargarDescripcionDiametros(DesDiametros2, iddiametros, idmodelo);
+                DesDiametros2.SelectedIndex = -1;
             }
 
-            //DIAMETROS--------------------------------
-            if (cboTiposDiametros1.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipDiametros3))
             {
-                iddiametros = cboTiposDiametros1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiametros(cboDescripcionDiametros1, iddiametros, idmodelo);
-                cboDescripcionDiametros1.SelectedIndex = -1;
+                iddiametros = TipDiametros3;
+                idmodelo = Convert.ToString(modelos);
+                CargarDescripcionDiametros(DesDiametros3, iddiametros, idmodelo);
+                DesDiametros3.SelectedIndex = -1;
             }
 
-            if (cboTiposDiametros2.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipDiametros4))
             {
-                iddiametros = cboTiposDiametros2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiametros(cboDescripcionDiametros2, iddiametros, idmodelo);
-                cboDescripcionDiametros2.SelectedIndex = -1;
+                iddiametros = TipDiametros4;
+                idmodelo = modelos;
+                CargarDescripcionDiametros(DesDiametros4, iddiametros, idmodelo);
+                DesDiametros4.SelectedIndex = -1;
+            }
+        }
+
+        //FORMAS--------------------------
+        public void CargarGrupoFormasXModeloSeleccionado(string modelos,string TipFormas1, string TipFormas2, string TipFormas3, string TipFormas4
+            ,ComboBox DesFormas1, ComboBox DesFormas2, ComboBox DesFormas3, ComboBox DesFormas4)
+        {
+            if (!string.IsNullOrWhiteSpace(TipFormas1))
+            {
+                idformas = TipFormas1;
+                idmodelo = modelos;
+                CargarDescripcionFormas(DesFormas1, idformas, idmodelo);
+                DesFormas1.SelectedIndex = -1;
             }
 
-            if (cboTiposDiametros3.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipFormas2))
             {
-                iddiametros = cboTiposDiametros3.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiametros(cboDescripcionDiametros3, iddiametros, idmodelo);
-                cboDescripcionDiametros3.SelectedIndex = -1;
+                idformas = TipFormas2;
+                idmodelo = modelos;
+                CargarDescripcionFormas(DesFormas2, idformas, idmodelo);
+                DesFormas2.SelectedIndex = -1;
             }
 
-            if (cboTiposDiametros4.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipFormas3))
             {
-                iddiametros = cboTiposDiametros4.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiametros(cboDescripcionDiametros4, iddiametros, idmodelo);
-                cboDescripcionDiametros4.SelectedIndex = -1;
+                idformas = TipFormas3;
+                idmodelo = modelos;
+                CargarDescripcionFormas(DesFormas3, idformas, idmodelo);
+                DesFormas3.SelectedIndex = -1;
             }
 
-            //FORMAS--------------------------
-            if (cboTiposFormas1.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipFormas4))
             {
-                idformas = cboTiposFormas1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionFormas(cboDescripcionFormas1, idformas, idmodelo);
-                cboDescripcionFormas1.SelectedIndex = -1;
+                idformas = TipFormas4;
+                idmodelo = modelos;
+                CargarDescripcionFormas(DesFormas4, idformas, idmodelo);
+                DesFormas4.SelectedIndex = -1;
+            }
+        }
+
+        //ESPESORES----------------
+        public void CargarGrupoEspesoresXModeloSeleccionado(string modelos,string TipEspesores1, string TipEspesores2, string TipEspesores3, string TipEspesores4
+            ,ComboBox DesEspesores1, ComboBox DesEspesores2, ComboBox DesEspesores3, ComboBox DesEspesores4)
+        {
+            if (!string.IsNullOrWhiteSpace(TipEspesores1))
+            {
+                idespesores = TipEspesores1;
+                idmodelo = modelos;
+                CargarDescripcionEspesores(DesEspesores1, idespesores, idmodelo);
+                DesEspesores1.SelectedIndex = -1;
             }
 
-            if (cboTiposFormas2.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipEspesores2))
             {
-                idformas = cboTiposFormas2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionFormas(cboDescripcionFormas2, idformas, idmodelo);
-                cboDescripcionFormas2.SelectedIndex = -1;
+                idespesores = TipEspesores2;
+                idmodelo = modelos;
+                CargarDescripcionEspesores(DesEspesores2, idespesores, idmodelo);
+                DesEspesores2.SelectedIndex = -1;
             }
 
-            if (cboTiposFormas3.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipEspesores3))
             {
-                idformas = cboTiposFormas3.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionFormas(cboDescripcionFormas3, idformas, idmodelo);
-                cboDescripcionFormas3.SelectedIndex = -1;
+                idespesores = TipEspesores3;
+                idmodelo = modelos;
+                CargarDescripcionEspesores(DesEspesores3, idespesores, idmodelo);
+                DesEspesores3.SelectedIndex = -1;
             }
 
-            if (cboTiposFormas4.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipEspesores4))
             {
-                idformas = cboTiposFormas4.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionFormas(cboDescripcionFormas4, idformas, idmodelo);
-                cboDescripcionFormas4.SelectedIndex = -1;
+                idespesores = TipEspesores4;
+                idmodelo = modelos;
+                CargarDescripcionEspesores(DesEspesores4, idespesores, idmodelo);
+                DesEspesores4.SelectedIndex = -1;
             }
 
-            //ESPESORES----------------
-            if (cbooTipoEspesores1.SelectedValue != null)
+        }
+
+        //DISEÑO----------------
+        public void CargarGrupoDiseñoAcabadoXModeloSeleccionado(string modelos,string TipDiseñoacabado1, string TipDiseñoacabado2, string TipDiseñoacabado3, string TipDiseñoacabado4
+            ,ComboBox DesDiseñoAcabado1, ComboBox DesDiseñoAcabado2, ComboBox DesDiseñoAcabado3, ComboBox DesDiseñoAcabado4)
+        {
+            if (!string.IsNullOrWhiteSpace(TipDiseñoacabado1))
             {
-                idespesores = cbooTipoEspesores1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionEspesores(cboDescripcionEspesores1, idespesores, idmodelo);
-                cboDescripcionEspesores1.SelectedIndex = -1;
+                iddiseñoacabado = TipDiseñoacabado1;
+                idmodelo = modelos;
+                CargarDescripcionDiseñoAcabado(DesDiseñoAcabado1, iddiseñoacabado, idmodelo, "0");
+                DesDiseñoAcabado1.SelectedIndex = -1;
             }
 
-            if (cbooTipoEspesores2.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipDiseñoacabado2))
             {
-                idespesores = cbooTipoEspesores2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionEspesores(cboDescripcionEspesores2, idespesores, idmodelo);
-                cboDescripcionEspesores2.SelectedIndex = -1;
+                iddiseñoacabado = TipDiseñoacabado2;
+                idmodelo = modelos;
+                CargarDescripcionDiseñoAcabado(DesDiseñoAcabado2, iddiseñoacabado, idmodelo, "0");
+                DesDiseñoAcabado2.SelectedIndex = -1;
             }
 
-            if (cbooTipoEspesores3.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipDiseñoacabado3))
             {
-                idespesores = cbooTipoEspesores3.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionEspesores(cboDescripcionEspesores3, idespesores, idmodelo);
-                cboDescripcionEspesores3.SelectedIndex = -1;
+                iddiseñoacabado = TipDiseñoacabado3;
+                idmodelo = modelos;
+                CargarDescripcionDiseñoAcabado(DesDiseñoAcabado3, iddiseñoacabado, idmodelo, "0");
+                DesDiseñoAcabado3.SelectedIndex = -1;
             }
 
-            if (cbooTipoEspesores4.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(TipDiseñoacabado4))
             {
-                idespesores = cbooTipoEspesores4.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionEspesores(cboDescripcionEspesores4, idespesores, idmodelo);
-                cboDescripcionEspesores4.SelectedIndex = -1;
+                iddiseñoacabado = TipDiseñoacabado4;
+                idmodelo = modelos;
+                CargarDescripcionDiseñoAcabado(DesDiseñoAcabado4, iddiseñoacabado, idmodelo, "0");
+                DesDiseñoAcabado4.SelectedIndex = -1;
+            }
+        }
+
+        //N Y TIPOS---------------------
+        public void CargarGrupoNtiposXModeloSeleccionado(string modelos,string Ntipos1, string Ntipos2, string Ntipos3, string Ntipos4
+            ,ComboBox DesNtipos1, ComboBox DesNtipos2, ComboBox DesNtipos3, ComboBox DesNtipos4)
+        {
+            if (!string.IsNullOrWhiteSpace(Ntipos1))
+            {
+                idntipos = Ntipos1;
+                idmodelo = modelos;
+                CargarDescripcionNTipos(DesNtipos1, idntipos, idmodelo, "0");
+                DesNtipos1.SelectedIndex = -1;
             }
 
-            //DISEÑO----------------
-            if (cboTiposDiseñosAcabados1.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(Ntipos2))
             {
-                iddiseñoacabado = cboTiposDiseñosAcabados1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiseñoAcabado(cboDescripcionDiseñoAcabado1, iddiseñoacabado, idmodelo, "0");
-                cboDescripcionDiseñoAcabado1.SelectedIndex = -1;
+                idntipos = Ntipos2;
+                idmodelo = modelos;
+                CargarDescripcionNTipos(DesNtipos2, idntipos, idmodelo, "0");
+                DesNtipos2.SelectedIndex = -1;
             }
 
-            if (cboTiposDiseñosAcabados2.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(Ntipos3))
             {
-                iddiseñoacabado = cboTiposDiseñosAcabados2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiseñoAcabado(cboDescripcionDiseñoAcabado2, iddiseñoacabado, idmodelo, "0");
-                cboDescripcionDiseñoAcabado2.SelectedIndex = -1;
+                idntipos = Ntipos3;
+                idmodelo = modelos;
+                CargarDescripcionNTipos(DesNtipos3, idntipos, idmodelo, "0");
+                DesNtipos3.SelectedIndex = -1;
             }
 
-            if (cboTiposDiseñosAcabados3.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(Ntipos4))
             {
-                iddiseñoacabado = cboTiposDiseñosAcabados3.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiseñoAcabado(cboDescripcionDiseñoAcabado3, iddiseñoacabado, idmodelo, "0");
-                cboDescripcionDiseñoAcabado3.SelectedIndex = -1;
+                idntipos = Ntipos4;
+                idmodelo = modelos;
+                CargarDescripcionNTipos(DesNtipos4, idntipos, idmodelo, "0");
+                DesNtipos4.SelectedIndex = -1;
+            }
+        }
+
+        //VARIOS-----------------------
+        public void CargarGrupoVariosXModeloSeleccionado(string modelos, string VariosO1, string VariosO2,ComboBox DesVariosO1, ComboBox DesVariosO2)
+        {
+
+            if (!string.IsNullOrWhiteSpace(VariosO1))
+            {
+                idvarioso = VariosO1;
+                idmodelo = modelos;
+                CargarDescripcionVariosO(DesVariosO1, idvarioso, idmodelo, "0");
+                DesVariosO1.SelectedIndex = -1;
             }
 
-            if (cboTiposDiseñosAcabados4.SelectedValue != null)
+            if (!string.IsNullOrWhiteSpace(VariosO2))
             {
-                iddiseñoacabado = cboTiposDiseñosAcabados4.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionDiseñoAcabado(cboDescripcionDiseñoAcabado4, iddiseñoacabado, idmodelo, "0");
-                cboDescripcionDiseñoAcabado4.SelectedIndex = -1;
+                idvarioso = VariosO2;
+                idmodelo = modelos;
+                CargarDescripcionVariosO(DesVariosO2, idvarioso, idmodelo, "0");
+                DesVariosO2.SelectedIndex = -1;
             }
+        }
 
-            //N Y TIPOS---------------------
-            if (cboTiposNTipos1.SelectedValue != null)
-            {
-                idntipos = cboTiposNTipos1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionNTipos(cboDescripcionNTipos1, idntipos, idmodelo, "0");
-                cboDescripcionNTipos1.SelectedIndex = -1;
-            }
+        public void CargaGrupoCamposXModeloSeleccionado()
+        {
+            GenerarCodigoProducto();
 
-            if (cboTiposNTipos2.SelectedValue != null)
-            {
-                idntipos = cboTiposNTipos2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionNTipos(cboDescripcionNTipos2, idntipos, idmodelo, "0");
-                cboDescripcionNTipos2.SelectedIndex = -1;
-            }
 
-            if (cboTiposNTipos3.SelectedValue != null)
-            {
-                idntipos = cboTiposNTipos3.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionNTipos(cboDescripcionNTipos3, idntipos, idmodelo, "0");
-                cboDescripcionNTipos3.SelectedIndex = -1;
-            }
+            //DEFINICION DE NOMBRES Y DE UNOS CAMPOS MÁS SEGUN MODELO
+            DefinicionModelosAtributos();
+            //-------------------------------------------------------------
+            CargarGrupoCamposPredeterminados();
+            CargarCamposPredeterminados();
+            LimpiezaCamposXModeloSeleccionado();
 
-            if (cboTiposNTipos4.SelectedValue != null)
-            {
-                idntipos = cboTiposNTipos4.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionNTipos(cboDescripcionNTipos4, idntipos, idmodelo, "0");
-                cboDescripcionNTipos4.SelectedIndex = -1;
-            }
-
-            //VARIOS-----------------------
-            if (cboTiposVariosO1.SelectedValue != null)
-            {
-                idvarioso = cboTiposVariosO1.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionVariosO(cboDescripcionVariosO1, idvarioso, idmodelo, "0");
-                cboDescripcionVariosO1.SelectedIndex = -1;
-            }
-
-            if (cboTiposVariosO2.SelectedValue != null)
-            {
-                idvarioso = cboTiposVariosO2.SelectedValue.ToString();
-                idmodelo = cboModelos.SelectedValue.ToString();
-                CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, "0");
-                cboDescripcionVariosO2.SelectedIndex = -1;
-            }
+            //CARGA DE LOS GRUPOS DE CAMPOS SEGÚN EL MODELO SELECCIONADO
+            CargarGrupoCaracteristicasXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cboTipoCaracteristicas1.SelectedValue), Convert.ToString(cboTipoCaracteristicas2.SelectedValue),Convert.ToString(cboTipoCaracteristicas3.SelectedValue), Convert.ToString(cboTipoCaracteristicas4.SelectedValue),cboDescripcionCaracteristicas1,cboDescripcionCaracteristicas2,cboDescripcionCaracteristicas3,cboDescripcionCaracteristicas4);
+            CargarGrupoMedidasXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cboTipoMedida1.SelectedValue), Convert.ToString(cboTipoMedida2.SelectedValue), Convert.ToString(cboTipoMedida3.SelectedValue), Convert.ToString(cboTipoMedida4.SelectedValue),cboDescripcionMedida1,cboDescripcionMedida2,cboDescripcionMedida3,cboDescripcionMedida4);
+            CargarGrupoDiametrosXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cboTiposDiametros1.SelectedValue), Convert.ToString(cboTiposDiametros2.SelectedValue), Convert.ToString(cboTiposDiametros3.SelectedValue), Convert.ToString(cboTiposDiametros4.SelectedValue),cboDescripcionDiametros1, cboDescripcionDiametros2, cboDescripcionDiametros3, cboDescripcionDiametros4);
+            CargarGrupoFormasXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cboTiposFormas1.SelectedValue),Convert.ToString(cboTiposFormas2.SelectedValue), Convert.ToString(cboTiposFormas3.SelectedValue), Convert.ToString(cboTiposFormas4.SelectedValue),cboDescripcionFormas1, cboDescripcionFormas2, cboDescripcionFormas3, cboDescripcionFormas4);
+            CargarGrupoEspesoresXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cbooTipoEspesores1.SelectedValue), Convert.ToString(cbooTipoEspesores2.SelectedValue), Convert.ToString(cbooTipoEspesores3.SelectedValue), Convert.ToString(cbooTipoEspesores4.SelectedValue),cboDescripcionEspesores1, cboDescripcionEspesores2, cboDescripcionEspesores3, cboDescripcionEspesores4);
+            CargarGrupoDiseñoAcabadoXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cboTiposDiseñosAcabados1.SelectedValue),Convert.ToString(cboTiposDiseñosAcabados2.SelectedValue), Convert.ToString(cboTiposDiseñosAcabados3.SelectedValue),Convert.ToString(cboTiposDiseñosAcabados4.SelectedValue),cboDescripcionDiseñoAcabado1, cboDescripcionDiseñoAcabado2, cboDescripcionDiseñoAcabado3, cboDescripcionDiseñoAcabado4);
+            CargarGrupoNtiposXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cboTiposNTipos1.SelectedValue), Convert.ToString(cboTiposNTipos2.SelectedValue),Convert.ToString(cboTiposNTipos3.SelectedValue), Convert.ToString(cboTiposNTipos4.SelectedValue),cboDescripcionNTipos1, cboDescripcionNTipos2, cboDescripcionNTipos3, cboDescripcionNTipos4);
+            CargarGrupoVariosXModeloSeleccionado(Convert.ToString(cboModelos.SelectedValue),Convert.ToString(cboTiposVariosO1.SelectedValue), Convert.ToString(cboTiposVariosO2.SelectedValue),cboDescripcionVariosO1, cboDescripcionVariosO2);
 
             //DEFINICION DE LA ESTRUCTURA DEL NOMBRE DE MI MODELOI
             //ESTANDARIZACION DE MODELO POR CODIGO
             DefinicionModelosTexto();
         }
+
+        private void cboModelos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargaGrupoCamposXModeloSeleccionado();
+        }
+
         //---------------------------------------------------------------------------------------
 
         //ACCIONES DE LOS BOTONES DE FUNCIONALIDAD--------------------------------------------------------------
         //CARGAR COMBOS - CARACTERISTICAS DEL PRODUCTO-----------------------------------------------------------------------
         public void CargarTiposCaracteriticas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoCaracteristicas,Descripcion FROM TiposCaracteristicas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoCaracteristicas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposCaracteristicas", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoCaracteristicas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE CARACTERISTICAS
         public void CargarDescripcionCaracteristicas(ComboBox cbo, string idtipocaracteristicas, string idmodelo, string idTipoNN)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionCaracteristicas,Descripcion FROM DescripcionCaracteristicas WHERE Estado = 1 AND IdTipoCaracteristicas = @idtipocaracteristicas AND IdModelo = @idmodelo AND IdTipoNN = @idTipoNN", con);
-            comando.Parameters.AddWithValue("@idtipocaracteristicas", idtipocaracteristicas);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionCaracteristicas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionCaracteristicas", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idtipocaracteristicas", idtipocaracteristicas);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionCaracteristicas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -1615,33 +1698,47 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGAR COMBOS - MEDIDAS DEL PRODUCTO-----------------------------------------------------------------------
         public void CargarTiposMedidas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMedidas,Descripcion FROM TiposMedidas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoMedidas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposMedidas", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoMedidas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE MEDIDAS
         public void CargarDescripcionMedidas(ComboBox cbo, string idtipomedida, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionMedidas,Descripcion FROM DescripcionMedidas WHERE Estado = 1 AND IdTipoMedidas = @idtipomedida AND IdModelo = @idmodelo ORDER BY Descripcion", con);
-            comando.Parameters.AddWithValue("@idtipomedida", idtipomedida);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionMedidas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionMedidas", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idtipomedida", idtipomedida);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionMedidas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -2085,33 +2182,47 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGAR TIPOS DE DIAMETROS - DESCRIPCION DE DIAMETROS - SELECCIONA DE VENTANA
         public void CargarTiposDiametros(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoDiametros,Descripcion FROM TiposDiametros WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoDiametros";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposDiametros", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoDiametros";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE DIÁMETROS
         public void CargarDescripcionDiametros(ComboBox cbo, string ididametros, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionDiametros,Descripcion FROM DescripcionDiametros WHERE Estado = 1 AND IdTipoDiametros = @idtipodiametros AND IdModelo = @idmodelo ORDER BY TRY_CAST(Descripcion AS DECIMAL)", con);
-            comando.Parameters.AddWithValue("@idtipodiametros", ididametros);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionDiametros";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionDiametros", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idtipodiametros", ididametros);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionDiametros";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -2559,33 +2670,47 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGAR TIPOS DE FORMAS - DESCRIPCION DE FORMAS - SELECCIONA DE VENTANA
         public void CargarTiposFormas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoFormas,Descripcion FROM TiposFormas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoFormas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposFormas", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoFormas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE FORMAS
         public void CargarDescripcionFormas(ComboBox cbo, string idformas, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionFormas,Descripcion FROM DescripcionFormas WHERE Estado = 1 AND IdTipoFormas = @idtipoformas AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipoformas", idformas);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionFormas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionFormas", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idtipoformas", idformas);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionFormas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -3043,33 +3168,47 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGAR TIPOS DE ESPESORES - DESCRIPCION DE ESPESORES - SELECCIONA DE VENTANA
         public void CargarTiposEspesores(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoEspesores,Descripcion FROM TiposEspesores WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoEspesores";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposEspesores", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoEspesores";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE ESPESORES
         public void CargarDescripcionEspesores(ComboBox cbo, string idespesores, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionEspesores,Descripcion FROM DescripcionEspesores WHERE Estado = 1 AND IdTipoEspesores = @idtipoespesores AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipoespesores", idespesores);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionEspesores";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionEspesores", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idtipoespesores", idespesores);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionEspesores";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -3517,34 +3656,48 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGAR TIPOS DE DISEÑO/ACABADO - DESCRIPCION DE DISEÑO/ACABADO - SELECCIONA DE VENTANA
         public void CargarTiposDiseñoAcabado(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoDiseñoAcabado,Descripcion FROM TiposDiseñoAcabado WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoDiseñoAcabado";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposDiseñoAcabado", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoDiseñoAcabado";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE DISEÑO Y ACABADOS
         public void CargarDescripcionDiseñoAcabado(ComboBox cbo, string iddiseñoacabado, string idmodelo, string idTipoNN)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionDiseñoAcabado,Descripcion FROM DescripcionDiseñoAcabado WHERE Estado = 1 AND IdTipoDiseñoAcabado = @idtipodiseñoacabado AND IdModelo = @idmodelo AND IdTipoNN = @idTipoNN ORDER BY TRY_CAST(Descripcion AS DECIMAL)", con);
-            comando.Parameters.AddWithValue("@idtipodiseñoacabado", iddiseñoacabado);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionDiseñoAcabado";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionDiseñoAcabado", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idtipodiseñoacabado", iddiseñoacabado);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionDiseñoAcabado";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -3993,34 +4146,48 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGAR TIPOS DE N/TIPOS - DESCRIPCION DE N/TIPOS - SELECCIONA DE VENTANA
         public void CargarTiposNTipos(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoNTipos,Descripcion FROM TiposNTipos WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoNTipos";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposNTipos", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoNTipos";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE N TIPOS
         public void CargarDescripcionNTipos(ComboBox cbo, string idntipos, string idmodelo, string idTipoNN)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT D.IdDescripcionNTipos,D.Descripcion FROM DescripcionNTipos D WHERE D.Estado = 1 AND D.IdTipoNTipos = @idtiposntipos AND D.IdModelo = @idmodelo AND D.IdTipoNN = @idTipoNN ORDER BY TRY_CAST(D.Descripcion AS DECIMAL)", con);
-            comando.Parameters.AddWithValue("@idtiposntipos", idntipos);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionNTipos";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionNTipos", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idtiposntipos", idntipos);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionNTipos";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -4468,34 +4635,48 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGAR TIPOS DE VARIOS0 - DESCRIPCION DE VARIOS0S - SELECCIONA DE VENTANA
         public void CargarTiposVariosO(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoVariosO,Descripcion FROM TiposVariosO WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoVariosO";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarTiposVariosO", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoVariosO";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR DESCRIPCIÓN DE VARIOS 0
         public void CargarDescripcionVariosO(ComboBox cbo, string idvarioso, string idmodelo, string idTipoNN)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionVarios0,Descripcion FROM DescripcionVarios0 WHERE Estado = 1 AND IdTipoVarios0 = @idvarioso AND IdModelo = @idmodelo AND IdTipoNN = @idTipoNN", con);
-            comando.Parameters.AddWithValue("@idvarioso", idvarioso);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionVarios0";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("AgregarProducto_CargarDescripcionVariosO", con);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idvarioso", idvarioso);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                comando.Parameters.AddWithValue("@idTipoNN", idTipoNN);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionVarios0";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR GRUPO DE CAMPOS Y CAMPOS SEGÚN LOS GRUPOS SELECCIOANDO 1
@@ -4742,7 +4923,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
         //PARTE GENERAL DEL PLANO-----------------------------------------------------------------
         //CARGA DE PLANO
-        private void btnCargarPdf_Click(object sender, EventArgs e)
+        public void CargarPlanos(TextBox txt,PictureBox btn)
         {
             openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
@@ -4751,11 +4932,16 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                txtFile.Text = openFileDialog1.FileName;
-                GeneracionReferenciaPlano();
+                txt.Text = openFileDialog1.FileName;
+                GeneracionReferenciaPlano(lblModelo,lblCodigoReferenciaPlano);
 
-                btnCancelarPlano.Visible = true;
+                btn.Visible = true;
             }
+        }
+
+        private void btnCargarPdf_Click(object sender, EventArgs e)
+        {
+            CargarPlanos(txtFile,btnCancelarPlano);
         }
 
         //CANCELAR PLANO
@@ -4769,17 +4955,928 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //PARTE GENERAL DEL PRODUCTO-------------------------------------------------------------------
         //ACCIONES DE LOS BOTONES PRINCIPALES - CANCELAR - SALIR
         //GUARDAR PRODUCTO
-        private void btnGuardar_Click(object sender, EventArgs e)
+        public void AgregarPlano(string codigo,string idmedida,int idtipomercaderia,int idmodelo,int idlinea, int iddiferencial,string descripciongeneradaproducto, string anotaciones,CheckBox ck
+            ,string codigoreferenciaplno,string codigoplano,string file,DataGridView DGV)
+        {
+            //SI NO HAY PLANO AGREGADO
+            if (file == "")
+            {
+                //GUARDAR PRODUCTOS - DATOS PRINCIPALES---------------------------------------------------
+                SqlConnection conp = new SqlConnection();
+                conp.ConnectionString = Conexion.ConexionMaestra.conexion;
+                conp.Open();
+                SqlCommand cmdp = new SqlCommand();
+                cmdp = new SqlCommand("AgregarProducto_InsertarCamposPrincipales", conp);
+                cmdp.CommandType = CommandType.StoredProcedure;
+
+                cmdp.Parameters.AddWithValue("@codom", codigo);
+                cmdp.Parameters.AddWithValue("@idmedida", idmedida);
+                cmdp.Parameters.AddWithValue("@idtipomercaderia", idtipomercaderia);
+                cmdp.Parameters.AddWithValue("@idmodelo", idmodelo);
+                cmdp.Parameters.AddWithValue("@idlinea", idlinea);
+                cmdp.Parameters.AddWithValue("@iddiferencial", iddiferencial);
+                cmdp.Parameters.AddWithValue("@detalle", descripciongeneradaproducto);
+                cmdp.Parameters.AddWithValue("@descripcion", anotaciones);
+
+                if (ck.Checked == true) { semirpoducido = 1; } else { semirpoducido = 0; }
+                cmdp.Parameters.AddWithValue("@semiproducido", semirpoducido);
+                cmdp.Parameters.AddWithValue("@codigogenerado", "");
+                cmdp.Parameters.AddWithValue("@rutaImagen", "");
+
+                cmdp.ExecuteNonQuery();
+                conp.Close();
+            }
+            //SI HAN AGREGADO PLANO
+            else
+            {
+                string NombreGenerado = codigo + " - " + descripciongeneradaproducto + " - " + codigoreferenciaplno;
+
+                string RutaOld = file;
+
+                string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Productos\Planos\" + NombreGenerado + ".pdf";
+
+                File.Copy(RutaOld, RutaNew);
+
+                //GUARDAR PRODUCTOS - DATOS PRINCIPALES---------------------------------------------------
+                SqlConnection conp = new SqlConnection();
+                conp.ConnectionString = Conexion.ConexionMaestra.conexion;
+                conp.Open();
+                SqlCommand cmdp = new SqlCommand();
+                cmdp = new SqlCommand("AgregarProducto_InsertarCamposPrincipales_Plano", conp);
+                cmdp.CommandType = CommandType.StoredProcedure;
+
+                cmdp.Parameters.AddWithValue("@codom", codigo);
+                cmdp.Parameters.AddWithValue("@idmedida", idmedida);
+                cmdp.Parameters.AddWithValue("@idtipomercaderia", idtipomercaderia);
+                cmdp.Parameters.AddWithValue("@idmodelo", idmodelo);
+                cmdp.Parameters.AddWithValue("@idlinea", idlinea);
+                cmdp.Parameters.AddWithValue("@iddiferencial", iddiferencial);
+                cmdp.Parameters.AddWithValue("@detalle", descripciongeneradaproducto);
+                cmdp.Parameters.AddWithValue("@descripcion", anotaciones);
+
+                if (ck.Checked == true) { semirpoducido = 1; } else { semirpoducido = 0; }
+                cmdp.Parameters.AddWithValue("@semiproducido", semirpoducido);
+                cmdp.Parameters.AddWithValue("@codigogenerado", "");
+                cmdp.Parameters.AddWithValue("@rutaImagen", "");
+
+                //PARAMETROS DEL INGRESO DE PLANO-------------------------------
+                cmdp.Parameters.AddWithValue("@doc", SqlDbType.VarBinary).Value = System.Data.SqlTypes.SqlBinary.Null;
+                cmdp.Parameters.AddWithValue("@namereferences", codigoreferenciaplno);
+                cmdp.Parameters.AddWithValue("@name", RutaNew);
+                cmdp.Parameters.AddWithValue("@realname", NombreGenerado + ".pdf");
+
+                codigoProducto();
+                int codigoproduc = Convert.ToInt32(DGV.SelectedCells[0].Value.ToString());
+                cmdp.Parameters.AddWithValue("@idart", codigoproduc + 1);
+                codigoPlano();
+                codigoplano = DGV.SelectedCells[0].Value.ToString();
+                cmdp.Parameters.AddWithValue("@idplano", Convert.ToInt32(codigoplano) + 1);
+
+                cmdp.ExecuteNonQuery();
+                conp.Close();
+            }
+        }
+        public void Agregar_DatosAnexos(decimal peso,string ubicacion,decimal minimo, decimal maximo,int idorigen,int idterminoscompra,string contenedor,decimal pesocontenedor
+            ,string medidas,int idtipoexistencia, string codigounspscs, double porcentajepercepcion, int idbienessujetopercepcion,double porcentajedeatraccion,double porcentajeisc)
+        {
+            //GUARDAR PRODUCTOS - DATOS ANEXOS---------------------------------------------------------
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("AgregarProducto_InsertarDatosAnexos", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            int codigoproducto = Convert.ToInt32(dataListadoCdigoProducto.SelectedCells[0].Value.ToString());
+            cmd.Parameters.AddWithValue("@IdArt", codigoproducto);
+            cmd.Parameters.AddWithValue("@afectoIGV", afectadoIGV);
+            cmd.Parameters.AddWithValue("@controlarStock", controlarstock);
+            cmd.Parameters.AddWithValue("@juego", juego);
+            cmd.Parameters.AddWithValue("@servicio", servicio);
+            cmd.Parameters.AddWithValue("@controlarLotes", controlarlotes);
+            cmd.Parameters.AddWithValue("@controlarserie", controlarserie);
+
+            cmd.Parameters.AddWithValue("@peso", peso);
+            cmd.Parameters.AddWithValue("@ubicacion", ubicacion);
+            cmd.Parameters.AddWithValue("@reposicion", reposicion);
+            cmd.Parameters.AddWithValue("@minimo", minimo);
+            cmd.Parameters.AddWithValue("@maximo", maximo);
+
+            cmd.Parameters.AddWithValue("@idorigen", idorigen);
+            cmd.Parameters.AddWithValue("@idterminoscompra", idterminoscompra);
+            cmd.Parameters.AddWithValue("@contenedor", contenedor);
+            cmd.Parameters.AddWithValue("@pesocontenedor", pesocontenedor);
+            cmd.Parameters.AddWithValue("@medidas", medidas);
+
+            cmd.Parameters.AddWithValue("@idtipoexistencia", idtipoexistencia);
+            cmd.Parameters.AddWithValue("@codigounsocs", codigounspscs);
+            cmd.Parameters.AddWithValue("@sujetopercepcion", sujetropercepcion);
+            cmd.Parameters.AddWithValue("@porcentajepercepcion", porcentajepercepcion);
+            cmd.Parameters.AddWithValue("@idbienessujeropercepcion", idbienessujetopercepcion);
+            cmd.Parameters.AddWithValue("@sujetodetraccion", sujetodetraccion);
+            cmd.Parameters.AddWithValue("@porcentajedetraccion", porcentajedeatraccion);
+            cmd.Parameters.AddWithValue("@sujetoISC", sujetoisc);
+            cmd.Parameters.AddWithValue("@porcentajeISC", porcentajeisc);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        
+        public void AgregarGruposCamposSeleccionados(DataGridView DGV,CheckBox CkCarac1, CheckBox CkCarac2, CheckBox CkMedi1, CheckBox CkMedi2,CheckBox CkDia1, CheckBox CkDia2
+            , CheckBox CkForm1, CheckBox CkForm2, CheckBox CkEspe1, CheckBox CkEspe2, CheckBox CkDiseAca1, CheckBox CkDiseAca2, CheckBox CkNtip1, CheckBox CkNtip2
+            , CheckBox CkVari1, CheckBox CkVari2, CheckBox CkGener)
+        {
+            //GUARDAR PRODUCTOS - CAMPOS SELECCIONADOS-------------------------------------------------------
+            int codigoproducto = Convert.ToInt32(DGV.SelectedCells[0].Value.ToString());
+
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand("AgregarProducto_InsertarGrupoCamposSeleccionados", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idart", codigoproducto);
+
+            if (CkCarac1.Checked == true)
+            {
+                campocaracteristicas1 = 1;
+            }
+            else
+            {
+                campocaracteristicas1 = 0;
+            }
+            if (CkCarac2.Checked == true)
+            {
+                campocaracteristicas2 = 1;
+            }
+            else
+            {
+                campocaracteristicas2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampCaracteristicas1", campocaracteristicas1);
+            cmd.Parameters.AddWithValue("@CampCaracteristicas2", campocaracteristicas2);
+
+            if (CkMedi1.Checked == true)
+            {
+                campomedidas1 = 1;
+            }
+            else
+            {
+                campomedidas1 = 0;
+            }
+            if (CkMedi2.Checked == true)
+            {
+                campomedidas2 = 1;
+            }
+            else
+            {
+                campomedidas2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampMedidas1", campomedidas1);
+            cmd.Parameters.AddWithValue("@CampMedidas2", campomedidas2);
+
+            if (CkDia1.Checked == true)
+            {
+                campodiametros1 = 1;
+            }
+            else
+            {
+                campodiametros1 = 0;
+            }
+            if (CkDia2.Checked == true)
+            {
+                campodiametros2 = 1;
+            }
+            else
+            {
+                campodiametros2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampDiametros1", campodiametros1);
+            cmd.Parameters.AddWithValue("@CampDiametros2", campodiametros2);
+
+            if (CkForm1.Checked == true)
+            {
+                campoformas1 = 1;
+            }
+            else
+            {
+                campoformas1 = 0;
+            }
+            if (CkForm2.Checked == true)
+            {
+                campoformas2 = 1;
+            }
+            else
+            {
+                campoformas2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampFormas1", campoformas1);
+            cmd.Parameters.AddWithValue("@CampFormas2", campoformas2);
+
+            if (CkEspe1.Checked == true)
+            {
+                campoespesor1 = 1;
+            }
+            else
+            {
+                campoespesor1 = 0;
+            }
+            if (CkEspe2.Checked == true)
+            {
+                campoespesor2 = 1;
+            }
+            else
+            {
+                campoespesor2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampEspesores1", campoespesor1);
+            cmd.Parameters.AddWithValue("@CampEspesores2", campoespesor2);
+
+            if (CkDiseAca1.Checked == true)
+            {
+                campodiseñoacabado1 = 1;
+            }
+            else
+            {
+                campodiseñoacabado1 = 0;
+            }
+            if (CkDiseAca1.Checked == true)
+            {
+                campodiseñoacabado2 = 1;
+            }
+            else
+            {
+                campodiseñoacabado2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampDiseñoAcabado1", campodiseñoacabado1);
+            cmd.Parameters.AddWithValue("@CampDiseñoAcabado2", campodiseñoacabado2);
+
+            if (CkNtip1.Checked == true)
+            {
+                campontipos1 = 1;
+            }
+            else
+            {
+                campontipos1 = 0;
+            }
+            if (CkNtip2.Checked == true)
+            {
+                campontipos2 = 1;
+            }
+            else
+            {
+                campontipos2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampNTipos1", campontipos1);
+            cmd.Parameters.AddWithValue("@CampNTipos2", campontipos2);
+
+            if (CkVari1.Checked == true)
+            {
+                campovarioso1 = 1;
+            }
+            else
+            {
+                campovarioso1 = 0;
+            }
+            if (CkVari2.Checked == true)
+            {
+                campovarioso2 = 1;
+            }
+            else
+            {
+                campovarioso2 = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampVarios1", campovarioso1);
+            cmd.Parameters.AddWithValue("@CampVarios2", campovarioso2);
+
+            if (CkGener.Checked == true)
+            {
+                campogeneral = 1;
+            }
+            else
+            {
+                campogeneral = 0;
+            }
+            cmd.Parameters.AddWithValue("@CampGeneral", campogeneral);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void AgregarGrupoCamposSeleccionadosDetalle(DataGridView DGV,ComboBox TCaracteristicas1, ComboBox TCaracteristicas2, ComboBox TCaracteristicas3
+            , ComboBox TCaracteristicas4, ComboBox DesCaracteristicas1, ComboBox DesCaracteristicas2, ComboBox DesCaracteristicas3, ComboBox DesCaracteristicas4
+            , ComboBox TMedidas1, ComboBox TMedidas2, ComboBox TMedidas3, ComboBox TMedidas4, ComboBox DesMedidas1, ComboBox DesMedidas2, ComboBox DesMedidas3, ComboBox DesMedidas4
+            , ComboBox TDiametros1, ComboBox TDiametros2, ComboBox TDiametros3, ComboBox TDiametros4, ComboBox DesDiametro1, ComboBox DesDiametro2, ComboBox DesDiametro3
+            , ComboBox DesDiametro4, ComboBox TFormas1, ComboBox TFormas2, ComboBox TFormas3, ComboBox TFormas4, ComboBox DesFormas1, ComboBox DesFormas2, ComboBox DesFormas3
+            , ComboBox DesFormas4, ComboBox TEspesores1, ComboBox TEspesores2, ComboBox TEspesores3, ComboBox TEspesores4, ComboBox DesEspesores1, ComboBox DesEspesores2
+            , ComboBox DesEspesores3, ComboBox DesEspesores4, ComboBox TDiseñoAcabado1, ComboBox TDiseñoAcabado2, ComboBox TDiseñoAcabado3, ComboBox TDiseñoAcabado4
+            , ComboBox DesDiseñoAcabado1, ComboBox DesDiseñoAcabado2, ComboBox DesDiseñoAcabado3, ComboBox DesDiseñoAcabado4, ComboBox Ntipos1, ComboBox Ntipos2, ComboBox Ntipos3
+            , ComboBox Ntipos4, ComboBox DesNtipos1, ComboBox DesNtipos2, ComboBox DesNtipos3, ComboBox DesNtipos4, ComboBox TvariosO1, ComboBox TvariosO2, ComboBox DesVariosO1
+            , ComboBox DesVariosO2,CheckBox General, TextBox descripciongenerales)
+        {
+            //GUARDAR PRODUCTOS - CAMPOS SELECCIONADOS - DETALLES-------------------------------------------------
+            int codigoproducto = Convert.ToInt32(DGV.SelectedCells[0].Value.ToString());
+
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand("AgregarProducto_InsertarCamposSeleccionadosDetalles",con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idart", codigoproducto);
+
+            if (TCaracteristicas1.Text == "" || TCaracteristicas1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia1", TCaracteristicas1.SelectedValue.ToString());
+            }
+
+            if (DesCaracteristicas1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia1", DesCaracteristicas1.SelectedValue.ToString());
+            }
+            //---
+
+            if (TCaracteristicas2.Text == "" || TCaracteristicas2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia2", 0);
+
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia2", TCaracteristicas2.SelectedValue.ToString());
+            }
+
+            if (DesCaracteristicas2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia2", DesCaracteristicas2.SelectedValue.ToString());
+            }
+            //---
+
+            if (TCaracteristicas3.Text == "" || TCaracteristicas3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia3", TCaracteristicas3.SelectedValue.ToString());
+
+            }
+            if (DesCaracteristicas3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia3", DesCaracteristicas3.SelectedValue.ToString());
+            }
+            //---
+
+            if (TCaracteristicas4.Text == "" || TCaracteristicas4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia4", 0);
+
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomercaderia4", TCaracteristicas4.SelectedValue.ToString());
+            }
+
+            if (DesCaracteristicas4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmercaderia4", DesCaracteristicas4.SelectedValue.ToString());
+            }
+            //--
+
+            if (TMedidas1.Text == "" || TMedidas1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomedida1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomedida1", TMedidas1.SelectedValue.ToString());
+            }
+
+            if (DesMedidas1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida1", DesMedidas1.SelectedValue.ToString());
+            }
+            //---
+
+            if (TMedidas2.Text == "" || TMedidas2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomedidaa2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomedidaa2", TMedidas2.SelectedValue.ToString());
+            }
+
+            if (DesMedidas2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida2", DesMedidas2.SelectedValue.ToString());
+            }
+            //---
+
+            if (TMedidas3.Text == "" || TMedidas3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomedida3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomedida3", TMedidas3.SelectedValue.ToString());
+            }
+
+            if (DesMedidas3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida3", DesMedidas3.SelectedValue.ToString());
+            }
+            //---
+
+            if (TMedidas4.Text == "" || TMedidas4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipomedidaa4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipomedidaa4", TMedidas4.SelectedValue.ToString());
+            }
+
+            if (DesMedidas4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionmedida4", DesMedidas4.SelectedValue.ToString());
+            }
+            //--
+
+            if (TDiametros1.Text == "" || TDiametros1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro1", TDiametros1.SelectedValue.ToString());
+            }
+
+            if (DesDiametro1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro1", DesDiametro1.SelectedValue.ToString());
+            }
+            //---
+
+            if (TDiametros2.Text == "" || TDiametros2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro2", TDiametros2.SelectedValue.ToString());
+            }
+
+            if (DesDiametro2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro2", DesDiametro2.SelectedValue.ToString());
+            }
+            //---
+
+            if (TDiametros3.Text == "" || TDiametros3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro3", TDiametros3.SelectedValue.ToString());
+            }
+
+            if (DesDiametro3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro3", 0);
+            }
+
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro3", DesDiametro3.SelectedValue.ToString());
+            }
+            //---
+
+            if (TDiametros4.Text == "" || TDiametros4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiametro4", TDiametros4.SelectedValue.ToString());
+            }
+
+            if (DesDiametro4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiametro4", DesDiametro4.SelectedValue.ToString());
+            }
+
+            if (TFormas1.Text == "" || TFormas1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas1", TFormas1.SelectedValue.ToString());
+            }
+
+            if (DesFormas1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas1", DesFormas1.SelectedValue.ToString());
+            }
+            //---
+
+            if (TFormas2.Text == "" || TFormas2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas2", TFormas2.SelectedValue.ToString());
+            }
+
+            if (DesFormas2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas2", DesFormas2.SelectedValue.ToString());
+            }
+            //---
+
+            if (TFormas3.Text == "" || TFormas3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas3", TFormas3.SelectedValue.ToString());
+            }
+
+            if (DesFormas3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas3", DesFormas3.SelectedValue.ToString());
+            }
+            //---
+
+            if (TFormas4.Text == "" || TFormas4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoformas4", TFormas4.SelectedValue.ToString());
+            }
+
+            if (DesFormas4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionformas4", DesFormas4.SelectedValue.ToString());
+            }
+            //--
+
+            if (TEspesores1.Text == "" || TEspesores1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores1", TEspesores1.SelectedValue.ToString());
+            }
+
+            if (DesEspesores1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores1", DesEspesores1.SelectedValue.ToString());
+            }
+            //---
+
+            if (TEspesores2.Text == "" || TEspesores2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores2", TEspesores2.SelectedValue.ToString());
+            }
+
+            if (DesEspesores2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores2", DesEspesores2.SelectedValue.ToString());
+            }
+            //---
+
+            if (TEspesores3.Text == "" || TEspesores3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores3", TEspesores3.SelectedValue.ToString());
+            }
+
+            if (DesEspesores3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores3", DesEspesores3.SelectedValue.ToString());
+            }
+            //---
+
+            if (TEspesores4.Text == "" || TEspesores4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipoespesores4", TEspesores4.SelectedValue.ToString());
+            }
+
+            if (DesEspesores4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionespesores4", DesEspesores4.SelectedValue.ToString());
+            }
+            //--
+
+            if (TDiseñoAcabado1.Text == "" || TDiseñoAcabado1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado1", TDiseñoAcabado1.SelectedValue.ToString());
+            }
+
+            if (DesDiseñoAcabado1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado1", DesDiseñoAcabado1.SelectedValue.ToString());
+            }
+            //---
+
+            if (TDiseñoAcabado2.Text == "" || TDiseñoAcabado2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado2", TDiseñoAcabado2.SelectedValue.ToString());
+            }
+
+            if (DesDiseñoAcabado2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado2", DesDiseñoAcabado2.SelectedValue.ToString());
+            }
+            //---
+
+            if (TDiseñoAcabado3.Text == "" || TDiseñoAcabado3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado3", TDiseñoAcabado3.SelectedValue.ToString());
+            }
+
+            if (DesDiseñoAcabado3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado3", DesDiseñoAcabado3.SelectedValue.ToString());
+            }
+            //---
+
+            if (TDiseñoAcabado4.Text == "" || TDiseñoAcabado4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipodiseñoacabado4", TDiseñoAcabado4.SelectedValue.ToString());
+            }
+
+            if (DesDiseñoAcabado4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado4", DesDiseñoAcabado4.SelectedValue.ToString());
+            }
+            //--
+
+            if (Ntipos1.Text == "" || Ntipos1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos1", Ntipos1.SelectedValue.ToString());
+            }
+
+            if (DesNtipos1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos1", DesNtipos1.SelectedValue.ToString());
+            }
+            //---
+
+            if (Ntipos2.Text == "" || Ntipos2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos2", Ntipos2.SelectedValue.ToString());
+            }
+
+            if (DesNtipos2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos2", DesNtipos2.SelectedValue.ToString());
+            }
+            //---
+
+            if (Ntipos3.Text == "" || Ntipos3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos3", Ntipos3.SelectedValue.ToString());
+            }
+
+            if (DesNtipos3.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos3", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos3", DesNtipos3.SelectedValue.ToString());
+            }
+            //---
+
+            if (Ntipos4.Text == "" || Ntipos4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipontipos4", Ntipos4.SelectedValue.ToString());
+            }
+
+            if (DesNtipos4.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos4", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionntipos4", DesNtipos4.SelectedValue.ToString());
+            }
+
+            if (TvariosO1.Text == "" || TvariosO1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipovarioso1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipovarioso1", TvariosO1.SelectedValue.ToString());
+            }
+
+            if (DesVariosO1.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionvarioso1", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionvarioso1", DesVariosO1.SelectedValue.ToString());
+            }
+            //---
+
+            if (TvariosO2.Text == "" || TvariosO2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@idtipovarioso2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@idtipovarioso2", TvariosO2.SelectedValue.ToString());
+            }
+
+            if (DesVariosO2.SelectedValue == null)
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionvarioso2", 0);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@iddescripcionvarioso2", DesVariosO2.SelectedValue.ToString());
+            }
+
+            if (General.Checked == true)
+            {
+                cmd.Parameters.AddWithValue("@campogeneral", descripciongenerales.Text);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@campogeneral", "");
+            }
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void AgregarProductos(string anotaciones, string codigo, string descripciongeneradaproducto)
         {
             ////INGRESAR TABLA PRINCIPAL DE PRODUCTOS
             //SI EL CAMPO ANOTACIONES/CÓDIGO BSS REFERENCIAL NO ESTA VACIO
-            if (txtAnotaciones.Text != "")
+            if (anotaciones != "")
             {
                 //SI EL CAMPO CÓDIGO DEL PRODUCTO GENERÓ ADECUADAMENTE EL CÓDIGO
-                if (txtCodigo.Text != "")
+                if (codigo != "")
                 {
                     //CONFIRMACIÓN DE LA ACCIÓN DE GUARDAR CON SUS DETALLES
-                    DialogResult boton = MessageBox.Show("Esta por guardar un nuevo producto con el código " + txtCodigo.Text + " y con la siguiente descripción " + txtDescripcionGeneradaProducto.Text + ", ¿Realmente desea guardar este producto?.", "Nuevo Producto", MessageBoxButtons.OKCancel);
+                    DialogResult boton = MessageBox.Show("Esta por guardar un nuevo producto con el código " + codigo + " y con la siguiente descripción " + descripciongeneradaproducto + ", ¿Realmente desea guardar este producto?.", "Nuevo Producto", MessageBoxButtons.OKCancel);
                     if (boton == DialogResult.OK)
                     {
                         //SISTEMA DE VALIDACION DE CAMPOS VACIOS
@@ -4803,921 +5900,87 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                         }
                         else
                         {
-                            //SI NO HAY PLANO AGREGADO
-                            if (txtFile.Text == "")
+                            try
                             {
-                                //GUARDAR PRODUCTOS - DATOS PRINCIPALES---------------------------------------------------
-                                SqlConnection conp = new SqlConnection();
-                                conp.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                conp.Open();
-                                SqlCommand cmdp = new SqlCommand();
-                                cmdp = new SqlCommand("InsertarProductoCamposPrincipales", conp);
-                                cmdp.CommandType = CommandType.StoredProcedure;
+                                AgregarPlano(txtCodigo.Text, Convert.ToString(cboTipoMedida.SelectedValue), Convert.ToInt32(cboTipoMercaderia.SelectedValue), Convert.ToInt32(cboModelos.SelectedValue)
+                                    , Convert.ToInt32(cboLineas.SelectedValue), Convert.ToInt32(cboDiferencial.SelectedValue), txtDescripcionGeneradaProducto.Text, txtAnotaciones.Text
+                                    , ckSemiProducido, lblCodigoReferenciaPlano.Text, lblCodigoPlano.Text, txtFile.Text, dataListadoCdigoPlano);
 
-                                cmdp.Parameters.AddWithValue("@codom", txtCodigo.Text);
-                                cmdp.Parameters.AddWithValue("@idmedida", cboTipoMedida.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@idtipomercaderia", cboTipoMercaderia.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@idmodelo", cboModelos.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@idlinea", cboLineas.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@iddiferencial", cboDiferencial.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@detalle", txtDescripcionGeneradaProducto.Text);
-                                cmdp.Parameters.AddWithValue("@descripcion", txtAnotaciones.Text);
-
-                                if (ckSemiProducido.Checked == true) { semirpoducido = 1; } else { semirpoducido = 0; }
-                                cmdp.Parameters.AddWithValue("@semiproducido", semirpoducido);
-                                cmdp.Parameters.AddWithValue("@codigogenerado", "");
-                                cmdp.Parameters.AddWithValue("@rutaImagen", "");
-
-                                cmdp.ExecuteNonQuery();
-                                conp.Close();
-                            }
-                            //SI HAN AGREGADO PLANO
-                            else
-                            {
-                                string NombreGenerado = txtCodigo.Text + " - " + txtDescripcionGeneradaProducto.Text + " - " + lblCodigoReferenciaPlano.Text;
-
-                                string RutaOld = txtFile.Text;
-
-                                string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Productos\Planos\" + NombreGenerado + ".pdf";
-
-                                File.Copy(RutaOld, RutaNew);
-
-                                //GUARDAR PRODUCTOS - DATOS PRINCIPALES---------------------------------------------------
-                                SqlConnection conp = new SqlConnection();
-                                conp.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                conp.Open();
-                                SqlCommand cmdp = new SqlCommand();
-                                cmdp = new SqlCommand("InsertarProductoCamposPrincipales_Plano", conp);
-                                cmdp.CommandType = CommandType.StoredProcedure;
-
-                                cmdp.Parameters.AddWithValue("@codom", txtCodigo.Text);
-                                cmdp.Parameters.AddWithValue("@idmedida", cboTipoMedida.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@idtipomercaderia", cboTipoMercaderia.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@idmodelo", cboModelos.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@idlinea", cboLineas.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@iddiferencial", cboDiferencial.SelectedValue.ToString());
-                                cmdp.Parameters.AddWithValue("@detalle", txtDescripcionGeneradaProducto.Text);
-                                cmdp.Parameters.AddWithValue("@descripcion", txtAnotaciones.Text);
-
-                                if (ckSemiProducido.Checked == true) { semirpoducido = 1; } else { semirpoducido = 0; }
-                                cmdp.Parameters.AddWithValue("@semiproducido", semirpoducido);
-                                cmdp.Parameters.AddWithValue("@codigogenerado", "");
-                                cmdp.Parameters.AddWithValue("@rutaImagen", "");
-
-                                //PARAMETROS DEL INGRESO DE PLANO-------------------------------
-                                cmdp.Parameters.AddWithValue("@doc", SqlDbType.VarBinary).Value = System.Data.SqlTypes.SqlBinary.Null;
-                                cmdp.Parameters.AddWithValue("@namereferences", lblCodigoReferenciaPlano.Text);
-                                cmdp.Parameters.AddWithValue("@name", RutaNew);
-                                cmdp.Parameters.AddWithValue("@realname", NombreGenerado + ".pdf");
-
+                                //CAPTURAR EL CÓDIGO DEL PRODUCTO GENERADO PARA ENLAZARLO CON SUS CARACTERISTICAS Y ATRIBUTOS
                                 codigoProducto();
-                                int codigoproduc = Convert.ToInt32(dataListadoCdigoProducto.SelectedCells[0].Value.ToString());
-                                cmdp.Parameters.AddWithValue("@idart", codigoproduc + 1);
-                                codigoPlano();
-                                lblCodigoPlano.Text = dataListadoCdigoPlano.SelectedCells[0].Value.ToString();
-                                cmdp.Parameters.AddWithValue("@idplano", Convert.ToInt32(lblCodigoPlano.Text) + 1);
 
-                                cmdp.ExecuteNonQuery();
-                                conp.Close();
-                            }
-                            //CAPTURAR EL CÓDIGO DEL PRODUCTO GENERADO PARA ENLAZARLO CON SUS CARACTERISTICAS Y ATRIBUTOS
-                            codigoProducto();
-
-                            //GUARDAR PRODUCTOS - DATOS ANEXOS---------------------------------------------------------
-                            SqlConnection con = new SqlConnection();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarProductoDatosAnexos", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            int codigoproducto = Convert.ToInt32(dataListadoCdigoProducto.SelectedCells[0].Value.ToString());
-                            cmd.Parameters.AddWithValue("@IdArt", codigoproducto);
-                            cmd.Parameters.AddWithValue("@afectoIGV", afectadoIGV);
-                            cmd.Parameters.AddWithValue("@controlarStock", controlarstock);
-                            cmd.Parameters.AddWithValue("@juego", juego);
-                            cmd.Parameters.AddWithValue("@servicio", servicio);
-                            cmd.Parameters.AddWithValue("@controlarLotes", controlarlotes);
-                            cmd.Parameters.AddWithValue("@controlarserie", controlarserie);
-
-                            cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
-                            cmd.Parameters.AddWithValue("@ubicacion", txtUbicacion.Text);
-                            cmd.Parameters.AddWithValue("@reposicion", reposicion);
-                            cmd.Parameters.AddWithValue("@minimo", Convert.ToDecimal(txtMinimo.Text));
-                            cmd.Parameters.AddWithValue("@maximo", Convert.ToDecimal(txtMaximo.Text));
-
-                            cmd.Parameters.AddWithValue("@idorigen", cboOrigen.SelectedValue.ToString());
-                            cmd.Parameters.AddWithValue("@idterminoscompra", cboTerminosCompra.SelectedValue.ToString());
-                            cmd.Parameters.AddWithValue("@contenedor", txtContenedor.Text);
-                            cmd.Parameters.AddWithValue("@pesocontenedor", Convert.ToDecimal(txtPesoContenedor.Text));
-                            cmd.Parameters.AddWithValue("@medidas", txtMedidas.Text);
-
-                            cmd.Parameters.AddWithValue("@idtipoexistencia", cboTipoExistencia.SelectedValue.ToString());
-                            cmd.Parameters.AddWithValue("@codigounsocs", txtCodigoUNSPCS.Text);
-                            cmd.Parameters.AddWithValue("@sujetopercepcion", sujetropercepcion);
-                            cmd.Parameters.AddWithValue("@porcentajepercepcion", Convert.ToDouble(txtPorcentajePercepcion.Text));
-                            cmd.Parameters.AddWithValue("@idbienessujeropercepcion", cboBienesSujetoPercepcion.SelectedValue.ToString());
-                            cmd.Parameters.AddWithValue("@sujetodetraccion", sujetodetraccion);
-                            cmd.Parameters.AddWithValue("@porcentajedetraccion", Convert.ToDouble(txtPorcentajeDetraccion.Text));
-                            cmd.Parameters.AddWithValue("@sujetoISC", sujetoisc);
-                            cmd.Parameters.AddWithValue("@porcentajeISC", Convert.ToDouble(txtPorcentajeISC.Text));
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            //GUARDAR PRODUCTOS - CAMPOS SELECCIONADOS-------------------------------------------------------
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("InsertarProductoGrupoCamposSeleccionados", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@idart", codigoproducto);
-
-                            if (ckCaracteristicas1.Checked == true)
-                            {
-                                campocaracteristicas1 = 1;
-                            }
-                            else
-                            {
-                                campocaracteristicas1 = 0;
-                            }
-                            if (ckCaracteristicas2.Checked == true)
-                            {
-                                campocaracteristicas2 = 1;
-                            }
-                            else
-                            {
-                                campocaracteristicas2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampCaracteristicas1", campocaracteristicas1);
-                            cmd.Parameters.AddWithValue("@CampCaracteristicas2", campocaracteristicas2);
-
-                            if (ckCamposMedida1.Checked == true)
-                            {
-                                campomedidas1 = 1;
-                            }
-                            else
-                            {
-                                campomedidas1 = 0;
-                            }
-                            if (ckCamposMedida2.Checked == true)
-                            {
-                                campomedidas2 = 1;
-                            }
-                            else
-                            {
-                                campomedidas2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampMedidas1", campomedidas1);
-                            cmd.Parameters.AddWithValue("@CampMedidas2", campomedidas2);
-
-                            if (ckCamposDiametros1.Checked == true)
-                            {
-                                campodiametros1 = 1;
-                            }
-                            else
-                            {
-                                campodiametros1 = 0;
-                            }
-                            if (ckCamposDiametros2.Checked == true)
-                            {
-                                campodiametros2 = 1;
-                            }
-                            else
-                            {
-                                campodiametros2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampDiametros1", campodiametros1);
-                            cmd.Parameters.AddWithValue("@CampDiametros2", campodiametros2);
-
-                            if (ckCamposFormas1.Checked == true)
-                            {
-                                campoformas1 = 1;
-                            }
-                            else
-                            {
-                                campoformas1 = 0;
-                            }
-                            if (ckCamposFormas2.Checked == true)
-                            {
-                                campoformas2 = 1;
-                            }
-                            else
-                            {
-                                campoformas2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampFormas1", campoformas1);
-                            cmd.Parameters.AddWithValue("@CampFormas2", campoformas2);
-
-                            if (ckCamposEspesores1.Checked == true)
-                            {
-                                campoespesor1 = 1;
-                            }
-                            else
-                            {
-                                campoespesor1 = 0;
-                            }
-                            if (ckCamposEspesores2.Checked == true)
-                            {
-                                campoespesor2 = 1;
-                            }
-                            else
-                            {
-                                campoespesor2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampEspesores1", campoespesor1);
-                            cmd.Parameters.AddWithValue("@CampEspesores2", campoespesor2);
-
-                            if (ckCamposDiseñoAcabado1.Checked == true)
-                            {
-                                campodiseñoacabado1 = 1;
-                            }
-                            else
-                            {
-                                campodiseñoacabado1 = 0;
-                            }
-                            if (ckCamposDiseñoAcabado2.Checked == true)
-                            {
-                                campodiseñoacabado2 = 1;
-                            }
-                            else
-                            {
-                                campodiseñoacabado2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampDiseñoAcabado1", campodiseñoacabado1);
-                            cmd.Parameters.AddWithValue("@CampDiseñoAcabado2", campodiseñoacabado2);
-
-                            if (ckCamposNTipos1.Checked == true)
-                            {
-                                campontipos1 = 1;
-                            }
-                            else
-                            {
-                                campontipos1 = 0;
-                            }
-                            if (ckCamposNTipos2.Checked == true)
-                            {
-                                campontipos2 = 1;
-                            }
-                            else
-                            {
-                                campontipos2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampNTipos1", campontipos1);
-                            cmd.Parameters.AddWithValue("@CampNTipos2", campontipos2);
-
-                            if (ckVariosO1.Checked == true)
-                            {
-                                campovarioso1 = 1;
-                            }
-                            else
-                            {
-                                campovarioso1 = 0;
-                            }
-                            if (ckVariosO2.Checked == true)
-                            {
-                                campovarioso2 = 1;
-                            }
-                            else
-                            {
-                                campovarioso2 = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampVarios1", campovarioso1);
-                            cmd.Parameters.AddWithValue("@CampVarios2", campovarioso2);
-
-                            if (ckGenerales.Checked == true)
-                            {
-                                campogeneral = 1;
-                            }
-                            else
-                            {
-                                campogeneral = 0;
-                            }
-                            cmd.Parameters.AddWithValue("@CampGeneral", campogeneral);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            //GUARDAR PRODUCTOS - CAMPOS SELECCIONADOS - DETALLES-------------------------------------------------
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("InsertarProductoCamposSeleccionadosDetalles", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@idart", codigoproducto);
-
-                            if (cboTipoCaracteristicas1.Text == "" || cboTipoCaracteristicas1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia1", cboTipoCaracteristicas1.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionCaracteristicas1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia1", cboDescripcionCaracteristicas1.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTipoCaracteristicas2.Text == "" || cboTipoCaracteristicas2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia2", 0);
-
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia2", cboTipoCaracteristicas2.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionCaracteristicas2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia2", cboDescripcionCaracteristicas2.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTipoCaracteristicas3.Text == "" || cboTipoCaracteristicas3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia3", cboTipoCaracteristicas3.SelectedValue.ToString());
-
-                            }
-                            if (cboDescripcionCaracteristicas3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia3", cboDescripcionCaracteristicas3.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTipoCaracteristicas4.Text == "" || cboTipoCaracteristicas4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia4", 0);
-
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia4", cboTipoCaracteristicas4.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionCaracteristicas4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmercaderia4", cboDescripcionCaracteristicas4.SelectedValue.ToString());
-                            }
-                            //--
-
-                            if (cboTipoMedida1.Text == "" || cboTipoMedida1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida1", cboTipoMedida1.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionMedida1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida1", cboDescripcionMedida1.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTipoMedida2.Text == "" || cboTipoMedida2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedidaa2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedidaa2", cboTipoMedida2.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionMedida2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida2", cboDescripcionMedida2.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTipoMedida3.Text == "" || cboTipoMedida3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida3", cboTipoMedida3.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionMedida3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida3", cboDescripcionMedida3.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTipoMedida4.Text == "" || cboTipoMedida4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedidaa4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedidaa4", cboTipoMedida4.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionMedida4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionmedida4", cboDescripcionMedida4.SelectedValue.ToString());
-                            }
-                            //--
-
-                            if (cboTiposDiametros1.Text == "" || cboTiposDiametros1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro1", cboTiposDiametros1.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionDiametros1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro1", cboDescripcionDiametros1.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposDiametros2.Text == "" || cboTiposDiametros2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro2", cboTiposDiametros2.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionDiametros2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro2", cboDescripcionDiametros2.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposDiametros3.Text == "" || cboTiposDiametros3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro3", cboTiposDiametros3.SelectedValue.ToString());
-                            }
+                                Agregar_DatosAnexos(Convert.ToDecimal(txtPeso.Text), txtUbicacion.Text, Convert.ToDecimal(txtMinimo.Text), Convert.ToDecimal(txtMaximo.Text)
+                                    , Convert.ToInt32(cboOrigen.SelectedValue), Convert.ToInt32(cboTerminosCompra.SelectedValue), txtContenedor.Text, Convert.ToDecimal(txtPesoContenedor.Text)
+                                    , txtMedidas.Text, Convert.ToInt32(cboTipoExistencia.SelectedValue), txtCodigoUNSPCS.Text, Convert.ToDouble(txtPorcentajePercepcion.Text)
+                                    , Convert.ToInt32(cboBienesSujetoPercepcion.SelectedValue), Convert.ToDouble(txtPorcentajeDetraccion.Text), Convert.ToDouble(txtPorcentajeISC.Text));
 
-                            if (cboDescripcionDiametros3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro3", 0);
-                            }
-
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro3", cboDescripcionDiametros3.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposDiametros4.Text == "" || cboTiposDiametros4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro4", cboTiposDiametros4.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionDiametros4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiametro4", cboDescripcionDiametros4.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposFormas1.Text == "" || cboTiposFormas1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas1", cboTiposFormas1.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionFormas1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas1", cboDescripcionFormas1.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposFormas2.Text == "" || cboTiposFormas2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas2", cboTiposFormas2.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionFormas2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas2", cboDescripcionFormas2.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposFormas3.Text == "" || cboTiposFormas3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas3", cboTiposFormas3.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionFormas3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas3", cboDescripcionFormas3.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposFormas4.Text == "" || cboTiposFormas4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas4", cboTiposFormas4.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionFormas4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionformas4", cboDescripcionFormas4.SelectedValue.ToString());
-                            }
-                            //--
-
-                            if (cbooTipoEspesores1.Text == "" || cbooTipoEspesores1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores1", cbooTipoEspesores1.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionEspesores1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores1", cboDescripcionEspesores1.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cbooTipoEspesores2.Text == "" || cbooTipoEspesores2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores2", cbooTipoEspesores2.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionEspesores2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores2", cboDescripcionEspesores2.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cbooTipoEspesores3.Text == "" || cbooTipoEspesores3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores3", cbooTipoEspesores3.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionEspesores3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores3", cboDescripcionEspesores3.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cbooTipoEspesores4.Text == "" || cbooTipoEspesores4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores4", cbooTipoEspesores4.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionEspesores4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionespesores4", cboDescripcionEspesores4.SelectedValue.ToString());
-                            }
-                            //--
-
-                            if (cboTiposDiseñosAcabados1.Text == "" || cboTiposDiseñosAcabados1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado1", cboTiposDiseñosAcabados1.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionDiseñoAcabado1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado1", cboDescripcionDiseñoAcabado1.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposDiseñosAcabados2.Text == "" || cboTiposDiseñosAcabados2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado2", cboTiposDiseñosAcabados2.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionDiseñoAcabado2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado2", cboDescripcionDiseñoAcabado2.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposDiseñosAcabados3.Text == "" || cboTiposDiseñosAcabados3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado3", cboTiposDiseñosAcabados3.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionDiseñoAcabado3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado3", cboDescripcionDiseñoAcabado3.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposDiseñosAcabados4.Text == "" || cboTiposDiseñosAcabados4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiseñoacabado4", cboTiposDiseñosAcabados4.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionDiseñoAcabado4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripciondiseñoacabado4", cboDescripcionDiseñoAcabado4.SelectedValue.ToString());
-                            }
-                            //--
-
-                            if (cboTiposNTipos1.Text == "" || cboTiposNTipos1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos1", cboTiposNTipos1.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionNTipos1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos1", cboDescripcionNTipos1.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposNTipos2.Text == "" || cboTiposNTipos2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos2", cboTiposNTipos2.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionNTipos2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos2", cboDescripcionNTipos2.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposNTipos3.Text == "" || cboTiposNTipos3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos3", cboTiposNTipos3.SelectedValue.ToString());
-                            }
-
-                            if (cboDescripcionNTipos3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos3", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos3", cboDescripcionNTipos3.SelectedValue.ToString());
-                            }
-                            //---
-
-                            if (cboTiposNTipos4.Text == "" || cboTiposNTipos4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos4", cboTiposNTipos4.SelectedValue.ToString());
-                            }
+                                AgregarGruposCamposSeleccionados(dataListadoCdigoProducto, ckCaracteristicas1, ckCaracteristicas2, ckCamposMedida1, ckCamposMedida2, ckCamposDiametros1, ckCamposDiametros2
+                                    , ckCamposFormas1, ckCamposFormas2, ckCamposEspesores1, ckCamposEspesores2, ckCamposDiseñoAcabado1, ckCamposDiseñoAcabado2, ckCamposNTipos1
+                                    , ckCamposNTipos2, ckVariosO1, ckVariosO2, ckGenerales);
 
-                            if (cboDescripcionNTipos4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos4", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionntipos4", cboDescripcionNTipos4.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposVariosO1.Text == "" || cboTiposVariosO1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipovarioso1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipovarioso1", cboTiposVariosO1.SelectedValue.ToString());
-                            }
+                                AgregarGrupoCamposSeleccionadosDetalle(dataListadoCdigoProducto, cboTipoCaracteristicas1, cboTipoCaracteristicas2
+                                    , cboTipoCaracteristicas3, cboTipoCaracteristicas4, cboDescripcionCaracteristicas1, cboDescripcionCaracteristicas2
+                                    , cboDescripcionCaracteristicas3, cboDescripcionCaracteristicas4, cboTipoMedida1, cboTipoMedida2, cboTipoMedida3
+                                    , cboTipoMedida4, cboDescripcionMedida1, cboDescripcionMedida2, cboDescripcionMedida3, cboDescripcionMedida4
+                                    , cboTiposDiametros1, cboTiposDiametros2, cboTiposDiametros3, cboTiposDiametros4, cboDescripcionDiametros1
+                                    , cboDescripcionDiametros2, cboDescripcionDiametros3, cboDescripcionDiametros4, cboTiposFormas1, cboTiposFormas2
+                                    , cboTiposFormas3, cboTiposFormas4, cboDescripcionFormas1, cboDescripcionFormas2, cboDescripcionFormas3
+                                    , cboDescripcionFormas4, cbooTipoEspesores1, cbooTipoEspesores2, cbooTipoEspesores3, cbooTipoEspesores4
+                                    , cboDescripcionEspesores1, cboDescripcionEspesores2, cboDescripcionEspesores3, cboDescripcionEspesores4
+                                    , cboTiposDiseñosAcabados1, cboTiposDiseñosAcabados2, cboTiposDiseñosAcabados3, cboTiposDiseñosAcabados4
+                                    , cboDescripcionDiseñoAcabado1, cboDescripcionDiseñoAcabado2, cboDescripcionDiseñoAcabado3, cboDescripcionDiseñoAcabado4
+                                    , cboTiposNTipos1, cboTiposNTipos2, cboTiposNTipos3, cboTiposNTipos4, cboDescripcionNTipos1, cboDescripcionNTipos2
+                                    , cboDescripcionNTipos3, cboDescripcionNTipos4, cboTiposVariosO1, cboTiposVariosO2, cboDescripcionVariosO1, cboDescripcionVariosO2
+                                    , ckGenerales, txtDescripcionGeneral);
 
-                            if (cboDescripcionVariosO1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionvarioso1", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionvarioso1", cboDescripcionVariosO1.SelectedValue.ToString());
-                            }
-                            //---
 
-                            if (cboTiposVariosO2.Text == "" || cboTiposVariosO2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipovarioso2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipovarioso2", cboTiposVariosO2.SelectedValue.ToString());
-                            }
+                                MessageBox.Show("Producto ingresado correctamente.", "Nuevo Producto", MessageBoxButtons.OK);
 
-                            if (cboDescripcionVariosO2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionvarioso2", 0);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@iddescripcionvarioso2", cboDescripcionVariosO2.SelectedValue.ToString());
-                            }
+                                this.Close();
+                                //this.Hide();
 
-                            if(ckGenerales.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campogeneral", txtDescripcionGeneral.Text);
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                cmd.Parameters.AddWithValue("@campogeneral", "");
+                                MessageBox.Show(ex.Message);
                             }
-
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            MessageBox.Show("Producto ingresado correctamente.", "Nuevo Producto", MessageBoxButtons.OK);
-
-                            this.Hide();
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe ingresar un código referencial del BSS para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Debe ingresar un código referencial del BSS para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe ingresar un código para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
                 }
             }
-            else
-            {
-                MessageBox.Show("Debe ingresar un código para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
-            }
+        }
+
+
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            AgregarProductos(txtAnotaciones.Text,txtCodigo.Text, txtDescripcionGeneradaProducto.Text);
         }
 
         //SALIR DE NUEVO PRODUCTOS
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
+            //this.Hide();
         }
         //FIN----------------------------------------------------------------------------------------------------------
 
         //VALIDACIONES DE LOS DATOS ANEXOS AL PRODUCTO Y GENERACION DE CODIGO PARA LOS PLANOS-----------------------------------
         //ACCIONES DE CAMPOS ANEXOS
-        public void GeneracionReferenciaPlano()
+        public void GeneracionReferenciaPlano(Label lbl1, Label lbl2)
         {
             string abreviaturaModelo = "";
-            abreviaturaModelo = lblModelo.Text;
+            abreviaturaModelo = lbl1.Text;
 
-            lblCodigoReferenciaPlano.Text = "A-" + abreviaturaModelo + "00";
+            lbl2.Text = "A-" + abreviaturaModelo + "00";
         }
 
         //CANCELAR DATOS ANEXOS Y LIMPIAR TODOS LOS CAMPOS
@@ -7297,7 +7560,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //GAURDAR NUEVA DESCIPCIÓN
         private void btnIngresarNuevosValores_Click(object sender, EventArgs e)
         {
-            IngresarNuevoDato();
+            IngresarNuevoDato(txtTipoOngreso.Text, lblTituloAdaptable.Text, lblCodigoTipoIngreso.Text, Convert.ToInt32(lblCodigoModelo.Text), txtValorIngreso.Text, cboModelos.Text
+                               , cboTipoCaracteristicas1, cboTipoCaracteristicas2, cboTipoCaracteristicas3, cboTipoCaracteristicas4, cboDescripcionCaracteristicas1, cboDescripcionCaracteristicas2
+                               , cboDescripcionCaracteristicas3, cboDescripcionCaracteristicas4, cboTipoMedida1, cboTipoMedida2, cboTipoMedida3, cboTipoMedida4, cboDescripcionMedida1, cboDescripcionMedida2
+                               , cboDescripcionMedida3, cboDescripcionMedida4, cboTiposDiametros1, cboTiposDiametros2, cboTiposDiametros3, cboTiposDiametros4, cboDescripcionDiametros1, cboDescripcionDiametros2
+                               , cboDescripcionDiametros3, cboDescripcionDiametros4, cboTiposFormas1, cboTiposFormas2, cboTiposFormas3, cboTiposFormas4, cboDescripcionFormas1, cboDescripcionFormas2, cboDescripcionFormas3
+                               , cboDescripcionFormas4, cbooTipoEspesores1, cbooTipoEspesores2, cbooTipoEspesores3, cbooTipoEspesores4, cboDescripcionEspesores1, cboDescripcionEspesores2, cboDescripcionEspesores3
+                               , cboDescripcionEspesores4, cboTiposDiseñosAcabados1, cboTiposDiseñosAcabados2, cboTiposDiseñosAcabados3, cboTiposDiseñosAcabados4, cboDescripcionDiseñoAcabado1, cboDescripcionDiseñoAcabado2
+                               , cboDescripcionDiseñoAcabado3, cboDescripcionDiseñoAcabado4, cboTiposNTipos1, cboTiposNTipos2, cboTiposNTipos3, cboTiposNTipos4, cboDescripcionNTipos1, cboDescripcionNTipos2, cboDescripcionNTipos3
+                               , cboDescripcionNTipos4, cboTiposVariosO1, cboTiposVariosO2, cboDescripcionVariosO1, cboDescripcionVariosO2, datalistadoCamposPredeterminadosDetalle, panelNuevoValores);
         }
 
         //CONFIRMAR INGRESO DEL DATO
@@ -7305,49 +7576,65 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         {
             if (e.KeyCode == Keys.Enter)
             {
-                IngresarNuevoDato();
+                IngresarNuevoDato(txtTipoOngreso.Text,lblTituloAdaptable.Text,lblCodigoTipoIngreso.Text,Convert.ToInt32(lblCodigoModelo.Text),txtValorIngreso.Text,cboModelos.Text
+                    ,cboTipoCaracteristicas1,cboTipoCaracteristicas2,cboTipoCaracteristicas3,cboTipoCaracteristicas4,cboDescripcionCaracteristicas1,cboDescripcionCaracteristicas2
+                    ,cboDescripcionCaracteristicas3,cboDescripcionCaracteristicas4,cboTipoMedida1,cboTipoMedida2,cboTipoMedida3,cboTipoMedida4,cboDescripcionMedida1,cboDescripcionMedida2
+                    ,cboDescripcionMedida3,cboDescripcionMedida4,cboTiposDiametros1,cboTiposDiametros2,cboTiposDiametros3,cboTiposDiametros4,cboDescripcionDiametros1,cboDescripcionDiametros2
+                    ,cboDescripcionDiametros3,cboDescripcionDiametros4,cboTiposFormas1,cboTiposFormas2,cboTiposFormas3,cboTiposFormas4,cboDescripcionFormas1,cboDescripcionFormas2,cboDescripcionFormas3
+                    ,cboDescripcionFormas4,cbooTipoEspesores1,cbooTipoEspesores2,cbooTipoEspesores3,cbooTipoEspesores4,cboDescripcionEspesores1,cboDescripcionEspesores2,cboDescripcionEspesores3
+                    ,cboDescripcionEspesores4,cboTiposDiseñosAcabados1,cboTiposDiseñosAcabados2,cboTiposDiseñosAcabados3,cboTiposDiseñosAcabados4,cboDescripcionDiseñoAcabado1,cboDescripcionDiseñoAcabado2
+                    ,cboDescripcionDiseñoAcabado3,cboDescripcionDiseñoAcabado4,cboTiposNTipos1,cboTiposNTipos2,cboTiposNTipos3,cboTiposNTipos4,cboDescripcionNTipos1,cboDescripcionNTipos2,cboDescripcionNTipos3
+                    ,cboDescripcionNTipos4,cboTiposVariosO1,cboTiposVariosO2,cboDescripcionVariosO1,cboDescripcionVariosO2,datalistadoCamposPredeterminadosDetalle,panelNuevoValores);
             }
         }
 
         //FUNCION PARA INGRESAR UN  NUEVO DATO
-        public void IngresarNuevoDato()
+        public void IngresarNuevoDato(string tipoOngreso,string tituloadaptable,string codigotipoingreso, int codigomodelo, string valoringreso,string modelos,ComboBox TipCaracteristica1
+            ,ComboBox TipCaracteristica2,ComboBox TipCaracteristica3, ComboBox TipCaracteristica4, ComboBox DesCaracteristicas1,ComboBox DesCaracteristicas2, ComboBox DesCaracteristicas3
+            ,ComboBox DesCaracteristicas4,ComboBox TipMedidas1,ComboBox TipMedidas2,ComboBox TipMedidas3, ComboBox TipMedidas4,ComboBox DesMedidas1,ComboBox DesMedidas2,ComboBox DesMedidas3
+            ,ComboBox DesMedidas4,ComboBox TipDiametros1, ComboBox TipDiametros2, ComboBox TipDiametros3, ComboBox TipDiametros4,ComboBox DesDiametros1,ComboBox DesDiametros2,ComboBox DesDiametros3
+            ,ComboBox DesDiametros4,ComboBox TipFormas1,ComboBox TipFormas2,ComboBox TipFormas3,ComboBox TipFormas4,ComboBox DesFormas1,ComboBox DesFormas2,ComboBox DesFormas3,ComboBox DesFormas4
+            ,ComboBox TipEspesores1,ComboBox TipEspesores2,ComboBox TipEspesores3,ComboBox TipEspesores4,ComboBox DesEspesores1,ComboBox DesEspesores2,ComboBox DesEspesores3,ComboBox DesEspesores4
+            ,ComboBox TipDiseñoAcabado1,ComboBox TipDiseñoAcabado2,ComboBox TipDiseñoAcabado3,ComboBox TipDiseñoAcabado4,ComboBox DesDiseñoAcabado1,ComboBox DesDiseñoAcabado2,ComboBox DesDiseñoAcabado3
+            ,ComboBox DesDiseñoAcabado4,ComboBox TipNtipos1,ComboBox TipNtipos2,ComboBox TipNtipos3,ComboBox TipNtipos4,ComboBox DesNtipos1,ComboBox DesNtipos2,ComboBox DesNtipos3,ComboBox DesNtipos4
+            ,ComboBox TipVariosO1,ComboBox TipVariosO2,ComboBox DesVariosO1,ComboBox DesVariosO2,DataGridView DGV,Panel PNuevoValores)
         {
-            if (txtTipoOngreso.Text != "NO APLICA")
+            if (tipoOngreso != "NO APLICA")
             {
                 DialogResult boton = MessageBox.Show("Esta por guardar este dato.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
                     try
                     {
-                        if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 2" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 3" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 4")
+                        if (tituloadaptable == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 2" || tituloadaptable == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 3" || tituloadaptable == "INGRESO DE NUEVOS DATOS - CARACTERISTICAS 4")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionCaracteristicas", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionCaracteristicas", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             //PRODUCTOS QUIMICOS - ADHESIVOS
-                            if (cboModelos.Text == "ADHESIVOS" && txtTipoOngreso.Text == "COMPONENTES")
+                            if (modelos == "ADHESIVOS" && valoringreso == "COMPONENTES")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'COMPONENTES' DEPENDIENTE DEL CAMPO 'SISTEMA'");
                             }
                             //PRODUCTOS QUIMICOS - FLOCULANTES
-                            else if (cboModelos.Text == "FLOCULANTES" && txtTipoOngreso.Text == "PROVEEDOR")
+                            else if (modelos == "FLOCULANTES" && tipoOngreso == "PROVEEDOR")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'PROVEEDOR' DEPENDIENTE DEL CAMPO 'ELEMENTO'");
                             }
                             //PRODUCTOS QUIMICOS - POLIURETANO Y COMPONETES
-                            else if (cboModelos.Text == "POLIURETANO Y COMPONENTES" && txtTipoOngreso.Text == "COMPONENTES" || cboModelos.Text == "POLIURETANO Y COMPONENTES" && txtTipoOngreso.Text == "PROVEEDOR")
+                            else if (modelos == "POLIURETANO Y COMPONENTES" && tipoOngreso == "COMPONENTES" || modelos == "POLIURETANO Y COMPONENTES" && tipoOngreso == "PROVEEDOR")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'COMPONENTES' Y CAMPO 'PROVEEDOR' DEPENDIENTE DEL CAMPO 'SISTEMA'");
                             }
                             //SI NO ES UN CAMPO DEPENDEINTE
@@ -7360,159 +7647,159 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposCaracteriticas(cboTipoCaracteristicas1);
-                            CargarTiposCaracteriticas(cboTipoCaracteristicas2);
-                            CargarTiposCaracteriticas(cboTipoCaracteristicas3);
-                            CargarTiposCaracteriticas(cboTipoCaracteristicas4);
+                            CargarTiposCaracteriticas(TipCaracteristica1);
+                            CargarTiposCaracteriticas(TipCaracteristica2);
+                            CargarTiposCaracteriticas(TipCaracteristica3);
+                            CargarTiposCaracteriticas(TipCaracteristica4);
 
-                            cboTipoCaracteristicas1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[1].Value;
-                            cboDescripcionCaracteristicas1.SelectedIndex = -1;
-                            cboTipoCaracteristicas2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[2].Value;
-                            cboDescripcionCaracteristicas2.SelectedIndex = -1;
-                            cboTipoCaracteristicas3.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[3].Value;
-                            cboDescripcionCaracteristicas3.SelectedIndex = -1;
-                            cboTipoCaracteristicas4.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[4].Value;
-                            cboDescripcionCaracteristicas4.SelectedIndex = -1;
+                            TipCaracteristica1.SelectedValue = DGV.SelectedCells[1].Value;
+                            DesCaracteristicas1.SelectedIndex = -1;
+                            TipCaracteristica2.SelectedValue = DGV.SelectedCells[2].Value;
+                            DesCaracteristicas2.SelectedIndex = -1;
+                            TipCaracteristica3.SelectedValue = DGV.SelectedCells[3].Value;
+                            DesCaracteristicas3.SelectedIndex = -1;
+                            TipCaracteristica4.SelectedValue = DGV.SelectedCells[4].Value;
+                            DesCaracteristicas1.SelectedIndex = -1;
                         }
-                        else if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - MEDIDAS 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - MEDIDAS 2" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - MEDIDAS 3" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - MEDIDAS 4")
+                        else if (tituloadaptable == "INGRESO DE NUEVOS DATOS - MEDIDAS 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - MEDIDAS 2" || tituloadaptable == "INGRESO DE NUEVOS DATOS - MEDIDAS 3" || tituloadaptable == "INGRESO DE NUEVOS DATOS - MEDIDAS 4")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionMedidas", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionMedidas", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposMedidas(cboTipoMedida1);
-                            CargarTiposMedidas(cboTipoMedida2);
-                            CargarTiposMedidas(cboTipoMedida3);
-                            CargarTiposMedidas(cboTipoMedida4);
+                            CargarTiposMedidas(TipMedidas1);
+                            CargarTiposMedidas(TipMedidas2);
+                            CargarTiposMedidas(TipMedidas3);
+                            CargarTiposMedidas(TipMedidas4);
 
-                            cboTipoMedida1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[5].Value;
-                            cboDescripcionMedida1.SelectedIndex = -1;
-                            cboTipoMedida2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[6].Value;
-                            cboDescripcionMedida2.SelectedIndex = -1;
-                            cboTipoMedida3.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[7].Value;
-                            cboDescripcionMedida3.SelectedIndex = -1;
-                            cboTipoMedida4.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[8].Value;
-                            cboDescripcionMedida4.SelectedIndex = -1;
+                            TipMedidas1.SelectedValue = DGV.SelectedCells[5].Value;
+                            DesMedidas1.SelectedIndex = -1;
+                            TipMedidas2.SelectedValue = DGV.SelectedCells[6].Value;
+                            DesMedidas2.SelectedIndex = -1;
+                            TipMedidas3.SelectedValue = DGV.SelectedCells[7].Value;
+                            DesMedidas3.SelectedIndex = -1;
+                            TipMedidas4.SelectedValue = DGV.SelectedCells[8].Value;
+                            DesMedidas4.SelectedIndex = -1;
                         }
-                        else if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DIAMETROS 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DIAMETROS 2" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DIAMETROS 3" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DIAMETROS 4")
+                        else if (tituloadaptable == "INGRESO DE NUEVOS DATOS - DIAMETROS 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - DIAMETROS 2" || tituloadaptable == "INGRESO DE NUEVOS DATOS - DIAMETROS 3" || tituloadaptable == "INGRESO DE NUEVOS DATOS - DIAMETROS 4")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionDiametros", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionDiametros", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposDiametros(cboTiposDiametros1);
-                            CargarTiposDiametros(cboTiposDiametros2);
-                            CargarTiposDiametros(cboTiposDiametros3);
-                            CargarTiposDiametros(cboTiposDiametros4);
+                            CargarTiposDiametros(TipDiametros1);
+                            CargarTiposDiametros(TipDiametros2);
+                            CargarTiposDiametros(TipDiametros3);
+                            CargarTiposDiametros(TipDiametros4);
 
-                            cboTiposDiametros1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[9].Value;
-                            cboDescripcionDiametros1.SelectedIndex = -1;
-                            cboTiposDiametros2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[10].Value;
-                            cboDescripcionDiametros2.SelectedIndex = -1;
-                            cboTiposDiametros3.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[11].Value;
-                            cboDescripcionDiametros3.SelectedIndex = -1;
-                            cboTiposDiametros4.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[12].Value;
-                            cboDescripcionDiametros4.SelectedIndex = -1;
+                            TipDiametros1.SelectedValue = DGV.SelectedCells[9].Value;
+                            DesDiametros1.SelectedIndex = -1;
+                            TipDiametros2.SelectedValue = DGV.SelectedCells[10].Value;
+                            DesDiametros2.SelectedIndex = -1;
+                            TipDiametros3.SelectedValue = DGV.SelectedCells[11].Value;
+                            DesDiametros3.SelectedIndex = -1;
+                            TipDiametros4.SelectedValue = DGV.SelectedCells[12].Value;
+                            DesDiametros4.SelectedIndex = -1;
                         }
-                        else if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - FORMAS 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - FORMAS 2" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - FORMAS 3" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - FORMAS 4")
+                        else if (tituloadaptable == "INGRESO DE NUEVOS DATOS - FORMAS 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - FORMAS 2" || tituloadaptable == "INGRESO DE NUEVOS DATOS - FORMAS 3" || tituloadaptable == "INGRESO DE NUEVOS DATOS - FORMAS 4")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionFormas", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionFormas", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposFormas(cboTiposFormas1);
-                            CargarTiposFormas(cboTiposFormas2);
-                            CargarTiposFormas(cboTiposFormas3);
-                            CargarTiposFormas(cboTiposFormas4);
+                            CargarTiposFormas(TipFormas1);
+                            CargarTiposFormas(TipFormas2);
+                            CargarTiposFormas(TipFormas3);
+                            CargarTiposFormas(TipFormas4);
 
-                            cboTiposFormas1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[13].Value;
-                            cboDescripcionFormas1.SelectedIndex = -1;
-                            cboTiposFormas2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[14].Value;
-                            cboDescripcionFormas2.SelectedIndex = -1;
-                            cboTiposFormas3.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[15].Value;
-                            cboDescripcionFormas3.SelectedIndex = -1;
-                            cboTiposFormas4.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[16].Value;
-                            cboDescripcionFormas4.SelectedIndex = -1;
+                            TipFormas1.SelectedValue = DGV.SelectedCells[13].Value;
+                            DesFormas1.SelectedIndex = -1;
+                            TipFormas2.SelectedValue = DGV.SelectedCells[14].Value;
+                            DesFormas2.SelectedIndex = -1;
+                            TipFormas3.SelectedValue = DGV.SelectedCells[15].Value;
+                            DesFormas3.SelectedIndex = -1;
+                            TipFormas4.SelectedValue = DGV.SelectedCells[16].Value;
+                            DesFormas4.SelectedIndex = -1;
                         }
-                        else if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - ESPESORES 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - ESPESORES 2" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - ESPESORES 3" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - ESPESORES 4")
+                        else if (tituloadaptable == "INGRESO DE NUEVOS DATOS - ESPESORES 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - ESPESORES 2" || tituloadaptable == "INGRESO DE NUEVOS DATOS - ESPESORES 3" || tituloadaptable == "INGRESO DE NUEVOS DATOS - ESPESORES 4")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionEspesores", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionEspesores", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposEspesores(cbooTipoEspesores1);
-                            CargarTiposEspesores(cbooTipoEspesores2);
-                            CargarTiposEspesores(cbooTipoEspesores3);
-                            CargarTiposEspesores(cbooTipoEspesores4);
+                            CargarTiposEspesores(TipEspesores1);
+                            CargarTiposEspesores(TipEspesores2);
+                            CargarTiposEspesores(TipEspesores3);
+                            CargarTiposEspesores(TipEspesores4);
 
-                            cbooTipoEspesores1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[17].Value;
-                            cboDescripcionEspesores1.SelectedIndex = -1;
-                            cbooTipoEspesores2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[18].Value;
-                            cboDescripcionEspesores2.SelectedIndex = -1;
-                            cbooTipoEspesores3.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[19].Value;
-                            cboDescripcionEspesores3.SelectedIndex = -1;
-                            cbooTipoEspesores4.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[20].Value;
-                            cboDescripcionEspesores4.SelectedIndex = -1;
+                            TipEspesores1.SelectedValue = DGV.SelectedCells[17].Value;
+                            DesEspesores1.SelectedIndex = -1;
+                            TipEspesores2.SelectedValue = DGV.SelectedCells[18].Value;
+                            DesEspesores2.SelectedIndex = -1;
+                            TipEspesores3.SelectedValue = DGV.SelectedCells[19].Value;
+                            DesEspesores3.SelectedIndex = -1;
+                            TipEspesores4.SelectedValue = DGV.SelectedCells[20].Value;
+                            DesEspesores4.SelectedIndex = -1;
                         }
-                        else if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DISEÑO 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DISEÑO 2" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DISEÑO 3" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - DISEÑO 4")
+                        else if (tituloadaptable == "INGRESO DE NUEVOS DATOS - DISEÑO 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - DISEÑO 2" || tituloadaptable == "INGRESO DE NUEVOS DATOS - DISEÑO 3" || tituloadaptable == "INGRESO DE NUEVOS DATOS - DISEÑO 4")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionDiseño", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionDiseño", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             //PANELES POLIURETANO - CIEGO
-                            if (cboModelos.Text == "CIEGO" && txtTipoOngreso.Text == "DUREZA" || cboModelos.Text == "CONVENCIONAL" && txtTipoOngreso.Text == "DUREZA" || cboModelos.Text == "AUTOLIMPIANTE" && txtTipoOngreso.Text == "DUREZA" || cboModelos.Text == "VIBROHEXAGONAL" && txtTipoOngreso.Text == "DUREZA" || cboModelos.Text == "TEEPEE" && txtTipoOngreso.Text == "DUREZA" || cboModelos.Text == "OBLONGA" && txtTipoOngreso.Text == "DUREZA")
+                            if (modelos == "CIEGO" && tipoOngreso == "DUREZA" || modelos == "CONVENCIONAL" && tipoOngreso == "DUREZA" || modelos == "AUTOLIMPIANTE" && tipoOngreso == "DUREZA" || modelos == "VIBROHEXAGONAL" && tipoOngreso == "DUREZA" || modelos == "TEEPEE" && tipoOngreso == "DUREZA" || modelos == "OBLONGA" && tipoOngreso == "DUREZA")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionFormas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesFormas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'DUREZA' DEPENDIENTE DEL CAMPO 'FORMA ESPECÍFICA'");
-                                if (cboDescripcionFormas1.SelectedValue == null) { MessageBox.Show("Debe seleccionar una forma específica para pdoer definir una dureza", "D¿Validación del Sistema"); return; }
+                                if (DesFormas1.SelectedValue == null) { MessageBox.Show("Debe seleccionar una forma específica para pdoer definir una dureza", "D¿Validación del Sistema"); return; }
                             }
                             //SI NO ES UN CAMPO DEPENDIENTE
                             else
@@ -7524,49 +7811,49 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposDiseñoAcabado(cboTiposDiseñosAcabados1);
-                            CargarTiposDiseñoAcabado(cboTiposDiseñosAcabados2);
-                            CargarTiposDiseñoAcabado(cboTiposDiseñosAcabados3);
-                            CargarTiposDiseñoAcabado(cboTiposDiseñosAcabados4);
+                            CargarTiposDiseñoAcabado(TipDiseñoAcabado1);
+                            CargarTiposDiseñoAcabado(TipDiseñoAcabado2);
+                            CargarTiposDiseñoAcabado(TipDiseñoAcabado3);
+                            CargarTiposDiseñoAcabado(TipDiseñoAcabado4);
 
-                            cboTiposDiseñosAcabados1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[21].Value;
-                            cboDescripcionDiseñoAcabado1.SelectedIndex = -1;
-                            cboTiposDiseñosAcabados2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[22].Value;
-                            cboDescripcionDiseñoAcabado2.SelectedIndex = -1;
-                            cboTiposDiseñosAcabados3.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[23].Value;
-                            cboDescripcionDiseñoAcabado3.SelectedIndex = -1;
-                            cboTiposDiseñosAcabados4.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[24].Value;
-                            cboDescripcionDiseñoAcabado4.SelectedIndex = -1;
+                            TipDiseñoAcabado1.SelectedValue = DGV.SelectedCells[21].Value;
+                            DesDiseñoAcabado1.SelectedIndex = -1;
+                            TipDiseñoAcabado2.SelectedValue = DGV.SelectedCells[22].Value;
+                            DesDiseñoAcabado2.SelectedIndex = -1;
+                            TipDiseñoAcabado3.SelectedValue = DGV.SelectedCells[23].Value;
+                            DesDiseñoAcabado3.SelectedIndex = -1;
+                            TipDiseñoAcabado4.SelectedValue = DGV.SelectedCells[24].Value;
+                            DesDiseñoAcabado4.SelectedIndex = -1;
                         }
-                        else if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 2" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 3" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 4")
+                        else if (tituloadaptable == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 2" || tituloadaptable == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 3" || tituloadaptable == "INGRESO DE NUEVOS DATOS - NUM. Y TIPOS 4")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionNTipos", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionNTipos", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             //PRODUCTOS QUIMICOS - ANTIESPUMANTE
-                            if (cboModelos.Text == "ANTIESPUMANTE" && txtTipoOngreso.Text == "TIPO DE CARGA")
+                            if (modelos == "ANTIESPUMANTE" && tipoOngreso == "TIPO DE CARGA")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'TIPO DE CARGA' DEPENDIENTE DEL CAMPO 'PROVEEDOR'");
                             }
                             //PRODUCTOS QUIMICOS - SUPRESOR DE POLVO
-                            else if (cboModelos.Text == "SUPRESOR DE POLVO" && txtTipoOngreso.Text == "TIPO DE CARGA")
+                            else if (modelos == "SUPRESOR DE POLVO" && tipoOngreso == "TIPO DE CARGA")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'TIPO DE CARGA' DEPENDIENTE DEL CAMPO 'PROVEEDOR'");
                             }
                             //PRODUCTOS QUIMICOS - SUPRESOR DE POLVO
-                            else if (cboModelos.Text == "SECUESTRANTE" && txtTipoOngreso.Text == "TIPO DE CARGA")
+                            else if (modelos == "SECUESTRANTE" && tipoOngreso == "TIPO DE CARGA")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'TIPO DE CARGA' DEPENDIENTE DEL CAMPO 'PROVEEDOR'");
                             }
                             //SI NO ES UN CAMPO DEPENDEINTE
@@ -7579,55 +7866,55 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposNTipos(cboTiposNTipos1);
-                            CargarTiposNTipos(cboTiposNTipos2);
-                            CargarTiposNTipos(cboTiposNTipos3);
-                            CargarTiposNTipos(cboTiposNTipos4);
+                            CargarTiposNTipos(TipNtipos1);
+                            CargarTiposNTipos(TipNtipos2);
+                            CargarTiposNTipos(TipNtipos3);
+                            CargarTiposNTipos(TipNtipos4);
 
-                            cboTiposNTipos1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[25].Value;
-                            cboDescripcionNTipos1.SelectedIndex = -1;
-                            cboTiposNTipos2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[26].Value;
-                            cboDescripcionNTipos2.SelectedIndex = -1;
-                            cboTiposNTipos3.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[27].Value;
-                            cboDescripcionNTipos3.SelectedIndex = -1;
-                            cboTiposNTipos4.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[28].Value;
-                            cboDescripcionNTipos4.SelectedIndex = -1;
+                            TipNtipos1.SelectedValue = DGV.SelectedCells[25].Value;
+                            DesNtipos1.SelectedIndex = -1;
+                            TipNtipos2.SelectedValue = DGV.SelectedCells[26].Value;
+                            DesNtipos2.SelectedIndex = -1;
+                            TipNtipos3.SelectedValue = DGV.SelectedCells[27].Value;
+                            DesNtipos3.SelectedIndex = -1;
+                            TipNtipos4.SelectedValue = DGV.SelectedCells[28].Value;
+                            DesNtipos4.SelectedIndex = -1;
                         }
-                        else if (lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - VARIOS Y 0 1" || lblTituloAdaptable.Text == "INGRESO DE NUEVOS DATOS - VARIOS Y 0 2")
+                        else if (tituloadaptable == "INGRESO DE NUEVOS DATOS - VARIOS Y 0 1" || tituloadaptable == "INGRESO DE NUEVOS DATOS - VARIOS Y 0 2")
                         {
                             SqlConnection conp = new SqlConnection();
                             conp.ConnectionString = Conexion.ConexionMaestra.conexion;
                             conp.Open();
                             SqlCommand cmdp = new SqlCommand();
-                            cmdp = new SqlCommand("InsertarDescripcionVariosO", conp);
+                            cmdp = new SqlCommand("AgregarProducto_InsertarDescripcionVariosO", conp);
                             cmdp.CommandType = CommandType.StoredProcedure;
 
-                            cmdp.Parameters.AddWithValue("@tipo", lblCodigoTipoIngreso.Text);
-                            cmdp.Parameters.AddWithValue("@idmodelo", lblCodigoModelo.Text);
-                            cmdp.Parameters.AddWithValue("@descripcion", txtValorIngreso.Text);
+                            cmdp.Parameters.AddWithValue("@tipo", codigotipoingreso);
+                            cmdp.Parameters.AddWithValue("@idmodelo", codigomodelo);
+                            cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             //PRODUCTOS QUIMICOS - COAGULANTES
-                            if (cboModelos.Text == "COAGULANTES" && txtTipoOngreso.Text == "CODIGO-ARENAS")
+                            if (modelos == "COAGULANTES" && tipoOngreso == "CODIGO-ARENAS")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'CODIGO-ARENAS' DEPENDIENTE DEL CAMPO 'PROVEEDOR'");
                             }
                             //PRODUCTOS QUIMICOS - ANTIESPUMANTE
-                            else if (cboModelos.Text == "ANTIESPUMANTE" && txtTipoOngreso.Text == "CODIGO-ARENAS")
+                            else if (modelos == "ANTIESPUMANTE" && tipoOngreso == "CODIGO-ARENAS")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'CODIGO-ARENAS' DEPENDIENTE DEL CAMPO 'PROVEEDOR'");
                             }
                             //PRODUCTOS QUIMICOS - SUPRESOR DE POLVO
-                            else if (cboModelos.Text == "SUPRESOR DE POLVO" && txtTipoOngreso.Text == "CODIGO-ARENAS")
+                            else if (modelos == "SUPRESOR DE POLVO" && tipoOngreso == "CODIGO-ARENAS")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'CODIGO-ARENAS' DEPENDIENTE DEL CAMPO 'PROVEEDOR'");
                             }
                             //PRODUCTOS QUIMICOS - SECUESTRANTE
-                            else if (cboModelos.Text == "SECUESTRANTE" && txtTipoOngreso.Text == "CODIGO-ARENAS")
+                            else if (modelos == "SECUESTRANTE" && tipoOngreso == "CODIGO-ARENAS")
                             {
-                                cmdp.Parameters.AddWithValue("@idTipoNN", cboDescripcionCaracteristicas1.SelectedValue);
+                                cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'CODIGO-ARENAS' DEPENDIENTE DEL CAMPO 'PROVEEDOR'");
                             }
                             //SI NO HAY CAMPOS DEPENDIENTES
@@ -7640,18 +7927,18 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                             cmdp.ExecuteNonQuery();
                             conp.Close();
 
-                            CargarTiposVariosO(cboTiposVariosO1);
-                            CargarTiposVariosO(cboTiposVariosO2);
+                            CargarTiposVariosO(TipVariosO1);
+                            CargarTiposVariosO(TipVariosO2);
 
-                            cboTiposVariosO1.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[29].Value;
-                            cboDescripcionVariosO1.SelectedIndex = -1;
-                            cboTiposVariosO2.SelectedValue = datalistadoCamposPredeterminadosDetalle.SelectedCells[30].Value;
-                            cboDescripcionVariosO2.SelectedIndex = -1;
+                            TipVariosO1.SelectedValue = DGV.SelectedCells[29].Value;
+                            DesVariosO1.SelectedIndex = -1;
+                            TipVariosO2.SelectedValue = DGV.SelectedCells[30].Value;
+                            DesVariosO2.SelectedIndex = -1;
                         }
 
                         MessageBox.Show("Dato ingresado correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                        txtValorIngreso.Text = "";
-                        panelNuevoValores.Visible = false;
+                        valoringreso = "";
+                        PNuevoValores.Visible = false;
                     }
                     catch (Exception ex)
                     {
