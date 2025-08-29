@@ -148,13 +148,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 MessageBox.Show("No se puede ingresar dos registros iguales.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+            if (string.IsNullOrWhiteSpace(descripcion))
+            {
+                MessageBox.Show("Debe ingresar todos los campos necesarios", "Validación del Sistema", MessageBoxButtons.OK);
+            }
             else
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta operación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    if (descripcion != "")
-                    {
+                  
                         try
                         {
                             SqlConnection con = new SqlConnection();
@@ -197,14 +200,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Debe ingresar todos los campos necesarios.", "Validación del Sistema", MessageBoxButtons.OK);
-                        txtDescripcion.Focus();
-                    }
                 }
             }
-        }
+        
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
             AgregarOperacion(txtDescripcion.Text,cboEstado.Text);
@@ -225,8 +223,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //METODO DE EDICION EN MI BASE DE DATOS PARA UNA OPERACION
         public void EditarOperaciones(int codigo, string descripcion, string estado)
         {
-            if (descripcion != "" || Convert.ToString(codigo) != "N")
+            if (string.IsNullOrWhiteSpace(descripcion) || Convert.ToString(codigo) == "N")
             {
+                MessageBox.Show("Los campos no pueden estar vacios.", "Valídación del Sistema", MessageBoxButtons.OK);
+            }
+            else{
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar esta operación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
@@ -272,10 +273,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         MessageBox.Show(ex.Message);
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
         private void btnEditar2_Click(object sender, EventArgs e)
@@ -414,23 +411,21 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             if(cboBusquedaOperaciones.Text == "CODIGO")
             {
-                //VERIFICA EL INGRESO DE CONTROLES O NÚMEROS EN EL CAMPO DE BÚSQUEDA
                 if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
                 {
-                    e.Handled = false;  //SI LA TECLA PRESIONADA ES UN CONTROL O UN NÚMERO, SE PERMITE
+                    e.Handled = false;  
                 }
                 else
                 {
-                    e.Handled = true;  //SINO SE BLOQUEA Y NO SE INGRESA
+                    e.Handled = true; 
                 }
 
-                //VERIFICA CUANTOS NUMEROS SE HA INGRESADO EN EL CAMPO DE BÚSQUEDA
                 if (char.IsDigit(e.KeyChar))
                 {
                     int digitoscontados = txtBusquedaOperaciones.Text.Count(char.IsDigit);
                     if (digitoscontados >= 6)
                     {
-                        e.Handled = true;  //SI HAY MAS DE 3 DIGITOS, SE BLOQUEA
+                        e.Handled = true;  
                     }
                 }
             }
