@@ -283,7 +283,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                if (txtDescripcion.Text == "" || txtAbreviatura.Text == "" ||
+                if (string.IsNullOrWhiteSpace(descripcion) || string.IsNullOrWhiteSpace(abreavitura) ||
                     ckCaracteristicas1.Checked == false && ckCaracteristicas2.Checked == false && ckCamposMedida1.Checked == false && ckCamposMedida2.Checked == false
                 && ckCamposDiametros1.Checked == false && ckCamposDiametros2.Checked == false && ckCamposFormas1.Checked == false && ckCamposFormas2.Checked == false
                 && ckCamposEspesores1.Checked == false && ckCamposEspesores2.Checked == false && ckCamposDiseñoAcabado1.Checked == false && ckCamposDiseñoAcabado2.Checked == false
@@ -841,7 +841,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //METODO ENCARGADO DE LA EDICIÓN DE MODELOS
         public void EditarModelos(string descripcion, string abreavitura, string codigolinea, int codigo)
         {
-            if (descripcion == "" || abreavitura == "" || Convert.ToString(codigo) == "N")
+            if (string.IsNullOrWhiteSpace(descripcion) || string.IsNullOrWhiteSpace(abreavitura) || Convert.ToString(codigo) == "N")
             {
                 MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
@@ -1628,7 +1628,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Modelos_BusquedaModeloPorDescripcion", con);
+                        cmd = new SqlCommand("Modelos_BusquedaPorDescripcion", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@descripcion", busquedamodelo.Text);
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1644,7 +1644,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Modelos_BusquedaModeloPorAbreviatura", con);
+                        cmd = new SqlCommand("Modelos_BusquedaPorAbreviatura", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@abreviatura", busquedamodelo.Text);
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
