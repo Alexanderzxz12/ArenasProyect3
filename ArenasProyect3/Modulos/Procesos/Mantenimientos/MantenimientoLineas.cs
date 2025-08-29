@@ -235,7 +235,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             else
             {
                 //Verificación de campos vacíos 
-                if (descripcion == "" || abreviatura == "")
+                if (string.IsNullOrWhiteSpace(descripcion) || string.IsNullOrWhiteSpace(abreviatura))
                 {
                     MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
@@ -311,7 +311,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         }
         public void EditarLineas(int codigo, string descripcion, string abreviatura, int idtipomercaderia)
         {
-            if (descripcion == "" || abreviatura == "" || Convert.ToString(codigo) == "N")
+            if (string.IsNullOrWhiteSpace(descripcion) || string.IsNullOrWhiteSpace(abreviatura) || Convert.ToString(codigo) == "N")
             {
                 MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
             }
