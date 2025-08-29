@@ -183,7 +183,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             else
             {
-                if (descripcion == "" || abreavitura == "" || codigosunat == "")
+                if (string.IsNullOrWhiteSpace(descripcion) || string.IsNullOrWhiteSpace(abreavitura) || string.IsNullOrWhiteSpace(codigosunat))
                 {
                     MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
@@ -271,7 +271,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         public void EditarCuentas(string descripcion, string abreviatura, string codigosunat, int codigo)
         {
                 //Verificación si los campos estan vacios
-                if (descripcion == "" || abreviatura == "" || codigosunat == "" || Convert.ToString(codigo) == "N")
+                if (string.IsNullOrWhiteSpace(descripcion) || string.IsNullOrWhiteSpace(abreviatura) || string.IsNullOrWhiteSpace(codigosunat) || Convert.ToString(codigo) == "N")
                 {
                     MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
