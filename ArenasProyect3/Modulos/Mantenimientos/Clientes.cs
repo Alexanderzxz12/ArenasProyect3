@@ -1,18 +1,24 @@
-﻿using SpreadsheetLight;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Properties;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Spreadsheet;
+using FlashControlV71;
+using Org.BouncyCastle.Asn1.Mozilla;
+using Org.BouncyCastle.Crypto.Parameters;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI;
 using System.Windows.Forms;
-using System.Diagnostics;
-using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -42,7 +48,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void Clientes_Load(object sender, EventArgs e)
         {
             //PRIMERA CARGA DEL FORMULACIO
-            Mostrar();
+            Mostrar(datalistado);
             cboTipoBusqueda.SelectedIndex = 0;
         }
 
@@ -247,52 +253,65 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //--------------------------------------------------------------------------------------------------------------------------------
 
         //VIZUALIZAR DATOS--------------------------------------------------------------------
-        public void Mostrar()
+      
+        public void Mostrar(DataGridView DGV)
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT TC.Descripcion AS [TIPO CLIENTE], C.Dni + C.Ruc + C.OtroDocumento as [DNI / RUC / OTRO], NombreCliente + C.PrimerNombre + ' ' + C.ApellidoPaterno + ' ' + C.ApellidoMaterno AS[RAZÓN SOCIAL / NOMBRES Y APELLIDOS], COALESCE(CONVERT(VARCHAR, C.TelefonoCelular), C.TelefonoFijo) AS[TELÉFONO / TELÉDONO FIJO], C.Correo1 AS[CORREO], C.Correo2, C.Dni, C.Ruc, C.OtroDocumento, C.NombreCliente, C.PrimerNombre, C.SegundoNombre, C.ApellidoPaterno, C.ApellidoMaterno, C.IdTipoCliente, C.TelefonoFijo, C.Correo2, C.IdGrupo, C.IdTipoMoneda, C.IdRetencion, C.IdTipoDocumento, C.Direccion, C.Referencia, P.CodigoPais, D.CodigoDepartamento, PR.CodigoProvincia, DI.CodigoDistrito, C.Lsoles, C.Ldolares, C.Codigo, C.IdCliente FROM Clientes C INNER JOIN TipoClientes TC ON C.IdTipoCliente = TC.IdTipoClientes INNER JOIN UbicacionPais P ON C.CodigoPais = P.CodigoPais INNER JOIN UbicacionDepartamento D ON C.CodigoDepartamento = D.CodigoDepartamento INNER JOIN UbicacionProvincia PR ON C.CodigoProvincia = PR.CodigoProvincia INNER JOIN UbicacionDistrito DI ON C.CodigoDistrito = DI.CodigoDistrito WHERE C.Estado = 1 ORDER BY NombreCliente + C.PrimerNombre + ' ' + C.ApellidoPaterno + ' ' + C.ApellidoMaterno", con);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Clientes_Mostrar", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DGV.DataSource = dt;
+                con.Close();
 
-            datalistado.Columns[0].Width = 145;
-            datalistado.Columns[1].Width = 150;
-            datalistado.Columns[2].Width = 420;
-            datalistado.Columns[3].Width = 140;
-            datalistado.Columns[4].Width = 162;
+                OcultarColumnas_Listado(DGV);
+                alternarColorFilas(DGV);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            datalistado.Columns[5].Visible = false;
-            datalistado.Columns[6].Visible = false;
-            datalistado.Columns[7].Visible = false;
-            datalistado.Columns[8].Visible = false;
-            datalistado.Columns[9].Visible = false;
-            datalistado.Columns[10].Visible = false;
-            datalistado.Columns[11].Visible = false;
-            datalistado.Columns[12].Visible = false;
-            datalistado.Columns[13].Visible = false;
-            datalistado.Columns[14].Visible = false;
-            datalistado.Columns[15].Visible = false;
-            datalistado.Columns[16].Visible = false;
-            datalistado.Columns[17].Visible = false;
-            datalistado.Columns[18].Visible = false;
-            datalistado.Columns[19].Visible = false;
-            datalistado.Columns[20].Visible = false;
-            datalistado.Columns[21].Visible = false;
-            datalistado.Columns[22].Visible = false;
-            datalistado.Columns[23].Visible = false;
-            datalistado.Columns[24].Visible = false;
-            datalistado.Columns[25].Visible = false;
-            datalistado.Columns[26].Visible = false;
-            datalistado.Columns[27].Visible = false;
-            datalistado.Columns[28].Visible = false;
-            datalistado.Columns[29].Visible = false;
-            datalistado.Columns[30].Visible = false;
+        public void OcultarColumnas_Listado(DataGridView DGV)
+        {
+            DGV.Columns[0].Width = 145;
+            DGV.Columns[1].Width = 150;
+            DGV.Columns[2].Width = 420;
+            DGV.Columns[3].Width = 140;
+            DGV.Columns[4].Width = 162;
 
-            alternarColorFilas(datalistado);
+            DGV.Columns[5].Visible = false;
+            DGV.Columns[6].Visible = false;
+            DGV.Columns[7].Visible = false;
+            DGV.Columns[8].Visible = false;
+            DGV.Columns[9].Visible = false;
+            DGV.Columns[10].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[12].Visible = false;
+            DGV.Columns[13].Visible = false;
+            DGV.Columns[14].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
+            DGV.Columns[17].Visible = false;
+            DGV.Columns[18].Visible = false;
+            DGV.Columns[19].Visible = false;
+            DGV.Columns[20].Visible = false;
+            DGV.Columns[21].Visible = false;
+            DGV.Columns[22].Visible = false;
+            DGV.Columns[23].Visible = false;
+            DGV.Columns[24].Visible = false;
+            DGV.Columns[25].Visible = false;
+            DGV.Columns[26].Visible = false;
+            DGV.Columns[27].Visible = false;
+            DGV.Columns[28].Visible = false;
+            DGV.Columns[29].Visible = false;
+            DGV.Columns[30].Visible = false;
         }
 
         //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
@@ -647,23 +666,29 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 txtCodigoClientes.Text = codigo5;
             }
         }
+       
 
-        //NBOTON PAR AINGRESAR UN NUEVO CLIENTE
-        private void btnAgregar2_Click(object sender, EventArgs e)
+        //METODO PARA EL INGRESO DE UN NUEVO CLIENTE
+        public void AgregarCliente(string tipCliente,int idtipocliente,string nomClientes,string primNombre,string segNombre,string apePaterno,string apeMaterno,string tipDocumento,string idtipodocumento
+            , string otrDocumento,string dni,string ruc,string tefono,string tefonofijo,string direccion,string distrito,string correo1,string correo2
+            ,string grupo,string moneda,string retencion,string referencia,string pais,string departamento,string provincia,decimal soles,decimal dolares
+            ,string codiClientes,Panel pagreCliente,DataGridView DGV)
         {
             ValidarDni();
             ValidarRuc();
             ValidarOtro();
 
-            if (cboTipoClientes.Text == "PERSONA JURÍDICA" && txtNombreClientes.Text == "" || cboTipoClientes.Text == "SUJETO NO DOMICILIADO" && txtNombreClientes.Text == "" || cboTipoClientes.Text == "ADQUIRIENTE TICKET" && txtNombreClientes.Text == "")
+            
+            if (tipCliente == "PERSONA JURÍDICA" && nomClientes == "" || tipCliente == "SUJETO NO DOMICILIADO" && nomClientes == "" 
+                || tipCliente == "ADQUIRIENTE TICKET" && nomClientes == "")
             {
                 MessageBox.Show("Debe ingresar un nombre válido.", "Registro de Cliente", MessageBoxButtons.OK);
             }
-            else if (cboTipoClientes.Text == "PERSONA NATURAL" && txtPrimerNombre.Text == "" || cboTipoClientes.Text == "PERSONA NATURAL" && txtApellidoPaterno.Text == "" || cboTipoClientes.Text == "PERSONA NATURAL" && txtApellidoMaterno.Text == "")
+            else if (tipCliente == "PERSONA NATURAL" && primNombre == "" || tipCliente == "PERSONA NATURAL" && apePaterno == "" || tipCliente == "PERSONA NATURAL" && apeMaterno == "")
             {
                 MessageBox.Show("Debe ingresar un nombre o apellidos válido.", "Registro de Cliente", MessageBoxButtons.OK);
             }
-            else if (cboTipoDocumento.Text == "OTROS TIPOS DE DOCUMENTOS" && txtOtroDocumento.Text == "" || cboTipoDocumento.Text == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && txtDni.Text == "" || cboTipoDocumento.Text == "CARNET DE EXTRANJERIA" && txtOtroDocumento.Text == "" || cboTipoDocumento.Text == "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && txtRuc.Text == "" || cboTipoDocumento.Text == "PASAPORTE" && txtOtroDocumento.Text == "" || cboTipoDocumento.Text == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && txtDni.Text.Length != 8 || cboTipoDocumento.Text == "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && txtRuc.Text.Length != 11 || cboTipoDocumento.Text == "OTROS TIPOS DE DOCUMENTOS" && txtOtroDocumento.Text.Length == 0 || cboTipoDocumento.Text == "CARNET DE EXTRANJERIA" && txtOtroDocumento.Text.Length != 11 || cboTipoDocumento.Text == "PASAPORTE" && txtOtroDocumento.Text.Length != 12)
+            else if (tipDocumento == "OTROS TIPOS DE DOCUMENTOS" && otrDocumento == "" || tipDocumento == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && dni == "" || tipDocumento == "CARNET DE EXTRANJERIA" && otrDocumento == "" || tipDocumento == "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && ruc == "" || tipDocumento == "PASAPORTE" && otrDocumento == "" || tipDocumento == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && dni.Length != 8 || tipDocumento == "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && ruc.Length != 11 || tipDocumento == "OTROS TIPOS DE DOCUMENTOS" && otrDocumento.Length == 0 || tipDocumento == "CARNET DE EXTRANJERIA" && otrDocumento.Length != 11 || tipDocumento == "PASAPORTE" && otrDocumento.Length != 12)
             {
                 MessageBox.Show("Debe ingresar un número de documento válido.", "Registro de Cliente", MessageBoxButtons.OK);
             }
@@ -676,13 +701,13 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
             else
             {
-                if (txtTelefono.Text == "" && txtTelefonoFijo.Text == "" || txtTelefono.TextLength != 9)
+                if (tefono == "" && tefonofijo == "" || tefono.Length != 9)
                 {
                     MessageBox.Show("Debe ingresar un número de teléfono movil o fijo válido.", "Registro de Cliente", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    if (txtDireccion.Text == "" || cboDistrito.Text == "")
+                    if (direccion == "" || Convert.ToString(distrito) == "")
                     {
                         MessageBox.Show("Debe ingresar una dirección o seleccionar un distrito.", "Registro de Cliente", MessageBoxButtons.OK);
                     }
@@ -697,82 +722,82 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                                 con.Open();
                                 SqlCommand cmd = new SqlCommand();
-                                cmd = new SqlCommand("InsertarClientes", con);
+                                cmd = new SqlCommand("Clientes_Insertar", con);
                                 cmd.CommandType = CommandType.StoredProcedure;
 
-                                cmd.Parameters.AddWithValue("@idtipocliente", cboTipoClientes.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@nombrecliente", txtNombreClientes.Text);
-                                cmd.Parameters.AddWithValue("@primernombre", txtPrimerNombre.Text);
-                                cmd.Parameters.AddWithValue("@segundonombre", txtSegundoNombre.Text);
-                                cmd.Parameters.AddWithValue("@apellidopaterno", txtApellidoPaterno.Text);
-                                cmd.Parameters.AddWithValue("@apellidomaterno", txtApellidoMaterno.Text);
+                                cmd.Parameters.AddWithValue("@idtipocliente", idtipocliente);
+                                cmd.Parameters.AddWithValue("@nombrecliente", nomClientes);
+                                cmd.Parameters.AddWithValue("@primernombre", primNombre);
+                                cmd.Parameters.AddWithValue("@segundonombre", segNombre);
+                                cmd.Parameters.AddWithValue("@apellidopaterno", apePaterno);
+                                cmd.Parameters.AddWithValue("@apellidomaterno", apeMaterno);
 
-                                if (txtTelefono.Text == "")
+                                if (tefono == "")
                                 {
                                     cmd.Parameters.AddWithValue("@telefono", DBNull.Value);
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@telefono", Convert.ToInt32(txtTelefono.Text));
+                                    cmd.Parameters.AddWithValue("@telefono", Convert.ToInt32(tefono));
                                 }
 
-                                if (txtTelefonoFijo.Text == "")
+                                if (tefonofijo == "")
                                 {
                                     cmd.Parameters.AddWithValue("@telefonofijo", DBNull.Value);
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@telefonofijo", txtTelefonoFijo.Text);
+                                    cmd.Parameters.AddWithValue("@telefonofijo", tefonofijo);
                                 }
 
-                                cmd.Parameters.AddWithValue("@correo1", txtCorreo1.Text);
-                                cmd.Parameters.AddWithValue("@correo2", txtCorreo2.Text);
-                                cmd.Parameters.AddWithValue("@idgrupo", cboGrupo.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idtipomoneda", cboMoneda.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idreferencia", cboRetencion.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idtipodocuemnto", cboTipoDocumento.SelectedValue.ToString());
+                                cmd.Parameters.AddWithValue("@correo1", correo1);
+                                cmd.Parameters.AddWithValue("@correo2", correo2);
+                                cmd.Parameters.AddWithValue("@idgrupo", grupo);
+                                cmd.Parameters.AddWithValue("@idtipomoneda", moneda);
+                                cmd.Parameters.AddWithValue("@idreferencia", retencion);
+                                cmd.Parameters.AddWithValue("@idtipodocuemnto", idtipodocumento);
 
-                                if (txtDni.Text == "")
+                                if (dni == "")
                                 {
                                     cmd.Parameters.AddWithValue("@dni", "");
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@dni", txtDni.Text);
+                                    cmd.Parameters.AddWithValue("@dni", dni);
                                 }
-                                if (txtRuc.Text == "")
+                                if (ruc == "")
                                 {
                                     cmd.Parameters.AddWithValue("@ruc", "");
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@ruc", txtRuc.Text);
+                                    cmd.Parameters.AddWithValue("@ruc", ruc);
                                 }
-                                if (txtOtroDocumento.Text == "")
+                                if (otrDocumento == "")
                                 {
                                     cmd.Parameters.AddWithValue("@otros", "");
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@otros", txtOtroDocumento.Text);
+                                    cmd.Parameters.AddWithValue("@otros", otrDocumento);
                                 }
 
-                                cmd.Parameters.AddWithValue("@direccion", txtDireccion.Text);
-                                cmd.Parameters.AddWithValue("@referencia", txtReferencia.Text);
-                                cmd.Parameters.AddWithValue("@idpais", cboPais.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@iddepartamento", cboDepartamento.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idprovincia", cboProvincia.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@iddistrito", cboDistrito.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@lsoles", Convert.ToDecimal(txtSoles.Text));
-                                cmd.Parameters.AddWithValue("@ldoalres", Convert.ToDecimal(txtDolares.Text));
-                                cmd.Parameters.AddWithValue("@ubigeo", cboDistrito.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@codigo", txtCodigoClientes.Text);
+                                cmd.Parameters.AddWithValue("@direccion", direccion);
+                                cmd.Parameters.AddWithValue("@referencia", referencia);
+                                cmd.Parameters.AddWithValue("@idpais", pais);
+                                cmd.Parameters.AddWithValue("@iddepartamento", departamento);
+                                cmd.Parameters.AddWithValue("@idprovincia", provincia);
+                                cmd.Parameters.AddWithValue("@iddistrito", distrito);
+                                cmd.Parameters.AddWithValue("@lsoles", soles);
+                                cmd.Parameters.AddWithValue("@ldoalres", dolares);
+                                cmd.Parameters.AddWithValue("@ubigeo", distrito);
+                                cmd.Parameters.AddWithValue("@codigo", codiClientes);
                                 cmd.ExecuteNonQuery();
                                 con.Close();
 
                                 MessageBox.Show("Cliente guardado exitosamente.", "Registro de Cliente", MessageBoxButtons.OK);
-                                panelAgregarCliente.Visible = false;
-                                Mostrar();
+                                pagreCliente.Visible = false;
+                                Mostrar(DGV);
                                 LimpiarCamposNuevoCliente();
                             }
                         }
@@ -784,31 +809,41 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 }
             }
         }
-
-        //BOTON PARA EDITAR A UN CLIENTE SELECCIONADO
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void btnAgregar2_Click(object sender, EventArgs e)
         {
-            if (cboTipoClientes.Text == "PERSONA JURÍDICA" && txtNombreClientes.Text == "" || cboTipoClientes.Text == "SUJETO NO DOMICILIADO" && txtNombreClientes.Text == "" || cboTipoClientes.Text == "ADQUIRIENTE TICKET" && txtNombreClientes.Text == "")
+            AgregarCliente(cboTipoClientes.Text, Convert.ToInt32(cboTipoClientes.SelectedValue), txtNombreClientes.Text, txtPrimerNombre.Text, txtSegundoNombre.Text, txtApellidoPaterno.Text, txtApellidoMaterno.Text, cboTipoDocumento.Text, Convert.ToString(cboTipoDocumento.SelectedValue)
+                , txtOtroDocumento.Text, txtDni.Text, txtRuc.Text, txtTelefono.Text, txtTelefonoFijo.Text, txtDireccion.Text, Convert.ToString(cboDistrito.SelectedValue), txtCorreo1.Text, txtCorreo2.Text, Convert.ToString(cboGrupo.SelectedValue)
+                , Convert.ToString(cboMoneda.SelectedValue), Convert.ToString(cboRetencion.SelectedValue), txtReferencia.Text, Convert.ToString(cboPais.SelectedValue), Convert.ToString(cboDepartamento.SelectedValue)
+                , Convert.ToString(cboProvincia.SelectedValue), Convert.ToDecimal(txtSoles.Text), Convert.ToDecimal(txtDolares.Text), txtCodigoClientes.Text, panelAgregarCliente, datalistado);
+        }
+
+        //METODO PARA EDITAR AL CLIENTE SELECCIONADO
+        public void EditarCliente(string tipCliente, int idtipocliente, string nomClientes, string primNombre, string segNombre, string apePaterno, string apeMaterno, string tipDocumento, string idtipodocumento
+            , string otrDocumento, string dni, string ruc, string tefono, string tefonofijo, string direccion, string distrito, string correo1, string correo2
+            , string grupo, string moneda, string retencion, string referencia, string pais, string departamento, string provincia, decimal soles, decimal dolares
+            , string codiClientes, Panel pagreCliente, DataGridView DGV)
+        {
+            if (tipCliente == "PERSONA JURÍDICA" && nomClientes == "" || tipCliente == "SUJETO NO DOMICILIADO" && nomClientes == "" || tipCliente == "ADQUIRIENTE TICKET" && nomClientes == "")
             {
                 MessageBox.Show("Debe ingresar un nombre válido.", "Registro de Cliente", MessageBoxButtons.OK);
             }
-            else if (cboTipoClientes.Text == "PERSONA NATURAL" && txtPrimerNombre.Text == "" || cboTipoClientes.Text == "PERSONA NATURAL" && txtApellidoPaterno.Text == "" || cboTipoClientes.Text == "PERSONA NATURAL" && txtApellidoMaterno.Text == "")
+            else if (tipCliente == "PERSONA NATURAL" && primNombre == "" || tipCliente == "PERSONA NATURAL" && apePaterno == "" || tipCliente == "PERSONA NATURAL" && apeMaterno == "")
             {
                 MessageBox.Show("Debe ingresar un nombre o apellidos válidos.", "Registro de Cliente", MessageBoxButtons.OK);
             }
-            else if (cboTipoDocumento.Text == "OTROS TIPOS DE DOCUMENTOS" && txtOtroDocumento.Text == "" || cboTipoDocumento.Text == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && txtDni.Text == "" || cboTipoDocumento.Text == "CARNET DE EXTRANJERIA" && txtOtroDocumento.Text == "" || cboTipoDocumento.Text == "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && txtRuc.Text == "" || cboTipoDocumento.Text == "PASAPORTE" && txtOtroDocumento.Text == "" || cboTipoDocumento.Text == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && txtDni.Text.Length != 8 || cboTipoDocumento.Text == "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && txtRuc.Text.Length != 11 || cboTipoDocumento.Text == "OTROS TIPOS DE DOCUMENTOS" && txtOtroDocumento.Text.Length == 0 || cboTipoDocumento.Text == "CARNET DE EXTRANJERIA" && txtOtroDocumento.Text.Length != 15 || cboTipoDocumento.Text == "PASAPORTE" && txtOtroDocumento.Text.Length != 15)
+            else if (tipDocumento == "OTROS TIPOS DE DOCUMENTOS" && otrDocumento == "" || tipDocumento == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && dni == "" || tipDocumento == "CARNET DE EXTRANJERIA" && otrDocumento== "" || tipDocumento== "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && ruc == "" || tipDocumento == "PASAPORTE" && otrDocumento == "" || tipDocumento == "DOCUMENTO NACIONAL DE IDENTIDAD (D.N.I)" && dni.Length != 8 || tipDocumento == "REGISTRO UNICO DE CONTRIBUYENTE (R.U.C)" && ruc.Length != 11 || tipDocumento == "OTROS TIPOS DE DOCUMENTOS" && otrDocumento.Length == 0 || tipDocumento == "CARNET DE EXTRANJERIA" && otrDocumento.Length != 15 || tipDocumento == "PASAPORTE" && otrDocumento.Length != 15)
             {
                 MessageBox.Show("Debe ingresar un número de documento válido.", "Registro de Cliente", MessageBoxButtons.OK);
             }
             else
             {
-                if (txtTelefono.Text == "" && txtTelefonoFijo.Text == "" || txtTelefono.TextLength != 9 && txtTelefono.Text != "")
+                if (tefono == "" && tefonofijo == "" || tefono.Length != 9 && tefono != "")
                 {
                     MessageBox.Show("Debe ingresar un número de teléfono movil o fijo válido.", "Registro de Cliente", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    if (txtDireccion.Text == "" || cboDistrito.Text == "")
+                    if (direccion == "" || Convert.ToString(distrito) == "")
                     {
                         MessageBox.Show("Debe ingresar una dirección o seleccionar un distrito.", "Registro de Cliente", MessageBoxButtons.OK);
                     }
@@ -823,83 +858,83 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                                 con.Open();
                                 SqlCommand cmd = new SqlCommand();
-                                cmd = new SqlCommand("EditarClientes", con);
+                                cmd = new SqlCommand("Clientes_Editar", con);
                                 cmd.CommandType = CommandType.StoredProcedure;
 
                                 cmd.Parameters.AddWithValue("@idcliente", idclienteseleccionado);
-                                cmd.Parameters.AddWithValue("@idtipocliente", cboTipoClientes.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@nombrecliente", txtNombreClientes.Text);
-                                cmd.Parameters.AddWithValue("@primernombre", txtPrimerNombre.Text);
-                                cmd.Parameters.AddWithValue("@segundonombre", txtSegundoNombre.Text);
-                                cmd.Parameters.AddWithValue("@apellidopaterno", txtApellidoPaterno.Text);
-                                cmd.Parameters.AddWithValue("@apellidomaterno", txtApellidoMaterno.Text);
+                                cmd.Parameters.AddWithValue("@idtipocliente", idtipocliente);
+                                cmd.Parameters.AddWithValue("@nombrecliente", nomClientes);
+                                cmd.Parameters.AddWithValue("@primernombre", primNombre);
+                                cmd.Parameters.AddWithValue("@segundonombre", segNombre);
+                                cmd.Parameters.AddWithValue("@apellidopaterno", apePaterno);
+                                cmd.Parameters.AddWithValue("@apellidomaterno", apeMaterno);
 
-                                if (txtTelefono.Text == "")
+                                if (tefono == "")
                                 {
                                     cmd.Parameters.AddWithValue("@telefono", DBNull.Value);
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@telefono", Convert.ToInt32(txtTelefono.Text));
+                                    cmd.Parameters.AddWithValue("@telefono", Convert.ToInt32(tefono));
                                 }
 
-                                if (txtTelefonoFijo.Text == "")
+                                if (tefonofijo == "")
                                 {
                                     cmd.Parameters.AddWithValue("@telefonofijo", DBNull.Value);
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@telefonofijo", txtTelefonoFijo.Text);
+                                    cmd.Parameters.AddWithValue("@telefonofijo", tefonofijo);
                                 }
 
-                                cmd.Parameters.AddWithValue("@correo1", txtCorreo1.Text);
-                                cmd.Parameters.AddWithValue("@correo2", txtCorreo2.Text);
-                                cmd.Parameters.AddWithValue("@idgrupo", cboGrupo.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idtipomoneda", cboMoneda.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idreferencia", cboRetencion.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idtipodocuemnto", cboTipoDocumento.SelectedValue.ToString());
+                                cmd.Parameters.AddWithValue("@correo1", correo1);
+                                cmd.Parameters.AddWithValue("@correo2", correo2);
+                                cmd.Parameters.AddWithValue("@idgrupo", Convert.ToInt32(grupo));
+                                cmd.Parameters.AddWithValue("@idtipomoneda", moneda);
+                                cmd.Parameters.AddWithValue("@idreferencia", retencion);
+                                cmd.Parameters.AddWithValue("@idtipodocuemnto", idtipodocumento);
 
-                                if (txtDni.Text == "")
+                                if (dni == "")
                                 {
                                     cmd.Parameters.AddWithValue("@dni", "");
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@dni", txtDni.Text);
+                                    cmd.Parameters.AddWithValue("@dni", dni);
                                 }
-                                if (txtRuc.Text == "")
+                                if (ruc == "")
                                 {
                                     cmd.Parameters.AddWithValue("@ruc", "");
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@ruc", txtRuc.Text);
+                                    cmd.Parameters.AddWithValue("@ruc", ruc);
                                 }
-                                if (txtOtroDocumento.Text == "")
+                                if (otrDocumento == "")
                                 {
                                     cmd.Parameters.AddWithValue("@otros", "");
                                 }
                                 else
                                 {
-                                    cmd.Parameters.AddWithValue("@otros", txtOtroDocumento.Text);
+                                    cmd.Parameters.AddWithValue("@otros", otrDocumento);
                                 }
 
-                                cmd.Parameters.AddWithValue("@direccion", txtDireccion.Text);
-                                cmd.Parameters.AddWithValue("@referencia", txtReferencia.Text);
-                                cmd.Parameters.AddWithValue("@idpais", cboPais.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@iddepartamento", cboDepartamento.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@idprovincia", cboProvincia.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@iddistrito", cboDistrito.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@lsoles", Convert.ToDecimal(txtSoles.Text));
-                                cmd.Parameters.AddWithValue("@ldoalres", Convert.ToDecimal(txtDolares.Text));
-                                cmd.Parameters.AddWithValue("@ubigeo", cboDistrito.SelectedValue.ToString());
-                                cmd.Parameters.AddWithValue("@codigo", txtCodigoClientes.Text);
+                                cmd.Parameters.AddWithValue("@direccion", direccion);
+                                cmd.Parameters.AddWithValue("@referencia", referencia);
+                                cmd.Parameters.AddWithValue("@idpais", pais);
+                                cmd.Parameters.AddWithValue("@iddepartamento", departamento);
+                                cmd.Parameters.AddWithValue("@idprovincia", provincia);
+                                cmd.Parameters.AddWithValue("@iddistrito", distrito);
+                                cmd.Parameters.AddWithValue("@lsoles", soles);
+                                cmd.Parameters.AddWithValue("@ldoalres", dolares);
+                                cmd.Parameters.AddWithValue("@ubigeo", distrito);
+                                cmd.Parameters.AddWithValue("@codigo", codiClientes);
                                 cmd.ExecuteNonQuery();
                                 con.Close();
 
                                 MessageBox.Show("Cliente editado exitosamente.", "Registro de Cliente", MessageBoxButtons.OK);
-                                panelAgregarCliente.Visible = false;
-                                Mostrar();
+                                pagreCliente.Visible = false;
+                                Mostrar(DGV);
                                 LimpiarCamposNuevoCliente();
                             }
                         }
@@ -912,132 +947,155 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
         }
 
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+
+            EditarCliente(cboTipoClientes.Text, Convert.ToInt32(cboTipoClientes.SelectedValue), txtNombreClientes.Text, txtPrimerNombre.Text, txtSegundoNombre.Text, txtApellidoPaterno.Text, txtApellidoMaterno.Text, cboTipoDocumento.Text, Convert.ToString(cboTipoDocumento.SelectedValue)
+                , txtOtroDocumento.Text, txtDni.Text, txtRuc.Text, txtTelefono.Text, txtTelefonoFijo.Text, txtDireccion.Text, Convert.ToString(cboDistrito.SelectedValue), txtCorreo1.Text, txtCorreo2.Text, Convert.ToString(cboGrupo.SelectedValue)
+                , Convert.ToString(cboMoneda.SelectedValue), Convert.ToString(cboRetencion.SelectedValue), txtReferencia.Text, Convert.ToString(cboPais.SelectedValue), Convert.ToString(cboDepartamento.SelectedValue)
+                , Convert.ToString(cboProvincia.SelectedValue), Convert.ToDecimal(txtSoles.Text), Convert.ToDecimal(txtDolares.Text), txtCodigoClientes.Text, panelAgregarCliente, datalistado);
+        }
+
+
         //PANELES Y VENTANAS ANEXAS AL CLIENTE----------------------------------------------------
         //----------------------------------------------------------------------------------------
         //CARGA DE LISTADO DE CAMPOS CARGADOS AL CLIENTE---------------------------------------
         //MOSTARA UNIDADES DEL CLIENTE SELECCIOANDO
-        public void MostrarUnidad(int idcliente)
+     
+        public void MostrarUnidad(int idcliente,DataGridView DGV)
         {
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteUnidad", con);
+            cmd = new SqlCommand("Clientes_MostrarUnidad", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idcliente", idcliente);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            datalistadounidad.DataSource = dt;
+            DGV.DataSource = dt;
             con.Close();
-
-            datalistadounidad.Columns[6].Visible = false;
-
-            datalistadounidad.Columns[0].Width = 260;
-            datalistadounidad.Columns[1].Width = 190;
-            datalistadounidad.Columns[2].Width = 150;
-            datalistadounidad.Columns[3].Width = 150;
-            datalistadounidad.Columns[4].Width = 100;
-            datalistadounidad.Columns[5].Width = 103;
+            Unidad_Reordenamiento_Columnas(DGV);
+        }
+        //REORDENAMIENTO DE COLUMNAS DE UNIDADES
+        public void Unidad_Reordenamiento_Columnas(DataGridView DGV)
+        {
+            DGV.Columns[6].Visible = false;
+            DGV.Columns[0].Width = 260;
+            DGV.Columns[1].Width = 190;
+            DGV.Columns[2].Width = 150;
+            DGV.Columns[3].Width = 150;
+            DGV.Columns[4].Width = 100;
+            DGV.Columns[5].Width = 103;
 
             //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadounidad.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
         //MOSTRAR CONTACTOS DEL CLIENTE SELECCIOANDO
-        public void MostrarContacto(int idcliente)
+        public void MostrarContacto(int idcliente,DataGridView DGV)
         {
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteContacto", con);
+            cmd = new SqlCommand("Clientes_MostrarContacto", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idcliente", idcliente);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            datalistadocontacto.DataSource = dt;
+            DGV.DataSource = dt;
             con.Close();
-
-            datalistadocontacto.Columns[7].Visible = false;
-
-            datalistadocontacto.Columns[0].Width = 220;
-            datalistadocontacto.Columns[1].Width = 85;
-            datalistadocontacto.Columns[2].Width = 85;
-            datalistadocontacto.Columns[3].Width = 180;
-            datalistadocontacto.Columns[4].Width = 172;
-            datalistadocontacto.Columns[5].Width = 105;
-            datalistadocontacto.Columns[6].Width = 105;
-
+            Contacto_Reordenamiento_Columnas(DGV);
+        }
+        //REORDENAMIENTO DE COLUMNAS DE CONTACTO
+        public void Contacto_Reordenamiento_Columnas(DataGridView DGV)
+        {
+            DGV.Columns[7].Visible = false;
+            DGV.Columns[0].Width = 220;
+            DGV.Columns[1].Width = 85;
+            DGV.Columns[2].Width = 85;
+            DGV.Columns[3].Width = 180;
+            DGV.Columns[4].Width = 172;
+            DGV.Columns[5].Width = 105;
+            DGV.Columns[6].Width = 105;
             //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadocontacto.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
         //MOSTRAR CONDICIONES DEL CLIENTE SELECCIOAND
-        public void MostrarCondicion(int idcliente)
+        public void MostrarCondicion(int idcliente,DataGridView DGV)
         {
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteCondicion", con);
+            cmd = new SqlCommand("Clientes_MostrarCondicion", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idcliente", idcliente);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            datalistadoCondicion.DataSource = dt;
+            DGV.DataSource = dt;
             con.Close();
-
-            datalistadoCondicion.Columns[3].Visible = false;
-
-            datalistadoCondicion.Columns[0].Width = 430;
-            datalistadoCondicion.Columns[1].Width = 290;
-            datalistadoCondicion.Columns[2].Width = 233;
-
+            Condicion_Reordenamiento_Columnas(DGV);
+        }
+        //REORDENAMIENTO DE COLUMNAS DE CONDICION
+        public void Condicion_Reordenamiento_Columnas(DataGridView DGV)
+        {
+            DGV.Columns[3].Visible = false;
+            DGV.Columns[0].Width = 430;
+            DGV.Columns[1].Width = 290;
+            DGV.Columns[2].Width = 233;
             //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadoCondicion.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
         //MOSTRAR SUCURSALES DEL CLEINTE SELECCIOANDO
-        public void MostrarSucursal(int idcliente)
+        public void MostrarSucursal(int idcliente,DataGridView DGV)
         {
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteSucursal", con);
+            cmd = new SqlCommand("Clientes_MostrarSucursal", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idcliente", idcliente);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            datalistadosucursal.DataSource = dt;
+            DGV.DataSource = dt;
             con.Close();
 
-            datalistadosucursal.Columns[8].Visible = false;
-
-            datalistadosucursal.Columns[0].Width = 250;
-            datalistadosucursal.Columns[1].Width = 120;
-            datalistadosucursal.Columns[2].Width = 150;
-            datalistadosucursal.Columns[3].Width = 90;
-            datalistadosucursal.Columns[4].Width = 100;
-            datalistadosucursal.Columns[5].Width = 140;
-            datalistadosucursal.Columns[6].Width = 140;
-            datalistadosucursal.Columns[7].Width = 140;
+            Sucursal_Reordenamiento_Columnas(DGV);
+        }
+        //REORDENAMIENTO DE COLUMNAS DE SUCURSAL
+        public void Sucursal_Reordenamiento_Columnas(DataGridView DGV)
+        {
+            DGV.Columns[8].Visible = false;
+            DGV.Columns[0].Width = 250;
+            DGV.Columns[1].Width = 120;
+            DGV.Columns[2].Width = 150;
+            DGV.Columns[3].Width = 90;
+            DGV.Columns[4].Width = 100;
+            DGV.Columns[5].Width = 140;
+            DGV.Columns[6].Width = 140;
+            DGV.Columns[7].Width = 140;
 
             //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadosucursal.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
@@ -1124,7 +1182,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //ENTRAR A UNIDADES DEL CLIENTE
         private void lblUnidad_Click(object sender, EventArgs e)
         {
-            MostrarUnidad(idclienteseleccionado);
+            MostrarUnidad(idclienteseleccionado,datalistadounidad);
             CargarResponsable();
             CargarZona();
             CargarPais(cboPaisUnidad);
@@ -1169,13 +1227,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
         }
 
-        //ACCION DE GUARDAR LA UNIDAD PARA MI CLIENTE
-        private void btnGuardarUnidad_Click(object sender, EventArgs e)
+        //METODO QUE GUARDA LA UNIDAD AL CLIENTE
+        public void AgregarUnidad(string nombreunidad,int idresponsable,int idzona,string idpais,string iddepartamento,decimal longitud,decimal latitud,TextBox limpiarlatitud
+            ,TextBox limpiarlongitud, TextBox limpiarnombreunidad)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea ingresar esta unidad?.", "Nueva Unidad", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (txtLatitud.Text == "" || txtLongitud.Text == "" || txtNombreUnidad.Text == "")
+                if (Convert.ToString(latitud) == "" || Convert.ToString(longitud) == "" || string.IsNullOrWhiteSpace(nombreunidad))
                 {
                     MessageBox.Show("Debe ingresar los datos correspondientes.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
@@ -1187,27 +1246,27 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarClientes_Unidad", con);
+                        cmd = new SqlCommand("Clientes_Insertar_Unidad", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("@idcliente", idclienteseleccionado);
-                        cmd.Parameters.AddWithValue("@descipcion", txtNombreUnidad.Text);
-                        cmd.Parameters.AddWithValue("@idresponsable", cboResponsable.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idzona", cboZona.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idpais", cboPaisUnidad.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@iddepartamento", cboDepartamentoUnidad.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@longitud", Convert.ToDecimal(txtLongitud.Text));
-                        cmd.Parameters.AddWithValue("@latitud", Convert.ToDecimal(txtLatitud.Text));
+                        cmd.Parameters.AddWithValue("@descipcion", nombreunidad);
+                        cmd.Parameters.AddWithValue("@idresponsable", idresponsable);
+                        cmd.Parameters.AddWithValue("@idzona", idzona);
+                        cmd.Parameters.AddWithValue("@idpais", idpais);
+                        cmd.Parameters.AddWithValue("@iddepartamento", iddepartamento);
+                        cmd.Parameters.AddWithValue("@longitud", longitud);
+                        cmd.Parameters.AddWithValue("@latitud",latitud);
 
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MostrarUnidad(idclienteseleccionado);
+                        MostrarUnidad(idclienteseleccionado,datalistadounidad);
                         MessageBox.Show("Registro ingresado exitosamente.", "Nueva Unidad", MessageBoxButtons.OK);
 
-                        txtLatitud.Text = "";
-                        txtLongitud.Text = "";
-                        txtNombreUnidad.Text = "";
+                        limpiarlatitud.Text = "";
+                        limpiarlongitud.Text = "";
+                        limpiarnombreunidad.Text = "";
                     }
                     catch (Exception ex)
                     {
@@ -1216,14 +1275,19 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 }
             }
         }
+        private void btnGuardarUnidad_Click(object sender, EventArgs e)
+        {
+            AgregarUnidad(txtNombreUnidad.Text, Convert.ToInt32(cboResponsable.SelectedValue), Convert.ToInt32(cboZona.SelectedValue), cboPaisUnidad.SelectedValue.ToString()
+                ,cboDepartamentoUnidad.SelectedValue.ToString(), Convert.ToDecimal(txtLongitud.Text), Convert.ToDecimal(txtLatitud.Text),txtLatitud,txtLongitud,txtNombreUnidad);
+        }
 
-        //ACCION DE ELIMINAR UNA UNIDAD REGISTRADA DE MI CLEINTE
-        private void btnEiminarUnidad_Click(object sender, EventArgs e)
+        //METODO QUE ELIMINA LA UNIDAD REGISTRADA DEL CLIENTE
+        public void EliminarUnidad(int codigounidad,Label limpiarcodigounidad)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar?.", "Eliminar Unidad", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (lblCodigoUnida.Text != "0")
+                if (Convert.ToString(codigounidad) != "0")
                 {
                     try
                     {
@@ -1231,16 +1295,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarCliente_Unidad", con);
+                        cmd = new SqlCommand("Clientes_Eliminar_Unidad", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", Convert.ToInt32(lblCodigoUnida.Text));
+                        cmd.Parameters.AddWithValue("@id", codigounidad);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
                         MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación de una Unidad", MessageBoxButtons.OK);
-                        lblCodigoUnida.Text = "0";
+                        limpiarcodigounidad.Text = "0";
 
-                        MostrarUnidad(idclienteseleccionado);
+                        MostrarUnidad(idclienteseleccionado,datalistadounidad);
                     }
                     catch (Exception ex)
                     {
@@ -1252,6 +1316,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                     MessageBox.Show("Debe seleccionar un registro para poder eliminarlo.", "Eliminación de una Unidad", MessageBoxButtons.OK);
                 }
             }
+        }
+        private void btnEiminarUnidad_Click(object sender, EventArgs e)
+        {
+            EliminarUnidad(Convert.ToInt32(lblCodigoUnida.Text),lblCodigoUnida);
         }
 
         //VOLVER O SALIR DE UNDIAD
@@ -1267,7 +1335,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //ENTRAR A CONTACTO DEL CLIENTE
         private void lblContacto_Click(object sender, EventArgs e)
         {
-            MostrarContacto(idclienteseleccionado);
+            MostrarContacto(idclienteseleccionado,datalistadocontacto);
             CargarUnidadDatosAnexos(idclienteseleccionado);
             CargarCargo();
             CargarArea();
@@ -1302,13 +1370,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
         }
 
-        //ACCION DE GUARDAR CONTACTO PARA MI CLIENTE
-        private void btnGuardarContacto_Click(object sender, EventArgs e)
+        //METODO QUE GUARDARA EL CONTACTO AL CLIENTE
+        public void AgregarContacto(string nombrecontacto,string telefonocontacto,string anexocontacto,string correocontacto,int idunidad,int idarea,int idcargo,TextBox limpiarnombrecontacto
+            ,TextBox limpiartelefonocontacto,TextBox limpiaranexocontacto,TextBox limpiarcorreocontacto,ComboBox cbounidadcontacto)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea ingresar este contacto?.", "Nuevo Contacto", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (txtNombreContacto.Text == "" || txtTelefonoContacto.Text == "" || txtCorreoContacto.Text == "" || cboUnidadContacto.SelectedValue == null || cboUnidadContacto.Text == "")
+                if (string.IsNullOrWhiteSpace(nombrecontacto) || string.IsNullOrWhiteSpace(correocontacto) || string.IsNullOrWhiteSpace(anexocontacto) || cbounidadcontacto.SelectedValue == null || cbounidadcontacto.Text == "")
                 {
                     MessageBox.Show("Debe ingresar o seleccionar los datos correspondientes.", "Registro", MessageBoxButtons.OK);
                 }
@@ -1320,27 +1389,27 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarClientes_Contacto", con);
+                        cmd = new SqlCommand("Clientes_Insertar_Contacto", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("@idcliente", idclienteseleccionado);
-                        cmd.Parameters.AddWithValue("@descipcion", txtNombreContacto.Text);
-                        cmd.Parameters.AddWithValue("@telefono", txtTelefonoContacto.Text);
-                        cmd.Parameters.AddWithValue("@anexo", txtAnexoContacto.Text);
-                        cmd.Parameters.AddWithValue("@correo", txtCorreoContacto.Text);
-                        cmd.Parameters.AddWithValue("@idunidad", cboUnidadContacto.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idarea", cboAreaContacto.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@idcargo", cboCargoContacto.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@descipcion", nombrecontacto);
+                        cmd.Parameters.AddWithValue("@telefono", telefonocontacto);
+                        cmd.Parameters.AddWithValue("@anexo", anexocontacto);
+                        cmd.Parameters.AddWithValue("@correo", correocontacto);
+                        cmd.Parameters.AddWithValue("@idunidad", idunidad);
+                        cmd.Parameters.AddWithValue("@idarea", idarea);
+                        cmd.Parameters.AddWithValue("@idcargo", idcargo);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MostrarContacto(idclienteseleccionado);
+                        MostrarContacto(idclienteseleccionado,datalistadocontacto);
                         MessageBox.Show("Registro ingresado exitosamente.", "Nuevo Contacto", MessageBoxButtons.OK);
 
-                        txtNombreContacto.Text = "";
-                        txtTelefonoContacto.Text = "";
-                        txtAnexoContacto.Text = "";
-                        txtCorreoContacto.Text = "";
+                        limpiarnombrecontacto.Text = "";
+                        limpiartelefonocontacto.Text = "";
+                        limpiaranexocontacto.Text = "";
+                        limpiarcorreocontacto.Text = "";
                     }
                     catch (Exception ex)
                     {
@@ -1349,14 +1418,20 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 }
             }
         }
+        private void btnGuardarContacto_Click(object sender, EventArgs e)
+        {
+            AgregarContacto(txtNombreContacto.Text,txtTelefonoContacto.Text,txtAnexoContacto.Text,txtCorreoContacto.Text,Convert.ToInt32(cboUnidadContacto.SelectedValue)
+                ,Convert.ToInt32(cboAreaContacto.SelectedValue),Convert.ToInt32(cboCargoContacto.SelectedValue),txtNombreContacto,txtTelefonoContacto,txtAnexoContacto
+                ,txtCorreoContacto,cboUnidadContacto);
+        }
 
-        //ACCION DE ELIMINAR UNA CONDTACTO REGISTRADA DE MI CLEINTE
-        private void btnEliminarContactos_Click(object sender, EventArgs e)
+        //METODO DE ELIMINACIÓN DE CONTACTO REGISTRADO DEL CLIENTE
+        public void EliminarContacto(int codigocontacto,Label limpiarcodigocontacto)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar?.", "Eliminar Contacto", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (lblCodigoContacto.Text != "0")
+                if (Convert.ToString(codigocontacto) != "0")
                 {
                     try
                     {
@@ -1364,15 +1439,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarCliente_Contacto", con);
+                        cmd = new SqlCommand("Clientes_Eliminar_Contacto", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", Convert.ToInt32(lblCodigoContacto.Text));
+                        cmd.Parameters.AddWithValue("@id", codigocontacto);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MostrarContacto(idclienteseleccionado);
+                        MostrarContacto(idclienteseleccionado,datalistadocontacto);
                         MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Contacto", MessageBoxButtons.OK);
-                        lblCodigoContacto.Text = "0";
+                        limpiarcodigocontacto.Text = "0";
                     }
                     catch (Exception ex)
                     {
@@ -1384,6 +1459,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                     MessageBox.Show("Debe seleccionar un registro para poder eliminarlo.", "Eliminación de un Contacto", MessageBoxButtons.OK);
                 }
             }
+        }
+        private void btnEliminarContactos_Click(object sender, EventArgs e)
+        {
+            EliminarContacto(Convert.ToInt32(lblCodigoContacto.Text),lblCodigoContacto);
         }
 
         //VOLVER O SALIR DE CONTACTO
@@ -1400,7 +1479,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //ENTRAR A CONDICIONES DEL CLIENTE
         private void lblCondicion_Click(object sender, EventArgs e)
         {
-            MostrarCondicion(idclienteseleccionado);
+            MostrarCondicion(idclienteseleccionado,datalistadoCondicion);
             CargarCondicion();
             CargarForma();
             lblCodigoCOndicion.Text = "0";
@@ -1434,7 +1513,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         }
 
         //ACCION DE GUARDAR CONDICION PARA MI CLIENTE
-        private void btnGuardarCondicion_Click(object sender, EventArgs e)
+        public void AgregarCondicion(int idcondicion,int idforma)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea ingresar esta condición?.", "Nueva Condición", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
@@ -1445,16 +1524,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarClientes_Condicion", con);
+                    cmd = new SqlCommand("Clientes_Insertar_Condicion", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@idcliente", idclienteseleccionado);
-                    cmd.Parameters.AddWithValue("@idcondicion", cboCondicionCondicion.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@idforma", cboFormaCondicion.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@idcondicion", idcondicion);
+                    cmd.Parameters.AddWithValue("@idforma", idforma);
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                    MostrarCondicion(idclienteseleccionado);
+                    MostrarCondicion(idclienteseleccionado,datalistadoCondicion);
                     MessageBox.Show("Registro ingresado exitosamente.", "Nueva Condición", MessageBoxButtons.OK);
                 }
                 catch (Exception ex)
@@ -1463,14 +1542,18 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 }
             }
         }
+        private void btnGuardarCondicion_Click(object sender, EventArgs e)
+        {
+            AgregarCondicion(Convert.ToInt32(cboCondicionCondicion.SelectedValue),Convert.ToInt32(cboFormaCondicion.SelectedValue));
+        }
 
-        //ACCION DE ELIMINAR CONIDCION REGISTRADA DE MI CLEINTE
-        private void btnEliminarCondicion_Click(object sender, EventArgs e)
+        //METODO QUE ELIMINA LA CONDICION REGISTRARA PARA EL CLIENTE
+        public void EliminarCondicion(int codigocondicion,Label limpiarcodigocondicion)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar?.", "Eliminar Condición", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (lblCodigoCOndicion.Text != "0")
+                if (Convert.ToString(codigocondicion) != "0")
                 {
                     try
                     {
@@ -1478,15 +1561,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarCliente_Condicion", con);
+                        cmd = new SqlCommand("Clientes_Eliminar_Condicion", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", Convert.ToInt32(lblCodigoCOndicion.Text));
+                        cmd.Parameters.AddWithValue("@id", codigocondicion);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MostrarCondicion(idclienteseleccionado);
+                        MostrarCondicion(idclienteseleccionado,datalistadoCondicion);
                         MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación de una Condición", MessageBoxButtons.OK);
-                        lblCodigoCOndicion.Text = "0";
+                        limpiarcodigocondicion.Text = "0";
                     }
                     catch (Exception ex)
                     {
@@ -1499,6 +1582,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 }
             }
         }
+        private void btnEliminarCondicion_Click(object sender, EventArgs e)
+        {
+            EliminarCondicion(Convert.ToInt32(lblCodigoCOndicion.Text),lblCodigoCOndicion);
+        }
 
         //VOLVER O SALIR DE CONDICION
         private void btnRetrocederCondicion_Click(object sender, EventArgs e)
@@ -1510,7 +1597,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //ENTRAR A SUCURSAL DEL CLIENTE
         private void lblSucursal_Click(object sender, EventArgs e)
         {
-            MostrarSucursal(idclienteseleccionado);
+            MostrarSucursal(idclienteseleccionado, datalistadosucursal);
             CargarPais(cboPaisSucursal);
             lblCodigoSucursal.Text = "0";
             txtCodigoClienteSucursal.Text = txtCodigoClientes.Text;
@@ -1573,13 +1660,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
         }
 
-        //ACCION DE GUARDAR SUCURSAL PARA MI CLIENTE
-        private void btnGuardarSucursal_Click(object sender, EventArgs e)
+        //METODO QUE GUARDA LA SUCURSAL AL CLIENTE
+        public void AgregarSucursal(string nombresucursal,string direccionsucurusal,string telefonosucursal,string codigopais,string codigodepartamento,string codigoprovincia,string codigodistrito
+            ,TextBox limpiarnombresucursal, TextBox limpiardireccionsucursal, TextBox limpiartelefonosucursal)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea ingresar esta sucursal?.", "Registro de Sucursal", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (txtNombreSucursal.Text == "" || txtTelefonoSucursal.Text == "" || txtDireccionSucursal.Text == "")
+                if (string.IsNullOrWhiteSpace(nombresucursal) || string.IsNullOrWhiteSpace(telefonosucursal) || string.IsNullOrWhiteSpace(direccionsucurusal))
                 {
                     MessageBox.Show("Debe ingresar datos válidos para poder hacer el registro.", "Registro de Sucursal", MessageBoxButtons.OK);
                 }
@@ -1591,26 +1679,26 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarClientes_Sucursal", con);
+                        cmd = new SqlCommand("Clientes_Insertar_Sucursal", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("@idcliente", idclienteseleccionado);
-                        cmd.Parameters.AddWithValue("@nombre", txtNombreSucursal.Text);
-                        cmd.Parameters.AddWithValue("@direccion", txtDireccionSucursal.Text);
-                        cmd.Parameters.AddWithValue("@telefono", txtTelefonoSucursal.Text);
-                        cmd.Parameters.AddWithValue("@codigopais", cboPaisSucursal.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@codigodepartamento", cboDepartamentoSucursal.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@codigoprovincia", cboProvinciaSucursal.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@codigodistrito", cboDistritoSucursal.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@nombre", nombresucursal);
+                        cmd.Parameters.AddWithValue("@direccion", direccionsucurusal);
+                        cmd.Parameters.AddWithValue("@telefono", telefonosucursal);
+                        cmd.Parameters.AddWithValue("@codigopais", codigopais);
+                        cmd.Parameters.AddWithValue("@codigodepartamento", codigodepartamento);
+                        cmd.Parameters.AddWithValue("@codigoprovincia", codigoprovincia);
+                        cmd.Parameters.AddWithValue("@codigodistrito", codigodistrito);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MostrarSucursal(idclienteseleccionado);
+                        MostrarSucursal(idclienteseleccionado, datalistadosucursal);
                         MessageBox.Show("Registro ingresado exitosamente.", "Nuevo Sucursal", MessageBoxButtons.OK);
 
-                        txtNombreSucursal.Text = "";
-                        txtDireccionSucursal.Text = "";
-                        txtTelefonoSucursal.Text = "";
+                        limpiarnombresucursal.Text = "";
+                        limpiardireccionsucursal.Text = "";
+                        limpiartelefonosucursal.Text = "";
                     }
                     catch (Exception ex)
                     {
@@ -1619,34 +1707,49 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 }
             }
         }
+        private void btnGuardarSucursal_Click(object sender, EventArgs e)
+        {
+            AgregarSucursal(txtNombreSucursal.Text,txtDireccionSucursal.Text,txtTelefonoSucursal.Text,cboPaisSucursal.SelectedValue.ToString(),cboDepartamentoSucursal.SelectedValue.ToString()
+                ,cboProvinciaSucursal.SelectedValue.ToString(),cboDistritoSucursal.SelectedValue.ToString(),txtNombreSucursal,txtDireccionSucursal,txtTelefonoSucursal);
+        }
 
-        //ACCION DE ELIMINAR SUCRUSAL REGISTRADA DE MI CLEINTE
-        private void btnEliminarSucursal_Click(object sender, EventArgs e)
+        //METODO PARA ELIMINAR LA SUCURSAL REGISTRADA DEL CLIENTE
+        public void EliminarSucursal(int codigosucursal,Label limpiarcodigosucursal)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar?.", "Eliminar Sucursal", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (lblCodigoSucursal.Text != "0")
+                try
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EliminarCliente_Sucursal", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(lblCodigoSucursal.Text));
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    if (Convert.ToString(codigosucursal) != "0")
+                    {
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Clientes_Eliminar_Sucursal", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", codigosucursal);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
 
-                    MostrarSucursal(idclienteseleccionado);
-                    MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación nueva", MessageBoxButtons.OK);
-                    lblCodigoSucursal.Text = "0";
-                }
-                else
+                        MostrarSucursal(idclienteseleccionado, datalistadosucursal);
+                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación nueva", MessageBoxButtons.OK);
+                        limpiarcodigosucursal.Text = "0";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar un registro para poder eliminarlo.", "Eliminación de una Sucursal", MessageBoxButtons.OK);
+                    }
+                }catch(Exception ex)
                 {
-                    MessageBox.Show("Debe seleccionar un registro para poder eliminarlo.", "Eliminación de una Sucursal", MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message);
                 }
             }
+        }
+        private void btnEliminarSucursal_Click(object sender, EventArgs e)
+        {
+            EliminarSucursal(Convert.ToInt32(lblCodigoSucursal.Text), lblCodigoSucursal);
         }
 
         //VOLVER O SALIR DE SUCURSAL
@@ -1664,119 +1767,132 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             txtCliente.Text = "";
         }
 
-        //BUSCAR CLEITNE POR NOMBRE O DOCUEMTO
+        //FILTROS DE BUSQUEDA PARA LA BUSQUEDA DE CLIENTES
+        public void FiltrarClientes(ComboBox cboseleccionbusqueda, string cliente, DataGridView DGV)
+        {
+            if (cboseleccionbusqueda.Text == "NOMBRES")
+            {
+                try
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("Clientes_BuscarPorNombre", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombre", cliente);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    DGV.DataSource = dt;
+                    con.Close();  
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (cboseleccionbusqueda.Text == "DOCUMENTO")
+            {
+                try
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("Clientes_BuscarPorDocumento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", cliente);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    DGV.DataSource = dt;
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            Filtro_Configurar_Columnas(cboseleccionbusqueda, DGV);
+        }
+        public void Filtro_Configurar_Columnas(ComboBox cbo,DataGridView DGV)
+        {
+            if(cbo.Text == "NOMBRES")
+            {
+                DGV.Columns[0].Width = 145;
+                DGV.Columns[1].Width = 150;
+                DGV.Columns[2].Width = 420;
+                DGV.Columns[3].Width = 140;
+                DGV.Columns[4].Width = 162;
+
+                DGV.Columns[5].Visible = false;
+                DGV.Columns[6].Visible = false;
+                DGV.Columns[7].Visible = false;
+                DGV.Columns[8].Visible = false;
+                DGV.Columns[9].Visible = false;
+                DGV.Columns[10].Visible = false;
+                DGV.Columns[11].Visible = false;
+                DGV.Columns[12].Visible = false;
+                DGV.Columns[13].Visible = false;
+                DGV.Columns[14].Visible = false;
+                DGV.Columns[15].Visible = false;
+                DGV.Columns[16].Visible = false;
+                DGV.Columns[17].Visible = false;
+                DGV.Columns[18].Visible = false;
+                DGV.Columns[19].Visible = false;
+                DGV.Columns[20].Visible = false;
+                DGV.Columns[21].Visible = false;
+                DGV.Columns[22].Visible = false;
+                DGV.Columns[23].Visible = false;
+                DGV.Columns[24].Visible = false;
+                DGV.Columns[25].Visible = false;
+                DGV.Columns[26].Visible = false;
+                DGV.Columns[27].Visible = false;
+                DGV.Columns[28].Visible = false;
+                DGV.Columns[29].Visible = false;
+                DGV.Columns[30].Visible = false;
+            }
+            else
+            {
+                DGV.Columns[0].Width = 145;
+                DGV.Columns[1].Width = 150;
+                DGV.Columns[2].Width = 420;
+                DGV.Columns[3].Width = 140;
+                DGV.Columns[4].Width = 162;
+
+                DGV.Columns[5].Visible = false;
+                DGV.Columns[6].Visible = false;
+                DGV.Columns[7].Visible = false;
+                DGV.Columns[8].Visible = false;
+                DGV.Columns[9].Visible = false;
+                DGV.Columns[10].Visible = false;
+                DGV.Columns[11].Visible = false;
+                DGV.Columns[12].Visible = false;
+                DGV.Columns[13].Visible = false;
+                DGV.Columns[14].Visible = false;
+                DGV.Columns[15].Visible = false;
+                DGV.Columns[16].Visible = false;
+                DGV.Columns[17].Visible = false;
+                DGV.Columns[18].Visible = false;
+                DGV.Columns[19].Visible = false;
+                DGV.Columns[20].Visible = false;
+                DGV.Columns[21].Visible = false;
+                DGV.Columns[22].Visible = false;
+                DGV.Columns[23].Visible = false;
+                DGV.Columns[24].Visible = false;
+                DGV.Columns[25].Visible = false;
+                DGV.Columns[26].Visible = false;
+                DGV.Columns[27].Visible = false;
+                DGV.Columns[28].Visible = false;
+                DGV.Columns[29].Visible = false;
+                DGV.Columns[30].Visible = false;
+            }
+        }
+
         private void txtCliente_TextChanged(object sender, EventArgs e)
         {
-            if (cboTipoBusqueda.Text == "NOMBRES")
-            {
-                try
-                {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BuscarClientePorNombre", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre", txtCliente.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistado.DataSource = dt;
-                    con.Close();
-
-                    datalistado.Columns[0].Width = 145;
-                    datalistado.Columns[1].Width = 150;
-                    datalistado.Columns[2].Width = 420;
-                    datalistado.Columns[3].Width = 140;
-                    datalistado.Columns[4].Width = 162;
-
-                    datalistado.Columns[5].Visible = false;
-                    datalistado.Columns[6].Visible = false;
-                    datalistado.Columns[7].Visible = false;
-                    datalistado.Columns[8].Visible = false;
-                    datalistado.Columns[9].Visible = false;
-                    datalistado.Columns[10].Visible = false;
-                    datalistado.Columns[11].Visible = false;
-                    datalistado.Columns[12].Visible = false;
-                    datalistado.Columns[13].Visible = false;
-                    datalistado.Columns[14].Visible = false;
-                    datalistado.Columns[15].Visible = false;
-                    datalistado.Columns[16].Visible = false;
-                    datalistado.Columns[17].Visible = false;
-                    datalistado.Columns[18].Visible = false;
-                    datalistado.Columns[19].Visible = false;
-                    datalistado.Columns[20].Visible = false;
-                    datalistado.Columns[21].Visible = false;
-                    datalistado.Columns[22].Visible = false;
-                    datalistado.Columns[23].Visible = false;
-                    datalistado.Columns[24].Visible = false;
-                    datalistado.Columns[25].Visible = false;
-                    datalistado.Columns[26].Visible = false;
-                    datalistado.Columns[27].Visible = false;
-                    datalistado.Columns[28].Visible = false;
-                    datalistado.Columns[29].Visible = false;
-                    datalistado.Columns[30].Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else if (cboTipoBusqueda.Text == "DOCUMENTO")
-            {
-                try
-                {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BuscarClientePorDocumento", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@documento", txtCliente.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistado.DataSource = dt;
-                    con.Close();
-
-                    datalistado.Columns[0].Width = 145;
-                    datalistado.Columns[1].Width = 150;
-                    datalistado.Columns[2].Width = 420;
-                    datalistado.Columns[3].Width = 140;
-                    datalistado.Columns[4].Width = 162;
-
-                    datalistado.Columns[5].Visible = false;
-                    datalistado.Columns[6].Visible = false;
-                    datalistado.Columns[7].Visible = false;
-                    datalistado.Columns[8].Visible = false;
-                    datalistado.Columns[9].Visible = false;
-                    datalistado.Columns[10].Visible = false;
-                    datalistado.Columns[11].Visible = false;
-                    datalistado.Columns[12].Visible = false;
-                    datalistado.Columns[13].Visible = false;
-                    datalistado.Columns[14].Visible = false;
-                    datalistado.Columns[15].Visible = false;
-                    datalistado.Columns[16].Visible = false;
-                    datalistado.Columns[17].Visible = false;
-                    datalistado.Columns[18].Visible = false;
-                    datalistado.Columns[19].Visible = false;
-                    datalistado.Columns[20].Visible = false;
-                    datalistado.Columns[21].Visible = false;
-                    datalistado.Columns[22].Visible = false;
-                    datalistado.Columns[23].Visible = false;
-                    datalistado.Columns[24].Visible = false;
-                    datalistado.Columns[25].Visible = false;
-                    datalistado.Columns[26].Visible = false;
-                    datalistado.Columns[27].Visible = false;
-                    datalistado.Columns[28].Visible = false;
-                    datalistado.Columns[29].Visible = false;
-                    datalistado.Columns[30].Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            FiltrarClientes(cboTipoBusqueda, txtCliente.Text, datalistado);
         }
 
         //VALIDACIONBES DE INRGESO DE CARACATERES-------------------------------------------------------------
@@ -1936,6 +2052,31 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void btnInfoPrincipal_Click(object sender, EventArgs e)
         {
             Process.Start(Manual);
+        }
+
+        private void txtDolares_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+           
+        }
+
+        private void txtSoles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }
