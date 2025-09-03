@@ -5261,6 +5261,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             con.Close();
         }
 
+        //METODO PARA AGREGAR LOS GRUPOS DE CAMPOS SELECCIONADOS - DETALLES
         public void AgregarGrupoCamposSeleccionadosDetalle(DataGridView DGV,ComboBox TCaracteristicas1, ComboBox TCaracteristicas2, ComboBox TCaracteristicas3
             , ComboBox TCaracteristicas4, ComboBox DesCaracteristicas1, ComboBox DesCaracteristicas2, ComboBox DesCaracteristicas3, ComboBox DesCaracteristicas4
             , ComboBox TMedidas1, ComboBox TMedidas2, ComboBox TMedidas3, ComboBox TMedidas4, ComboBox DesMedidas1, ComboBox DesMedidas2, ComboBox DesMedidas3, ComboBox DesMedidas4
@@ -5865,7 +5866,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             cmd.ExecuteNonQuery();
             con.Close();
         }
-
+        //METODO PARA AGREGAR PRODUCTOS
         public void AgregarProductos(string anotaciones, string codigo, string descripciongeneradaproducto)
         {
             ////INGRESAR TABLA PRINCIPAL DE PRODUCTOS
@@ -7588,7 +7589,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             }
         }
 
-        //FUNCION PARA INGRESAR UN  NUEVO DATO
+        //FUNCION PARA INGRESAR NUEVOS DATOS
         public void IngresarNuevoDato(string tipoOngreso,string tituloadaptable,string codigotipoingreso, int codigomodelo, string valoringreso,string modelos,ComboBox TipCaracteristica1
             ,ComboBox TipCaracteristica2,ComboBox TipCaracteristica3, ComboBox TipCaracteristica4, ComboBox DesCaracteristicas1,ComboBox DesCaracteristicas2, ComboBox DesCaracteristicas3
             ,ComboBox DesCaracteristicas4,ComboBox TipMedidas1,ComboBox TipMedidas2,ComboBox TipMedidas3, ComboBox TipMedidas4,ComboBox DesMedidas1,ComboBox DesMedidas2,ComboBox DesMedidas3
