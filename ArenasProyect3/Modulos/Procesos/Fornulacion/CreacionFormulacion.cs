@@ -329,7 +329,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CreacionFormulacion_BuscarPlanoPorId", con);
+            cmd = new SqlCommand("BuscarPlanoPorId", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idart", id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1248,43 +1248,49 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //BÚSQUEDA DE PRODUCTO
         private void txtBusquedaProducto_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaProductos.Text == "DESCRIPCIÓN")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorDescripcion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoproductos.DataSource = dt;
-                con.Close();
-                datalistadoproductos.Columns[0].Width = 110;
-                datalistadoproductos.Columns[1].Width = 90;
-                datalistadoproductos.Columns[2].Width = 675;
-                alternarColorFilas(datalistadoproductos);
-            }
-            else if (cboBusquedaProductos.Text == "CÓDIGO")
+                if (cboBusquedaProductos.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorDescripcion", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoproductos.DataSource = dt;
+                    con.Close();
+                    datalistadoproductos.Columns[0].Width = 110;
+                    datalistadoproductos.Columns[1].Width = 90;
+                    datalistadoproductos.Columns[2].Width = 675;
+                    alternarColorFilas(datalistadoproductos);
+                }
+                else if (cboBusquedaProductos.Text == "CÓDIGO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorCodigo", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codigo", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoproductos.DataSource = dt;
+                    con.Close();
+                    datalistadoproductos.Columns[0].Width = 110;
+                    datalistadoproductos.Columns[1].Width = 90;
+                    datalistadoproductos.Columns[2].Width = 675;
+                    alternarColorFilas(datalistadoproductos);
+                }
+            }catch(Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorCodigo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigo", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoproductos.DataSource = dt;
-                con.Close();
-                datalistadoproductos.Columns[0].Width = 110;
-                datalistadoproductos.Columns[1].Width = 90;
-                datalistadoproductos.Columns[2].Width = 675;
-                alternarColorFilas(datalistadoproductos);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -1297,43 +1303,49 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //BÚSQUEDA DE SEMIPRODUCIDOS
         private void txtBusquedaSemiProducido_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaSemiProducido.Text == "DESCRIPCIÓN")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorDescripcion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaSemiProducido.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoSemiProducido.DataSource = dt;
-                con.Close();
-                datalistadoSemiProducido.Columns[0].Width = 110;
-                datalistadoSemiProducido.Columns[1].Width = 90;
-                datalistadoSemiProducido.Columns[2].Width = 675;
-                alternarColorFilas(datalistadoSemiProducido);
-            }
-            else if (cboBusquedaSemiProducido.Text == "CÓDIGO")
+                if (cboBusquedaSemiProducido.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorDescripcion", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaSemiProducido.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoSemiProducido.DataSource = dt;
+                    con.Close();
+                    datalistadoSemiProducido.Columns[0].Width = 110;
+                    datalistadoSemiProducido.Columns[1].Width = 90;
+                    datalistadoSemiProducido.Columns[2].Width = 675;
+                    alternarColorFilas(datalistadoSemiProducido);
+                }
+                else if (cboBusquedaSemiProducido.Text == "CÓDIGO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorCodigo", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codigo", txtBusquedaSemiProducido.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoSemiProducido.DataSource = dt;
+                    con.Close();
+                    datalistadoSemiProducido.Columns[0].Width = 110;
+                    datalistadoSemiProducido.Columns[1].Width = 90;
+                    datalistadoSemiProducido.Columns[2].Width = 675;
+                    alternarColorFilas(datalistadoSemiProducido);
+                }
+            }catch(Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CreacionFormulacion_BusquedaProductosPorCodigo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigo", txtBusquedaSemiProducido.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoSemiProducido.DataSource = dt;
-                con.Close();
-                datalistadoSemiProducido.Columns[0].Width = 110;
-                datalistadoSemiProducido.Columns[1].Width = 90;
-                datalistadoSemiProducido.Columns[2].Width = 675;
-                alternarColorFilas(datalistadoSemiProducido);
+                MessageBox.Show(ex.Message);
             }
         }
         //------------------------------------------------------------------------------------------
@@ -2641,56 +2653,62 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //BUSQUEDA SENSITIVA EN TEIMPÓ REAL
         private void txtBusquedaCopiaFormulacion_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaCopiaFormulacion.Text == "CÓDIGO FORMULACIÓN")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarCodigo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaCopiaFormulaciones.DataSource = dt;
-                con.Close();
-                RedimensionarBusquedaCopiaFormulaciones(datalistadoBusquedaCopiaFormulaciones);
-                alternarColorFilas(datalistadoBusquedaCopiaFormulaciones);
-            }
-            else if (cboBusquedaCopiaFormulacion.Text == "CÓDIGO PRODUCTO")
+                if (cboBusquedaCopiaFormulacion.Text == "CÓDIGO FORMULACIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarCodigo", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaCopiaFormulaciones.DataSource = dt;
+                    con.Close();
+                    RedimensionarBusquedaCopiaFormulaciones(datalistadoBusquedaCopiaFormulaciones);
+                    alternarColorFilas(datalistadoBusquedaCopiaFormulaciones);
+                }
+                else if (cboBusquedaCopiaFormulacion.Text == "CÓDIGO PRODUCTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarCodigoProducto", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaCopiaFormulaciones.DataSource = dt;
+                    con.Close();
+                    RedimensionarBusquedaCopiaFormulaciones(datalistadoBusquedaCopiaFormulaciones);
+                    alternarColorFilas(datalistadoBusquedaCopiaFormulaciones);
+                }
+                else if (cboBusquedaCopiaFormulacion.Text == "DESCRIPCIÓN PRODUCTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarDescripcionProducto", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaCopiaFormulaciones.DataSource = dt;
+                    con.Close();
+                    RedimensionarBusquedaCopiaFormulaciones(datalistadoBusquedaCopiaFormulaciones);
+                    alternarColorFilas(datalistadoBusquedaCopiaFormulaciones);
+                }
+            }catch(Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarCodigoProducto", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaCopiaFormulaciones.DataSource = dt;
-                con.Close();
-                RedimensionarBusquedaCopiaFormulaciones(datalistadoBusquedaCopiaFormulaciones);
-                alternarColorFilas(datalistadoBusquedaCopiaFormulaciones);
-            }
-            else if (cboBusquedaCopiaFormulacion.Text == "DESCRIPCIÓN PRODUCTO")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CreacionFormulacion_BuscarCopiarDescripcionProducto", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaCopiaFormulacion.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaCopiaFormulaciones.DataSource = dt;
-                con.Close();
-                RedimensionarBusquedaCopiaFormulaciones(datalistadoBusquedaCopiaFormulaciones);
-                alternarColorFilas(datalistadoBusquedaCopiaFormulaciones);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -2729,7 +2747,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             panelBusquedaCopiaFormulaciones.Visible = false;
         }
 
-        //FUNCION PARA COPIAR LOS DATOS DE LA FORMULACION A OTRA
+        //METODO PARA COPIAR LOS DATOS DE UNA FORMULACION A OTRA
         public void CopiarBusquedaFormulacion(DataGridView DGV1, DataGridView DGV2,DataGridView DGV3, DataGridView DGV4,DataGridView DGV5, DataGridView DGV6
             ,DataGridView DGV7,DataGridView DGV8,string tipoformulacionCopia, string tipoformulacion,string codigoformulacionVision)
         {
@@ -2873,6 +2891,8 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 }
             }
         }
+
+        //BOTON PARA COPIAR LOS DATOS DE LA FORMULACION SELECCIONADA
         private void btnCopiarBusquedaCopiaFormulacion_Click(object sender, EventArgs e)
         {
             CopiarBusquedaFormulacion(datalistadoItemsActividadesProductoBusquedaCopiaFormulacion, datalistadoItemsActividadesSemiProducidoBusquedaCopiaFormulacion
