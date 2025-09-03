@@ -1274,9 +1274,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
                     if (rutaImagen == "")
                     {
-                        imgProductoSeleccioandoSinImagen.SizeMode = PictureBoxSizeMode.Zoom;
-                        imgProductoSeleccioandoSinImagen.BackgroundImage = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Predeterminado\caja2.png");
-                        imgProductoSeleccioandoSinImagen.SizeMode = PictureBoxSizeMode.Zoom;
+                        //imgProductoSeleccioandoSinImagen.SizeMode = PictureBoxSizeMode.Zoom;
+                        //imgProductoSeleccioandoSinImagen.BackgroundImage = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Predeterminado\caja2.png");
+                        //imgProductoSeleccioandoSinImagen.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
                     {
@@ -1804,6 +1804,18 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //BOTÓN PARA AGREGAR NUEVO PRODUCTO
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
+            MostraUnicaVentana();
+        }
+
+        public void MostraUnicaVentana()
+        { 
+            foreach(Form formulario in Application.OpenForms)
+            {
+                if(formulario is Productos.AgregarProducto)
+                {
+                    return;
+                }
+            }
             Productos.AgregarProducto Agregar = new Productos.AgregarProducto();
             Agregar.Show();
         }
@@ -2186,6 +2198,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 MessageBox.Show(ex.Message);
             }
         }
+        //BOTÓN PARA ABRIR EL PLANO
         private void btnAbrirPdf_Click(object sender, EventArgs e)
         {
             VisualizarPlano(datalistadopdf);
@@ -2375,6 +2388,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 }
             }
         }
+        //BOTON QUE ELIMINA EL PRODUCTO SELECCIONADO
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             EliminarProducto();

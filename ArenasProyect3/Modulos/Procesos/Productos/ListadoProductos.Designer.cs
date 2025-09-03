@@ -853,7 +853,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckSemiProducido.AutoSize = true;
             this.ckSemiProducido.Enabled = false;
             this.ckSemiProducido.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckSemiProducido.Location = new System.Drawing.Point(1034, 77);
+            this.ckSemiProducido.Location = new System.Drawing.Point(1031, 77);
             this.ckSemiProducido.Margin = new System.Windows.Forms.Padding(4);
             this.ckSemiProducido.Name = "ckSemiProducido";
             this.ckSemiProducido.Size = new System.Drawing.Size(102, 18);
@@ -5116,7 +5116,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // 
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Calibri", 7F, System.Drawing.FontStyle.Bold);
-            this.label76.Location = new System.Drawing.Point(1163, 246);
+            this.label76.Location = new System.Drawing.Point(1162, 246);
             this.label76.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(58, 13);
