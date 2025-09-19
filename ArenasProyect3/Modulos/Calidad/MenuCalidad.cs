@@ -20,6 +20,8 @@ namespace ArenasProyect3.Modulos.Calidad
         string maquina = Environment.MachineName;
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         string ruta = ManGeneral.Manual.manualAreaCalidad;
+        //MONITOREO DE INACTIVIDAD - CLASE INTERNA
+        private InactivityMonitor _monitor;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU COMERCIAL
         public MenuCalidad()
@@ -74,6 +76,9 @@ namespace ArenasProyect3.Modulos.Calidad
 
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
+
+            //EJECUTAR INACTIVIDADA
+            _monitor = new InactivityMonitor(this, panelInactividad,3, 2); // 5 minutos de inactividad
         }
 
         //EVENTOS DE ACCIONES  DEL MENÚ RPINCIPAL------------------------------------------------------------------
@@ -436,6 +441,12 @@ namespace ArenasProyect3.Modulos.Calidad
             this.panelPrincipalCalidad.Controls.Add(frm);
             this.panelPrincipalCalidad.Tag = frm;
             frm.Show();
+        }
+
+        //BOTON PARA CERRAR MI PANEL DE INACTIVIDAD
+        private void btnCerrarInactividad_Click(object sender, EventArgs e)
+        {
+            panelInactividad.Visible = false;
         }
     }
 }

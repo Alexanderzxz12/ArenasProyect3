@@ -207,7 +207,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //EDITAR UNA CUENTA DE MI BASE DE DATO
         public void EditarDefinicionFormulacion(int codigo, ComboBox cbo)
         {
-            DialogResult boton = MessageBox.Show("Realmente desea editar el estado de esta definición de una formulación.", "Validación de Sistema", MessageBoxButtons.OKCancel);
+            DialogResult boton = MessageBox.Show("¿Realmente desea editar el estado de esta definición de una formulación?.", "Validación de Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
                 if (Convert.ToString(codigo) == "N")

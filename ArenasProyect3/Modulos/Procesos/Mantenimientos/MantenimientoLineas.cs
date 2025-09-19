@@ -135,32 +135,35 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EVENTO DE DOBLE CLICK PARA EN MI LISTADO DE LINEAS
         private void datalistadoLineas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigo.Text = datalistadoLineas.SelectedCells[1].Value.ToString();
-            txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
-            txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
-            cboTipoMercaderia.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
-            string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
-
-            if (estado == "ACTIVO")
+            if (datalistadoLineas.RowCount != 0)
             {
-                cboEstado.Text = "ACTIVO";
+                lblCodigo.Text = datalistadoLineas.SelectedCells[1].Value.ToString();
+                txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
+                txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
+                cboTipoMercaderia.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
+                string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
+
+                if (estado == "ACTIVO")
+                {
+                    cboEstado.Text = "ACTIVO";
+                }
+                else
+                {
+                    cboEstado.Text = "INACTIVO";
+                }
+
+                txtDescripcion.Enabled = false;
+                txtAbreviatura.Enabled = false;
+
+                btnEditarF.Visible = true;
+                btnEditar2F.Visible = false;
+
+                btnGuardarF.Visible = true;
+                btnGuardar2F.Visible = false;
+
+                CancelarF.Visible = false;
+                lblCancelar.Visible = false;
             }
-            else
-            {
-                cboEstado.Text = "INACTIVO";
-            }
-
-            txtDescripcion.Enabled = false;
-            txtAbreviatura.Enabled = false;
-
-            btnEditarF.Visible = true;
-            btnEditar2F.Visible = false;
-
-            btnGuardarF.Visible = true;
-            btnGuardar2F.Visible = false;
-
-            CancelarF.Visible = false;
-            lblCancelar.Visible = false;
         }
 
         //VALIDACIÓN EL SISTEMA PARA PODER AVERIGUAR SI YA EXISTE OTRO REGISTRO CON LA MISMA DESCRIPCION
@@ -245,44 +248,44 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar esta línea?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                     if (boton == DialogResult.OK)
                     {
-                        
-                            try
-                            {
-                                SqlConnection con = new SqlConnection();
-                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con.Open();
-                                SqlCommand cmd = new SqlCommand();
-                                cmd = new SqlCommand("Lineas_Insertar", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-                                cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                                cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
-                                cmd.Parameters.AddWithValue("@codigotipomercaderia", codigotipomercaderia);
-                                if (cboEstado.Text == "ACTIVO")
-                                {
-                                    cmd.Parameters.AddWithValue("@estado", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@estado", 0);
-                                }
 
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-
-                                int cuenta = Convert.ToInt32(codigotipomercaderia);
-                                Mostrar(cuenta);
-                                MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
-                                CamposBloqueados();
-                            }
-                            catch (Exception ex)
+                        try
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("Lineas_Insertar", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                            cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
+                            cmd.Parameters.AddWithValue("@codigotipomercaderia", codigotipomercaderia);
+                            if (cboEstado.Text == "ACTIVO")
                             {
-                                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+                                cmd.Parameters.AddWithValue("@estado", 1);
                             }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@estado", 0);
+                            }
+
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            int cuenta = Convert.ToInt32(codigotipomercaderia);
+                            Mostrar(cuenta);
+                            MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
+                            CamposBloqueados();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                         }
                     }
                 }
             }
-      
+        }
+
         //GUARDAR UNA NUEVA LÍNEA EN MI BASE DE DATOS
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
@@ -366,7 +369,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EDITAR UNA CUENTA DE MI BASE DE DATOS
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarLineas(Convert.ToInt32(lblCodigo.Text),txtDescripcion.Text,txtAbreviatura.Text,Convert.ToInt32(cboTipoMercaderia.SelectedValue));
+            EditarLineas(Convert.ToInt32(lblCodigo.Text), txtDescripcion.Text, txtAbreviatura.Text, Convert.ToInt32(cboTipoMercaderia.SelectedValue));
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO
@@ -414,7 +417,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             ExportarDatos(datalistadoLineas);
         }
-        public void FiltrarLineas(string busquedalinea,DataGridView dgv, ComboBox cbo)
+        public void FiltrarLineas(string busquedalinea, DataGridView dgv, ComboBox cbo)
         {
             try
             {
@@ -466,7 +469,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BÚSQUEDA DE LINEAS SEGUN LA DESCIPCIÓN O LA ABREVIATURA
         private void txtBusquedaLinea_TextChanged(object sender, EventArgs e)
         {
-            FiltrarLineas(txtBusquedaLinea.Text,datalistadoLineas,cboBusquedaLinea);
+            FiltrarLineas(txtBusquedaLinea.Text, datalistadoLineas, cboBusquedaLinea);
         }
 
         //METODO PARA EXPORTAR LAS CUENTAS A EXCEL

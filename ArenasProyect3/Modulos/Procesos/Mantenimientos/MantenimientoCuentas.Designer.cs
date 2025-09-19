@@ -348,6 +348,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnExportarExcelF
             // 
+            this.btnExportarExcelF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcelF.FlatAppearance.BorderSize = 0;
             this.btnExportarExcelF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcelF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcelF.Image")));
@@ -364,9 +365,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.CancelarF.FlatAppearance.BorderSize = 0;
             this.CancelarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelarF.Image = ((System.Drawing.Image)(resources.GetObject("CancelarF.Image")));
-            this.CancelarF.Location = new System.Drawing.Point(607, 131);
+            this.CancelarF.Location = new System.Drawing.Point(615, 144);
             this.CancelarF.Name = "CancelarF";
-            this.CancelarF.Size = new System.Drawing.Size(38, 38);
+            this.CancelarF.Size = new System.Drawing.Size(25, 25);
             this.CancelarF.TabIndex = 1984;
             this.CancelarF.UseVisualStyleBackColor = true;
             this.CancelarF.Visible = false;
@@ -399,7 +400,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(92, 182);
+            this.groupBox2.Size = new System.Drawing.Size(85, 154);
             this.groupBox2.TabIndex = 1984;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ACCIONES";
@@ -408,7 +409,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 71);
+            this.label7.Location = new System.Drawing.Point(17, 57);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 13);
@@ -421,9 +422,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnEditarF.FlatAppearance.BorderSize = 0;
             this.btnEditarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarF.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarF.Image")));
-            this.btnEditarF.Location = new System.Drawing.Point(27, 102);
+            this.btnEditarF.Location = new System.Drawing.Point(30, 86);
             this.btnEditarF.Name = "btnEditarF";
-            this.btnEditarF.Size = new System.Drawing.Size(38, 38);
+            this.btnEditarF.Size = new System.Drawing.Size(25, 25);
             this.btnEditarF.TabIndex = 1987;
             this.btnEditarF.UseVisualStyleBackColor = true;
             this.btnEditarF.Click += new System.EventHandler(this.btnEditar_Click);
@@ -434,9 +435,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnEditar2F.FlatAppearance.BorderSize = 0;
             this.btnEditar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2F.Image")));
-            this.btnEditar2F.Location = new System.Drawing.Point(27, 102);
+            this.btnEditar2F.Location = new System.Drawing.Point(30, 86);
             this.btnEditar2F.Name = "btnEditar2F";
-            this.btnEditar2F.Size = new System.Drawing.Size(38, 38);
+            this.btnEditar2F.Size = new System.Drawing.Size(25, 25);
             this.btnEditar2F.TabIndex = 1988;
             this.btnEditar2F.UseVisualStyleBackColor = true;
             this.btnEditar2F.Click += new System.EventHandler(this.btnEditar2_Click);
@@ -445,7 +446,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(27, 145);
+            this.label8.Location = new System.Drawing.Point(23, 118);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
@@ -458,9 +459,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(27, 30);
+            this.btnGuardar.Location = new System.Drawing.Point(30, 29);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardar.Size = new System.Drawing.Size(25, 25);
             this.btnGuardar.TabIndex = 1986;
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -471,9 +472,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnGuardar2F.FlatAppearance.BorderSize = 0;
             this.btnGuardar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2F.Image")));
-            this.btnGuardar2F.Location = new System.Drawing.Point(27, 30);
+            this.btnGuardar2F.Location = new System.Drawing.Point(30, 29);
             this.btnGuardar2F.Name = "btnGuardar2F";
-            this.btnGuardar2F.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardar2F.Size = new System.Drawing.Size(25, 25);
             this.btnGuardar2F.TabIndex = 1989;
             this.btnGuardar2F.UseVisualStyleBackColor = true;
             this.btnGuardar2F.Click += new System.EventHandler(this.btnGuardar2_Click);

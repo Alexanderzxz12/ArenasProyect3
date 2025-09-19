@@ -30,27 +30,27 @@ namespace ArenasProyect3.Modulos.Admin
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManLicencias));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Cancelar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.cboBusquedaLicencia = new System.Windows.Forms.ComboBox();
             this.txtBusquedaLicencia = new System.Windows.Forms.TextBox();
-            this.Cancelar = new System.Windows.Forms.PictureBox();
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnEditar = new System.Windows.Forms.PictureBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.PictureBox();
-            this.btnGuardar2 = new System.Windows.Forms.PictureBox();
-            this.btnEditar2 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnGuardar2 = new System.Windows.Forms.Button();
+            this.btnEditar2 = new System.Windows.Forms.Button();
             this.datalistado = new System.Windows.Forms.DataGridView();
             this.txtNumeroIdentificador = new System.Windows.Forms.TextBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
@@ -75,12 +75,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Cancelar)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGuardar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGuardar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -100,7 +95,7 @@ namespace ArenasProyect3.Modulos.Admin
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(31, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -108,7 +103,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.label2.Size = new System.Drawing.Size(66, 18);
             this.label2.TabIndex = 2;
             this.label2.Text = "LICENSE";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
             // 
@@ -127,11 +122,11 @@ namespace ArenasProyect3.Modulos.Admin
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.Cancelar);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.lblCancelar);
             this.panel2.Controls.Add(this.cboBusquedaLicencia);
             this.panel2.Controls.Add(this.txtBusquedaLicencia);
-            this.panel2.Controls.Add(this.Cancelar);
             this.panel2.Controls.Add(this.cboEstado);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.datalistado);
@@ -160,25 +155,38 @@ namespace ArenasProyect3.Modulos.Admin
             this.panel2.Size = new System.Drawing.Size(848, 602);
             this.panel2.TabIndex = 1986;
             // 
+            // Cancelar
+            // 
+            this.Cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cancelar.FlatAppearance.BorderSize = 0;
+            this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Cancelar.Image")));
+            this.Cancelar.Location = new System.Drawing.Point(695, 125);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.Size = new System.Drawing.Size(25, 25);
+            this.Cancelar.TabIndex = 1991;
+            this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(88, 577);
             this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(122, 15);
+            this.label13.Size = new System.Drawing.Size(115, 14);
             this.label13.TabIndex = 2004;
             this.label13.Text = "GENERAL SEARCH BY:";
             // 
             // lblCancelar
             // 
             this.lblCancelar.AutoSize = true;
-            this.lblCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancelar.Location = new System.Drawing.Point(683, 153);
+            this.lblCancelar.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancelar.Location = new System.Drawing.Point(686, 153);
             this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(49, 13);
+            this.lblCancelar.Size = new System.Drawing.Size(45, 14);
             this.lblCancelar.TabIndex = 1993;
             this.lblCancelar.Text = "CANCEL";
             this.lblCancelar.Visible = false;
@@ -186,7 +194,7 @@ namespace ArenasProyect3.Modulos.Admin
             // cboBusquedaLicencia
             // 
             this.cboBusquedaLicencia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBusquedaLicencia.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBusquedaLicencia.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBusquedaLicencia.FormattingEnabled = true;
             this.cboBusquedaLicencia.Items.AddRange(new object[] {
             "LICENSE TITLE",
@@ -196,33 +204,18 @@ namespace ArenasProyect3.Modulos.Admin
             this.cboBusquedaLicencia.Location = new System.Drawing.Point(218, 572);
             this.cboBusquedaLicencia.Margin = new System.Windows.Forms.Padding(5);
             this.cboBusquedaLicencia.Name = "cboBusquedaLicencia";
-            this.cboBusquedaLicencia.Size = new System.Drawing.Size(143, 23);
+            this.cboBusquedaLicencia.Size = new System.Drawing.Size(143, 22);
             this.cboBusquedaLicencia.TabIndex = 2003;
             // 
             // txtBusquedaLicencia
             // 
-            this.txtBusquedaLicencia.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusquedaLicencia.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBusquedaLicencia.Location = new System.Drawing.Point(371, 572);
             this.txtBusquedaLicencia.Margin = new System.Windows.Forms.Padding(5);
             this.txtBusquedaLicencia.Name = "txtBusquedaLicencia";
-            this.txtBusquedaLicencia.Size = new System.Drawing.Size(388, 23);
+            this.txtBusquedaLicencia.Size = new System.Drawing.Size(388, 22);
             this.txtBusquedaLicencia.TabIndex = 2002;
             this.txtBusquedaLicencia.TextChanged += new System.EventHandler(this.txtBusquedaLicencia_TextChanged);
-            // 
-            // Cancelar
-            // 
-            this.Cancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Cancelar.Image")));
-            this.Cancelar.Location = new System.Drawing.Point(691, 119);
-            this.Cancelar.Margin = new System.Windows.Forms.Padding(4);
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.Size = new System.Drawing.Size(30, 30);
-            this.Cancelar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Cancelar.TabIndex = 1991;
-            this.Cancelar.TabStop = false;
-            this.Cancelar.Visible = false;
-            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
             // cboEstado
             // 
@@ -240,12 +233,12 @@ namespace ArenasProyect3.Modulos.Admin
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox2.Controls.Add(this.btnGuardar);
             this.groupBox2.Controls.Add(this.btnEditar);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.btnGuardar);
+            this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.btnGuardar2);
             this.groupBox2.Controls.Add(this.btnEditar2);
-            this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox2.Location = new System.Drawing.Point(746, 60);
@@ -257,18 +250,30 @@ namespace ArenasProyect3.Modulos.Admin
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ACCIONES";
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.Location = new System.Drawing.Point(29, 30);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(25, 25);
+            this.btnGuardar.TabIndex = 1988;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // btnEditar
             // 
-            this.btnEditar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditar.FlatAppearance.BorderSize = 0;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(26, 85);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditar.Location = new System.Drawing.Point(29, 91);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(30, 30);
-            this.btnEditar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnEditar.TabIndex = 20;
-            this.btnEditar.TabStop = false;
+            this.btnEditar.Size = new System.Drawing.Size(25, 25);
+            this.btnEditar.TabIndex = 1990;
+            this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // label8
@@ -281,48 +286,6 @@ namespace ArenasProyect3.Modulos.Admin
             this.label8.TabIndex = 1926;
             this.label8.Text = "EDIT";
             // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(26, 25);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(30, 30);
-            this.btnGuardar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnGuardar.TabIndex = 20;
-            this.btnGuardar.TabStop = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnGuardar2
-            // 
-            this.btnGuardar2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnGuardar2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
-            this.btnGuardar2.Location = new System.Drawing.Point(26, 25);
-            this.btnGuardar2.Margin = new System.Windows.Forms.Padding(4);
-            this.btnGuardar2.Name = "btnGuardar2";
-            this.btnGuardar2.Size = new System.Drawing.Size(30, 30);
-            this.btnGuardar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnGuardar2.TabIndex = 39;
-            this.btnGuardar2.TabStop = false;
-            this.btnGuardar2.Click += new System.EventHandler(this.btnGuardar2_Click);
-            // 
-            // btnEditar2
-            // 
-            this.btnEditar2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditar2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditar2.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2.Image")));
-            this.btnEditar2.Location = new System.Drawing.Point(26, 85);
-            this.btnEditar2.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEditar2.Name = "btnEditar2";
-            this.btnEditar2.Size = new System.Drawing.Size(30, 30);
-            this.btnEditar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnEditar2.TabIndex = 20;
-            this.btnEditar2.TabStop = false;
-            this.btnEditar2.Click += new System.EventHandler(this.btnEditar2_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -333,6 +296,32 @@ namespace ArenasProyect3.Modulos.Admin
             this.label7.TabIndex = 1925;
             this.label7.Text = "ADD";
             // 
+            // btnGuardar2
+            // 
+            this.btnGuardar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar2.FlatAppearance.BorderSize = 0;
+            this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
+            this.btnGuardar2.Location = new System.Drawing.Point(29, 30);
+            this.btnGuardar2.Name = "btnGuardar2";
+            this.btnGuardar2.Size = new System.Drawing.Size(25, 25);
+            this.btnGuardar2.TabIndex = 1989;
+            this.btnGuardar2.UseVisualStyleBackColor = true;
+            this.btnGuardar2.Click += new System.EventHandler(this.btnGuardar2_Click);
+            // 
+            // btnEditar2
+            // 
+            this.btnEditar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditar2.FlatAppearance.BorderSize = 0;
+            this.btnEditar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar2.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2.Image")));
+            this.btnEditar2.Location = new System.Drawing.Point(29, 91);
+            this.btnEditar2.Name = "btnEditar2";
+            this.btnEditar2.Size = new System.Drawing.Size(25, 25);
+            this.btnEditar2.TabIndex = 1991;
+            this.btnEditar2.UseVisualStyleBackColor = true;
+            this.btnEditar2.Click += new System.EventHandler(this.btnEditar2_Click);
+            // 
             // datalistado
             // 
             this.datalistado.AllowUserToAddRows = false;
@@ -342,40 +331,40 @@ namespace ArenasProyect3.Modulos.Admin
             this.datalistado.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistado.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datalistado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistado.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistado.DefaultCellStyle = dataGridViewCellStyle2;
             this.datalistado.Location = new System.Drawing.Point(18, 399);
             this.datalistado.Margin = new System.Windows.Forms.Padding(5);
             this.datalistado.MultiSelect = false;
             this.datalistado.Name = "datalistado";
             this.datalistado.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistado.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistado.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.datalistado.RowHeadersVisible = false;
             this.datalistado.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.datalistado.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.datalistado.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.datalistado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistado.Size = new System.Drawing.Size(810, 168);
             this.datalistado.TabIndex = 1984;
@@ -417,6 +406,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // cboPersonalAsignado
             // 
+            this.cboPersonalAsignado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPersonalAsignado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPersonalAsignado.FormattingEnabled = true;
             this.cboPersonalAsignado.Location = new System.Drawing.Point(248, 268);
@@ -616,13 +606,8 @@ namespace ArenasProyect3.Modulos.Admin
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Cancelar)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGuardar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGuardar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -636,13 +621,8 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblCancelar;
-        private System.Windows.Forms.PictureBox Cancelar;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.PictureBox btnEditar;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox btnGuardar;
-        private System.Windows.Forms.PictureBox btnGuardar2;
-        private System.Windows.Forms.PictureBox btnEditar2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView datalistado;
         private System.Windows.Forms.Label label28;
@@ -669,5 +649,10 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cboBusquedaLicencia;
         private System.Windows.Forms.TextBox txtBusquedaLicencia;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnGuardar2;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnEditar2;
+        private System.Windows.Forms.Button Cancelar;
     }
 }

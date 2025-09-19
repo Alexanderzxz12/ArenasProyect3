@@ -66,9 +66,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 da.Fill(dt);
                 datalistado.DataSource = dt;
                 con.Close();
-                datalistado.Columns[0].Width = 120;
-                datalistado.Columns[1].Width = 150;
-                datalistado.Columns[2].Width = 422;
+                datalistado.Columns[0].Width = 110;
+                datalistado.Columns[1].Width = 80;
+                datalistado.Columns[2].Width = 490;
             }
             catch (Exception ex)
             {
@@ -79,28 +79,31 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //ACCION DE DOBLE CLICK PARA PODER TRAER LOS DATOS DEL REGISTRO SELECIOANDO
         private void datalistado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigo.Text = datalistado.SelectedCells[1].Value.ToString();
-            txtDescripcion.Text = datalistado.SelectedCells[2].Value.ToString();
-            string estado = datalistado.SelectedCells[0].Value.ToString();
-
-            if (estado == "ACTIVO")
+            if (datalistado.RowCount != 0)
             {
-                cboEstado.Text = "ACTIVO";
+                lblCodigo.Text = datalistado.SelectedCells[1].Value.ToString();
+                txtDescripcion.Text = datalistado.SelectedCells[2].Value.ToString();
+                string estado = datalistado.SelectedCells[0].Value.ToString();
+
+                if (estado == "ACTIVO")
+                {
+                    cboEstado.Text = "ACTIVO";
+                }
+                else
+                {
+                    cboEstado.Text = "INACTIVO";
+                }
+
+                txtDescripcion.Enabled = false;
+
+                btnEditar.Visible = true;
+                btnEditar2.Visible = false;
+
+                btnGuardar.Visible = true;
+                btnGuardar2.Visible = false;
+
+                Cancelar.Visible = false;
             }
-            else
-            {
-                cboEstado.Text = "INACTIVO";
-            }
-
-            txtDescripcion.Enabled = false;
-
-            btnEditar.Visible = true;
-            btnEditar2.Visible = false;
-
-            btnGuardar.Visible = true;
-            btnGuardar2.Visible = false;
-
-            Cancelar.Visible = false;
         }
 
         //METODO PARA LA VALIDACIÓN DE LA EXISTENCIA DE UNA OPERACIÓN
@@ -215,13 +218,20 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //HABILITAR EL EDITADO DE MI MANTENIMIENTO
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            txtDescripcion.Enabled = true;
+            if (lblCodigo.Text == "N" || lblCodigo.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                txtDescripcion.Enabled = true;
 
-            btnEditar.Visible = false;
-            btnEditar2.Visible = true;
+                btnEditar.Visible = false;
+                btnEditar2.Visible = true;
 
-            Cancelar.Visible = true;
-            btnGuardar.Enabled = true;
+                Cancelar.Visible = true;
+                btnGuardar.Enabled = true;
+            }
         }
 
         //METODO DE EDICION EN MI BASE DE DATOS PARA UNA OPERACION
@@ -284,7 +294,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BOTON QUE EJECUTA LA FUNCION DE EDITAR OPERAICIONES
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarOperaciones(Convert.ToInt32(lblCodigo.Text),txtDescripcion.Text,cboEstado.Text);
+            if (lblCodigo.Text == "N" || lblCodigo.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                EditarOperaciones(Convert.ToInt32(lblCodigo.Text), txtDescripcion.Text, cboEstado.Text);
+            }
         }
 
         //ACCIÓN DE CANCELAR LA OPERACIÓN 

@@ -144,6 +144,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnExportarExcelF
             // 
+            this.btnExportarExcelF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcelF.FlatAppearance.BorderSize = 0;
             this.btnExportarExcelF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcelF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcelF.Image")));
@@ -167,12 +168,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // CancelarF
             // 
+            this.CancelarF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CancelarF.FlatAppearance.BorderSize = 0;
             this.CancelarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelarF.Image = ((System.Drawing.Image)(resources.GetObject("CancelarF.Image")));
-            this.CancelarF.Location = new System.Drawing.Point(612, 130);
+            this.CancelarF.Location = new System.Drawing.Point(618, 143);
             this.CancelarF.Name = "CancelarF";
-            this.CancelarF.Size = new System.Drawing.Size(38, 38);
+            this.CancelarF.Size = new System.Drawing.Size(25, 25);
             this.CancelarF.TabIndex = 1991;
             this.CancelarF.UseVisualStyleBackColor = true;
             this.CancelarF.Visible = false;
@@ -193,7 +195,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(92, 182);
+            this.groupBox1.Size = new System.Drawing.Size(85, 154);
             this.groupBox1.TabIndex = 1992;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ACCIONES";
@@ -202,7 +204,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 71);
+            this.label7.Location = new System.Drawing.Point(17, 64);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 13);
@@ -213,7 +215,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(27, 145);
+            this.label9.Location = new System.Drawing.Point(23, 126);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 13);
@@ -222,48 +224,52 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnEditarF
             // 
+            this.btnEditarF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditarF.FlatAppearance.BorderSize = 0;
             this.btnEditarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarF.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarF.Image")));
-            this.btnEditarF.Location = new System.Drawing.Point(27, 102);
+            this.btnEditarF.Location = new System.Drawing.Point(30, 98);
             this.btnEditarF.Name = "btnEditarF";
-            this.btnEditarF.Size = new System.Drawing.Size(38, 38);
+            this.btnEditarF.Size = new System.Drawing.Size(25, 25);
             this.btnEditarF.TabIndex = 1987;
             this.btnEditarF.UseVisualStyleBackColor = true;
             this.btnEditarF.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEditar2F
             // 
+            this.btnEditar2F.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar2F.FlatAppearance.BorderSize = 0;
             this.btnEditar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2F.Image")));
-            this.btnEditar2F.Location = new System.Drawing.Point(27, 102);
+            this.btnEditar2F.Location = new System.Drawing.Point(30, 98);
             this.btnEditar2F.Name = "btnEditar2F";
-            this.btnEditar2F.Size = new System.Drawing.Size(38, 38);
+            this.btnEditar2F.Size = new System.Drawing.Size(25, 25);
             this.btnEditar2F.TabIndex = 1988;
             this.btnEditar2F.UseVisualStyleBackColor = true;
             this.btnEditar2F.Click += new System.EventHandler(this.btnEditar2_Click);
             // 
             // btnGuardarF
             // 
+            this.btnGuardarF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardarF.FlatAppearance.BorderSize = 0;
             this.btnGuardarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarF.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarF.Image")));
-            this.btnGuardarF.Location = new System.Drawing.Point(27, 30);
+            this.btnGuardarF.Location = new System.Drawing.Point(30, 33);
             this.btnGuardarF.Name = "btnGuardarF";
-            this.btnGuardarF.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardarF.Size = new System.Drawing.Size(25, 25);
             this.btnGuardarF.TabIndex = 1986;
             this.btnGuardarF.UseVisualStyleBackColor = true;
             this.btnGuardarF.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnGuardar2F
             // 
+            this.btnGuardar2F.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar2F.FlatAppearance.BorderSize = 0;
             this.btnGuardar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2F.Image")));
-            this.btnGuardar2F.Location = new System.Drawing.Point(27, 30);
+            this.btnGuardar2F.Location = new System.Drawing.Point(30, 33);
             this.btnGuardar2F.Name = "btnGuardar2F";
-            this.btnGuardar2F.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardar2F.Size = new System.Drawing.Size(25, 25);
             this.btnGuardar2F.TabIndex = 1989;
             this.btnGuardar2F.UseVisualStyleBackColor = true;
             this.btnGuardar2F.Click += new System.EventHandler(this.btnGuardar2_Click);

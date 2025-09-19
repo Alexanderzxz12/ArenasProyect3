@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.Resourses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,12 +39,6 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        //BOTON PARA CERRAR MI FORMULARIO
-        private void btnCerrarUsuarios_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         //EVENTO DE INICIO Y DE CARGA DEL MANTENIMEINTOS DE USUARIO
         private void Usuarios_Load(object sender, EventArgs e)
         {
@@ -53,20 +48,45 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
             cboBusquedaUsuarios.SelectedIndex = 0;
         }
 
+        //METODO PARA PINTAR DE COLORES LAS FILAS DE MI LSITADO
+        public void alternarColorFilas(DataGridView dgv)
+        {
+            try
+            {
+                {
+                    var withBlock = dgv;
+                    withBlock.RowsDefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
+                    withBlock.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
         //CARGAR ROLAES
         public void CargarRoles(string area)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdPerfil, Perfil FROM Perfil WHERE Area = @area", con);
-            comando.Parameters.AddWithValue("@area", area);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboRol.ValueMember = "IdPerfil";
-            cboRol.DisplayMember = "Perfil";
-            cboRol.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdPerfil, Perfil FROM Perfil WHERE Area = @area", con);
+                comando.Parameters.AddWithValue("@area", area);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboRol.ValueMember = "IdPerfil";
+                cboRol.DisplayMember = "Perfil";
+                cboRol.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //EVENTO PARA PODER BUSCAR UN USUARIO POR NOMBRE
@@ -77,11 +97,13 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
                 if (valor == "" || valor == null)
                 {
                     DataTable dt = new DataTable();
-                    SqlDataAdapter da;
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    da = new SqlDataAdapter("Usuario_Mostrar", con);
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("Usuario_Mostrar", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                     DGV.DataSource = dt;
                     con.Close();
@@ -89,11 +111,14 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
                 else if (tipo == "NOMBRES Y APELLIDOS" && valor != "")
                 {
                     DataTable dt = new DataTable();
-                    SqlDataAdapter da;
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    da = new SqlDataAdapter("Usuario_MostrarPorNombreApellidos", con);
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("Usuario_MostrarPorNombreApellidos", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombreApellidos", valor);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                     DGV.DataSource = dt;
                     con.Close();
@@ -101,11 +126,14 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
                 else if (tipo == "USUARIO" && valor != "")
                 {
                     DataTable dt = new DataTable();
-                    SqlDataAdapter da;
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    da = new SqlDataAdapter("Usuario_MostrarPorUsuario", con);
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("Usuario_MostrarPorUsuario", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@usuario", valor);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                     DGV.DataSource = dt;
                     con.Close();
@@ -113,16 +141,20 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
                 else if (tipo == "ÁREA" && valor != "")
                 {
                     DataTable dt = new DataTable();
-                    SqlDataAdapter da;
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
-                    da = new SqlDataAdapter("Usuario_MostrarPorArea", con);
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("Usuario_MostrarPorArea", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@area", valor);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                     DGV.DataSource = dt;
                     con.Close();
                 }
                 RedimensionarColumnas(DGV);
+                alternarColorFilas(DGV);
             }
             catch (Exception ex)
             {
@@ -141,13 +173,21 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
             DGV.Columns[11].Visible = false;
             DGV.Columns[12].Visible = false;
             DGV.Columns[13].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
 
             DGV.Columns[2].Width = 200;
             DGV.Columns[3].Width = 200;
-            DGV.Columns[4].Width = 120;
-            DGV.Columns[5].Width = 120;
+            DGV.Columns[4].Width = 125;
+            DGV.Columns[5].Width = 130;
             DGV.Columns[6].Width = 150;
             DGV.Columns[7].Width = 200;
+        }
+
+        //LIMPIAR MI TIPO DE BUSQUEDA
+        private void cboBusquedaUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBuscar.Text = "";
         }
 
         //ESCRIBIR Y BUSCAR - BUSQUEDA SENSITIVA
@@ -159,10 +199,13 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
         //PODER INABILITAR UN USUARIOS
         private void dataListado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dataListado.Columns["Eli"].Index)
+            if (dataListado.RowCount != 0)
             {
-                int onekey = Convert.ToInt32(dataListado.SelectedCells[1].Value.ToString());
-                InhabilitarUsuario(onekey);
+                if (e.ColumnIndex == this.dataListado.Columns["Eli"].Index)
+                {
+                    int onekey = Convert.ToInt32(dataListado.SelectedCells[1].Value.ToString());
+                    InhabilitarUsuario(onekey);
+                }
             }
         }
 
@@ -195,41 +238,66 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
         }
 
         //SELECIONAR UN USUARIO PAR APODER VISUALIZARLO
-        private void dataListado_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataListado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblIdUsuario.Text = dataListado.SelectedCells[1].Value.ToString();
-            txtNombre.Text = dataListado.SelectedCells[2].Value.ToString();
-            txtApellidos.Text = dataListado.SelectedCells[3].Value.ToString();
-
-            txtLogin.Text = dataListado.SelectedCells[5].Value.ToString();
-            txtContrasena.Text = dataListado.SelectedCells[8].Value.ToString();
-
-            Icono.BackgroundImage = null;
-            byte[] b = (Byte[])dataListado.SelectedCells[9].Value;
-            MemoryStream ms = new MemoryStream(b);
-            Icono.Image = Image.FromStream(ms);
-
-            lblAnuncioIcono.Visible = false;
-
-            txtDocumento.Text = dataListado.SelectedCells[4].Value.ToString();
-            txtRutaFirma.Text = dataListado.SelectedCells[11].Value.ToString();
-            lblNumeroIcono.Text = dataListado.SelectedCells[10].Value.ToString();
-            txtArea.Text = dataListado.SelectedCells[6].Value.ToString();
-            cboRol.SelectedValue = dataListado.SelectedCells[13].Value.ToString();
-
-            int habilitadoRequerimiento = Convert.ToInt32(dataListado.SelectedCells[12].Value.ToString());
-            if (habilitadoRequerimiento == 1)
+            if (dataListado.RowCount != 0)
             {
-                cboHabilitarRequerimeinto.Text = "SI";
-            }
-            else
-            {
-                cboHabilitarRequerimeinto.Text = "NO";
-            }
+                lblIdUsuario.Text = dataListado.SelectedCells[1].Value.ToString();
+                txtNombre.Text = dataListado.SelectedCells[2].Value.ToString();
+                txtApellidos.Text = dataListado.SelectedCells[3].Value.ToString();
 
-            panel4.Visible = true;
-            btnGuardar.Visible = false;
-            btnGuardarCambios.Visible = true;
+                txtLogin.Text = dataListado.SelectedCells[5].Value.ToString();
+                txtContrasena.Text = dataListado.SelectedCells[8].Value.ToString();
+
+                Icono.BackgroundImage = null;
+                byte[] b = (Byte[])dataListado.SelectedCells[9].Value;
+                MemoryStream ms = new MemoryStream(b);
+                Icono.Image = Image.FromStream(ms);
+
+                lblAnuncioIcono.Visible = false;
+
+                txtDocumento.Text = dataListado.SelectedCells[4].Value.ToString();
+                txtRutaFirma.Text = dataListado.SelectedCells[11].Value.ToString();
+                lblNumeroIcono.Text = dataListado.SelectedCells[10].Value.ToString();
+                txtArea.Text = dataListado.SelectedCells[6].Value.ToString();
+                cboRol.SelectedValue = dataListado.SelectedCells[13].Value.ToString();
+
+                int habilitadoRequerimiento = Convert.ToInt32(dataListado.SelectedCells[12].Value.ToString());
+                if (habilitadoRequerimiento == 1)
+                {
+                    cboHabilitarRequerimeinto.Text = "SI";
+                }
+                else
+                {
+                    cboHabilitarRequerimeinto.Text = "NO";
+                }
+
+                int habilitadoCoti = Convert.ToInt32(dataListado.SelectedCells[15].Value.ToString());
+                if (habilitadoCoti == 1)
+                {
+                    cboHabilitarCotizacion.Text = "SI";
+                }
+                else
+                {
+                    cboHabilitarCotizacion.Text = "NO";
+                }
+
+                int visibleUsuario = Convert.ToInt32(dataListado.SelectedCells[16].Value.ToString());
+                if (visibleUsuario == 1)
+                {
+                    cboUusarioVisible.Text = "SI";
+                }
+                else
+                {
+                    cboUusarioVisible.Text = "NO";
+                }
+
+                panel4.Visible = true;
+                btnGuardar.Visible = false;
+                lblGuardar.Visible = false;
+                btnGuardarCambios.Visible = true;
+                lblGuardarCambios.Visible = true;
+            }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
@@ -258,6 +326,8 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
             txtDocumento.Text = "";
             txtRutaFirma.Text = "";
             btnGuardar.Visible = true;
+            lblGuardar.Visible = true;
+            lblGuardarCambios.Visible = false;
             btnGuardarCambios.Visible = false;
         }
 
@@ -354,33 +424,47 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
         //cCARGAR IMAGEN PROPIA
         private void pbCarga_Click(object sender, EventArgs e)
         {
-            dlg.InitialDirectory = "";
-            dlg.Filter = "Todos los archivos (*.*)|*.*";
-            dlg.FilterIndex = 2;
-            dlg.Title = "Cargador de imagenes";
-
-            if (dlg.ShowDialog() == DialogResult.OK)
+            try
             {
-                Icono.BackgroundImage = null;
-                Icono.Image = new Bitmap(dlg.FileName);
-                Icono.SizeMode = PictureBoxSizeMode.Zoom;
-                lblNumeroIcono.Text = Path.GetDirectoryName(dlg.FileName);
-                lblAnuncioIcono.Visible = false;
-                panelIcono.Visible = false;
+                dlg.InitialDirectory = "";
+                dlg.Filter = "Todos los archivos (*.*)|*.*";
+                dlg.FilterIndex = 2;
+                dlg.Title = "Cargador de imagenes";
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    Icono.BackgroundImage = null;
+                    Icono.Image = new Bitmap(dlg.FileName);
+                    Icono.SizeMode = PictureBoxSizeMode.Zoom;
+                    lblNumeroIcono.Text = Path.GetDirectoryName(dlg.FileName);
+                    lblAnuncioIcono.Visible = false;
+                    panelIcono.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         //CARGA DE FIRMA
         private void btnCargarImagen_Click(object sender, EventArgs e)
         {
-            dlgFirma.InitialDirectory = "c:\\";
-            dlgFirma.Filter = "Todos los archivos (*.*)|*.*";
-            dlgFirma.FilterIndex = 1;
-            dlgFirma.RestoreDirectory = true;
-
-            if (dlgFirma.ShowDialog() == DialogResult.OK)
+            try
             {
-                txtRutaFirma.Text = dlgFirma.FileName;
+                dlgFirma.InitialDirectory = "c:\\";
+                dlgFirma.Filter = "Todos los archivos (*.*)|*.*";
+                dlgFirma.FilterIndex = 1;
+                dlgFirma.RestoreDirectory = true;
+
+                if (dlgFirma.ShowDialog() == DialogResult.OK)
+                {
+                    txtRutaFirma.Text = dlgFirma.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -403,11 +487,18 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
                 valorReque = 0;
             }
 
-            GuardarNuevoUsuario(txtNombre.Text, txtApellidos.Text, txtLogin.Text, txtContrasena.Text, txtDocumento.Text, txtRutaFirma.Text, txtArea.Text, Convert.ToInt16(cboRol.SelectedValue.ToString()), valorReque, lblNumeroIcono.Text);
+            if (cboRol.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar un rol para el usuario.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                GuardarNuevoUsuario(txtNombre.Text, txtApellidos.Text, txtLogin.Text, txtContrasena.Text, lblNumeroIcono.Text, txtArea.Text, Convert.ToInt16(cboRol.SelectedValue.ToString()), valorReque, txtDocumento.Text, txtRutaFirma.Text, txtNombre.Text, txtApellidos.Text);
+            }
         }
 
         //FUNCION PARA PODER GUARDAR LOS NUEVOS USUARIOS
-        public void GuardarNuevoUsuario(string nombres, string apellidos, string login, string password, string documento, string rutaFirma, string area, int rol, int hbailitadoReque, string nIcono)
+        public void GuardarNuevoUsuario(string nombres, string apellidos, string login, string password, string nIcono, string area, int rol, int hbailitadoReque, string documento, string rutaFirma, string primerNombres, string apellidosDes)
         {
             if (nombres == "" || apellidos == "" || login == "" || password == "" || documento == "" || rutaFirma == "" || area == "" || rol == null || nIcono == "")
             {
@@ -415,39 +506,59 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
             }
             else
             {
-                try
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea guardar un nuevo usuario?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("Usuario_Insertar", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombres", nombres);
-                    cmd.Parameters.AddWithValue("@apellidos", apellidos);
-                    cmd.Parameters.AddWithValue("@login", login);
-                    cmd.Parameters.AddWithValue("@password", password);
-                    cmd.Parameters.AddWithValue("@documento", documento);
-                    cmd.Parameters.AddWithValue("@rutaFirma", rutaFirma);
-                    cmd.Parameters.AddWithValue("@habilitarRequerimeinto", hbailitadoReque);
-                    cmd.Parameters.AddWithValue("@area", area);
-                    cmd.Parameters.AddWithValue("@rol", rol);
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Usuario_Insertar", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@nombres", nombres);
+                        cmd.Parameters.AddWithValue("@apellidos", apellidos);
+                        cmd.Parameters.AddWithValue("@login", login);
+                        cmd.Parameters.AddWithValue("@password", password);
 
-                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
-                    Icono.Image.Save(ms, Icono.Image.RawFormat);
-                    cmd.Parameters.AddWithValue("@icono", ms.GetBuffer());
+                        System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                        Icono.Image.Save(ms, Icono.Image.RawFormat);
+                        cmd.Parameters.AddWithValue("@icono", ms.GetBuffer());
+                        cmd.Parameters.AddWithValue("@nombre_icono", nIcono);
 
-                    cmd.Parameters.AddWithValue("@nombre_icono", nIcono);
-                    
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                        cmd.Parameters.AddWithValue("@area", area);
+                        cmd.Parameters.AddWithValue("@rol", rol);
+                        cmd.Parameters.AddWithValue("@habilitarRequerimeinto", hbailitadoReque);
+                        cmd.Parameters.AddWithValue("@documento", documento);
+                        cmd.Parameters.AddWithValue("@rutaFirma", rutaFirma);
 
-                    BuscarUsuario(cboBusquedaUsuarios.Text, txtBuscar.Text, dataListado);
-                    panel4.Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                        //CAPTURAR MIS NOMBRES
+                        string textoNombres = primerNombres.Trim();
+                        string[] partesNom = textoNombres.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        string primerNombre = partesNom.Length > 0 ? partesNom[0] : "";
+                        string segundoNombre = partesNom.Length > 1 ? string.Join(" ", partesNom.Skip(1)) : "";
+                        cmd.Parameters.AddWithValue("@primerNombre", primerNombre);
+                        cmd.Parameters.AddWithValue("@segundoNombre", segundoNombre);
+
+                        //CAPTURAR MIS APELLIDOS
+                        string textoApellidos = apellidosDes.Trim();
+                        string[] partesApe = textoApellidos.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        string apellidoPaterno = partesApe.Length > 0 ? partesApe[0] : "";
+                        string apellidoMaterno = partesApe.Length > 1 ? partesApe[1] : "";
+                        cmd.Parameters.AddWithValue("@apellidoPaterno", apellidoPaterno);
+                        cmd.Parameters.AddWithValue("@apellidoMaterno", apellidoMaterno);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Se registró el nuevo usuario correctamente.", "Registro", MessageBoxButtons.OK);
+                        BuscarUsuario(cboBusquedaUsuarios.Text, txtBuscar.Text, dataListado);
+                        panel4.Visible = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
@@ -455,55 +566,113 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
         //BOTON PARA PODER EDITAR MI USUARIO
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            //if (txtNombre.Text != "")
-            //{
-            //    try
-            //    {
-            //        SqlConnection con = new SqlConnection();
-            //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //        con.Open();
-            //        SqlCommand cmd = new SqlCommand();
-            //        cmd = new SqlCommand("Editar_Usuario", con);
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@idusuario", lblIdUsuario.Text);
-            //        cmd.Parameters.AddWithValue("@nombres", txtNombre.Text);
-            //        cmd.Parameters.AddWithValue("@apellidos", txtApellidos.Text);
-            //        cmd.Parameters.AddWithValue("@login", txtLogin.Text);
-            //        cmd.Parameters.AddWithValue("@password", txtContrasena.Text);
-            //        cmd.Parameters.AddWithValue("@documento", Convert.ToInt32(txtDocumento.Text));
-            //        cmd.Parameters.AddWithValue("@rutaFirma", txtRutaFirma.Text);
+            int valorReque = 0;
+            if (cboHabilitarRequerimeinto.Text == "SI")
+            {
+                valorReque = 1;
+            }
+            else
+            {
+                valorReque = 0;
+            }
 
-            //        int HabilitarRequerimeinto = 0;
-            //        if (cboHabilitarRequerimeinto.Text == "SI")
-            //        {
-            //            HabilitarRequerimeinto = 1;
-            //        }
-            //        else
-            //        {
-            //            HabilitarRequerimeinto = 0;
-            //        }
+            int valorCoti = 0;
+            if (cboHabilitarCotizacion.Text == "SI")
+            {
+                valorCoti = 1;
+            }
+            else
+            {
+                valorCoti = 0;
+            }
 
-            //        cmd.Parameters.AddWithValue("@habilitarRequerimeinto", HabilitarRequerimeinto);
-            //        cmd.Parameters.AddWithValue("@area", txtArea.Text);
-            //        cmd.Parameters.AddWithValue("@rol", cboRol.SelectedValue.ToString());
+            int visibleUsuario = 0;
+            if (cboUusarioVisible.Text == "SI")
+            {
+                visibleUsuario = 1;
+            }
+            else
+            {
+                visibleUsuario = 0;
+            }
 
-            //        System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            //        Icono.Image.Save(ms, Icono.Image.RawFormat);
+            if (cboRol.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar un rol para el usuario.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                EditarUsuario(Convert.ToInt32(lblIdUsuario.Text), txtNombre.Text, txtApellidos.Text, txtContrasena.Text, lblNumeroIcono.Text, txtArea.Text, Convert.ToInt16(cboRol.SelectedValue.ToString()), valorReque, txtDocumento.Text, txtRutaFirma.Text, txtNombre.Text, txtApellidos.Text, valorCoti, visibleUsuario);
+            }
+        }
 
-            //        cmd.Parameters.AddWithValue("@icono", ms.GetBuffer());
-            //        cmd.Parameters.AddWithValue("@nombre_icono", lblNumeroIcono.Text);
-            //        cmd.ExecuteNonQuery();
-            //        con.Close();
-            //        mostrar();
-            //        MessageBox.Show("Se editó el registro correctamente", "Registro", MessageBoxButtons.OKCancel);
-            //        panel4.Visible = false;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
+        //FUNCION PARA EDITAR MI USUARIO
+        public void EditarUsuario(int idUsuario, string nombres, string apellidos, string password, string nIcono, string area, int rol, int hbailitadoReque, string documento, string rutaFirma, string primerNombres, string apellidosDes, int visible, int habilitarCotizacion)
+        {
+            if (nombres == "" || apellidos == "" || password == "" || documento == "" || rutaFirma == "" || area == "" || rol == null || nIcono == "")
+            {
+                MessageBox.Show("Debe ingresar todos los datos necesarios para poder continuar con la edición.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar este usuario?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
+                {
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Usuario_Editar", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@nombres", nombres);
+                        cmd.Parameters.AddWithValue("@apellidos", apellidos);
+                        cmd.Parameters.AddWithValue("@password", password);
 
-            //}
+                        System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                        Icono.Image.Save(ms, Icono.Image.RawFormat);
+                        cmd.Parameters.AddWithValue("@icono", ms.GetBuffer());
+                        cmd.Parameters.AddWithValue("@nombre_icono", nIcono);
+
+                        cmd.Parameters.AddWithValue("@area", area);
+                        cmd.Parameters.AddWithValue("@rol", rol);
+                        cmd.Parameters.AddWithValue("@habilitarRequerimeinto", hbailitadoReque);
+                        cmd.Parameters.AddWithValue("@documento", documento);
+                        cmd.Parameters.AddWithValue("@rutaFirma", rutaFirma);
+
+                        //CAPTURAR MIS NOMBRES
+                        string textoNombres = primerNombres.Trim();
+                        string[] partesNom = textoNombres.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        string primerNombre = partesNom.Length > 0 ? partesNom[0] : "";
+                        string segundoNombre = partesNom.Length > 1 ? string.Join(" ", partesNom.Skip(1)) : "";
+                        cmd.Parameters.AddWithValue("@primerNombre", primerNombre);
+                        cmd.Parameters.AddWithValue("@segundoNombre", segundoNombre);
+
+                        //CAPTURAR MIS APELLIDOS
+                        string textoApellidos = apellidosDes.Trim();
+                        string[] partesApe = textoApellidos.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        string apellidoPaterno = partesApe.Length > 0 ? partesApe[0] : "";
+                        string apellidoMaterno = partesApe.Length > 1 ? partesApe[1] : "";
+                        cmd.Parameters.AddWithValue("@apellidoPaterno", apellidoPaterno);
+                        cmd.Parameters.AddWithValue("@apellidoMaterno", apellidoMaterno);
+
+                        cmd.Parameters.AddWithValue("@visible", visible);
+                        cmd.Parameters.AddWithValue("@habilitarCotizacion", habilitarCotizacion);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Se editó el usuario correctamente.", "Registro", MessageBoxButtons.OK);
+                        BuscarUsuario(cboBusquedaUsuarios.Text, txtBuscar.Text, dataListado);
+                        panel4.Visible = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
         }
 
         //BOTRON PARA SÑLAIR DEL FOMRULARIO DE NUEVO USUARIO
@@ -511,7 +680,6 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
         {
             panel4.Visible = false;
         }
-
 
         //FUNCION PARA DESCAARGAR LA IMAGEN MOSTRADA
         private void btnDescargarImagen_Click(object sender, EventArgs e)

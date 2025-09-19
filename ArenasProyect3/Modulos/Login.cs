@@ -705,8 +705,8 @@ namespace ArenasProyect3.Modulos
 
                     b.Text = rdr["Login"].ToString();
                     b.Name = rdr["IdUsuarios"].ToString();
-                    b.Size = new System.Drawing.Size(160, 25);
-                    b.Font = new System.Drawing.Font("Microsoft Sans Serif", 14);
+                    b.Size = new System.Drawing.Size(160, 30);
+                    b.Font = new System.Drawing.Font("Calibri", 16);
                     b.BackColor = Color.FromArgb(20, 20, 20);
                     b.ForeColor = Color.White;
                     b.Dock = DockStyle.Bottom;

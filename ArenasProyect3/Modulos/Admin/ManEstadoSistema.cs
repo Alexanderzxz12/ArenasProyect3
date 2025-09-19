@@ -48,16 +48,23 @@ namespace ArenasProyect3.Modulos.Admin
         //METODO PARA VISUALIZAR LOS DATOS, LISTADO DE DATOS EN MI GRILLA
         public void Mostrar()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdEstadoSistema AS [CÓDIGO], Descripcion AS [DESCRIPCIÓN], EstadoSistema AS [ESTADO],  FechaRegistro AS [FECHA REGISTRO] FROM EstadoSistema", con);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
-            Redimencionar(datalistado);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdEstadoSistema AS [CÓDIGO], Descripcion AS [DESCRIPCIÓN], EstadoSistema AS [ESTADO],  FechaRegistro AS [FECHA REGISTRO] FROM EstadoSistema", con);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                Redimencionar(datalistado);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //ACCIONES Y PROCESOS DEL MANTENIMIENTO*--------------------------------------
@@ -81,7 +88,7 @@ namespace ArenasProyect3.Modulos.Admin
         //ACCION DE GAURDAR EN MI BASE DE DATOS
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("¿Realmente desea ingresar un nuevo estado al sistema?, el cambio afectará a todos los usuarios que utilizan el sistema", "Validación del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult boton = MessageBox.Show("¿Realmente desea ingresar un nuevo estado al sistema?, el cambio afectará a todos los usuarios que utilizan el sistema.", "Validación del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (boton == DialogResult.OK)
             {
                 try
@@ -102,13 +109,13 @@ namespace ArenasProyect3.Modulos.Admin
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MessageBox.Show("The new record was entered correctly, operation record: 148x17c8478q945v7484vbbe84846125", "Nuevo Registro de Estado", MessageBoxButtons.OK);
+                        MessageBox.Show("The new record was entered correctly, operation record: 148x17c8478q945v7484vbbe84846125.", "Nuevo Registro de Estado", MessageBoxButtons.OK);
                         Mostrar();
                         Reiniciar();
                     }
                     else
                     {
-                        MessageBox.Show("Debe llenar todo los datos para poder continuar", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("Debe llenar todo los datos para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                 }
                 catch (Exception ex)

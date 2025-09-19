@@ -68,8 +68,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 datalistado.DataSource = dt;
                 con.Close();
                 datalistado.Columns[0].Width = 110;
-                datalistado.Columns[1].Width = 140;
-                datalistado.Columns[2].Width = 609;
+                datalistado.Columns[1].Width = 80;
+                datalistado.Columns[2].Width = 490;
             }
             catch (Exception ex)
             {
@@ -80,21 +80,24 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EVENTO DE DOBLE CLICK PARA PODER VISUALIZAR LOS DATOS DE UN REGISTRO
         private void datalistado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigo.Text = datalistado.SelectedCells[1].Value.ToString();
-            txtDescripcion.Text = datalistado.SelectedCells[2].Value.ToString();
-            string estado = datalistado.SelectedCells[0].Value.ToString();
+            if (datalistado.RowCount != 0)
+            {
+                lblCodigo.Text = datalistado.SelectedCells[1].Value.ToString();
+                txtDescripcion.Text = datalistado.SelectedCells[2].Value.ToString();
+                string estado = datalistado.SelectedCells[0].Value.ToString();
 
-            if (estado == "ACTIVO") { cboEstado.Text = "ACTIVO"; } else { cboEstado.Text = "INACTIVO"; }
-            txtDescripcion.Enabled = false;
+                if (estado == "ACTIVO") { cboEstado.Text = "ACTIVO"; } else { cboEstado.Text = "INACTIVO"; }
+                txtDescripcion.Enabled = false;
 
-            btnEditar.Visible = true;
-            btnEditar2.Visible = false;
+                btnEditar.Visible = true;
+                btnEditar2.Visible = false;
 
-            btnGuardar.Visible = true;
-            btnGuardar2.Visible = false;
+                btnGuardar.Visible = true;
+                btnGuardar2.Visible = false;
 
-            Cancelar.Visible = false;
-            lblCancelar.Visible = false;
+                Cancelar.Visible = false;
+                lblCancelar.Visible = false;
+            }
         }
 
         //VALIDACIÓN DE EXISTENCIA DE LA MAQUINARIA A INGRESAR
@@ -209,13 +212,21 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //HABILITAR EL EDITADO DE MI MANTENIMIENTO
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            txtDescripcion.Enabled = true;
+            if (lblCodigo.Text == "N" || lblCodigo.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                txtDescripcion.Enabled = true;
 
-            btnEditar.Visible = false;
-            btnEditar2.Visible = true;
+                btnEditar.Visible = false;
+                lblCancelar.Visible = true;
+                btnEditar2.Visible = true;
 
-            Cancelar.Visible = true;
-            btnGuardar.Enabled = true;
+                Cancelar.Visible = true;
+                btnGuardar.Enabled = true;
+            }
         }
 
         //ACCION DE EDITADO EN MI BASE DE DATOS DE UNA MAQUINARIA

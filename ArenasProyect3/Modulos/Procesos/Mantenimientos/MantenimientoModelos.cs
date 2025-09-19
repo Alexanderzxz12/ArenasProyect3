@@ -144,43 +144,46 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EVENTO DE DOBLE CLICK PARA EN MI LISTADO DE LINEAS
         private void datalistadoLineas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigo.Text = datalistadoLineas.SelectedCells[1].Value.ToString();
-            txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
-            txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
-            cboTipoLinea.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
-
-            if (datalistadoLineas.SelectedCells[6].Value.ToString() == "NO DEFINIDO")
+            if (datalistadoLineas.RowCount != 0)
             {
-                lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
-                lblEstadoAtributo.ForeColor = Color.Red;
-            }
-            else
-            {
-                lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
-                lblEstadoAtributo.ForeColor = Color.Green;
-            }
+                lblCodigo.Text = datalistadoLineas.SelectedCells[1].Value.ToString();
+                txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
+                txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
+                cboTipoLinea.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
 
-            string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
+                if (datalistadoLineas.SelectedCells[6].Value.ToString() == "NO DEFINIDO")
+                {
+                    lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
+                    lblEstadoAtributo.ForeColor = Color.Red;
+                }
+                else
+                {
+                    lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
+                    lblEstadoAtributo.ForeColor = Color.Green;
+                }
 
-            if (estado == "ACTIVO")
-            {
-                cboEstado.Text = "ACTIVO";
-            }
-            else
-            {
-                cboEstado.Text = "INACTIVO";
-            }
+                string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
 
-            txtDescripcion.Enabled = false;
-            txtAbreviatura.Enabled = false;
+                if (estado == "ACTIVO")
+                {
+                    cboEstado.Text = "ACTIVO";
+                }
+                else
+                {
+                    cboEstado.Text = "INACTIVO";
+                }
 
-            btnEditar.Visible = true;
-            btnEditar2.Visible = false;
+                txtDescripcion.Enabled = false;
+                txtAbreviatura.Enabled = false;
 
-            btnGuardar.Visible = true;
-            btnGuardar2.Visible = false;
+                btnEditar.Visible = true;
+                btnEditar2.Visible = false;
 
-            Cancelar.Visible = false;
+                btnGuardar.Visible = true;
+                btnGuardar2.Visible = false;
+
+                Cancelar.Visible = false;
+            }   
         }
 
         //VALIDACIÓN EL SISTEMA PARA PODER AVERIGUAR SI YA EXISTE OTRO REGISTRO CON LA MISMA DESCRIPCION
@@ -262,6 +265,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             btnGuardar.Visible = false;
             btnGuardar2.Visible = true;
 
+            lblCancelar.Visible = true;
             Cancelar.Visible = true;
             btnEditar.Enabled = true;
 
@@ -902,7 +906,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EDITAR UN MODELO DE MI BASE DE DATOS
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarModelos(txtDescripcion.Text, txtAbreviatura.Text, cboTipoLinea.SelectedValue.ToString(), Convert.ToInt32(lblCodigo.Text));
+            if (lblCodigo.Text == "N" || lblCodigo.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                EditarModelos(txtDescripcion.Text, txtAbreviatura.Text, cboTipoLinea.SelectedValue.ToString(), Convert.ToInt32(lblCodigo.Text));
+            }
         }
 
         //CACELAR ACCIÓN DE GUARDADO O EDITADO

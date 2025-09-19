@@ -156,7 +156,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
             DGV.Columns[1].Width = 55;
             DGV.Columns[2].Width = 55;
-            DGV.Columns[4].Width = 90;
+            DGV.Columns[4].Width = 65;
             DGV.Columns[5].Width = 90;
             DGV.Columns[6].Width = 90;
             DGV.Columns[8].Width = 350;

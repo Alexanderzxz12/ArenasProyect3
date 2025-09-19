@@ -31,6 +31,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuConsultasOP));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnListadoDetalleOP = new System.Windows.Forms.Button();
+            this.btnListadoOP = new System.Windows.Forms.Button();
             this.btnListadoPedidois = new System.Windows.Forms.Button();
             this.btnManualUsuario = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -39,8 +41,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.panelMantenimientos = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnListadoOP = new System.Windows.Forms.Button();
-            this.btnListadoDetalleOP = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelMantenimientos.SuspendLayout();
@@ -63,11 +63,47 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.panel1.Size = new System.Drawing.Size(154, 647);
             this.panel1.TabIndex = 8;
             // 
+            // btnListadoDetalleOP
+            // 
+            this.btnListadoDetalleOP.FlatAppearance.BorderSize = 0;
+            this.btnListadoDetalleOP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListadoDetalleOP.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoDetalleOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListadoDetalleOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoDetalleOP.Image")));
+            this.btnListadoDetalleOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListadoDetalleOP.Location = new System.Drawing.Point(2, 337);
+            this.btnListadoDetalleOP.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListadoDetalleOP.Name = "btnListadoDetalleOP";
+            this.btnListadoDetalleOP.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnListadoDetalleOP.Size = new System.Drawing.Size(168, 53);
+            this.btnListadoDetalleOP.TabIndex = 9;
+            this.btnListadoDetalleOP.Text = "LISTADO \r\n  DETALLES OP";
+            this.btnListadoDetalleOP.UseVisualStyleBackColor = true;
+            this.btnListadoDetalleOP.Click += new System.EventHandler(this.btnListadoDetalleOP_Click);
+            // 
+            // btnListadoOP
+            // 
+            this.btnListadoOP.FlatAppearance.BorderSize = 0;
+            this.btnListadoOP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListadoOP.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListadoOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoOP.Image")));
+            this.btnListadoOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListadoOP.Location = new System.Drawing.Point(2, 266);
+            this.btnListadoOP.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListadoOP.Name = "btnListadoOP";
+            this.btnListadoOP.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnListadoOP.Size = new System.Drawing.Size(168, 53);
+            this.btnListadoOP.TabIndex = 8;
+            this.btnListadoOP.Text = "  LISTADO \r\n  ORDEN \r\n  PRODUCCIÓN";
+            this.btnListadoOP.UseVisualStyleBackColor = true;
+            this.btnListadoOP.Click += new System.EventHandler(this.btnListadoOP_Click);
+            // 
             // btnListadoPedidois
             // 
             this.btnListadoPedidois.FlatAppearance.BorderSize = 0;
             this.btnListadoPedidois.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoPedidois.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoPedidois.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoPedidois.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoPedidois.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoPedidois.Image")));
             this.btnListadoPedidois.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,7 +121,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // 
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -161,42 +197,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
-            // 
-            // btnListadoOP
-            // 
-            this.btnListadoOP.FlatAppearance.BorderSize = 0;
-            this.btnListadoOP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoOP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListadoOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnListadoOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoOP.Image")));
-            this.btnListadoOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListadoOP.Location = new System.Drawing.Point(2, 266);
-            this.btnListadoOP.Margin = new System.Windows.Forms.Padding(4);
-            this.btnListadoOP.Name = "btnListadoOP";
-            this.btnListadoOP.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnListadoOP.Size = new System.Drawing.Size(168, 53);
-            this.btnListadoOP.TabIndex = 8;
-            this.btnListadoOP.Text = "  LISTADO \r\n  ORDEN \r\n  PRODUCCIÓN";
-            this.btnListadoOP.UseVisualStyleBackColor = true;
-            this.btnListadoOP.Click += new System.EventHandler(this.btnListadoOP_Click);
-            // 
-            // btnListadoDetalleOP
-            // 
-            this.btnListadoDetalleOP.FlatAppearance.BorderSize = 0;
-            this.btnListadoDetalleOP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoDetalleOP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListadoDetalleOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnListadoDetalleOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoDetalleOP.Image")));
-            this.btnListadoDetalleOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListadoDetalleOP.Location = new System.Drawing.Point(2, 337);
-            this.btnListadoDetalleOP.Margin = new System.Windows.Forms.Padding(4);
-            this.btnListadoDetalleOP.Name = "btnListadoDetalleOP";
-            this.btnListadoDetalleOP.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnListadoDetalleOP.Size = new System.Drawing.Size(168, 53);
-            this.btnListadoDetalleOP.TabIndex = 9;
-            this.btnListadoDetalleOP.Text = "LISTADO \r\n  DETALLES OP";
-            this.btnListadoDetalleOP.UseVisualStyleBackColor = true;
-            this.btnListadoDetalleOP.Click += new System.EventHandler(this.btnListadoDetalleOP_Click);
             // 
             // MenuConsultasOP
             // 

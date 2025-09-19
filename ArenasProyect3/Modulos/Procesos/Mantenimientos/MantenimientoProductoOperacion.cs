@@ -287,18 +287,24 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //ACCIÓN DE DOBLE CLICK PARA LA GRILLA DE LINEA X OPERACION
         private void datalistadoLineaXOperacion_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            idlineaxoperacion1 = Convert.ToInt32(datalistadoLineaXOperacion.SelectedCells[0].Value.ToString());
-            cboLinea1.SelectedValue = datalistadoLineaXOperacion.SelectedCells[1].Value.ToString();
-            cboOperacion1.SelectedValue = datalistadoLineaXOperacion.SelectedCells[2].Value.ToString();
+            if (datalistadoLineaXOperacion.RowCount != 0)
+            {
+                idlineaxoperacion1 = Convert.ToInt32(datalistadoLineaXOperacion.SelectedCells[0].Value.ToString());
+                cboLinea1.SelectedValue = datalistadoLineaXOperacion.SelectedCells[1].Value.ToString();
+                cboOperacion1.SelectedValue = datalistadoLineaXOperacion.SelectedCells[2].Value.ToString();
+            }
         }
 
         //ACCIÓN DE DOBLE CLICK PARA LA GRILLA DE LINEA X MQUINARIA
         private void datalistadoLineaXOperacionXMaquinaria_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            idlineaxoperacionxmequinaria = Convert.ToInt32(datalistadoLineaXOperacionXMaquinaria.SelectedCells[0].Value.ToString());
-            cboLinea2.SelectedValue = datalistadoLineaXOperacionXMaquinaria.SelectedCells[1].Value.ToString();
-            cboOperacion2.SelectedValue = datalistadoLineaXOperacionXMaquinaria.SelectedCells[3].Value.ToString();
-            cboMaquinaria2.SelectedValue = datalistadoLineaXOperacionXMaquinaria.SelectedCells[5].Value.ToString();
+            if (datalistadoLineaXOperacionXMaquinaria.RowCount != 0)
+            {
+                idlineaxoperacionxmequinaria = Convert.ToInt32(datalistadoLineaXOperacionXMaquinaria.SelectedCells[0].Value.ToString());
+                cboLinea2.SelectedValue = datalistadoLineaXOperacionXMaquinaria.SelectedCells[1].Value.ToString();
+                cboOperacion2.SelectedValue = datalistadoLineaXOperacionXMaquinaria.SelectedCells[3].Value.ToString();
+                cboMaquinaria2.SelectedValue = datalistadoLineaXOperacionXMaquinaria.SelectedCells[5].Value.ToString();
+            }
         }
 
         //MOSTREO DE DATOS CON FILTROS---------------------------------------------------------

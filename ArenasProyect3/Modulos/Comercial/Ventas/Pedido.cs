@@ -210,16 +210,16 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         {
             //REDIEMNSION DE PEDIDOS
             DGV.Columns[2].Width = 80;
-            DGV.Columns[3].Width = 100;
-            DGV.Columns[4].Width = 100;
+            DGV.Columns[3].Width = 90;
+            DGV.Columns[4].Width = 90;
             DGV.Columns[5].Width = 350;
             DGV.Columns[6].Width = 130;
             DGV.Columns[7].Width = 80;
             DGV.Columns[8].Width = 80;
-            DGV.Columns[9].Width = 80;
-            DGV.Columns[10].Width = 170;
-            DGV.Columns[11].Width = 120;
-            DGV.Columns[12].Width = 150;
+            DGV.Columns[9].Width = 70;
+            DGV.Columns[10].Width = 160;
+            DGV.Columns[11].Width = 90;
+            DGV.Columns[12].Width = 130;
 
             DGV.Columns[1].Visible = false;
             DGV.Columns[13].Visible = false;

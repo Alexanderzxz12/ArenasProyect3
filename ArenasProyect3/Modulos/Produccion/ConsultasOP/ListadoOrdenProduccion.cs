@@ -1,6 +1,7 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Wordprocessing;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HorizontalAlignmentValues = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues;
 
 namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 {
@@ -30,14 +32,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO Y VER SI ESTAN VENCIDOS
-        public void CargarColoresListadoOPGeneral()
+        public void CargarColoresListadoOPGeneral(DataGridView DGV)
         {
             try
             {
                 //VARIABLE DE FECHA
                 var DateAndTime = DateTime.Now;
                 //RECORRER MI LISTADO PARA VALIDAR MIS OPs, SI ESTAN VENCIDAS O NO
-                foreach (DataGridViewRow datorecuperado in datalistadoTodasOP.Rows)
+                foreach (DataGridViewRow datorecuperado in DGV.Rows)
                 {
                     //RECUERAR LA FECHA Y EL CÓDIGO DE MI OP
                     DateTime fechaEntrega = Convert.ToDateTime(datorecuperado.Cells["FECHA DE ENTREGA"].Value);
@@ -117,28 +119,28 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO
-        public void ColoresListado()
+        public void ColoresListado(DataGridView DGV)
         {
             try
             {
                 //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= datalistadoTodasOP.RowCount - 1; i++)
+                for (var i = 0; i <= DGV.RowCount - 1; i++)
                 {
-                    if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "FUERA DE FECHA")
+                    if (DGV.Rows[i].Cells[13].Value.ToString() == "FUERA DE FECHA")
                     {
-                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
                     }
-                    else if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "LÍMITE")
+                    else if (DGV.Rows[i].Cells[13].Value.ToString() == "LÍMITE")
                     {
-                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
                     }
-                    else if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "PENDIENTE")
+                    else if (DGV.Rows[i].Cells[13].Value.ToString() == "PENDIENTE")
                     {
-                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
                     }
-                    else if (datalistadoTodasOP.Rows[i].Cells[13].Value.ToString() == "CULMINADO")
+                    else if (DGV.Rows[i].Cells[13].Value.ToString() == "CULMINADO")
                     {
-                        datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }
                 }
             }
@@ -153,7 +155,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             datalistadoExcel.Rows.Clear();
 
-            foreach (DataGridViewRow dgv in datalistadoTodasOP.Rows)
+            foreach (DataGridViewRow dgv in datalistadoEnProcesoOP.Rows)
             {
                 string numeroOP = dgv.Cells[2].Value.ToString();
                 DateTime fechaInicio = Convert.ToDateTime(dgv.Cells[3].Value.ToString()).Date;
@@ -200,7 +202,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
-            datalistadoTodasOP.DataSource = null;
+            datalistadoEnProcesoOP.DataSource = null;
             cboBusqeuda.SelectedIndex = 0;
 
             //PREFILES Y PERSIMOS---------------------------------------------------------------
@@ -282,7 +284,38 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             da.Fill(dt);
             datalistadoTodasOP.DataSource = dt;
             con.Close();
+
+            DataTable dt2 = new DataTable();
+            SqlConnection con2 = new SqlConnection();
+            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con2.Open();
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2 = new SqlCommand("OP_MostrarPorFecha_EnProceso", con2);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+            da2.Fill(dt2);
+            datalistadoEnProcesoOP.DataSource = dt2;
+            con2.Close();
+
+            DataTable dt3 = new DataTable();
+            SqlConnection con3 = new SqlConnection();
+            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con3.Open();
+            SqlCommand cmd3 = new SqlCommand();
+            cmd3 = new SqlCommand("OP_MostrarPorFecha_Observadas", con3);
+            cmd3.CommandType = CommandType.StoredProcedure;
+            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+            da3.Fill(dt3);
+            datalistadoObservadas.DataSource = dt3;
+            con3.Close();
+
             RedimensionarListadoGeneralPedido(datalistadoTodasOP);
+            RedimensionarListadoGeneralPedido(datalistadoEnProcesoOP);
+            RedimensionarListadoGeneralPedido(datalistadoObservadas);
         }
 
         //MOSTRAR OP POR CLIENTE
@@ -302,7 +335,40 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             da.Fill(dt);
             datalistadoTodasOP.DataSource = dt;
             con.Close();
+
+            DataTable dt2 = new DataTable();
+            SqlConnection con2 = new SqlConnection();
+            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con2.Open();
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2 = new SqlCommand("OP_MostrarPorCliente_EnProceso", con2);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd2.Parameters.AddWithValue("@cliente", cliente);
+            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+            da2.Fill(dt2);
+            datalistadoEnProcesoOP.DataSource = dt2;
+            con2.Close();
+
+            DataTable dt3 = new DataTable();
+            SqlConnection con3 = new SqlConnection();
+            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con3.Open();
+            SqlCommand cmd3 = new SqlCommand();
+            cmd3 = new SqlCommand("OP_MostrarPorCliente_Observadas", con3);
+            cmd3.CommandType = CommandType.StoredProcedure;
+            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd3.Parameters.AddWithValue("@cliente", cliente);
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+            da3.Fill(dt3);
+            datalistadoObservadas.DataSource = dt3;
+            con3.Close();
+
             RedimensionarListadoGeneralPedido(datalistadoTodasOP);
+            RedimensionarListadoGeneralPedido(datalistadoEnProcesoOP);
+            RedimensionarListadoGeneralPedido(datalistadoObservadas);
         }
 
         //MOSTRAR OP POR CODIGO OP
@@ -322,7 +388,40 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             da.Fill(dt);
             datalistadoTodasOP.DataSource = dt;
             con.Close();
+
+            DataTable dt2 = new DataTable();
+            SqlConnection con2 = new SqlConnection();
+            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con2.Open();
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2 = new SqlCommand("OP_MostrarPorCliente_EnProceso", con2);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd2.Parameters.AddWithValue("@codigoOP", codigoOP);
+            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+            da2.Fill(dt2);
+            datalistadoEnProcesoOP.DataSource = dt2;
+            con2.Close();
+
+            DataTable dt3 = new DataTable();
+            SqlConnection con3 = new SqlConnection();
+            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con3.Open();
+            SqlCommand cmd3 = new SqlCommand();
+            cmd3 = new SqlCommand("OP_MostrarPorCliente_Observadas", con3);
+            cmd3.CommandType = CommandType.StoredProcedure;
+            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd3.Parameters.AddWithValue("@codigoOP", codigoOP);
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+            da3.Fill(dt3);
+            datalistadoObservadas.DataSource = dt3;
+            con3.Close();
+
             RedimensionarListadoGeneralPedido(datalistadoTodasOP);
+            RedimensionarListadoGeneralPedido(datalistadoEnProcesoOP);
+            RedimensionarListadoGeneralPedido(datalistadoObservadas);
         }
 
         //MOSTRAR OP POR CODIGO OP
@@ -342,7 +441,40 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             da.Fill(dt);
             datalistadoTodasOP.DataSource = dt;
             con.Close();
+
+            DataTable dt2 = new DataTable();
+            SqlConnection con2 = new SqlConnection();
+            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con2.Open();
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2 = new SqlCommand("OP_MostrarPorCliente_EnProceso", con2);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd.Parameters.AddWithValue("@descripcion", descripcipon);
+            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+            da2.Fill(dt2);
+            datalistadoEnProcesoOP.DataSource = dt2;
+            con2.Close();
+
+            DataTable dt3 = new DataTable();
+            SqlConnection con3 = new SqlConnection();
+            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con3.Open();
+            SqlCommand cmd3 = new SqlCommand();
+            cmd3 = new SqlCommand("OP_MostrarPorCliente_Observadas", con3);
+            cmd3.CommandType = CommandType.StoredProcedure;
+            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd.Parameters.AddWithValue("@descripcion", descripcipon);
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+            da3.Fill(dt3);
+            datalistadoObservadas.DataSource = dt3;
+            con3.Close();
+
             RedimensionarListadoGeneralPedido(datalistadoTodasOP);
+            RedimensionarListadoGeneralPedido(datalistadoEnProcesoOP);
+            RedimensionarListadoGeneralPedido(datalistadoObservadas);
         }
 
         //FUNCION PARA REDIMENSIONAR MIS LISTADOS
@@ -390,8 +522,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[13].ReadOnly = true;
             DGV.Columns[14].ReadOnly = true;
 
-            CargarColoresListadoOPGeneral();
-            ColoresListado();
+            CargarColoresListadoOPGeneral(DGV);
+            ColoresListado(DGV);
 
             //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
             foreach (DataGridViewColumn column in DGV.Columns)
@@ -404,24 +536,69 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void datalistadoTodasOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
             //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
+            if (datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
             {
-                this.datalistadoTodasOP.Cursor = Cursors.Hand;
+                datalistadoTodasOP.Cursor = Cursors.Hand;
             }
             else
             {
-                this.datalistadoTodasOP.Cursor = curAnterior;
+                datalistadoTodasOP.Cursor = curAnterior;
+            }
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
+        private void datalistadoEnProcesoOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
+            {
+                datalistadoTodasOP.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                datalistadoTodasOP.Cursor = curAnterior;
+            }
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
+        private void datalistadoObservadas_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
+            {
+                datalistadoTodasOP.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                datalistadoTodasOP.Cursor = curAnterior;
             }
         }
 
         //EVENTO PARA ABRIR EL INGRESO DE CANTIDADES
         private void datalistadoTodasOP_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            AbrirDetalles(datalistadoTodasOP);
+        }
+
+        //EVENTO PARA ABRIR EL INGRESO DE CANTIDADES
+        private void datalistadoEnProcesoOP_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AbrirDetalles(datalistadoEnProcesoOP);
+        }
+
+        //EVENTO PARA ABRIR EL INGRESO DE CANTIDADES
+        private void datalistadoObservadas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AbrirDetalles(datalistadoObservadas);
+        }
+
+        public void AbrirDetalles(DataGridView DGV)
+        {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOP.CurrentRow != null)
+            if (DGV.CurrentRow != null)
             {
                 int count = 0;
-                foreach (DataGridViewRow row in datalistadoTodasOP.Rows)
+                foreach (DataGridViewRow row in DGV.Rows)
                 {
                     if (Convert.ToBoolean(row.Cells[0].Value))
                     {
@@ -433,11 +610,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 txtOpsSeleccionadas.Text = Convert.ToString(count);
                 //CARGA DE DAOTS
-                txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
-                int IdOrdenProduccion = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value.ToString());
-                txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[5].Value.ToString();
-                txtCantidadTotalOP.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
-                txtCantidadRequerida.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
+                txtCodigoOP.Text = DGV.SelectedCells[2].Value.ToString();
+                int IdOrdenProduccion = Convert.ToInt32(DGV.SelectedCells[1].Value.ToString());
+                txtDescripcionProducto.Text = DGV.SelectedCells[5].Value.ToString();
+                txtCantidadTotalOP.Text = DGV.SelectedCells[9].Value.ToString();
+                txtCantidadRequerida.Text = DGV.SelectedCells[9].Value.ToString();
                 dtpFechaRealizada.Value = DateTime.Now;
                 txtCantidadRealizada.Text = "";
                 txtCantidadRestante.Text = "";
@@ -447,13 +624,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 if (txtCantidadRestante.Text == "0")
                 {
-                    datalistadoTodasOP.Enabled = true;
+                    DGV.Enabled = true;
                     panelIngresoCantidades.Visible = false;
                     MessageBox.Show("Esta OP ya culminó satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    datalistadoTodasOP.Enabled = false;
+                    DGV.Enabled = false;
                     panelIngresoCantidades.Visible = true;
 
                     if (count != 1)
@@ -474,7 +651,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         btnGenerarGuardarCantidades.Visible = false;
                         lblGenerarGuardarCantidades.Visible = false;
                         txtCantidadRealizada.ReadOnly = false;
-                        lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
+                        lblIdOP.Text = DGV.SelectedCells[1].Value.ToString();
                     }
                 }
             }
@@ -529,9 +706,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void btnGenerarOrdenProduccionPDF_Click(object sender, EventArgs e)
         {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOP.CurrentRow != null)
+            if (datalistadoEnProcesoOP.CurrentRow != null)
             {
-                string codigoOrdenProduccion = datalistadoTodasOP.Rows[datalistadoTodasOP.CurrentRow.Index].Cells[1].Value.ToString();
+                string codigoOrdenProduccion = datalistadoEnProcesoOP.Rows[datalistadoEnProcesoOP.CurrentRow.Index].Cells[1].Value.ToString();
                 Visualizadores.VisualizarOrdenProduccion frm = new Visualizadores.VisualizarOrdenProduccion();
                 frm.lblCodigo.Text = codigoOrdenProduccion;
 
@@ -548,7 +725,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             try
             {
-                Process.Start(datalistadoTodasOP.SelectedCells[16].Value.ToString());
+                Process.Start(datalistadoEnProcesoOP.SelectedCells[16].Value.ToString());
             }
             catch (Exception ex)
             {
@@ -561,7 +738,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             try
             {
-                Process.Start(datalistadoTodasOP.SelectedCells[15].Value.ToString());
+                Process.Start(datalistadoEnProcesoOP.SelectedCells[15].Value.ToString());
             }
             catch (Exception ex)
             {
@@ -573,7 +750,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void btnGuardarCantidad_Click(object sender, EventArgs e)
         {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOP.CurrentRow != null)
+            if (datalistadoEnProcesoOP.CurrentRow != null)
             {
                 if (txtCantidadRealizada.Text == "" || txtCantidadRealizada.Text == "0")
                 {
@@ -630,7 +807,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             List<int> idOPSeleccionada = new List<int>();
             List<int> CantidadTotalOPSeleccionada = new List<int>();
 
-            foreach (DataGridViewRow row in datalistadoTodasOP.Rows)
+            foreach (DataGridViewRow row in datalistadoEnProcesoOP.Rows)
             {
                 DataGridViewCheckBoxCell checkBox = row.Cells[0] as DataGridViewCheckBoxCell;
 
@@ -685,7 +862,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //FUNCION PARA LIMPIAR LAS CANTIDADES
         public void LimpiarCantidades()
         {
+            datalistadoEnProcesoOP.Enabled = true;
             datalistadoTodasOP.Enabled = true;
+            datalistadoObservadas.Enabled = true;
             panelIngresoCantidades.Visible = false;
             txtOpsSeleccionadas.Text = "";
             txtCantidadRealizada.Text = "";
@@ -697,7 +876,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             LimpiarAnulacionPedido();
             panleAnulacion.Visible = true;
-            datalistadoTodasOP.Enabled = false;
+            datalistadoEnProcesoOP.Enabled = false;
         }
 
         //FUNCION PARA PROCEDER A ANULAR MI PEDIDO, COTIZACION Y PRODICCION
@@ -764,7 +943,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             LimpiarAnulacionPedido();
             panleAnulacion.Visible = false;
-            datalistadoTodasOP.Enabled = true;
+            datalistadoEnProcesoOP.Enabled = true;
         }
 
         //FUNCION PARA LIMPIAR MIS CONTROLES ORIETADO A ANULACION DE PEDIDO
@@ -777,14 +956,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //MODIFICAR MI FECHA DE ENTREGA DE MI ORDEN DE PRODUCCION
         private void btnModificarFecha_Click(object sender, EventArgs e)
         {
-            if (datalistadoTodasOP.CurrentRow != null)
+            if (datalistadoEnProcesoOP.CurrentRow != null)
             {
-                datalistadoTodasOP.Enabled = false;
+                datalistadoEnProcesoOP.Enabled = false;
                 panelModiFechaEntrega.Visible = true;
-                int IdOP = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value);
-                txtModiCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
-                dtpModiFechaOP.Value = Convert.ToDateTime(datalistadoTodasOP.SelectedCells[3].Value);
-                dtpModiFechaEntrega.Value = Convert.ToDateTime(datalistadoTodasOP.SelectedCells[4].Value);
+                int IdOP = Convert.ToInt32(datalistadoEnProcesoOP.SelectedCells[1].Value);
+                txtModiCodigoOP.Text = datalistadoEnProcesoOP.SelectedCells[2].Value.ToString();
+                dtpModiFechaOP.Value = Convert.ToDateTime(datalistadoEnProcesoOP.SelectedCells[3].Value);
+                dtpModiFechaEntrega.Value = Convert.ToDateTime(datalistadoEnProcesoOP.SelectedCells[4].Value);
                 txtModiObservacionModiFecha.Text = "";
             }
         }
@@ -792,9 +971,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //CONFIRMAR MI MODIFICACION DE FECHAS
         private void btnModiConfirmar_Click(object sender, EventArgs e)
         {
-            if (datalistadoTodasOP.CurrentRow != null)
+            if (datalistadoEnProcesoOP.CurrentRow != null)
             {
-                int idOrdenProduccion = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value.ToString());
+                int idOrdenProduccion = Convert.ToInt32(datalistadoEnProcesoOP.SelectedCells[1].Value.ToString());
 
                 DialogResult boton = MessageBox.Show("¿Realmente desea modificar esta fecha de orden de producción?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -825,7 +1004,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                         MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                         MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-                        datalistadoTodasOP.Enabled = true;
+                        datalistadoEnProcesoOP.Enabled = true;
                         panelModiFechaEntrega.Visible = false;
                         txtModiObservacionModiFecha.Text = "";
                     }
@@ -845,7 +1024,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void btnModiRetroceder_Click(object sender, EventArgs e)
         {
             txtModiObservacionModiFecha.Text = "";
-            datalistadoTodasOP.Enabled = true;
+            datalistadoEnProcesoOP.Enabled = true;
             panelModiFechaEntrega.Visible = false;
         }
 
@@ -989,10 +1168,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 // **Enviar parámetro al reporte**
                 // Cambia "NombreParametro" por el nombre exacto del parámetro en tu reporte
-                int idOrdenProduccion = Convert.ToInt32(datalistadoTodasOP.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                string codigoOrdenProduccion = datalistadoTodasOP.SelectedCells[2].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                string cliente = datalistadoTodasOP.SelectedCells[5].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                string unidad = datalistadoTodasOP.SelectedCells[6].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                int idOrdenProduccion = Convert.ToInt32(datalistadoEnProcesoOP.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                string codigoOrdenProduccion = datalistadoEnProcesoOP.SelectedCells[2].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                string cliente = datalistadoEnProcesoOP.SelectedCells[5].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                string unidad = datalistadoEnProcesoOP.SelectedCells[6].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
                 crystalReport.SetParameterValue("@idOrdenProduccion", idOrdenProduccion);
 
                 // Ruta de salida en el escritorio
@@ -1018,6 +1197,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             {
                 e.Handled = true;
             }
+        }
+
+        //CAMBIAR MI LISTADO
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ColoresListado(datalistadoEnProcesoOP);
+            ColoresListado(datalistadoTodasOP);
+            ColoresListado(datalistadoObservadas);
         }
     }
 }

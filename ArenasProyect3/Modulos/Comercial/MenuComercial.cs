@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,6 +22,8 @@ namespace ArenasProyect3.Modulos.Comercial
         string maquina = Environment.MachineName;
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         string ruta = ManGeneral.Manual.manualAreaComercial;
+        //MONITOREO DE INACTIVIDAD - CLASE INTERNA
+        //private InactivityMonitor _monitor;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU COMERCIAL
         public MenuComercial()
@@ -78,6 +81,9 @@ namespace ArenasProyect3.Modulos.Comercial
 
             //FUNCION PARA COLOCAR DATOS RELEVANTES
             ReporteMenuComercial(DesdeFecha.Value, HastaFecha.Value);
+
+            ////EJECUTAR INACTIVIDADA
+            //_monitor = new InactivityMonitor(this, panelInactividad, 1, 2); // 5 minutos de inactividad
         }
 
         //EVENTOS DE ACCIONES  DEL MENÚ RPINCIPAL------------------------------------------------------------------
@@ -568,17 +574,6 @@ namespace ArenasProyect3.Modulos.Comercial
             }
         }
 
-        //ACIONES DE ENTRAR Y SALIR DE LOS FORMULARIOS Y DE CIERRE DE SESION
-        public void AbrirFormularios(object formFormulario)
-        {
-            Form frm = formFormulario as Form;
-            frm.TopLevel = false;
-            frm.Dock = DockStyle.Fill;
-            this.panelPrincipalComercial.Controls.Add(frm);
-            this.panelPrincipalComercial.Tag = frm;
-            frm.Show();
-        }
-
         //BOTON DE CLIENTES
         private void btnClientes_MouseHover(object sender, EventArgs e)
         {
@@ -667,6 +662,23 @@ namespace ArenasProyect3.Modulos.Comercial
         private void btnAbrirManual_Click(object sender, EventArgs e)
         {
             Process.Start(ruta);
+        }
+
+        //ACIONES DE ENTRAR Y SALIR DE LOS FORMULARIOS Y DE CIERRE DE SESION
+        public void AbrirFormularios(object formFormulario)
+        {
+            Form frm = formFormulario as Form;
+            frm.TopLevel = false;
+            frm.Dock = DockStyle.Fill;
+            this.panelPrincipalComercial.Controls.Add(frm);
+            this.panelPrincipalComercial.Tag = frm;
+            frm.Show();
+        }
+
+        //BOTON PARA CERRAR MI INACTIVIDAD
+        private void btnCerrarInactividad_Click(object sender, EventArgs e)
+        {
+            panelInactividad.Visible = false;
         }
         //--------------------------------------------------------------------------------------------------------
     }

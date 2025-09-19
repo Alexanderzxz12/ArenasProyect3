@@ -29,7 +29,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarProducto));
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.lblTituloNuevoProducto = new System.Windows.Forms.Label();
@@ -311,6 +311,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label5 = new System.Windows.Forms.Label();
             this.panelNuevoValores = new System.Windows.Forms.Panel();
             this.label76 = new System.Windows.Forms.Label();
+            this.lblCodigoModelo = new System.Windows.Forms.Label();
+            this.lblCodigoTipoIngreso = new System.Windows.Forms.Label();
+            this.btnCancelarNuevosValores = new System.Windows.Forms.Button();
+            this.btnIngresarNuevosValores = new System.Windows.Forms.Button();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel20 = new System.Windows.Forms.Panel();
@@ -325,6 +331,10 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panel29 = new System.Windows.Forms.Panel();
             this.lblTituloAdaptable = new System.Windows.Forms.Label();
             this.panelDatosAnexos = new System.Windows.Forms.Panel();
+            this.btCancelarDatosAnexos = new System.Windows.Forms.Button();
+            this.btnAceptarDatosAnexos = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label26 = new System.Windows.Forms.Label();
@@ -411,18 +421,8 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label78 = new System.Windows.Forms.Label();
-            this.btCancelarDatosAnexos = new System.Windows.Forms.Button();
-            this.btnAceptarDatosAnexos = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.btnCancelarNuevosValores = new System.Windows.Forms.Button();
-            this.btnIngresarNuevosValores = new System.Windows.Forms.Button();
-            this.label75 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
             this.btnCancelarPlano = new System.Windows.Forms.Button();
             this.btnCargarPdf = new System.Windows.Forms.Button();
-            this.lblCodigoTipoIngreso = new System.Windows.Forms.Label();
-            this.lblCodigoModelo = new System.Windows.Forms.Label();
             this.btnAbrirDatosAnexos = new System.Windows.Forms.Button();
             this.panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNombreProducto)).BeginInit();
@@ -544,14 +544,14 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.datalistadoNombreProducto.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.datalistadoNombreProducto.Name = "datalistadoNombreProducto";
             this.datalistadoNombreProducto.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNombreProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNombreProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.datalistadoNombreProducto.RowHeadersVisible = false;
             this.datalistadoNombreProducto.RowHeadersWidth = 100;
             this.datalistadoNombreProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -4015,12 +4015,82 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label76.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label76.Location = new System.Drawing.Point(9, 161);
+            this.label76.Location = new System.Drawing.Point(5, 164);
             this.label76.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(183, 26);
+            this.label76.Size = new System.Drawing.Size(237, 26);
             this.label76.TabIndex = 1971;
-            this.label76.Text = "Los datos se ingresan según el formato \r\nestablecido";
+            this.label76.Text = "No agregar magnitud ni siglas, el sistema lo genera \r\nautomáticamente.\r\n";
+            // 
+            // lblCodigoModelo
+            // 
+            this.lblCodigoModelo.AutoSize = true;
+            this.lblCodigoModelo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoModelo.Location = new System.Drawing.Point(31, 175);
+            this.lblCodigoModelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoModelo.Name = "lblCodigoModelo";
+            this.lblCodigoModelo.Size = new System.Drawing.Size(22, 13);
+            this.lblCodigoModelo.TabIndex = 2048;
+            this.lblCodigoModelo.Text = "***";
+            // 
+            // lblCodigoTipoIngreso
+            // 
+            this.lblCodigoTipoIngreso.AutoSize = true;
+            this.lblCodigoTipoIngreso.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoTipoIngreso.Location = new System.Drawing.Point(4, 175);
+            this.lblCodigoTipoIngreso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoTipoIngreso.Name = "lblCodigoTipoIngreso";
+            this.lblCodigoTipoIngreso.Size = new System.Drawing.Size(22, 13);
+            this.lblCodigoTipoIngreso.TabIndex = 2047;
+            this.lblCodigoTipoIngreso.Text = "***";
+            // 
+            // btnCancelarNuevosValores
+            // 
+            this.btnCancelarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelarNuevosValores.FlatAppearance.BorderSize = 0;
+            this.btnCancelarNuevosValores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarNuevosValores.Image")));
+            this.btnCancelarNuevosValores.Location = new System.Drawing.Point(394, 147);
+            this.btnCancelarNuevosValores.Name = "btnCancelarNuevosValores";
+            this.btnCancelarNuevosValores.Size = new System.Drawing.Size(33, 33);
+            this.btnCancelarNuevosValores.TabIndex = 2046;
+            this.btnCancelarNuevosValores.UseVisualStyleBackColor = true;
+            this.btnCancelarNuevosValores.Click += new System.EventHandler(this.btnCancelarNuevosValores_Click);
+            // 
+            // btnIngresarNuevosValores
+            // 
+            this.btnIngresarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIngresarNuevosValores.FlatAppearance.BorderSize = 0;
+            this.btnIngresarNuevosValores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIngresarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresarNuevosValores.Image")));
+            this.btnIngresarNuevosValores.Location = new System.Drawing.Point(338, 148);
+            this.btnIngresarNuevosValores.Name = "btnIngresarNuevosValores";
+            this.btnIngresarNuevosValores.Size = new System.Drawing.Size(31, 31);
+            this.btnIngresarNuevosValores.TabIndex = 2045;
+            this.btnIngresarNuevosValores.UseVisualStyleBackColor = true;
+            this.btnIngresarNuevosValores.Click += new System.EventHandler(this.btnIngresarNuevosValores_Click);
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label75.Location = new System.Drawing.Point(395, 182);
+            this.label75.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(33, 13);
+            this.label75.TabIndex = 2044;
+            this.label75.Text = "SALIR";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label77.Location = new System.Drawing.Point(327, 181);
+            this.label77.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(54, 13);
+            this.label77.TabIndex = 2043;
+            this.label77.Text = "GUARDAR";
             // 
             // label66
             // 
@@ -4183,6 +4253,54 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panelDatosAnexos.Size = new System.Drawing.Size(413, 468);
             this.panelDatosAnexos.TabIndex = 2020;
             this.panelDatosAnexos.Visible = false;
+            // 
+            // btCancelarDatosAnexos
+            // 
+            this.btCancelarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btCancelarDatosAnexos.FlatAppearance.BorderSize = 0;
+            this.btCancelarDatosAnexos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btCancelarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btCancelarDatosAnexos.Image")));
+            this.btCancelarDatosAnexos.Location = new System.Drawing.Point(352, 416);
+            this.btCancelarDatosAnexos.Name = "btCancelarDatosAnexos";
+            this.btCancelarDatosAnexos.Size = new System.Drawing.Size(33, 33);
+            this.btCancelarDatosAnexos.TabIndex = 2042;
+            this.btCancelarDatosAnexos.UseVisualStyleBackColor = true;
+            this.btCancelarDatosAnexos.Click += new System.EventHandler(this.btCancelarDatosAnexos_Click);
+            // 
+            // btnAceptarDatosAnexos
+            // 
+            this.btnAceptarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAceptarDatosAnexos.FlatAppearance.BorderSize = 0;
+            this.btnAceptarDatosAnexos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptarDatosAnexos.Image")));
+            this.btnAceptarDatosAnexos.Location = new System.Drawing.Point(292, 418);
+            this.btnAceptarDatosAnexos.Name = "btnAceptarDatosAnexos";
+            this.btnAceptarDatosAnexos.Size = new System.Drawing.Size(31, 31);
+            this.btnAceptarDatosAnexos.TabIndex = 2041;
+            this.btnAceptarDatosAnexos.UseVisualStyleBackColor = true;
+            this.btnAceptarDatosAnexos.Click += new System.EventHandler(this.btnAceptarDatosAnexos_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(354, 451);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 2040;
+            this.label3.Text = "SALIR";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(281, 451);
+            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(54, 13);
+            this.label69.TabIndex = 2039;
+            this.label69.Text = "GUARDAR";
             // 
             // tabControl1
             // 
@@ -5211,102 +5329,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.label78.TabIndex = 2039;
             this.label78.Text = "GUARDAR";
             // 
-            // btCancelarDatosAnexos
-            // 
-            this.btCancelarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btCancelarDatosAnexos.FlatAppearance.BorderSize = 0;
-            this.btCancelarDatosAnexos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btCancelarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btCancelarDatosAnexos.Image")));
-            this.btCancelarDatosAnexos.Location = new System.Drawing.Point(352, 416);
-            this.btCancelarDatosAnexos.Name = "btCancelarDatosAnexos";
-            this.btCancelarDatosAnexos.Size = new System.Drawing.Size(33, 33);
-            this.btCancelarDatosAnexos.TabIndex = 2042;
-            this.btCancelarDatosAnexos.UseVisualStyleBackColor = true;
-            this.btCancelarDatosAnexos.Click += new System.EventHandler(this.btCancelarDatosAnexos_Click);
-            // 
-            // btnAceptarDatosAnexos
-            // 
-            this.btnAceptarDatosAnexos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAceptarDatosAnexos.FlatAppearance.BorderSize = 0;
-            this.btnAceptarDatosAnexos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAceptarDatosAnexos.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptarDatosAnexos.Image")));
-            this.btnAceptarDatosAnexos.Location = new System.Drawing.Point(292, 418);
-            this.btnAceptarDatosAnexos.Name = "btnAceptarDatosAnexos";
-            this.btnAceptarDatosAnexos.Size = new System.Drawing.Size(31, 31);
-            this.btnAceptarDatosAnexos.TabIndex = 2041;
-            this.btnAceptarDatosAnexos.UseVisualStyleBackColor = true;
-            this.btnAceptarDatosAnexos.Click += new System.EventHandler(this.btnAceptarDatosAnexos_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(354, 451);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 2040;
-            this.label3.Text = "SALIR";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(281, 451);
-            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(54, 13);
-            this.label69.TabIndex = 2039;
-            this.label69.Text = "GUARDAR";
-            // 
-            // btnCancelarNuevosValores
-            // 
-            this.btnCancelarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelarNuevosValores.FlatAppearance.BorderSize = 0;
-            this.btnCancelarNuevosValores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarNuevosValores.Image")));
-            this.btnCancelarNuevosValores.Location = new System.Drawing.Point(394, 147);
-            this.btnCancelarNuevosValores.Name = "btnCancelarNuevosValores";
-            this.btnCancelarNuevosValores.Size = new System.Drawing.Size(33, 33);
-            this.btnCancelarNuevosValores.TabIndex = 2046;
-            this.btnCancelarNuevosValores.UseVisualStyleBackColor = true;
-            this.btnCancelarNuevosValores.Click += new System.EventHandler(this.btnCancelarNuevosValores_Click);
-            // 
-            // btnIngresarNuevosValores
-            // 
-            this.btnIngresarNuevosValores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIngresarNuevosValores.FlatAppearance.BorderSize = 0;
-            this.btnIngresarNuevosValores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngresarNuevosValores.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresarNuevosValores.Image")));
-            this.btnIngresarNuevosValores.Location = new System.Drawing.Point(338, 148);
-            this.btnIngresarNuevosValores.Name = "btnIngresarNuevosValores";
-            this.btnIngresarNuevosValores.Size = new System.Drawing.Size(31, 31);
-            this.btnIngresarNuevosValores.TabIndex = 2045;
-            this.btnIngresarNuevosValores.UseVisualStyleBackColor = true;
-            this.btnIngresarNuevosValores.Click += new System.EventHandler(this.btnIngresarNuevosValores_Click);
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(395, 182);
-            this.label75.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(33, 13);
-            this.label75.TabIndex = 2044;
-            this.label75.Text = "SALIR";
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(327, 181);
-            this.label77.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(54, 13);
-            this.label77.TabIndex = 2043;
-            this.label77.Text = "GUARDAR";
-            // 
             // btnCancelarPlano
             // 
             this.btnCancelarPlano.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -5318,6 +5340,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.btnCancelarPlano.Size = new System.Drawing.Size(25, 25);
             this.btnCancelarPlano.TabIndex = 2044;
             this.btnCancelarPlano.UseVisualStyleBackColor = true;
+            this.btnCancelarPlano.Visible = false;
             this.btnCancelarPlano.Click += new System.EventHandler(this.btnCancelarPlano_Click);
             // 
             // btnCargarPdf
@@ -5332,28 +5355,6 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.btnCargarPdf.TabIndex = 2045;
             this.btnCargarPdf.UseVisualStyleBackColor = true;
             this.btnCargarPdf.Click += new System.EventHandler(this.btnCargarPdf_Click);
-            // 
-            // lblCodigoTipoIngreso
-            // 
-            this.lblCodigoTipoIngreso.AutoSize = true;
-            this.lblCodigoTipoIngreso.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoTipoIngreso.Location = new System.Drawing.Point(4, 168);
-            this.lblCodigoTipoIngreso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoTipoIngreso.Name = "lblCodigoTipoIngreso";
-            this.lblCodigoTipoIngreso.Size = new System.Drawing.Size(22, 13);
-            this.lblCodigoTipoIngreso.TabIndex = 2047;
-            this.lblCodigoTipoIngreso.Text = "***";
-            // 
-            // lblCodigoModelo
-            // 
-            this.lblCodigoModelo.AutoSize = true;
-            this.lblCodigoModelo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoModelo.Location = new System.Drawing.Point(31, 168);
-            this.lblCodigoModelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoModelo.Name = "lblCodigoModelo";
-            this.lblCodigoModelo.Size = new System.Drawing.Size(22, 13);
-            this.lblCodigoModelo.TabIndex = 2048;
-            this.lblCodigoModelo.Text = "***";
             // 
             // btnAbrirDatosAnexos
             // 

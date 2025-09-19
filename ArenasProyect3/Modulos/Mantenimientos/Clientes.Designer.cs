@@ -155,6 +155,7 @@
             this.txtCodigoClienteUnidad = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombreClienteUnidad = new System.Windows.Forms.TextBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
@@ -269,6 +270,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).BeginInit();
             this.panelUnidad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -313,17 +315,17 @@
             this.btnClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.Location = new System.Drawing.Point(0, 282);
             this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnClientes.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnClientes.Size = new System.Drawing.Size(165, 53);
             this.btnClientes.TabIndex = 4;
-            this.btnClientes.Text = "   CLIENTES";
+            this.btnClientes.Text = "CLIENTES";
             this.btnClientes.UseVisualStyleBackColor = true;
             // 
             // panel4
@@ -421,11 +423,12 @@
             this.panelAgregarCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelAgregarCliente.Controls.Add(this.panelSucursal);
             this.panelAgregarCliente.Controls.Add(this.panelCondicion);
-            this.panelAgregarCliente.Controls.Add(this.panelContacto);
-            this.panelAgregarCliente.Controls.Add(this.panelUnidad);
+            this.panelAgregarCliente.Controls.Add(this.pictureBox15);
             this.panelAgregarCliente.Controls.Add(this.pictureBox12);
+            this.panelAgregarCliente.Controls.Add(this.panelContacto);
             this.panelAgregarCliente.Controls.Add(this.pictureBox11);
             this.panelAgregarCliente.Controls.Add(this.pictureBox10);
+            this.panelAgregarCliente.Controls.Add(this.panelUnidad);
             this.panelAgregarCliente.Controls.Add(this.pictureBox9);
             this.panelAgregarCliente.Controls.Add(this.pictureBox8);
             this.panelAgregarCliente.Controls.Add(this.pictureBox7);
@@ -1082,7 +1085,7 @@
             // 
             // txtNombreCLienteCondicion
             // 
-            this.txtNombreCLienteCondicion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreCLienteCondicion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreCLienteCondicion.Location = new System.Drawing.Point(190, 15);
             this.txtNombreCLienteCondicion.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreCLienteCondicion.Name = "txtNombreCLienteCondicion";
@@ -1826,7 +1829,7 @@
             // 
             // txtNombreClienteUnidad
             // 
-            this.txtNombreClienteUnidad.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreClienteUnidad.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreClienteUnidad.Location = new System.Drawing.Point(190, 15);
             this.txtNombreClienteUnidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreClienteUnidad.Name = "txtNombreClienteUnidad";
@@ -1834,12 +1837,22 @@
             this.txtNombreClienteUnidad.Size = new System.Drawing.Size(631, 21);
             this.txtNombreClienteUnidad.TabIndex = 0;
             // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(484, 149);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox15.TabIndex = 146;
+            this.pictureBox15.TabStop = false;
+            // 
             // pictureBox12
             // 
             this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
             this.pictureBox12.Location = new System.Drawing.Point(358, 409);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox12.Size = new System.Drawing.Size(15, 15);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox12.TabIndex = 145;
             this.pictureBox12.TabStop = false;
@@ -1859,7 +1872,7 @@
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
             this.pictureBox10.Location = new System.Drawing.Point(429, 289);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox10.Size = new System.Drawing.Size(18, 18);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox10.TabIndex = 143;
             this.pictureBox10.TabStop = false;
@@ -1869,7 +1882,7 @@
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.Location = new System.Drawing.Point(234, 289);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox9.Size = new System.Drawing.Size(18, 18);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox9.TabIndex = 142;
             this.pictureBox9.TabStop = false;
@@ -1879,7 +1892,7 @@
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(375, 345);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox8.Size = new System.Drawing.Size(18, 18);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox8.TabIndex = 141;
             this.pictureBox8.TabStop = false;
@@ -1889,7 +1902,7 @@
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(375, 317);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox7.Size = new System.Drawing.Size(18, 18);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 140;
             this.pictureBox7.TabStop = false;
@@ -1922,6 +1935,7 @@
             // 
             // btnEditar
             // 
+            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
@@ -2119,7 +2133,7 @@
             this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
             this.pictureBox14.Location = new System.Drawing.Point(148, 28);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox14.Size = new System.Drawing.Size(15, 15);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox14.TabIndex = 147;
             this.pictureBox14.TabStop = false;
@@ -2129,7 +2143,7 @@
             this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
             this.pictureBox13.Location = new System.Drawing.Point(331, 28);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox13.Size = new System.Drawing.Size(15, 15);
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox13.TabIndex = 146;
             this.pictureBox13.TabStop = false;
@@ -2205,9 +2219,9 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(340, 61);
+            this.pictureBox6.Location = new System.Drawing.Point(340, 63);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox6.Size = new System.Drawing.Size(16, 16);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 140;
             this.pictureBox6.TabStop = false;
@@ -2215,9 +2229,9 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(340, 33);
+            this.pictureBox5.Location = new System.Drawing.Point(340, 35);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox5.Size = new System.Drawing.Size(16, 16);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 139;
             this.pictureBox5.TabStop = false;
@@ -2782,7 +2796,7 @@
             this.txtNombreClientes.Location = new System.Drawing.Point(126, 148);
             this.txtNombreClientes.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreClientes.Name = "txtNombreClientes";
-            this.txtNombreClientes.Size = new System.Drawing.Size(376, 21);
+            this.txtNombreClientes.Size = new System.Drawing.Size(356, 21);
             this.txtNombreClientes.TabIndex = 1;
             // 
             // label6
@@ -3072,6 +3086,7 @@
             this.panelUnidad.ResumeLayout(false);
             this.panelUnidad.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
@@ -3321,5 +3336,6 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox pictureBox15;
     }
 }

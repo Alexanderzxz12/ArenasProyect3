@@ -49,49 +49,65 @@ namespace ArenasProyect3.Modulos.Admin
         //MÉTODO PARA CARGAR MIS USUARIOS
         public void CargarUsuarios()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdUsuarios , Nombres + ' ' + Apellidos AS [USUARIO] FROM Usuarios WHERE Estado = 'ACTIVO' ORDER BY [USUARIO]", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboPersonalAsignado.DisplayMember = "USUARIO";
-            cboPersonalAsignado.ValueMember = "IdUsuarios";
-            cboPersonalAsignado.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios , Nombres + ' ' + Apellidos AS [USUARIO] FROM Usuarios WHERE Estado = 'ACTIVO' ORDER BY [USUARIO]", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboPersonalAsignado.DisplayMember = "USUARIO";
+                cboPersonalAsignado.ValueMember = "IdUsuarios";
+                cboPersonalAsignado.DataSource = dt;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("There was an unexpected error, " + ex.Message);
+            }
         }
 
         //METODO PARA VISUALIZAR LOS DATOS, LISTADO DE DATOS EN MI GRILLA
         public void Mostrar()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdLicencia AS [CODE], Titulo AS [LICENSE TITLE], Maquina AS [MACHINE],  Placa AS [MOTHERBOARD], NumeroIdentificador AS [IDENTIFICATION NUMBER], Usuario AS [DEVICE USER], PersonalAsignado AS [ASSIGNED PERSONNEL], Anotaciones AS [OBSERVATIONS], Estado AS [STATE] FROM TablaLicencias WHERE Estado = 1", con);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
-            Redimencionar(datalistado);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdLicencia AS [CODE], Titulo AS [LICENSE TITLE], Maquina AS [MACHINE],  Placa AS [MOTHERBOARD], NumeroIdentificador AS [IDENTIFICATION NUMBER], Usuario AS [DEVICE USER], PersonalAsignado AS [ASSIGNED PERSONNEL], Anotaciones AS [OBSERVATIONS], Estado AS [STATE] FROM TablaLicencias WHERE Estado = 1", con);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                Redimencionar(datalistado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an unexpected error, " + ex.Message);
+            }
         }
 
         //EVENTO DE DOBLE CLICK PARA PODER VISUALIZAR LOS DATOS DE UN REGISTRO
         private void datalistado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Reiniciar();
+            if (datalistado.RowCount != 0)
+            {
+                Reiniciar();
+                lblCodigo.Text = datalistado.SelectedCells[0].Value.ToString();
+                txtTituloLicencia.Text = datalistado.SelectedCells[1].Value.ToString();
+                txtMaquina.Text = datalistado.SelectedCells[2].Value.ToString();
+                txtPlaca.Text = datalistado.SelectedCells[3].Value.ToString();
+                txtNumeroIdentificador.Text = datalistado.SelectedCells[4].Value.ToString();
+                txtDispositivoUsuario.Text = datalistado.SelectedCells[5].Value.ToString();
+                cboPersonalAsignado.Text = datalistado.SelectedCells[6].Value.ToString();
+                txtObservaciones.Text = datalistado.SelectedCells[7].Value.ToString();
+                string estado = datalistado.SelectedCells[8].Value.ToString();
 
-            lblCodigo.Text = datalistado.SelectedCells[0].Value.ToString();
-            txtTituloLicencia.Text = datalistado.SelectedCells[1].Value.ToString();
-            txtMaquina.Text = datalistado.SelectedCells[2].Value.ToString();
-            txtPlaca.Text = datalistado.SelectedCells[3].Value.ToString();
-            txtNumeroIdentificador.Text = datalistado.SelectedCells[4].Value.ToString();
-            txtDispositivoUsuario.Text = datalistado.SelectedCells[5].Value.ToString();
-            cboPersonalAsignado.Text = datalistado.SelectedCells[6].Value.ToString();
-            txtObservaciones.Text = datalistado.SelectedCells[7].Value.ToString();
-            string estado = datalistado.SelectedCells[8].Value.ToString();
-
-            if (estado == "1") { cboEstado.Text = "ACTIVO"; } else { cboEstado.Text = "INACTIVO"; }
+                if (estado == "1") { cboEstado.Text = "ACTIVO"; } else { cboEstado.Text = "INACTIVO"; }
+            }
         }
 
         //ACCIONES Y PROCESOS DEL MANTENIMIENTO*--------------------------------------
@@ -283,74 +299,74 @@ namespace ArenasProyect3.Modulos.Admin
         //ACCION PARA HACER UNA BUSQUEDA INTELIGENTE SEGUN LE CRITEIRO ELEGIDO
         private void txtBusquedaLicencia_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaLicencia.Text  == "LICENSE TITLE")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarLicenciaSegunTitulo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-
+                if (cboBusquedaLicencia.Text == "LICENSE TITLE")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarLicenciaSegunTitulo", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                }
+                else if (cboBusquedaLicencia.Text == "ASSIGNED PERSONNEL")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarLicenciaSegunPersonalAsignado", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                }
+                else if (cboBusquedaLicencia.Text == "DEVICE USER")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarLicenciaSegunUsuarioDispositivo", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                }
+                else if (cboBusquedaLicencia.Text == "MACHINE")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarLicenciaSegunMaquina", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                }
                 Redimencionar(datalistado);
             }
-            else if (cboBusquedaLicencia.Text == "ASSIGNED PERSONNEL")
+            catch(Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarLicenciaSegunPersonalAsignado", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-
-                Redimencionar(datalistado);
-            }
-            else if (cboBusquedaLicencia.Text == "DEVICE USER")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarLicenciaSegunUsuarioDispositivo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-
-                Redimencionar(datalistado);
-            }
-            else if (cboBusquedaLicencia.Text == "MACHINE")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarLicenciaSegunMaquina", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaLicencia.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-
-                Redimencionar(datalistado);
-            }
+                MessageBox.Show("There was an unexpected error, " + ex.Message);
+            } 
         }
     }
 }

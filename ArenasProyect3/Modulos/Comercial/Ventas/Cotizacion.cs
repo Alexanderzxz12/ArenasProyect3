@@ -7,6 +7,7 @@ using DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using DocumentFormat.OpenXml.Office2013.Word;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Vml.Spreadsheet;
+using DocumentFormat.OpenXml.Wordprocessing;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using SpreadsheetLight;
@@ -23,6 +24,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Document = iTextSharp.text.Document;
 
 namespace ArenasProyect3.Modulos.Comercial.Ventas
 {
@@ -336,13 +338,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 datalistadoItemsCotizacion.Columns[6].ReadOnly = true;
                 datalistadoItemsCotizacion.Columns[8].ReadOnly = true;
 
-                datalistadoItemsCotizacion.Columns[1].Width = 80;
-                datalistadoItemsCotizacion.Columns[2].Width = 430;
+                datalistadoItemsCotizacion.Columns[1].Width = 90;
+                datalistadoItemsCotizacion.Columns[2].Width = 440;
                 datalistadoItemsCotizacion.Columns[3].Width = 70;
                 datalistadoItemsCotizacion.Columns[4].Width = 80;
                 datalistadoItemsCotizacion.Columns[5].Width = 80;
                 datalistadoItemsCotizacion.Columns[6].Width = 80;
-                datalistadoItemsCotizacion.Columns[7].Width = 75;
+                datalistadoItemsCotizacion.Columns[7].Width = 60;
                 datalistadoItemsCotizacion.Columns[8].Width = 100;
 
                 datalistadoItemsCotizacion.Columns[9].Visible = false;
@@ -687,16 +689,16 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         public void ReordenarFilasMostrarCotizacion(DataGridView DGV)
         {
             //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
-            DGV.Columns[2].Width = 80;
-            DGV.Columns[3].Width = 100;
-            DGV.Columns[4].Width = 100;
-            DGV.Columns[6].Width = 380;
+            DGV.Columns[2].Width = 76;
+            DGV.Columns[3].Width = 90;
+            DGV.Columns[4].Width = 90;
+            DGV.Columns[6].Width = 350;
             DGV.Columns[8].Width = 150;
-            DGV.Columns[10].Width = 170;
-            DGV.Columns[12].Width = 170;
-            DGV.Columns[14].Width = 130;
-            DGV.Columns[27].Width = 80;
-            DGV.Columns[33].Width = 150;
+            DGV.Columns[10].Width = 185;
+            DGV.Columns[12].Width = 185;
+            DGV.Columns[14].Width = 120;
+            DGV.Columns[27].Width = 75;
+            DGV.Columns[33].Width = 110;
             //NO MOSTRAR LAS COLUMNAS QUE NO SEAN DE REELEVANCIA PARA EL USUARIO
             DGV.Columns[1].Visible = false;
             DGV.Columns[5].Visible = false;
@@ -891,7 +893,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                         }
                     }
                 }
-
             }
             else
             {
@@ -899,6 +900,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
+        //INGRESAR AL DETALLE DE MI COTIZAICON
         private void datalistadoTodasCotiacionesPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (datalistadoTodasCotiacionesPendientes.RowCount != 0)
@@ -2464,7 +2466,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
             if (estadoCoti == "FUERA DE FECHA" || estadoCoti == "ANULADO" || estadoCoti == "ADJUDICADO PARCIALMENTE" || estadoCoti == "COMPLETADO")
             {
-                MessageBox.Show("La cotización que intenta editar ya se encuentra en un estado doferente a PENDIENTE, no se puede editar una cotización que este anulada, vencida o adjudicada total/parcial.", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("La cotización que intenta editar ya se encuentra en un estado diferente a PENDIENTE, no se puede editar una cotización que este anulada, vencida o adjudicada parcial/total.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -2779,6 +2781,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                                     panleAnulacion.Visible = false;
                                     txtJustificacionAnulacion.Text = "";
                                     datalistadoTodasCotiaciones.Enabled = true;
+                                    CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
                                 }
                                 catch (Exception ex)
                                 {
@@ -2802,8 +2805,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             {
                 MessageBox.Show("Seleccione una cotización para poder anularla.", "Validación del Sistema", MessageBoxButtons.OK);
             }
-
-            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //RETROCEDER EN LA ANULACION
@@ -3233,27 +3234,27 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //FUNCION PARA COLOREAR LOS BOTONES
         public void ColorearBoton(DataGridView DGV)
         {
-            foreach (DataGridViewRow row in DGV.Rows)
-            {
-                if (row.Cells["VISIBLE"].Value != DBNull.Value)
-                {
-                    int valorVisible = Convert.ToInt32(row.Cells["VISIBLE"].Value);
-                    DataGridViewCell boton = row.Cells["clumnHabilitado"];
+            //foreach (DataGridViewRow row in DGV.Rows)
+            //{
+            //    if (row.Cells["VISIBLE"].Value != DBNull.Value)
+            //    {
+            //        int valorVisible = Convert.ToInt32(row.Cells["VISIBLE"].Value);
+            //        DataGridViewCell boton = row.Cells["clumnHabilitado"];
 
-                    if (valorVisible == 1)
-                    {
-                        boton.Value = "SI";
-                        boton.ReadOnly = false;
-                        boton.Style.BackColor = System.Drawing.Color.LightGreen;
-                    }
-                    else
-                    {
-                        boton.Value = "NO";
-                        boton.ReadOnly = true;
-                        boton.Style.BackColor = System.Drawing.Color.Red;
-                    }
-                }
-            }
+            //        if (valorVisible == 1)
+            //        {
+            //            boton.Value = "SI";
+            //            boton.ReadOnly = false;
+            //            boton.Style.BackColor = System.Drawing.Color.LightGreen;
+            //        }
+            //        else
+            //        {
+            //            boton.Value = "NO";
+            //            boton.ReadOnly = true;
+            //            boton.Style.BackColor = System.Drawing.Color.Red;
+            //        }
+            //    }
+            //}
         }
 
         //REFRESCAR TODAS LAS FORMULACIONESS
@@ -3287,10 +3288,10 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         public void ReordenadoColumnasBusquedaFormulaciones(DataGridView DGV)
         {
             DGV.Columns[1].Width = 95;
-            DGV.Columns[2].Width = 100;
-            DGV.Columns[3].Width = 100;
-            DGV.Columns[4].Width = 95;
-            DGV.Columns[5].Width = 570;
+            DGV.Columns[2].Width = 90;
+            DGV.Columns[3].Width = 90;
+            DGV.Columns[4].Width = 90;
+            DGV.Columns[5].Width = 610;
             DGV.Columns[6].Width = 135;
             DGV.Columns[7].Visible = false;
             alternarColorFilas(DGV);
@@ -4595,6 +4596,15 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-
+        //CARGAR COLORES DE MIS LISTADOS
+        private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //CARGAR EL MÉTODO QUE COLOREA LAS FILAS
+            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiaciones);
+            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesPendientes);
+            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesParcial);
+            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesCompletado);
+            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesVencidos);
+        }
     }
 }

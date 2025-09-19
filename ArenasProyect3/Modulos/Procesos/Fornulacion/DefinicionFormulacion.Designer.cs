@@ -46,6 +46,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.label10 = new System.Windows.Forms.Label();
             this.btnEditarF = new System.Windows.Forms.Button();
             this.btnEditar2F = new System.Windows.Forms.Button();
+            this.btnGuardar2F = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExportarExcelF = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -63,7 +64,6 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.label5 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnGuardar2F = new System.Windows.Forms.Button();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).BeginInit();
@@ -156,6 +156,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnDefinicionPredeterminada
             // 
+            this.btnDefinicionPredeterminada.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDefinicionPredeterminada.FlatAppearance.BorderSize = 0;
             this.btnDefinicionPredeterminada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDefinicionPredeterminada.Image = ((System.Drawing.Image)(resources.GetObject("btnDefinicionPredeterminada.Image")));
@@ -222,6 +223,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnEditarF
             // 
+            this.btnEditarF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditarF.FlatAppearance.BorderSize = 0;
             this.btnEditarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarF.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarF.Image")));
@@ -234,6 +236,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnEditar2F
             // 
+            this.btnEditar2F.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar2F.FlatAppearance.BorderSize = 0;
             this.btnEditar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2F.Image")));
@@ -242,6 +245,19 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.btnEditar2F.Size = new System.Drawing.Size(38, 38);
             this.btnEditar2F.TabIndex = 1988;
             this.btnEditar2F.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardar2F
+            // 
+            this.btnGuardar2F.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar2F.FlatAppearance.BorderSize = 0;
+            this.btnGuardar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2F.Image")));
+            this.btnGuardar2F.Location = new System.Drawing.Point(27, 30);
+            this.btnGuardar2F.Name = "btnGuardar2F";
+            this.btnGuardar2F.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardar2F.TabIndex = 1989;
+            this.btnGuardar2F.UseVisualStyleBackColor = true;
+            this.btnGuardar2F.Click += new System.EventHandler(this.btnGuardar2_Click);
             // 
             // label1
             // 
@@ -256,6 +272,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnExportarExcelF
             // 
+            this.btnExportarExcelF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcelF.FlatAppearance.BorderSize = 0;
             this.btnExportarExcelF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcelF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcelF.Image")));
@@ -473,18 +490,6 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.label2.Size = new System.Drawing.Size(231, 19);
             this.label2.TabIndex = 2001;
             this.label2.Text = "DEFINICIÓN DE FORMULACIONES";
-            // 
-            // btnGuardar2F
-            // 
-            this.btnGuardar2F.FlatAppearance.BorderSize = 0;
-            this.btnGuardar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2F.Image")));
-            this.btnGuardar2F.Location = new System.Drawing.Point(27, 30);
-            this.btnGuardar2F.Name = "btnGuardar2F";
-            this.btnGuardar2F.Size = new System.Drawing.Size(38, 38);
-            this.btnGuardar2F.TabIndex = 1989;
-            this.btnGuardar2F.UseVisualStyleBackColor = true;
-            this.btnGuardar2F.Click += new System.EventHandler(this.btnGuardar2_Click);
             // 
             // DefinicionFormulacion
             // 

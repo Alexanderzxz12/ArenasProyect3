@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuRequerimientoSimple));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnValidacionJeftura = new System.Windows.Forms.Button();
             this.btnListadoRequerimientoSimple = new System.Windows.Forms.Button();
             this.btnManualUsuario = new System.Windows.Forms.Button();
             this.btnRequerimientossSimple = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.panelMantenimientos = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnValidacionJeftura = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelMantenimientos.SuspendLayout();
@@ -62,11 +62,28 @@
             this.panel1.Size = new System.Drawing.Size(154, 647);
             this.panel1.TabIndex = 7;
             // 
+            // btnValidacionJeftura
+            // 
+            this.btnValidacionJeftura.FlatAppearance.BorderSize = 0;
+            this.btnValidacionJeftura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValidacionJeftura.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValidacionJeftura.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnValidacionJeftura.Image = ((System.Drawing.Image)(resources.GetObject("btnValidacionJeftura.Image")));
+            this.btnValidacionJeftura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnValidacionJeftura.Location = new System.Drawing.Point(0, 377);
+            this.btnValidacionJeftura.Margin = new System.Windows.Forms.Padding(4);
+            this.btnValidacionJeftura.Name = "btnValidacionJeftura";
+            this.btnValidacionJeftura.Size = new System.Drawing.Size(147, 53);
+            this.btnValidacionJeftura.TabIndex = 8;
+            this.btnValidacionJeftura.Text = "      VALIDACIÓN \r\n       POR JEFATURA";
+            this.btnValidacionJeftura.UseVisualStyleBackColor = true;
+            this.btnValidacionJeftura.Click += new System.EventHandler(this.btnValidacionJeftura_Click);
+            // 
             // btnListadoRequerimientoSimple
             // 
             this.btnListadoRequerimientoSimple.FlatAppearance.BorderSize = 0;
             this.btnListadoRequerimientoSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoRequerimientoSimple.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoRequerimientoSimple.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoRequerimientoSimple.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoRequerimientoSimple.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoRequerimientoSimple.Image")));
             this.btnListadoRequerimientoSimple.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -83,7 +100,7 @@
             // 
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -100,7 +117,7 @@
             // 
             this.btnRequerimientossSimple.FlatAppearance.BorderSize = 0;
             this.btnRequerimientossSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRequerimientossSimple.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequerimientossSimple.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequerimientossSimple.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnRequerimientossSimple.Image = ((System.Drawing.Image)(resources.GetObject("btnRequerimientossSimple.Image")));
             this.btnRequerimientossSimple.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -175,23 +192,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
-            // 
-            // btnValidacionJeftura
-            // 
-            this.btnValidacionJeftura.FlatAppearance.BorderSize = 0;
-            this.btnValidacionJeftura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnValidacionJeftura.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidacionJeftura.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnValidacionJeftura.Image = ((System.Drawing.Image)(resources.GetObject("btnValidacionJeftura.Image")));
-            this.btnValidacionJeftura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnValidacionJeftura.Location = new System.Drawing.Point(0, 377);
-            this.btnValidacionJeftura.Margin = new System.Windows.Forms.Padding(4);
-            this.btnValidacionJeftura.Name = "btnValidacionJeftura";
-            this.btnValidacionJeftura.Size = new System.Drawing.Size(147, 53);
-            this.btnValidacionJeftura.TabIndex = 8;
-            this.btnValidacionJeftura.Text = "      VALIDACIÓN \r\n       POR JEFATURA";
-            this.btnValidacionJeftura.UseVisualStyleBackColor = true;
-            this.btnValidacionJeftura.Click += new System.EventHandler(this.btnValidacionJeftura_Click);
             // 
             // MenuRequerimientoSimple
             // 

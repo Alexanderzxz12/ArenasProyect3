@@ -1,0 +1,7 @@
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3Web\obj\Release\net6.0\PubTmp\Out\ArenasProyect3Web.exe
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3Web\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3Web\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3Web\obj\Release\net6.0\PubTmp\Out\ArenasProyect3Web.dll
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3Web\obj\Release\net6.0\PubTmp\Out\ArenasProyect3Web.deps.json
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3Web\obj\Release\net6.0\PubTmp\Out\ArenasProyect3Web.runtimeconfig.json
+C:\Users\AHUAMAN-PC\Desktop\ArenasProyect3\ArenasProyect3Web\obj\Release\net6.0\PubTmp\Out\ArenasProyect3Web.pdb

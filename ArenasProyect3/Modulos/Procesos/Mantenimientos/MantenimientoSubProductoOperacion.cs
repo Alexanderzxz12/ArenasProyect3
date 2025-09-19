@@ -287,18 +287,24 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //ACCIÓN DE DOBLE CLICK PARA LA GRILLA DE MODELO X OPERACION
         private void datalistadoModeloXOperacion_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            idmodeloxoperacion1 = Convert.ToInt32(datalistadoModeloXOperacion.SelectedCells[0].Value.ToString());
-            cboModelo1.SelectedValue = datalistadoModeloXOperacion.SelectedCells[1].Value.ToString();
-            cboOperacion1.SelectedValue = datalistadoModeloXOperacion.SelectedCells[2].Value.ToString();
+            if (datalistadoModeloXOperacion.RowCount != 0)
+            {
+                idmodeloxoperacion1 = Convert.ToInt32(datalistadoModeloXOperacion.SelectedCells[0].Value.ToString());
+                cboModelo1.SelectedValue = datalistadoModeloXOperacion.SelectedCells[1].Value.ToString();
+                cboOperacion1.SelectedValue = datalistadoModeloXOperacion.SelectedCells[2].Value.ToString();
+            }
         }
 
         //ACCIÓN DE DOBLE CLICK PARA LA GRILLA DE MODELO X OPERACION X MAQUINARIA
         private void datalistadoModeloXOperacionXMaquinaria_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            idmodeloxoperacionxmequinaria = Convert.ToInt32(datalistadoModeloXOperacionXMaquinaria.SelectedCells[0].Value.ToString());
-            cboModelo2.SelectedValue = datalistadoModeloXOperacionXMaquinaria.SelectedCells[1].Value.ToString();
-            cboOperacion2.SelectedValue = datalistadoModeloXOperacionXMaquinaria.SelectedCells[3].Value.ToString();
-            cboMaquinaria2.SelectedValue = datalistadoModeloXOperacionXMaquinaria.SelectedCells[5].Value.ToString();
+            if (datalistadoModeloXOperacionXMaquinaria.RowCount != 0)
+            {
+                idmodeloxoperacionxmequinaria = Convert.ToInt32(datalistadoModeloXOperacionXMaquinaria.SelectedCells[0].Value.ToString());
+                cboModelo2.SelectedValue = datalistadoModeloXOperacionXMaquinaria.SelectedCells[1].Value.ToString();
+                cboOperacion2.SelectedValue = datalistadoModeloXOperacionXMaquinaria.SelectedCells[3].Value.ToString();
+                cboMaquinaria2.SelectedValue = datalistadoModeloXOperacionXMaquinaria.SelectedCells[5].Value.ToString();
+            }
         }
 
         //SELECCION DE UN MODELO----------------
