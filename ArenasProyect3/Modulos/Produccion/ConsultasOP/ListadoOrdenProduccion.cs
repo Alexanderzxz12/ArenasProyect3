@@ -586,10 +586,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             AbrirDetalles(datalistadoEnProcesoOP);
         }
 
-        //EVENTO PARA ABRIR EL INGRESO DE CANTIDADES
+        //EVENTO PARA ABRIR EL INGRESO DE LA SNC
         private void datalistadoObservadas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            AbrirDetalles(datalistadoObservadas);
+            panelControlCalidad.Visible = true;
+
+
+
+        }
+
+        //SALIR DEL CONTROL DE CALIDAD
+        private void btnRegresarControl_Click(object sender, EventArgs e)
+        {
+            panelControlCalidad.Visible = false;
         }
 
         public void AbrirDetalles(DataGridView DGV)
@@ -1206,5 +1215,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ColoresListado(datalistadoTodasOP);
             ColoresListado(datalistadoObservadas);
         }
+
+
     }
 }
