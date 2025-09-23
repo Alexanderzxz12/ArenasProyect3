@@ -185,6 +185,49 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.datalistadoObservadas = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panelRevisionOP = new System.Windows.Forms.Panel();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.btnCerrarSNC = new System.Windows.Forms.Button();
+            this.btnGuardarSNC = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnImagen3 = new System.Windows.Forms.Button();
+            this.btnImagen2 = new System.Windows.Forms.Button();
+            this.btnImagen1 = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.txtOportunidadMejora = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtDescripcionOtros = new System.Windows.Forms.TextBox();
+            this.ckOtros = new System.Windows.Forms.CheckBox();
+            this.ckDestruccion = new System.Windows.Forms.CheckBox();
+            this.ckRecuperacion = new System.Windows.Forms.CheckBox();
+            this.ckReclasificacion = new System.Windows.Forms.CheckBox();
+            this.ckReproceso = new System.Windows.Forms.CheckBox();
+            this.ckCorrecion = new System.Windows.Forms.CheckBox();
+            this.ckLiberacion = new System.Windows.Forms.CheckBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.txtAccionesTomadas = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.txtDescripcionSNC = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.txtCausaSNC = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtOrdenProduccionSNC = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.txtReponsableRegistro = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.dtpFechaRegistro = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label36 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).BeginInit();
@@ -229,6 +272,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTodasOP)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoObservadas)).BeginInit();
+            this.panelRevisionOP.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -2063,12 +2114,530 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.dataGridViewCheckBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewCheckBoxColumn2.Width = 30;
             // 
+            // panelRevisionOP
+            // 
+            this.panelRevisionOP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRevisionOP.Controls.Add(this.label47);
+            this.panelRevisionOP.Controls.Add(this.label48);
+            this.panelRevisionOP.Controls.Add(this.btnCerrarSNC);
+            this.panelRevisionOP.Controls.Add(this.btnGuardarSNC);
+            this.panelRevisionOP.Controls.Add(this.groupBox4);
+            this.panelRevisionOP.Controls.Add(this.panel10);
+            this.panelRevisionOP.Controls.Add(this.label36);
+            this.panelRevisionOP.Controls.Add(this.panel8);
+            this.panelRevisionOP.Location = new System.Drawing.Point(325, 43);
+            this.panelRevisionOP.Name = "panelRevisionOP";
+            this.panelRevisionOP.Size = new System.Drawing.Size(526, 555);
+            this.panelRevisionOP.TabIndex = 2048;
+            this.panelRevisionOP.Visible = false;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(444, 527);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(65, 13);
+            this.label47.TabIndex = 2101;
+            this.label47.Text = "RETROCEDER";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(334, 527);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(49, 13);
+            this.label48.TabIndex = 2100;
+            this.label48.Text = "GENERAR";
+            // 
+            // btnCerrarSNC
+            // 
+            this.btnCerrarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarSNC.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSNC.Image")));
+            this.btnCerrarSNC.Location = new System.Drawing.Point(408, 516);
+            this.btnCerrarSNC.Name = "btnCerrarSNC";
+            this.btnCerrarSNC.Size = new System.Drawing.Size(32, 32);
+            this.btnCerrarSNC.TabIndex = 2099;
+            this.btnCerrarSNC.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardarSNC
+            // 
+            this.btnGuardarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardarSNC.FlatAppearance.BorderSize = 0;
+            this.btnGuardarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarSNC.Image")));
+            this.btnGuardarSNC.Location = new System.Drawing.Point(299, 516);
+            this.btnGuardarSNC.Name = "btnGuardarSNC";
+            this.btnGuardarSNC.Size = new System.Drawing.Size(32, 32);
+            this.btnGuardarSNC.TabIndex = 2098;
+            this.btnGuardarSNC.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnImagen3);
+            this.groupBox4.Controls.Add(this.btnImagen2);
+            this.groupBox4.Controls.Add(this.btnImagen1);
+            this.groupBox4.Controls.Add(this.label49);
+            this.groupBox4.Controls.Add(this.txtOportunidadMejora);
+            this.groupBox4.Controls.Add(this.label45);
+            this.groupBox4.Controls.Add(this.txtDescripcionOtros);
+            this.groupBox4.Controls.Add(this.ckOtros);
+            this.groupBox4.Controls.Add(this.ckDestruccion);
+            this.groupBox4.Controls.Add(this.ckRecuperacion);
+            this.groupBox4.Controls.Add(this.ckReclasificacion);
+            this.groupBox4.Controls.Add(this.ckReproceso);
+            this.groupBox4.Controls.Add(this.ckCorrecion);
+            this.groupBox4.Controls.Add(this.ckLiberacion);
+            this.groupBox4.Controls.Add(this.label44);
+            this.groupBox4.Controls.Add(this.txtAccionesTomadas);
+            this.groupBox4.Controls.Add(this.label43);
+            this.groupBox4.Controls.Add(this.txtDescripcionSNC);
+            this.groupBox4.Controls.Add(this.label42);
+            this.groupBox4.Controls.Add(this.pictureBox19);
+            this.groupBox4.Controls.Add(this.pictureBox20);
+            this.groupBox4.Controls.Add(this.txtCausaSNC);
+            this.groupBox4.Controls.Add(this.label38);
+            this.groupBox4.Controls.Add(this.txtOrdenProduccionSNC);
+            this.groupBox4.Controls.Add(this.label40);
+            this.groupBox4.Controls.Add(this.txtReponsableRegistro);
+            this.groupBox4.Controls.Add(this.label39);
+            this.groupBox4.Controls.Add(this.label41);
+            this.groupBox4.Controls.Add(this.dtpFechaRegistro);
+            this.groupBox4.Controls.Add(this.pictureBox21);
+            this.groupBox4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(6, 58);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Size = new System.Drawing.Size(515, 453);
+            this.groupBox4.TabIndex = 2092;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Acciones";
+            // 
+            // btnImagen3
+            // 
+            this.btnImagen3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagen3.Location = new System.Drawing.Point(334, 156);
+            this.btnImagen3.Name = "btnImagen3";
+            this.btnImagen3.Size = new System.Drawing.Size(75, 23);
+            this.btnImagen3.TabIndex = 2128;
+            this.btnImagen3.Text = "Imagen 3";
+            this.btnImagen3.UseVisualStyleBackColor = true;
+            // 
+            // btnImagen2
+            // 
+            this.btnImagen2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagen2.Location = new System.Drawing.Point(236, 156);
+            this.btnImagen2.Name = "btnImagen2";
+            this.btnImagen2.Size = new System.Drawing.Size(75, 23);
+            this.btnImagen2.TabIndex = 2127;
+            this.btnImagen2.Text = "Imagen 2";
+            this.btnImagen2.UseVisualStyleBackColor = true;
+            // 
+            // btnImagen1
+            // 
+            this.btnImagen1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagen1.Location = new System.Drawing.Point(140, 156);
+            this.btnImagen1.Name = "btnImagen1";
+            this.btnImagen1.Size = new System.Drawing.Size(75, 23);
+            this.btnImagen1.TabIndex = 2126;
+            this.btnImagen1.Text = "Imagen 1";
+            this.btnImagen1.UseVisualStyleBackColor = true;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(11, 161);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(112, 13);
+            this.label49.TabIndex = 2125;
+            this.label49.Text = "Imagenes registradas:";
+            // 
+            // txtOportunidadMejora
+            // 
+            this.txtOportunidadMejora.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOportunidadMejora.Location = new System.Drawing.Point(140, 395);
+            this.txtOportunidadMejora.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOportunidadMejora.Multiline = true;
+            this.txtOportunidadMejora.Name = "txtOportunidadMejora";
+            this.txtOportunidadMejora.Size = new System.Drawing.Size(363, 49);
+            this.txtOportunidadMejora.TabIndex = 2124;
+            this.txtOportunidadMejora.Tag = "";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(11, 398);
+            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(120, 13);
+            this.label45.TabIndex = 2123;
+            this.label45.Text = "Oportunidad de mejora:";
+            // 
+            // txtDescripcionOtros
+            // 
+            this.txtDescripcionOtros.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcionOtros.Location = new System.Drawing.Point(388, 354);
+            this.txtDescripcionOtros.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcionOtros.Name = "txtDescripcionOtros";
+            this.txtDescripcionOtros.ReadOnly = true;
+            this.txtDescripcionOtros.Size = new System.Drawing.Size(106, 21);
+            this.txtDescripcionOtros.TabIndex = 2122;
+            this.txtDescripcionOtros.Tag = "";
+            // 
+            // ckOtros
+            // 
+            this.ckOtros.AutoSize = true;
+            this.ckOtros.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckOtros.Location = new System.Drawing.Point(388, 329);
+            this.ckOtros.Name = "ckOtros";
+            this.ckOtros.Size = new System.Drawing.Size(52, 17);
+            this.ckOtros.TabIndex = 2121;
+            this.ckOtros.Text = "Otros";
+            this.ckOtros.UseVisualStyleBackColor = true;
+            // 
+            // ckDestruccion
+            // 
+            this.ckDestruccion.AutoSize = true;
+            this.ckDestruccion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDestruccion.Location = new System.Drawing.Point(236, 357);
+            this.ckDestruccion.Name = "ckDestruccion";
+            this.ckDestruccion.Size = new System.Drawing.Size(83, 17);
+            this.ckDestruccion.TabIndex = 2120;
+            this.ckDestruccion.Text = "Destrucción";
+            this.ckDestruccion.UseVisualStyleBackColor = true;
+            // 
+            // ckRecuperacion
+            // 
+            this.ckRecuperacion.AutoSize = true;
+            this.ckRecuperacion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckRecuperacion.Location = new System.Drawing.Point(236, 321);
+            this.ckRecuperacion.Name = "ckRecuperacion";
+            this.ckRecuperacion.Size = new System.Drawing.Size(132, 30);
+            this.ckRecuperacion.TabIndex = 2119;
+            this.ckRecuperacion.Text = "Recuperación de \r\ncomponentes o partes";
+            this.ckRecuperacion.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.ckRecuperacion.UseVisualStyleBackColor = true;
+            // 
+            // ckReclasificacion
+            // 
+            this.ckReclasificacion.AutoSize = true;
+            this.ckReclasificacion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckReclasificacion.Location = new System.Drawing.Point(114, 358);
+            this.ckReclasificacion.Name = "ckReclasificacion";
+            this.ckReclasificacion.Size = new System.Drawing.Size(97, 17);
+            this.ckReclasificacion.TabIndex = 2118;
+            this.ckReclasificacion.Text = "Reclasificación";
+            this.ckReclasificacion.UseVisualStyleBackColor = true;
+            // 
+            // ckReproceso
+            // 
+            this.ckReproceso.AutoSize = true;
+            this.ckReproceso.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckReproceso.Location = new System.Drawing.Point(114, 329);
+            this.ckReproceso.Name = "ckReproceso";
+            this.ckReproceso.Size = new System.Drawing.Size(76, 17);
+            this.ckReproceso.TabIndex = 2117;
+            this.ckReproceso.Text = "Reproceso";
+            this.ckReproceso.UseVisualStyleBackColor = true;
+            // 
+            // ckCorrecion
+            // 
+            this.ckCorrecion.AutoSize = true;
+            this.ckCorrecion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCorrecion.Location = new System.Drawing.Point(20, 358);
+            this.ckCorrecion.Name = "ckCorrecion";
+            this.ckCorrecion.Size = new System.Drawing.Size(72, 17);
+            this.ckCorrecion.TabIndex = 2116;
+            this.ckCorrecion.Text = "Correción";
+            this.ckCorrecion.UseVisualStyleBackColor = true;
+            // 
+            // ckLiberacion
+            // 
+            this.ckLiberacion.AutoSize = true;
+            this.ckLiberacion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckLiberacion.Location = new System.Drawing.Point(20, 329);
+            this.ckLiberacion.Name = "ckLiberacion";
+            this.ckLiberacion.Size = new System.Drawing.Size(76, 17);
+            this.ckLiberacion.TabIndex = 2115;
+            this.ckLiberacion.Text = "Liberación";
+            this.ckLiberacion.UseVisualStyleBackColor = true;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(11, 300);
+            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(77, 13);
+            this.label44.TabIndex = 2114;
+            this.label44.Text = "Tipo de acción:";
+            // 
+            // txtAccionesTomadas
+            // 
+            this.txtAccionesTomadas.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAccionesTomadas.Location = new System.Drawing.Point(140, 246);
+            this.txtAccionesTomadas.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAccionesTomadas.Multiline = true;
+            this.txtAccionesTomadas.Name = "txtAccionesTomadas";
+            this.txtAccionesTomadas.Size = new System.Drawing.Size(363, 49);
+            this.txtAccionesTomadas.TabIndex = 2113;
+            this.txtAccionesTomadas.Tag = "";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(11, 249);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(96, 13);
+            this.label43.TabIndex = 2112;
+            this.label43.Text = "Acciones tomadas:";
+            // 
+            // txtDescripcionSNC
+            // 
+            this.txtDescripcionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcionSNC.Location = new System.Drawing.Point(140, 81);
+            this.txtDescripcionSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcionSNC.Multiline = true;
+            this.txtDescripcionSNC.Name = "txtDescripcionSNC";
+            this.txtDescripcionSNC.ReadOnly = true;
+            this.txtDescripcionSNC.Size = new System.Drawing.Size(363, 65);
+            this.txtDescripcionSNC.TabIndex = 2111;
+            this.txtDescripcionSNC.Tag = "";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(11, 84);
+            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(102, 26);
+            this.label42.TabIndex = 2110;
+            this.label42.Text = "Descripción de la no\r\nconformidad:";
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox19.Image")));
+            this.pictureBox19.Location = new System.Drawing.Point(485, 23);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox19.TabIndex = 2109;
+            this.pictureBox19.TabStop = false;
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox20.Image")));
+            this.pictureBox20.Location = new System.Drawing.Point(485, 51);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox20.TabIndex = 2101;
+            this.pictureBox20.TabStop = false;
+            // 
+            // txtCausaSNC
+            // 
+            this.txtCausaSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCausaSNC.Location = new System.Drawing.Point(140, 189);
+            this.txtCausaSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCausaSNC.Multiline = true;
+            this.txtCausaSNC.Name = "txtCausaSNC";
+            this.txtCausaSNC.Size = new System.Drawing.Size(363, 49);
+            this.txtCausaSNC.TabIndex = 2097;
+            this.txtCausaSNC.Tag = "";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(11, 192);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(77, 26);
+            this.label38.TabIndex = 2096;
+            this.label38.Text = "Causa de la no \r\nConformidad:";
+            // 
+            // txtOrdenProduccionSNC
+            // 
+            this.txtOrdenProduccionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrdenProduccionSNC.Location = new System.Drawing.Point(392, 49);
+            this.txtOrdenProduccionSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOrdenProduccionSNC.Name = "txtOrdenProduccionSNC";
+            this.txtOrdenProduccionSNC.ReadOnly = true;
+            this.txtOrdenProduccionSNC.Size = new System.Drawing.Size(90, 21);
+            this.txtOrdenProduccionSNC.TabIndex = 2108;
+            this.txtOrdenProduccionSNC.Tag = "";
+            this.txtOrdenProduccionSNC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(11, 26);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(127, 13);
+            this.label40.TabIndex = 2105;
+            this.label40.Text = "Responsable del registro:";
+            // 
+            // txtReponsableRegistro
+            // 
+            this.txtReponsableRegistro.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReponsableRegistro.Location = new System.Drawing.Point(140, 21);
+            this.txtReponsableRegistro.Margin = new System.Windows.Forms.Padding(4);
+            this.txtReponsableRegistro.Name = "txtReponsableRegistro";
+            this.txtReponsableRegistro.ReadOnly = true;
+            this.txtReponsableRegistro.Size = new System.Drawing.Size(340, 21);
+            this.txtReponsableRegistro.TabIndex = 2107;
+            this.txtReponsableRegistro.Tag = "";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(279, 55);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(108, 13);
+            this.label39.TabIndex = 2106;
+            this.label39.Text = "Orden de producción:";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(11, 55);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(94, 13);
+            this.label41.TabIndex = 2104;
+            this.label41.Text = "Fecha del registro:";
+            // 
+            // dtpFechaRegistro
+            // 
+            this.dtpFechaRegistro.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaRegistro.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaRegistro.Location = new System.Drawing.Point(140, 49);
+            this.dtpFechaRegistro.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFechaRegistro.Name = "dtpFechaRegistro";
+            this.dtpFechaRegistro.Size = new System.Drawing.Size(95, 21);
+            this.dtpFechaRegistro.TabIndex = 2102;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox21.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox21.Image")));
+            this.pictureBox21.Location = new System.Drawing.Point(239, 50);
+            this.pictureBox21.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox21.TabIndex = 2103;
+            this.pictureBox21.TabStop = false;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel10.Location = new System.Drawing.Point(113, 51);
+            this.panel10.Margin = new System.Windows.Forms.Padding(4);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(300, 1);
+            this.panel10.TabIndex = 1000;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(181, 30);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(165, 19);
+            this.label36.TabIndex = 999;
+            this.label36.Text = "Revisión de Cantidades";
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel8.Controls.Add(this.label34);
+            this.panel8.Controls.Add(this.label35);
+            this.panel8.Controls.Add(this.pictureBox14);
+            this.panel8.Controls.Add(this.pictureBox18);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(5);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(524, 18);
+            this.panel8.TabIndex = 41;
+            // 
+            // label34
+            // 
+            this.label34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label34.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label34.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label34.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(505, 0);
+            this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(19, 18);
+            this.label34.TabIndex = 1000;
+            this.label34.Text = " X";
+            // 
+            // label35
+            // 
+            this.label35.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label35.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(22, 0);
+            this.label35.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(225, 18);
+            this.label35.TabIndex = 2;
+            this.label35.Text = "REVISIÓN DE LA ORDEN DE PRODUCCIÓN";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
+            this.pictureBox14.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(22, 18);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox14.TabIndex = 999;
+            this.pictureBox14.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox18.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox18.Image")));
+            this.pictureBox18.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox18.TabIndex = 54;
+            this.pictureBox18.TabStop = false;
+            // 
             // ListadoOrdenProduccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
+            this.Controls.Add(this.panelRevisionOP);
             this.Controls.Add(this.panelIngresoCantidades);
             this.Controls.Add(this.panelModiFechaEntrega);
             this.Controls.Add(this.panleAnulacion);
@@ -2148,6 +2717,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTodasOP)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoObservadas)).EndInit();
+            this.panelRevisionOP.ResumeLayout(false);
+            this.panelRevisionOP.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2300,5 +2879,48 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView datalistadoObservadas;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.Panel panelRevisionOP;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.PictureBox pictureBox18;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox txtCausaSNC;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.PictureBox pictureBox19;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox txtReponsableRegistro;
+        private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.TextBox txtOrdenProduccionSNC;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.DateTimePicker dtpFechaRegistro;
+        private System.Windows.Forms.PictureBox pictureBox21;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox txtDescripcionSNC;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.CheckBox ckOtros;
+        private System.Windows.Forms.CheckBox ckDestruccion;
+        private System.Windows.Forms.CheckBox ckRecuperacion;
+        private System.Windows.Forms.CheckBox ckReclasificacion;
+        private System.Windows.Forms.CheckBox ckReproceso;
+        private System.Windows.Forms.CheckBox ckCorrecion;
+        private System.Windows.Forms.CheckBox ckLiberacion;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TextBox txtAccionesTomadas;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox txtDescripcionOtros;
+        private System.Windows.Forms.TextBox txtOportunidadMejora;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Button btnCerrarSNC;
+        private System.Windows.Forms.Button btnGuardarSNC;
+        private System.Windows.Forms.Button btnImagen3;
+        private System.Windows.Forms.Button btnImagen2;
+        private System.Windows.Forms.Button btnImagen1;
+        private System.Windows.Forms.Label label49;
     }
 }

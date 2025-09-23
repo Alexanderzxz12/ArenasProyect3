@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Presentation;
 using DocumentFormat.OpenXml.Wordprocessing;
+using iTextSharp.text.pdf.codec;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -336,10 +338,11 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
                     txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
                     txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[8].Value.ToString();
-                    txtCantidadTotalPedido.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
+                    txtCantidadTotalOP.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
+                    txtCantidadEntregada.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
                     MostrarCantidadesSegunOP(Convert.ToInt32(lblIdOP.Text));
                     lblCantidadRealizada.Text = datalistadoTodasOP.SelectedCells[13].Value.ToString();
-                    txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadTotalPedido.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
+                    txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadEntregada.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
                     txtPesoTeorico.Text = "0.00";
                     txtPesoReal.Text = "0.00";
                     txtObservaciones.Text = "";
@@ -360,10 +363,11 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 lblTotalPedido.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
                 txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
                 txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[8].Value.ToString();
-                txtCantidadTotalPedido.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
+                txtCantidadTotalOP.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
+                txtCantidadEntregada.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
                 MostrarCantidadesSegunOP(Convert.ToInt32(lblIdOP.Text));
                 lblCantidadRealizada.Text = datalistadoTodasOP.SelectedCells[13].Value.ToString();
-                txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadTotalPedido.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
+                txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadEntregada.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
                 txtPesoTeorico.Text = "0.00";
                 txtPesoReal.Text = "0.00";
                 txtObservaciones.Text = "";
@@ -422,23 +426,23 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             else
             {
                 //SI COMPLETE TODOS LAS CANTIDADES PERO DENTRO NO HAY NINGUNA DESAPROBADA Y NINGUN SNG GENERADA
-                if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == false && txtCantidadTotalPedido.Text == lblTotalPedido.Text)
+                if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == false && txtCantidadEntregada.Text == txtCantidadTotalOP.Text)
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 3);
                 }
                 //SI COMPLETE TODOS LAS CANTIDADES PERO DENTRO NO HAY NINGUNA DESAPROBADA PERO HAY UN SNG GENERADA
-                else if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == true)
+                else if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text)
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 4);
                 }
 
                 //SI SE INGRESA PARCIALMENTE LAS CANTIDADES PERO NO HAY UN DESAPROBADO Y NO HAY SNG
-                else if (txtCantidadRestante.Text != txtCantidadTotalPedido.Text && estadoSNG == false && estadoDesaprobado == false || txtCantidadRestante.Text == txtCantidadTotalPedido.Text && txtCantidadInspeccionar.Text != txtCantidadTotalPedido.Text && estadoSNG == false && estadoDesaprobado == false)
+                else if (txtCantidadRestante.Text != txtCantidadEntregada.Text && estadoSNG == false && estadoDesaprobado == false || txtCantidadRestante.Text == txtCantidadEntregada.Text && txtCantidadInspeccionar.Text != txtCantidadEntregada.Text && estadoSNG == false && estadoDesaprobado == false)
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 2);
                 }
                 //SI SE INGRESA PARCIALMENTE LAS CANTIDADES CON UNA SNG GENERADA
-                else if (txtCantidadRestante.Text != txtCantidadTotalPedido.Text && estadoSNG == true || txtCantidadRestante.Text == txtCantidadTotalPedido.Text && txtCantidadInspeccionar.Text != txtCantidadTotalPedido.Text && estadoSNG == true)
+                else if (txtCantidadRestante.Text != txtCantidadEntregada.Text && estadoSNG == true || txtCantidadRestante.Text == txtCantidadEntregada.Text && txtCantidadInspeccionar.Text != txtCantidadEntregada.Text && estadoSNG == true)
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 2);
                 }
@@ -627,7 +631,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema",MessageBoxButtons.OK);
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -757,9 +761,49 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                         cmd.Parameters.AddWithValue("@fechaHallazgo", dtpFechaHallazgo.Value);
                         cmd.Parameters.AddWithValue("@IdOp", Convert.ToInt32(lblIdOP.Text));
                         cmd.Parameters.AddWithValue("@descripcionSNC", txtDescripcionSNC.Text);
-                        cmd.Parameters.AddWithValue("@imagen1", txtImagen1.Text);
-                        cmd.Parameters.AddWithValue("@imagen2", txtImagen2.Text);
-                        cmd.Parameters.AddWithValue("@imagen3", txtImagen3.Text);
+
+                        //PRIMERA IMAGEN
+                        if (txtImagen1.Text != "")
+                        {
+                            string nombreGenerado1 = "IMAGEN 1 OP " + txtOrdenProduccionSNC.Text + " - " + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                            string rutaOld1 = txtImagen1.Text;
+                            string RutaNew1 = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Calidad\ImagenesSNC\" + nombreGenerado1 + ".jpg";
+                            File.Copy(rutaOld1, RutaNew1);
+                            cmd.Parameters.AddWithValue("@imagen1", RutaNew1);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@imagen1", "");
+                        }
+
+                        //SEGUNDA IMAGEN
+                        if (txtImagen2.Text != "")
+                        {
+                            string nombreGenerado2 = "IMAGEN 2 OP " + txtOrdenProduccionSNC.Text + " - " + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                            string rutaOld2 = txtImagen2.Text;
+                            string RutaNew2 = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Calidad\ImagenesSNC\" + nombreGenerado2 + ".jpg";
+                            File.Copy(rutaOld2, RutaNew2);
+                            cmd.Parameters.AddWithValue("@imagen2", RutaNew2);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@imagen2", "");
+                        }
+
+                        //TERCERA IMAGEN
+                        if (txtImagen3.Text != "")
+                        {
+                            string nombreGenerado3 = "IMAGEN 3 OP " + txtOrdenProduccionSNC.Text + " - " + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                            string rutaOld3 = txtImagen3.Text;
+                            string RutaNew3 = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Calidad\ImagenesSNC\" + nombreGenerado3 + ".jpg";
+                            File.Copy(rutaOld3, RutaNew3);
+                            cmd.Parameters.AddWithValue("@imagen3", RutaNew3);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@imagen3", "");
+                        }
+
                         cmd.ExecuteNonQuery();
                         con.Close();
 
@@ -905,8 +949,8 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             }
             else
             {
-                MessageBox.Show("Deben haber registros cargados.", "Validación del Sistema",MessageBoxButtons.OK);
-            }     
+                MessageBox.Show("Deben haber registros cargados.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
         }
 
         //CERRAR MI PANEL DE OBSERVACIONES
@@ -923,6 +967,62 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             {
                 e.Handled = true; // Bloquea el carácter
             }
+        }
+
+        //SECCION DE CARGA PARA MIS IMAGENES DE LA SNC
+        private void btnCargar1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtImagen1.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void btnCargar2_Click(object sender, EventArgs e)
+        {
+            openFileDialog2.InitialDirectory = "c:\\";
+            openFileDialog2.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog2.FilterIndex = 1;
+            openFileDialog2.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtImagen2.Text = openFileDialog2.FileName;
+            }
+        }
+
+        private void btnCargar3_Click(object sender, EventArgs e)
+        {
+            openFileDialog3.InitialDirectory = "c:\\";
+            openFileDialog3.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog3.FilterIndex = 1;
+            openFileDialog3.RestoreDirectory = true;
+
+            if (openFileDialog3.ShowDialog() == DialogResult.OK)
+            {
+                txtImagen3.Text = openFileDialog3.FileName;
+            }
+        }
+
+        //CAJAS DE TEXTO PARA LIMPIAR MI IMAGEN
+        private void btnLimpiar1_Click(object sender, EventArgs e)
+        {
+            txtImagen1.Text = "";
+        }
+
+        private void btnLimpiar2_Click(object sender, EventArgs e)
+        {
+            txtImagen2.Text = "";
+        }
+
+        private void btnLimpiar3_Click(object sender, EventArgs e)
+        {
+            txtImagen3.Text = "";
         }
     }
 }
