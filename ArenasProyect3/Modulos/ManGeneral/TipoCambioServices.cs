@@ -15,7 +15,7 @@ namespace ArenasProyect3.Modulos.ManGeneral
         public async Task<JObject> ObtenerTipoCambioAsync(string fecha)
         {
             string apiKey = "SsPENeVLVLSRy3z//qWjyQ=="; // Coloca aquí tu clave de API
-            string url = $"https://api.sunat.gob.pe/v1/tipo_cambio?fecha={fecha}";
+            string url = "https://api.sunat.gob.pe/v1/tipo_cambio?fecha={fecha}";
 
             try
             {
@@ -26,7 +26,7 @@ namespace ArenasProyect3.Modulos.ManGeneral
                 }
 
                 // Añade el encabezado de autorización correcto
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer {apiKey}");
                 var response = await client.GetAsync(url);
 
                 // Verificar si la respuesta es exitosa

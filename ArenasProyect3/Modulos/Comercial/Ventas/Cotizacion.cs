@@ -1595,7 +1595,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             dateFechaValidez.Value = DateAndTime;
             dateFechaEmision.Value = DateTime.Now;
 
-            LimpiarCotizacion();
+            //LimpiarCotizacion();
             CargarBrochures();
 
             btnGuardarCotizacion.Visible = true;
@@ -2448,7 +2448,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
                         MessageBox.Show("Cotización ingresada con éxito.", "Nueva Cotización", MessageBoxButtons.OK);
                         ClassResourses.RegistrarAuditora(1, this.Name, 2, Program.IdUsuario, "", codigocotizacion);
-                        LimpiarNuevaCotizacion();
+                        //LimpiarNuevaCotizacion();
                     }
                 }
             }
@@ -2818,72 +2818,72 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //VISUALIZAR MI PDF DE MI COTIZACION
         private void btnGenerarCotizacionPdf_Click(object sender, EventArgs e)
         {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasCotiaciones.CurrentRow != null)
-            {
-                //SI LA CORIZACIÓN SE ENUENTRA ANULADA
-                if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
-                {
-                    string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarCotizacionVentaAnulada frm = new Visualizadores.VisualizarCotizacionVentaAnulada();
-                    frm.lblCodigo.Text = ccodigoCotizacion;
+            ////SI NO HAY NINGUN REGISTRO SELECCIONADO
+            //if (datalistadoTodasCotiaciones.CurrentRow != null)
+            //{
+            //    //SI LA CORIZACIÓN SE ENUENTRA ANULADA
+            //    if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
+            //    {
+            //        string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
+            //        Visualizadores.VisualizarCotizacionVentaAnulada frm = new Visualizadores.VisualizarCotizacionVentaAnulada();
+            //        frm.lblCodigo.Text = ccodigoCotizacion;
 
-                    frm.Show();
-                }
-                //SI LA COTIZACIÓN SE ENCUENTRA EN UN ESTADO DIFERENTE
-                else
-                {
-                    if (Convert.ToInt32(datalistadoTodasCotiaciones.SelectedCells[35].Value.ToString()) == 1)
-                    {
-                        string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
-                        frm.lblCodigo.Text = ccodigoCotizacion;
+            //        frm.Show();
+            //    }
+            //    //SI LA COTIZACIÓN SE ENCUENTRA EN UN ESTADO DIFERENTE
+            //    else
+            //    {
+            //        if (Convert.ToInt32(datalistadoTodasCotiaciones.SelectedCells[35].Value.ToString()) == 1)
+            //        {
+            //            string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
+            //            frm.lblCodigo.Text = ccodigoCotizacion;
 
-                        frm.Show();
-                    }
-                    else
-                    {
-                        string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
-                        frm.lblCodigo.Text = ccodigoCotizacion;
+            //            frm.Show();
+            //        }
+            //        else
+            //        {
+            //            string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
+            //            frm.lblCodigo.Text = ccodigoCotizacion;
 
-                        frm.Show();
+                        //frm.Show();
 
-                        string rutaReporte = @"C:\ArenasSoftBrochure\Cotizacion.pdf";
-                        string rutaOtroPDF = datalistadoTodasCotiaciones.SelectedCells[34].Value.ToString();
-                        string rutaFinal = @"C:\ArenasSoftBrochure\ReporteFinal.pdf";
+                        //string rutaReporte = @"C:\ArenasSoftBrochure\Cotizacion.pdf";
+                        //string rutaOtroPDF = datalistadoTodasCotiaciones.SelectedCells[34].Value.ToString();
+                        //string rutaFinal = @"C:\ArenasSoftBrochure\ReporteFinal.pdf";
 
-                        using (FileStream stream = new FileStream(rutaFinal, FileMode.Create))
-                        {
-                            Document document = new Document();
-                            PdfCopy copy = new PdfCopy(document, stream);
-                            document.Open();
+        //                using (FileStream stream = new FileStream(rutaFinal, FileMode.Create))
+        //                {
+        //                    Document document = new Document();
+        //                    PdfCopy copy = new PdfCopy(document, stream);
+        //                    document.Open();
 
-                            void AgregarPDF(string path)
-                            {
-                                PdfReader reader = new PdfReader(path);
-                                for (int i = 1; i <= reader.NumberOfPages; i++)
-                                {
-                                    copy.AddPage(copy.GetImportedPage(reader, i));
-                                }
-                                reader.Close();
-                            }
+        //                    void AgregarPDF(string path)
+        //                    {
+        //                        PdfReader reader = new PdfReader(path);
+        //                        for (int i = 1; i <= reader.NumberOfPages; i++)
+        //                        {
+        //                            copy.AddPage(copy.GetImportedPage(reader, i));
+        //                        }
+        //                        reader.Close();
+        //                    }
 
-                            AgregarPDF(rutaOtroPDF);
-                            AgregarPDF(rutaReporte);
+        //                    AgregarPDF(rutaOtroPDF);
+        //                    AgregarPDF(rutaReporte);
 
-                            document.Close();
-                        }
+        //                    document.Close();
+        //                }
 
-                        // Abrir el archivo después de la ejecución
-                        Process.Start(new ProcessStartInfo(rutaFinal) { UseShellExecute = true });
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una cotización para poder generar el PDF respectivo.", "Validación del Sistema");
-            }
+        //                // Abrir el archivo después de la ejecución
+        //                Process.Start(new ProcessStartInfo(rutaFinal) { UseShellExecute = true });
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Debe seleccionar una cotización para poder generar el PDF respectivo.", "Validación del Sistema");
+        //    }
         }
 
 
@@ -3833,13 +3833,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 
             foreach (DataGridViewRow row in datalistadoGeneracionPedido.Rows)
             {
-                if (row.Cells["fechaEntrega"].Value != null && DateTime.TryParse(row.Cells["fechaEntrega"].Value.ToString(), out DateTime dateValue))
-                {
-                    if (dateValue > maxDate)
-                    {
-                        maxDate = dateValue;
-                    }
-                }
+                //if (row.Cells["fechaEntrega"].Value != null && DateTime.TryParse(row.Cells["fechaEntrega"].Value.ToString(), out DateTime dateValue))
+                //{
+                //    if (dateValue > maxDate)
+                //    {
+                //        maxDate = dateValue;
+                //    }
+                //}
             }
 
             if (maxDate != Convert.ToDateTime("1/01/0001 00:00:00"))
@@ -4515,11 +4515,11 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 // Exportar a PDF
                 crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
 
-                MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -4578,11 +4578,11 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //VALIDACIÓN DE SOLO NÚMEROS - DETALLES DE MI COTIZACION
         private void datalistadoCotizacion_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (e.Control is TextBox textBox)
-            {
-                textBox.KeyPress -= DataGridViewTextBox_KeyPress;
-                textBox.KeyPress += DataGridViewTextBox_KeyPress;
-            }
+            //if (e.Control is TextBox textBox)
+            //{
+            //    textBox.KeyPress -= DataGridViewTextBox_KeyPress;
+            //    textBox.KeyPress += DataGridViewTextBox_KeyPress;
+            //}
         }
 
         //SOLO PERMITE INRGRESO DE NUEMROS

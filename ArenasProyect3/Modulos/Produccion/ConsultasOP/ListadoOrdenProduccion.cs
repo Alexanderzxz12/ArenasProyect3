@@ -810,18 +810,18 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
                         cmd.Parameters.AddWithValue("@fechaEntrega", dtpModiFechaEntrega.Value);
                         cmd.Parameters.AddWithValue("@observacion", txtModiObservacionModiFecha.Text);
-                        string mensaje = cmd.ExecuteScalar()?.ToString();
+                        //string mensaje = cmd.ExecuteScalar()?ToString();
                         //cmd.ExecuteScalar();
                         con.Close();
 
-                        if (mensaje == "")
-                        {
-                            MessageBox.Show("Fecha de entrega de mi orden de producción modificada exitosamente.", "Validación del Sistema");
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Validación del Sistema");
-                        }
+                        //if (mensaje == "")
+                        //{
+                        //    MessageBox.Show("Fecha de entrega de mi orden de producción modificada exitosamente.", "Validación del Sistema");
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show(mensaje, "Validación del Sistema");
+                        //}
 
                         MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                         MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
@@ -1002,11 +1002,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 // Exportar a PDF
                 crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
 
-                MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

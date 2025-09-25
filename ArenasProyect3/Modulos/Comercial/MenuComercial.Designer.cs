@@ -1287,7 +1287,7 @@
             this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label65.Location = new System.Drawing.Point(19, 165);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(204, 16);
+            this.label65.Size = new System.Drawing.Size(205, 16);
             this.label65.TabIndex = 15;
             this.label65.Text = "Nuevas funcione o Cambios:";
             // 
@@ -1297,7 +1297,7 @@
             this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label66.Location = new System.Drawing.Point(20, 108);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(155, 16);
+            this.label66.Size = new System.Drawing.Size(156, 16);
             this.label66.TabIndex = 14;
             this.label66.Text = "Fecha de Instalación:";
             // 
@@ -1307,7 +1307,7 @@
             this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label67.Location = new System.Drawing.Point(19, 75);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(148, 16);
+            this.label67.Size = new System.Drawing.Size(149, 16);
             this.label67.TabIndex = 13;
             this.label67.Text = "Versión del sistema:";
             // 
@@ -1485,7 +1485,7 @@
             this.label29.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label29.Location = new System.Drawing.Point(582, 421);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(165, 16);
+            this.label29.Size = new System.Drawing.Size(166, 16);
             this.label29.TabIndex = 46;
             this.label29.Text = "@ Copyright​ Arenas S.R.L.";
             // 
@@ -2085,7 +2085,7 @@
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(19, 165);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(204, 16);
+            this.label17.Size = new System.Drawing.Size(205, 16);
             this.label17.TabIndex = 15;
             this.label17.Text = "Nuevas funcione o Cambios:";
             // 
@@ -2095,7 +2095,7 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(20, 108);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(155, 16);
+            this.label15.Size = new System.Drawing.Size(156, 16);
             this.label15.TabIndex = 14;
             this.label15.Text = "Fecha de Instalación:";
             // 
@@ -2105,7 +2105,7 @@
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(19, 75);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(148, 16);
+            this.label14.Size = new System.Drawing.Size(149, 16);
             this.label14.TabIndex = 13;
             this.label14.Text = "Versión del sistema:";
             // 

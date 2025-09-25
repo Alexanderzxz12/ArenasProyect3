@@ -3436,14 +3436,14 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 // Exportar a PDF
                 crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
 
-                MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ClassResourses.RegistrarAuditora(5, this.Name, 4, Program.IdUsuario, "Exportar requerimiento de viaje PDF", idRequerimiento);
             }
             catch (Exception ex)
             {
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
-                MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
