@@ -2,10 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ReferencePath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\</ReferencePath>
-    <PublishUrlHistory>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\|\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\|C:\Users\Alexander Campoverde\Desktop\19-11-2024 ArenasProyect\|C:\Users\Alexander Campoverde\Desktop\13-12-2024 ArenasProyect3\|C:\Users\Alexander Campoverde\Desktop\12-12-2024 ArenasSoft\</PublishUrlHistory>
+    <PublishUrlHistory>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\|\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\|C:\Users\Alexander Campoverde\Desktop\19-11-2024 ArenasProyect\|C:\Users\Alexander Campoverde\Desktop\13-12-2024 ArenasProyect3\|C:\Users\Alexander Campoverde\Desktop\12-12-2024 ArenasSoft\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
-    <UpdateUrlHistory>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\|\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrlHistory>
+    <UpdateUrlHistory>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\|\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>es-ES</FallbackCulture>

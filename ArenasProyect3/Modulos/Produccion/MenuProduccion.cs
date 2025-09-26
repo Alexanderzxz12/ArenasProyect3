@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.Resourses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -372,75 +373,97 @@ namespace ArenasProyect3.Modulos.Produccion
         //CARGA DE DATOS DEL USUARIO QUE INICIO SESIÓN
         public void VisualizarDatosUsuario()
         {
-            imgUsuario2.BackgroundImage = null;
-            byte[] b = (Byte[])datalistadoBusquedaUusario.SelectedCells[5].Value;
-            MemoryStream ms = new MemoryStream(b);
-            imgUsuario2.Image = Image.FromStream(ms);
+            try
+            {
+                imgUsuario2.BackgroundImage = null;
+                byte[] b = (Byte[])datalistadoBusquedaUusario.SelectedCells[5].Value;
+                MemoryStream ms = new MemoryStream(b);
+                imgUsuario2.Image = Image.FromStream(ms);
 
-            txtNombreusuario.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString();
-            txtApellidousuario.Text = datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
-            txtCorreoUsuario.Text = datalistadoBusquedaUusario.SelectedCells[3].Value.ToString();
-            txtCOntrasenaUsuario.Text = datalistadoBusquedaUusario.SelectedCells[4].Value.ToString();
-            txtAreaUsuario.Text = datalistadoBusquedaUusario.SelectedCells[7].Value.ToString();
-            txtRolusuario.Text = datalistadoBusquedaUusario.SelectedCells[9].Value.ToString();
+                txtNombreusuario.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString();
+                txtApellidousuario.Text = datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+                txtCorreoUsuario.Text = datalistadoBusquedaUusario.SelectedCells[3].Value.ToString();
+                txtCOntrasenaUsuario.Text = datalistadoBusquedaUusario.SelectedCells[4].Value.ToString();
+                txtAreaUsuario.Text = datalistadoBusquedaUusario.SelectedCells[7].Value.ToString();
+                txtRolusuario.Text = datalistadoBusquedaUusario.SelectedCells[9].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //BUSQUEDA DE USUARIO
         public void DatosUsuario()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaUusario.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaUusario.DataSource = dt;
+                con.Close();
 
-            imgUsuario.BackgroundImage = null;
-            byte[] b = (Byte[])datalistadoBusquedaUusario.SelectedCells[5].Value;
-            MemoryStream ms = new MemoryStream(b);
-            imgUsuario.Image = Image.FromStream(ms);
+                imgUsuario.BackgroundImage = null;
+                byte[] b = (Byte[])datalistadoBusquedaUusario.SelectedCells[5].Value;
+                MemoryStream ms = new MemoryStream(b);
+                imgUsuario.Image = Image.FromStream(ms);
 
-            lblusuarioActual.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
-            Program.NombreUsuarioCompleto = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+                lblusuarioActual.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+                Program.NombreUsuarioCompleto = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGA DE LAS NOVEDADES Y VALIDACIÓN DEL TIEMPO DE APARICIÓN
         public void CargarNovedades()
         {
-            //CARGA DE PROCEDIMIENTO ALMACENADO
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdEstadoSistemaInicio, Descripcion, VersionSsitema, FechaInstalacionSsitema, NuevasFuncionesNovedades, FechaAparicion FROM EstadoSistemaInicio WHERE Estado = 1", con);
-            da.Fill(dt);
-            datalistadoNovedades.DataSource = dt;
-            con.Close();
-            //SI NO HAY FILAS O SI LA CONSULTA NO TIENE RESULTADO
-            if (datalistadoNovedades.RowCount > 0)
+            try
             {
-                //SE CAPTURA LA FECHA DE TÉRMINO DEL MENSAJE DE MI LISTADO YA CARGADO GRACIAS A LA CONSULTA
-                DateTime fechaTerminoNotificacion = Convert.ToDateTime(datalistadoNovedades.SelectedCells[5].Value.ToString());
-                //SI LA FECHA DE TÉRMINO ES MENOR A LA FECHA ACTUAL
-                if (fechaTerminoNotificacion > DateTime.Now)
+                //CARGA DE PROCEDIMIENTO ALMACENADO
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdEstadoSistemaInicio, Descripcion, VersionSsitema, FechaInstalacionSsitema, NuevasFuncionesNovedades, FechaAparicion FROM EstadoSistemaInicio WHERE Estado = 1", con);
+                da.Fill(dt);
+                datalistadoNovedades.DataSource = dt;
+                con.Close();
+                //SI NO HAY FILAS O SI LA CONSULTA NO TIENE RESULTADO
+                if (datalistadoNovedades.RowCount > 0)
                 {
-                    //CAPTURA DE VARIABLES PARA LA MUESTRA DE ESTAS
-                    string versionSistema = datalistadoNovedades.SelectedCells[2].Value.ToString();
-                    string fechaInstalacion = datalistadoNovedades.SelectedCells[3].Value.ToString();
-                    string mensajeNovedades = datalistadoNovedades.SelectedCells[4].Value.ToString();
-                    //HABILITAR LA VISIBILIDAD DEL PANEL
-                    panelNovedades.Visible = true;
-                    //ASIGNAR LAS VARIABLES CAPTURADAS A LOS ELEMNETOS DEL PANEL DE NOVEDADES
-                    lblVersionSistema.Text = versionSistema;
-                    lblFechaInstalacion.Text = fechaInstalacion;
-                    lblNovedadesNuevasFunciones.Text = mensajeNovedades;
+                    //SE CAPTURA LA FECHA DE TÉRMINO DEL MENSAJE DE MI LISTADO YA CARGADO GRACIAS A LA CONSULTA
+                    DateTime fechaTerminoNotificacion = Convert.ToDateTime(datalistadoNovedades.SelectedCells[5].Value.ToString());
+                    //SI LA FECHA DE TÉRMINO ES MENOR A LA FECHA ACTUAL
+                    if (fechaTerminoNotificacion > DateTime.Now)
+                    {
+                        //CAPTURA DE VARIABLES PARA LA MUESTRA DE ESTAS
+                        string versionSistema = datalistadoNovedades.SelectedCells[2].Value.ToString();
+                        string fechaInstalacion = datalistadoNovedades.SelectedCells[3].Value.ToString();
+                        string mensajeNovedades = datalistadoNovedades.SelectedCells[4].Value.ToString();
+                        //HABILITAR LA VISIBILIDAD DEL PANEL
+                        panelNovedades.Visible = true;
+                        //ASIGNAR LAS VARIABLES CAPTURADAS A LOS ELEMNETOS DEL PANEL DE NOVEDADES
+                        lblVersionSistema.Text = versionSistema;
+                        lblFechaInstalacion.Text = fechaInstalacion;
+                        lblNovedadesNuevasFunciones.Text = mensajeNovedades;
+                    }
+                    else
+                    {
+                        //OCULTAR EL PANEL DE NOVEDADES
+                        panelNovedades.Visible = false;
+                    }
                 }
                 else
                 {
@@ -448,10 +471,9 @@ namespace ArenasProyect3.Modulos.Produccion
                     panelNovedades.Visible = false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                //OCULTAR EL PANEL DE NOVEDADES
-                panelNovedades.Visible = false;
+                ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario, ex.Message, 0);
             }
         }
 

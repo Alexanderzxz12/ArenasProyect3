@@ -63,13 +63,14 @@
             this.btnManualUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnManualUsuario.Location = new System.Drawing.Point(4, 347);
             this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnManualUsuario.Name = "btnManualUsuario";
+            this.btnManualUsuario.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnManualUsuario.Size = new System.Drawing.Size(151, 53);
             this.btnManualUsuario.TabIndex = 6;
             this.btnManualUsuario.Text = "      MANUAL DE \r\n      USUARIO";
@@ -81,17 +82,17 @@
             this.btnRequerimientoss.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRequerimientoss.FlatAppearance.BorderSize = 0;
             this.btnRequerimientoss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRequerimientoss.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequerimientoss.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequerimientoss.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnRequerimientoss.Image = ((System.Drawing.Image)(resources.GetObject("btnRequerimientoss.Image")));
             this.btnRequerimientoss.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRequerimientoss.Location = new System.Drawing.Point(0, 286);
             this.btnRequerimientoss.Margin = new System.Windows.Forms.Padding(4);
             this.btnRequerimientoss.Name = "btnRequerimientoss";
-            this.btnRequerimientoss.Size = new System.Drawing.Size(154, 53);
+            this.btnRequerimientoss.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnRequerimientoss.Size = new System.Drawing.Size(167, 53);
             this.btnRequerimientoss.TabIndex = 5;
             this.btnRequerimientoss.Text = " REQUERIMIENTOS";
-            this.btnRequerimientoss.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRequerimientoss.UseVisualStyleBackColor = true;
             this.btnRequerimientoss.Click += new System.EventHandler(this.btnRequerimientoss_Click);
             // 

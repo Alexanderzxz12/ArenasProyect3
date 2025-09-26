@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</PublishUrl>
+    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,11 +23,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</UpdateUrl>
+    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
     <PublisherName>Arenas SRL</PublisherName>
-    <MinimumRequiredVersion>1.0.0.88</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.103</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>90</ApplicationRevision>
+    <ApplicationRevision>105</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -67,7 +67,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>panel.ico</ApplicationIcon>
+    <ApplicationIcon>Modulos\Resourses\panel.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -512,6 +512,7 @@
       <DependentUpon>MenuProduccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Resourses\ClassResourses.cs" />
+    <Compile Include="Modulos\Resourses\InactivityMonitor.cs" />
     <Compile Include="Modulos\UsuariosPermisos\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -616,6 +617,12 @@
       <DependentUpon>InformeRequerimientoVentaAprobado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\InformeSNC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeSNC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Visualizadores\VisualizarActa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -717,6 +724,12 @@
     </Compile>
     <Compile Include="Visualizadores\VisualizarRequerimientoVenta.Designer.cs">
       <DependentUpon>VisualizarRequerimientoVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarSNC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarSNC.Designer.cs">
+      <DependentUpon>VisualizarSNC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Modulos\Admin\ManEstadoSistema.resx">
       <DependentUpon>ManEstadoSistema.cs</DependentUpon>
@@ -993,6 +1006,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeRequerimientoVentaAprobado.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InformeSNC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeSNC.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarActa.resx">
       <DependentUpon>VisualizarActa.cs</DependentUpon>
     </EmbeddedResource>
@@ -1044,6 +1061,9 @@
     <EmbeddedResource Include="Visualizadores\VisualizarRequerimientoVenta.resx">
       <DependentUpon>VisualizarRequerimientoVenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Visualizadores\VisualizarSNC.resx">
+      <DependentUpon>VisualizarSNC.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ArenasProyect3_ClaveTemporal.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -1081,7 +1101,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="panel.ico" />
+    <Content Include="Modulos\Resourses\panel.ico" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

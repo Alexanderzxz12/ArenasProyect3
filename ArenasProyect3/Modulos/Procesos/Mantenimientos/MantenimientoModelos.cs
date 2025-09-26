@@ -1,12 +1,16 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2013.Drawing.Chart;
+using Org.BouncyCastle.Asn1.Mozilla;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 
 namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
@@ -103,31 +107,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //BÚSQUEDA DE LINEAS SEGÚN EL TIPO DE MERCADERIA SELECIONARA - EVENTO SELECCIÓN
         private void cboTipoLinea_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@linea", cboTipoLinea.SelectedValue.ToString());
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoLineas.DataSource = dt;
-                con.Close();
-                datalistadoLineas.Columns[0].Width = 80;
-                datalistadoLineas.Columns[1].Width = 80;
-                datalistadoLineas.Columns[2].Width = 100;
-                datalistadoLineas.Columns[3].Width = 220;
-                datalistadoLineas.Columns[4].Visible = false;
-                datalistadoLineas.Columns[5].Width = 218;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
-            }
+            Mostrar(Convert.ToInt32(cboTipoLinea.SelectedValue));
+
         }
 
         //MOSTRAR TODAS MIS LÍNEAS SUGUN EL TIPO DE CUENTA SELECCIOANDO - METODO
@@ -140,7 +121,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarModeloSegunLinea", con);
+                cmd = new SqlCommand("Modelos_MostrarSegunLinea", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@linea", idlinea);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -163,43 +144,46 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //EVENTO DE DOBLE CLICK PARA EN MI LISTADO DE LINEAS
         private void datalistadoLineas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblCodigo.Text = datalistadoLineas.SelectedCells[1].Value.ToString();
-            txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
-            txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
-            cboTipoLinea.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
-
-            if (datalistadoLineas.SelectedCells[6].Value.ToString() == "NO DEFINIDO")
+            if (datalistadoLineas.RowCount != 0)
             {
-                lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
-                lblEstadoAtributo.ForeColor = Color.Red;
-            }
-            else
-            {
-                lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
-                lblEstadoAtributo.ForeColor = Color.Green;
-            }
+                lblCodigo.Text = datalistadoLineas.SelectedCells[1].Value.ToString();
+                txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
+                txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
+                cboTipoLinea.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
 
-            string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
+                if (datalistadoLineas.SelectedCells[6].Value.ToString() == "NO DEFINIDO")
+                {
+                    lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
+                    lblEstadoAtributo.ForeColor = Color.Red;
+                }
+                else
+                {
+                    lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
+                    lblEstadoAtributo.ForeColor = Color.Green;
+                }
 
-            if (estado == "ACTIVO")
-            {
-                cboEstado.Text = "ACTIVO";
-            }
-            else
-            {
-                cboEstado.Text = "INACTIVO";
-            }
+                string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
 
-            txtDescripcion.Enabled = false;
-            txtAbreviatura.Enabled = false;
+                if (estado == "ACTIVO")
+                {
+                    cboEstado.Text = "ACTIVO";
+                }
+                else
+                {
+                    cboEstado.Text = "INACTIVO";
+                }
 
-            btnEditar.Visible = true;
-            btnEditar2.Visible = false;
+                txtDescripcion.Enabled = false;
+                txtAbreviatura.Enabled = false;
 
-            btnGuardar.Visible = true;
-            btnGuardar2.Visible = false;
+                btnEditar.Visible = true;
+                btnEditar2.Visible = false;
 
-            Cancelar.Visible = false;
+                btnGuardar.Visible = true;
+                btnGuardar2.Visible = false;
+
+                Cancelar.Visible = false;
+            }   
         }
 
         //VALIDACIÓN EL SISTEMA PARA PODER AVERIGUAR SI YA EXISTE OTRO REGISTRO CON LA MISMA DESCRIPCION
@@ -258,7 +242,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)", con);
+                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)\r\n", con);
                 da.Fill(dt);
                 datalistadoModeloRecienIngresado.DataSource = dt;
                 con.Close();
@@ -281,6 +265,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             btnGuardar.Visible = false;
             btnGuardar2.Visible = true;
 
+            lblCancelar.Visible = true;
             Cancelar.Visible = true;
             btnEditar.Enabled = true;
 
@@ -293,8 +278,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
         }
 
-        //GUARDAR UNA NUEVO MDOELO EN MI BASE DE DATOS CON SUS ATRIBUTOS Y DETALLE DE ESTOS
-        private void btnGuardar2_Click(object sender, EventArgs e)
+        //METODO ENCARGADO DE AGREGAR UN NUEVO MODELO A MI BASE DE DATOS
+        public void AgregarModelos(string descripcion, string abreavitura, int codigolinea)
         {
             if (repetidoDescripcion == true)
             {
@@ -322,16 +307,15 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarModelos", con);
+                            cmd = new SqlCommand("Modelos_Insertar", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                            cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                            cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                            cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
+                            cmd.Parameters.AddWithValue("@codigolinea", codigolinea);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
-                            Mostrar(linea);
+                            Mostrar(codigolinea);
 
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
                             ColorDescripcion();
@@ -366,7 +350,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
                             SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("InsertarAtributosXModelo", con);
+                            cmd = new SqlCommand("Modelos_InsertarAtributosXModelo", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
@@ -528,7 +512,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             //INGRESAMOS DETALLES
                             con.ConnectionString = Conexion.ConexionMaestra.conexion;
                             con.Open();
-                            cmd = new SqlCommand("InsertarAtributosXModeloDetalle", con);
+                            cmd = new SqlCommand("Modelos_InsertarAtributosXModeloDetalle", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
@@ -813,28 +797,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            //EDITAMOS EL ESTADO DE MI MODELO
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("EditarEstadoAtributoModelo", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
-                            Mostrar(linea);
-
+                            Mostrar(codigolinea);
                             lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
-
-
-                            //GUARDADO DE LOS NOMBRES DE LOS TIPOS A TRAVES DE LOS CHECKBOX
-                            Modelos_InsertarCkNombreTipos(Convert.ToInt32(lblCodigo.Text),ckCaracteristicaAtributo1, ckCaracteristicaAtributo2,ckCaracteristicaAtributo3
-                                ,ckCaracteristicaAtributo4,ckMedidasAtributos1, ckMedidasAtributos2, ckMedidasAtributos3, ckMedidasAtributos4,ckDiametroAtributos1
-                                , ckDiametroAtributos2, ckDiametroAtributos3, ckDiametroAtributos4, ckFormasAtributos1, ckFormasAtributos2
-                                , ckFormasAtributos3, ckFormasAtributos4,ckEspesoresAtributos1, ckEspesoresAtributos2, ckEspesoresAtributos3, ckEspesoresAtributos4
-                                ,ckDiseñoAcabadoAtributos1, ckDiseñoAcabadoAtributos2, ckDiseñoAcabadoAtributos3, ckDiseñoAcabadoAtributos4,ckTiposNTiposAtributos1
-                                , ckTiposNTiposAtributos2, ckTiposNTiposAtributos3, ckTiposNTiposAtributos4,ckVariosAtributos1,ckVariosAtributos2);
 
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
                             Limpiar();
@@ -846,6 +810,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
+        }
+
+        //GUARDAR UNA NUEVO MDOELO EN MI BASE DE DATOS CON SUS ATRIBUTOS Y DETALLE DE ESTOS
+        private void btnGuardar2_Click(object sender, EventArgs e)
+        {
+            AgregarModelos(txtDescripcion.Text, txtAbreviatura.Text, Convert.ToInt32(cboTipoLinea.SelectedValue));
         }
 
         //HABILITAR EDICIÓN PARA MODIFICAR UNA MODELO YA INGRESADA
@@ -869,10 +839,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
         }
 
-        //EDITAR UN MODELO DE MI BASE DE DATOS
-        private void btnEditar2_Click(object sender, EventArgs e)
+        //METODO ENCARGADO DE LA EDICIÓN DE MODELOS
+        public void EditarModelos(string descripcion, string abreavitura, string codigolinea, int codigo)
         {
-            if (txtDescripcion.Text != "" || txtAbreviatura.Text != "" || lblCodigo.Text != "N")
+            if (descripcion == "" || abreavitura == "" || Convert.ToString(codigo) == "N")
+            {
+                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
             {
                 DialogResult boton = MessageBox.Show("¿Esta seguro que desea editar este modelo?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
@@ -883,12 +857,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarModelo", con);
+                        cmd = new SqlCommand("Modelos_Editar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", Convert.ToInt32(lblCodigo.Text));
-                        cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
-                        cmd.Parameters.AddWithValue("@abreviatura", txtAbreviatura.Text);
-                        cmd.Parameters.AddWithValue("@codigolinea", cboTipoLinea.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
+                        cmd.Parameters.AddWithValue("@codigolinea", codigolinea);
 
                         if (cboEstado.Text == "ACTIVO")
                         {
@@ -902,7 +876,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        int linea = Convert.ToInt32(cboTipoLinea.SelectedValue.ToString());
+                        int linea = Convert.ToInt32(codigolinea);
                         Mostrar(linea);
 
                         MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
@@ -927,9 +901,18 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
+        }
+
+        //EDITAR UN MODELO DE MI BASE DE DATOS
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            if (lblCodigo.Text == "N" || lblCodigo.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un registro para poder editar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
             else
             {
-                MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                EditarModelos(txtDescripcion.Text, txtAbreviatura.Text, cboTipoLinea.SelectedValue.ToString(), Convert.ToInt32(lblCodigo.Text));
             }
         }
 
@@ -1055,9 +1038,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 if (ckCaracteristicas1.Checked == true)
                 {
+
                     flowLayoutPanel.Controls.Add(panelCamposCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas2);
+
                 }
                 else
                 {
@@ -1595,7 +1580,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //ACCION DE GAURDAR LOS ATRIBUTOS ESCOGIDOS Y DEFINIDOS DE MI MODELO
         private void btnGuardarAtributos_Click(object sender, EventArgs e)
         {
-            panelDefinicionAtributos.Visible = false;
+            ValidacionGruposCampos();
         }
 
         //LIMPIAR Y BORRAR LAS SELECCIONAR ECHAS Y LOS CAMPOS ESCOGIDOS DE LA DEFINICIÓN DE ATRIBUTOS
@@ -1632,48 +1617,61 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             panelDefinicionAtributos.Visible = false;
         }
 
-        //BUSQUEDA DE MODELO------------------------------------------------------------
-        private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
+        //FILTRAR MDOELOS POR DIFERENTES CRITERIOS
+        public void FiltrarModelos(TextBox busquedamodelo, DataGridView dgv, ComboBox cbo)
         {
             try
             {
-                if (cboBusquedaModelo.Text == "DESCRIPCIÓN")
+                if (busquedamodelo.Text == "")
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaModeloPorDescripcion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaModelo.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
-                    con.Close();
-                    OrdenarColumnasModelo(datalistadoLineas);
+                    Mostrar(Convert.ToInt32(cboTipoLinea.SelectedValue));
                 }
                 else
                 {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("BusquedaModeloPorAbreviatura", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@abreviatura", txtBusquedaModelo.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoLineas.DataSource = dt;
-                    con.Close();
-                    OrdenarColumnasModelo(datalistadoLineas);
+                    if (cbo.Text == "DESCRIPCIÓN")
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Modelos_BusquedaPorDescripcion", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@descripcion", busquedamodelo.Text);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        OrdenarColumnasModelo(dgv);
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("Modelos_BusquedaPorAbreviatura", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@abreviatura", busquedamodelo.Text);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        dgv.DataSource = dt;
+                        con.Close();
+                        OrdenarColumnasModelo(dgv);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        //BUSQUEDA DE MODELO------------------------------------------------------------
+        private void txtBusquedaModelo_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarModelos(txtBusquedaModelo, datalistadoLineas, cboBusquedaModelo);
         }
 
         //FUNCION PARA ORDENAR MIS COLUMNAS DE MI BUSQUEDAS
@@ -1687,1143 +1685,758 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             DGV.Columns[5].Width = 218;
         }
 
-        ///////////////////////////////
-        ////IMPLEMENTACIÓN DE LA DEFINICIÓN DE NOMBRE PARA LOS ATRIBUTOS
-        ///
-
-        private void Modelos_InsertarCkNombreTipos(int idmodelo,CheckBox ckcaracteristica1, CheckBox ckcaracteristica2, CheckBox ckcaracteristica3, CheckBox ckcaracteristica4, CheckBox ckmedidas1, CheckBox ckmedidas2
-            , CheckBox ckmedidas3, CheckBox ckmedidas4, CheckBox ckdiametros1, CheckBox ckdiametros2, CheckBox ckdiametros3, CheckBox ckdiametros4, CheckBox ckformas1, CheckBox ckformas2, CheckBox ckformas3
-            , CheckBox ckformas4, CheckBox ckespesores1, CheckBox ckespesores2, CheckBox ckespesores3, CheckBox ckespesores4, CheckBox ckdiseñoacabado1, CheckBox ckdiseñoacabado2, CheckBox ckdiseñoacabado3
-            , CheckBox ckdiseñoacabado4, CheckBox ckntipos1, CheckBox ckntipos2, CheckBox ckntipos3, CheckBox ckntipos4, CheckBox ckvarios1, CheckBox ckvarios2)
+        //METODO ENCARGADO DE VALIDAR QUE LOS ATRIBUTOS NO SE (REPITAN, TENGAN ESPACIO EN BLANCO O ESTE EN NO APLICA) ESTE SERA INVOCADO EN EL BOTON DE GUARDAR ATRIBUTOS
+        private void ValidacionGruposCampos()
         {
-            try
+            //CARACTERISTICAS
+            string cbcaracteristicas1 = cboTipoCaracteristicas1.Text;
+            string cbcaracteristicas2 = cboTipoCaracteristicas2.Text;
+            string cbcaracteristicas3 = cboTipoCaracteristicas3.Text;
+            string cbcaracteristicas4 = cboTipoCaracteristicas4.Text;
+
+            if (ckCaracteristicas1.Checked == true)
             {
-                //INGRESO DE CK EN 0
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Modelos_InsertarXCkAtributos", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idmodelo", idmodelo);
-
-                //CARACTERISTICAS
-                if (ckcaracteristica1.Checked == true)
+                if (cbcaracteristicas1 == "NO APLICA")
                 {
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica1", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica1", 0);
-
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Caracteristicas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
 
-                if (ckcaracteristica2.Checked == true)
+                if (cbcaracteristicas1 == cbcaracteristicas2 || cbcaracteristicas1 == cbcaracteristicas3 || cbcaracteristicas1 == cbcaracteristicas4
+               || cbcaracteristicas2 == cbcaracteristicas1 || cbcaracteristicas2 == cbcaracteristicas3 || cbcaracteristicas2 == cbcaracteristicas4)
                 {
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica2", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica2", 0);
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
 
-                if (ckcaracteristica3.Checked == true)
+                if (cbcaracteristicas1 == "" || cbcaracteristicas2 == "")
                 {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
 
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica3", 1);
-                }
-                else
+            if (ckCaracteristicas2.Checked == true)
+            {
+                if (cbcaracteristicas3 == "NO APLICA")
                 {
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica3", 0);
-                }
-
-                if (ckcaracteristica4.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica4", 1);
-                }
-
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipocaracteristica4", 0);
-                }
-                //MEDIDAS
-                if (ckmedidas1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipomedidas1", 1);
-
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipomedidas1", 0);
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Caracteristicas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
 
-                if (ckmedidas2.Checked == true)
+                if (cbcaracteristicas3 == cbcaracteristicas1 || cbcaracteristicas3 == cbcaracteristicas2 || cbcaracteristicas3 == cbcaracteristicas4
+               || cbcaracteristicas4 == cbcaracteristicas1 || cbcaracteristicas4 == cbcaracteristicas2 || cbcaracteristicas4 == cbcaracteristicas3)
                 {
-                    cmd.Parameters.AddWithValue("@cktipomedidas2", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipomedidas2", 0);
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
 
-                if (ckmedidas3.Checked == true)
+                if (cbcaracteristicas3 == "" || cbcaracteristicas4 == "")
                 {
-                    cmd.Parameters.AddWithValue("@cktipomedidas3", 1);
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
-                else
+            }
+
+            //MEDIDAS
+            string cbmedidas1 = cboTipoMedida1.Text;
+            string cbmedidas2 = cboTipoMedida2.Text;
+            string cbmedidas3 = cboTipoMedida3.Text;
+            string cbmedidas4 = cboTipoMedida4.Text;
+
+            if (ckCamposMedida1.Checked == true || ckCamposMedida2.Checked == true)
+            {
+                if (cbmedidas1 == "NO APLICA")
                 {
-                    cmd.Parameters.AddWithValue("@cktipomedidas3", 0);
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Medidas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
 
-                if (ckmedidas4.Checked == true)
+                if (cbmedidas1 == cbmedidas2 || cbmedidas1 == cbmedidas3 || cbmedidas1 == cbmedidas4
+               || cbmedidas2 == cbmedidas1 || cbmedidas2 == cbmedidas3 || cbmedidas2 == cbmedidas4)
                 {
-                    cmd.Parameters.AddWithValue("@cktipomedidas4", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipomedidas4", 0);
-                }
-                //DIAMETRO
-                if (ckdiametros1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiametro1", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiametro1", 0);
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
 
-                if (ckdiametros2.Checked == true)
+                if (cbmedidas1 == "" || cbmedidas2 == "")
                 {
-                    cmd.Parameters.AddWithValue("@cktipodiametro2", 1);
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiametro2", 0);
-                }
-
-                if (ckdiametros3.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiametro3", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiametro3", 0);
-                }
-
-                if (ckdiametros4.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiametro4", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiametro4", 0);
-                }
-
-                //FORMA
-                if (ckformas1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma1", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma1", 0);
-                }
-
-                if (ckformas2.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma2", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma2", 0);
-                }
-
-                if (ckformas3.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma3", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma3", 0);
-                }
-
-                if (ckformas4.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma4", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoforma4", 0);
-                }
-                //ESPESORES
-                if (ckespesores1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores1", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores1", 0);
-                }
-
-                if (ckespesores2.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores2", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores2", 0);
-                }
-
-                if (ckespesores3.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores3", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores3", 0);
-                }
-
-                if (ckespesores4.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores4", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipoespesores4", 0);
-                }
-                //DISEÑO ACABADO
-                if (ckdiseñoacabado1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado1", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado1", 0);
-                }
-
-                if (ckdiseñoacabado2.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado2", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado2", 0);
-                }
-
-                if (ckdiseñoacabado3.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado3", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado3", 0);
-                }
-
-                if (ckdiseñoacabado4.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado4", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipodiseñoacabado4", 0);
-                }
-                //TIPOS N TIPOS
-                if (ckntipos1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos1", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos1", 0);
-                }
-
-                if (ckntipos2.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos2", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos2", 0);
-                }
-
-                if (ckntipos3.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos3", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos3", 0);
-                }
-
-                if (ckntipos4.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos4", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipontipos4", 0);
-                }
-                //VARIOS
-                if (ckvarios1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipovariosO1", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipovariosO1", 0);
-                }
-
-                if (ckvarios2.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@cktipovariosO2", 1);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@cktipovariosO2", 0);
-                }
-                cmd.ExecuteNonQuery();
-                con.Close();
 
             }
-            catch (Exception ex)
+            if (ckCamposMedida2.Checked == true)
             {
-                MessageBox.Show(ex.Message);
+                if (cbmedidas3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Medidas.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas3 == cbmedidas1 || cbmedidas3 == cbmedidas2 || cbmedidas3 == cbmedidas4
+               || cbmedidas4 == cbmedidas1 || cbmedidas4 == cbmedidas2 || cbmedidas4 == cbmedidas3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas3 == "" || cbmedidas4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            //DIAMETRO
+            string cbdiametros1 = cboTiposDiametros1.Text;
+            string cbdiametros2 = cboTiposDiametros2.Text;
+            string cbdiametros3 = cboTiposDiametros3.Text;
+            string cbdiametros4 = cboTiposDiametros4.Text;
+
+            if (ckCamposDiametros1.Checked == true)
+            {
+                if (cbdiametros1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diametros.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiametros1 == cbdiametros2 || cbdiametros1 == cbdiametros3 || cbdiametros1 == cbdiametros4
+               || cbdiametros2 == cbdiametros1 || cbdiametros2 == cbdiametros3 || cbdiametros2 == cbdiametros4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validacion del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbmedidas1 == "" || cbdiametros2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            if (ckCamposDiametros2.Checked == true)
+            {
+                if (cbdiametros3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diametros.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiametros3 == cbdiametros1 || cbdiametros3 == cbdiametros2 || cbdiametros3 == cbdiametros4
+               || cbdiametros4 == cbdiametros1 || cbdiametros4 == cbdiametros2 || cbdiametros4 == cbdiametros3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validacion del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiametros3 == "" || cbdiametros4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            //FORMA
+            string cbformas1 = cboTiposFormas1.Text;
+            string cbformas2 = cboTiposFormas2.Text;
+            string cbformas3 = cboTiposFormas3.Text;
+            string cbformas4 = cboTiposFormas4.Text;
+
+            if (ckCamposFormas1.Checked == true)
+            {
+                if (cbformas1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Formas", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas1 == cbformas2 || cbformas1 == cbformas3 || cbformas1 == cbformas4
+               || cbformas2 == cbformas1 || cbformas2 == cbformas3 || cbformas2 == cbformas4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas1 == "" || cbformas2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }             
+            }
+
+            if (ckCamposFormas2.Checked == true)
+            {
+                if (cbformas3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Formas", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas3 == cbformas1 || cbformas3 == cbformas2 || cbformas3 == cbformas4
+               || cbformas4 == cbformas1 || cbformas4 == cbformas2 || cbformas4 == cbformas3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbformas3 == "" || cbformas4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }          
+            }
+
+            //ESPESORES
+            string cbespesores1 = cbooTipoEspesores1.Text;
+            string cbespesores2 = cbooTipoEspesores2.Text;
+            string cbespesores3 = cbooTipoEspesores3.Text;
+            string cbespesores4 = cbooTipoEspesores4.Text;
+
+            if (ckCamposEspesores1.Checked == true)
+            {
+                if (cbespesores1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Espesores", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores1 == cbespesores2 || cbespesores1 == cbespesores3 || cbespesores1 == cbespesores4
+               || cbespesores2 == cbespesores1 || cbespesores2 == cbespesores3 || cbespesores2 == cbespesores4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores1 == "" || cbespesores2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }        
+            }
+
+            if (ckCamposEspesores2.Checked == true)
+            {
+                if (cbespesores3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Espesores", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores3 == cbespesores1 || cbespesores3 == cbespesores2 || cbespesores3 == cbespesores4
+               || cbespesores4 == cbespesores1 || cbespesores4 == cbespesores2 || cbespesores4 == cbespesores3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbespesores3 == "" || cbespesores4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }       
+            }
+
+            //DISEÑO Y ACABADO
+            string cbdiseñoacabado1 = cboTiposDiseñosAcabados1.Text;
+            string cbdiseñoacabado2 = cboTiposDiseñosAcabados2.Text;
+            string cbdiseñoacabado3 = cboTiposDiseñosAcabados3.Text;
+            string cbdiseñoacabado4 = cboTiposDiseñosAcabados4.Text;
+
+            if (ckCamposDiseñoAcabado1.Checked == true)
+            {
+                if (cbdiseñoacabado1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diseño Acabado.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado1 == cbdiseñoacabado2 || cbdiseñoacabado1 == cbdiseñoacabado3 || cbdiseñoacabado1 == cbdiseñoacabado4
+               || cbdiseñoacabado2 == cbdiseñoacabado1 || cbdiseñoacabado2 == cbdiseñoacabado3 || cbdiseñoacabado2 == cbdiseñoacabado4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado1 == "" || cbdiseñoacabado2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }       
+            }
+
+            if (ckCamposDiseñoAcabado2.Checked == true)
+            {
+                if (cbdiseñoacabado3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Diseño Acabado.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado3 == cbdiseñoacabado1 || cbdiseñoacabado3 == cbdiseñoacabado2 || cbdiseñoacabado3 == cbdiseñoacabado4
+               || cbdiseñoacabado4 == cbdiseñoacabado1 || cbdiseñoacabado4 == cbdiseñoacabado2 || cbdiseñoacabado4 == cbdiseñoacabado3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbdiseñoacabado3 == "" || cbdiseñoacabado4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }          
+            }
+
+            //N TIPOS
+            string cbNtipos1 = cboTiposNTipos1.Text;
+            string cbNtipos2 = cboTiposNTipos2.Text;
+            string cbNtipos3 = cboTiposNTipos3.Text;
+            string cbNtipos4 = cboTiposNTipos4.Text;
+
+            if (ckCamposNTipos1.Checked == true)
+            {
+                if (cbNtipos1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Tipos.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos1 == cbNtipos2 || cbNtipos1 == cbNtipos3 || cbNtipos1 == cbNtipos4
+               || cbNtipos2 == cbNtipos1 || cbNtipos2 == cbNtipos3 || cbNtipos2 == cbNtipos4)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos1 == "" || cbNtipos2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }            
+            }
+            if (ckCamposNTipos2.Checked == true)
+            {
+
+                if (cbNtipos3 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en los primeros campos de los grupos de Tipos.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos3 == cbNtipos1 || cbNtipos3 == cbNtipos2 || cbNtipos3 == cbNtipos4
+               || cbNtipos4 == cbNtipos1 || cbNtipos4 == cbNtipos2 || cbNtipos4 == cbNtipos3)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbNtipos3 == "" || cbNtipos4 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            //VARIOS
+            string cbVariosO1 = cboTiposVariosO1.Text;
+            string cbVariosO2 = cboTiposVariosO2.Text;
+
+            if (ckVariosO1.Checked == true)
+            {
+                if (cbVariosO1 == "NO APLICA")
+                {
+                    MessageBox.Show("Debe seleccionar un atributo valido en el primer campo del grupo de Varios.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbVariosO1 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                } 
+            }
+
+            if (ckVariosO2.Checked == true)
+            {
+                if (cbVariosO2 == "")
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (cbVariosO1 == cbVariosO2)
+                {
+                    MessageBox.Show("Los atributos no se pueden repetir.", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            panelDefinicionAtributos.Visible = false;
+        }
+
+
+        //VALIDACIONES TIEMPO REAL PARA LA DEFINICIÓN DE ATRIBUTOS
+        private void ValidacionesCaracteristicas_TiempoReal(CheckBox ckCaracteri1,CheckBox ckCaracteri2, ComboBox cbcaracteristicas1, ComboBox cbcaracteristicas2, ComboBox cbcaracteristicas3 , ComboBox cbcaracteristicas4)
+        {
+            if (ckCaracteri1.Checked == true)
+            {
+                if (cbcaracteristicas2.Text == "NO APLICA")
+                {
+                    ckCaracteri2.Checked = false;
+                    ckCaracteri2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbcaracteristicas2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Caracteristicas.", "Validación Del Sistema", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckCaracteri2.Enabled = true;
+                }
+            }
+            if (ckCaracteri1.Checked == true)
+            {
+                if (cbcaracteristicas1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckCaracteri2.Enabled = false;
+                    ckCaracteri2.Checked = false;
+                    cbcaracteristicas2.SelectedIndex = 0;
+                    cbcaracteristicas1.Focus();
+                }
+            }
+            if (ckCaracteri2.Checked == true)
+            {
+                if (cbcaracteristicas3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbcaracteristicas4.SelectedIndex = 0;
+                    cbcaracteristicas3.Focus();
+                }
             }
         }
 
-        public void CargarGrupoCamposPredeterminados()
+        public void ValidacionesMedidas_TiempoReal(CheckBox ckMedi1, CheckBox ckMedi2, ComboBox cbmedidas1, ComboBox cbmedidas2, ComboBox cbmedidas3, ComboBox cbmedidas4)
         {
-            string asignarnombre = lblCodigo.Text;
-            try
+
+          if(ckMedi1.Checked == true)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Modelos_CargarGrupoCamposPredeterminados", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idmodelo", Convert.ToInt32(asignarnombre));
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoCargarGrupoCampos.DataSource = dt;
-                con.Close();
-
-
-                //CARACTERISTICAS - 1
-                int CampCaracteristicas1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[1].Value.ToString());
-                if (CampCaracteristicas1 == 1)
+                if(cbmedidas2.Text == "NO APLICA")
                 {
-                    ckCaracteristicas1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposCaracteristicas1);
+                    ckMedi2.Checked = false;
+                    ckMedi2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbmedidas2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Medidas.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else
                 {
-                    ckCaracteristicas1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposCaracteristicas1);
-
+                    ckMedi2.Enabled = true;
                 }
-
-                //CARACTERISTICAS - 2
-                int CampCaracteristicas2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[2].Value.ToString());
-                if (CampCaracteristicas2 == 1)
-                {
-                    ckCaracteristicas2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposCaracteristicas2);
-
-                }
-                else
-                {
-                    ckCaracteristicas2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposCaracteristicas2);
-
-                }
-
-                //MEDIDAS - 1
-                int CampMedidas1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[3].Value.ToString());
-                if (CampMedidas1 == 1)
-                {
-                    ckCamposMedida1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposMedidas1);
-
-                }
-                else
-                {
-                    ckCamposMedida1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposMedidas1);
-
-                }
-
-                //MEDIDAS - 2
-                int CampMedidas2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[4].Value.ToString());
-                if (CampMedidas2 == 1)
-                {
-                    ckCamposMedida2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposMedidas2);
-
-                }
-                else
-                {
-                    ckCamposMedida2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposMedidas2);
-
-                }
-
-                //DIAMETROS - 1
-                int CampDiametros1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[5].Value.ToString());
-                if (CampDiametros1 == 1)
-                {
-                    ckCamposDiametros1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposDiametros1);
-
-                }
-                else
-                {
-                    ckCamposDiametros1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposDiametros1);
-
-                }
-
-                //DIAMETROS - 2
-                int CampDiametros2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[6].Value.ToString());
-                if (CampDiametros2 == 1)
-                {
-                    ckCamposDiametros2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposDiametros2);
-
-                }
-                else
-                {
-                    ckCamposDiametros2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposDiametros2);
-
-                }
-
-                //FORMAS - 1
-                int CampFormas1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[7].Value.ToString());
-                if (CampFormas1 == 1)
-                {
-                    ckCamposFormas1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposFormas1);
-                }
-                else
-                {
-                    ckCamposFormas1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposFormas1);
-
-                }
-
-                //FORMAS - 2
-                int CampFormas2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[8].Value.ToString());
-                if (CampFormas2 == 1)
-                {
-                    ckCamposFormas2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposFormas2);
-
-                }
-                else
-                {
-                    ckCamposFormas2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposFormas2);
-
-                }
-
-                //ESPESORES - 1
-                int CampEspesores1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[9].Value.ToString());
-                if (CampEspesores1 == 1)
-                {
-                    ckCamposEspesores1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposEspesores1);
-
-                }
-                else
-                {
-                    ckCamposEspesores1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposEspesores1);
-
-                }
-
-                //ESPESORES - 2
-                int CampEspesores2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[10].Value.ToString());
-                if (CampEspesores2 == 1)
-                {
-                    ckCamposEspesores2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposEspesores2);
-
-                }
-                else
-                {
-                    ckCamposEspesores2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposEspesores2);
-
-                }
-
-                //DISEÑO Y ACABADOS - 1
-                int CampDiseñoAcabado1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[11].Value.ToString());
-                if (CampDiseñoAcabado1 == 1)
-                {
-                    ckCamposDiseñoAcabado1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposDiseñoAcabado1);
-
-                }
-                else
-                {
-                    ckCamposDiseñoAcabado1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposDiseñoAcabado1);
-
-                }
-
-                //DISEÑO Y ACABADOS - 2
-                int CampDiseñoAcabado2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[12].Value.ToString());
-                if (CampDiseñoAcabado2 == 1)
-                {
-                    ckCamposDiseñoAcabado2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposDiseñoAcabado2);
-
-                }
-                else
-                {
-                    ckCamposDiseñoAcabado2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposDiseñoAcabado2);
-
-                }
-
-                //NUMEROS Y TIPOS - 1
-                int CampNTipos1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[13].Value.ToString());
-                if (CampNTipos1 == 1)
-                {
-                    ckCamposNTipos1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposNTipos1);
-
-                }
-                else
-                {
-                    ckCamposNTipos1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposNTipos1);
-
-                }
-
-                //NUMEROS Y TIPOS - 2
-                int CampNTipos2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[14].Value.ToString());
-                if (CampNTipos2 == 1)
-                {
-                    ckCamposNTipos2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposNTipos2);
-
-                }
-                else
-                {
-                    ckCamposNTipos2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposNTipos2);
-
-                }
-
-                //VARIOS - 1
-                int CampVarios1 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[15].Value.ToString());
-                if (CampVarios1 == 1)
-                {
-                    ckVariosO1.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposVariosO1);
-
-                }
-                else
-                {
-                    ckVariosO1.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposVariosO1);
-
-                }
-
-                //VARIOS - 2
-                int CampVarios2 = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[16].Value.ToString());
-                if (CampVarios2 == 1)
-                {
-                    ckVariosO2.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposVariosO2);
-
-                }
-                else
-                {
-                    ckVariosO2.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposVariosO2);
-
-                }
-
-                //GENERALES
-                int CampGenerales = Convert.ToInt32(datalistadoCargarGrupoCampos.SelectedCells[17].Value.ToString());
-                if (CampGenerales == 1)
-                {
-                    ckGenerales.Checked = true;
-                    flowlayoutpanelasignarnombre.Controls.Add(panelCamposGeneral);
-
-                }
-                else
-                {
-                    ckGenerales.Checked = false;
-                    flowlayoutpanelasignarnombre.Controls.Remove(panelCamposGeneral);
-
-                }
-
             }
-            catch (Exception ex)
+            if (ckMedi1.Checked == true)
             {
-                MessageBox.Show(ex.Message);
+                if (cbmedidas1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckMedi2.Enabled = false;
+                    ckMedi2.Checked = false;
+                    cbmedidas2.SelectedIndex = 0;
+                    cbmedidas1.Focus();
+                }
+            }
+            if (ckMedi2.Checked == true)
+            {
+                if (cbmedidas3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbmedidas4.SelectedIndex = 0;
+                    cbmedidas3.Focus();
+                }
+            }
+        }
+    
+        public void ValidacionesDiametros_TiempoReal(CheckBox ckDiametr1, CheckBox ckDiametr2, ComboBox cbdiametros1, ComboBox cbdiametros2, ComboBox cbdiametros3, ComboBox cbdiametros4)
+        {
+            if (ckDiametr1.Checked == true)
+            {
+                if (cbdiametros2.Text == "NO APLICA")
+                {
+                    ckDiametr2.Checked = false;
+                    ckDiametr2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbdiametros2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Diametros.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckDiametr2.Enabled = true;
+                }
+            }
+            if (ckDiametr1.Checked == true)
+            {
+                if (cbdiametros1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckDiametr2.Enabled = false;
+                    ckDiametr2.Checked = false;
+                    cbdiametros2.SelectedIndex = 0;
+                    ckDiametr1.Focus();
+                }
+            }
+            if (ckDiametr2.Checked == true)
+            {
+                if (cbdiametros3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbdiametros4.SelectedIndex = 0;
+                    cbdiametros3.Focus();
+                }
             }
         }
 
-        public void CargarCamposPredeterminados()
+        public void ValidacionesFormas_TiempoReal(CheckBox ckForm1, CheckBox ckForm2, ComboBox cbformas1, ComboBox cbformas2, ComboBox cbformas3, ComboBox cbformas4)
         {
-            string asignarnombre = lblCodigo.Text;
-            try
+            if (ckForm1.Checked == true)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CargarCamposPredeterminados_AsignarNombre_Modelo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idmodelo", Convert.ToInt32(asignarnombre));
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoCamposAsignarNombre.DataSource = dt;
-                con.Close();
-
-                if (datalistadoCamposAsignarNombre.RowCount == 0)
+                if (cbformas2.Text == "NO APLICA")
                 {
-                    MessageBox.Show("El modelo elegido no tiene detalles definidos, por favor defina los campos.", "Validación del Sistema", MessageBoxButtons.OK);
-                    flowLayoutPanel.Controls.Clear();
+                    ckForm2.Checked = false;
+                    ckForm2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbformas2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Formas.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else
                 {
-                    if (datalistadoCamposAsignarNombre.SelectedCells[1].Value != null)
-                    {
-                        cboTipoCaracteristicas1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[1].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[2].Value != null)
-                    {
-                        cboTipoCaracteristicas2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[2].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[3].Value != null)
-                    {
-                        cboTipoCaracteristicas3.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[3].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[4].Value != null)
-                    {
-                        cboTipoCaracteristicas4.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[4].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[5].Value != null)
-                    {
-                        cboTipoMedida1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[5].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[6].Value != null)
-                    {
-                        cboTipoMedida2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[6].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[7].Value != null)
-                    {
-                        cboTipoMedida3.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[7].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[8].Value != null)
-                    {
-                        cboTipoMedida4.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[8].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[9].Value != null)
-                    {
-                        cboTiposDiametros1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[9].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[10].Value != null)
-                    {
-                        cboTiposDiametros2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[10].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[11].Value != null)
-                    {
-                        cboTiposDiametros3.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[11].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[12].Value != null)
-                    {
-                        cboTiposDiametros4.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[12].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[13].Value != null)
-                    {
-                        cboTiposFormas1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[13].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[14].Value != null)
-                    {
-                        cboTiposFormas2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[14].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[15].Value != null)
-                    {
-                        cboTiposFormas3.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[15].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[16].Value != null)
-                    {
-                        cboTiposFormas4.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[16].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[17].Value != null)
-                    {
-                        cbooTipoEspesores1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[17].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[18].Value != null)
-                    {
-                        cbooTipoEspesores2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[18].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[19].Value != null)
-                    {
-                        cbooTipoEspesores3.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[19].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[20].Value != null)
-                    {
-                        cbooTipoEspesores4.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[20].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[21].Value != null)
-                    {
-                        cboTiposDiseñosAcabados1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[21].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[22].Value != null)
-                    {
-                        cboTiposDiseñosAcabados2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[22].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[23].Value != null)
-                    {
-                        cboTiposDiseñosAcabados3.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[23].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[24].Value != null)
-                    {
-                        cboTiposDiseñosAcabados4.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[24].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[25].Value != null)
-                    {
-                        cboTiposNTipos1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[25].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[26].Value != null)
-                    {
-                        cboTiposNTipos2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[26].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[27].Value != null)
-                    {
-                        cboTiposNTipos3.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[27].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[28].Value != null)
-                    {
-                        cboTiposNTipos4.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[28].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[29].Value != null)
-                    {
-                        cboTiposVariosO1.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[29].Value;
-                    }
-
-                    if (datalistadoCamposAsignarNombre.SelectedCells[30].Value != null)
-                    {
-                        cboTiposVariosO2.SelectedValue = datalistadoCamposAsignarNombre.SelectedCells[30].Value;
-                    }
+                    ckForm2.Enabled = true;
                 }
             }
-            catch (Exception ex)
+            if (ckForm1.Checked == true)
             {
-                MessageBox.Show(ex.Message);
+                if (cbformas1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckForm2.Enabled = false;
+                    ckForm2.Checked = false;
+                    cbformas2.SelectedIndex = 0;
+                    cbformas1.Focus();
+                }
+            }
+            if (ckForm2.Checked == true)
+            {
+                if (cbformas3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbformas4.SelectedIndex = 0;
+                    cbformas3.Focus();
+                }
             }
         }
 
-        private void CargarEstados_AtributosCks()
+        public void ValidacionesEspesores_TiempoReal(CheckBox ckEspe1, CheckBox ckEspe2, ComboBox cbespesores1, ComboBox cbespesores2, ComboBox cbespesores3, ComboBox cbespesores4)
         {
-            string asignarnombre = lblCodigo.Text;
-            try
+            if (ckEspe1.Checked == true)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("CargarCkAtributos", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idmodelo", Convert.ToInt32(asignarnombre));
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadockatributos.DataSource = dt;
-                con.Close();
-
-                //ESTADO CHECKBOX CARACTERISTICA 1
-                int ckestadocaracteristica1 = Convert.ToInt32(datalistadockatributos.SelectedCells[1].Value.ToString());
-                if (ckestadocaracteristica1 == 1)
+                if (cbespesores2.Text == "NO APLICA")
                 {
-                    ckCaracteristicaAtributo1.Checked = true;
+                    ckEspe2.Checked = false;
+                    ckEspe2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbespesores2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Espesores.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else
                 {
-                    ckCaracteristicaAtributo1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX CARACTERISTICA 2
-                int ckestadocaracteristica2 = Convert.ToInt32(datalistadockatributos.SelectedCells[2].Value.ToString());
-                if (ckestadocaracteristica2 == 1)
-                {
-                    ckCaracteristicaAtributo2.Checked = true;
-
-                }
-                else
-                {
-                    ckCaracteristicaAtributo2.Checked = false;
-                }
-
-
-                //ESTADO CHECKBOX CARACTERISTICA 3
-                int ckestadocaracteristica3 = Convert.ToInt32(datalistadockatributos.SelectedCells[3].Value.ToString());
-                if (ckestadocaracteristica3 == 1)
-                {
-                    ckCaracteristicaAtributo3.Checked = true;
-
-                }
-                else
-                {
-                    ckCaracteristicaAtributo3.Checked = false;
-                }
-
-                //ESTADO CHECKBOX CARACTERISTICA 4
-                int ckestadocaracteristica4 = Convert.ToInt32(datalistadockatributos.SelectedCells[4].Value.ToString());
-                if (ckestadocaracteristica4 == 1)
-                {
-                    ckCaracteristicaAtributo4.Checked = true;
-
-                }
-                else
-                {
-                    ckCaracteristicaAtributo4.Checked = false;
-                }
-
-                //ESTADO CHECKBOX MEDIDAS 1
-                int ckestadomedidas1 = Convert.ToInt32(datalistadockatributos.SelectedCells[5].Value.ToString());
-                if (ckestadomedidas1 == 1)
-                {
-                    ckMedidasAtributos1.Checked = true;
-
-                }
-                else
-                {
-                    ckMedidasAtributos1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX MEDIDAS 2
-                int ckestadomedidas2 = Convert.ToInt32(datalistadockatributos.SelectedCells[6].Value.ToString());
-                if (ckestadomedidas2 == 1)
-                {
-                    ckMedidasAtributos2.Checked = true;
-                }
-                else
-                {
-                    ckMedidasAtributos2.Checked = false;
-                }
-
-                //ESTADO CHECKBOX MEDIDAS 3
-                int ckestadomedidas3 = Convert.ToInt32(datalistadockatributos.SelectedCells[7].Value.ToString());
-                if (ckestadomedidas3 == 1)
-                {
-                    ckMedidasAtributos3.Checked = true;
-                }
-                else
-                {
-                    ckMedidasAtributos3.Checked = false;
-                }
-
-                //ESTADO CHECKBOX MEDIDAS 4
-                int ckestadomedidas4 = Convert.ToInt32(datalistadockatributos.SelectedCells[8].Value.ToString());
-                if (ckestadomedidas4 == 1)
-                {
-                    ckMedidasAtributos4.Checked = true;
-                }
-                else
-                {
-                    ckMedidasAtributos4.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DIAMETRO 1
-                int ckestadodiametro1 = Convert.ToInt32(datalistadockatributos.SelectedCells[9].Value.ToString());
-                if (ckestadodiametro1 == 1)
-                {
-                    ckDiametroAtributos1.Checked = true;
-
-                }
-                else
-                {
-                    ckDiametroAtributos1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DIAMETRO 2
-                int ckestadodiametro2 = Convert.ToInt32(datalistadockatributos.SelectedCells[10].Value.ToString());
-                if (ckestadodiametro2 == 1)
-                {
-                    ckDiametroAtributos2.Checked = true;
-                }
-                else
-                {
-                    ckDiametroAtributos2.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DIAMETRO 3
-                int ckestadodiametro3 = Convert.ToInt32(datalistadockatributos.SelectedCells[11].Value.ToString());
-                if (ckestadodiametro3 == 1)
-                {
-                    ckDiametroAtributos3.Checked = true;
-                }
-                else
-                {
-                    ckDiametroAtributos3.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DIAMETRO 4
-                int ckestadodiametro4 = Convert.ToInt32(datalistadockatributos.SelectedCells[12].Value.ToString());
-                if (ckestadodiametro4 == 1)
-                {
-                    ckDiametroAtributos4.Checked = true;
-                }
-                else
-                {
-                    ckDiametroAtributos4.Checked = false;
-                }
-
-                //ESTADO CHECKBOX FORMA 1
-                int ckestadoforma1 = Convert.ToInt32(datalistadockatributos.SelectedCells[13].Value.ToString());
-                if (ckestadoforma1 == 1)
-                {
-                    ckFormasAtributos1.Checked = true;
-
-                }
-                else
-                {
-                    ckFormasAtributos1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX FORMA 2
-                int ckestadoforma2 = Convert.ToInt32(datalistadockatributos.SelectedCells[14].Value.ToString());
-                if (ckestadoforma2 == 1)
-                {
-                    ckFormasAtributos2.Checked = true;
-                }
-                else
-                {
-                    ckFormasAtributos2.Checked = false;
-                }
-
-                //ESTADO CHECKBOX FORMA 3
-                int ckestadoforma3 = Convert.ToInt32(datalistadockatributos.SelectedCells[15].Value.ToString());
-                if (ckestadoforma3 == 1)
-                {
-                    ckFormasAtributos3.Checked = true;
-                }
-                else
-                {
-                    ckFormasAtributos3.Checked = false;
-                }
-
-                //ESTADO CHECKBOX FORMA 4
-                int ckestadoforma4 = Convert.ToInt32(datalistadockatributos.SelectedCells[16].Value.ToString());
-                if (ckestadoforma4 == 1)
-                {
-                    ckFormasAtributos4.Checked = true;
-                }
-                else
-                {
-                    ckFormasAtributos4.Checked = false;
-                }
-
-                //ESTADO CHECKBOX ESPESORES 1
-                int ckestadoespesores1 = Convert.ToInt32(datalistadockatributos.SelectedCells[17].Value.ToString());
-                if (ckestadoespesores1 == 1)
-                {
-                    ckEspesoresAtributos1.Checked = true;
-
-                }
-                else
-                {
-                    ckEspesoresAtributos1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX ESPESORES 2
-                int ckestadoespesores2 = Convert.ToInt32(datalistadockatributos.SelectedCells[18].Value.ToString());
-                if (ckestadoespesores2 == 1)
-                {
-                    ckEspesoresAtributos2.Checked = true;
-                }
-                else
-                {
-                    ckEspesoresAtributos2.Checked = false;
-                }
-
-                //ESTADO CHECKBOX ESPESORES 3
-                int ckestadoespesores3 = Convert.ToInt32(datalistadockatributos.SelectedCells[19].Value.ToString());
-                if (ckestadoespesores3 == 1)
-                {
-                    ckEspesoresAtributos3.Checked = true;
-                }
-                else
-                {
-                    ckEspesoresAtributos3.Checked = false;
-                }
-
-                //ESTADO CHECKBOX ESPESORES 4
-                int ckestadoespesores4 = Convert.ToInt32(datalistadockatributos.SelectedCells[20].Value.ToString());
-                if (ckestadoespesores4 == 1)
-                {
-                    ckEspesoresAtributos4.Checked = true;
-                }
-                else
-                {
-                    ckEspesoresAtributos4.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DISEÑO ACABADO 1
-                int ckestadodiseñoacabado1 = Convert.ToInt32(datalistadockatributos.SelectedCells[21].Value.ToString());
-                if (ckestadodiseñoacabado1 == 1)
-                {
-                    ckDiseñoAcabadoAtributos1.Checked = true;
-
-                }
-                else
-                {
-                    ckDiseñoAcabadoAtributos1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DISEÑO ACABADO 2
-                int ckestadodiseñoacabado2 = Convert.ToInt32(datalistadockatributos.SelectedCells[22].Value.ToString());
-                if (ckestadodiseñoacabado2 == 1)
-                {
-                    ckDiseñoAcabadoAtributos2.Checked = true;
-                }
-                else
-                {
-                    ckDiseñoAcabadoAtributos2.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DISEÑO ACABADO 3
-                int ckestadodiseñoacabado3 = Convert.ToInt32(datalistadockatributos.SelectedCells[23].Value.ToString());
-                if (ckestadodiseñoacabado3 == 1)
-                {
-                    ckDiseñoAcabadoAtributos3.Checked = true;
-                }
-                else
-                {
-                    ckDiseñoAcabadoAtributos3.Checked = false;
-                }
-
-                //ESTADO CHECKBOX DISEÑO ACABADO 4
-                int ckestadodiseñoacabado4 = Convert.ToInt32(datalistadockatributos.SelectedCells[24].Value.ToString());
-                if (ckestadodiseñoacabado4 == 1)
-                {
-                    ckDiseñoAcabadoAtributos4.Checked = true;
-                }
-                else
-                {
-                    ckDiseñoAcabadoAtributos4.Checked = false;
-                }
-
-                //ESTADO CHECKBOX TIPO N TIPOS 1
-                int ckestadotipontipos1 = Convert.ToInt32(datalistadockatributos.SelectedCells[25].Value.ToString());
-                if (ckestadotipontipos1 == 1)
-                {
-                    ckTiposNTiposAtributos1.Checked = true;
-
-                }
-                else
-                {
-                    ckTiposNTiposAtributos1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX TIPO N TIPOS 2
-                int ckestadotipontipos2 = Convert.ToInt32(datalistadockatributos.SelectedCells[26].Value.ToString());
-                if (ckestadotipontipos2 == 1)
-                {
-                    ckTiposNTiposAtributos2.Checked = true;
-                }
-                else
-                {
-                    ckTiposNTiposAtributos2.Checked = false;
-                }
-
-                //ESTADO CHECKBOX TIPO N TIPOS 3
-                int ckestadotipontipos3 = Convert.ToInt32(datalistadockatributos.SelectedCells[27].Value.ToString());
-                if (ckestadotipontipos3 == 1)
-                {
-                    ckTiposNTiposAtributos3.Checked = true;
-                }
-                else
-                {
-                    ckTiposNTiposAtributos3.Checked = false;
-                }
-
-                //ESTADO CHECKBOX TIPO N TIPOS 4
-                int ckestadotipontipos4 = Convert.ToInt32(datalistadockatributos.SelectedCells[28].Value.ToString());
-                if (ckestadotipontipos4 == 1)
-                {
-                    ckTiposNTiposAtributos4.Checked = true;
-                }
-                else
-                {
-                    ckTiposNTiposAtributos4.Checked = false;
-                }
-
-                //ESTADO CHECKBOX TIPO VARIOS 1
-                int ckestadotipovarios1 = Convert.ToInt32(datalistadockatributos.SelectedCells[29].Value.ToString());
-                if (ckestadotipovarios1 == 1)
-                {
-                    ckVariosAtributos1.Checked = true;
-
-                }
-                else
-                {
-                    ckVariosAtributos1.Checked = false;
-                }
-
-                //ESTADO CHECKBOX TIPO VARIOS 2
-                int ckestadotipovarios2 = Convert.ToInt32(datalistadockatributos.SelectedCells[30].Value.ToString());
-                if (ckestadotipovarios2 == 1)
-                {
-                    ckVariosAtributos2.Checked = true;
-                }
-                else
-                {
-                    ckVariosAtributos2.Checked = false;
+                    ckEspe2.Enabled = true;
                 }
             }
-            catch (Exception ex)
+            if (ckEspe1.Checked == true)
             {
-                MessageBox.Show(ex.Message);
+                if (cbespesores1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckEspe2.Enabled = false;
+                    ckEspe2.Checked = false;
+                    cbespesores2.SelectedIndex = 0;
+                    cbespesores1.Focus();
+                }
+            }
+            if (ckEspe2.Checked == true)
+            {
+                if (cbespesores3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbespesores4.SelectedIndex = 0;
+                    cbespesores3.Focus();
+                }
             }
         }
 
-        private void btnDefiniciónNombre_Click(object sender, EventArgs e)
+        public void ValidacionesDiseñoAcabado_TiempoReal(CheckBox ckDiseAca1, CheckBox ckDiseAca2, ComboBox cbdiseñoacabado1, ComboBox cbdiseñoacabado2, ComboBox cbdiseñoacabado3, ComboBox cbdiseñoacabado4)
         {
+            if (ckDiseAca1.Checked == true)
+            {
+                if (cbdiseñoacabado2.Text == "NO APLICA")
+                {
+                    ckDiseAca2.Checked = false;
+                    ckDiseAca2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbdiseñoacabado2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Diseño Acabado.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckDiseAca2.Enabled = true;
+                }
+            }
+            if (ckDiseAca1.Checked == true)
+            {
+                if (cbdiseñoacabado1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckDiseAca2.Enabled = false;
+                    ckDiseAca2.Checked = false;
+                    cbdiseñoacabado2.SelectedIndex = 0;
+                    cbdiseñoacabado1.Focus();
+                }
+            }
+            if (ckDiseAca2.Checked == true)
+            {
+                if (cbdiseñoacabado3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbdiseñoacabado4.SelectedIndex = 0;
+                    cbdiseñoacabado3.Focus();
+                }
+            }
+        }
 
+        public void ValidacionesNTipos_TiempoReal(CheckBox ckNtip1, CheckBox ckNtip2, ComboBox cbNtipos1, ComboBox cbNtipos2, ComboBox cbNtipos3, ComboBox cbNtipos4)
+        {
+            if (ckNtip1.Checked == true)
+            {
+                if (cbNtipos2.Text == "NO APLICA")
+                {
+                    ckNtip2.Checked = false;
+                    ckNtip2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbNtipos2.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de N y Tipos.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckNtip2.Enabled = true;
+                }
+            }
+            if (ckNtip1.Checked == true)
+            {
+                if (cbNtipos1.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    ckNtip2.Enabled = false;
+                    ckNtip2.Checked = false;
+                    cbNtipos2.SelectedIndex = 0;
+                    cbNtipos1.Focus();
+                }
+            }
+            if (ckNtip2.Checked == true)
+            {
+                if (cbNtipos3.Text == "NO APLICA")
+                {
+                    MessageBox.Show("Defina atributos validos y seleccione los atributos ordenadamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                    cbNtipos4.SelectedIndex = 0;
+                    cbNtipos3.Focus();
+                }
+            }
+        }
+
+        public void ValidacionesVarios_TiempoReal(CheckBox ckVari1, CheckBox ckVarios2, ComboBox cbVariosO1, ComboBox cbVariosO2)
+        {
+           
+            if (ckVari1.Checked == true)
+            {
+                if (cbVariosO1.Text == "NO APLICA")
+                {
+                    ckVarios2.Checked = false;
+                    ckVarios2.Enabled = false;
+                    MessageBox.Show("AVISO: Si selecciona el atributo " + cbVariosO1.Text + " no podra o se deshabilitara la opcion de utilizar el segundo grupo de Varios.", "Validación Del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ckVarios2.Enabled = true;
+                }
+            }
+        }
+
+        //EVENTOS DE CIERRE DE COMBOS PARA VALIDACIONES EN TIEMPO REAL
+        private void cboTipoCaracteristicas2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesCaracteristicas_TiempoReal(ckCaracteristicas1,ckCaracteristicas2,cboTipoCaracteristicas1,cboTipoCaracteristicas2,cboTipoCaracteristicas3,cboTipoCaracteristicas4);
+        }
+
+        private void cboTipoCaracteristicas4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesCaracteristicas_TiempoReal(ckCaracteristicas1, ckCaracteristicas2, cboTipoCaracteristicas1, cboTipoCaracteristicas2, cboTipoCaracteristicas3, cboTipoCaracteristicas4);
+        }
+
+        private void cboTipoMedida2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesMedidas_TiempoReal(ckCamposMedida1, ckCamposMedida2, cboTipoMedida1, cboTipoMedida2, cboTipoMedida3, cboTipoMedida4);
+        }
+
+        private void cboTipoMedida4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesMedidas_TiempoReal(ckCamposMedida1, ckCamposMedida2, cboTipoMedida1, cboTipoMedida2, cboTipoMedida3, cboTipoMedida4);
+        }
+
+        private void cboTiposDiametros2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiametros_TiempoReal(ckCamposDiametros1, ckCamposDiametros2, cboTiposDiametros1, cboTiposDiametros2, cboTiposDiametros3, cboTiposDiametros4);
+        }
+
+        private void cboTiposDiametros4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiametros_TiempoReal(ckCamposDiametros1, ckCamposDiametros2, cboTiposDiametros1, cboTiposDiametros2, cboTiposDiametros3, cboTiposDiametros4);
+        }
+
+        private void cboTiposFormas2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesFormas_TiempoReal(ckCamposFormas1,ckCamposFormas2, cboTiposFormas1, cboTiposFormas2, cboTiposFormas3, cboTiposFormas4);
+        }
+
+        private void cboTiposFormas4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesFormas_TiempoReal(ckCamposFormas1, ckCamposFormas2, cboTiposFormas1, cboTiposFormas2, cboTiposFormas3, cboTiposFormas4);
+        }
+
+        private void cbooTipoEspesores2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesEspesores_TiempoReal(ckCamposEspesores1, ckCamposEspesores2, cbooTipoEspesores1, cbooTipoEspesores2, cbooTipoEspesores3, cbooTipoEspesores4);
+        }
+
+        private void cbooTipoEspesores4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesEspesores_TiempoReal(ckCamposEspesores1, ckCamposEspesores2, cbooTipoEspesores1, cbooTipoEspesores2, cbooTipoEspesores3, cbooTipoEspesores4);
+        }
+
+        private void cboTiposDiseñosAcabados2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiseñoAcabado_TiempoReal(ckCamposDiseñoAcabado1, ckCamposDiseñoAcabado2, cboTiposDiseñosAcabados1, cboTiposDiseñosAcabados2, cboTiposDiseñosAcabados3, cboTiposDiseñosAcabados4);
+        }
+
+        private void cboTiposDiseñosAcabados4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesDiseñoAcabado_TiempoReal(ckCamposDiseñoAcabado1, ckCamposDiseñoAcabado2, cboTiposDiseñosAcabados1, cboTiposDiseñosAcabados2, cboTiposDiseñosAcabados3, cboTiposDiseñosAcabados4);
+        }
+
+        private void cboTiposNTipos2_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesNTipos_TiempoReal(ckCamposNTipos1, ckCamposNTipos2, cboTiposNTipos1, cboTiposNTipos2, cboTiposNTipos3, cboTiposNTipos4);
+        }
+
+        private void cboTiposNTipos4_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesNTipos_TiempoReal(ckCamposNTipos1, ckCamposNTipos2, cboTiposNTipos1, cboTiposNTipos2, cboTiposNTipos3, cboTiposNTipos4);
+        }
+
+        private void cboTiposVariosO1_DropDownClosed(object sender, EventArgs e)
+        {
+            ValidacionesVarios_TiempoReal(ckVariosO1, ckVariosO2, cboTiposVariosO1, cboTiposVariosO2);
         }
     }
 }
 
-
-        

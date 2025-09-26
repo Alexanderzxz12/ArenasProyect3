@@ -1,10 +1,12 @@
-﻿using System;
+﻿using iTextSharp.text.pdf.codec;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -144,776 +146,1113 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //CARGA DE CEUNTAS O TIPO DE MERCADERIA
         public void CargarTipoMercaderia()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMercaderias,Desciripcion FROM TIPOMERCADERIAS WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoMercaderia.DisplayMember = "Desciripcion";
-            cboTipoMercaderia.ValueMember = "IdTipoMercaderias";
-            cboTipoMercaderia.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoMercaderias,Desciripcion FROM TIPOMERCADERIAS WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoMercaderia.DisplayMember = "Desciripcion";
+                cboTipoMercaderia.ValueMember = "IdTipoMercaderias";
+                cboTipoMercaderia.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGA DE TIPO DE MEDIDAS
         public void CargarTipoMedida()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdMedida,Descripcion FROM MEDIDA WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoMedida.DisplayMember = "Descripcion";
-            cboTipoMedida.ValueMember = "IdMedida";
-            cboTipoMedida.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdMedida,Descripcion FROM MEDIDA WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoMedida.DisplayMember = "Descripcion";
+                cboTipoMedida.ValueMember = "IdMedida";
+                cboTipoMedida.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGA DE LAS LINEAS
         public void CargarLineas()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLinea,Descripcion FROM LINEAS WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboLineas.DisplayMember = "Descripcion";
-            cboLineas.ValueMember = "IdLinea";
-            cboLineas.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLinea,Descripcion FROM LINEAS WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboLineas.DisplayMember = "Descripcion";
+                cboLineas.ValueMember = "IdLinea";
+                cboLineas.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGA DE LA BÚSQUEDA DE CUENTAS O TIPO MERCADERIA
         public void CargarBusquedasTipoMercaderia()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMercaderias,Desciripcion FROM TIPOMERCADERIAS WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboFiltroTipoMercaderiaProducto.DisplayMember = "Desciripcion";
-            cboFiltroTipoMercaderiaProducto.ValueMember = "IdTipoMercaderias";
-            cboFiltroTipoMercaderiaProducto.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoMercaderias,Desciripcion FROM TIPOMERCADERIAS WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboFiltroTipoMercaderiaProducto.DisplayMember = "Desciripcion";
+                cboFiltroTipoMercaderiaProducto.ValueMember = "IdTipoMercaderias";
+                cboFiltroTipoMercaderiaProducto.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGA DE LA BÚSQUEDA DE LÍNEAS SEGÚN LA CUENTA
         public void CargarBusquedasLinea(string idmercaderia)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLinea,Descripcion FROM LINEAS WHERE Estado = 1 AND IdTipMer = @idmercaderia", con);
-            comando.Parameters.AddWithValue("@idmercaderia", idmercaderia);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboFiltroLineaProducto.DisplayMember = "Descripcion";
-            cboFiltroLineaProducto.ValueMember = "IdLinea";
-            cboFiltroLineaProducto.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLinea,Descripcion FROM LINEAS WHERE Estado = 1 AND IdTipMer = @idmercaderia", con);
+                comando.Parameters.AddWithValue("@idmercaderia", idmercaderia);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboFiltroLineaProducto.DisplayMember = "Descripcion";
+                cboFiltroLineaProducto.ValueMember = "IdLinea";
+                cboFiltroLineaProducto.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR EL DIFERENCIAL
         public void CargarDiferencial()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDiferencial,Descripcion FROM DIFERENCIAL WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboDiferencial.DisplayMember = "Descripcion";
-            cboDiferencial.ValueMember = "IdDiferencial";
-            cboDiferencial.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDiferencial,Descripcion FROM DIFERENCIAL WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboDiferencial.DisplayMember = "Descripcion";
+                cboDiferencial.ValueMember = "IdDiferencial";
+                cboDiferencial.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //VALIDACIÓN DE PRODUCTO POR MODELO
         public void ValidacionProducto()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("ValidacionProducto", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idmodelo", cboModelos.SelectedValue.ToString());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoValidacionProducto.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("ValidacionProducto", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idmodelo", cboModelos.SelectedValue.ToString());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoValidacionProducto.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LOS MODELOS SEGÚN LA LÍNEA
         public void CargarModelos(string idlinea)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdModelo,Descripcion, Abreviatura FROM MODELOS WHERE Estado = 1 AND IdLinea = @idlinea", con);
-            comando.Parameters.AddWithValue("@idlinea", idlinea);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboModelos.DisplayMember = "Descripcion";
-            cboModelos.ValueMember = "IdModelo";
-            DataRow row = dt.Rows[0];
-            lblAbreviaturaModelo.Text = System.Convert.ToString(row["Abreviatura"]);
-            cboModelos.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdModelo,Descripcion, Abreviatura FROM MODELOS WHERE Estado = 1 AND IdLinea = @idlinea", con);
+                comando.Parameters.AddWithValue("@idlinea", idlinea);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboModelos.DisplayMember = "Descripcion";
+                cboModelos.ValueMember = "IdModelo";
+                DataRow row = dt.Rows[0];
+                lblAbreviaturaModelo.Text = System.Convert.ToString(row["Abreviatura"]);
+                cboModelos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR ABREVIATURA SEGÚN EL REGIOSTRO SELECCIOANDO
         public void AbreviaturaSegunRegistroSeleccioando(string id)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdModelo,Descripcion, Abreviatura FROM MODELOS WHERE Estado = 1 AND IdModelo = @id", con);
-            comando.Parameters.AddWithValue("@id", id);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-
-            if (dt.Rows.Count > 0)
+            try
             {
-                DataRow row = dt.Rows[0];
-                lblAbreviaturaModelo.Text = System.Convert.ToString(row["Abreviatura"]);
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdModelo,Descripcion, Abreviatura FROM MODELOS WHERE Estado = 1 AND IdModelo = @id", con);
+                comando.Parameters.AddWithValue("@id", id);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    lblAbreviaturaModelo.Text = System.Convert.ToString(row["Abreviatura"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
         }
 
         //CARGAR BUSCADOR DE MODELOS SEGÚN LA LÍNEA SELECCIOANDA
         public void CargarBusquedasModelos(string idlinea)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdModelo,Descripcion FROM MODELOS WHERE Estado = 1 AND IdLinea = @idlinea", con);
-            comando.Parameters.AddWithValue("@idlinea", idlinea);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboFiltroModeloProducto.DisplayMember = "Descripcion";
-            cboFiltroModeloProducto.ValueMember = "IdModelo";
-            cboFiltroModeloProducto.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdModelo,Descripcion FROM MODELOS WHERE Estado = 1 AND IdLinea = @idlinea", con);
+                comando.Parameters.AddWithValue("@idlinea", idlinea);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboFiltroModeloProducto.DisplayMember = "Descripcion";
+                cboFiltroModeloProducto.ValueMember = "IdModelo";
+                cboFiltroModeloProducto.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //COMBOS DE DATOS ANEXOS------------------------------------------------------------
         //CARGAR COMOBO DE ORIGEN
         public void CargarOrigen()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdOrigen,Descripcion FROM DatosAnexos_Origen ORDER BY(Descripcion)", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboOrigen.DisplayMember = "Descripcion";
-            cboOrigen.ValueMember = "IdOrigen";
-            cboOrigen.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdOrigen,Descripcion FROM DatosAnexos_Origen ORDER BY(Descripcion)", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboOrigen.DisplayMember = "Descripcion";
+                cboOrigen.ValueMember = "IdOrigen";
+                cboOrigen.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR COMBO DE TERMINOS DE COMPRA
         public void CargarTerminosCompra()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTerminosCompra,Abreviatura FROM DatosAnexos_TerminosCompra ORDER BY Descripcion DESC", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTerminosCompra.DisplayMember = "Abreviatura";
-            cboTerminosCompra.ValueMember = "IdTerminosCompra";
-            cboTerminosCompra.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTerminosCompra,Abreviatura FROM DatosAnexos_TerminosCompra ORDER BY Descripcion DESC", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTerminosCompra.DisplayMember = "Abreviatura";
+                cboTerminosCompra.ValueMember = "IdTerminosCompra";
+                cboTerminosCompra.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR COMBO DE TIPO DE EXISTENCIA
         public void TipoExistencia()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoExistencia,Descripcion FROM DatosAnexos_TipoExistencia ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoExistencia.DisplayMember = "Descripcion";
-            cboTipoExistencia.ValueMember = "IdTipoExistencia";
-            cboTipoExistencia.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoExistencia,Descripcion FROM DatosAnexos_TipoExistencia ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoExistencia.DisplayMember = "Descripcion";
+                cboTipoExistencia.ValueMember = "IdTipoExistencia";
+                cboTipoExistencia.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR COMBO DE BIENES SUJETO PERCEPCIÓN
         public void BienesSujetoPercepcion()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdBienesSujetoPercepcion,Descripcion FROM DatosAnexos_BienesSujetoPercepcion ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboBienesSujetoPercepcion.DisplayMember = "Descripcion";
-            cboBienesSujetoPercepcion.ValueMember = "IdBienesSujetoPercepcion";
-            cboBienesSujetoPercepcion.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdBienesSujetoPercepcion,Descripcion FROM DatosAnexos_BienesSujetoPercepcion ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboBienesSujetoPercepcion.DisplayMember = "Descripcion";
+                cboBienesSujetoPercepcion.ValueMember = "IdBienesSujetoPercepcion";
+                cboBienesSujetoPercepcion.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGA DE CAMPOS SEGUN LA SELECCION DEL PRODUCTO
         //CARGAR TIPOS DE CARACTERISTICAS - DESCRIPCION DE CARACTERISTICAS - SELECCIONA DE VENTANA
         public void CargarTiposCaracteriticas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoCaracteristicas,Descripcion FROM TiposCaracteristicas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoCaracteristicas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoCaracteristicas,Descripcion FROM TiposCaracteristicas WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoCaracteristicas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         public void CargarDescripcionCaracteristicas(ComboBox cbo, string idtipocaracteristicas, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionCaracteristicas,Descripcion FROM DescripcionCaracteristicas WHERE Estado = 1 AND IdTipoCaracteristicas = @idtipocaracteristicas AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipocaracteristicas", idtipocaracteristicas);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionCaracteristicas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionCaracteristicas,Descripcion FROM DescripcionCaracteristicas WHERE Estado = 1 AND IdTipoCaracteristicas = @idtipocaracteristicas AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idtipocaracteristicas", idtipocaracteristicas);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionCaracteristicas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR TIPOS DE MEDIDAS - DESCRIPCION DE MEDIDAS - SELECCIONA DE VENTANA
         public void CargarTiposMedidas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMedidas,Descripcion FROM TiposMedidas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoMedidas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoMedidas,Descripcion FROM TiposMedidas WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoMedidas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         public void CargarDescripcionMedidas(ComboBox cbo, string idtipomedida, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionMedidas,Descripcion FROM DescripcionMedidas WHERE Estado = 1 AND IdTipoMedidas = @idtipomedida AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipomedida", idtipomedida);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionMedidas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionMedidas,Descripcion FROM DescripcionMedidas WHERE Estado = 1 AND IdTipoMedidas = @idtipomedida AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idtipomedida", idtipomedida);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionMedidas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR TIPOS DE DIAMETROS - DESCRIPCION DE DIAMETROS - SELECCIONA DE VENTANA
         public void CargarTiposDiametros(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoDiametros,Descripcion FROM TiposDiametros WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoDiametros";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoDiametros,Descripcion FROM TiposDiametros WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoDiametros";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
+
         }
 
         public void CargarDescripcionDiametros(ComboBox cbo, string ididametros, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionDiametros,Descripcion FROM DescripcionDiametros WHERE Estado = 1 AND IdTipoDiametros = @idtipodiametros AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipodiametros", ididametros);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionDiametros";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionDiametros,Descripcion FROM DescripcionDiametros WHERE Estado = 1 AND IdTipoDiametros = @idtipodiametros AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idtipodiametros", ididametros);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionDiametros";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR TIPOS DE FORMAS - DESCRIPCION DE FORMAS - SELECCIONA DE VENTANA
         public void CargarTiposFormas(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoFormas,Descripcion FROM TiposFormas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoFormas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoFormas,Descripcion FROM TiposFormas WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoFormas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         public void CargarDescripcionFormas(ComboBox cbo, string idformas, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionFormas,Descripcion FROM DescripcionFormas WHERE Estado = 1 AND IdTipoFormas = @idtipoformas AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipoformas", idformas);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionFormas";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionFormas,Descripcion FROM DescripcionFormas WHERE Estado = 1 AND IdTipoFormas = @idtipoformas AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idtipoformas", idformas);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionFormas";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR TIPOS DE ESPESORES - DESCRIPCION DE ESPESORES - SELECCIONA DE VENTANA
         public void CargarTiposEspesores(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoEspesores,Descripcion FROM TiposEspesores WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoEspesores";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoEspesores,Descripcion FROM TiposEspesores WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoEspesores";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         public void CargarDescripcionEspesores(ComboBox cbo, string idespesores, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionEspesores,Descripcion FROM DescripcionEspesores WHERE Estado = 1 AND IdTipoEspesores = @idtipoespesores AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipoespesores", idespesores);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionEspesores";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionEspesores,Descripcion FROM DescripcionEspesores WHERE Estado = 1 AND IdTipoEspesores = @idtipoespesores AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idtipoespesores", idespesores);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionEspesores";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR TIPOS DE DISEÑO/ACABADO - DESCRIPCION DE DISEÑO/ACABADO - SELECCIONA DE VENTANA
         public void CargarTiposDiseñoAcabado(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoDiseñoAcabado,Descripcion FROM TiposDiseñoAcabado WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoDiseñoAcabado";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoDiseñoAcabado,Descripcion FROM TiposDiseñoAcabado WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoDiseñoAcabado";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         public void CargarDescripcionDiseñoAcabado(ComboBox cbo, string iddiseñoacabado, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionDiseñoAcabado,Descripcion FROM DescripcionDiseñoAcabado WHERE Estado = 1 AND IdTipoDiseñoAcabado = @idtipodiseñoacabado AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtipodiseñoacabado", iddiseñoacabado);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionDiseñoAcabado";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionDiseñoAcabado,Descripcion FROM DescripcionDiseñoAcabado WHERE Estado = 1 AND IdTipoDiseñoAcabado = @idtipodiseñoacabado AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idtipodiseñoacabado", iddiseñoacabado);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionDiseñoAcabado";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR TIPOS DE N/TIPOS - DESCRIPCION DE N/TIPOS - SELECCIONA DE VENTANA
         public void CargarTiposNTipos(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoNTipos,Descripcion FROM TiposNTipos WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoNTipos";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoNTipos,Descripcion FROM TiposNTipos WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoNTipos";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         public void CargarDescripcionNTipos(ComboBox cbo, string idntipos, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionNTipos,Descripcion FROM DescripcionNTipos WHERE Estado = 1 AND IdTipoNTipos = @idtiposntipos AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idtiposntipos", idntipos);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionNTipos";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionNTipos,Descripcion FROM DescripcionNTipos WHERE Estado = 1 AND IdTipoNTipos = @idtiposntipos AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idtiposntipos", idntipos);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionNTipos";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR TIPOS DE VARIOS0 - DESCRIPCION DE VARIOS0S - SELECCIONA DE VENTANA
         public void CargarTiposVariosO(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoVariosO,Descripcion FROM TiposVariosO WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdTipoVariosO";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoVariosO,Descripcion FROM TiposVariosO WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdTipoVariosO";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         public void CargarDescripcionVariosO(ComboBox cbo, string idvarioso, string idmodelo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdDescripcionVarios0,Descripcion FROM DescripcionVarios0 WHERE Estado = 1 AND IdTipoVarios0 = @idvarioso AND IdModelo = @idmodelo", con);
-            comando.Parameters.AddWithValue("@idvarioso", idvarioso);
-            comando.Parameters.AddWithValue("@idmodelo", idmodelo);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "IdDescripcionVarios0";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDescripcionVarios0,Descripcion FROM DescripcionVarios0 WHERE Estado = 1 AND IdTipoVarios0 = @idvarioso AND IdModelo = @idmodelo", con);
+                comando.Parameters.AddWithValue("@idvarioso", idvarioso);
+                comando.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDescripcionVarios0";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGA DE LISTADOS SEGUN EL PRODUCTO SELECCIONADO PARA VISUALIZAR----------------
         //CARGAR LISTADO CARACTERISTICAS 1
         public void CargarListadoCaracteristicas1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoCaracteristicas1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoCaracteristicas1.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoCaracteristicas1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoCaracteristicas1.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO CARACTERISTICAS 2
         public void CargarListadoCaracteristicas2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoCaracteristicas2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoCaracteristicas2.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoCaracteristicas2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoCaracteristicas2.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO MEDIDAS 1
         public void CargarListadoMedidas1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoMedidas1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoMedidas1.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoMedidas1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoMedidas1.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO MEDIDAS 2
         public void CargarListadoMedidas2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoMedidas2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoMedidas2.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoMedidas2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoMedidas2.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO DIÁMETROS 1
         public void CargarListadoDiametros1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoDiametros1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoDiametros1.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoDiametros1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoDiametros1.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO DIÁMETROS 2
         public void CargarListadoDiametros2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoDiametros2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoDiametros2.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoDiametros2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoDiametros2.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO FORMAS 1
         public void CargarListadoFormas1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoFormas1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoFormas1.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoFormas1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoFormas1.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO FORMAS 2
         public void CargarListadoFormas2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoFormas2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoFormas2.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoFormas2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoFormas2.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO ESPESORES 1
         public void CargarListadoEspesores1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoEspesores1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoEspesores1.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoEspesores1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoEspesores1.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO ESPESORES 2
         public void CargarListadoEspesores2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoEspesores2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoEspesores2.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoEspesores2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoEspesores2.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO DISEÑO ACABADO 1
         public void CargarListadoDiseñoAcabado1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoDiseñoAcabado1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoDiseñoAcabado1.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoDiseñoAcabado1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoDiseñoAcabado1.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO DISEÑO ACABADO 2
         public void CargarListadoDiseñoAcabado2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoDiseñoAcabado2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoDiseñoAcabado2.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoDiseñoAcabado2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoDiseñoAcabado2.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO NTIPOS 1
         public void CargarListadoNTipos1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoNTipos1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            DatalistadoNTipos1.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoNTipos1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DatalistadoNTipos1.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO NTIPOS 2
         public void CargarListadoNTipos2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoNTipos2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            DatalistadoNTipos2.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoNTipos2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DatalistadoNTipos2.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO VARIOS0 1
         public void CargarListadoVariosO1()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoVariosO1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoVarios01.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoVariosO1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoVarios01.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO VARIOS0 2
         public void CargarListadoVariosO2()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoVariosO2", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoVarios02.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoVariosO2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoVarios02.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR LISTADO GENERAL
         public void CargarListadoGenerales()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("CargarListadoGenerales", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idart", idart);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoGeneral.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("CargarListadoGenerales", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idart", idart);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoGeneral.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //CARGAR EL ÚLTIMO CÓDIGO DE PLANO INGRESADO
         public void codigoPlano()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdPlano FROM PlanoProducto WHERE IdPlano = (SELECT MAX(IdPlano) FROM PlanoProducto)", con);
-            da.Fill(dt);
-            datalistadoPlano.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdPlano FROM PlanoProducto WHERE IdPlano = (SELECT MAX(IdPlano) FROM PlanoProducto)", con);
+                da.Fill(dt);
+                datalistadoPlano.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
         //FIN----------------------------------------------------------------------------------------------------------------------
 
@@ -921,65 +1260,74 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //MOSTRAR TODOS LOS PRODUCTOS INGRESADOS AL SISTEMA
         public void MostrarProductos()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT P.IdArt, P.Codcom AS [CÓDIGO], P.Descripcion AS [CÓDIGO BSS] ,P.Detalle AS [DESCRIPCIÓN], M.IdMedida, M.Descripcion AS [MEDIDA],  TM.IdTipoMercaderias, TM.Desciripcion AS[TIPO MERCADERIA], L.IdLinea, L.Descripcion AS [LÍNEA], MO.IdModelo, MO.Descripcion AS[MODELO], DI.IdDiferencial, DI.Descripcion AS[DIF.], /**CAMPOS ANEXOS - STOCK UBICACION**/ DAP_SU.AfectoIGV, DAP_SU.ControlStock, DAP_SU.Juego, DAP_SU.Servicio, DAP_SU.ControlarLotes, DAP_SU.ControlarSerie, DAP_SU.Peso, DAP_SU.Ubicacion, DAP_SU.Reposicion, DAP_SU.Minimo, DAP_SU.Maximo, /**CAMPOS ANEXOS - SUNTAT**/ DAP_S.IdTipoExistencia, DA_TE.IdTipoExistencia, DA_TE.Descripcion, DAP_S.CodigoUNSPCS, DAP_S.SujetoPercepcion, DAP_S.PorcentajePercepcion, DAP_S.SujetoDetraccion, DAP_S.PorcentajeDetraccion, DAP_S.SujetoISC, DAP_S.PorcentajeISC, DAP_S.IdBienesSujetoPercepcion, DA_BSP.IdBienesSujetoPercepcion, DA_BSP.Descripcion, /**CAMPOS ANEXOS - IMPORTACION**/ DAP_I.IdOrigen, DA_TO.IdOrigen, DA_TO.Descripcion, DAP_I.Contenedor, DAP_I.PesoContenedor, DAP_I.Medidas, DAP_I.IdTerminosCompra, DA_TC.IdTerminosCompra, DA_TC.Descripcion, P.SemiProducido, P.Descripcion, P.RutaImagen FROM PRODUCTOS P INNER JOIN MEDIDA M ON M.IdMedida = P.IdMedida INNER JOIN TIPOMERCADERIAS TM ON TM.IdTipoMercaderias = P.IdTipoMercaderias INNER JOIN LINEAS L ON L.IdLinea = P.IdLinea INNER JOIN MODELOS MO ON MO.IdModelo = P.IdModelo INNER JOIN DIFERENCIAL DI ON DI.IdDiferencial = P.IdDiferencial INNER JOIN DatosAnexosProducto_StockUbicacion DAP_SU ON DAP_SU.IdArt = P.IdArt INNER JOIN DatosAnexosProducto_Sunat DAP_S ON DAP_S.IdArt = P.IdArt INNER JOIN DatosAnexosProducto_Importacion DAP_I ON DAP_I.IdArt = P.IdArt INNER JOIN DatosAnexos_TipoExistencia DA_TE ON DA_TE.IdTipoExistencia = DAP_S.IdTipoExistencia INNER JOIN DatosAnexos_BienesSujetoPercepcion DA_BSP ON DA_BSP.IdBienesSujetoPercepcion = DAP_S.IdBienesSujetoPercepcion INNER JOIN DatosAnexos_Origen DA_TO ON DA_TO.IdOrigen = DAP_I.IdOrigen INNER JOIN DatosAnexos_TerminosCompra DA_TC ON DA_TC.IdTerminosCompra = DAP_I.IdTerminosCompra WHERE P.Estado = 1", con);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
-            datalistado.Columns[0].Visible = false;
-            datalistado.Columns[1].Width = 100;
-            datalistado.Columns[2].Width = 100;
-            datalistado.Columns[3].Width = 915;
-            datalistado.Columns[4].Visible = false;
-            datalistado.Columns[5].Width = 90;
-            datalistado.Columns[6].Visible = false;
-            datalistado.Columns[7].Width = 135;
-            datalistado.Columns[8].Visible = false;
-            datalistado.Columns[9].Visible = false;
-            datalistado.Columns[10].Visible = false;
-            datalistado.Columns[11].Visible = false;
-            datalistado.Columns[12].Visible = false;
-            datalistado.Columns[13].Width = 30;
-            datalistado.Columns[14].Visible = false;
-            datalistado.Columns[15].Visible = false;
-            datalistado.Columns[16].Visible = false;
-            datalistado.Columns[17].Visible = false;
-            datalistado.Columns[18].Visible = false;
-            datalistado.Columns[19].Visible = false;
-            datalistado.Columns[20].Visible = false;
-            datalistado.Columns[21].Visible = false;
-            datalistado.Columns[22].Visible = false;
-            datalistado.Columns[23].Visible = false;
-            datalistado.Columns[24].Visible = false;
-            datalistado.Columns[25].Visible = false;
-            datalistado.Columns[26].Visible = false;
-            datalistado.Columns[27].Visible = false;
-            datalistado.Columns[28].Visible = false;
-            datalistado.Columns[29].Visible = false;
-            datalistado.Columns[30].Visible = false;
-            datalistado.Columns[31].Visible = false;
-            datalistado.Columns[32].Visible = false;
-            datalistado.Columns[33].Visible = false;
-            datalistado.Columns[34].Visible = false;
-            datalistado.Columns[35].Visible = false;
-            datalistado.Columns[36].Visible = false;
-            datalistado.Columns[37].Visible = false;
-            datalistado.Columns[38].Visible = false;
-            datalistado.Columns[39].Visible = false;
-            datalistado.Columns[40].Visible = false;
-            datalistado.Columns[41].Visible = false;
-            datalistado.Columns[42].Visible = false;
-            datalistado.Columns[43].Visible = false;
-            datalistado.Columns[44].Visible = false;
-            datalistado.Columns[45].Visible = false;
-            datalistado.Columns[46].Visible = false;
-            datalistado.Columns[47].Visible = false;
-            datalistado.Columns[48].Visible = false;
-            datalistado.Columns[49].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("ListadoProductos_MostrarProductos", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                datalistado.Columns[0].Visible = false;
+                datalistado.Columns[1].Width = 100;
+                datalistado.Columns[2].Width = 100;
+                datalistado.Columns[3].Width = 915;
+                datalistado.Columns[4].Visible = false;
+                datalistado.Columns[5].Width = 90;
+                datalistado.Columns[6].Visible = false;
+                datalistado.Columns[7].Width = 135;
+                datalistado.Columns[8].Visible = false;
+                datalistado.Columns[9].Visible = false;
+                datalistado.Columns[10].Visible = false;
+                datalistado.Columns[11].Visible = false;
+                datalistado.Columns[12].Visible = false;
+                datalistado.Columns[13].Width = 30;
+                datalistado.Columns[14].Visible = false;
+                datalistado.Columns[15].Visible = false;
+                datalistado.Columns[16].Visible = false;
+                datalistado.Columns[17].Visible = false;
+                datalistado.Columns[18].Visible = false;
+                datalistado.Columns[19].Visible = false;
+                datalistado.Columns[20].Visible = false;
+                datalistado.Columns[21].Visible = false;
+                datalistado.Columns[22].Visible = false;
+                datalistado.Columns[23].Visible = false;
+                datalistado.Columns[24].Visible = false;
+                datalistado.Columns[25].Visible = false;
+                datalistado.Columns[26].Visible = false;
+                datalistado.Columns[27].Visible = false;
+                datalistado.Columns[28].Visible = false;
+                datalistado.Columns[29].Visible = false;
+                datalistado.Columns[30].Visible = false;
+                datalistado.Columns[31].Visible = false;
+                datalistado.Columns[32].Visible = false;
+                datalistado.Columns[33].Visible = false;
+                datalistado.Columns[34].Visible = false;
+                datalistado.Columns[35].Visible = false;
+                datalistado.Columns[36].Visible = false;
+                datalistado.Columns[37].Visible = false;
+                datalistado.Columns[38].Visible = false;
+                datalistado.Columns[39].Visible = false;
+                datalistado.Columns[40].Visible = false;
+                datalistado.Columns[41].Visible = false;
+                datalistado.Columns[42].Visible = false;
+                datalistado.Columns[43].Visible = false;
+                datalistado.Columns[44].Visible = false;
+                datalistado.Columns[45].Visible = false;
+                datalistado.Columns[46].Visible = false;
+                datalistado.Columns[47].Visible = false;
+                datalistado.Columns[48].Visible = false;
+                datalistado.Columns[49].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //---------------------------------------------
@@ -1284,15 +1632,17 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     if (datalistadopdf.Rows.Count > 0)
                     {
                         btnEliminarPlano.Visible = true;
+                        lblEliminarPlano.Visible = true;
                     }
                     else
                     {
                         btnEliminarPlano.Visible = false;
+                        lblEliminarPlano.Visible = false;
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show( ex.Message + " " + "Ocurrió un error inesperado al momento de cargar los datos, por favor comunicar al administrador.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message + " " + "Ocurrió un error inesperado al momento de cargar los datos, por favor comunicar al administrador.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
             else
@@ -1309,42 +1659,55 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             btnAbrirPdf.Visible = true;
         }
 
-        //VISUALIZACION DE LA IMAGEN DEL PRODUCTO
-        private void btnVisualizarImagenProducto_Click(object sender, EventArgs e)
+        //METODO QUE REALIZARA LA VISUALIZACION DE LA IMAGEN DEL PRODUCTO
+        public void VisualizarImagenProducto(DataGridView DGV, string rutaimagen)
         {
-            if (datalistado.CurrentRow != null)
+            try
             {
-                string ruta = datalistado.SelectedCells[49].Value.ToString();
-                string ruta2 = txtRutaImagen.Text;
+                if (DGV.CurrentRow != null)
+                {
+                    string ruta = DGV.SelectedCells[49].Value.ToString();
+                    string ruta2 = rutaimagen;
 
-                if (ruta == "" && ruta2 == "")
-                {
-                    MessageBox.Show("No se encontró una imagen referente al producto.", "Abrir Imagen");
-                }
-                else if (ruta != "")
-                {
-                    Process.Start(ruta);
-                }
-                else if (ruta2 != "")
-                {
-                    Process.Start(ruta2);
+                    if (ruta == "" && ruta2 == "")
+                    {
+                        MessageBox.Show("No se encontró una imagen referente al producto.", "Abrir Imagen");
+                    }
+                    else if (ruta != "")
+                    {
+                        Process.Start(ruta);
+                    }
+                    else if (ruta2 != "")
+                    {
+                        Process.Start(ruta2);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al monento de intentar cargar la imagen.", "Abrir Imagen");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Error al monento de intentar cargar la imagen.", "Abrir Imagen");
+                    MessageBox.Show("Por favor, seleccione un producto para poder ver la imagen.", "Abrir Imagen");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione un producto para poder ver la imagen.", "Abrir Imagen");
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        //VISUALIZACION DE LA IMAGEN DEL PRODUCTO
+        private void btnVisualizarImagenProducto_Click(object sender, EventArgs e)
+        {
+            VisualizarImagenProducto(datalistado, txtRutaImagen.Text);
         }
 
         //BOTON PARA CARGAR UNA IMAGEN AL PRODUCTO
         private void btnCargarImagenProducto_Click(object sender, EventArgs e)
         {
             if (idart != 0)
-            { 
+            {
                 openFileDialog2.InitialDirectory = "c:\\";
                 openFileDialog2.Filter = "Todos los archivos (*.*)|*.*";
                 openFileDialog2.FilterIndex = 1;
@@ -1352,14 +1715,22 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
                 if (openFileDialog2.ShowDialog() == DialogResult.OK)
                 {
-                    txtRutaImagen.Text = openFileDialog2.FileName;
+                    try
+                    {
+                        txtRutaImagen.Text = openFileDialog2.FileName;
 
-                    btnCargarImagenProducto.Visible = false;
-                    btnConfirmarImagenProducto.Visible = true;
-                    btnCancelarImagenProducto.Visible = true;
+                        btnCargarImagenProducto.Visible = false;
+                        lblCargarImagen.Visible = false;
+                        btnConfirmarImagenProducto.Visible = true;
+                        btnCancelarImagenProducto.Visible = true;
 
-                    imgProductoSeleccioandoSinImagen.BackgroundImage = Image.FromFile(txtRutaImagen.Text);
-                    imgProductoSeleccioandoSinImagen.SizeMode = PictureBoxSizeMode.StretchImage;
+                        imgProductoSeleccioandoSinImagen.BackgroundImage = Image.FromFile(txtRutaImagen.Text);
+                        imgProductoSeleccioandoSinImagen.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
             else
@@ -1369,7 +1740,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //BOTON PARA GUARDAR LA IMAGEN ADJUNTADA A MI PRODUCTO SELECCIONADO
-        private void btnConfirmarImagenProducto_Click(object sender, EventArgs e)
+        public void AgregarImagenProducto(string codigoproducto, string rutaimagen)
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea asignar esta imagen a este producto.", "Validación del Sistema", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
@@ -1380,22 +1751,24 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("InsertarImagenProducto", con);
+                    cmd = new SqlCommand("ListadoProductos_InsertarImagen", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     string fechaHora = " Hora " + Convert.ToString(DateTime.Now.Hour) + " Minuto " + Convert.ToString(DateTime.Now.Minute);
-                    string nombreGenerado = "IMAGEN REFERENCIAL N - " + lblCodigoProducto.Text + fechaHora;
-                    string rutaOld = txtRutaImagen.Text;
+                    string nombreGenerado = "IMAGEN REFERENCIAL N - " + codigoproducto + fechaHora;
+                    string rutaOld = rutaimagen;
                     string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Productos\Imagenes\" + nombreGenerado + ".jpg";
 
                     File.Copy(rutaOld, RutaNew);
                     cmd.Parameters.AddWithValue("@iamgenProducto", RutaNew);
-                    cmd.Parameters.AddWithValue("@codigo", lblCodigoProducto.Text);
+                    cmd.Parameters.AddWithValue("@codigo", codigoproducto);
 
                     cmd.ExecuteNonQuery();
                     con.Close();
 
                     MessageBox.Show("Se ingresó la imagen de manera correcta.", "Validación del Sistema");
+                    btnCargarImagenProducto.Visible = true;
+                    lblCargarImagen.Visible = true;
                     btnConfirmarImagenProducto.Visible = false;
                     btnCancelarImagenProducto.Visible = false;
                     MostrarProductos();
@@ -1407,15 +1780,23 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             }
         }
 
+        //BOTON PARA GUARDAR LA IMAGEN ADJUNTADA A MI PRODUCTO SELECCIONADO
+        private void btnConfirmarImagenProducto_Click(object sender, EventArgs e)
+        {
+            AgregarImagenProducto(lblCodigoProducto.Text, txtRutaImagen.Text);
+        }
+
         //BOTON PARA CANCELAR LA CARGA DE UNA IMAGEN
         private void btnCancelarImagenProducto_Click(object sender, EventArgs e)
         {
             imgProductoSeleccioandoSinImagen.BackgroundImage = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Predeterminado\caja.png");
             txtRutaImagen.Text = "";
+            txtRutaImagen.Text = "";
             imgProductoSeleccioandoSinImagen.SizeMode = PictureBoxSizeMode.Zoom;
             btnConfirmarImagenProducto.Visible = false;
             btnCancelarImagenProducto.Visible = false;
             btnCargarImagenProducto.Visible = true;
+            lblCargarImagen.Visible = true;
         }
 
         //ACCIONES DE CARGA INTERNA---------------------------------------------------------------------
@@ -1755,7 +2136,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             datalistadopdf.DataSource = dt;
             con.Close();
             datalistadopdf.Columns[0].Visible = false;
-            datalistadopdf.Columns[1].Width = 100;
+            datalistadopdf.Columns[1].Width = 70;
             datalistadopdf.Columns[2].Width = 350;
         }
 
@@ -1767,7 +2148,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarCamposSeleccionados", con);
+            cmd = new SqlCommand("ListadoProductos_MostrarCamposSeleccionados", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idart", id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1804,12 +2185,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas2);
-
                     CargarListadoCaracteristicas1();
-
                     cboTipoCaracteristicas1.SelectedValue = datalistadoCaracteristicas1.SelectedCells[1].Value.ToString();
                     cboDescripcionCaracteristicas1.SelectedValue = datalistadoCaracteristicas1.SelectedCells[2].Value.ToString();
-
                     cboTipoCaracteristicas2.SelectedValue = datalistadoCaracteristicas1.SelectedCells[3].Value.ToString();
                     cboDescripcionCaracteristicas2.SelectedValue = datalistadoCaracteristicas1.SelectedCells[4].Value.ToString();
                 }
@@ -1824,12 +2202,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposCaracteristicas2);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas3);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas4);
-
                     CargarListadoCaracteristicas2();
-
                     cboTipoCaracteristicas3.SelectedValue = datalistadoCaracteristicas2.SelectedCells[1].Value.ToString();
                     cboDescripcionCaracteristicas3.SelectedValue = datalistadoCaracteristicas2.SelectedCells[2].Value.ToString();
-
                     cboTipoCaracteristicas4.SelectedValue = datalistadoCaracteristicas2.SelectedCells[3].Value.ToString();
                     cboDescripcionCaracteristicas4.SelectedValue = datalistadoCaracteristicas2.SelectedCells[4].Value.ToString();
                 }
@@ -1844,12 +2219,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposMedidas1);
                     CargarTiposMedidas(cboTipoMedidas1);
                     CargarTiposMedidas(cboTipoMedidas2);
-
                     CargarListadoMedidas1();
-
                     cboTipoMedidas1.SelectedValue = datalistadoMedidas1.SelectedCells[1].Value.ToString();
                     cboDescripcionMedidas1.SelectedValue = datalistadoMedidas1.SelectedCells[2].Value.ToString();
-
                     cboTipoMedidas2.SelectedValue = datalistadoMedidas1.SelectedCells[3].Value.ToString();
                     cboDescripcionMedidas2.SelectedValue = datalistadoMedidas1.SelectedCells[4].Value.ToString();
                 }
@@ -1864,12 +2236,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposMedidas2);
                     CargarTiposMedidas(cboTipoMedidas3);
                     CargarTiposMedidas(cboTipoMedidas4);
-
                     CargarListadoMedidas2();
-
                     cboTipoMedidas3.SelectedValue = datalistadoMedidas2.SelectedCells[1].Value.ToString();
                     cboDescripcionMedidas3.SelectedValue = datalistadoMedidas2.SelectedCells[2].Value.ToString();
-
                     cboTipoMedidas4.SelectedValue = datalistadoMedidas2.SelectedCells[3].Value.ToString();
                     cboDescripcionMedidas4.SelectedValue = datalistadoMedidas2.SelectedCells[4].Value.ToString();
                 }
@@ -1884,12 +2253,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposDiametros1);
                     CargarTiposDiametros(cboTiposDiametros1);
                     CargarTiposDiametros(cboTiposDiametros2);
-
                     CargarListadoDiametros1();
-
                     cboTiposDiametros1.SelectedValue = datalistadoDiametros1.SelectedCells[1].Value.ToString();
                     cboDescripcionDiametros1.SelectedValue = datalistadoDiametros1.SelectedCells[2].Value.ToString();
-
                     cboTiposDiametros2.SelectedValue = datalistadoDiametros1.SelectedCells[3].Value.ToString();
                     cboDescripcionDiametros2.SelectedValue = datalistadoDiametros1.SelectedCells[4].Value.ToString();
                 }
@@ -1904,12 +2270,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposDiametros2);
                     CargarTiposDiametros(cboTiposDiametros3);
                     CargarTiposDiametros(cboTiposDiametros4);
-
                     CargarListadoDiametros2();
-
                     cboTiposDiametros3.SelectedValue = datalistadoDiametros2.SelectedCells[1].Value.ToString();
                     cboDescripcionDiametros3.SelectedValue = datalistadoDiametros2.SelectedCells[2].Value.ToString();
-
                     cboTiposDiametros4.SelectedValue = datalistadoDiametros2.SelectedCells[3].Value.ToString();
                     cboDescripcionDiametros4.SelectedValue = datalistadoDiametros2.SelectedCells[4].Value.ToString();
                 }
@@ -1924,12 +2287,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposFormas1);
                     CargarTiposFormas(cboTiposFormas1);
                     CargarTiposFormas(cboTiposFormas2);
-
                     CargarListadoFormas1();
-
                     cboTiposFormas1.SelectedValue = datalistadoFormas1.SelectedCells[1].Value.ToString();
                     cboDescripcionFormas1.SelectedValue = datalistadoFormas1.SelectedCells[2].Value.ToString();
-
                     cboTiposFormas2.SelectedValue = datalistadoFormas1.SelectedCells[3].Value.ToString();
                     cboDescripcionFormas2.SelectedValue = datalistadoFormas1.SelectedCells[4].Value.ToString();
                 }
@@ -1944,12 +2304,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposFormas2);
                     CargarTiposFormas(cboTiposFormas3);
                     CargarTiposFormas(cboTiposFormas4);
-
                     CargarListadoFormas2();
-
                     cboTiposFormas3.SelectedValue = datalistadoFormas2.SelectedCells[1].Value.ToString();
                     cboDescripcionFormas3.SelectedValue = datalistadoFormas2.SelectedCells[2].Value.ToString();
-
                     cboTiposFormas4.SelectedValue = datalistadoFormas2.SelectedCells[3].Value.ToString();
                     cboDescripcionFormas4.SelectedValue = datalistadoFormas2.SelectedCells[4].Value.ToString();
                 }
@@ -1964,12 +2321,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposEspesores1);
                     CargarTiposEspesores(cbooTipoEspesores1);
                     CargarTiposEspesores(cbooTipoEspesores2);
-
                     CargarListadoEspesores1();
-
                     cbooTipoEspesores1.SelectedValue = datalistadoEspesores1.SelectedCells[1].Value.ToString();
                     cboDescripcionEspesores1.SelectedValue = datalistadoEspesores1.SelectedCells[2].Value.ToString();
-
                     cbooTipoEspesores2.SelectedValue = datalistadoEspesores1.SelectedCells[3].Value.ToString();
                     cboDescripcionEspesores2.SelectedValue = datalistadoEspesores1.SelectedCells[4].Value.ToString();
                 }
@@ -1984,12 +2338,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposEspesores2);
                     CargarTiposEspesores(cbooTipoEspesores3);
                     CargarTiposEspesores(cbooTipoEspesores4);
-
                     CargarListadoEspesores2();
-
                     cbooTipoEspesores3.SelectedValue = datalistadoEspesores2.SelectedCells[1].Value.ToString();
                     cboDescripcionEspesores3.SelectedValue = datalistadoEspesores2.SelectedCells[2].Value.ToString();
-
                     cbooTipoEspesores4.SelectedValue = datalistadoEspesores2.SelectedCells[3].Value.ToString();
                     cboDescripcionEspesores4.SelectedValue = datalistadoEspesores2.SelectedCells[4].Value.ToString();
                 }
@@ -2004,12 +2355,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposDiseñoAcabado1);
                     CargarTiposDiseñoAcabado(cboTiposDiseñoAcabado1);
                     CargarTiposDiseñoAcabado(cboTiposDiseñoAcabado2);
-
                     CargarListadoDiseñoAcabado1();
-
                     cboTiposDiseñoAcabado1.SelectedValue = datalistadoDiseñoAcabado1.SelectedCells[1].Value.ToString();
                     cboDescripcionDiseñoAcabado1.SelectedValue = datalistadoDiseñoAcabado1.SelectedCells[2].Value.ToString();
-
                     cboTiposDiseñoAcabado2.SelectedValue = datalistadoDiseñoAcabado1.SelectedCells[3].Value.ToString();
                     cboDescripcionDiseñoAcabado2.SelectedValue = datalistadoDiseñoAcabado1.SelectedCells[4].Value.ToString();
                 }
@@ -2024,12 +2372,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposDiseñoAcabado2);
                     CargarTiposDiseñoAcabado(cboTiposDiseñoAcabado3);
                     CargarTiposDiseñoAcabado(cboTiposDiseñoAcabado4);
-
                     CargarListadoDiseñoAcabado2();
-
                     cboTiposDiseñoAcabado3.SelectedValue = datalistadoDiseñoAcabado2.SelectedCells[1].Value.ToString();
                     cboDescripcionDiseñoAcabado3.SelectedValue = datalistadoDiseñoAcabado2.SelectedCells[2].Value.ToString();
-
                     cboTiposDiseñoAcabado4.SelectedValue = datalistadoDiseñoAcabado2.SelectedCells[3].Value.ToString();
                     cboDescripcionDiseñoAcabado4.SelectedValue = datalistadoDiseñoAcabado2.SelectedCells[4].Value.ToString();
                 }
@@ -2044,12 +2389,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposNTipos1);
                     CargarTiposNTipos(cboTiposNTipos1);
                     CargarTiposNTipos(cboTiposNTipos2);
-
                     CargarListadoNTipos1();
-
                     cboTiposNTipos1.SelectedValue = DatalistadoNTipos1.SelectedCells[1].Value.ToString();
                     cboDescripcionNTipos1.SelectedValue = DatalistadoNTipos1.SelectedCells[2].Value.ToString();
-
                     cboTiposNTipos2.SelectedValue = DatalistadoNTipos1.SelectedCells[3].Value.ToString();
                     cboDescripcionNTipos2.SelectedValue = DatalistadoNTipos1.SelectedCells[4].Value.ToString();
                 }
@@ -2064,12 +2406,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Add(panelCamposNTipos2);
                     CargarTiposNTipos(cboTiposNTipos3);
                     CargarTiposNTipos(cboTiposNTipos4);
-
                     CargarListadoNTipos2();
-
                     cboTiposNTipos3.SelectedValue = DatalistadoNTipos2.SelectedCells[1].Value.ToString();
                     cboDescripcionNTipos3.SelectedValue = DatalistadoNTipos2.SelectedCells[2].Value.ToString();
-
                     cboTiposNTipos4.SelectedValue = DatalistadoNTipos2.SelectedCells[3].Value.ToString();
                     cboDescripcionNTipos4.SelectedValue = DatalistadoNTipos2.SelectedCells[4].Value.ToString();
                 }
@@ -2083,9 +2422,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 {
                     flowLayoutPanel.Controls.Add(panelCamposVariosO1);
                     CargarTiposVariosO(cboTiposVariosO1);
-
                     CargarListadoVariosO1();
-
                     cboTiposVariosO1.SelectedValue = datalistadoVarios01.SelectedCells[1].Value.ToString();
                     cboDescripcionVariosO1.SelectedValue = datalistadoVarios01.SelectedCells[2].Value.ToString();
                 }
@@ -2099,9 +2436,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 {
                     flowLayoutPanel.Controls.Add(panelCamposVariosO2);
                     CargarTiposVariosO(cboTiposVariosO2);
-
                     CargarListadoVariosO2();
-
                     cboTiposVariosO2.SelectedValue = datalistadoVarios02.SelectedCells[1].Value.ToString();
                     cboDescripcionVariosO2.SelectedValue = datalistadoVarios02.SelectedCells[2].Value.ToString();
                 }
@@ -2114,9 +2449,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 if (ckGeneral.Checked == true)
                 {
                     flowLayoutPanel.Controls.Add(panelCamposGeneral);
-
                     CargarListadoGenerales();
-
                     txtDescripcionGeneral.Text = datalistadoGeneral.SelectedCells[1].Value.ToString();
                 }
                 else
@@ -2124,10 +2457,9 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     flowLayoutPanel.Controls.Remove(panelCamposGeneral);
                 }
 
-
                 txtDescripcionGeneradaProducto.Text = txtDetalleProducto.Text;
+                txtCodigoBSSEdicion.Text = txtAnotaciones.Text;
                 ckSemiProducidoEdicion.Checked = Convert.ToBoolean(datalistado.SelectedCells[47].Value);
-
                 panelCamposProducto.Visible = true;
             }
             else
@@ -2137,25 +2469,37 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //PROCESO, METODOS Y FUNCIOANES ASOCIADAS AL PLANO, CRUD DEL PLANO---------
-        //ABRIR PLANO GUARDARO O SELECCIOANDO
-        private void btnAbrirPdf_Click(object sender, EventArgs e)
+        public void VisualizarPlano(DataGridView DGV)
         {
-            if (datalistadopdf.CurrentRow != null)
+            try
             {
-                string ruta = datalistadopdf.SelectedCells[2].Value.ToString();
-                if (ruta == "")
+                if (DGV.CurrentRow != null)
                 {
-                    MessageBox.Show("Seleccione un plano para continuar.", "Abrir Plano");
+                    string ruta = DGV.SelectedCells[2].Value.ToString();
+                    if (ruta == "")
+                    {
+                        MessageBox.Show("Seleccione un plano para continuar.", "Abrir Plano");
+                    }
+                    else
+                    {
+                        Process.Start(ruta);
+                    }
                 }
                 else
                 {
-                    Process.Start(ruta);
+                    MessageBox.Show("Por favor, seleccione un plano para poder abrirlo.", "Abrir Plano");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione un plano para poder abrirlo.", "Abrir Plano");
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        //ABRIR PLANO GUARDARO O SELECCIOANDO
+        private void btnAbrirPdf_Click(object sender, EventArgs e)
+        {
+            VisualizarPlano(datalistadopdf);
         }
 
         //AGREGAR UN PLANO NUEVO
@@ -2172,8 +2516,8 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 {
                     txtFile.Text = openFileDialog1.FileName;
                     GeneracionReferenciaPlano();
-
                     btnAgregarPlano.Visible = false;
+                    lblCargarPlano.Visible = false;
                     btnConfirmarPlano.Visible = true;
                     btnCancelarPlano.Visible = true;
                 }
@@ -2184,14 +2528,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             }
         }
 
-        //GAURDAR EL LANO NUEVO EN LA BASE DE DATOS ASOCIADO AL PRODUCTO
-        private void btnConfirmarPlano_Click(object sender, EventArgs e)
+        //METODO QUE GUARDA EL PLANO EN LA BASE DE DATOS RELACIONADO AL PRODUCTO    
+        public void AgregarPlano(string codigoproducto, string detalleproducto, string codigoreferencialplano, string file, string codigoplano, DataGridView DGV,
+            Button btn1, Button btn2, Button btn3, Button btn4)
         {
             try
             {
-                string NombreGenerado = lblCodigoProducto.Text + " - " + txtDetalleProducto.Text + " - " + lblCodigoReferenciaPlano.Text;
+                string NombreGenerado = codigoproducto + " - " + detalleproducto + " - " + codigoreferencialplano;
 
-                string RutaOld = txtFile.Text;
+                string RutaOld = file;
 
                 string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Procesos\Productos\Planos\" + NombreGenerado + ".pdf";
 
@@ -2201,18 +2546,18 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("InsertarPlanoDiferente", con);
+                cmd = new SqlCommand("ListadoProductos_InsertarPlanoDiferente", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@doc", SqlDbType.VarBinary).Value = System.Data.SqlTypes.SqlBinary.Null;
-                cmd.Parameters.AddWithValue("@namereferences", lblCodigoReferenciaPlano.Text);
+                cmd.Parameters.AddWithValue("@namereferences", codigoreferencialplano);
                 cmd.Parameters.AddWithValue("@name", RutaNew);
                 cmd.Parameters.AddWithValue("@realname", NombreGenerado + ".pdf");
 
                 cmd.Parameters.AddWithValue("@idart", Convert.ToInt32(idart));
                 codigoPlano();
-                lblCodigoPlano.Text = datalistadoPlano.SelectedCells[0].Value.ToString();
-                cmd.Parameters.AddWithValue("@idplano", Convert.ToInt32(lblCodigoPlano.Text) + 1);
+                codigoplano = DGV.SelectedCells[0].Value.ToString();
+                cmd.Parameters.AddWithValue("@idplano", Convert.ToInt32(codigoplano) + 1);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -2220,18 +2565,27 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 MostrarSegunId(idart);
 
                 MessageBox.Show("Registro ingresado exitosamente.", "Nuevo plano", MessageBoxButtons.OK);
+                file = "";
+
+                btn1.Visible = false;
+                btn2.Visible = false;
+
+                btn3.Visible = true;
+                lblCargarPlano.Visible = true;
                 txtFile.Text = "";
-
-                btnConfirmarPlano.Visible = false;
-                btnCancelarPlano.Visible = false;
-
-                btnAgregarPlano.Visible = true;
-                btnAbrirPdf.Visible = true;
+                btn4.Visible = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        //GAURDAR EL LANO NUEVO EN LA BASE DE DATOS ASOCIADO AL PRODUCTO
+        private void btnConfirmarPlano_Click(object sender, EventArgs e)
+        {
+            AgregarPlano(lblCodigoProducto.Text, txtDetalleProducto.Text, lblCodigoReferenciaPlano.Text, txtFile.Text, lblCodigoPlano.Text, datalistadoPlano
+            , btnConfirmarPlano, btnCancelarPlano, btnAgregarPlano, btnAbrirPdf);
         }
 
         //CANCELAR LA ACCIÓN DE AGREGAR UN NUEVO PLANO
@@ -2242,108 +2596,84 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
             btnCancelarPlano.Visible = false;
             btnConfirmarPlano.Visible = false;
-
+            txtFile.Text = "";
             btnAgregarPlano.Visible = true;
+            lblCargarPlano.Visible = true;
             btnAbrirPdf.Visible = true;
             btnEliminarPlano.Visible = true;
         }
 
         //MÉTODO PARA ELIMINAR EL PLANO SELECIOANDO DE UN PRODUCTO
-        private void btnEliminarPlano_Click(object sender, EventArgs e)
+        public void EliminarPlano(DataGridView DGV)
         {
-            string rutaplano = "";
-            int codigoplano = 0;
-
-            if (datalistadopdf.CurrentRow != null)
+            try
             {
-                rutaplano = datalistadopdf.Rows[datalistadopdf.CurrentRow.Index].Cells[3].Value.ToString();
-                codigoplano = int.Parse(datalistadopdf.Rows[datalistadopdf.CurrentRow.Index].Cells[0].Value.ToString());
+                string rutaplano = "";
+                int codigoplano = 0;
 
-                if (codigoplano != 0)
+                if (DGV.CurrentRow != null)
                 {
-                    DialogResult boton = MessageBox.Show("Realmente desea eliminar.", "Eliminar Plano", MessageBoxButtons.OKCancel);
-                    if (boton == DialogResult.OK)
+                    rutaplano = DGV.Rows[DGV.CurrentRow.Index].Cells[2].Value.ToString();
+                    codigoplano = int.Parse(DGV.Rows[DGV.CurrentRow.Index].Cells[0].Value.ToString());
+
+                    if (codigoplano != 0)
                     {
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EliminarPlano", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idplano", codigoplano);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                        DialogResult boton = MessageBox.Show("Realmente desea eliminar.", "Eliminar Plano", MessageBoxButtons.OKCancel);
+                        if (boton == DialogResult.OK)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("ListadoProductos_EliminarPlano", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idplano", codigoplano);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
 
-                        File.Move(rutaplano, @"C:\Planos\Planos Eliminados\PlanoEliminado - " + codigoplano + ".pdf");
+                            //VERIFICAR SI EXISTE LA CARPETA
+                            string carpetaDestino = @"C:\Planos\Planos Eliminados";
+                            // Verifica si la carpeta existe, si no, la crea
+                            if (!Directory.Exists(carpetaDestino))
+                            {
+                                Directory.CreateDirectory(carpetaDestino);
+                            }
+                            File.Move(rutaplano, @"C:\Planos\Planos Eliminados\PlanoEliminado - " + codigoplano + ".pdf");
 
-                        MostrarSegunId(idart);
-                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Nueva", MessageBoxButtons.OK);
+                            MostrarSegunId(idart);
+                            MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Nueva", MessageBoxButtons.OK);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar.", "Eliminación de un plano", MessageBoxButtons.OKCancel);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo eliminar.", "Eliminación de un plano", MessageBoxButtons.OKCancel);
+                    MessageBox.Show("Seleccione un plano para poder eliminar.", "Eliminación de Plano", MessageBoxButtons.OK);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Seleccione un plano para poder eliminar.", "Eliminación de Plano", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        //MÉTODO PARA ELIMINAR EL PLANO SELECIOANDO DE UN PRODUCTO
+        private void btnEliminarPlano_Click(object sender, EventArgs e)
+        {
+            EliminarPlano(datalistadopdf);
         }
 
         //PROCESO, METODOS Y FUNCIOANES ASOCIADAS AL PRODUCTO, CRUD DEL PRODUCTO---------
         //ELIMINAR PRODUCTO GUARDARO O SELECCIOANDO
-        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        public void EliminarProducto()
         {
             DialogResult boton = MessageBox.Show("¿Realmente desea eliminar este producto?.", "Eliminación de un Producto", MessageBoxButtons.OKCancel);
             if (boton == DialogResult.OK)
             {
-                if (idart != 0)
-                {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EliminarProducto", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idart", idart);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
-                    MostrarProductos();
-                    MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Producto", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar un producto para poder eliminarlo.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-            }
-        }
-
-        //HABILITAR LA VENTANA DE EDICION
-        private void btnEditarProductoCampos_Click(object sender, EventArgs e)
-        {
-            //SISTEMA DE VALIDACION DE CAMPOS VACIOS
-            ValidarCamposVacios();
-            if (EstadoValidacionCampoVacios == 1)
-            {
-                return;
-            }
-
-            //SISTEMA DE VALIDACIÓN DE PRODUICTOS EXISTENTES
-            ValidacionCampos();
-            //SI EXSISTEN CAMPOS IGUALES
-            if (EstadoCaracteristicas1 == true && EstadoCaracteristicas2 == true && EstadoMedidas1 == true && EstadoMedidas2 == true &&
-                EstadoDiametros1 == true && EstadoDiametros2 == true && EstadoFormas1 == true && EstadoFormas2 == true &&
-                EstadoEspesores1 == true && EstadoEspesores2 == true && EstadoDiseñoAcabados1 == true && EstadoDiseñoAcabados2 == true &&
-                EstadoNTipos1 == true && EstadoNTipos2 == true && EstadoVarios01 == true && EstadoVarios02 == true && EstadoGeneral == true)
-            {
-                MessageBox.Show("El producto que intenta ingresar ya existe, por favor revisar los datos seleccionados.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            else
-            {
-                DialogResult boton = MessageBox.Show("¿Realmente desea editar este producto?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
+                try
                 {
                     if (idart != 0)
                     {
@@ -2351,29 +2681,83 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("EditarProductoPrincipal", con);
+                        cmd = new SqlCommand("ListadoProductos_EliminarProducto", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idArt", idart);
-                        cmd.Parameters.AddWithValue("@estadoSemiProducido", ckSemiProducidoEdicion.Checked);
+                        cmd.Parameters.AddWithValue("@idart", idart);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
                         MostrarProductos();
-                        MessageBox.Show("Edición correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                        panelCamposProducto.Visible = false;
+                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Producto", MessageBoxButtons.OK);
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar un producto para poder editarlo.", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("Debe seleccionar un producto para poder eliminarlo.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            
+        }
 
+        //ELIMINAR PRODUCTO GUARDARO O SELECCIOANDO
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            EliminarProducto();
+        }
 
-                
+        //HABILITAR LA VENTANA DE EDICION
+        public void EditarProducto(CheckBox ck, Panel pa, DataGridView DGV)
+        {
+            if(txtCodigoBSSEdicion.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un código BSS para poder editar el producto.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                try
+                {
+                    DialogResult boton = MessageBox.Show("¿Realmente desea editar este producto?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
+                    {
+                        if (idart != 0)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand();
+                            cmd = new SqlCommand("ListadoProductos_Editar", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idArt", idart);
+                            cmd.Parameters.AddWithValue("@estadoSemiProducido", ck.Checked);
+                            cmd.Parameters.AddWithValue("@dcodigBSS", txtCodigoBSSEdicion.Text);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
 
-            datalistado.Enabled = true;
+                            MostrarProductos();
+                            MessageBox.Show("Edición correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                            pa.Visible = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe seleccionar un producto para poder editarlo.", "Validación del Sistema", MessageBoxButtons.OK);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            DGV.Enabled = true;
+        }
+
+        //HABILITAR LA VENTANA DE EDICION
+        private void btnEditarProductoCampos_Click(object sender, EventArgs e)
+        {
+            EditarProducto(ckSemiProducidoEdicion, panelCamposProducto, datalistado);
         }
 
         //SALIR DE LOS DETALLES Y CARACTERISTICAS DE MI PRODUCTO
@@ -2408,267 +2792,145 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //BÚSQUEDA DE PRODUCTOS SEGÚN EL MODELO SELECCIONADO
         private void cboFiltroModeloProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarProductoPorModelo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idmodelo", cboFiltroModeloProducto.SelectedValue.ToString());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
-            datalistado.Columns[0].Visible = false;
-            datalistado.Columns[1].Width = 100;
-            datalistado.Columns[2].Width = 100;
-            datalistado.Columns[3].Width = 915;
-            datalistado.Columns[4].Visible = false;
-            datalistado.Columns[5].Width = 90;
-            datalistado.Columns[6].Visible = false;
-            datalistado.Columns[7].Width = 135;
-            datalistado.Columns[8].Visible = false;
-            datalistado.Columns[9].Visible = false;
-            datalistado.Columns[10].Visible = false;
-            datalistado.Columns[11].Visible = false;
-            datalistado.Columns[12].Visible = false;
-            datalistado.Columns[13].Width = 30;
-            datalistado.Columns[14].Visible = false;
-            datalistado.Columns[15].Visible = false;
-            datalistado.Columns[16].Visible = false;
-            datalistado.Columns[17].Visible = false;
-            datalistado.Columns[18].Visible = false;
-            datalistado.Columns[19].Visible = false;
-            datalistado.Columns[20].Visible = false;
-            datalistado.Columns[21].Visible = false;
-            datalistado.Columns[22].Visible = false;
-            datalistado.Columns[23].Visible = false;
-            datalistado.Columns[24].Visible = false;
-            datalistado.Columns[25].Visible = false;
-            datalistado.Columns[26].Visible = false;
-            datalistado.Columns[27].Visible = false;
-            datalistado.Columns[28].Visible = false;
-            datalistado.Columns[29].Visible = false;
-            datalistado.Columns[30].Visible = false;
-            datalistado.Columns[31].Visible = false;
-            datalistado.Columns[32].Visible = false;
-            datalistado.Columns[33].Visible = false;
-            datalistado.Columns[34].Visible = false;
-            datalistado.Columns[35].Visible = false;
-            datalistado.Columns[36].Visible = false;
-            datalistado.Columns[37].Visible = false;
-            datalistado.Columns[38].Visible = false;
-            datalistado.Columns[39].Visible = false;
-            datalistado.Columns[40].Visible = false;
-            datalistado.Columns[41].Visible = false;
-            datalistado.Columns[42].Visible = false;
-            datalistado.Columns[43].Visible = false;
-            datalistado.Columns[44].Visible = false;
-            datalistado.Columns[45].Visible = false;
-            datalistado.Columns[46].Visible = false;
-            datalistado.Columns[47].Visible = false;
-            datalistado.Columns[48].Visible = false;
-            datalistado.Columns[49].Visible = false;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("ListadoProductos_BuscarPorModelo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idmodelo", cboFiltroModeloProducto.SelectedValue.ToString());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                ReirdenarListadoProductos(datalistado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
+        //METODO QUE FILTRA LOS PRODUCTOS SEGÚN EL TIPO DE BÚSQUEDA SELECCIONADA
+        private void FiltrarProductos(ComboBox cbo, string busqueda)
+        {
+            try
+            {
+                if (cbo.Text == "CÓDIGO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListadoProductos_BuscarPorCodcom", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codcom", busqueda);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                }
+                else if (cbo.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListadoProductos_BuscarPorDescripcion", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", busqueda);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                }
+                else
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListadoProductos_BuscarPorCodigoBss", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", busqueda);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistado.DataSource = dt;
+                    con.Close();
+                }
+                ReirdenarListadoProductos(datalistado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //REORDENAR MIS LSITADO DE PRODUCTOS
+        public void ReirdenarListadoProductos(DataGridView DGV)
+        {
+            DGV.Columns[0].Visible = false;
+            DGV.Columns[1].Width = 100;
+            DGV.Columns[2].Width = 100;
+            DGV.Columns[3].Width = 915;
+            DGV.Columns[4].Visible = false;
+            DGV.Columns[5].Width = 90;
+            DGV.Columns[6].Visible = false;
+            DGV.Columns[7].Width = 135;
+            DGV.Columns[8].Visible = false;
+            DGV.Columns[9].Visible = false;
+            DGV.Columns[10].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[12].Visible = false;
+            DGV.Columns[13].Width = 30;
+            DGV.Columns[14].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
+            DGV.Columns[17].Visible = false;
+            DGV.Columns[18].Visible = false;
+            DGV.Columns[19].Visible = false;
+            DGV.Columns[20].Visible = false;
+            DGV.Columns[21].Visible = false;
+            DGV.Columns[22].Visible = false;
+            DGV.Columns[23].Visible = false;
+            DGV.Columns[24].Visible = false;
+            DGV.Columns[25].Visible = false;
+            DGV.Columns[26].Visible = false;
+            DGV.Columns[27].Visible = false;
+            DGV.Columns[28].Visible = false;
+            DGV.Columns[29].Visible = false;
+            DGV.Columns[30].Visible = false;
+            DGV.Columns[31].Visible = false;
+            DGV.Columns[32].Visible = false;
+            DGV.Columns[33].Visible = false;
+            DGV.Columns[34].Visible = false;
+            DGV.Columns[35].Visible = false;
+            DGV.Columns[36].Visible = false;
+            DGV.Columns[37].Visible = false;
+            DGV.Columns[38].Visible = false;
+            DGV.Columns[39].Visible = false;
+            DGV.Columns[40].Visible = false;
+            DGV.Columns[41].Visible = false;
+            DGV.Columns[42].Visible = false;
+            DGV.Columns[43].Visible = false;
+            DGV.Columns[44].Visible = false;
+            DGV.Columns[45].Visible = false;
+            DGV.Columns[46].Visible = false;
+            DGV.Columns[47].Visible = false;
+            DGV.Columns[48].Visible = false;
+            DGV.Columns[49].Visible = false;
+        }
+
+        //METODO QUE FILTRA LOS PRODUCTOS SEGÚN EL TIPO DE BÚSQUEDA SELECCIONADA
         private void txtBusquedaProducto_TextChanged(object sender, EventArgs e)
         {
-            if (cboBusquedaProducto.Text == "CÓDIGO")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorCodcom", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codcom", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-                datalistado.Columns[0].Visible = false;
-                datalistado.Columns[1].Width = 100;
-                datalistado.Columns[2].Width = 100;
-                datalistado.Columns[3].Width = 915;
-                datalistado.Columns[4].Visible = false;
-                datalistado.Columns[5].Width = 90;
-                datalistado.Columns[6].Visible = false;
-                datalistado.Columns[7].Width = 135;
-                datalistado.Columns[8].Visible = false;
-                datalistado.Columns[9].Visible = false;
-                datalistado.Columns[10].Visible = false;
-                datalistado.Columns[11].Visible = false;
-                datalistado.Columns[12].Visible = false;
-                datalistado.Columns[13].Width = 30;
-                datalistado.Columns[14].Visible = false;
-                datalistado.Columns[15].Visible = false;
-                datalistado.Columns[16].Visible = false;
-                datalistado.Columns[17].Visible = false;
-                datalistado.Columns[18].Visible = false;
-                datalistado.Columns[19].Visible = false;
-                datalistado.Columns[20].Visible = false;
-                datalistado.Columns[21].Visible = false;
-                datalistado.Columns[22].Visible = false;
-                datalistado.Columns[23].Visible = false;
-                datalistado.Columns[24].Visible = false;
-                datalistado.Columns[25].Visible = false;
-                datalistado.Columns[26].Visible = false;
-                datalistado.Columns[27].Visible = false;
-                datalistado.Columns[28].Visible = false;
-                datalistado.Columns[29].Visible = false;
-                datalistado.Columns[30].Visible = false;
-                datalistado.Columns[31].Visible = false;
-                datalistado.Columns[32].Visible = false;
-                datalistado.Columns[33].Visible = false;
-                datalistado.Columns[34].Visible = false;
-                datalistado.Columns[35].Visible = false;
-                datalistado.Columns[36].Visible = false;
-                datalistado.Columns[37].Visible = false;
-                datalistado.Columns[38].Visible = false;
-                datalistado.Columns[39].Visible = false;
-                datalistado.Columns[40].Visible = false;
-                datalistado.Columns[41].Visible = false;
-                datalistado.Columns[42].Visible = false;
-                datalistado.Columns[43].Visible = false;
-                datalistado.Columns[44].Visible = false;
-                datalistado.Columns[45].Visible = false;
-                datalistado.Columns[46].Visible = false;
-                datalistado.Columns[47].Visible = false;
-                datalistado.Columns[48].Visible = false;
-                datalistado.Columns[49].Visible = false;
-            }
-            else if (cboBusquedaProducto.Text == "DESCRIPCIÓN")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorDescripcion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-                datalistado.Columns[0].Visible = false;
-                datalistado.Columns[1].Width = 100;
-                datalistado.Columns[2].Width = 100;
-                datalistado.Columns[3].Width = 915;
-                datalistado.Columns[4].Visible = false;
-                datalistado.Columns[5].Width = 90;
-                datalistado.Columns[6].Visible = false;
-                datalistado.Columns[7].Width = 135;
-                datalistado.Columns[8].Visible = false;
-                datalistado.Columns[9].Visible = false;
-                datalistado.Columns[10].Visible = false;
-                datalistado.Columns[11].Visible = false;
-                datalistado.Columns[12].Visible = false;
-                datalistado.Columns[13].Width = 30;
-                datalistado.Columns[14].Visible = false;
-                datalistado.Columns[15].Visible = false;
-                datalistado.Columns[16].Visible = false;
-                datalistado.Columns[17].Visible = false;
-                datalistado.Columns[18].Visible = false;
-                datalistado.Columns[19].Visible = false;
-                datalistado.Columns[20].Visible = false;
-                datalistado.Columns[21].Visible = false;
-                datalistado.Columns[22].Visible = false;
-                datalistado.Columns[23].Visible = false;
-                datalistado.Columns[24].Visible = false;
-                datalistado.Columns[25].Visible = false;
-                datalistado.Columns[26].Visible = false;
-                datalistado.Columns[27].Visible = false;
-                datalistado.Columns[28].Visible = false;
-                datalistado.Columns[29].Visible = false;
-                datalistado.Columns[30].Visible = false;
-                datalistado.Columns[31].Visible = false;
-                datalistado.Columns[32].Visible = false;
-                datalistado.Columns[33].Visible = false;
-                datalistado.Columns[34].Visible = false;
-                datalistado.Columns[35].Visible = false;
-                datalistado.Columns[36].Visible = false;
-                datalistado.Columns[37].Visible = false;
-                datalistado.Columns[38].Visible = false;
-                datalistado.Columns[39].Visible = false;
-                datalistado.Columns[40].Visible = false;
-                datalistado.Columns[41].Visible = false;
-                datalistado.Columns[42].Visible = false;
-                datalistado.Columns[43].Visible = false;
-                datalistado.Columns[44].Visible = false;
-                datalistado.Columns[45].Visible = false;
-                datalistado.Columns[46].Visible = false;
-                datalistado.Columns[47].Visible = false;
-                datalistado.Columns[48].Visible = false;
-                datalistado.Columns[49].Visible = false;
-            }
-            else
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("BuscarProductoPorCodigoBss", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistado.DataSource = dt;
-                con.Close();
-                datalistado.Columns[0].Visible = false;
-                datalistado.Columns[1].Width = 100;
-                datalistado.Columns[2].Width = 100;
-                datalistado.Columns[3].Width = 915;
-                datalistado.Columns[4].Visible = false;
-                datalistado.Columns[5].Width = 90;
-                datalistado.Columns[6].Visible = false;
-                datalistado.Columns[7].Width = 135;
-                datalistado.Columns[8].Visible = false;
-                datalistado.Columns[9].Visible = false;
-                datalistado.Columns[10].Visible = false;
-                datalistado.Columns[11].Visible = false;
-                datalistado.Columns[12].Visible = false;
-                datalistado.Columns[13].Width = 30;
-                datalistado.Columns[14].Visible = false;
-                datalistado.Columns[15].Visible = false;
-                datalistado.Columns[16].Visible = false;
-                datalistado.Columns[17].Visible = false;
-                datalistado.Columns[18].Visible = false;
-                datalistado.Columns[19].Visible = false;
-                datalistado.Columns[20].Visible = false;
-                datalistado.Columns[21].Visible = false;
-                datalistado.Columns[22].Visible = false;
-                datalistado.Columns[23].Visible = false;
-                datalistado.Columns[24].Visible = false;
-                datalistado.Columns[25].Visible = false;
-                datalistado.Columns[26].Visible = false;
-                datalistado.Columns[27].Visible = false;
-                datalistado.Columns[28].Visible = false;
-                datalistado.Columns[29].Visible = false;
-                datalistado.Columns[30].Visible = false;
-                datalistado.Columns[31].Visible = false;
-                datalistado.Columns[32].Visible = false;
-                datalistado.Columns[33].Visible = false;
-                datalistado.Columns[34].Visible = false;
-                datalistado.Columns[35].Visible = false;
-                datalistado.Columns[36].Visible = false;
-                datalistado.Columns[37].Visible = false;
-                datalistado.Columns[38].Visible = false;
-                datalistado.Columns[39].Visible = false;
-                datalistado.Columns[40].Visible = false;
-                datalistado.Columns[41].Visible = false;
-                datalistado.Columns[42].Visible = false;
-                datalistado.Columns[43].Visible = false;
-                datalistado.Columns[44].Visible = false;
-                datalistado.Columns[45].Visible = false;
-                datalistado.Columns[46].Visible = false;
-                datalistado.Columns[47].Visible = false;
-                datalistado.Columns[48].Visible = false;
-                datalistado.Columns[49].Visible = false;
-            }
+            FiltrarProductos(cboBusquedaProducto, txtBusquedaProducto.Text);
         }
         //----------------------------------------------------------------------------------
 
@@ -3676,19 +3938,32 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //FUNCION PARA GENERAR MI QR
+        public void GenerarCodigoQR(string codigoproducto, string detalleproducto, Panel codigoqr)
+        {
+            try
+            {
+                if (lblCodigoProducto.Text != "*")
+                {
+                    panelCodigoQr.Visible = true;
+
+                    Zen.Barcode.CodeQrBarcodeDraw mGenerarQr = Zen.Barcode.BarcodeDrawFactory.CodeQr;
+                    ptQR.Image = mGenerarQr.Draw(txtDetalleProducto.Text, 250);
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un producto para poder generar el QR de este.", "Validación del Sistema");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //FUNCION PARA GENERAR MI QR
         private void btnVerQr_Click(object sender, EventArgs e)
         {
-            if (lblCodigoProducto.Text != "*")
-            {
-                panelCodigoQr.Visible = true;
-
-                Zen.Barcode.CodeQrBarcodeDraw mGenerarQr = Zen.Barcode.BarcodeDrawFactory.CodeQr;
-                ptQR.Image = mGenerarQr.Draw(txtDetalleProducto.Text, 250);
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un producto para poder generar el QR de este.", "Validación del Sistema");
-            }
+            GenerarCodigoQR(lblCodigoProducto.Text, txtDetalleProducto.Text, panelCodigoQr);
         }
 
         //BOTON PARA CERRAR MI QR GENERADO
@@ -3698,13 +3973,42 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         }
 
         //COPIAR CODIGO DE MI PRODUCTO EN PORTAPATELES
+        public void CopiarCodigoProducto(string codigoproducto, Label notificacion)
+        {
+            try
+            {
+                Clipboard.Clear();
+                Clipboard.SetText(lblCodigoProducto.Text);
+
+                lblNotificacionCopiaPortapapeles.Visible = true;
+                this.timer.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //COPIAR CODIGO DE MI PRODUCTO EN PORTAPATELES
         private void btnCopiarCodigoProducto_Click(object sender, EventArgs e)
         {
-            Clipboard.Clear();
-            Clipboard.SetText(lblCodigoProducto.Text);
+            CopiarCodigoProducto(lblCodigoProducto.Text, lblNotificacionCopiaPortapapeles);
+        }
 
-            lblNotificacionCopiaPortapapeles.Visible = true;
-            this.timer.Enabled = true;
+        //BOTON PARA VALIDAR Y ACCIONR MI IMPRESION
+        private void btnImprimirQR_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(ImprimirPagina);
+            PrintDialog printDlg = new PrintDialog
+            {
+                Document = pd
+            };
+
+            if (printDlg.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
         }
 
         //FUNCION QUE REALIZA MI TIMER AL MOMENTO DE ACABAR
@@ -3712,6 +4016,28 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         {
             lblNotificacionCopiaPortapapeles.Visible = false;
             this.timer.Enabled = false;
+        }
+
+        //FUNCION PARA MANDAR A IMPRIMIR MI QR
+        private void ImprimirPagina(object sender, PrintPageEventArgs e)
+        {
+            if (ptQR.Image != null)
+            {
+                // Dibuja la imagen en la página impresa
+                e.Graphics.DrawImage(ptQR.Image, new Point(100, 100));
+            }
+        }
+
+        //LIMPIAR MI BUSQUEDA DE PRODUCTOS
+        private void cboBusquedaProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaProducto.Text = "";
+        }
+
+        //VISUALIZAR TEST WEB
+        private void btnVisualizarWeb_Click(object sender, EventArgs e)
+        {
+            //System.Diagnostics.Process.Start("http://localhost:5026/Home/Index");
         }
     }
 }

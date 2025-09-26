@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ArenasProyect3Web/1.0.0": {
+        "runtime": {
+          "ArenasProyect3Web.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ArenasProyect3Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

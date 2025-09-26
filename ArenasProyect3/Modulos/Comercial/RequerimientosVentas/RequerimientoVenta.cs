@@ -42,6 +42,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private void RequerimientoVenta_Load(object sender, EventArgs e)
         {
             //AJUSTAR FECHAS AL INICIO DEL MES Y FINAL DEL MES
+            cboBusqeuda.SelectedIndex = 0;
             DateTime date = DateTime.Now;
             DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
             DateTime oUltimoDiaDelMes = oPrimerDiaDelMes.AddMonths(1).AddDays(-1);
@@ -2722,7 +2723,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     {
                         //PROCEDIMIENTO ALMACENADO PARA GUARDAR EL PRESUPUESTO DEL VIAJE
                         con.Open();
-                        cmd = new SqlCommand("InsertarRequerimientoVenta_DetalleRequerimiento", con);
+                        cmd = new SqlCommand("RequerimientoViaje_InsertarDetalles", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
                         cmd.Parameters.AddWithValue("@fechaRequerimeinto", Convert.ToString(row.Cells[1].Value));
@@ -2747,7 +2748,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS CLIENTES Y SUS DATOS ANEXOS
                         con.Open();
-                        cmd = new SqlCommand("InsertarRequerimientoVenta_DetalleCliente", con);
+                        cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleCliente", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
                         cmd.Parameters.AddWithValue("@idClienteDetalle", codigoDetalleCliente);
@@ -2765,7 +2766,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS VENDEODRES O COLABORADORES
                         con.Open();
-                        cmd = new SqlCommand("InsertarRequerimientoVenta_DetalleVendedores", con);
+                        cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleVendedores", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
                         cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
@@ -3445,6 +3446,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cboBusqeuda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaResponsable.Text = "";
         }
     }
 }

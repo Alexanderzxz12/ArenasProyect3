@@ -39,12 +39,12 @@ namespace ArenasProyect3.Modulos.Admin
             this.datalistadoNovedades = new System.Windows.Forms.DataGridView();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSecundario = new System.Windows.Forms.Panel();
             this.panel35 = new System.Windows.Forms.Panel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNombreDash = new System.Windows.Forms.Label();
             this.imgUsuario = new System.Windows.Forms.PictureBox();
             this.lblHoraVivo = new System.Windows.Forms.Label();
             this.datalistadoBusquedaUusario = new System.Windows.Forms.DataGridView();
@@ -138,7 +138,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.rbOscuro = new System.Windows.Forms.RadioButton();
             this.rbClaro = new System.Windows.Forms.RadioButton();
             this.label58 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCambiarEstilo = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.panel26 = new System.Windows.Forms.Panel();
@@ -175,9 +175,9 @@ namespace ArenasProyect3.Modulos.Admin
             this.label18 = new System.Windows.Forms.Label();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.label64 = new System.Windows.Forms.Label();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.btnMantenimiento = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnSIG = new System.Windows.Forms.PictureBox();
@@ -198,6 +198,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.label24 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -251,7 +252,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPaginaArenas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNovedades)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelSecundario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaUusario)).BeginInit();
@@ -282,9 +283,8 @@ namespace ArenasProyect3.Modulos.Admin
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            this.panel4.SuspendLayout();
             this.panel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMantenimiento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSIG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalidad)).BeginInit();
@@ -295,6 +295,7 @@ namespace ArenasProyect3.Modulos.Admin
             ((System.ComponentModel.ISupportInitialize)(this.btnProduccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnComercial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProcesos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
@@ -424,29 +425,29 @@ namespace ArenasProyect3.Modulos.Admin
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // panel1
+            // panelSecundario
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.panel35);
-            this.panel1.Controls.Add(this.panel31);
-            this.panel1.Controls.Add(this.pictureBox16);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.imgUsuario);
-            this.panel1.Controls.Add(this.lblHoraVivo);
-            this.panel1.Controls.Add(this.datalistadoBusquedaUusario);
-            this.panel1.Controls.Add(this.flowLayoutPanel2);
-            this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.lblFechaVivo);
-            this.panel1.Controls.Add(this.panel9);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.menuStrip3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 35);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1337, 38);
-            this.panel1.TabIndex = 7;
+            this.panelSecundario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panelSecundario.Controls.Add(this.panel35);
+            this.panelSecundario.Controls.Add(this.panel31);
+            this.panelSecundario.Controls.Add(this.pictureBox16);
+            this.panelSecundario.Controls.Add(this.panel2);
+            this.panelSecundario.Controls.Add(this.lblNombreDash);
+            this.panelSecundario.Controls.Add(this.imgUsuario);
+            this.panelSecundario.Controls.Add(this.lblHoraVivo);
+            this.panelSecundario.Controls.Add(this.datalistadoBusquedaUusario);
+            this.panelSecundario.Controls.Add(this.flowLayoutPanel2);
+            this.panelSecundario.Controls.Add(this.menuStrip1);
+            this.panelSecundario.Controls.Add(this.label25);
+            this.panelSecundario.Controls.Add(this.lblFechaVivo);
+            this.panelSecundario.Controls.Add(this.panel9);
+            this.panelSecundario.Controls.Add(this.panel3);
+            this.panelSecundario.Controls.Add(this.menuStrip3);
+            this.panelSecundario.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSecundario.Location = new System.Drawing.Point(0, 35);
+            this.panelSecundario.Name = "panelSecundario";
+            this.panelSecundario.Size = new System.Drawing.Size(1337, 38);
+            this.panelSecundario.TabIndex = 7;
             // 
             // panel35
             // 
@@ -485,15 +486,15 @@ namespace ArenasProyect3.Modulos.Admin
             this.panel2.Size = new System.Drawing.Size(1, 25);
             this.panel2.TabIndex = 18;
             // 
-            // label3
+            // lblNombreDash
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 29);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "ADMINISTRADOR";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNombreDash.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreDash.Location = new System.Drawing.Point(44, 5);
+            this.lblNombreDash.Name = "lblNombreDash";
+            this.lblNombreDash.Size = new System.Drawing.Size(118, 29);
+            this.lblNombreDash.TabIndex = 9;
+            this.lblNombreDash.Text = "ADMINISTRADOR";
+            this.lblNombreDash.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // imgUsuario
             // 
@@ -510,14 +511,14 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // lblHoraVivo
             // 
-            this.lblHoraVivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraVivo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraVivo.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblHoraVivo.Location = new System.Drawing.Point(1127, 9);
+            this.lblHoraVivo.Location = new System.Drawing.Point(1127, 8);
             this.lblHoraVivo.Name = "lblHoraVivo";
             this.lblHoraVivo.Size = new System.Drawing.Size(93, 24);
             this.lblHoraVivo.TabIndex = 11;
             this.lblHoraVivo.Text = "ll";
-            this.lblHoraVivo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblHoraVivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // datalistadoBusquedaUusario
             // 
@@ -542,7 +543,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // lblusuarioActual
             // 
-            this.lblusuarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblusuarioActual.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblusuarioActual.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblusuarioActual.Location = new System.Drawing.Point(3, 0);
             this.lblusuarioActual.Name = "lblusuarioActual";
@@ -586,7 +587,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // lblFechaVivo
             // 
-            this.lblFechaVivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaVivo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaVivo.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblFechaVivo.Location = new System.Drawing.Point(803, 8);
             this.lblFechaVivo.Name = "lblFechaVivo";
@@ -687,7 +688,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelDatos.Controls.Add(this.panel10);
             this.panelDatos.Controls.Add(this.panel5);
             this.panelDatos.Controls.Add(this.panelNotificaciones);
-            this.panelDatos.Location = new System.Drawing.Point(10, 79);
+            this.panelDatos.Location = new System.Drawing.Point(6, 76);
             this.panelDatos.Name = "panelDatos";
             this.panelDatos.Size = new System.Drawing.Size(1323, 634);
             this.panelDatos.TabIndex = 2018;
@@ -729,24 +730,24 @@ namespace ArenasProyect3.Modulos.Admin
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label61.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label61.Location = new System.Drawing.Point(85, 153);
+            this.label61.Location = new System.Drawing.Point(84, 153);
             this.label61.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(184, 20);
+            this.label61.Size = new System.Drawing.Size(187, 23);
             this.label61.TabIndex = 44;
             this.label61.Text = "una mejor experiencia";
             // 
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label62.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label62.Location = new System.Drawing.Point(104, 13);
+            this.label62.Location = new System.Drawing.Point(119, 13);
             this.label62.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(146, 20);
+            this.label62.Size = new System.Drawing.Size(116, 19);
             this.label62.TabIndex = 43;
             this.label62.Text = "NO DISPONIBLE";
             // 
@@ -794,21 +795,21 @@ namespace ArenasProyect3.Modulos.Admin
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label63.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label63.Location = new System.Drawing.Point(20, 131);
+            this.label63.Location = new System.Drawing.Point(24, 131);
             this.label63.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(314, 20);
+            this.label63.Size = new System.Drawing.Size(307, 23);
             this.label63.TabIndex = 37;
             this.label63.Text = "Estamos trabajando para poder darte ";
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(116, 39);
+            this.pictureBox5.Location = new System.Drawing.Point(129, 39);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(122, 81);
+            this.pictureBox5.Size = new System.Drawing.Size(97, 78);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 36;
             this.pictureBox5.TabStop = false;
@@ -828,9 +829,9 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelNovedades.Controls.Add(this.label14);
             this.panelNovedades.Controls.Add(this.label32);
             this.panelNovedades.Controls.Add(this.panel22);
-            this.panelNovedades.Location = new System.Drawing.Point(432, 125);
+            this.panelNovedades.Location = new System.Drawing.Point(467, 125);
             this.panelNovedades.Name = "panelNovedades";
-            this.panelNovedades.Size = new System.Drawing.Size(458, 384);
+            this.panelNovedades.Size = new System.Drawing.Size(389, 384);
             this.panelNovedades.TabIndex = 2021;
             this.panelNovedades.Visible = false;
             // 
@@ -838,18 +839,18 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.label59.AutoSize = true;
             this.label59.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Font = new System.Drawing.Font("Calibri", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label59.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label59.Location = new System.Drawing.Point(12, 361);
+            this.label59.Location = new System.Drawing.Point(5, 364);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(226, 13);
+            this.label59.Size = new System.Drawing.Size(183, 13);
             this.label59.TabIndex = 1958;
             this.label59.Text = "Para más conocimiento de los cambios";
             // 
             // panel20
             // 
             this.panel20.BackColor = System.Drawing.Color.DarkRed;
-            this.panel20.Location = new System.Drawing.Point(53, 152);
+            this.panel20.Location = new System.Drawing.Point(18, 127);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(350, 1);
             this.panel20.TabIndex = 20;
@@ -857,7 +858,7 @@ namespace ArenasProyect3.Modulos.Admin
             // panel19
             // 
             this.panel19.BackColor = System.Drawing.Color.DarkRed;
-            this.panel19.Location = new System.Drawing.Point(103, 54);
+            this.panel19.Location = new System.Drawing.Point(68, 54);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(250, 1);
             this.panel19.TabIndex = 19;
@@ -865,17 +866,17 @@ namespace ArenasProyect3.Modulos.Admin
             // lblNovedadesNuevasFunciones
             // 
             this.lblNovedadesNuevasFunciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNovedadesNuevasFunciones.Location = new System.Drawing.Point(20, 191);
+            this.lblNovedadesNuevasFunciones.Location = new System.Drawing.Point(5, 156);
             this.lblNovedadesNuevasFunciones.Name = "lblNovedadesNuevasFunciones";
-            this.lblNovedadesNuevasFunciones.Size = new System.Drawing.Size(413, 165);
+            this.lblNovedadesNuevasFunciones.Size = new System.Drawing.Size(376, 205);
             this.lblNovedadesNuevasFunciones.TabIndex = 18;
             this.lblNovedadesNuevasFunciones.Text = "NN";
             this.lblNovedadesNuevasFunciones.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblFechaInstalacion
             // 
-            this.lblFechaInstalacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaInstalacion.Location = new System.Drawing.Point(198, 108);
+            this.lblFechaInstalacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaInstalacion.Location = new System.Drawing.Point(195, 96);
             this.lblFechaInstalacion.Name = "lblFechaInstalacion";
             this.lblFechaInstalacion.Size = new System.Drawing.Size(149, 15);
             this.lblFechaInstalacion.TabIndex = 17;
@@ -884,8 +885,8 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // lblVersionSistema
             // 
-            this.lblVersionSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersionSistema.Location = new System.Drawing.Point(198, 75);
+            this.lblVersionSistema.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersionSistema.Location = new System.Drawing.Point(195, 67);
             this.lblVersionSistema.Name = "lblVersionSistema";
             this.lblVersionSistema.Size = new System.Drawing.Size(149, 15);
             this.lblVersionSistema.TabIndex = 16;
@@ -895,30 +896,30 @@ namespace ArenasProyect3.Modulos.Admin
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(19, 165);
+            this.label17.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(8, 135);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(204, 16);
+            this.label17.Size = new System.Drawing.Size(160, 15);
             this.label17.TabIndex = 15;
             this.label17.Text = "Nuevas funcione o Cambios:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(20, 108);
+            this.label15.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(43, 96);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(155, 16);
+            this.label15.Size = new System.Drawing.Size(119, 15);
             this.label15.TabIndex = 14;
             this.label15.Text = "Fecha de Instalación:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(19, 75);
+            this.label14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(43, 67);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(148, 16);
+            this.label14.Size = new System.Drawing.Size(117, 15);
             this.label14.TabIndex = 13;
             this.label14.Text = "Versión del sistema:";
             // 
@@ -926,7 +927,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(134, 29);
+            this.label32.Location = new System.Drawing.Point(99, 29);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(189, 22);
             this.label32.TabIndex = 12;
@@ -940,7 +941,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel22.Location = new System.Drawing.Point(0, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(456, 20);
+            this.panel22.Size = new System.Drawing.Size(387, 20);
             this.panel22.TabIndex = 1;
             // 
             // pictureBox1
@@ -964,7 +965,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.btnCerrarPanelNovedades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarPanelNovedades.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarPanelNovedades.ForeColor = System.Drawing.Color.White;
-            this.btnCerrarPanelNovedades.Location = new System.Drawing.Point(427, 0);
+            this.btnCerrarPanelNovedades.Location = new System.Drawing.Point(358, 0);
             this.btnCerrarPanelNovedades.Name = "btnCerrarPanelNovedades";
             this.btnCerrarPanelNovedades.Size = new System.Drawing.Size(29, 20);
             this.btnCerrarPanelNovedades.TabIndex = 0;
@@ -1036,7 +1037,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelConfirmacioncontrasena.Controls.Add(this.label38);
             this.panelConfirmacioncontrasena.Controls.Add(this.label37);
             this.panelConfirmacioncontrasena.Controls.Add(this.panel13);
-            this.panelConfirmacioncontrasena.Location = new System.Drawing.Point(16, 112);
+            this.panelConfirmacioncontrasena.Location = new System.Drawing.Point(16, 121);
             this.panelConfirmacioncontrasena.Name = "panelConfirmacioncontrasena";
             this.panelConfirmacioncontrasena.Size = new System.Drawing.Size(365, 149);
             this.panelConfirmacioncontrasena.TabIndex = 12;
@@ -1160,22 +1161,22 @@ namespace ArenasProyect3.Modulos.Admin
             // txtRolusuario
             // 
             this.txtRolusuario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtRolusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRolusuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRolusuario.Location = new System.Drawing.Point(13, 320);
             this.txtRolusuario.Name = "txtRolusuario";
             this.txtRolusuario.ReadOnly = true;
-            this.txtRolusuario.Size = new System.Drawing.Size(159, 21);
+            this.txtRolusuario.Size = new System.Drawing.Size(159, 22);
             this.txtRolusuario.TabIndex = 32;
             this.txtRolusuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(221, 320);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(160, 21);
+            this.textBox6.Size = new System.Drawing.Size(160, 22);
             this.textBox6.TabIndex = 31;
             this.textBox6.Text = "NO REGISTRADO";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1183,56 +1184,56 @@ namespace ArenasProyect3.Modulos.Admin
             // txtAreaUsuario
             // 
             this.txtAreaUsuario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtAreaUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAreaUsuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAreaUsuario.Location = new System.Drawing.Point(222, 267);
             this.txtAreaUsuario.Name = "txtAreaUsuario";
             this.txtAreaUsuario.ReadOnly = true;
-            this.txtAreaUsuario.Size = new System.Drawing.Size(159, 21);
+            this.txtAreaUsuario.Size = new System.Drawing.Size(159, 22);
             this.txtAreaUsuario.TabIndex = 30;
             this.txtAreaUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCOntrasenaUsuario
             // 
             this.txtCOntrasenaUsuario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtCOntrasenaUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCOntrasenaUsuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCOntrasenaUsuario.Location = new System.Drawing.Point(13, 267);
             this.txtCOntrasenaUsuario.Name = "txtCOntrasenaUsuario";
             this.txtCOntrasenaUsuario.PasswordChar = '*';
             this.txtCOntrasenaUsuario.ReadOnly = true;
-            this.txtCOntrasenaUsuario.Size = new System.Drawing.Size(159, 21);
+            this.txtCOntrasenaUsuario.Size = new System.Drawing.Size(159, 22);
             this.txtCOntrasenaUsuario.TabIndex = 29;
             this.txtCOntrasenaUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCorreoUsuario
             // 
             this.txtCorreoUsuario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtCorreoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreoUsuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreoUsuario.Location = new System.Drawing.Point(177, 208);
             this.txtCorreoUsuario.Name = "txtCorreoUsuario";
             this.txtCorreoUsuario.ReadOnly = true;
-            this.txtCorreoUsuario.Size = new System.Drawing.Size(204, 21);
+            this.txtCorreoUsuario.Size = new System.Drawing.Size(204, 22);
             this.txtCorreoUsuario.TabIndex = 28;
             this.txtCorreoUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtApellidousuario
             // 
             this.txtApellidousuario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtApellidousuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellidousuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApellidousuario.Location = new System.Drawing.Point(177, 153);
             this.txtApellidousuario.Name = "txtApellidousuario";
             this.txtApellidousuario.ReadOnly = true;
-            this.txtApellidousuario.Size = new System.Drawing.Size(204, 21);
+            this.txtApellidousuario.Size = new System.Drawing.Size(204, 22);
             this.txtApellidousuario.TabIndex = 27;
             this.txtApellidousuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtNombreusuario
             // 
             this.txtNombreusuario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtNombreusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreusuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreusuario.Location = new System.Drawing.Point(177, 99);
             this.txtNombreusuario.Name = "txtNombreusuario";
             this.txtNombreusuario.ReadOnly = true;
-            this.txtNombreusuario.Size = new System.Drawing.Size(204, 21);
+            this.txtNombreusuario.Size = new System.Drawing.Size(204, 22);
             this.txtNombreusuario.TabIndex = 26;
             this.txtNombreusuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1400,7 +1401,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelConfiguracion.Controls.Add(this.label28);
             this.panelConfiguracion.Controls.Add(this.panel27);
             this.panelConfiguracion.Controls.Add(this.label58);
-            this.panelConfiguracion.Controls.Add(this.button1);
+            this.panelConfiguracion.Controls.Add(this.btnCambiarEstilo);
             this.panelConfiguracion.Controls.Add(this.label13);
             this.panelConfiguracion.Controls.Add(this.pictureBox9);
             this.panelConfiguracion.Controls.Add(this.panel26);
@@ -1617,20 +1618,22 @@ namespace ArenasProyect3.Modulos.Admin
             this.label58.TabIndex = 40;
             this.label58.Text = "Usuario y gráficos";
             // 
-            // button1
+            // btnCambiarEstilo
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(269, 270);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 32);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Aplicar cambios";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCambiarEstilo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCambiarEstilo.FlatAppearance.BorderSize = 0;
+            this.btnCambiarEstilo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarEstilo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCambiarEstilo.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiarEstilo.Image")));
+            this.btnCambiarEstilo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCambiarEstilo.Location = new System.Drawing.Point(269, 270);
+            this.btnCambiarEstilo.Name = "btnCambiarEstilo";
+            this.btnCambiarEstilo.Size = new System.Drawing.Size(125, 32);
+            this.btnCambiarEstilo.TabIndex = 38;
+            this.btnCambiarEstilo.Text = "Aplicar cambios";
+            this.btnCambiarEstilo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCambiarEstilo.UseVisualStyleBackColor = true;
+            this.btnCambiarEstilo.Click += new System.EventHandler(this.btnCambiarEstilo_Click);
             // 
             // label13
             // 
@@ -1965,7 +1968,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.label49.Size = new System.Drawing.Size(133, 23);
             this.label49.TabIndex = 12;
             this.label49.Text = "Ajustes del sistema";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox11
             // 
@@ -2026,40 +2029,20 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.panel18);
             this.panel10.Controls.Add(this.pictureBox17);
-            this.panel10.Controls.Add(this.panel4);
             this.panel10.Controls.Add(this.label4);
             this.panel10.Location = new System.Drawing.Point(16, 12);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1083, 251);
             this.panel10.TabIndex = 15;
             // 
-            // pictureBox17
-            // 
-            this.pictureBox17.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox17.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox17.Image")));
-            this.pictureBox17.Location = new System.Drawing.Point(278, 16);
-            this.pictureBox17.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(37, 31);
-            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox17.TabIndex = 12;
-            this.pictureBox17.TabStop = false;
-            // 
-            // panel4
-            // 
-            this.panel4.AutoScroll = true;
-            this.panel4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.panel18);
-            this.panel4.Location = new System.Drawing.Point(0, 59);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1080, 171);
-            this.panel4.TabIndex = 6;
-            // 
             // panel18
             // 
             this.panel18.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel18.Controls.Add(this.label64);
+            this.panel18.Controls.Add(this.pictureBox15);
             this.panel18.Controls.Add(this.btnMantenimiento);
             this.panel18.Controls.Add(this.label8);
             this.panel18.Controls.Add(this.btnSIG);
@@ -2080,10 +2063,31 @@ namespace ArenasProyect3.Modulos.Admin
             this.panel18.Controls.Add(this.label24);
             this.panel18.Controls.Add(this.label45);
             this.panel18.Controls.Add(this.label46);
-            this.panel18.Location = new System.Drawing.Point(3, 3);
+            this.panel18.Location = new System.Drawing.Point(0, 66);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(1058, 327);
+            this.panel18.Size = new System.Drawing.Size(1083, 171);
             this.panel18.TabIndex = 13;
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(955, 124);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(61, 15);
+            this.label64.TabIndex = 20;
+            this.label64.Text = "REPORTES";
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(932, 31);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(100, 90);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox15.TabIndex = 19;
+            this.pictureBox15.TabStop = false;
             // 
             // btnMantenimiento
             // 
@@ -2159,9 +2163,9 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.btnContabilidad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnContabilidad.Image = ((System.Drawing.Image)(resources.GetObject("btnContabilidad.Image")));
-            this.btnContabilidad.Location = new System.Drawing.Point(901, 24);
+            this.btnContabilidad.Location = new System.Drawing.Point(781, 31);
             this.btnContabilidad.Name = "btnContabilidad";
-            this.btnContabilidad.Size = new System.Drawing.Size(128, 98);
+            this.btnContabilidad.Size = new System.Drawing.Size(100, 90);
             this.btnContabilidad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnContabilidad.TabIndex = 11;
             this.btnContabilidad.TabStop = false;
@@ -2169,10 +2173,10 @@ namespace ArenasProyect3.Modulos.Admin
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(914, 125);
+            this.label19.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(787, 125);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(105, 15);
+            this.label19.Size = new System.Drawing.Size(88, 15);
             this.label19.TabIndex = 12;
             this.label19.Text = "CONTABILIDAD";
             // 
@@ -2180,10 +2184,10 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.btnLogistica.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogistica.Image = ((System.Drawing.Image)(resources.GetObject("btnLogistica.Image")));
-            this.btnLogistica.Location = new System.Drawing.Point(729, 24);
+            this.btnLogistica.Location = new System.Drawing.Point(631, 31);
             this.btnLogistica.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogistica.Name = "btnLogistica";
-            this.btnLogistica.Size = new System.Drawing.Size(128, 98);
+            this.btnLogistica.Size = new System.Drawing.Size(100, 90);
             this.btnLogistica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnLogistica.TabIndex = 0;
             this.btnLogistica.TabStop = false;
@@ -2191,11 +2195,11 @@ namespace ArenasProyect3.Modulos.Admin
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(756, 126);
+            this.label21.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(651, 125);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 15);
+            this.label21.Size = new System.Drawing.Size(63, 15);
             this.label21.TabIndex = 9;
             this.label21.Text = "LOGÍSTICA";
             // 
@@ -2226,10 +2230,10 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.btnIngieneria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIngieneria.Image = ((System.Drawing.Image)(resources.GetObject("btnIngieneria.Image")));
-            this.btnIngieneria.Location = new System.Drawing.Point(558, 24);
+            this.btnIngieneria.Location = new System.Drawing.Point(481, 31);
             this.btnIngieneria.Margin = new System.Windows.Forms.Padding(4);
             this.btnIngieneria.Name = "btnIngieneria";
-            this.btnIngieneria.Size = new System.Drawing.Size(115, 98);
+            this.btnIngieneria.Size = new System.Drawing.Size(100, 90);
             this.btnIngieneria.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnIngieneria.TabIndex = 1;
             this.btnIngieneria.TabStop = false;
@@ -2238,10 +2242,10 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.btnProduccion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnProduccion.Image = ((System.Drawing.Image)(resources.GetObject("btnProduccion.Image")));
-            this.btnProduccion.Location = new System.Drawing.Point(381, 24);
+            this.btnProduccion.Location = new System.Drawing.Point(331, 31);
             this.btnProduccion.Margin = new System.Windows.Forms.Padding(4);
             this.btnProduccion.Name = "btnProduccion";
-            this.btnProduccion.Size = new System.Drawing.Size(128, 98);
+            this.btnProduccion.Size = new System.Drawing.Size(100, 90);
             this.btnProduccion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnProduccion.TabIndex = 0;
             this.btnProduccion.TabStop = false;
@@ -2250,10 +2254,10 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.btnComercial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnComercial.Image = ((System.Drawing.Image)(resources.GetObject("btnComercial.Image")));
-            this.btnComercial.Location = new System.Drawing.Point(208, 24);
+            this.btnComercial.Location = new System.Drawing.Point(184, 31);
             this.btnComercial.Margin = new System.Windows.Forms.Padding(4);
             this.btnComercial.Name = "btnComercial";
-            this.btnComercial.Size = new System.Drawing.Size(115, 98);
+            this.btnComercial.Size = new System.Drawing.Size(100, 90);
             this.btnComercial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnComercial.TabIndex = 1;
             this.btnComercial.TabStop = false;
@@ -2261,11 +2265,11 @@ namespace ArenasProyect3.Modulos.Admin
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(575, 126);
+            this.label22.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(497, 125);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(85, 15);
+            this.label22.Size = new System.Drawing.Size(69, 15);
             this.label22.TabIndex = 7;
             this.label22.Text = "INGIENERÍA";
             // 
@@ -2273,10 +2277,10 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.btnProcesos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnProcesos.Image = ((System.Drawing.Image)(resources.GetObject("btnProcesos.Image")));
-            this.btnProcesos.Location = new System.Drawing.Point(30, 24);
+            this.btnProcesos.Location = new System.Drawing.Point(35, 31);
             this.btnProcesos.Margin = new System.Windows.Forms.Padding(4);
             this.btnProcesos.Name = "btnProcesos";
-            this.btnProcesos.Size = new System.Drawing.Size(128, 98);
+            this.btnProcesos.Size = new System.Drawing.Size(100, 90);
             this.btnProcesos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnProcesos.TabIndex = 0;
             this.btnProcesos.TabStop = false;
@@ -2284,43 +2288,55 @@ namespace ArenasProyect3.Modulos.Admin
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(397, 126);
+            this.label24.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(343, 125);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(98, 15);
+            this.label24.Size = new System.Drawing.Size(81, 15);
             this.label24.TabIndex = 6;
             this.label24.Text = "PRODUCCIÓN";
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(52, 126);
+            this.label45.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(51, 125);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(82, 15);
+            this.label45.Size = new System.Drawing.Size(64, 15);
             this.label45.TabIndex = 3;
             this.label45.Text = "PROCESOS";
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(223, 126);
+            this.label46.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(200, 125);
             this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(86, 15);
+            this.label46.Size = new System.Drawing.Size(71, 15);
             this.label46.TabIndex = 4;
             this.label46.Text = "COMERCIAL";
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox17.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox17.Image")));
+            this.pictureBox17.Location = new System.Drawing.Point(221, 17);
+            this.pictureBox17.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(37, 31);
+            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox17.TabIndex = 12;
+            this.pictureBox17.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(20, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(242, 31);
+            this.label4.Size = new System.Drawing.Size(204, 33);
             this.label4.TabIndex = 11;
             this.label4.Text = "Accesos Directos";
             // 
@@ -2352,7 +2368,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(1024, 15);
+            this.pictureBox3.Location = new System.Drawing.Point(1013, 15);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
@@ -2376,7 +2392,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.pictureBox18.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox18.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox18.Image")));
-            this.pictureBox18.Location = new System.Drawing.Point(250, 16);
+            this.pictureBox18.Location = new System.Drawing.Point(230, 15);
             this.pictureBox18.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(37, 31);
@@ -2387,40 +2403,42 @@ namespace ArenasProyect3.Modulos.Admin
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(877, 20);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 15);
+            this.label12.Size = new System.Drawing.Size(43, 14);
             this.label12.TabIndex = 17;
             this.label12.Text = "HASTA:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(668, 20);
+            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(685, 20);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 15);
+            this.label10.Size = new System.Drawing.Size(44, 14);
             this.label10.TabIndex = 16;
             this.label10.Text = "DESDE:";
             // 
             // DesdeFecha
             // 
+            this.DesdeFecha.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DesdeFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DesdeFecha.Location = new System.Drawing.Point(736, 16);
             this.DesdeFecha.Name = "DesdeFecha";
-            this.DesdeFecha.Size = new System.Drawing.Size(82, 20);
+            this.DesdeFecha.Size = new System.Drawing.Size(82, 21);
             this.DesdeFecha.TabIndex = 15;
             this.DesdeFecha.ValueChanged += new System.EventHandler(this.DesdeFecha_ValueChanged);
             // 
             // HastaFecha
             // 
+            this.HastaFecha.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HastaFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.HastaFecha.Location = new System.Drawing.Point(938, 16);
+            this.HastaFecha.Location = new System.Drawing.Point(927, 16);
             this.HastaFecha.Name = "HastaFecha";
-            this.HastaFecha.Size = new System.Drawing.Size(79, 20);
+            this.HastaFecha.Size = new System.Drawing.Size(79, 21);
             this.HastaFecha.TabIndex = 14;
             this.HastaFecha.ValueChanged += new System.EventHandler(this.HastaFecha_ValueChanged);
             // 
@@ -2453,7 +2471,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.lblGeneracionGraficos.BackColor = System.Drawing.Color.Transparent;
             this.lblGeneracionGraficos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGeneracionGraficos.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblGeneracionGraficos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGeneracionGraficos.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGeneracionGraficos.ForeColor = System.Drawing.Color.Blue;
             this.lblGeneracionGraficos.Location = new System.Drawing.Point(0, 158);
             this.lblGeneracionGraficos.Name = "lblGeneracionGraficos";
@@ -2467,7 +2485,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
@@ -2492,7 +2510,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.lblReporte4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte4.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte4.Location = new System.Drawing.Point(0, 158);
             this.lblReporte4.Name = "lblReporte4";
@@ -2505,11 +2523,11 @@ namespace ArenasProyect3.Modulos.Admin
             // label20
             // 
             this.label20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label20.Location = new System.Drawing.Point(0, 84);
+            this.label20.Location = new System.Drawing.Point(0, 103);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(301, 64);
+            this.label20.Size = new System.Drawing.Size(301, 50);
             this.label20.TabIndex = 5;
             this.label20.Text = "-----";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2517,11 +2535,11 @@ namespace ArenasProyect3.Modulos.Admin
             // lblReporteActasGeneradas
             // 
             this.lblReporteActasGeneradas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteActasGeneradas.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteActasGeneradas.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteActasGeneradas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblReporteActasGeneradas.Location = new System.Drawing.Point(0, 0);
             this.lblReporteActasGeneradas.Name = "lblReporteActasGeneradas";
-            this.lblReporteActasGeneradas.Size = new System.Drawing.Size(301, 84);
+            this.lblReporteActasGeneradas.Size = new System.Drawing.Size(301, 103);
             this.lblReporteActasGeneradas.TabIndex = 4;
             this.lblReporteActasGeneradas.Text = "NN";
             this.lblReporteActasGeneradas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2542,7 +2560,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.lblReporte5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte5.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte5.Location = new System.Drawing.Point(0, 158);
             this.lblReporte5.Name = "lblReporte5";
@@ -2555,9 +2573,9 @@ namespace ArenasProyect3.Modulos.Admin
             // label23
             // 
             this.label23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label23.Location = new System.Drawing.Point(0, 84);
+            this.label23.Location = new System.Drawing.Point(0, 103);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(301, 64);
             this.label23.TabIndex = 6;
@@ -2567,11 +2585,11 @@ namespace ArenasProyect3.Modulos.Admin
             // lblReporteRequerimeintosAtrasados
             // 
             this.lblReporteRequerimeintosAtrasados.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteRequerimeintosAtrasados.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteRequerimeintosAtrasados.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteRequerimeintosAtrasados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblReporteRequerimeintosAtrasados.Location = new System.Drawing.Point(0, 0);
             this.lblReporteRequerimeintosAtrasados.Name = "lblReporteRequerimeintosAtrasados";
-            this.lblReporteRequerimeintosAtrasados.Size = new System.Drawing.Size(301, 84);
+            this.lblReporteRequerimeintosAtrasados.Size = new System.Drawing.Size(301, 103);
             this.lblReporteRequerimeintosAtrasados.TabIndex = 5;
             this.lblReporteRequerimeintosAtrasados.Text = "NN";
             this.lblReporteRequerimeintosAtrasados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2579,10 +2597,10 @@ namespace ArenasProyect3.Modulos.Admin
             // lblTituloPrincipal
             // 
             this.lblTituloPrincipal.AutoSize = true;
-            this.lblTituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTituloPrincipal.Location = new System.Drawing.Point(26, 16);
+            this.lblTituloPrincipal.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloPrincipal.Location = new System.Drawing.Point(48, 16);
             this.lblTituloPrincipal.Name = "lblTituloPrincipal";
-            this.lblTituloPrincipal.Size = new System.Drawing.Size(206, 31);
+            this.lblTituloPrincipal.Size = new System.Drawing.Size(175, 33);
             this.lblTituloPrincipal.TabIndex = 6;
             this.lblTituloPrincipal.Text = "Datos Rápidos";
             // 
@@ -2601,7 +2619,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.lblReporte3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte3.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte3.Location = new System.Drawing.Point(0, 158);
             this.lblReporte3.Name = "lblReporte3";
@@ -2614,7 +2632,7 @@ namespace ArenasProyect3.Modulos.Admin
             // label11
             // 
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label11.Location = new System.Drawing.Point(0, 0);
             this.label11.Name = "label11";
@@ -2639,7 +2657,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.lblReporte1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte1.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte1.Location = new System.Drawing.Point(0, 158);
             this.lblReporte1.Name = "lblReporte1";
@@ -2652,9 +2670,9 @@ namespace ArenasProyect3.Modulos.Admin
             // label7
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(0, 84);
+            this.label7.Location = new System.Drawing.Point(0, 103);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(301, 64);
             this.label7.TabIndex = 5;
@@ -2664,11 +2682,11 @@ namespace ArenasProyect3.Modulos.Admin
             // lblReporteRequerimeintosPendietens
             // 
             this.lblReporteRequerimeintosPendietens.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteRequerimeintosPendietens.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteRequerimeintosPendietens.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteRequerimeintosPendietens.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblReporteRequerimeintosPendietens.Location = new System.Drawing.Point(0, 0);
             this.lblReporteRequerimeintosPendietens.Name = "lblReporteRequerimeintosPendietens";
-            this.lblReporteRequerimeintosPendietens.Size = new System.Drawing.Size(301, 84);
+            this.lblReporteRequerimeintosPendietens.Size = new System.Drawing.Size(301, 103);
             this.lblReporteRequerimeintosPendietens.TabIndex = 4;
             this.lblReporteRequerimeintosPendietens.Text = "NN";
             this.lblReporteRequerimeintosPendietens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2689,7 +2707,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.lblReporte2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblReporte2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblReporte2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporte2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporte2.ForeColor = System.Drawing.Color.Blue;
             this.lblReporte2.Location = new System.Drawing.Point(0, 158);
             this.lblReporte2.Name = "lblReporte2";
@@ -2702,9 +2720,9 @@ namespace ArenasProyect3.Modulos.Admin
             // label9
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(0, 84);
+            this.label9.Location = new System.Drawing.Point(0, 103);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(301, 64);
             this.label9.TabIndex = 6;
@@ -2714,10 +2732,10 @@ namespace ArenasProyect3.Modulos.Admin
             // lblReporteLiquidacionesPendientes
             // 
             this.lblReporteLiquidacionesPendientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReporteLiquidacionesPendientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteLiquidacionesPendientes.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReporteLiquidacionesPendientes.Location = new System.Drawing.Point(0, 0);
             this.lblReporteLiquidacionesPendientes.Name = "lblReporteLiquidacionesPendientes";
-            this.lblReporteLiquidacionesPendientes.Size = new System.Drawing.Size(301, 84);
+            this.lblReporteLiquidacionesPendientes.Size = new System.Drawing.Size(301, 103);
             this.lblReporteLiquidacionesPendientes.TabIndex = 5;
             this.lblReporteLiquidacionesPendientes.Text = "NN";
             this.lblReporteLiquidacionesPendientes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2772,7 +2790,7 @@ namespace ArenasProyect3.Modulos.Admin
             // 
             this.btnVerDetallesNotificacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerDetallesNotificacion.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnVerDetallesNotificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerDetallesNotificacion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerDetallesNotificacion.ForeColor = System.Drawing.Color.Blue;
             this.btnVerDetallesNotificacion.Location = new System.Drawing.Point(0, 102);
             this.btnVerDetallesNotificacion.Name = "btnVerDetallesNotificacion";
@@ -2785,7 +2803,7 @@ namespace ArenasProyect3.Modulos.Admin
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(136, 7);
+            this.pictureBox6.Location = new System.Drawing.Point(148, 7);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(20, 20);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -2795,7 +2813,7 @@ namespace ArenasProyect3.Modulos.Admin
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(9, 8);
+            this.pictureBox7.Location = new System.Drawing.Point(9, 5);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(20, 15);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -2807,35 +2825,35 @@ namespace ArenasProyect3.Modulos.Admin
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label47.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label47.Location = new System.Drawing.Point(11, 30);
+            this.label47.Location = new System.Drawing.Point(11, 27);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(178, 65);
             this.label47.TabIndex = 45;
-            this.label47.Text = "Le damos una cordial bienvenida \r\nal nuevo módulo del área comercial,\r\n lugar en " +
-    "donde podrá realizar todas \r\nsus tareas y actividades respectivas \r\ndel área. ¡¡" +
-    "Que lo disfrute!!";
+            this.label47.Text = "Le damos una cordial bienvenida \r\nal nuevo módulo del administrador,\r\n lugar en d" +
+    "onde podrá realizar todas \r\nsus tareas y actividades respectivas \r\ndel área. ¡¡Q" +
+    "ue lo disfrute!!";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label48.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label48.Location = new System.Drawing.Point(44, 10);
+            this.label48.Location = new System.Drawing.Point(63, 7);
             this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(90, 15);
+            this.label48.Size = new System.Drawing.Size(75, 15);
             this.label48.TabIndex = 44;
             this.label48.Text = "BIENVENIDO";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(11, 7);
+            this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(41, 7);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(158, 20);
+            this.label16.Size = new System.Drawing.Size(122, 19);
             this.label16.TabIndex = 9;
             this.label16.Text = "NOTIFICACIONES";
             // 
@@ -2930,7 +2948,7 @@ namespace ArenasProyect3.Modulos.Admin
             this.Controls.Add(this.panel34);
             this.Controls.Add(this.panel33);
             this.Controls.Add(this.panel32);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelSecundario);
             this.Controls.Add(this.panelPrincipal);
             this.Controls.Add(this.panelPrincipalAdministrador);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -2941,8 +2959,8 @@ namespace ArenasProyect3.Modulos.Admin
             this.panelPrincipal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPaginaArenas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNovedades)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelSecundario.ResumeLayout(false);
+            this.panelSecundario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaUusario)).EndInit();
@@ -2985,10 +3003,9 @@ namespace ArenasProyect3.Modulos.Admin
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            this.panel4.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMantenimiento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSIG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalidad)).EndInit();
@@ -2999,6 +3016,7 @@ namespace ArenasProyect3.Modulos.Admin
             ((System.ComponentModel.ISupportInitialize)(this.btnProduccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnComercial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProcesos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -3032,12 +3050,12 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.DataGridView datalistadoNovedades;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSecundario;
         private System.Windows.Forms.Panel panel35;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNombreDash;
         private System.Windows.Forms.PictureBox imgUsuario;
         private System.Windows.Forms.Label lblHoraVivo;
         private System.Windows.Forms.DataGridView datalistadoBusquedaUusario;
@@ -3061,7 +3079,6 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.PictureBox pictureBox19;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.PictureBox pictureBox17;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -3145,7 +3162,7 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.RadioButton rbOscuro;
         private System.Windows.Forms.RadioButton rbClaro;
         private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCambiarEstilo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Panel panel26;
@@ -3241,5 +3258,7 @@ namespace ArenasProyect3.Modulos.Admin
         private System.Windows.Forms.Button btnEstadoLicencias;
         private System.Windows.Forms.Button btnEstadoSistema;
         private System.Windows.Forms.Button btnEstadoNovedades;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.PictureBox pictureBox15;
     }
 }

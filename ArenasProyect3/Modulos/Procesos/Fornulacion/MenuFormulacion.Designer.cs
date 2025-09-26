@@ -31,11 +31,11 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuFormulacion));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDefinicionFormulacion = new System.Windows.Forms.Button();
+            this.btnCreacionFormulacion = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDefinicionFormulacion = new System.Windows.Forms.Button();
-            this.btnCreacionFormulacion = new System.Windows.Forms.Button();
             this.panelMantenimientosAPrincipales = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -58,6 +58,42 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(154, 647);
             this.panel1.TabIndex = 4;
+            // 
+            // btnDefinicionFormulacion
+            // 
+            this.btnDefinicionFormulacion.BackColor = System.Drawing.Color.Transparent;
+            this.btnDefinicionFormulacion.FlatAppearance.BorderSize = 0;
+            this.btnDefinicionFormulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDefinicionFormulacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDefinicionFormulacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDefinicionFormulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnDefinicionFormulacion.Image")));
+            this.btnDefinicionFormulacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDefinicionFormulacion.Location = new System.Drawing.Point(0, 273);
+            this.btnDefinicionFormulacion.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDefinicionFormulacion.Name = "btnDefinicionFormulacion";
+            this.btnDefinicionFormulacion.Size = new System.Drawing.Size(175, 53);
+            this.btnDefinicionFormulacion.TabIndex = 7;
+            this.btnDefinicionFormulacion.Text = "DEFINICION DE FOMRULACIONES";
+            this.btnDefinicionFormulacion.UseVisualStyleBackColor = false;
+            this.btnDefinicionFormulacion.Click += new System.EventHandler(this.btnDefinicionFormulacion_Click);
+            // 
+            // btnCreacionFormulacion
+            // 
+            this.btnCreacionFormulacion.BackColor = System.Drawing.Color.Transparent;
+            this.btnCreacionFormulacion.FlatAppearance.BorderSize = 0;
+            this.btnCreacionFormulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreacionFormulacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreacionFormulacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCreacionFormulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnCreacionFormulacion.Image")));
+            this.btnCreacionFormulacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreacionFormulacion.Location = new System.Drawing.Point(0, 334);
+            this.btnCreacionFormulacion.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreacionFormulacion.Name = "btnCreacionFormulacion";
+            this.btnCreacionFormulacion.Size = new System.Drawing.Size(175, 58);
+            this.btnCreacionFormulacion.TabIndex = 6;
+            this.btnCreacionFormulacion.Text = "FORMULACIONES";
+            this.btnCreacionFormulacion.UseVisualStyleBackColor = false;
+            this.btnCreacionFormulacion.Click += new System.EventHandler(this.btnCreacionFormulacion_Click);
             // 
             // panel4
             // 
@@ -92,42 +128,6 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.label1.TabIndex = 0;
             this.label1.Text = "Formulación";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnDefinicionFormulacion
-            // 
-            this.btnDefinicionFormulacion.BackColor = System.Drawing.Color.Transparent;
-            this.btnDefinicionFormulacion.FlatAppearance.BorderSize = 0;
-            this.btnDefinicionFormulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDefinicionFormulacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDefinicionFormulacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDefinicionFormulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnDefinicionFormulacion.Image")));
-            this.btnDefinicionFormulacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDefinicionFormulacion.Location = new System.Drawing.Point(0, 273);
-            this.btnDefinicionFormulacion.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDefinicionFormulacion.Name = "btnDefinicionFormulacion";
-            this.btnDefinicionFormulacion.Size = new System.Drawing.Size(175, 53);
-            this.btnDefinicionFormulacion.TabIndex = 7;
-            this.btnDefinicionFormulacion.Text = "DEFINICION DE FOMRULACIONES";
-            this.btnDefinicionFormulacion.UseVisualStyleBackColor = false;
-            this.btnDefinicionFormulacion.Click += new System.EventHandler(this.btnDefinicionFormulacion_Click);
-            // 
-            // btnCreacionFormulacion
-            // 
-            this.btnCreacionFormulacion.BackColor = System.Drawing.Color.Transparent;
-            this.btnCreacionFormulacion.FlatAppearance.BorderSize = 0;
-            this.btnCreacionFormulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreacionFormulacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreacionFormulacion.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCreacionFormulacion.Image = ((System.Drawing.Image)(resources.GetObject("btnCreacionFormulacion.Image")));
-            this.btnCreacionFormulacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreacionFormulacion.Location = new System.Drawing.Point(0, 334);
-            this.btnCreacionFormulacion.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCreacionFormulacion.Name = "btnCreacionFormulacion";
-            this.btnCreacionFormulacion.Size = new System.Drawing.Size(175, 58);
-            this.btnCreacionFormulacion.TabIndex = 6;
-            this.btnCreacionFormulacion.Text = "FORMULACIONES";
-            this.btnCreacionFormulacion.UseVisualStyleBackColor = false;
-            this.btnCreacionFormulacion.Click += new System.EventHandler(this.btnCreacionFormulacion_Click);
             // 
             // panelMantenimientosAPrincipales
             // 

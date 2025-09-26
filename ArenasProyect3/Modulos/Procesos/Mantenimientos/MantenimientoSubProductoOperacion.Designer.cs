@@ -30,12 +30,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoSubProductoOperacion));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -60,6 +60,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -110,6 +114,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.btnEliminar2);
             this.groupBox2.Controls.Add(this.btnGuardar2);
             this.groupBox2.Controls.Add(this.datalistadoModeloXOperacionXMaquinaria);
@@ -131,10 +137,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnEliminar2
             // 
+            this.btnEliminar2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar2.FlatAppearance.BorderSize = 0;
             this.btnEliminar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar2.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar2.Image")));
-            this.btnEliminar2.Location = new System.Drawing.Point(526, 59);
+            this.btnEliminar2.Location = new System.Drawing.Point(526, 63);
             this.btnEliminar2.Name = "btnEliminar2";
             this.btnEliminar2.Size = new System.Drawing.Size(30, 30);
             this.btnEliminar2.TabIndex = 1992;
@@ -143,10 +150,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnGuardar2
             // 
+            this.btnGuardar2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar2.FlatAppearance.BorderSize = 0;
             this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
-            this.btnGuardar2.Location = new System.Drawing.Point(526, 23);
+            this.btnGuardar2.Location = new System.Drawing.Point(527, 17);
             this.btnGuardar2.Name = "btnGuardar2";
             this.btnGuardar2.Size = new System.Drawing.Size(30, 30);
             this.btnGuardar2.TabIndex = 1991;
@@ -162,36 +170,36 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoModeloXOperacionXMaquinaria.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoModeloXOperacionXMaquinaria.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoModeloXOperacionXMaquinaria.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoModeloXOperacionXMaquinaria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoModeloXOperacionXMaquinaria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.datalistadoModeloXOperacionXMaquinaria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 7F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoModeloXOperacionXMaquinaria.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoModeloXOperacionXMaquinaria.DefaultCellStyle = dataGridViewCellStyle14;
             this.datalistadoModeloXOperacionXMaquinaria.Location = new System.Drawing.Point(7, 117);
             this.datalistadoModeloXOperacionXMaquinaria.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.datalistadoModeloXOperacionXMaquinaria.MultiSelect = false;
             this.datalistadoModeloXOperacionXMaquinaria.Name = "datalistadoModeloXOperacionXMaquinaria";
             this.datalistadoModeloXOperacionXMaquinaria.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoModeloXOperacionXMaquinaria.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoModeloXOperacionXMaquinaria.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.datalistadoModeloXOperacionXMaquinaria.RowHeadersVisible = false;
             this.datalistadoModeloXOperacionXMaquinaria.RowHeadersWidth = 100;
             this.datalistadoModeloXOperacionXMaquinaria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -218,7 +226,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboMaquinaria2.Location = new System.Drawing.Point(105, 84);
             this.cboMaquinaria2.Margin = new System.Windows.Forms.Padding(5);
             this.cboMaquinaria2.Name = "cboMaquinaria2";
-            this.cboMaquinaria2.Size = new System.Drawing.Size(413, 21);
+            this.cboMaquinaria2.Size = new System.Drawing.Size(404, 21);
             this.cboMaquinaria2.TabIndex = 11;
             // 
             // label5
@@ -270,6 +278,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnEliminar1);
             this.groupBox1.Controls.Add(this.btnGuardar1);
             this.groupBox1.Controls.Add(this.datalistadoModeloXOperacion);
@@ -289,10 +299,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnEliminar1
             // 
+            this.btnEliminar1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar1.FlatAppearance.BorderSize = 0;
             this.btnEliminar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar1.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar1.Image")));
-            this.btnEliminar1.Location = new System.Drawing.Point(526, 53);
+            this.btnEliminar1.Location = new System.Drawing.Point(528, 55);
             this.btnEliminar1.Name = "btnEliminar1";
             this.btnEliminar1.Size = new System.Drawing.Size(30, 30);
             this.btnEliminar1.TabIndex = 1990;
@@ -301,10 +312,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnGuardar1
             // 
+            this.btnGuardar1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar1.FlatAppearance.BorderSize = 0;
             this.btnGuardar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar1.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar1.Image")));
-            this.btnGuardar1.Location = new System.Drawing.Point(526, 17);
+            this.btnGuardar1.Location = new System.Drawing.Point(528, 10);
             this.btnGuardar1.Name = "btnGuardar1";
             this.btnGuardar1.Size = new System.Drawing.Size(30, 30);
             this.btnGuardar1.TabIndex = 1989;
@@ -320,40 +332,40 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoModeloXOperacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoModeloXOperacion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoModeloXOperacion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoModeloXOperacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoModeloXOperacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.datalistadoModeloXOperacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 7F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoModeloXOperacion.DefaultCellStyle = dataGridViewCellStyle5;
-            this.datalistadoModeloXOperacion.Location = new System.Drawing.Point(7, 91);
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoModeloXOperacion.DefaultCellStyle = dataGridViewCellStyle17;
+            this.datalistadoModeloXOperacion.Location = new System.Drawing.Point(7, 107);
             this.datalistadoModeloXOperacion.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.datalistadoModeloXOperacion.MultiSelect = false;
             this.datalistadoModeloXOperacion.Name = "datalistadoModeloXOperacion";
             this.datalistadoModeloXOperacion.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoModeloXOperacion.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoModeloXOperacion.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.datalistadoModeloXOperacion.RowHeadersVisible = false;
             this.datalistadoModeloXOperacion.RowHeadersWidth = 100;
             this.datalistadoModeloXOperacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoModeloXOperacion.Size = new System.Drawing.Size(565, 450);
+            this.datalistadoModeloXOperacion.Size = new System.Drawing.Size(565, 434);
             this.datalistadoModeloXOperacion.TabIndex = 1340;
             this.datalistadoModeloXOperacion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoModeloXOperacion_CellDoubleClick);
             // 
@@ -435,6 +447,50 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label1.TabIndex = 1984;
             this.label1.Text = "MANTENIMIENTO DE MODELOS POR OPERACIÓN";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(519, 40);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 13);
+            this.label10.TabIndex = 1993;
+            this.label10.Text = "AGREGAR";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(518, 87);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 13);
+            this.label11.TabIndex = 1994;
+            this.label11.Text = "ELIMINAR";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(519, 47);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 13);
+            this.label8.TabIndex = 1992;
+            this.label8.Text = "AGREGAR";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(518, 92);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 13);
+            this.label9.TabIndex = 1993;
+            this.label9.Text = "ELIMINAR";
+            // 
             // MantenimientoSubProductoOperacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,5 +547,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private System.Windows.Forms.Button btnGuardar1;
         private System.Windows.Forms.Button btnEliminar2;
         private System.Windows.Forms.Button btnGuardar2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

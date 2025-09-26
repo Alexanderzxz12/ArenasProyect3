@@ -83,21 +83,21 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.panelMovimientoFrm.Location = new System.Drawing.Point(0, 0);
             this.panelMovimientoFrm.Margin = new System.Windows.Forms.Padding(4);
             this.panelMovimientoFrm.Name = "panelMovimientoFrm";
-            this.panelMovimientoFrm.Size = new System.Drawing.Size(1154, 18);
+            this.panelMovimientoFrm.Size = new System.Drawing.Size(1181, 18);
             this.panelMovimientoFrm.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Location = new System.Drawing.Point(28, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 18);
+            this.label3.Size = new System.Drawing.Size(121, 18);
             this.label3.TabIndex = 55;
             this.label3.Text = "DEFINICION";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
             // 
@@ -118,7 +118,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.btnAtudaFormularioArena.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAtudaFormularioArena.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnAtudaFormularioArena.Image = ((System.Drawing.Image)(resources.GetObject("btnAtudaFormularioArena.Image")));
-            this.btnAtudaFormularioArena.Location = new System.Drawing.Point(1123, 0);
+            this.btnAtudaFormularioArena.Location = new System.Drawing.Point(1150, 0);
             this.btnAtudaFormularioArena.Margin = new System.Windows.Forms.Padding(4);
             this.btnAtudaFormularioArena.Name = "btnAtudaFormularioArena";
             this.btnAtudaFormularioArena.Size = new System.Drawing.Size(31, 18);
@@ -149,17 +149,18 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.btnAgregar);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(167, 35);
+            this.panel2.Location = new System.Drawing.Point(192, 43);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(797, 560);
             this.panel2.TabIndex = 1985;
             // 
             // btnDefinicionPredeterminada
             // 
+            this.btnDefinicionPredeterminada.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDefinicionPredeterminada.FlatAppearance.BorderSize = 0;
             this.btnDefinicionPredeterminada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDefinicionPredeterminada.Image = ((System.Drawing.Image)(resources.GetObject("btnDefinicionPredeterminada.Image")));
-            this.btnDefinicionPredeterminada.Location = new System.Drawing.Point(204, 232);
+            this.btnDefinicionPredeterminada.Location = new System.Drawing.Point(182, 229);
             this.btnDefinicionPredeterminada.Name = "btnDefinicionPredeterminada";
             this.btnDefinicionPredeterminada.Size = new System.Drawing.Size(38, 38);
             this.btnDefinicionPredeterminada.TabIndex = 2026;
@@ -170,12 +171,13 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(81, 238);
+            this.label7.Location = new System.Drawing.Point(70, 238);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(105, 28);
             this.label7.TabIndex = 2009;
             this.label7.Text = "DEFINICIÓN \r\nPREDETERMINADA:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label7.Visible = false;
             // 
             // groupBox1
@@ -188,7 +190,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.groupBox1.Controls.Add(this.btnGuardar2F);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(652, 84);
+            this.groupBox1.Location = new System.Drawing.Point(675, 70);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -221,6 +223,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnEditarF
             // 
+            this.btnEditarF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditarF.FlatAppearance.BorderSize = 0;
             this.btnEditarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarF.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarF.Image")));
@@ -233,6 +236,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnEditar2F
             // 
+            this.btnEditar2F.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar2F.FlatAppearance.BorderSize = 0;
             this.btnEditar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2F.Image")));
@@ -244,6 +248,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnGuardar2F
             // 
+            this.btnGuardar2F.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar2F.FlatAppearance.BorderSize = 0;
             this.btnGuardar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2F.Image")));
@@ -267,6 +272,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             // btnExportarExcelF
             // 
+            this.btnExportarExcelF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcelF.FlatAppearance.BorderSize = 0;
             this.btnExportarExcelF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcelF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcelF.Image")));
@@ -280,36 +286,36 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(44, 532);
+            this.label12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(44, 531);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(142, 14);
+            this.label12.Size = new System.Drawing.Size(127, 13);
             this.label12.TabIndex = 2022;
             this.label12.Text = "BÚSQUEDA GENERAL POR:";
             // 
             // cboBusqueda
             // 
             this.cboBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBusqueda.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBusqueda.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBusqueda.FormattingEnabled = true;
             this.cboBusqueda.Items.AddRange(new object[] {
             "CÓDIGO"});
-            this.cboBusqueda.Location = new System.Drawing.Point(194, 528);
+            this.cboBusqueda.Location = new System.Drawing.Point(179, 526);
             this.cboBusqueda.Margin = new System.Windows.Forms.Padding(4);
             this.cboBusqueda.Name = "cboBusqueda";
-            this.cboBusqueda.Size = new System.Drawing.Size(149, 23);
+            this.cboBusqueda.Size = new System.Drawing.Size(149, 21);
             this.cboBusqueda.TabIndex = 2020;
             this.cboBusqueda.SelectedIndexChanged += new System.EventHandler(this.cboBusqueda_SelectedIndexChanged);
             // 
             // txtBusqueda
             // 
             this.txtBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBusqueda.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusqueda.Location = new System.Drawing.Point(351, 528);
+            this.txtBusqueda.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusqueda.Location = new System.Drawing.Point(336, 526);
             this.txtBusqueda.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(399, 23);
+            this.txtBusqueda.Size = new System.Drawing.Size(414, 21);
             this.txtBusqueda.TabIndex = 2021;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
             // 
@@ -364,7 +370,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // cboEstado
             // 
             this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstado.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEstado.FormattingEnabled = true;
             this.cboEstado.Items.AddRange(new object[] {
             "ACTIVO",
@@ -372,18 +378,18 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.cboEstado.Location = new System.Drawing.Point(182, 200);
             this.cboEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(147, 23);
+            this.cboEstado.Size = new System.Drawing.Size(147, 22);
             this.cboEstado.TabIndex = 2016;
             // 
             // cboTipo
             // 
             this.cboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipo.FormattingEnabled = true;
             this.cboTipo.Location = new System.Drawing.Point(182, 161);
             this.cboTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipo.Name = "cboTipo";
-            this.cboTipo.Size = new System.Drawing.Size(298, 23);
+            this.cboTipo.Size = new System.Drawing.Size(298, 22);
             this.cboTipo.TabIndex = 2013;
             // 
             // label4
@@ -400,12 +406,12 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // cboLinea
             // 
             this.cboLinea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLinea.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLinea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLinea.FormattingEnabled = true;
             this.cboLinea.Location = new System.Drawing.Point(182, 120);
             this.cboLinea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboLinea.Name = "cboLinea";
-            this.cboLinea.Size = new System.Drawing.Size(339, 23);
+            this.cboLinea.Size = new System.Drawing.Size(339, 22);
             this.cboLinea.TabIndex = 2011;
             // 
             // panel6
@@ -442,11 +448,11 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigo.Location = new System.Drawing.Point(179, 82);
             this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(20, 18);
+            this.lblCodigo.Size = new System.Drawing.Size(17, 15);
             this.lblCodigo.TabIndex = 2005;
             this.lblCodigo.Text = "N";
             // 
@@ -490,7 +496,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1154, 642);
+            this.ClientSize = new System.Drawing.Size(1181, 640);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelMovimientoFrm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -539,8 +545,8 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnEditarF;
         private System.Windows.Forms.Button btnEditar2F;
-        private System.Windows.Forms.Button btnGuardar2F;
         private System.Windows.Forms.Button btnDefinicionPredeterminada;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnGuardar2F;
     }
 }

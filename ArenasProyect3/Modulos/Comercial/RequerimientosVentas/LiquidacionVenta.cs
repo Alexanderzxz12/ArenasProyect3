@@ -472,17 +472,17 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
             DGV.Columns[1].Width = 55;
             DGV.Columns[2].Width = 55;
-            DGV.Columns[3].Width = 100;
-            DGV.Columns[4].Width = 100;
-            DGV.Columns[5].Width = 100;
-            DGV.Columns[7].Width = 180;
-            DGV.Columns[8].Width = 370;
+            DGV.Columns[3].Width = 90;
+            DGV.Columns[4].Width = 90;
+            DGV.Columns[5].Width = 90;
+            DGV.Columns[7].Width = 190;
+            DGV.Columns[8].Width = 380;
             DGV.Columns[9].Width = 80;
             DGV.Columns[10].Width = 80;
             DGV.Columns[11].Width = 80;
             DGV.Columns[12].Width = 100;
             DGV.Columns[13].Width = 100;
-            DGV.Columns[14].Width = 80;
+            DGV.Columns[14].Width = 65;
 
             ColoresListado();
 
@@ -1349,7 +1349,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             datalistadoLiquidacionActas.Columns[5].Width = 340;
             datalistadoLiquidacionActas.Columns[7].Width = 100;
             datalistadoLiquidacionActas.Columns[8].Width = 100;
-            datalistadoLiquidacionActas.Columns[9].Width = 75;
+            datalistadoLiquidacionActas.Columns[9].Width = 70;
             datalistadoLiquidacionActas.Columns[10].Width = 80;
 
             ColoresListadoDetalleLiquidación();

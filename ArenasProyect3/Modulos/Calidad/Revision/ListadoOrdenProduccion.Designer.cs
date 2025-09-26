@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoOrdenProduccion));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -54,11 +55,9 @@
             this.label46 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -73,9 +72,17 @@
             this.btnGenerarOrdenProduccionPDF = new System.Windows.Forms.Button();
             this.label53 = new System.Windows.Forms.Label();
             this.panelControlCalidad = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtCantidadTotalOP = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.datalistadoHistorial = new System.Windows.Forms.DataGridView();
-            this.label38 = new System.Windows.Forms.Label();
+            this.columDesc = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblCantidadRealizada = new System.Windows.Forms.Label();
+            this.btnRegresarControl = new System.Windows.Forms.Button();
+            this.lblRegresarControl = new System.Windows.Forms.Label();
+            this.btnVisualizar = new System.Windows.Forms.Button();
+            this.lblLeyendaVisualizar = new System.Windows.Forms.Label();
             this.btnGenerarCSM = new System.Windows.Forms.Button();
             this.lblGenerarCSM = new System.Windows.Forms.Label();
             this.btnDesaprobar = new System.Windows.Forms.Button();
@@ -97,7 +104,7 @@
             this.txtCantidadInspeccionar = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtCantidadTotalPedido = new System.Windows.Forms.TextBox();
+            this.txtCantidadEntregada = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCodigoFormulacion = new System.Windows.Forms.TextBox();
             this.lblCantidadTotalInghresada = new System.Windows.Forms.Label();
@@ -109,65 +116,63 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnCerrarDetallesOPCantidades = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.lblTotalPedido = new System.Windows.Forms.Label();
+            this.btnCerrarDetallesOPCantidades = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.panelSNC = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnVisualizarImagen1 = new System.Windows.Forms.Button();
-            this.btnBorrarImagen1 = new System.Windows.Forms.Button();
-            this.btnCargarImagen1 = new System.Windows.Forms.Button();
-            this.txtImagen1 = new System.Windows.Forms.TextBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnVisualizarImagen2 = new System.Windows.Forms.Button();
-            this.btnBorrarImagen2 = new System.Windows.Forms.Button();
-            this.btnCargarImagen2 = new System.Windows.Forms.Button();
-            this.txtImagen2 = new System.Windows.Forms.TextBox();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.txtImagen3 = new System.Windows.Forms.TextBox();
-            this.btnBorrarImagen3 = new System.Windows.Forms.Button();
-            this.btnVisualizarImagen3 = new System.Windows.Forms.Button();
-            this.btnCargarImagen3 = new System.Windows.Forms.Button();
-            this.label35 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
+            this.btnCerrarSNC = new System.Windows.Forms.Button();
+            this.btnGuardarSNC = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.txtDescripcionSNC = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnLimpiar1 = new System.Windows.Forms.Button();
+            this.btnCargar1 = new System.Windows.Forms.Button();
+            this.txtImagen1 = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnLimpiar2 = new System.Windows.Forms.Button();
+            this.btnCargar2 = new System.Windows.Forms.Button();
+            this.txtImagen2 = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnLimpiar3 = new System.Windows.Forms.Button();
+            this.btnCargar3 = new System.Windows.Forms.Button();
+            this.txtImagen3 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtOrdenProduccionSNC = new System.Windows.Forms.TextBox();
             this.txtReponsableRegistro = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaHallazgo = new System.Windows.Forms.DateTimePicker();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
-            this.btnRegresarControl = new System.Windows.Forms.Button();
-            this.lblRegresarControl = new System.Windows.Forms.Label();
-            this.lblCantidadRealizada = new System.Windows.Forms.Label();
+            this.panelDetallesObservacion = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label38 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.btnCerarDetallesObservacion = new System.Windows.Forms.Label();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.txtDetallesObservacion = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoPedido)).BeginInit();
@@ -179,7 +184,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel16.SuspendLayout();
@@ -190,15 +194,23 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.panelSNC.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panelDetallesObservacion.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -222,7 +234,7 @@
             this.label6.Location = new System.Drawing.Point(29, 0);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(131, 18);
+            this.label6.Size = new System.Drawing.Size(162, 18);
             this.label6.TabIndex = 2;
             this.label6.Text = "ORDEN PRODUCCIÓN";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -446,11 +458,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pictureBox6);
-            this.groupBox2.Controls.Add(this.pictureBox5);
-            this.groupBox2.Controls.Add(this.pictureBox4);
-            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.pictureBox6);
+            this.groupBox2.Controls.Add(this.pictureBox4);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.pictureBox7);
             this.groupBox2.Controls.Add(this.label7);
@@ -464,11 +474,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Estados";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(210, 21);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(74, 28);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Culminada /\r\nSNC:";
+            // 
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox6.Location = new System.Drawing.Point(269, 53);
+            this.pictureBox6.Location = new System.Drawing.Point(284, 22);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(72, 23);
@@ -476,23 +497,11 @@
             this.pictureBox6.TabIndex = 31;
             this.pictureBox6.TabStop = false;
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Fuchsia;
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox5.Location = new System.Drawing.Point(269, 22);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(72, 23);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 30;
-            this.pictureBox5.TabStop = false;
-            // 
             // pictureBox4
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.pictureBox4.BackColor = System.Drawing.Color.Blue;
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox4.Location = new System.Drawing.Point(95, 53);
+            this.pictureBox4.Location = new System.Drawing.Point(114, 57);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(72, 23);
@@ -500,44 +509,22 @@
             this.pictureBox4.TabIndex = 29;
             this.pictureBox4.TabStop = false;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(190, 61);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 14);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Culminado";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(190, 30);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 14);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "Fuera fecha:";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(19, 61);
+            this.label8.Location = new System.Drawing.Point(8, 64);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 14);
+            this.label8.Size = new System.Drawing.Size(98, 14);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Límite:";
+            this.label8.Text = "Revisión parcial:";
             // 
             // pictureBox7
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Black;
             this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox7.Location = new System.Drawing.Point(95, 22);
+            this.pictureBox7.Location = new System.Drawing.Point(114, 22);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(72, 23);
@@ -549,12 +536,12 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(19, 30);
+            this.label7.Location = new System.Drawing.Point(8, 28);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 14);
+            this.label7.Size = new System.Drawing.Size(66, 14);
             this.label7.TabIndex = 9;
-            this.label7.Text = "Pendiente";
+            this.label7.Text = "Pendiente:";
             // 
             // panel16
             // 
@@ -591,26 +578,26 @@
             this.datalistadoTodasOP.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasOP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasOP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
             this.datalistadoTodasOP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasOP.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.detalles});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasOP.DefaultCellStyle = dataGridViewCellStyle3;
-            this.datalistadoTodasOP.Location = new System.Drawing.Point(5, 190);
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle45.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle45.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle45.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasOP.DefaultCellStyle = dataGridViewCellStyle45;
+            this.datalistadoTodasOP.Location = new System.Drawing.Point(4, 190);
             this.datalistadoTodasOP.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoTodasOP.MultiSelect = false;
             this.datalistadoTodasOP.Name = "datalistadoTodasOP";
@@ -621,14 +608,15 @@
             this.datalistadoTodasOP.Size = new System.Drawing.Size(1167, 390);
             this.datalistadoTodasOP.TabIndex = 215;
             this.datalistadoTodasOP.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoTodasOP_CellClick);
+            this.datalistadoTodasOP.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoTodasOP_CellDoubleClick);
             this.datalistadoTodasOP.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoTodasOP_CellMouseMove);
             // 
             // detalles
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
-            this.detalles.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle44.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle44.NullValue")));
+            dataGridViewCellStyle44.Padding = new System.Windows.Forms.Padding(2);
+            this.detalles.DefaultCellStyle = dataGridViewCellStyle44;
             this.detalles.HeaderText = "SEL.";
             this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
             this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -636,7 +624,7 @@
             this.detalles.Name = "detalles";
             this.detalles.ReadOnly = true;
             this.detalles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.detalles.Width = 30;
+            this.detalles.Width = 27;
             // 
             // btnOC
             // 
@@ -655,7 +643,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(555, 625);
+            this.label2.Location = new System.Drawing.Point(554, 625);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
@@ -679,7 +667,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(484, 625);
+            this.label1.Location = new System.Drawing.Point(482, 625);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
@@ -713,12 +701,18 @@
             // panelControlCalidad
             // 
             this.panelControlCalidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelControlCalidad.Controls.Add(this.panelSNC);
+            this.panelControlCalidad.Controls.Add(this.panelDetallesObservacion);
+            this.panelControlCalidad.Controls.Add(this.label27);
+            this.panelControlCalidad.Controls.Add(this.txtCantidadTotalOP);
+            this.panelControlCalidad.Controls.Add(this.label24);
+            this.panelControlCalidad.Controls.Add(this.label10);
             this.panelControlCalidad.Controls.Add(this.datalistadoHistorial);
             this.panelControlCalidad.Controls.Add(this.lblCantidadRealizada);
             this.panelControlCalidad.Controls.Add(this.btnRegresarControl);
             this.panelControlCalidad.Controls.Add(this.lblRegresarControl);
-            this.panelControlCalidad.Controls.Add(this.button3);
-            this.panelControlCalidad.Controls.Add(this.label38);
+            this.panelControlCalidad.Controls.Add(this.btnVisualizar);
+            this.panelControlCalidad.Controls.Add(this.lblLeyendaVisualizar);
             this.panelControlCalidad.Controls.Add(this.btnGenerarCSM);
             this.panelControlCalidad.Controls.Add(this.lblGenerarCSM);
             this.panelControlCalidad.Controls.Add(this.btnDesaprobar);
@@ -740,7 +734,7 @@
             this.panelControlCalidad.Controls.Add(this.txtCantidadInspeccionar);
             this.panelControlCalidad.Controls.Add(this.label14);
             this.panelControlCalidad.Controls.Add(this.label13);
-            this.panelControlCalidad.Controls.Add(this.txtCantidadTotalPedido);
+            this.panelControlCalidad.Controls.Add(this.txtCantidadEntregada);
             this.panelControlCalidad.Controls.Add(this.label12);
             this.panelControlCalidad.Controls.Add(this.txtCodigoFormulacion);
             this.panelControlCalidad.Controls.Add(this.lblCantidadTotalInghresada);
@@ -752,24 +746,59 @@
             this.panelControlCalidad.Controls.Add(this.panel2);
             this.panelControlCalidad.Controls.Add(this.label15);
             this.panelControlCalidad.Controls.Add(this.panel3);
-            this.panelControlCalidad.Location = new System.Drawing.Point(294, 47);
+            this.panelControlCalidad.Location = new System.Drawing.Point(294, 43);
             this.panelControlCalidad.Margin = new System.Windows.Forms.Padding(4);
             this.panelControlCalidad.Name = "panelControlCalidad";
             this.panelControlCalidad.Size = new System.Drawing.Size(589, 555);
             this.panelControlCalidad.TabIndex = 2047;
             this.panelControlCalidad.Visible = false;
             // 
-            // button3
+            // label27
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(526, 250);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(31, 31);
-            this.button3.TabIndex = 2087;
-            this.button3.UseVisualStyleBackColor = true;
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(28, 129);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(92, 13);
+            this.label27.TabIndex = 2094;
+            this.label27.Text = "Cantidad de la OP:";
+            // 
+            // txtCantidadTotalOP
+            // 
+            this.txtCantidadTotalOP.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadTotalOP.Location = new System.Drawing.Point(135, 124);
+            this.txtCantidadTotalOP.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCantidadTotalOP.Name = "txtCantidadTotalOP";
+            this.txtCantidadTotalOP.ReadOnly = true;
+            this.txtCantidadTotalOP.Size = new System.Drawing.Size(95, 21);
+            this.txtCantidadTotalOP.TabIndex = 2093;
+            this.txtCantidadTotalOP.Tag = "";
+            this.txtCantidadTotalOP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(233, 284);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(23, 13);
+            this.label24.TabIndex = 2092;
+            this.label24.Text = "KG.";
+            this.label24.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(233, 316);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(23, 13);
+            this.label10.TabIndex = 2091;
+            this.label10.Text = "KG.";
+            this.label10.Visible = false;
             // 
             // datalistadoHistorial
             // 
@@ -781,23 +810,25 @@
             this.datalistadoHistorial.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoHistorial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoHistorial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle46.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
             this.datalistadoHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoHistorial.DefaultCellStyle = dataGridViewCellStyle5;
+            this.datalistadoHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columDesc});
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle48.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle48.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoHistorial.DefaultCellStyle = dataGridViewCellStyle48;
             this.datalistadoHistorial.Location = new System.Drawing.Point(39, 366);
             this.datalistadoHistorial.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoHistorial.MultiSelect = false;
@@ -809,17 +840,81 @@
             this.datalistadoHistorial.Size = new System.Drawing.Size(508, 183);
             this.datalistadoHistorial.TabIndex = 1009;
             this.datalistadoHistorial.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoHistorial_CellClick);
+            this.datalistadoHistorial.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoHistorial_CellMouseMove);
             // 
-            // label38
+            // columDesc
             // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(519, 282);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(45, 13);
-            this.label38.TabIndex = 2086;
-            this.label38.Text = "PDF SNC";
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle47.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle47.NullValue")));
+            dataGridViewCellStyle47.Padding = new System.Windows.Forms.Padding(1);
+            this.columDesc.DefaultCellStyle = dataGridViewCellStyle47;
+            this.columDesc.HeaderText = "DESC.";
+            this.columDesc.Image = ((System.Drawing.Image)(resources.GetObject("columDesc.Image")));
+            this.columDesc.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.columDesc.Name = "columDesc";
+            this.columDesc.ReadOnly = true;
+            this.columDesc.Width = 35;
+            // 
+            // lblCantidadRealizada
+            // 
+            this.lblCantidadRealizada.AutoSize = true;
+            this.lblCantidadRealizada.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidadRealizada.Location = new System.Drawing.Point(47, 366);
+            this.lblCantidadRealizada.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCantidadRealizada.Name = "lblCantidadRealizada";
+            this.lblCantidadRealizada.Size = new System.Drawing.Size(22, 13);
+            this.lblCantidadRealizada.TabIndex = 2090;
+            this.lblCantidadRealizada.Text = "***";
+            // 
+            // btnRegresarControl
+            // 
+            this.btnRegresarControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegresarControl.FlatAppearance.BorderSize = 0;
+            this.btnRegresarControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegresarControl.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarControl.Image")));
+            this.btnRegresarControl.Location = new System.Drawing.Point(467, 317);
+            this.btnRegresarControl.Name = "btnRegresarControl";
+            this.btnRegresarControl.Size = new System.Drawing.Size(31, 31);
+            this.btnRegresarControl.TabIndex = 2089;
+            this.btnRegresarControl.UseVisualStyleBackColor = true;
+            this.btnRegresarControl.Click += new System.EventHandler(this.btnRegresarControl_Click);
+            // 
+            // lblRegresarControl
+            // 
+            this.lblRegresarControl.AutoSize = true;
+            this.lblRegresarControl.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegresarControl.Location = new System.Drawing.Point(451, 351);
+            this.lblRegresarControl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRegresarControl.Name = "lblRegresarControl";
+            this.lblRegresarControl.Size = new System.Drawing.Size(65, 13);
+            this.lblRegresarControl.TabIndex = 2088;
+            this.lblRegresarControl.Text = "RETROCEDER";
+            // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVisualizar.FlatAppearance.BorderSize = 0;
+            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizar.Image")));
+            this.btnVisualizar.Location = new System.Drawing.Point(520, 251);
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Size = new System.Drawing.Size(31, 31);
+            this.btnVisualizar.TabIndex = 2087;
+            this.btnVisualizar.UseVisualStyleBackColor = true;
+            this.btnVisualizar.Visible = false;
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
+            // 
+            // lblLeyendaVisualizar
+            // 
+            this.lblLeyendaVisualizar.AutoSize = true;
+            this.lblLeyendaVisualizar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaVisualizar.Location = new System.Drawing.Point(522, 283);
+            this.lblLeyendaVisualizar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLeyendaVisualizar.Name = "lblLeyendaVisualizar";
+            this.lblLeyendaVisualizar.Size = new System.Drawing.Size(25, 13);
+            this.lblLeyendaVisualizar.TabIndex = 2086;
+            this.lblLeyendaVisualizar.Text = "PDF";
+            this.lblLeyendaVisualizar.Visible = false;
             // 
             // btnGenerarCSM
             // 
@@ -827,18 +922,19 @@
             this.btnGenerarCSM.FlatAppearance.BorderSize = 0;
             this.btnGenerarCSM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarCSM.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarCSM.Image")));
-            this.btnGenerarCSM.Location = new System.Drawing.Point(458, 250);
+            this.btnGenerarCSM.Location = new System.Drawing.Point(452, 251);
             this.btnGenerarCSM.Name = "btnGenerarCSM";
             this.btnGenerarCSM.Size = new System.Drawing.Size(31, 31);
             this.btnGenerarCSM.TabIndex = 2083;
             this.btnGenerarCSM.UseVisualStyleBackColor = true;
             this.btnGenerarCSM.Visible = false;
+            this.btnGenerarCSM.Click += new System.EventHandler(this.btnGenerarCSM_Click);
             // 
             // lblGenerarCSM
             // 
             this.lblGenerarCSM.AutoSize = true;
             this.lblGenerarCSM.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenerarCSM.Location = new System.Drawing.Point(440, 283);
+            this.lblGenerarCSM.Location = new System.Drawing.Point(434, 284);
             this.lblGenerarCSM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGenerarCSM.Name = "lblGenerarCSM";
             this.lblGenerarCSM.Size = new System.Drawing.Size(69, 13);
@@ -897,11 +993,11 @@
             // txtObservaciones
             // 
             this.txtObservaciones.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservaciones.Location = new System.Drawing.Point(295, 146);
+            this.txtObservaciones.Location = new System.Drawing.Point(273, 146);
             this.txtObservaciones.Margin = new System.Windows.Forms.Padding(4);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(278, 97);
+            this.txtObservaciones.Size = new System.Drawing.Size(293, 97);
             this.txtObservaciones.TabIndex = 2085;
             this.txtObservaciones.Tag = "";
             // 
@@ -909,7 +1005,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(310, 129);
+            this.label25.Location = new System.Drawing.Point(280, 132);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(77, 13);
@@ -930,7 +1026,7 @@
             // txtPesoReal
             // 
             this.txtPesoReal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPesoReal.Location = new System.Drawing.Point(151, 280);
+            this.txtPesoReal.Location = new System.Drawing.Point(135, 309);
             this.txtPesoReal.Margin = new System.Windows.Forms.Padding(4);
             this.txtPesoReal.Name = "txtPesoReal";
             this.txtPesoReal.Size = new System.Drawing.Size(95, 21);
@@ -942,7 +1038,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(50, 283);
+            this.label19.Location = new System.Drawing.Point(28, 316);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(54, 13);
@@ -953,7 +1049,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(50, 254);
+            this.label18.Location = new System.Drawing.Point(28, 284);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(69, 13);
@@ -963,7 +1059,7 @@
             // txtPesoTeorico
             // 
             this.txtPesoTeorico.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPesoTeorico.Location = new System.Drawing.Point(151, 251);
+            this.txtPesoTeorico.Location = new System.Drawing.Point(135, 280);
             this.txtPesoTeorico.Margin = new System.Windows.Forms.Padding(4);
             this.txtPesoTeorico.Name = "txtPesoTeorico";
             this.txtPesoTeorico.ReadOnly = true;
@@ -975,7 +1071,7 @@
             // txtCantidadRestante
             // 
             this.txtCantidadRestante.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadRestante.Location = new System.Drawing.Point(151, 191);
+            this.txtCantidadRestante.Location = new System.Drawing.Point(135, 222);
             this.txtCantidadRestante.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidadRestante.Name = "txtCantidadRestante";
             this.txtCantidadRestante.ReadOnly = true;
@@ -988,7 +1084,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(50, 194);
+            this.label17.Location = new System.Drawing.Point(28, 227);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(95, 13);
@@ -999,7 +1095,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(50, 226);
+            this.label20.Location = new System.Drawing.Point(28, 255);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(86, 13);
@@ -1010,7 +1106,7 @@
             // 
             this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(252, 223);
+            this.pictureBox10.Location = new System.Drawing.Point(236, 252);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(19, 19);
@@ -1023,7 +1119,7 @@
             this.dtpFechaRealizada.Enabled = false;
             this.dtpFechaRealizada.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFechaRealizada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaRealizada.Location = new System.Drawing.Point(151, 222);
+            this.dtpFechaRealizada.Location = new System.Drawing.Point(135, 251);
             this.dtpFechaRealizada.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaRealizada.Name = "dtpFechaRealizada";
             this.dtpFechaRealizada.Size = new System.Drawing.Size(95, 21);
@@ -1032,48 +1128,50 @@
             // txtCantidadInspeccionar
             // 
             this.txtCantidadInspeccionar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadInspeccionar.Location = new System.Drawing.Point(151, 162);
+            this.txtCantidadInspeccionar.Location = new System.Drawing.Point(135, 193);
             this.txtCantidadInspeccionar.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidadInspeccionar.Name = "txtCantidadInspeccionar";
             this.txtCantidadInspeccionar.Size = new System.Drawing.Size(95, 21);
             this.txtCantidadInspeccionar.TabIndex = 1019;
             this.txtCantidadInspeccionar.Tag = "";
+            this.txtCantidadInspeccionar.Text = "0";
             this.txtCantidadInspeccionar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCantidadInspeccionar.TextChanged += new System.EventHandler(this.txtCantidadInspeccionar_TextChanged);
             this.txtCantidadInspeccionar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadInspeccionar_KeyPress);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(50, 160);
+            this.label14.Location = new System.Drawing.Point(28, 191);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(84, 26);
+            this.label14.Size = new System.Drawing.Size(71, 26);
             this.label14.TabIndex = 1018;
-            this.label14.Text = "Cantidad total a \r\ninsoeccionar:";
+            this.label14.Text = "Cantidad a \r\ninsoeccionar:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(50, 129);
+            this.label13.Location = new System.Drawing.Point(28, 153);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(93, 26);
+            this.label13.Size = new System.Drawing.Size(101, 26);
             this.label13.TabIndex = 1017;
-            this.label13.Text = "Cantidad total del \r\npedido:";
+            this.label13.Text = "Cantidad disponible\r\na revisar:\r\n";
             // 
-            // txtCantidadTotalPedido
+            // txtCantidadEntregada
             // 
-            this.txtCantidadTotalPedido.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadTotalPedido.Location = new System.Drawing.Point(151, 133);
-            this.txtCantidadTotalPedido.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCantidadTotalPedido.Name = "txtCantidadTotalPedido";
-            this.txtCantidadTotalPedido.ReadOnly = true;
-            this.txtCantidadTotalPedido.Size = new System.Drawing.Size(95, 21);
-            this.txtCantidadTotalPedido.TabIndex = 1016;
-            this.txtCantidadTotalPedido.Tag = "";
-            this.txtCantidadTotalPedido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCantidadEntregada.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadEntregada.Location = new System.Drawing.Point(135, 157);
+            this.txtCantidadEntregada.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCantidadEntregada.Name = "txtCantidadEntregada";
+            this.txtCantidadEntregada.ReadOnly = true;
+            this.txtCantidadEntregada.Size = new System.Drawing.Size(95, 21);
+            this.txtCantidadEntregada.TabIndex = 1016;
+            this.txtCantidadEntregada.Tag = "";
+            this.txtCantidadEntregada.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
             // 
@@ -1189,8 +1287,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel3.Controls.Add(this.btnCerrarDetallesOPCantidades);
             this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.lblTotalPedido);
+            this.panel3.Controls.Add(this.btnCerrarDetallesOPCantidades);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.pictureBox8);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1199,6 +1298,29 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(587, 18);
             this.panel3.TabIndex = 40;
+            // 
+            // label16
+            // 
+            this.label16.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(22, 0);
+            this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(216, 18);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "DETALLES DE LA EVALUACIÓN";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTotalPedido
+            // 
+            this.lblTotalPedido.AutoSize = true;
+            this.lblTotalPedido.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPedido.Location = new System.Drawing.Point(127, -2);
+            this.lblTotalPedido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalPedido.Name = "lblTotalPedido";
+            this.lblTotalPedido.Size = new System.Drawing.Size(32, 13);
+            this.lblTotalPedido.TabIndex = 2049;
+            this.lblTotalPedido.Text = "*****";
             // 
             // btnCerrarDetallesOPCantidades
             // 
@@ -1213,18 +1335,6 @@
             this.btnCerrarDetallesOPCantidades.TabIndex = 1000;
             this.btnCerrarDetallesOPCantidades.Text = " X";
             this.btnCerrarDetallesOPCantidades.Click += new System.EventHandler(this.btnCerrarDetallesOPCantidades_Click);
-            // 
-            // label16
-            // 
-            this.label16.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(22, 0);
-            this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(189, 18);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "DETALLES DE LA EVALUACIÓN";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 
@@ -1250,29 +1360,90 @@
             this.pictureBox8.TabIndex = 54;
             this.pictureBox8.TabStop = false;
             // 
+            // panelSNC
+            // 
+            this.panelSNC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSNC.Controls.Add(this.panel1);
+            this.panelSNC.Controls.Add(this.label37);
+            this.panelSNC.Controls.Add(this.label36);
+            this.panelSNC.Controls.Add(this.btnCerrarSNC);
+            this.panelSNC.Controls.Add(this.btnGuardarSNC);
+            this.panelSNC.Controls.Add(this.groupBox3);
+            this.panelSNC.Controls.Add(this.panel4);
+            this.panelSNC.Controls.Add(this.label26);
+            this.panelSNC.Location = new System.Drawing.Point(9, 131);
+            this.panelSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.panelSNC.Name = "panelSNC";
+            this.panelSNC.Size = new System.Drawing.Size(568, 290);
+            this.panelSNC.TabIndex = 2048;
+            this.panelSNC.Visible = false;
+            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label37);
-            this.panel1.Controls.Add(this.label36);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.groupBox5);
-            this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.label26);
-            this.panel1.Location = new System.Drawing.Point(1144, 614);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label34);
+            this.panel1.Controls.Add(this.label40);
+            this.panel1.Controls.Add(this.pictureBox15);
+            this.panel1.Controls.Add(this.pictureBox16);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(584, 527);
-            this.panel1.TabIndex = 2048;
-            this.panel1.Visible = false;
+            this.panel1.Size = new System.Drawing.Size(566, 15);
+            this.panel1.TabIndex = 2098;
+            // 
+            // label34
+            // 
+            this.label34.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(17, 0);
+            this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(156, 15);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "SNC";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(127, -2);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(32, 13);
+            this.label40.TabIndex = 2049;
+            this.label40.Text = "*****";
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox15.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(17, 15);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox15.TabIndex = 999;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox16.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox16.Image")));
+            this.pictureBox16.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox16.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox16.TabIndex = 54;
+            this.pictureBox16.TabStop = false;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(511, 499);
+            this.label37.Location = new System.Drawing.Point(490, 262);
             this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(65, 13);
@@ -1283,526 +1454,286 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(518, 446);
+            this.label36.Location = new System.Drawing.Point(380, 262);
             this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(49, 13);
             this.label36.TabIndex = 2096;
             this.label36.Text = "GENERAR";
             // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(521, 466);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(41, 35);
-            this.button2.TabIndex = 2095;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(521, 408);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(41, 35);
-            this.button1.TabIndex = 2094;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.textBox6);
-            this.groupBox5.Controls.Add(this.checkBox7);
-            this.groupBox5.Controls.Add(this.checkBox6);
-            this.groupBox5.Controls.Add(this.checkBox5);
-            this.groupBox5.Controls.Add(this.checkBox4);
-            this.groupBox5.Controls.Add(this.checkBox3);
-            this.groupBox5.Controls.Add(this.checkBox2);
-            this.groupBox5.Controls.Add(this.checkBox1);
-            this.groupBox5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(11, 397);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Size = new System.Drawing.Size(375, 119);
-            this.groupBox5.TabIndex = 2093;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Tipo de acción";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(137, 88);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(226, 21);
-            this.textBox6.TabIndex = 2093;
-            this.textBox6.Tag = "";
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox7.Location = new System.Drawing.Point(19, 90);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(52, 17);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "Otros";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox6.Location = new System.Drawing.Point(137, 67);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(83, 17);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "Destrucción";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox5.Location = new System.Drawing.Point(137, 45);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(213, 17);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "Recuperación de componentes o partes";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.Location = new System.Drawing.Point(137, 22);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(97, 17);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Reclasificación";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.Location = new System.Drawing.Point(19, 67);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(76, 17);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Reproceso";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(19, 45);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Correción";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(19, 22);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(76, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Liberación";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.tabControl2);
-            this.groupBox4.Controls.Add(this.label35);
-            this.groupBox4.Controls.Add(this.dateTimePicker3);
-            this.groupBox4.Controls.Add(this.dateTimePicker2);
-            this.groupBox4.Controls.Add(this.label34);
-            this.groupBox4.Controls.Add(this.label33);
-            this.groupBox4.Controls.Add(this.comboBox1);
-            this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Controls.Add(this.textBox5);
-            this.groupBox4.Controls.Add(this.label27);
-            this.groupBox4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(11, 181);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(562, 212);
-            this.groupBox4.TabIndex = 2092;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Tratamiento";
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl2.Location = new System.Drawing.Point(11, 129);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(540, 72);
-            this.tabControl2.TabIndex = 2105;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.btnVisualizarImagen1);
-            this.tabPage4.Controls.Add(this.btnBorrarImagen1);
-            this.tabPage4.Controls.Add(this.btnCargarImagen1);
-            this.tabPage4.Controls.Add(this.txtImagen1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(532, 46);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "Imagen #1";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // btnVisualizarImagen1
-            // 
-            this.btnVisualizarImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVisualizarImagen1.FlatAppearance.BorderSize = 0;
-            this.btnVisualizarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisualizarImagen1.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarImagen1.Image")));
-            this.btnVisualizarImagen1.Location = new System.Drawing.Point(488, 9);
-            this.btnVisualizarImagen1.Name = "btnVisualizarImagen1";
-            this.btnVisualizarImagen1.Size = new System.Drawing.Size(32, 29);
-            this.btnVisualizarImagen1.TabIndex = 2025;
-            this.btnVisualizarImagen1.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrarImagen1
-            // 
-            this.btnBorrarImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrarImagen1.FlatAppearance.BorderSize = 0;
-            this.btnBorrarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrarImagen1.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarImagen1.Image")));
-            this.btnBorrarImagen1.Location = new System.Drawing.Point(451, 9);
-            this.btnBorrarImagen1.Name = "btnBorrarImagen1";
-            this.btnBorrarImagen1.Size = new System.Drawing.Size(32, 29);
-            this.btnBorrarImagen1.TabIndex = 2024;
-            this.btnBorrarImagen1.UseVisualStyleBackColor = true;
-            // 
-            // btnCargarImagen1
-            // 
-            this.btnCargarImagen1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarImagen1.FlatAppearance.BorderSize = 0;
-            this.btnCargarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarImagen1.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen1.Image")));
-            this.btnCargarImagen1.Location = new System.Drawing.Point(414, 9);
-            this.btnCargarImagen1.Name = "btnCargarImagen1";
-            this.btnCargarImagen1.Size = new System.Drawing.Size(32, 29);
-            this.btnCargarImagen1.TabIndex = 2023;
-            this.btnCargarImagen1.UseVisualStyleBackColor = true;
-            // 
-            // txtImagen1
-            // 
-            this.txtImagen1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImagen1.Location = new System.Drawing.Point(15, 14);
-            this.txtImagen1.Margin = new System.Windows.Forms.Padding(5);
-            this.txtImagen1.Name = "txtImagen1";
-            this.txtImagen1.ReadOnly = true;
-            this.txtImagen1.Size = new System.Drawing.Size(389, 21);
-            this.txtImagen1.TabIndex = 136;
-            this.txtImagen1.Tag = "";
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.btnVisualizarImagen2);
-            this.tabPage5.Controls.Add(this.btnBorrarImagen2);
-            this.tabPage5.Controls.Add(this.btnCargarImagen2);
-            this.tabPage5.Controls.Add(this.txtImagen2);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(532, 46);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "Imagen #2";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // btnVisualizarImagen2
-            // 
-            this.btnVisualizarImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVisualizarImagen2.FlatAppearance.BorderSize = 0;
-            this.btnVisualizarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisualizarImagen2.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarImagen2.Image")));
-            this.btnVisualizarImagen2.Location = new System.Drawing.Point(488, 9);
-            this.btnVisualizarImagen2.Name = "btnVisualizarImagen2";
-            this.btnVisualizarImagen2.Size = new System.Drawing.Size(32, 29);
-            this.btnVisualizarImagen2.TabIndex = 2028;
-            this.btnVisualizarImagen2.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrarImagen2
-            // 
-            this.btnBorrarImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrarImagen2.FlatAppearance.BorderSize = 0;
-            this.btnBorrarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrarImagen2.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarImagen2.Image")));
-            this.btnBorrarImagen2.Location = new System.Drawing.Point(451, 9);
-            this.btnBorrarImagen2.Name = "btnBorrarImagen2";
-            this.btnBorrarImagen2.Size = new System.Drawing.Size(32, 29);
-            this.btnBorrarImagen2.TabIndex = 2027;
-            this.btnBorrarImagen2.UseVisualStyleBackColor = true;
-            // 
-            // btnCargarImagen2
-            // 
-            this.btnCargarImagen2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarImagen2.FlatAppearance.BorderSize = 0;
-            this.btnCargarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarImagen2.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen2.Image")));
-            this.btnCargarImagen2.Location = new System.Drawing.Point(414, 9);
-            this.btnCargarImagen2.Name = "btnCargarImagen2";
-            this.btnCargarImagen2.Size = new System.Drawing.Size(32, 29);
-            this.btnCargarImagen2.TabIndex = 2026;
-            this.btnCargarImagen2.UseVisualStyleBackColor = true;
-            // 
-            // txtImagen2
-            // 
-            this.txtImagen2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImagen2.Location = new System.Drawing.Point(15, 14);
-            this.txtImagen2.Margin = new System.Windows.Forms.Padding(5);
-            this.txtImagen2.Name = "txtImagen2";
-            this.txtImagen2.ReadOnly = true;
-            this.txtImagen2.Size = new System.Drawing.Size(389, 21);
-            this.txtImagen2.TabIndex = 157;
-            this.txtImagen2.Tag = "";
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.txtImagen3);
-            this.tabPage6.Controls.Add(this.btnBorrarImagen3);
-            this.tabPage6.Controls.Add(this.btnVisualizarImagen3);
-            this.tabPage6.Controls.Add(this.btnCargarImagen3);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(532, 46);
-            this.tabPage6.TabIndex = 2;
-            this.tabPage6.Text = "Imagen #3";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // txtImagen3
-            // 
-            this.txtImagen3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImagen3.Location = new System.Drawing.Point(15, 14);
-            this.txtImagen3.Margin = new System.Windows.Forms.Padding(5);
-            this.txtImagen3.Name = "txtImagen3";
-            this.txtImagen3.ReadOnly = true;
-            this.txtImagen3.Size = new System.Drawing.Size(389, 21);
-            this.txtImagen3.TabIndex = 157;
-            this.txtImagen3.Tag = "";
-            // 
-            // btnBorrarImagen3
-            // 
-            this.btnBorrarImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrarImagen3.FlatAppearance.BorderSize = 0;
-            this.btnBorrarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrarImagen3.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarImagen3.Image")));
-            this.btnBorrarImagen3.Location = new System.Drawing.Point(451, 9);
-            this.btnBorrarImagen3.Name = "btnBorrarImagen3";
-            this.btnBorrarImagen3.Size = new System.Drawing.Size(32, 29);
-            this.btnBorrarImagen3.TabIndex = 2030;
-            this.btnBorrarImagen3.UseVisualStyleBackColor = true;
-            // 
-            // btnVisualizarImagen3
-            // 
-            this.btnVisualizarImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVisualizarImagen3.FlatAppearance.BorderSize = 0;
-            this.btnVisualizarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisualizarImagen3.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarImagen3.Image")));
-            this.btnVisualizarImagen3.Location = new System.Drawing.Point(488, 9);
-            this.btnVisualizarImagen3.Name = "btnVisualizarImagen3";
-            this.btnVisualizarImagen3.Size = new System.Drawing.Size(32, 29);
-            this.btnVisualizarImagen3.TabIndex = 2031;
-            this.btnVisualizarImagen3.UseVisualStyleBackColor = true;
-            // 
-            // btnCargarImagen3
-            // 
-            this.btnCargarImagen3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarImagen3.FlatAppearance.BorderSize = 0;
-            this.btnCargarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarImagen3.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarImagen3.Image")));
-            this.btnCargarImagen3.Location = new System.Drawing.Point(414, 9);
-            this.btnCargarImagen3.Name = "btnCargarImagen3";
-            this.btnCargarImagen3.Size = new System.Drawing.Size(32, 29);
-            this.btnCargarImagen3.TabIndex = 2029;
-            this.btnCargarImagen3.UseVisualStyleBackColor = true;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(17, 112);
-            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(55, 13);
-            this.label35.TabIndex = 2104;
-            this.label35.Text = "Evidencia:";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.Enabled = false;
-            this.dateTimePicker3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(477, 77);
-            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(77, 21);
-            this.dateTimePicker3.TabIndex = 2103;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Enabled = false;
-            this.dateTimePicker2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(383, 77);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(77, 21);
-            this.dateTimePicker2.TabIndex = 2101;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(464, 82);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(11, 13);
-            this.label34.TabIndex = 2100;
-            this.label34.Text = "/";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(303, 82);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(76, 13);
-            this.label33.TabIndex = 2099;
-            this.label33.Text = "Inicia/Finaliza:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(120, 77);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(162, 21);
-            this.comboBox1.TabIndex = 2098;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(18, 82);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(79, 13);
-            this.label28.TabIndex = 2097;
-            this.label28.Text = "Autorizado por:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(120, 23);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(434, 49);
-            this.textBox5.TabIndex = 2096;
-            this.textBox5.Tag = "";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(16, 26);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(96, 13);
-            this.label27.TabIndex = 2095;
-            this.label27.Text = "Acciones tomadas:";
+            // btnCerrarSNC
+            // 
+            this.btnCerrarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarSNC.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSNC.Image")));
+            this.btnCerrarSNC.Location = new System.Drawing.Point(454, 251);
+            this.btnCerrarSNC.Name = "btnCerrarSNC";
+            this.btnCerrarSNC.Size = new System.Drawing.Size(32, 32);
+            this.btnCerrarSNC.TabIndex = 2095;
+            this.btnCerrarSNC.UseVisualStyleBackColor = true;
+            this.btnCerrarSNC.Click += new System.EventHandler(this.btnCerrarSNC_Click);
+            // 
+            // btnGuardarSNC
+            // 
+            this.btnGuardarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardarSNC.FlatAppearance.BorderSize = 0;
+            this.btnGuardarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarSNC.Image")));
+            this.btnGuardarSNC.Location = new System.Drawing.Point(345, 251);
+            this.btnGuardarSNC.Name = "btnGuardarSNC";
+            this.btnGuardarSNC.Size = new System.Drawing.Size(32, 32);
+            this.btnGuardarSNC.TabIndex = 2094;
+            this.btnGuardarSNC.UseVisualStyleBackColor = true;
+            this.btnGuardarSNC.Click += new System.EventHandler(this.btnGuardarSNC_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.pictureBox9);
+            this.groupBox3.Controls.Add(this.pictureBox5);
+            this.groupBox3.Controls.Add(this.txtDescripcionSNC);
+            this.groupBox3.Controls.Add(this.tabControl1);
             this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.txtOrdenProduccionSNC);
             this.groupBox3.Controls.Add(this.txtReponsableRegistro);
             this.groupBox3.Controls.Add(this.label31);
             this.groupBox3.Controls.Add(this.label30);
             this.groupBox3.Controls.Add(this.pictureBox3);
             this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.dateTimePicker1);
+            this.groupBox3.Controls.Add(this.dtpFechaHallazgo);
             this.groupBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(11, 37);
+            this.groupBox3.Location = new System.Drawing.Point(12, 43);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(562, 140);
+            this.groupBox3.Size = new System.Drawing.Size(545, 204);
             this.groupBox3.TabIndex = 2091;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Identificación";
             // 
-            // textBox4
+            // pictureBox9
             // 
-            this.textBox4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(153, 79);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(393, 49);
-            this.textBox4.TabIndex = 2095;
-            this.textBox4.Tag = "";
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(517, 24);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 2100;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(517, 53);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 2048;
+            this.pictureBox5.TabStop = false;
+            // 
+            // txtDescripcionSNC
+            // 
+            this.txtDescripcionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcionSNC.Location = new System.Drawing.Point(144, 80);
+            this.txtDescripcionSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcionSNC.Multiline = true;
+            this.txtDescripcionSNC.Name = "txtDescripcionSNC";
+            this.txtDescripcionSNC.Size = new System.Drawing.Size(393, 49);
+            this.txtDescripcionSNC.TabIndex = 2095;
+            this.txtDescripcionSNC.Tag = "";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(12, 136);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(520, 62);
+            this.tabControl1.TabIndex = 2099;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnLimpiar1);
+            this.tabPage1.Controls.Add(this.btnCargar1);
+            this.tabPage1.Controls.Add(this.txtImagen1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(512, 36);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Imagen 1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar1
+            // 
+            this.btnLimpiar1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar1.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar1.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar1.Image")));
+            this.btnLimpiar1.Location = new System.Drawing.Point(479, 5);
+            this.btnLimpiar1.Name = "btnLimpiar1";
+            this.btnLimpiar1.Size = new System.Drawing.Size(25, 25);
+            this.btnLimpiar1.TabIndex = 2100;
+            this.btnLimpiar1.UseVisualStyleBackColor = true;
+            this.btnLimpiar1.Click += new System.EventHandler(this.btnLimpiar1_Click);
+            // 
+            // btnCargar1
+            // 
+            this.btnCargar1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargar1.FlatAppearance.BorderSize = 0;
+            this.btnCargar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar1.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar1.Image")));
+            this.btnCargar1.Location = new System.Drawing.Point(448, 5);
+            this.btnCargar1.Name = "btnCargar1";
+            this.btnCargar1.Size = new System.Drawing.Size(25, 25);
+            this.btnCargar1.TabIndex = 2099;
+            this.btnCargar1.UseVisualStyleBackColor = true;
+            this.btnCargar1.Click += new System.EventHandler(this.btnCargar1_Click);
+            // 
+            // txtImagen1
+            // 
+            this.txtImagen1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImagen1.Location = new System.Drawing.Point(8, 7);
+            this.txtImagen1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtImagen1.Name = "txtImagen1";
+            this.txtImagen1.ReadOnly = true;
+            this.txtImagen1.Size = new System.Drawing.Size(433, 21);
+            this.txtImagen1.TabIndex = 2093;
+            this.txtImagen1.Tag = "";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnLimpiar2);
+            this.tabPage2.Controls.Add(this.btnCargar2);
+            this.tabPage2.Controls.Add(this.txtImagen2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(512, 36);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Imagen 2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar2
+            // 
+            this.btnLimpiar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar2.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar2.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar2.Image")));
+            this.btnLimpiar2.Location = new System.Drawing.Point(479, 5);
+            this.btnLimpiar2.Name = "btnLimpiar2";
+            this.btnLimpiar2.Size = new System.Drawing.Size(25, 25);
+            this.btnLimpiar2.TabIndex = 2103;
+            this.btnLimpiar2.UseVisualStyleBackColor = true;
+            this.btnLimpiar2.Click += new System.EventHandler(this.btnLimpiar2_Click);
+            // 
+            // btnCargar2
+            // 
+            this.btnCargar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargar2.FlatAppearance.BorderSize = 0;
+            this.btnCargar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar2.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar2.Image")));
+            this.btnCargar2.Location = new System.Drawing.Point(448, 5);
+            this.btnCargar2.Name = "btnCargar2";
+            this.btnCargar2.Size = new System.Drawing.Size(25, 25);
+            this.btnCargar2.TabIndex = 2102;
+            this.btnCargar2.UseVisualStyleBackColor = true;
+            this.btnCargar2.Click += new System.EventHandler(this.btnCargar2_Click);
+            // 
+            // txtImagen2
+            // 
+            this.txtImagen2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImagen2.Location = new System.Drawing.Point(8, 7);
+            this.txtImagen2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtImagen2.Name = "txtImagen2";
+            this.txtImagen2.ReadOnly = true;
+            this.txtImagen2.Size = new System.Drawing.Size(433, 21);
+            this.txtImagen2.TabIndex = 2101;
+            this.txtImagen2.Tag = "";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnLimpiar3);
+            this.tabPage3.Controls.Add(this.btnCargar3);
+            this.tabPage3.Controls.Add(this.txtImagen3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(512, 36);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Imagen 3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar3
+            // 
+            this.btnLimpiar3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar3.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar3.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar3.Image")));
+            this.btnLimpiar3.Location = new System.Drawing.Point(479, 5);
+            this.btnLimpiar3.Name = "btnLimpiar3";
+            this.btnLimpiar3.Size = new System.Drawing.Size(25, 25);
+            this.btnLimpiar3.TabIndex = 2103;
+            this.btnLimpiar3.UseVisualStyleBackColor = true;
+            this.btnLimpiar3.Click += new System.EventHandler(this.btnLimpiar3_Click);
+            // 
+            // btnCargar3
+            // 
+            this.btnCargar3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargar3.FlatAppearance.BorderSize = 0;
+            this.btnCargar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar3.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar3.Image")));
+            this.btnCargar3.Location = new System.Drawing.Point(448, 5);
+            this.btnCargar3.Name = "btnCargar3";
+            this.btnCargar3.Size = new System.Drawing.Size(25, 25);
+            this.btnCargar3.TabIndex = 2102;
+            this.btnCargar3.UseVisualStyleBackColor = true;
+            this.btnCargar3.Click += new System.EventHandler(this.btnCargar3_Click);
+            // 
+            // txtImagen3
+            // 
+            this.txtImagen3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImagen3.Location = new System.Drawing.Point(8, 7);
+            this.txtImagen3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtImagen3.Name = "txtImagen3";
+            this.txtImagen3.ReadOnly = true;
+            this.txtImagen3.Size = new System.Drawing.Size(433, 21);
+            this.txtImagen3.TabIndex = 2101;
+            this.txtImagen3.Tag = "";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(17, 82);
+            this.label32.Location = new System.Drawing.Point(8, 83);
             this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(108, 13);
             this.label32.TabIndex = 2094;
             this.label32.Text = "Descripción de la SNC";
             // 
-            // textBox3
+            // txtOrdenProduccionSNC
             // 
-            this.textBox3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(450, 50);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(96, 21);
-            this.textBox3.TabIndex = 2093;
-            this.textBox3.Tag = "";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOrdenProduccionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrdenProduccionSNC.Location = new System.Drawing.Point(424, 51);
+            this.txtOrdenProduccionSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOrdenProduccionSNC.Name = "txtOrdenProduccionSNC";
+            this.txtOrdenProduccionSNC.ReadOnly = true;
+            this.txtOrdenProduccionSNC.Size = new System.Drawing.Size(90, 21);
+            this.txtOrdenProduccionSNC.TabIndex = 2093;
+            this.txtOrdenProduccionSNC.Tag = "";
+            this.txtOrdenProduccionSNC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtReponsableRegistro
             // 
             this.txtReponsableRegistro.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReponsableRegistro.Location = new System.Drawing.Point(153, 21);
+            this.txtReponsableRegistro.Location = new System.Drawing.Point(144, 22);
             this.txtReponsableRegistro.Margin = new System.Windows.Forms.Padding(4);
             this.txtReponsableRegistro.Name = "txtReponsableRegistro";
             this.txtReponsableRegistro.ReadOnly = true;
-            this.txtReponsableRegistro.Size = new System.Drawing.Size(393, 21);
+            this.txtReponsableRegistro.Size = new System.Drawing.Size(370, 21);
             this.txtReponsableRegistro.TabIndex = 2092;
             this.txtReponsableRegistro.Tag = "";
             // 
@@ -1810,7 +1741,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(334, 56);
+            this.label31.Location = new System.Drawing.Point(308, 57);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(108, 13);
@@ -1821,7 +1752,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(20, 26);
+            this.label30.Location = new System.Drawing.Point(11, 27);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(127, 13);
@@ -1832,7 +1763,7 @@
             // 
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(252, 51);
+            this.pictureBox3.Location = new System.Drawing.Point(243, 52);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(19, 19);
@@ -1844,29 +1775,28 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(17, 56);
+            this.label29.Location = new System.Drawing.Point(8, 57);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(96, 13);
             this.label29.TabIndex = 2088;
             this.label29.Text = "Fecha del hallazgo:";
             // 
-            // dateTimePicker1
+            // dtpFechaHallazgo
             // 
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(153, 50);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(95, 21);
-            this.dateTimePicker1.TabIndex = 2086;
+            this.dtpFechaHallazgo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaHallazgo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaHallazgo.Location = new System.Drawing.Point(144, 51);
+            this.dtpFechaHallazgo.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFechaHallazgo.Name = "dtpFechaHallazgo";
+            this.dtpFechaHallazgo.Size = new System.Drawing.Size(95, 21);
+            this.dtpFechaHallazgo.TabIndex = 2086;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel4.Location = new System.Drawing.Point(142, 28);
+            this.panel4.Location = new System.Drawing.Point(138, 39);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(300, 1);
@@ -1876,47 +1806,156 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(182, 6);
+            this.label26.Location = new System.Drawing.Point(178, 21);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(221, 19);
             this.label26.TabIndex = 999;
             this.label26.Text = "Control de Salida No Conforme";
             // 
-            // btnRegresarControl
+            // panelDetallesObservacion
             // 
-            this.btnRegresarControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegresarControl.FlatAppearance.BorderSize = 0;
-            this.btnRegresarControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegresarControl.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarControl.Image")));
-            this.btnRegresarControl.Location = new System.Drawing.Point(467, 317);
-            this.btnRegresarControl.Name = "btnRegresarControl";
-            this.btnRegresarControl.Size = new System.Drawing.Size(31, 31);
-            this.btnRegresarControl.TabIndex = 2089;
-            this.btnRegresarControl.UseVisualStyleBackColor = true;
-            this.btnRegresarControl.Click += new System.EventHandler(this.btnRegresarControl_Click);
+            this.panelDetallesObservacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDetallesObservacion.Controls.Add(this.panel6);
+            this.panelDetallesObservacion.Controls.Add(this.txtDetallesObservacion);
+            this.panelDetallesObservacion.Location = new System.Drawing.Point(83, 193);
+            this.panelDetallesObservacion.Name = "panelDetallesObservacion";
+            this.panelDetallesObservacion.Size = new System.Drawing.Size(421, 166);
+            this.panelDetallesObservacion.TabIndex = 2049;
+            this.panelDetallesObservacion.Visible = false;
             // 
-            // lblRegresarControl
+            // panel6
             // 
-            this.lblRegresarControl.AutoSize = true;
-            this.lblRegresarControl.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegresarControl.Location = new System.Drawing.Point(451, 351);
-            this.lblRegresarControl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRegresarControl.Name = "lblRegresarControl";
-            this.lblRegresarControl.Size = new System.Drawing.Size(65, 13);
-            this.lblRegresarControl.TabIndex = 2088;
-            this.lblRegresarControl.Text = "RETROCEDER";
+            this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel6.Controls.Add(this.label38);
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Controls.Add(this.btnCerarDetallesObservacion);
+            this.panel6.Controls.Add(this.pictureBox14);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(5);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(419, 18);
+            this.panel6.TabIndex = 2087;
             // 
-            // lblCantidadRealizada
+            // label38
             // 
-            this.lblCantidadRealizada.AutoSize = true;
-            this.lblCantidadRealizada.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidadRealizada.Location = new System.Drawing.Point(47, 366);
-            this.lblCantidadRealizada.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCantidadRealizada.Name = "lblCantidadRealizada";
-            this.lblCantidadRealizada.Size = new System.Drawing.Size(22, 13);
-            this.lblCantidadRealizada.TabIndex = 2090;
-            this.lblCantidadRealizada.Text = "***";
+            this.label38.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label38.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(20, 0);
+            this.label38.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(216, 18);
+            this.label38.TabIndex = 2;
+            this.label38.Text = "DETALLES DE LA OBSERVACIÓN";
+            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.panel11);
+            this.panel7.Controls.Add(this.panel10);
+            this.panel7.Controls.Add(this.pictureBox13);
+            this.panel7.Controls.Add(this.panel9);
+            this.panel7.Controls.Add(this.panel8);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(20, 18);
+            this.panel7.TabIndex = 1001;
+            // 
+            // panel11
+            // 
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel11.Location = new System.Drawing.Point(3, 15);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(14, 3);
+            this.panel11.TabIndex = 3;
+            // 
+            // panel10
+            // 
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel10.Location = new System.Drawing.Point(17, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(3, 15);
+            this.panel10.TabIndex = 2;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(17, 15);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox13.TabIndex = 999;
+            this.pictureBox13.TabStop = false;
+            // 
+            // panel9
+            // 
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(0, 3);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(3, 15);
+            this.panel9.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(20, 3);
+            this.panel8.TabIndex = 0;
+            // 
+            // btnCerarDetallesObservacion
+            // 
+            this.btnCerarDetallesObservacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnCerarDetallesObservacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerarDetallesObservacion.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCerarDetallesObservacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerarDetallesObservacion.Location = new System.Drawing.Point(400, 0);
+            this.btnCerarDetallesObservacion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnCerarDetallesObservacion.Name = "btnCerarDetallesObservacion";
+            this.btnCerarDetallesObservacion.Size = new System.Drawing.Size(19, 18);
+            this.btnCerarDetallesObservacion.TabIndex = 1000;
+            this.btnCerarDetallesObservacion.Text = " X";
+            this.btnCerarDetallesObservacion.Click += new System.EventHandler(this.btnCerarDetallesObservacion_Click);
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
+            this.pictureBox14.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox14.TabIndex = 54;
+            this.pictureBox14.TabStop = false;
+            // 
+            // txtDetallesObservacion
+            // 
+            this.txtDetallesObservacion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDetallesObservacion.Location = new System.Drawing.Point(8, 30);
+            this.txtDetallesObservacion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDetallesObservacion.Multiline = true;
+            this.txtDetallesObservacion.Name = "txtDetallesObservacion";
+            this.txtDetallesObservacion.ReadOnly = true;
+            this.txtDetallesObservacion.Size = new System.Drawing.Size(403, 126);
+            this.txtDetallesObservacion.TabIndex = 2086;
+            this.txtDetallesObservacion.Tag = "";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
+            // openFileDialog3
+            // 
+            this.openFileDialog3.FileName = "openFileDialog3";
             // 
             // ListadoOrdenProduccion
             // 
@@ -1924,7 +1963,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelControlCalidad);
             this.Controls.Add(this.btnOC);
             this.Controls.Add(this.label2);
@@ -1956,7 +1994,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel16.ResumeLayout(false);
@@ -1966,24 +2003,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoHistorial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.panelSNC.ResumeLayout(false);
+            this.panelSNC.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panelDetallesObservacion.ResumeLayout(false);
+            this.panelDetallesObservacion.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2012,10 +2058,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label7;
@@ -2032,7 +2075,7 @@
         private System.Windows.Forms.TextBox txtCantidadInspeccionar;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtCantidadTotalPedido;
+        private System.Windows.Forms.TextBox txtCantidadEntregada;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtCodigoFormulacion;
         private System.Windows.Forms.DataGridView datalistadoHistorial;
@@ -2067,63 +2110,70 @@
         private System.Windows.Forms.Label lblGenerarCSM;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSNC;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtOrdenProduccionSNC;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtReponsableRegistro;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.DateTimePicker dtpFechaHallazgo;
+        private System.Windows.Forms.TextBox txtDescripcionSNC;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button btnVisualizarImagen1;
-        private System.Windows.Forms.Button btnBorrarImagen1;
-        private System.Windows.Forms.Button btnCargarImagen1;
-        private System.Windows.Forms.TextBox txtImagen1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button btnVisualizarImagen2;
-        private System.Windows.Forms.Button btnBorrarImagen2;
-        private System.Windows.Forms.Button btnCargarImagen2;
-        private System.Windows.Forms.TextBox txtImagen2;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TextBox txtImagen3;
-        private System.Windows.Forms.Button btnBorrarImagen3;
-        private System.Windows.Forms.Button btnVisualizarImagen3;
-        private System.Windows.Forms.Button btnCargarImagen3;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewImageColumn detalles;
+        private System.Windows.Forms.Button btnCerrarSNC;
+        private System.Windows.Forms.Button btnGuardarSNC;
+        private System.Windows.Forms.Label lblLeyendaVisualizar;
+        private System.Windows.Forms.Button btnVisualizar;
         private System.Windows.Forms.Button btnRegresarControl;
         private System.Windows.Forms.Label lblRegresarControl;
         private System.Windows.Forms.Label lblCantidadRealizada;
+        private System.Windows.Forms.DataGridViewImageColumn detalles;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblTotalPedido;
+        private System.Windows.Forms.DataGridViewImageColumn columDesc;
+        private System.Windows.Forms.Panel panelDetallesObservacion;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label btnCerarDetallesObservacion;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.TextBox txtDetallesObservacion;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.PictureBox pictureBox16;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button btnLimpiar1;
+        private System.Windows.Forms.Button btnCargar1;
+        private System.Windows.Forms.TextBox txtImagen1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnLimpiar2;
+        private System.Windows.Forms.Button btnCargar2;
+        private System.Windows.Forms.TextBox txtImagen2;
+        private System.Windows.Forms.Button btnLimpiar3;
+        private System.Windows.Forms.Button btnCargar3;
+        private System.Windows.Forms.TextBox txtImagen3;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtCantidadTotalOP;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.OpenFileDialog openFileDialog3;
     }
 }

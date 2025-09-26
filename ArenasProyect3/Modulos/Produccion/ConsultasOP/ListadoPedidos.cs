@@ -1671,6 +1671,136 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //SELECCIONAR UN PRODUCTO - TERMINAR LA SELECCION
+        private void datalistadoProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (datalistadoProductos.CurrentRow != null)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.Handled = true; // Evita que se pase a la siguiente fila
+
+                    // Verifica que haya una celda activa
+                    if (datalistadoProductos.CurrentCell != null)
+                    {
+                        int rowIndex = datalistadoProductos.CurrentCell.RowIndex;
+                        int colIndex = datalistadoProductos.CurrentCell.ColumnIndex;
+
+                        // Asegúrate de que el índice de columna 6 exista
+                        if (rowIndex >= 0 && datalistadoProductos.Columns.Count > 6)
+                        {
+                            DataGridViewCell cell = datalistadoProductos.Rows[rowIndex].Cells[6];
+
+                            if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                            {
+                                cell.Value = 0; // O el valor que tú necesites
+                            }
+                        }
+
+                        // Asegúrate de que el índice de columna 6 exista
+                        if (rowIndex >= 0 && datalistadoProductos.Columns.Count > 8)
+                        {
+                            DataGridViewCell cell = datalistadoProductos.Rows[rowIndex].Cells[8];
+
+                            if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                            {
+                                cell.Value = 0; // O el valor que tú necesites
+                            }
+                        }
+
+                        // Asegúrate de que el índice de columna 6 exista
+                        if (rowIndex >= 0 && datalistadoProductos.Columns.Count > 9)
+                        {
+                            DataGridViewCell cell = datalistadoProductos.Rows[rowIndex].Cells[9];
+
+                            if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()) || cell.Value.ToString() == "0")
+                            {
+                                cell.Value = 0; // O el valor que tú necesites
+                            }
+                        }
+                    }
+
+                    txtProducto.Text = datalistadoProductos.SelectedCells[3].Value.ToString();
+                    lblIdProducto.Text = datalistadoProductos.SelectedCells[16].Value.ToString();
+                    txtCodigoBSS.Text = datalistadoProductos.SelectedCells[13].Value.ToString();
+                    txtCodigoSistema.Text = datalistadoProductos.SelectedCells[12].Value.ToString();
+                    txtCodigoCliente.Text = datalistadoProductos.SelectedCells[14].Value.ToString();
+                    string codigoFormulacion = datalistadoProductos.SelectedCells[15].Value.ToString();
+                    txtCodigoFormulacion.Text = codigoFormulacion;
+                    int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
+
+                    BuscarMaterialesFormulacion(codigoFormulacion);
+                    BuscarMaterialesFormulacionSemi(codigoFormulacion);
+                    BuscarLineaFormulacion(codigoFormulacion);
+
+                    BuscarSemiProducidoFormulacionOP(codigoFormulacion);
+
+                    if (lblIdProducto.Text == "---")
+                    {
+                        BuscarUltimoColorProducto(0);
+                    }
+                    else
+                    {
+                        BuscarUltimoColorProducto(Convert.ToInt32(lblIdProducto.Text));
+
+                        if (datalistadoBusquedaColorUltimoProducto.Rows.Count > 0)
+                        {
+                            txtColorProducto.Text = datalistadoBusquedaColorUltimoProducto.SelectedCells[0].Value.ToString();
+                        }
+                    }
+
+                    txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
+                    datalistadoActividades.Rows.Clear();
+                    datalistadoActividadesSemi.Rows.Clear();
+
+                    //CARGAR MATERIALES DE MI PRODUCTO
+                    int contador = 1;
+                    foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacion.Rows)
+                    {
+                        string idMaterialDetalleActividad = dgv.Cells[0].Value.ToString();
+                        string idProducto = dgv.Cells[1].Value.ToString();
+                        string codigoBSS = dgv.Cells[2].Value.ToString();
+                        string codigoSistema = dgv.Cells[3].Value.ToString();
+                        string descripcionProducto = dgv.Cells[4].Value.ToString();
+                        string cantidad = dgv.Cells[5].Value.ToString();
+                        string medida = dgv.Cells[6].Value.ToString();
+                        string idFormulacion = dgv.Cells[7].Value.ToString();
+                        string stock = dgv.Cells[8].Value.ToString();
+
+                        decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+
+                        datalistadoActividades.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
+                        contador = contador + 1;
+                    }
+
+                    //CARGAR MATERIALES DE MI SEMIPRODUCIDO
+                    int contador2 = 1;
+                    foreach (DataGridViewRow dgv in datalistadoDetallesMaterialesFormulacionSemi.Rows)
+                    {
+                        string idMaterialDetalleActividad = dgv.Cells[0].Value.ToString();
+                        string idProducto = dgv.Cells[1].Value.ToString();
+                        string codigoBSS = dgv.Cells[2].Value.ToString();
+                        string codigoSistema = dgv.Cells[3].Value.ToString();
+                        string descripcionProducto = dgv.Cells[4].Value.ToString();
+                        string cantidad = dgv.Cells[5].Value.ToString();
+                        string medida = dgv.Cells[6].Value.ToString();
+                        string idFormulacion = dgv.Cells[7].Value.ToString();
+                        string stock = dgv.Cells[8].Value.ToString();
+
+                        decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+
+                        datalistadoActividadesSemi.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
+                        contador2 = contador2 + 1;
+                    }
+
+                    lblCantidadMaterialesItemsSemi.Text = Convert.ToString(datalistadoActividadesSemi.RowCount);
+                    lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
+                    alternarColorFilas(datalistadoActividades);
+
+                }
+            }
+        }
+
+        //SELECCIONAR UN PRODUCTO - TERMINAR LA SELECCION
         private void datalistadoProductos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (datalistadoProductos.CurrentRow != null)
@@ -1722,7 +1852,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             txtCodigoCliente.Text = datalistadoProductos.SelectedCells[14].Value.ToString();
             string codigoFormulacion = datalistadoProductos.SelectedCells[15].Value.ToString();
             txtCodigoFormulacion.Text = codigoFormulacion;
-            int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
+            int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value?.ToString());
 
             BuscarMaterialesFormulacion(codigoFormulacion);
             BuscarMaterialesFormulacionSemi(codigoFormulacion);
@@ -2584,5 +2714,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

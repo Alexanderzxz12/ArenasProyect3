@@ -55,7 +55,7 @@
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(154, 647);
             this.panel1.TabIndex = 6;
@@ -64,13 +64,14 @@
             // 
             this.btnLiquidaciones.FlatAppearance.BorderSize = 0;
             this.btnLiquidaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLiquidaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLiquidaciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLiquidaciones.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLiquidaciones.Image = ((System.Drawing.Image)(resources.GetObject("btnLiquidaciones.Image")));
             this.btnLiquidaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLiquidaciones.Location = new System.Drawing.Point(0, 317);
-            this.btnLiquidaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLiquidaciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnLiquidaciones.Name = "btnLiquidaciones";
+            this.btnLiquidaciones.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnLiquidaciones.Size = new System.Drawing.Size(147, 53);
             this.btnLiquidaciones.TabIndex = 7;
             this.btnLiquidaciones.Text = "LIQUIDACIONES";
@@ -82,16 +83,17 @@
             // 
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnManualUsuario.Location = new System.Drawing.Point(0, 377);
-            this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnManualUsuario.Name = "btnManualUsuario";
+            this.btnManualUsuario.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnManualUsuario.Size = new System.Drawing.Size(147, 53);
             this.btnManualUsuario.TabIndex = 6;
-            this.btnManualUsuario.Text = "      MANUAL DE \r\n      USUARIO";
+            this.btnManualUsuario.Text = "        MANUAL DE \r\n       USUARIO";
             this.btnManualUsuario.UseVisualStyleBackColor = true;
             this.btnManualUsuario.Click += new System.EventHandler(this.btnManualUsuario_Click);
             // 
@@ -99,13 +101,14 @@
             // 
             this.btnRequerimientoss.FlatAppearance.BorderSize = 0;
             this.btnRequerimientoss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRequerimientoss.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequerimientoss.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequerimientoss.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnRequerimientoss.Image = ((System.Drawing.Image)(resources.GetObject("btnRequerimientoss.Image")));
             this.btnRequerimientoss.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRequerimientoss.Location = new System.Drawing.Point(0, 256);
-            this.btnRequerimientoss.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRequerimientoss.Margin = new System.Windows.Forms.Padding(4);
             this.btnRequerimientoss.Name = "btnRequerimientoss";
+            this.btnRequerimientoss.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnRequerimientoss.Size = new System.Drawing.Size(152, 53);
             this.btnRequerimientoss.TabIndex = 5;
             this.btnRequerimientoss.Text = " REQUERIMIENTOS";
@@ -119,7 +122,7 @@
             this.panel4.Controls.Add(this.label1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(154, 75);
             this.panel4.TabIndex = 2;
@@ -129,7 +132,7 @@
             this.panel3.BackColor = System.Drawing.Color.DarkRed;
             this.panel3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel3.Location = new System.Drawing.Point(4, 65);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(260, 6);
             this.panel3.TabIndex = 1;

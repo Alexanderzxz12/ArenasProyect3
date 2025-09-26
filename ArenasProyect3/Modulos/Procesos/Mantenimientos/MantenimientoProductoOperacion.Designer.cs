@@ -60,6 +60,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label6 = new System.Windows.Forms.Label();
             this.cboOperacion2 = new System.Windows.Forms.ComboBox();
             this.cboLinea2 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -143,8 +147,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.btnEliminar1);
             this.groupBox1.Controls.Add(this.btnGuardar1);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.datalistadoLineaXOperacion);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -162,10 +168,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnEliminar1
             // 
+            this.btnEliminar1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar1.FlatAppearance.BorderSize = 0;
             this.btnEliminar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar1.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar1.Image")));
-            this.btnEliminar1.Location = new System.Drawing.Point(523, 51);
+            this.btnEliminar1.Location = new System.Drawing.Point(528, 55);
             this.btnEliminar1.Name = "btnEliminar1";
             this.btnEliminar1.Size = new System.Drawing.Size(30, 30);
             this.btnEliminar1.TabIndex = 1988;
@@ -174,10 +181,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnGuardar1
             // 
+            this.btnGuardar1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar1.FlatAppearance.BorderSize = 0;
             this.btnGuardar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar1.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar1.Image")));
-            this.btnGuardar1.Location = new System.Drawing.Point(523, 15);
+            this.btnGuardar1.Location = new System.Drawing.Point(528, 10);
             this.btnGuardar1.Name = "btnGuardar1";
             this.btnGuardar1.Size = new System.Drawing.Size(30, 30);
             this.btnGuardar1.TabIndex = 1987;
@@ -204,13 +212,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoLineaXOperacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 7F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoLineaXOperacion.DefaultCellStyle = dataGridViewCellStyle2;
-            this.datalistadoLineaXOperacion.Location = new System.Drawing.Point(7, 90);
+            this.datalistadoLineaXOperacion.Location = new System.Drawing.Point(7, 108);
             this.datalistadoLineaXOperacion.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.datalistadoLineaXOperacion.MultiSelect = false;
             this.datalistadoLineaXOperacion.Name = "datalistadoLineaXOperacion";
@@ -226,7 +234,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoLineaXOperacion.RowHeadersVisible = false;
             this.datalistadoLineaXOperacion.RowHeadersWidth = 100;
             this.datalistadoLineaXOperacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoLineaXOperacion.Size = new System.Drawing.Size(565, 451);
+            this.datalistadoLineaXOperacion.Size = new System.Drawing.Size(565, 433);
             this.datalistadoLineaXOperacion.TabIndex = 1340;
             this.datalistadoLineaXOperacion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoLineaXOperacion_CellDoubleClick);
             // 
@@ -234,7 +242,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 60);
+            this.label4.Location = new System.Drawing.Point(18, 65);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 13);
@@ -245,7 +253,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 34);
+            this.label3.Location = new System.Drawing.Point(18, 39);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
@@ -257,7 +265,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboOperacion1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboOperacion1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboOperacion1.FormattingEnabled = true;
-            this.cboOperacion1.Location = new System.Drawing.Point(100, 57);
+            this.cboOperacion1.Location = new System.Drawing.Point(100, 62);
             this.cboOperacion1.Margin = new System.Windows.Forms.Padding(5);
             this.cboOperacion1.Name = "cboOperacion1";
             this.cboOperacion1.Size = new System.Drawing.Size(399, 21);
@@ -268,7 +276,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboLinea1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLinea1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLinea1.FormattingEnabled = true;
-            this.cboLinea1.Location = new System.Drawing.Point(100, 31);
+            this.cboLinea1.Location = new System.Drawing.Point(100, 36);
             this.cboLinea1.Margin = new System.Windows.Forms.Padding(5);
             this.cboLinea1.Name = "cboLinea1";
             this.cboLinea1.Size = new System.Drawing.Size(321, 21);
@@ -278,6 +286,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.btnEliminar2);
             this.groupBox2.Controls.Add(this.datalistadoLineaXOperacionXMaquinaria);
             this.groupBox2.Controls.Add(this.btnGuardar2);
@@ -299,10 +309,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnEliminar2
             // 
+            this.btnEliminar2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar2.FlatAppearance.BorderSize = 0;
             this.btnEliminar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar2.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar2.Image")));
-            this.btnEliminar2.Location = new System.Drawing.Point(525, 63);
+            this.btnEliminar2.Location = new System.Drawing.Point(526, 63);
             this.btnEliminar2.Name = "btnEliminar2";
             this.btnEliminar2.Size = new System.Drawing.Size(30, 30);
             this.btnEliminar2.TabIndex = 1990;
@@ -329,7 +340,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoLineaXOperacionXMaquinaria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 7F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -357,10 +368,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // btnGuardar2
             // 
+            this.btnGuardar2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar2.FlatAppearance.BorderSize = 0;
             this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
-            this.btnGuardar2.Location = new System.Drawing.Point(525, 27);
+            this.btnGuardar2.Location = new System.Drawing.Point(527, 17);
             this.btnGuardar2.Name = "btnGuardar2";
             this.btnGuardar2.Size = new System.Drawing.Size(30, 30);
             this.btnGuardar2.TabIndex = 1989;
@@ -386,7 +398,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboMaquinaria2.Location = new System.Drawing.Point(105, 88);
             this.cboMaquinaria2.Margin = new System.Windows.Forms.Padding(5);
             this.cboMaquinaria2.Name = "cboMaquinaria2";
-            this.cboMaquinaria2.Size = new System.Drawing.Size(412, 21);
+            this.cboMaquinaria2.Size = new System.Drawing.Size(404, 21);
             this.cboMaquinaria2.TabIndex = 11;
             // 
             // label5
@@ -434,6 +446,50 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboLinea2.Size = new System.Drawing.Size(334, 21);
             this.cboLinea2.TabIndex = 7;
             this.cboLinea2.SelectedIndexChanged += new System.EventHandler(this.cboLinea2_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(519, 47);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 13);
+            this.label8.TabIndex = 1991;
+            this.label8.Text = "AGREGAR";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(518, 96);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 13);
+            this.label9.TabIndex = 1992;
+            this.label9.Text = "ELIMINAR";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(519, 39);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 13);
+            this.label10.TabIndex = 1992;
+            this.label10.Text = "AGREGAR";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(518, 88);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 13);
+            this.label11.TabIndex = 1993;
+            this.label11.Text = "ELIMINAR";
             // 
             // MantenimientoProductoOperacion
             // 
@@ -491,5 +547,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private System.Windows.Forms.Button btnGuardar1;
         private System.Windows.Forms.Button btnEliminar2;
         private System.Windows.Forms.Button btnGuardar2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
