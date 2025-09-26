@@ -22,6 +22,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.AccessControl;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Configuration;
@@ -470,7 +471,7 @@ namespace ArenasProyect3.Modulos.Comercial
             {
                 if (ckaprobado.Checked == false && ckpendiente.Checked == false && ckdesaprobado.Checked == false)
                 {
-                    MessageBox.Show("Marque el tipo de busqueda que desee visualizar.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Marque el estado que desee visualizar.", "Validación del Sistema", MessageBoxButtons.OK);
                     return;
                 }
                 else
@@ -482,7 +483,7 @@ namespace ArenasProyect3.Modulos.Comercial
             {
                 if (ckatendido.Checked == false && cknoatendido.Checked == false && ckanulado.Checked == false)
                 {
-                    MessageBox.Show("Marque el tipo de busqueda que desee visualizar.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Marque el estado que desee visualizar.", "Validación del Sistema", MessageBoxButtons.OK);
                     return;
                 }
                 else
@@ -1620,7 +1621,7 @@ namespace ArenasProyect3.Modulos.Comercial
             }
         }
 
-        //BOTON QUE REALIZARA LA EXPORTACIÓN
+        //EVENTO DE EXPORTACIÓN A XML
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             Requerimientos_ExportarListadoXML(cboCriterioBusquedaReque.Text, datalistadoExcelReque, datalistadoRequerimiento, lblNombreArchivosReque, cBobusquedaSeleccionadaReque.Text
@@ -1632,49 +1633,41 @@ namespace ArenasProyect3.Modulos.Comercial
         ///
         ///ACCIONES DE LOS CHECKBOX PARA LISTAR LOS REQUERIMIENTOS EN TIEMPO REAL
         ///
-
-        //ACCIONES DE LOS CHECKBOS EN TIEMPO REAL PARA LA SECCIÓN DE LIQUIDACIONES
-        public void MostrarRequerimientos_PorCheckbox(string criteriobusqueda)
-        {
-            if (cboCriterioBusquedaReque.Text == "ESTADO COMERCIAL")
-            {
-                MostrarRequerimientosPor_EstadoComercial(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento, ckAprobadoReque
-                    , ckPendienteReque, ckDesaprobadoReque);
-            }
-            else if (cboCriterioBusquedaReque.Text == "ESTADO CONTABILIDAD")
-            {
-                MostrarRequerimientosPor_EstadoContabilidad(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento
-                     , ckAtendidosReque, ckNoAtendidosReque, ckAnuladosReque);
-            }
-        }
+      
         private void ckAprobadoReque_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos_PorCheckbox(cboCriterioBusquedaReque.Text);
+            MostrarRequerimientosPor_EstadoComercial(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento, ckAprobadoReque
+                                , ckPendienteReque, ckDesaprobadoReque);
         }
 
         private void ckPendienteReque_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos_PorCheckbox(cboCriterioBusquedaReque.Text);
+            MostrarRequerimientosPor_EstadoComercial(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento, ckAprobadoReque
+                                , ckPendienteReque, ckDesaprobadoReque);
         }
 
         private void ckDesaprobadoReque_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos_PorCheckbox(cboCriterioBusquedaReque.Text);
+            MostrarRequerimientosPor_EstadoComercial(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento, ckAprobadoReque
+                                , ckPendienteReque, ckDesaprobadoReque);
         }
 
         private void ckAtendidosReque_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos_PorCheckbox(cboCriterioBusquedaReque.Text);
+            MostrarRequerimientosPor_EstadoContabilidad(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento
+                                 , ckAtendidosReque, ckNoAtendidosReque, ckAnuladosReque);
         }
 
         private void ckNoAtendidosReque_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos_PorCheckbox(cboCriterioBusquedaReque.Text);
+            MostrarRequerimientosPor_EstadoContabilidad(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento
+                                 , ckAtendidosReque, ckNoAtendidosReque, ckAnuladosReque);
         }
 
         private void ckAnuladosReque_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarRequerimientos_PorCheckbox(cboCriterioBusquedaReque.Text);
+            MostrarRequerimientosPor_EstadoContabilidad(DesdeReque.Value, HastaReque.Value, cboCriterioBusquedaReque.Text, datalistadoRequerimiento
+                                 , ckAtendidosReque, ckNoAtendidosReque, ckAnuladosReque);
         }
 
         //////-----------------------------------------------------
@@ -1795,7 +1788,7 @@ namespace ArenasProyect3.Modulos.Comercial
                     {
                         foreach (var point in serie.Points)
                         {
-                            //Cantidad de aprobados X Cantidad de Requerimeientos / Dividios entre 100
+                            //ejem: Cantidad de aprobados / Dividios Cantidad de Requerimeientos X multiplicados por 100
                             double porcentaje = (point.YValues[0] / total) * 100;
 
                             point.Label = $"{point.YValues[0]} ({porcentaje:0}%)";
@@ -1835,6 +1828,7 @@ namespace ArenasProyect3.Modulos.Comercial
         {
             panelReportesLiquidaciones.Visible = true;
 
+            tbReportesReque.Visible = false;
             panelReportesRequerimiento.Visible = false;
             panelReportesActas.Visible = false;
         }
@@ -2148,7 +2142,6 @@ namespace ArenasProyect3.Modulos.Comercial
             }
         }
 
-        //CARGA DE TODAS LAS LIQUIDACIONES SIN SELECCIONAR NINGUN FILTRO
         public void MostrarLiquidaciones_PorFecha(DateTime desde, DateTime hasta, DataGridView DGV, string criteriobusqueda)
         {
             try
@@ -3142,46 +3135,34 @@ namespace ArenasProyect3.Modulos.Comercial
         ///
         ///ACCIONES DE LOS CHECKBOX PARA LISTAR LAS LIQUIDACIONES EN TIEMPO REAL
         ///
-
-        //ACCIONES DE LOS CHECKBOS EN TIEMPO REAL PARA LA SECCIÓN DE LIQUIDACIONES
-        public void MostrarLiquidaciones_PorCheckbox(string criteriobusqqueda)
-        {
-            if (criteriobusqqueda == "ESTADO COMERCIAL")
-            {
-                MostrarLiquidacionesPor_EstadoComercial(DesdeLiqui.Value, HastaLiqui.Value, cboCriterioBusquedaLiqui.Text, datalistadoliquidaciones, ckAprobadosLiqui
-                              , ckPendienteLiqui, ckAnuladoLiqui);
-            }
-            else if (criteriobusqqueda == "ESTADO CONTABILIDAD")
-            {
-                MostrarLiquidacionesPor_EstadosContabilidad(DesdeLiqui.Value, HastaLiqui.Value, cboCriterioBusquedaLiqui.Text, datalistadoliquidaciones
-                      , ckliquidadoLiqui, ckporliquidarLiqui);
-            }
-        }
-
-
+    
         private void ckAprobadosLiqui_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarLiquidaciones_PorCheckbox(cboCriterioBusquedaLiqui.Text);
+            MostrarLiquidacionesPor_EstadoComercial(DesdeLiqui.Value, HastaLiqui.Value, cboCriterioBusquedaLiqui.Text, datalistadoliquidaciones, ckAprobadosLiqui
+                                          , ckPendienteLiqui, ckAnuladoLiqui);
         }
 
         private void ckPendienteLiqui_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarLiquidaciones_PorCheckbox(cboCriterioBusquedaLiqui.Text);
+            MostrarLiquidacionesPor_EstadoComercial(DesdeLiqui.Value, HastaLiqui.Value, cboCriterioBusquedaLiqui.Text, datalistadoliquidaciones, ckAprobadosLiqui
+                                          , ckPendienteLiqui, ckAnuladoLiqui);
         }
 
         private void ckAnuladoLiqui_CheckedChanged(object sender, EventArgs e)
         {
 
-            MostrarLiquidaciones_PorCheckbox(cboCriterioBusquedaLiqui.Text);
+            MostrarLiquidacionesPor_EstadoComercial(DesdeLiqui.Value, HastaLiqui.Value, cboCriterioBusquedaLiqui.Text, datalistadoliquidaciones, ckAprobadosLiqui
+                                          , ckPendienteLiqui, ckAnuladoLiqui);
         }
         private void ckliquidadoLiqui_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarLiquidaciones_PorCheckbox(cboCriterioBusquedaLiqui.Text);
-
+            MostrarLiquidacionesPor_EstadosContabilidad(DesdeLiqui.Value, HastaLiqui.Value, cboCriterioBusquedaLiqui.Text, datalistadoliquidaciones
+                                  , ckliquidadoLiqui, ckporliquidarLiqui);
         }
         private void ckporliquidarLiqui_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarLiquidaciones_PorCheckbox(cboCriterioBusquedaLiqui.Text);
+            MostrarLiquidacionesPor_EstadosContabilidad(DesdeLiqui.Value, HastaLiqui.Value, cboCriterioBusquedaLiqui.Text, datalistadoliquidaciones
+                      , ckliquidadoLiqui, ckporliquidarLiqui);
         }
 
 
@@ -3260,10 +3241,13 @@ namespace ArenasProyect3.Modulos.Comercial
         private void btnReportesActas_Click(object sender, EventArgs e)
         {
             panelReportesActas.Visible = true;
+
+            tbReportesReque.Visible = false;
             panelReportesRequerimiento.Visible = false;
             panelReportesLiquidaciones.Visible = false;
         }
 
+        //LIMPIEZA/BLOQUEO DE COMBOS
         public void Actas_LimpiarCombo_Bloquear_BusquedaSeleccionada(TextBox busquedaxdescripcion, DataGridView DGV, string criteriobusqueda, Button mostrartodo, CheckBox ckaprobado, CheckBox ckculminado
             , CheckBox ckpendiente, GroupBox Estadoactas)
         {
@@ -3292,7 +3276,7 @@ namespace ArenasProyect3.Modulos.Comercial
                 Estadoactas.Visible = true;
             }
 
-            if (criteriobusqueda == "CLIENTE" || criteriobusqueda == "RESPONSABLE")
+            if (criteriobusqueda == "CLIENTE" || criteriobusqueda == "RESPONSABLE" || criteriobusqueda == "SIN FILTROS")
             {
                 Estadoactas.Visible = false;
             }
@@ -3303,6 +3287,7 @@ namespace ArenasProyect3.Modulos.Comercial
             Actas_LimpiarCombo_Bloquear_BusquedaSeleccionada(txtBusquedaActas, datalistadoActas, cboCriterioBusquedaActas.Text, btnMostrarTodasActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas, grpEstadoActas);
         }
 
+        //METODO DE CARGA POR MEDIO DE LOS ESTADOS SELECCIONADOS
         public void MostrarActaasPor_EstadoActas(DateTime Desde, DateTime Hasta, string criteriobusqueda, DataGridView DGV, CheckBox ckaprobado, CheckBox ckculminado, CheckBox ckpendiente)
         {
             try
@@ -3359,6 +3344,8 @@ namespace ArenasProyect3.Modulos.Comercial
                 MessageBox.Show(ex.Message);
             }
         }
+
+        //METODO PARA CARGAR LAS ACTAS POR LA DESCRIPCION
         public void MostrarActasPor_Descripcion(DateTime Desde, DateTime Hasta, string criteriobusqueda, string descripcion, DataGridView DGV)
         {
             try
@@ -3514,28 +3501,20 @@ namespace ArenasProyect3.Modulos.Comercial
             MostrarActasPor_Descripcion(DesdeActas.Value, HastaActas.Value, cboCriterioBusquedaActas.Text, txtBusquedaActas.Text, datalistadoActas);
             MostrarActas_PorFecha(DesdeActas.Value, HastaActas.Value, datalistadoActas, cboCriterioBusquedaActas.Text);
         }
-
-        public void MostrarActas_PorCheckbox(string criteriobusqueda, DateTime Desde, DateTime Hasta, DataGridView DGV, CheckBox ckaprobado, CheckBox ckculminado, CheckBox ckpendiente)
-        {
-            if (criteriobusqueda == "ESTADO ACTAS")
-            {
-                MostrarActaasPor_EstadoActas(Desde, Hasta, criteriobusqueda, DGV, ckaprobado, ckculminado, ckpendiente);
-            }
-        }
-
+   
         private void ckAprobadoActas_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarActas_PorCheckbox(cboCriterioBusquedaActas.Text, DesdeActas.Value, HastaActas.Value, datalistadoActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas);
+            MostrarActaasPor_EstadoActas(DesdeActas.Value, HastaActas.Value, cboCriterioBusquedaActas.Text, datalistadoActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas);
         }
 
         private void ckCulminadoActas_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarActas_PorCheckbox(cboCriterioBusquedaActas.Text, DesdeActas.Value, HastaActas.Value, datalistadoActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas);
+            MostrarActaasPor_EstadoActas(DesdeActas.Value, HastaActas.Value, cboCriterioBusquedaActas.Text, datalistadoActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas);
         }
 
         private void ckPendienteActas_CheckedChanged(object sender, EventArgs e)
         {
-            MostrarActas_PorCheckbox(cboCriterioBusquedaActas.Text, DesdeActas.Value, HastaActas.Value, datalistadoActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas);
+            MostrarActaasPor_EstadoActas(DesdeActas.Value, HastaActas.Value, cboCriterioBusquedaActas.Text, datalistadoActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas);
         }
 
 
@@ -3559,7 +3538,6 @@ namespace ArenasProyect3.Modulos.Comercial
 
                 DGV.Columns.Add("colNroActa", "N°. ACTA");
                 DGV.Columns.Add("colNroLiqui", "N°. LIQUI");
-                DGV.Columns.Add("colValidar", "VALIDAR");
                 DGV.Columns.Add("colFechaIni", "FECHA INICIO");
                 DGV.Columns.Add("colFechaTerm", "FECHA TÉRMINO");
                 DGV.Columns.Add("colCliente", "CLIENTE");
@@ -3570,10 +3548,10 @@ namespace ArenasProyect3.Modulos.Comercial
                 //CAPTURA DE LAS COLUMNAS QUE SE VAN A EXPORTAR DEPENDIENDO DEL TIPO DE BUSQUEDA
                 Dictionary<string, int[]> columnastipobusqueda = new Dictionary<string, int[]>
                 {
-                    {"ESTADO ACTAS" ,new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8}},
-                    {"RESPONSABLE", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8} },
-                    {"CLIENTE", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8} },
-                    {"SIN FILTROS", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8} }
+                    {"ESTADO ACTAS" ,new int[] {0, 1, 3, 4, 5, 6, 7,8}},
+                    {"RESPONSABLE", new int[] { 0, 1, 3, 4, 5, 6, 7,8} },
+                    {"CLIENTE", new int[] { 0, 1, 3, 4, 5, 6, 7,8} },
+                    {"SIN FILTROS", new int[] { 0, 1,  3, 4, 5, 6, 7,8} }
                 };
 
                 int[] columnas = columnastipobusqueda[criteriobusqueda];
@@ -3592,8 +3570,8 @@ namespace ArenasProyect3.Modulos.Comercial
                 }
             }
         }
-        
 
+        //METODO PARA DEFINIR EL NOMBRE DEL ARCHIVO SEGUN EL TIPO DE BUSQUEDA Y LOS CHECKBOX SELECCIONADOS
         public void Actas_NombreArchivos_Exportados(string criteriobusqueda, Label nombrearchivo, CheckBox ckaprobado, CheckBox ckculminado, CheckBox ckpendiente)
         {
             //DEFINICIÓN PARA EL NOMBRE DE ARCHIVO CON EL TIPO DE BUSQUEDA ESTADO COMERCIAL
@@ -3660,7 +3638,7 @@ namespace ArenasProyect3.Modulos.Comercial
 
 
 
-
+        //METODO PARA EXPORTAR A EXCEL SEGUN EL TIPO DE BUSQUEDA
         public void Actas_ExportarExcel_XTipoBusqueda(string criteriobusqueda, Label nombrearchivo, DataGridView DGVExcel, DataGridView DGVListadoPrinci, CheckBox ckaprobado, CheckBox ckculminado, CheckBox ckpendiente)
         {
             Actas_MostrarExcel(criteriobusqueda, DGVExcel, DGVListadoPrinci, ckaprobado, ckculminado, ckpendiente);
@@ -3686,11 +3664,11 @@ namespace ArenasProyect3.Modulos.Comercial
                         sl.SetColumnWidth(2, 15);
                         sl.SetColumnWidth(3, 20);
                         sl.SetColumnWidth(4, 20);
-                        sl.SetColumnWidth(5, 20);
+                        sl.SetColumnWidth(5, 90);
                         sl.SetColumnWidth(6, 50);
-                        sl.SetColumnWidth(7, 60);
-                        sl.SetColumnWidth(8, 100);
-                        sl.SetColumnWidth(9, 70);
+                        sl.SetColumnWidth(7, 70);
+                        sl.SetColumnWidth(8, 50);
+
 
                     }
 
@@ -3735,7 +3713,8 @@ namespace ArenasProyect3.Modulos.Comercial
                             sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
                             sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
                             sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
-                            sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
+
+
 
                             sl.SetCellStyle(ir, 1, styleC);
                             sl.SetCellStyle(ir, 2, styleC);
@@ -3745,7 +3724,7 @@ namespace ArenasProyect3.Modulos.Comercial
                             sl.SetCellStyle(ir, 6, styleC);
                             sl.SetCellStyle(ir, 7, styleC);
                             sl.SetCellStyle(ir, 8, styleC);
-                            sl.SetCellStyle(ir, 9, styleC);
+
 
                             ir++;
                         }
@@ -3767,7 +3746,7 @@ namespace ArenasProyect3.Modulos.Comercial
         }
 
         
-
+        //EVENTO ENCARGADO DE EXPORTAR LAS ACTAS
         private void btnExportarExcelActas_Click(object sender, EventArgs e)
         {
             Actas_ExportarExcel_XTipoBusqueda(cboCriterioBusquedaActas.Text, lblNombreArchivosActas, datalistadoExcelActas, datalistadoActas, ckAprobadoActas, ckCulminadoActas, ckPendienteActas);
@@ -3829,7 +3808,7 @@ namespace ArenasProyect3.Modulos.Comercial
               
             }
             
-            //DEFINICIÓN DEL TITULO PARA EL REPORTE SEGUN EL TIPO DE BUSQUEDA RESPONSABLE,CLIENTE,VEHICULO,MONEDA,SIN FILTROS
+            //DEFINICIÓN DEL TITULO PARA EL REPORTE SEGUN EL TIPO DE BUSQUEDA RESPONSABLE,CLIENTE,SIN FILTROS
             if (criteriobusqueda == "RESPONSABLE")
             {
                 tituloreporte.Text = "filtrado por Responsable";
@@ -3846,6 +3825,7 @@ namespace ArenasProyect3.Modulos.Comercial
             }
         }
 
+        //EVENTO ENCARGADO DE GENERAR LOS REPORTES
         public void Actas_ExportarPDF_XTipoBusqueda(DateTime desde, DateTime hasta, Label tituloreporte,Label nombrearchivo, string criteriobusqueda,string busquedaxdescripcion, CheckBox ckaprobado,CheckBox ckculminado ,CheckBox ckpendiente)
         {
             Actas_Reporte_Titulo(criteriobusqueda, tituloreporte, ckaprobado, ckculminado, ckpendiente);
@@ -4145,12 +4125,17 @@ namespace ArenasProyect3.Modulos.Comercial
             }
         }
         
+        //EVENTO QUE REALIZARA LA EXPORTACIÓN A TEXTO PLANO
         private void btnExportarXMLActas_Click(object sender, EventArgs e)
         {
             Actas_ExportarListadoXML(cboCriterioBusquedaActas.Text,datalistadoExcelActas,datalistadoActas,lblNombreArchivosActas,ckAprobadoActas,ckCulminadoActas,ckPendienteActas);
         }
 
-      
+        //EVENTO PARA LA BUSQUEDA POR NOMBRE
+        private void txtBusquedaActas_TextChanged(object sender, EventArgs e)
+        {
+            MostrarActasPor_Descripcion(DesdeActas.Value, HastaActas.Value, cboCriterioBusquedaActas.Text, txtBusquedaActas.Text, datalistadoActas);
+        }
     }
      
 }

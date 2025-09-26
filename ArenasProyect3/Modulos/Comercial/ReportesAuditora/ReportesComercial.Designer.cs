@@ -48,6 +48,13 @@ namespace ArenasProyect3.Modulos.Comercial
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 30D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -57,13 +64,6 @@ namespace ArenasProyect3.Modulos.Comercial
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 30D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.btnInfo = new System.Windows.Forms.PictureBox();
             this.btnAtudaFormularioArena = new System.Windows.Forms.PictureBox();
@@ -171,13 +171,13 @@ namespace ArenasProyect3.Modulos.Comercial
             this.tbReportesReque = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chCircularTotalRequeXEstado = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnMostrarGrafico = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.HastaGrafi = new System.Windows.Forms.DateTimePicker();
             this.DesdeGrafi = new System.Windows.Forms.DateTimePicker();
             this.chBarrasTotalRequeXEstado = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnMostrarGrafico = new System.Windows.Forms.Button();
-            this.chCircularTotalRequeXEstado = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).BeginInit();
@@ -216,8 +216,8 @@ namespace ArenasProyect3.Modulos.Comercial
             this.tbReportesReque.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chBarrasTotalRequeXEstado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chCircularTotalRequeXEstado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chBarrasTotalRequeXEstado)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -1471,6 +1471,7 @@ namespace ArenasProyect3.Modulos.Comercial
             this.txtBusquedaActas.Name = "txtBusquedaActas";
             this.txtBusquedaActas.Size = new System.Drawing.Size(411, 22);
             this.txtBusquedaActas.TabIndex = 2002;
+            this.txtBusquedaActas.TextChanged += new System.EventHandler(this.txtBusquedaActas_TextChanged);
             // 
             // label20
             // 
@@ -1711,6 +1712,77 @@ namespace ArenasProyect3.Modulos.Comercial
             this.tabPage2.Text = "Gráficos de Requerimientos";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // chCircularTotalRequeXEstado
+            // 
+            this.chCircularTotalRequeXEstado.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.InnerPlotPosition.Auto = false;
+            chartArea1.InnerPlotPosition.Height = 80.55851F;
+            chartArea1.InnerPlotPosition.Width = 80.72664F;
+            chartArea1.InnerPlotPosition.X = 6.07121F;
+            chartArea1.InnerPlotPosition.Y = 2.23404F;
+            chartArea1.Name = "ChartArea1";
+            this.chCircularTotalRequeXEstado.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend1.IsTextAutoFit = false;
+            legend1.Name = "Legend1";
+            this.chCircularTotalRequeXEstado.Legends.Add(legend1);
+            this.chCircularTotalRequeXEstado.Location = new System.Drawing.Point(7, 10);
+            this.chCircularTotalRequeXEstado.Name = "chCircularTotalRequeXEstado";
+            series1.BorderColor = System.Drawing.Color.White;
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.IsValueShownAsLabel = true;
+            series1.Label = "VALX\\n#VALY (#PERCENT)";
+            series1.Legend = "Legend1";
+            series1.Name = "Estados";
+            series1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.BrightPastel;
+            dataPoint1.AxisLabel = "Aprobados";
+            dataPoint1.Color = System.Drawing.Color.SeaGreen;
+            dataPoint1.Label = "30";
+            dataPoint1.LegendText = "Aprobados";
+            dataPoint2.AxisLabel = "Pendientes";
+            dataPoint2.Color = System.Drawing.Color.Goldenrod;
+            dataPoint2.Label = "15";
+            dataPoint2.LegendText = "Pendientes";
+            dataPoint3.Color = System.Drawing.Color.Firebrick;
+            dataPoint3.Label = "5";
+            dataPoint3.LegendText = "Desaprobados";
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series1.Points.Add(dataPoint3);
+            this.chCircularTotalRequeXEstado.Series.Add(series1);
+            this.chCircularTotalRequeXEstado.Size = new System.Drawing.Size(359, 461);
+            this.chCircularTotalRequeXEstado.TabIndex = 2017;
+            this.chCircularTotalRequeXEstado.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.ForeColor = System.Drawing.Color.Navy;
+            title1.Name = "Titutlograficocircular";
+            title1.Text = "Proporción de Requerimientos por Estado";
+            this.chCircularTotalRequeXEstado.Titles.Add(title1);
+            // 
+            // btnMostrarGrafico
+            // 
+            this.btnMostrarGrafico.BackColor = System.Drawing.SystemColors.Desktop;
+            this.btnMostrarGrafico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMostrarGrafico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMostrarGrafico.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrarGrafico.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMostrarGrafico.Image = ((System.Drawing.Image)(resources.GetObject("btnMostrarGrafico.Image")));
+            this.btnMostrarGrafico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMostrarGrafico.Location = new System.Drawing.Point(500, 19);
+            this.btnMostrarGrafico.Name = "btnMostrarGrafico";
+            this.btnMostrarGrafico.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.btnMostrarGrafico.Size = new System.Drawing.Size(135, 32);
+            this.btnMostrarGrafico.TabIndex = 2016;
+            this.btnMostrarGrafico.Text = "Mostrar Grafico";
+            this.btnMostrarGrafico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMostrarGrafico.UseVisualStyleBackColor = false;
+            this.btnMostrarGrafico.Click += new System.EventHandler(this.btnMostrarGrafico_Click);
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -1808,79 +1880,8 @@ namespace ArenasProyect3.Modulos.Comercial
             title2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title2.ForeColor = System.Drawing.Color.DarkSlateGray;
             title2.Name = "Title1";
-            title2.Text = "Total de Requerimientos por Estado";
+            title2.Text = "Distribución de Requerimientos por Estado";
             this.chBarrasTotalRequeXEstado.Titles.Add(title2);
-            // 
-            // btnMostrarGrafico
-            // 
-            this.btnMostrarGrafico.BackColor = System.Drawing.SystemColors.Desktop;
-            this.btnMostrarGrafico.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMostrarGrafico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMostrarGrafico.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrarGrafico.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMostrarGrafico.Image = ((System.Drawing.Image)(resources.GetObject("btnMostrarGrafico.Image")));
-            this.btnMostrarGrafico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMostrarGrafico.Location = new System.Drawing.Point(500, 19);
-            this.btnMostrarGrafico.Name = "btnMostrarGrafico";
-            this.btnMostrarGrafico.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnMostrarGrafico.Size = new System.Drawing.Size(135, 32);
-            this.btnMostrarGrafico.TabIndex = 2016;
-            this.btnMostrarGrafico.Text = "Mostrar Grafico";
-            this.btnMostrarGrafico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMostrarGrafico.UseVisualStyleBackColor = false;
-            this.btnMostrarGrafico.Click += new System.EventHandler(this.btnMostrarGrafico_Click);
-            // 
-            // chCircularTotalRequeXEstado
-            // 
-            this.chCircularTotalRequeXEstado.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.InnerPlotPosition.Auto = false;
-            chartArea1.InnerPlotPosition.Height = 80.55851F;
-            chartArea1.InnerPlotPosition.Width = 80.72664F;
-            chartArea1.InnerPlotPosition.X = 16.07121F;
-            chartArea1.InnerPlotPosition.Y = 2.23404F;
-            chartArea1.Name = "ChartArea1";
-            this.chCircularTotalRequeXEstado.ChartAreas.Add(chartArea1);
-            legend1.Alignment = System.Drawing.StringAlignment.Center;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend1.IsTextAutoFit = false;
-            legend1.Name = "Legend1";
-            this.chCircularTotalRequeXEstado.Legends.Add(legend1);
-            this.chCircularTotalRequeXEstado.Location = new System.Drawing.Point(7, 10);
-            this.chCircularTotalRequeXEstado.Name = "chCircularTotalRequeXEstado";
-            series1.BorderColor = System.Drawing.Color.White;
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series1.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsValueShownAsLabel = true;
-            series1.Label = "VALX\\n#VALY (#PERCENT)";
-            series1.Legend = "Legend1";
-            series1.Name = "Estados";
-            series1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.BrightPastel;
-            dataPoint1.AxisLabel = "Aprobados";
-            dataPoint1.Color = System.Drawing.Color.SeaGreen;
-            dataPoint1.Label = "30";
-            dataPoint1.LegendText = "Aprobados";
-            dataPoint2.AxisLabel = "Pendientes";
-            dataPoint2.Color = System.Drawing.Color.Goldenrod;
-            dataPoint2.Label = "15";
-            dataPoint2.LegendText = "Pendientes";
-            dataPoint3.Color = System.Drawing.Color.Firebrick;
-            dataPoint3.Label = "5";
-            dataPoint3.LegendText = "Desaprobados";
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            series1.Points.Add(dataPoint3);
-            this.chCircularTotalRequeXEstado.Series.Add(series1);
-            this.chCircularTotalRequeXEstado.Size = new System.Drawing.Size(359, 461);
-            this.chCircularTotalRequeXEstado.TabIndex = 2017;
-            this.chCircularTotalRequeXEstado.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.ForeColor = System.Drawing.Color.Navy;
-            title1.Name = "Titutlograficocircular";
-            title1.Text = "Distribución de Requerimientos por Estado";
-            this.chCircularTotalRequeXEstado.Titles.Add(title1);
             // 
             // ReportesComercial
             // 
@@ -1949,8 +1950,8 @@ namespace ArenasProyect3.Modulos.Comercial
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chBarrasTotalRequeXEstado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chCircularTotalRequeXEstado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chBarrasTotalRequeXEstado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
