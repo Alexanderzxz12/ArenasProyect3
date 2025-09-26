@@ -30,10 +30,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoModelos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -191,6 +197,58 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel26 = new System.Windows.Forms.Panel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
+            this.ckCaracteristicaAtributo1 = new System.Windows.Forms.CheckBox();
+            this.ckCaracteristicaAtributo2 = new System.Windows.Forms.CheckBox();
+            this.ckDiametroAtributos1 = new System.Windows.Forms.CheckBox();
+            this.ckDiametroAtributos2 = new System.Windows.Forms.CheckBox();
+            this.ckCaracteristicaAtributo3 = new System.Windows.Forms.CheckBox();
+            this.ckCaracteristicaAtributo4 = new System.Windows.Forms.CheckBox();
+            this.ckMedidasAtributos3 = new System.Windows.Forms.CheckBox();
+            this.ckMedidasAtributos4 = new System.Windows.Forms.CheckBox();
+            this.ckMedidasAtributos1 = new System.Windows.Forms.CheckBox();
+            this.ckMedidasAtributos2 = new System.Windows.Forms.CheckBox();
+            this.ckTiposNTiposAtributos3 = new System.Windows.Forms.CheckBox();
+            this.ckTiposNTiposAtributos4 = new System.Windows.Forms.CheckBox();
+            this.ckEspesoresAtributos1 = new System.Windows.Forms.CheckBox();
+            this.ckEspesoresAtributos2 = new System.Windows.Forms.CheckBox();
+            this.ckVariosAtributos1 = new System.Windows.Forms.CheckBox();
+            this.ckDiseñoAcabadoAtributos1 = new System.Windows.Forms.CheckBox();
+            this.ckDiseñoAcabadoAtributos2 = new System.Windows.Forms.CheckBox();
+            this.ckFormasAtributos3 = new System.Windows.Forms.CheckBox();
+            this.ckFormasAtributos4 = new System.Windows.Forms.CheckBox();
+            this.ckVariosAtributos2 = new System.Windows.Forms.CheckBox();
+            this.ckDiseñoAcabadoAtributos3 = new System.Windows.Forms.CheckBox();
+            this.ckDiseñoAcabadoAtributos4 = new System.Windows.Forms.CheckBox();
+            this.ckFormasAtributos1 = new System.Windows.Forms.CheckBox();
+            this.ckFormasAtributos2 = new System.Windows.Forms.CheckBox();
+            this.ckTiposNTiposAtributos1 = new System.Windows.Forms.CheckBox();
+            this.ckTiposNTiposAtributos2 = new System.Windows.Forms.CheckBox();
+            this.ckDiametroAtributos3 = new System.Windows.Forms.CheckBox();
+            this.ckDiametroAtributos4 = new System.Windows.Forms.CheckBox();
+            this.ckEspesoresAtributos3 = new System.Windows.Forms.CheckBox();
+            this.ckEspesoresAtributos4 = new System.Windows.Forms.CheckBox();
+            this.panelAsignarnombre = new System.Windows.Forms.Panel();
+            this.btnGuardarPosicion = new System.Windows.Forms.Button();
+            this.label40 = new System.Windows.Forms.Label();
+            this.panel32 = new System.Windows.Forms.Panel();
+            this.panel31 = new System.Windows.Forms.Panel();
+            this.panel30 = new System.Windows.Forms.Panel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.flowlayoutpanelcontenedortipos = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.flowlayoutpanelasignarnombre = new System.Windows.Forms.FlowLayoutPanel();
+            this.label38 = new System.Windows.Forms.Label();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.btnDefiniciónNombre = new System.Windows.Forms.Button();
+            this.datalistadockatributos = new System.Windows.Forms.DataGridView();
+            this.datalistadoCamposAsignarNombre = new System.Windows.Forms.DataGridView();
+            this.datalistadoCargarGrupoCampos = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoModeloRecienIngresado)).BeginInit();
@@ -219,6 +277,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposCaracteristicas2.SuspendLayout();
             this.panelCamposCaracteristicas1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panelAsignarnombre.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadockatributos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCamposAsignarNombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCargarGrupoCampos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -280,6 +345,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.datalistadockatributos);
+            this.panel2.Controls.Add(this.datalistadoCamposAsignarNombre);
+            this.panel2.Controls.Add(this.datalistadoCargarGrupoCampos);
+            this.panel2.Controls.Add(this.label37);
+            this.panel2.Controls.Add(this.btnDefiniciónNombre);
             this.panel2.Controls.Add(this.btnExportarExcel);
             this.panel2.Controls.Add(this.Cancelar);
             this.panel2.Controls.Add(this.label32);
@@ -526,40 +596,40 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.datalistadoLineas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoLineas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoLineas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.datalistadoLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle16;
             this.datalistadoLineas.Location = new System.Drawing.Point(33, 266);
             this.datalistadoLineas.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoLineas.MultiSelect = false;
             this.datalistadoLineas.Name = "datalistadoLineas";
             this.datalistadoLineas.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.datalistadoLineas.RowHeadersVisible = false;
             this.datalistadoLineas.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.datalistadoLineas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoLineas.Size = new System.Drawing.Size(702, 255);
             this.datalistadoLineas.TabIndex = 1994;
@@ -765,9 +835,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelDefinicionAtributos.Controls.Add(this.btnCancelar);
             this.panelDefinicionAtributos.Controls.Add(this.btnSalir);
             this.panelDefinicionAtributos.Controls.Add(this.btnGuardarAtributos);
+            this.panelDefinicionAtributos.Controls.Add(this.flowLayoutPanel);
             this.panelDefinicionAtributos.Controls.Add(this.panel4);
             this.panelDefinicionAtributos.Controls.Add(this.pictureBox2);
-            this.panelDefinicionAtributos.Controls.Add(this.flowLayoutPanel);
             this.panelDefinicionAtributos.Controls.Add(this.label34);
             this.panelDefinicionAtributos.Controls.Add(this.label33);
             this.panelDefinicionAtributos.Controls.Add(this.label29);
@@ -779,7 +849,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelDefinicionAtributos.Controls.Add(this.panel26);
             this.panelDefinicionAtributos.Controls.Add(this.panel27);
             this.panelDefinicionAtributos.Controls.Add(this.label31);
-            this.panelDefinicionAtributos.Location = new System.Drawing.Point(125, 24);
+            this.panelDefinicionAtributos.Location = new System.Drawing.Point(1093, 50);
             this.panelDefinicionAtributos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDefinicionAtributos.Name = "panelDefinicionAtributos";
             this.panelDefinicionAtributos.Size = new System.Drawing.Size(930, 589);
@@ -850,7 +920,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.flowLayoutPanel.Location = new System.Drawing.Point(327, 48);
             this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(594, 418);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(600, 418);
             this.flowLayoutPanel.TabIndex = 105;
             // 
             // label34
@@ -990,13 +1060,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // panelCamposVariosO1
             // 
             this.panelCamposVariosO1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCamposVariosO1.Controls.Add(this.ckVariosAtributos1);
             this.panelCamposVariosO1.Controls.Add(this.label24);
             this.panelCamposVariosO1.Controls.Add(this.panel20);
             this.panelCamposVariosO1.Controls.Add(this.cboTiposVariosO1);
-            this.panelCamposVariosO1.Location = new System.Drawing.Point(605, 292);
+            this.panelCamposVariosO1.Location = new System.Drawing.Point(637, 291);
             this.panelCamposVariosO1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposVariosO1.Name = "panelCamposVariosO1";
-            this.panelCamposVariosO1.Size = new System.Drawing.Size(186, 59);
+            this.panelCamposVariosO1.Size = new System.Drawing.Size(196, 59);
             this.panelCamposVariosO1.TabIndex = 1920;
             // 
             // label24
@@ -1028,18 +1099,19 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposVariosO1.Location = new System.Drawing.Point(13, 25);
             this.cboTiposVariosO1.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposVariosO1.Name = "cboTiposVariosO1";
-            this.cboTiposVariosO1.Size = new System.Drawing.Size(160, 20);
+            this.cboTiposVariosO1.Size = new System.Drawing.Size(153, 20);
             this.cboTiposVariosO1.TabIndex = 1900;
             // 
             // panelCamposVariosO2
             // 
+            this.panelCamposVariosO2.Controls.Add(this.ckVariosAtributos2);
             this.panelCamposVariosO2.Controls.Add(this.label23);
             this.panelCamposVariosO2.Controls.Add(this.panel18);
             this.panelCamposVariosO2.Controls.Add(this.cboTiposVariosO2);
-            this.panelCamposVariosO2.Location = new System.Drawing.Point(407, 292);
+            this.panelCamposVariosO2.Location = new System.Drawing.Point(427, 292);
             this.panelCamposVariosO2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposVariosO2.Name = "panelCamposVariosO2";
-            this.panelCamposVariosO2.Size = new System.Drawing.Size(189, 59);
+            this.panelCamposVariosO2.Size = new System.Drawing.Size(193, 59);
             this.panelCamposVariosO2.TabIndex = 1919;
             // 
             // label23
@@ -1071,11 +1143,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposVariosO2.Location = new System.Drawing.Point(13, 26);
             this.cboTiposVariosO2.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposVariosO2.Name = "cboTiposVariosO2";
-            this.cboTiposVariosO2.Size = new System.Drawing.Size(160, 20);
+            this.cboTiposVariosO2.Size = new System.Drawing.Size(154, 20);
             this.cboTiposVariosO2.TabIndex = 1900;
             // 
             // panelCamposNTipos1
             // 
+            this.panelCamposNTipos1.Controls.Add(this.ckTiposNTiposAtributos2);
+            this.panelCamposNTipos1.Controls.Add(this.ckTiposNTiposAtributos1);
             this.panelCamposNTipos1.Controls.Add(this.label22);
             this.panelCamposNTipos1.Controls.Add(this.panel17);
             this.panelCamposNTipos1.Controls.Add(this.cboTiposNTipos2);
@@ -1083,7 +1157,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposNTipos1.Location = new System.Drawing.Point(4, 295);
             this.panelCamposNTipos1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposNTipos1.Name = "panelCamposNTipos1";
-            this.panelCamposNTipos1.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposNTipos1.Size = new System.Drawing.Size(200, 87);
             this.panelCamposNTipos1.TabIndex = 1918;
             // 
             // label22
@@ -1131,14 +1205,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposNTipos2
             // 
+            this.panelCamposNTipos2.Controls.Add(this.ckTiposNTiposAtributos4);
+            this.panelCamposNTipos2.Controls.Add(this.ckTiposNTiposAtributos3);
             this.panelCamposNTipos2.Controls.Add(this.label21);
             this.panelCamposNTipos2.Controls.Add(this.panel14);
             this.panelCamposNTipos2.Controls.Add(this.cboTiposNTipos4);
             this.panelCamposNTipos2.Controls.Add(this.cboTiposNTipos3);
-            this.panelCamposNTipos2.Location = new System.Drawing.Point(601, 102);
+            this.panelCamposNTipos2.Location = new System.Drawing.Point(628, 104);
             this.panelCamposNTipos2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposNTipos2.Name = "panelCamposNTipos2";
-            this.panelCamposNTipos2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposNTipos2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposNTipos2.TabIndex = 1917;
             // 
             // label21
@@ -1186,14 +1262,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposEspesores1
             // 
+            this.panelCamposEspesores1.Controls.Add(this.ckEspesoresAtributos2);
+            this.panelCamposEspesores1.Controls.Add(this.ckEspesoresAtributos1);
             this.panelCamposEspesores1.Controls.Add(this.label18);
             this.panelCamposEspesores1.Controls.Add(this.panel13);
             this.panelCamposEspesores1.Controls.Add(this.cbooTipoEspesores2);
             this.panelCamposEspesores1.Controls.Add(this.cbooTipoEspesores1);
-            this.panelCamposEspesores1.Location = new System.Drawing.Point(601, 198);
+            this.panelCamposEspesores1.Location = new System.Drawing.Point(628, 196);
             this.panelCamposEspesores1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposEspesores1.Name = "panelCamposEspesores1";
-            this.panelCamposEspesores1.Size = new System.Drawing.Size(187, 87);
+            this.panelCamposEspesores1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposEspesores1.TabIndex = 1916;
             // 
             // label18
@@ -1241,14 +1319,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposEspesores2
             // 
+            this.panelCamposEspesores2.Controls.Add(this.ckEspesoresAtributos4);
+            this.panelCamposEspesores2.Controls.Add(this.ckEspesoresAtributos3);
             this.panelCamposEspesores2.Controls.Add(this.label17);
             this.panelCamposEspesores2.Controls.Add(this.panel12);
             this.panelCamposEspesores2.Controls.Add(this.cbooTipoEspesores4);
             this.panelCamposEspesores2.Controls.Add(this.cbooTipoEspesores3);
-            this.panelCamposEspesores2.Location = new System.Drawing.Point(205, 298);
+            this.panelCamposEspesores2.Location = new System.Drawing.Point(218, 298);
             this.panelCamposEspesores2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposEspesores2.Name = "panelCamposEspesores2";
-            this.panelCamposEspesores2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposEspesores2.Size = new System.Drawing.Size(201, 87);
             this.panelCamposEspesores2.TabIndex = 1915;
             // 
             // label17
@@ -1296,6 +1376,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposFormas1
             // 
+            this.panelCamposFormas1.Controls.Add(this.ckFormasAtributos2);
+            this.panelCamposFormas1.Controls.Add(this.ckFormasAtributos1);
             this.panelCamposFormas1.Controls.Add(this.label16);
             this.panelCamposFormas1.Controls.Add(this.panel11);
             this.panelCamposFormas1.Controls.Add(this.cboTiposFormas2);
@@ -1303,7 +1385,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposFormas1.Location = new System.Drawing.Point(4, 202);
             this.panelCamposFormas1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposFormas1.Name = "panelCamposFormas1";
-            this.panelCamposFormas1.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposFormas1.Size = new System.Drawing.Size(200, 87);
             this.panelCamposFormas1.TabIndex = 1914;
             // 
             // label16
@@ -1351,14 +1433,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposFormas2
             // 
+            this.panelCamposFormas2.Controls.Add(this.ckFormasAtributos4);
+            this.panelCamposFormas2.Controls.Add(this.ckFormasAtributos3);
             this.panelCamposFormas2.Controls.Add(this.label15);
             this.panelCamposFormas2.Controls.Add(this.panel16);
             this.panelCamposFormas2.Controls.Add(this.cboTiposFormas4);
             this.panelCamposFormas2.Controls.Add(this.cboTiposFormas3);
-            this.panelCamposFormas2.Location = new System.Drawing.Point(400, 197);
+            this.panelCamposFormas2.Location = new System.Drawing.Point(421, 196);
             this.panelCamposFormas2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposFormas2.Name = "panelCamposFormas2";
-            this.panelCamposFormas2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposFormas2.Size = new System.Drawing.Size(199, 87);
             this.panelCamposFormas2.TabIndex = 1913;
             // 
             // label15
@@ -1406,14 +1490,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiametros2
             // 
+            this.panelCamposDiametros2.Controls.Add(this.ckDiametroAtributos4);
+            this.panelCamposDiametros2.Controls.Add(this.ckDiametroAtributos3);
             this.panelCamposDiametros2.Controls.Add(this.label14);
             this.panelCamposDiametros2.Controls.Add(this.panel15);
             this.panelCamposDiametros2.Controls.Add(this.cboTiposDiametros4);
             this.panelCamposDiametros2.Controls.Add(this.cboTiposDiametros3);
-            this.panelCamposDiametros2.Location = new System.Drawing.Point(201, 203);
+            this.panelCamposDiametros2.Location = new System.Drawing.Point(214, 203);
             this.panelCamposDiametros2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiametros2.Name = "panelCamposDiametros2";
-            this.panelCamposDiametros2.Size = new System.Drawing.Size(187, 87);
+            this.panelCamposDiametros2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposDiametros2.TabIndex = 1912;
             // 
             // label14
@@ -1461,6 +1547,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiametros1
             // 
+            this.panelCamposDiametros1.Controls.Add(this.ckDiametroAtributos2);
+            this.panelCamposDiametros1.Controls.Add(this.ckDiametroAtributos1);
             this.panelCamposDiametros1.Controls.Add(this.label13);
             this.panelCamposDiametros1.Controls.Add(this.panel8);
             this.panelCamposDiametros1.Controls.Add(this.cboTiposDiametros2);
@@ -1468,7 +1556,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposDiametros1.Location = new System.Drawing.Point(4, 103);
             this.panelCamposDiametros1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiametros1.Name = "panelCamposDiametros1";
-            this.panelCamposDiametros1.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposDiametros1.Size = new System.Drawing.Size(200, 87);
             this.panelCamposDiametros1.TabIndex = 1911;
             // 
             // label13
@@ -1516,14 +1604,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiseñoAcabado1
             // 
+            this.panelCamposDiseñoAcabado1.Controls.Add(this.ckDiseñoAcabadoAtributos2);
+            this.panelCamposDiseñoAcabado1.Controls.Add(this.ckDiseñoAcabadoAtributos1);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.label20);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.panel9);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.cboTiposDiseñosAcabados2);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.cboTiposDiseñosAcabados1);
-            this.panelCamposDiseñoAcabado1.Location = new System.Drawing.Point(403, 105);
+            this.panelCamposDiseñoAcabado1.Location = new System.Drawing.Point(421, 105);
             this.panelCamposDiseñoAcabado1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiseñoAcabado1.Name = "panelCamposDiseñoAcabado1";
-            this.panelCamposDiseñoAcabado1.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposDiseñoAcabado1.Size = new System.Drawing.Size(199, 87);
             this.panelCamposDiseñoAcabado1.TabIndex = 1910;
             // 
             // label20
@@ -1571,14 +1661,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiseñoAcabado2
             // 
+            this.panelCamposDiseñoAcabado2.Controls.Add(this.ckDiseñoAcabadoAtributos4);
+            this.panelCamposDiseñoAcabado2.Controls.Add(this.ckDiseñoAcabadoAtributos3);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.label19);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.panel10);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.cboTiposDiseñosAcabados4);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.cboTiposDiseñosAcabados3);
-            this.panelCamposDiseñoAcabado2.Location = new System.Drawing.Point(201, 105);
+            this.panelCamposDiseñoAcabado2.Location = new System.Drawing.Point(212, 105);
             this.panelCamposDiseñoAcabado2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiseñoAcabado2.Name = "panelCamposDiseñoAcabado2";
-            this.panelCamposDiseñoAcabado2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposDiseñoAcabado2.Size = new System.Drawing.Size(207, 87);
             this.panelCamposDiseñoAcabado2.TabIndex = 1909;
             // 
             // label19
@@ -1626,14 +1718,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposMedidas1
             // 
+            this.panelCamposMedidas1.Controls.Add(this.ckMedidasAtributos2);
+            this.panelCamposMedidas1.Controls.Add(this.ckMedidasAtributos1);
             this.panelCamposMedidas1.Controls.Add(this.label10);
             this.panelCamposMedidas1.Controls.Add(this.panel7);
             this.panelCamposMedidas1.Controls.Add(this.cboTipoMedida2);
             this.panelCamposMedidas1.Controls.Add(this.cboTipoMedida1);
-            this.panelCamposMedidas1.Location = new System.Drawing.Point(601, 7);
+            this.panelCamposMedidas1.Location = new System.Drawing.Point(637, 7);
             this.panelCamposMedidas1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposMedidas1.Name = "panelCamposMedidas1";
-            this.panelCamposMedidas1.Size = new System.Drawing.Size(187, 87);
+            this.panelCamposMedidas1.Size = new System.Drawing.Size(199, 87);
             this.panelCamposMedidas1.TabIndex = 1907;
             // 
             // label10
@@ -1681,14 +1775,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposMedidas2
             // 
+            this.panelCamposMedidas2.Controls.Add(this.ckMedidasAtributos4);
+            this.panelCamposMedidas2.Controls.Add(this.ckMedidasAtributos3);
             this.panelCamposMedidas2.Controls.Add(this.label12);
             this.panelCamposMedidas2.Controls.Add(this.cboTipoMedida4);
             this.panelCamposMedidas2.Controls.Add(this.cboTipoMedida3);
             this.panelCamposMedidas2.Controls.Add(this.panel3);
-            this.panelCamposMedidas2.Location = new System.Drawing.Point(403, 7);
+            this.panelCamposMedidas2.Location = new System.Drawing.Point(427, 7);
             this.panelCamposMedidas2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposMedidas2.Name = "panelCamposMedidas2";
-            this.panelCamposMedidas2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposMedidas2.Size = new System.Drawing.Size(202, 87);
             this.panelCamposMedidas2.TabIndex = 1906;
             // 
             // label12
@@ -1736,14 +1832,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposCaracteristicas2
             // 
+            this.panelCamposCaracteristicas2.Controls.Add(this.ckCaracteristicaAtributo4);
+            this.panelCamposCaracteristicas2.Controls.Add(this.ckCaracteristicaAtributo3);
             this.panelCamposCaracteristicas2.Controls.Add(this.label26);
             this.panelCamposCaracteristicas2.Controls.Add(this.panel19);
             this.panelCamposCaracteristicas2.Controls.Add(this.cboTipoCaracteristicas4);
             this.panelCamposCaracteristicas2.Controls.Add(this.cboTipoCaracteristicas3);
-            this.panelCamposCaracteristicas2.Location = new System.Drawing.Point(201, 7);
+            this.panelCamposCaracteristicas2.Location = new System.Drawing.Point(212, 8);
             this.panelCamposCaracteristicas2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposCaracteristicas2.Name = "panelCamposCaracteristicas2";
-            this.panelCamposCaracteristicas2.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposCaracteristicas2.Size = new System.Drawing.Size(207, 87);
             this.panelCamposCaracteristicas2.TabIndex = 1904;
             // 
             // label26
@@ -1791,6 +1889,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposCaracteristicas1
             // 
+            this.panelCamposCaracteristicas1.Controls.Add(this.ckCaracteristicaAtributo2);
+            this.panelCamposCaracteristicas1.Controls.Add(this.ckCaracteristicaAtributo1);
             this.panelCamposCaracteristicas1.Controls.Add(this.label27);
             this.panelCamposCaracteristicas1.Controls.Add(this.panel24);
             this.panelCamposCaracteristicas1.Controls.Add(this.cboTipoCaracteristicas2);
@@ -1798,7 +1898,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposCaracteristicas1.Location = new System.Drawing.Point(4, 7);
             this.panelCamposCaracteristicas1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposCaracteristicas1.Name = "panelCamposCaracteristicas1";
-            this.panelCamposCaracteristicas1.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposCaracteristicas1.Size = new System.Drawing.Size(200, 87);
             this.panelCamposCaracteristicas1.TabIndex = 1905;
             // 
             // label27
@@ -2150,12 +2250,699 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label31.TabIndex = 4;
             this.label31.Text = "Asignación de Atributos y campos al Modelo";
             // 
+            // ckCaracteristicaAtributo1
+            // 
+            this.ckCaracteristicaAtributo1.AutoSize = true;
+            this.ckCaracteristicaAtributo1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckCaracteristicaAtributo1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCaracteristicaAtributo1.Location = new System.Drawing.Point(181, 29);
+            this.ckCaracteristicaAtributo1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckCaracteristicaAtributo1.Name = "ckCaracteristicaAtributo1";
+            this.ckCaracteristicaAtributo1.Size = new System.Drawing.Size(15, 14);
+            this.ckCaracteristicaAtributo1.TabIndex = 1909;
+            this.ckCaracteristicaAtributo1.UseVisualStyleBackColor = false;
+            // 
+            // ckCaracteristicaAtributo2
+            // 
+            this.ckCaracteristicaAtributo2.AutoSize = true;
+            this.ckCaracteristicaAtributo2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckCaracteristicaAtributo2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCaracteristicaAtributo2.Location = new System.Drawing.Point(181, 60);
+            this.ckCaracteristicaAtributo2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckCaracteristicaAtributo2.Name = "ckCaracteristicaAtributo2";
+            this.ckCaracteristicaAtributo2.Size = new System.Drawing.Size(15, 14);
+            this.ckCaracteristicaAtributo2.TabIndex = 1910;
+            this.ckCaracteristicaAtributo2.UseVisualStyleBackColor = false;
+            // 
+            // ckDiametroAtributos1
+            // 
+            this.ckDiametroAtributos1.AutoSize = true;
+            this.ckDiametroAtributos1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiametroAtributos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiametroAtributos1.Location = new System.Drawing.Point(181, 29);
+            this.ckDiametroAtributos1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiametroAtributos1.Name = "ckDiametroAtributos1";
+            this.ckDiametroAtributos1.Size = new System.Drawing.Size(15, 14);
+            this.ckDiametroAtributos1.TabIndex = 1911;
+            this.ckDiametroAtributos1.UseVisualStyleBackColor = false;
+            // 
+            // ckDiametroAtributos2
+            // 
+            this.ckDiametroAtributos2.AutoSize = true;
+            this.ckDiametroAtributos2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiametroAtributos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiametroAtributos2.Location = new System.Drawing.Point(180, 62);
+            this.ckDiametroAtributos2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiametroAtributos2.Name = "ckDiametroAtributos2";
+            this.ckDiametroAtributos2.Size = new System.Drawing.Size(15, 14);
+            this.ckDiametroAtributos2.TabIndex = 1912;
+            this.ckDiametroAtributos2.UseVisualStyleBackColor = false;
+            // 
+            // ckCaracteristicaAtributo3
+            // 
+            this.ckCaracteristicaAtributo3.AutoSize = true;
+            this.ckCaracteristicaAtributo3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckCaracteristicaAtributo3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCaracteristicaAtributo3.Location = new System.Drawing.Point(184, 28);
+            this.ckCaracteristicaAtributo3.Margin = new System.Windows.Forms.Padding(4);
+            this.ckCaracteristicaAtributo3.Name = "ckCaracteristicaAtributo3";
+            this.ckCaracteristicaAtributo3.Size = new System.Drawing.Size(15, 14);
+            this.ckCaracteristicaAtributo3.TabIndex = 1910;
+            this.ckCaracteristicaAtributo3.UseVisualStyleBackColor = false;
+            // 
+            // ckCaracteristicaAtributo4
+            // 
+            this.ckCaracteristicaAtributo4.AutoSize = true;
+            this.ckCaracteristicaAtributo4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckCaracteristicaAtributo4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCaracteristicaAtributo4.Location = new System.Drawing.Point(184, 59);
+            this.ckCaracteristicaAtributo4.Margin = new System.Windows.Forms.Padding(4);
+            this.ckCaracteristicaAtributo4.Name = "ckCaracteristicaAtributo4";
+            this.ckCaracteristicaAtributo4.Size = new System.Drawing.Size(15, 14);
+            this.ckCaracteristicaAtributo4.TabIndex = 1911;
+            this.ckCaracteristicaAtributo4.UseVisualStyleBackColor = false;
+            // 
+            // ckMedidasAtributos3
+            // 
+            this.ckMedidasAtributos3.AutoSize = true;
+            this.ckMedidasAtributos3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckMedidasAtributos3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckMedidasAtributos3.Location = new System.Drawing.Point(182, 27);
+            this.ckMedidasAtributos3.Margin = new System.Windows.Forms.Padding(4);
+            this.ckMedidasAtributos3.Name = "ckMedidasAtributos3";
+            this.ckMedidasAtributos3.Size = new System.Drawing.Size(15, 14);
+            this.ckMedidasAtributos3.TabIndex = 1910;
+            this.ckMedidasAtributos3.UseVisualStyleBackColor = false;
+            // 
+            // ckMedidasAtributos4
+            // 
+            this.ckMedidasAtributos4.AutoSize = true;
+            this.ckMedidasAtributos4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckMedidasAtributos4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckMedidasAtributos4.Location = new System.Drawing.Point(182, 60);
+            this.ckMedidasAtributos4.Margin = new System.Windows.Forms.Padding(4);
+            this.ckMedidasAtributos4.Name = "ckMedidasAtributos4";
+            this.ckMedidasAtributos4.Size = new System.Drawing.Size(15, 14);
+            this.ckMedidasAtributos4.TabIndex = 1911;
+            this.ckMedidasAtributos4.UseVisualStyleBackColor = false;
+            // 
+            // ckMedidasAtributos1
+            // 
+            this.ckMedidasAtributos1.AutoSize = true;
+            this.ckMedidasAtributos1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckMedidasAtributos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckMedidasAtributos1.Location = new System.Drawing.Point(181, 29);
+            this.ckMedidasAtributos1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckMedidasAtributos1.Name = "ckMedidasAtributos1";
+            this.ckMedidasAtributos1.Size = new System.Drawing.Size(15, 14);
+            this.ckMedidasAtributos1.TabIndex = 1910;
+            this.ckMedidasAtributos1.UseVisualStyleBackColor = false;
+            // 
+            // ckMedidasAtributos2
+            // 
+            this.ckMedidasAtributos2.AutoSize = true;
+            this.ckMedidasAtributos2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckMedidasAtributos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckMedidasAtributos2.Location = new System.Drawing.Point(181, 60);
+            this.ckMedidasAtributos2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckMedidasAtributos2.Name = "ckMedidasAtributos2";
+            this.ckMedidasAtributos2.Size = new System.Drawing.Size(15, 14);
+            this.ckMedidasAtributos2.TabIndex = 1911;
+            this.ckMedidasAtributos2.UseVisualStyleBackColor = false;
+            // 
+            // ckTiposNTiposAtributos3
+            // 
+            this.ckTiposNTiposAtributos3.AutoSize = true;
+            this.ckTiposNTiposAtributos3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckTiposNTiposAtributos3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckTiposNTiposAtributos3.Location = new System.Drawing.Point(181, 27);
+            this.ckTiposNTiposAtributos3.Margin = new System.Windows.Forms.Padding(4);
+            this.ckTiposNTiposAtributos3.Name = "ckTiposNTiposAtributos3";
+            this.ckTiposNTiposAtributos3.Size = new System.Drawing.Size(15, 14);
+            this.ckTiposNTiposAtributos3.TabIndex = 1919;
+            this.ckTiposNTiposAtributos3.UseVisualStyleBackColor = false;
+            // 
+            // ckTiposNTiposAtributos4
+            // 
+            this.ckTiposNTiposAtributos4.AutoSize = true;
+            this.ckTiposNTiposAtributos4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckTiposNTiposAtributos4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckTiposNTiposAtributos4.Location = new System.Drawing.Point(181, 58);
+            this.ckTiposNTiposAtributos4.Margin = new System.Windows.Forms.Padding(4);
+            this.ckTiposNTiposAtributos4.Name = "ckTiposNTiposAtributos4";
+            this.ckTiposNTiposAtributos4.Size = new System.Drawing.Size(15, 14);
+            this.ckTiposNTiposAtributos4.TabIndex = 1920;
+            this.ckTiposNTiposAtributos4.UseVisualStyleBackColor = false;
+            // 
+            // ckEspesoresAtributos1
+            // 
+            this.ckEspesoresAtributos1.AutoSize = true;
+            this.ckEspesoresAtributos1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckEspesoresAtributos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckEspesoresAtributos1.Location = new System.Drawing.Point(181, 25);
+            this.ckEspesoresAtributos1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckEspesoresAtributos1.Name = "ckEspesoresAtributos1";
+            this.ckEspesoresAtributos1.Size = new System.Drawing.Size(15, 14);
+            this.ckEspesoresAtributos1.TabIndex = 1918;
+            this.ckEspesoresAtributos1.UseVisualStyleBackColor = false;
+            // 
+            // ckEspesoresAtributos2
+            // 
+            this.ckEspesoresAtributos2.AutoSize = true;
+            this.ckEspesoresAtributos2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckEspesoresAtributos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckEspesoresAtributos2.Location = new System.Drawing.Point(181, 56);
+            this.ckEspesoresAtributos2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckEspesoresAtributos2.Name = "ckEspesoresAtributos2";
+            this.ckEspesoresAtributos2.Size = new System.Drawing.Size(15, 14);
+            this.ckEspesoresAtributos2.TabIndex = 1919;
+            this.ckEspesoresAtributos2.UseVisualStyleBackColor = false;
+            // 
+            // ckVariosAtributos1
+            // 
+            this.ckVariosAtributos1.AutoSize = true;
+            this.ckVariosAtributos1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckVariosAtributos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckVariosAtributos1.Location = new System.Drawing.Point(171, 28);
+            this.ckVariosAtributos1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckVariosAtributos1.Name = "ckVariosAtributos1";
+            this.ckVariosAtributos1.Size = new System.Drawing.Size(15, 14);
+            this.ckVariosAtributos1.TabIndex = 1921;
+            this.ckVariosAtributos1.UseVisualStyleBackColor = false;
+            // 
+            // ckDiseñoAcabadoAtributos1
+            // 
+            this.ckDiseñoAcabadoAtributos1.AutoSize = true;
+            this.ckDiseñoAcabadoAtributos1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiseñoAcabadoAtributos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiseñoAcabadoAtributos1.Location = new System.Drawing.Point(180, 26);
+            this.ckDiseñoAcabadoAtributos1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiseñoAcabadoAtributos1.Name = "ckDiseñoAcabadoAtributos1";
+            this.ckDiseñoAcabadoAtributos1.Size = new System.Drawing.Size(15, 14);
+            this.ckDiseñoAcabadoAtributos1.TabIndex = 1916;
+            this.ckDiseñoAcabadoAtributos1.UseVisualStyleBackColor = false;
+            // 
+            // ckDiseñoAcabadoAtributos2
+            // 
+            this.ckDiseñoAcabadoAtributos2.AutoSize = true;
+            this.ckDiseñoAcabadoAtributos2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiseñoAcabadoAtributos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiseñoAcabadoAtributos2.Location = new System.Drawing.Point(180, 57);
+            this.ckDiseñoAcabadoAtributos2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiseñoAcabadoAtributos2.Name = "ckDiseñoAcabadoAtributos2";
+            this.ckDiseñoAcabadoAtributos2.Size = new System.Drawing.Size(15, 14);
+            this.ckDiseñoAcabadoAtributos2.TabIndex = 1919;
+            this.ckDiseñoAcabadoAtributos2.UseVisualStyleBackColor = false;
+            // 
+            // ckFormasAtributos3
+            // 
+            this.ckFormasAtributos3.AutoSize = true;
+            this.ckFormasAtributos3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckFormasAtributos3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckFormasAtributos3.Location = new System.Drawing.Point(180, 25);
+            this.ckFormasAtributos3.Margin = new System.Windows.Forms.Padding(4);
+            this.ckFormasAtributos3.Name = "ckFormasAtributos3";
+            this.ckFormasAtributos3.Size = new System.Drawing.Size(15, 14);
+            this.ckFormasAtributos3.TabIndex = 1920;
+            this.ckFormasAtributos3.UseVisualStyleBackColor = false;
+            // 
+            // ckFormasAtributos4
+            // 
+            this.ckFormasAtributos4.AutoSize = true;
+            this.ckFormasAtributos4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckFormasAtributos4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckFormasAtributos4.Location = new System.Drawing.Point(180, 58);
+            this.ckFormasAtributos4.Margin = new System.Windows.Forms.Padding(4);
+            this.ckFormasAtributos4.Name = "ckFormasAtributos4";
+            this.ckFormasAtributos4.Size = new System.Drawing.Size(15, 14);
+            this.ckFormasAtributos4.TabIndex = 1921;
+            this.ckFormasAtributos4.UseVisualStyleBackColor = false;
+            // 
+            // ckVariosAtributos2
+            // 
+            this.ckVariosAtributos2.AutoSize = true;
+            this.ckVariosAtributos2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckVariosAtributos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckVariosAtributos2.Location = new System.Drawing.Point(174, 31);
+            this.ckVariosAtributos2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckVariosAtributos2.Name = "ckVariosAtributos2";
+            this.ckVariosAtributos2.Size = new System.Drawing.Size(15, 14);
+            this.ckVariosAtributos2.TabIndex = 1920;
+            this.ckVariosAtributos2.UseVisualStyleBackColor = false;
+            // 
+            // ckDiseñoAcabadoAtributos3
+            // 
+            this.ckDiseñoAcabadoAtributos3.AutoSize = true;
+            this.ckDiseñoAcabadoAtributos3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiseñoAcabadoAtributos3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiseñoAcabadoAtributos3.Location = new System.Drawing.Point(184, 29);
+            this.ckDiseñoAcabadoAtributos3.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiseñoAcabadoAtributos3.Name = "ckDiseñoAcabadoAtributos3";
+            this.ckDiseñoAcabadoAtributos3.Size = new System.Drawing.Size(15, 14);
+            this.ckDiseñoAcabadoAtributos3.TabIndex = 1918;
+            this.ckDiseñoAcabadoAtributos3.UseVisualStyleBackColor = false;
+            // 
+            // ckDiseñoAcabadoAtributos4
+            // 
+            this.ckDiseñoAcabadoAtributos4.AutoSize = true;
+            this.ckDiseñoAcabadoAtributos4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiseñoAcabadoAtributos4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiseñoAcabadoAtributos4.Location = new System.Drawing.Point(184, 57);
+            this.ckDiseñoAcabadoAtributos4.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiseñoAcabadoAtributos4.Name = "ckDiseñoAcabadoAtributos4";
+            this.ckDiseñoAcabadoAtributos4.Size = new System.Drawing.Size(15, 14);
+            this.ckDiseñoAcabadoAtributos4.TabIndex = 1919;
+            this.ckDiseñoAcabadoAtributos4.UseVisualStyleBackColor = false;
+            // 
+            // ckFormasAtributos1
+            // 
+            this.ckFormasAtributos1.AutoSize = true;
+            this.ckFormasAtributos1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckFormasAtributos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckFormasAtributos1.Location = new System.Drawing.Point(180, 28);
+            this.ckFormasAtributos1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckFormasAtributos1.Name = "ckFormasAtributos1";
+            this.ckFormasAtributos1.Size = new System.Drawing.Size(15, 14);
+            this.ckFormasAtributos1.TabIndex = 1917;
+            this.ckFormasAtributos1.UseVisualStyleBackColor = false;
+            // 
+            // ckFormasAtributos2
+            // 
+            this.ckFormasAtributos2.AutoSize = true;
+            this.ckFormasAtributos2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckFormasAtributos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckFormasAtributos2.Location = new System.Drawing.Point(180, 60);
+            this.ckFormasAtributos2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckFormasAtributos2.Name = "ckFormasAtributos2";
+            this.ckFormasAtributos2.Size = new System.Drawing.Size(15, 14);
+            this.ckFormasAtributos2.TabIndex = 1918;
+            this.ckFormasAtributos2.UseVisualStyleBackColor = false;
+            // 
+            // ckTiposNTiposAtributos1
+            // 
+            this.ckTiposNTiposAtributos1.AutoSize = true;
+            this.ckTiposNTiposAtributos1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckTiposNTiposAtributos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckTiposNTiposAtributos1.Location = new System.Drawing.Point(180, 26);
+            this.ckTiposNTiposAtributos1.Margin = new System.Windows.Forms.Padding(4);
+            this.ckTiposNTiposAtributos1.Name = "ckTiposNTiposAtributos1";
+            this.ckTiposNTiposAtributos1.Size = new System.Drawing.Size(15, 14);
+            this.ckTiposNTiposAtributos1.TabIndex = 1919;
+            this.ckTiposNTiposAtributos1.UseVisualStyleBackColor = false;
+            // 
+            // ckTiposNTiposAtributos2
+            // 
+            this.ckTiposNTiposAtributos2.AutoSize = true;
+            this.ckTiposNTiposAtributos2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckTiposNTiposAtributos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckTiposNTiposAtributos2.Location = new System.Drawing.Point(180, 58);
+            this.ckTiposNTiposAtributos2.Margin = new System.Windows.Forms.Padding(4);
+            this.ckTiposNTiposAtributos2.Name = "ckTiposNTiposAtributos2";
+            this.ckTiposNTiposAtributos2.Size = new System.Drawing.Size(15, 14);
+            this.ckTiposNTiposAtributos2.TabIndex = 1920;
+            this.ckTiposNTiposAtributos2.UseVisualStyleBackColor = false;
+            // 
+            // ckDiametroAtributos3
+            // 
+            this.ckDiametroAtributos3.AutoSize = true;
+            this.ckDiametroAtributos3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiametroAtributos3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiametroAtributos3.Location = new System.Drawing.Point(182, 29);
+            this.ckDiametroAtributos3.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiametroAtributos3.Name = "ckDiametroAtributos3";
+            this.ckDiametroAtributos3.Size = new System.Drawing.Size(15, 14);
+            this.ckDiametroAtributos3.TabIndex = 1915;
+            this.ckDiametroAtributos3.UseVisualStyleBackColor = false;
+            // 
+            // ckDiametroAtributos4
+            // 
+            this.ckDiametroAtributos4.AutoSize = true;
+            this.ckDiametroAtributos4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckDiametroAtributos4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckDiametroAtributos4.Location = new System.Drawing.Point(181, 59);
+            this.ckDiametroAtributos4.Margin = new System.Windows.Forms.Padding(4);
+            this.ckDiametroAtributos4.Name = "ckDiametroAtributos4";
+            this.ckDiametroAtributos4.Size = new System.Drawing.Size(15, 14);
+            this.ckDiametroAtributos4.TabIndex = 1916;
+            this.ckDiametroAtributos4.UseVisualStyleBackColor = false;
+            // 
+            // ckEspesoresAtributos3
+            // 
+            this.ckEspesoresAtributos3.AutoSize = true;
+            this.ckEspesoresAtributos3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckEspesoresAtributos3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckEspesoresAtributos3.Location = new System.Drawing.Point(178, 28);
+            this.ckEspesoresAtributos3.Margin = new System.Windows.Forms.Padding(4);
+            this.ckEspesoresAtributos3.Name = "ckEspesoresAtributos3";
+            this.ckEspesoresAtributos3.Size = new System.Drawing.Size(15, 14);
+            this.ckEspesoresAtributos3.TabIndex = 1917;
+            this.ckEspesoresAtributos3.UseVisualStyleBackColor = false;
+            // 
+            // ckEspesoresAtributos4
+            // 
+            this.ckEspesoresAtributos4.AutoSize = true;
+            this.ckEspesoresAtributos4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ckEspesoresAtributos4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckEspesoresAtributos4.Location = new System.Drawing.Point(178, 58);
+            this.ckEspesoresAtributos4.Margin = new System.Windows.Forms.Padding(4);
+            this.ckEspesoresAtributos4.Name = "ckEspesoresAtributos4";
+            this.ckEspesoresAtributos4.Size = new System.Drawing.Size(15, 14);
+            this.ckEspesoresAtributos4.TabIndex = 1918;
+            this.ckEspesoresAtributos4.UseVisualStyleBackColor = false;
+            // 
+            // panelAsignarnombre
+            // 
+            this.panelAsignarnombre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelAsignarnombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelAsignarnombre.Controls.Add(this.btnGuardarPosicion);
+            this.panelAsignarnombre.Controls.Add(this.label40);
+            this.panelAsignarnombre.Controls.Add(this.panel32);
+            this.panelAsignarnombre.Controls.Add(this.panel31);
+            this.panelAsignarnombre.Controls.Add(this.panel30);
+            this.panelAsignarnombre.Controls.Add(this.label39);
+            this.panelAsignarnombre.Controls.Add(this.groupBox4);
+            this.panelAsignarnombre.Controls.Add(this.groupBox3);
+            this.panelAsignarnombre.Controls.Add(this.label38);
+            this.panelAsignarnombre.Controls.Add(this.btnCerrar);
+            this.panelAsignarnombre.Controls.Add(this.panel5);
+            this.panelAsignarnombre.Controls.Add(this.panel29);
+            this.panelAsignarnombre.Controls.Add(this.pictureBox4);
+            this.panelAsignarnombre.Controls.Add(this.label36);
+            this.panelAsignarnombre.Location = new System.Drawing.Point(1143, 24);
+            this.panelAsignarnombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelAsignarnombre.Name = "panelAsignarnombre";
+            this.panelAsignarnombre.Size = new System.Drawing.Size(815, 636);
+            this.panelAsignarnombre.TabIndex = 2010;
+            this.panelAsignarnombre.Visible = false;
+            // 
+            // btnGuardarPosicion
+            // 
+            this.btnGuardarPosicion.FlatAppearance.BorderSize = 0;
+            this.btnGuardarPosicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarPosicion.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarPosicion.Image")));
+            this.btnGuardarPosicion.Location = new System.Drawing.Point(696, 579);
+            this.btnGuardarPosicion.Name = "btnGuardarPosicion";
+            this.btnGuardarPosicion.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardarPosicion.TabIndex = 2015;
+            this.btnGuardarPosicion.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(687, 616);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(59, 15);
+            this.label40.TabIndex = 2014;
+            this.label40.Text = "GUARDAR";
+            // 
+            // panel32
+            // 
+            this.panel32.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel32.Location = new System.Drawing.Point(377, 72);
+            this.panel32.Name = "panel32";
+            this.panel32.Size = new System.Drawing.Size(3, 480);
+            this.panel32.TabIndex = 2013;
+            // 
+            // panel31
+            // 
+            this.panel31.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel31.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel31.Location = new System.Drawing.Point(810, 18);
+            this.panel31.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(3, 616);
+            this.panel31.TabIndex = 2012;
+            // 
+            // panel30
+            // 
+            this.panel30.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel30.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel30.Location = new System.Drawing.Point(0, 18);
+            this.panel30.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(3, 616);
+            this.panel30.TabIndex = 2011;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label39.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.Color.Blue;
+            this.label39.Location = new System.Drawing.Point(18, 585);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(300, 32);
+            this.label39.TabIndex = 2010;
+            this.label39.Text = "Seleccione y arrastre un grupo de campos al siguiente\r\ncuadro para poder definir " +
+    "un nombre.";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.flowlayoutpanelcontenedortipos);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox4.Location = new System.Drawing.Point(402, 72);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(390, 508);
+            this.groupBox4.TabIndex = 2009;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Grupo A Definir Posición";
+            // 
+            // flowlayoutpanelcontenedortipos
+            // 
+            this.flowlayoutpanelcontenedortipos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowlayoutpanelcontenedortipos.Location = new System.Drawing.Point(13, 19);
+            this.flowlayoutpanelcontenedortipos.Name = "flowlayoutpanelcontenedortipos";
+            this.flowlayoutpanelcontenedortipos.Size = new System.Drawing.Size(363, 483);
+            this.flowlayoutpanelcontenedortipos.TabIndex = 1985;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.flowlayoutpanelasignarnombre);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox3.Location = new System.Drawing.Point(16, 67);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(324, 513);
+            this.groupBox3.TabIndex = 2008;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Grupos Seleccionados";
+            // 
+            // flowlayoutpanelasignarnombre
+            // 
+            this.flowlayoutpanelasignarnombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowlayoutpanelasignarnombre.Location = new System.Drawing.Point(6, 19);
+            this.flowlayoutpanelasignarnombre.Name = "flowlayoutpanelasignarnombre";
+            this.flowlayoutpanelasignarnombre.Size = new System.Drawing.Size(305, 488);
+            this.flowlayoutpanelasignarnombre.TabIndex = 1984;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(756, 616);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(36, 15);
+            this.label38.TabIndex = 2007;
+            this.label38.Text = "SALIR";
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
+            this.btnCerrar.Location = new System.Drawing.Point(754, 579);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(38, 38);
+            this.btnCerrar.TabIndex = 2006;
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.DarkRed;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(5);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(813, 18);
+            this.panel5.TabIndex = 1986;
+            // 
+            // panel29
+            // 
+            this.panel29.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel29.Location = new System.Drawing.Point(220, 59);
+            this.panel29.Margin = new System.Windows.Forms.Padding(4);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(400, 1);
+            this.panel29.TabIndex = 1983;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(244, 27);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(44, 31);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 1982;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(308, 36);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(239, 19);
+            this.label36.TabIndex = 1981;
+            this.label36.Text = "Asignación de Nombre a los Tipos";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(735, 337);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(55, 15);
+            this.label37.TabIndex = 2010;
+            this.label37.Text = "FORMAR";
+            // 
+            // btnDefiniciónNombre
+            // 
+            this.btnDefiniciónNombre.FlatAppearance.BorderSize = 0;
+            this.btnDefiniciónNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDefiniciónNombre.Image = ((System.Drawing.Image)(resources.GetObject("btnDefiniciónNombre.Image")));
+            this.btnDefiniciónNombre.Location = new System.Drawing.Point(738, 296);
+            this.btnDefiniciónNombre.Name = "btnDefiniciónNombre";
+            this.btnDefiniciónNombre.Size = new System.Drawing.Size(43, 42);
+            this.btnDefiniciónNombre.TabIndex = 2009;
+            this.btnDefiniciónNombre.UseVisualStyleBackColor = true;
+            this.btnDefiniciónNombre.Click += new System.EventHandler(this.btnDefiniciónNombre_Click);
+            // 
+            // datalistadockatributos
+            // 
+            this.datalistadockatributos.AllowUserToAddRows = false;
+            this.datalistadockatributos.AllowUserToDeleteRows = false;
+            this.datalistadockatributos.AllowUserToResizeColumns = false;
+            this.datalistadockatributos.AllowUserToResizeRows = false;
+            this.datalistadockatributos.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadockatributos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadockatributos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadockatributos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.datalistadockatributos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadockatributos.DefaultCellStyle = dataGridViewCellStyle10;
+            this.datalistadockatributos.Location = new System.Drawing.Point(40, 10);
+            this.datalistadockatributos.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadockatributos.MultiSelect = false;
+            this.datalistadockatributos.Name = "datalistadockatributos";
+            this.datalistadockatributos.ReadOnly = true;
+            this.datalistadockatributos.RowHeadersVisible = false;
+            this.datalistadockatributos.RowHeadersWidth = 20;
+            this.datalistadockatributos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadockatributos.Size = new System.Drawing.Size(10, 10);
+            this.datalistadockatributos.TabIndex = 2035;
+            // 
+            // datalistadoCamposAsignarNombre
+            // 
+            this.datalistadoCamposAsignarNombre.AllowUserToAddRows = false;
+            this.datalistadoCamposAsignarNombre.AllowUserToDeleteRows = false;
+            this.datalistadoCamposAsignarNombre.AllowUserToResizeColumns = false;
+            this.datalistadoCamposAsignarNombre.AllowUserToResizeRows = false;
+            this.datalistadoCamposAsignarNombre.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoCamposAsignarNombre.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadoCamposAsignarNombre.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoCamposAsignarNombre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.datalistadoCamposAsignarNombre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoCamposAsignarNombre.DefaultCellStyle = dataGridViewCellStyle12;
+            this.datalistadoCamposAsignarNombre.Location = new System.Drawing.Point(4, 10);
+            this.datalistadoCamposAsignarNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoCamposAsignarNombre.MultiSelect = false;
+            this.datalistadoCamposAsignarNombre.Name = "datalistadoCamposAsignarNombre";
+            this.datalistadoCamposAsignarNombre.ReadOnly = true;
+            this.datalistadoCamposAsignarNombre.RowHeadersVisible = false;
+            this.datalistadoCamposAsignarNombre.RowHeadersWidth = 20;
+            this.datalistadoCamposAsignarNombre.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoCamposAsignarNombre.Size = new System.Drawing.Size(10, 10);
+            this.datalistadoCamposAsignarNombre.TabIndex = 2034;
+            // 
+            // datalistadoCargarGrupoCampos
+            // 
+            this.datalistadoCargarGrupoCampos.AllowUserToAddRows = false;
+            this.datalistadoCargarGrupoCampos.AllowUserToDeleteRows = false;
+            this.datalistadoCargarGrupoCampos.AllowUserToResizeColumns = false;
+            this.datalistadoCargarGrupoCampos.AllowUserToResizeRows = false;
+            this.datalistadoCargarGrupoCampos.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoCargarGrupoCampos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadoCargarGrupoCampos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoCargarGrupoCampos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.datalistadoCargarGrupoCampos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoCargarGrupoCampos.DefaultCellStyle = dataGridViewCellStyle14;
+            this.datalistadoCargarGrupoCampos.Location = new System.Drawing.Point(22, 10);
+            this.datalistadoCargarGrupoCampos.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoCargarGrupoCampos.MultiSelect = false;
+            this.datalistadoCargarGrupoCampos.Name = "datalistadoCargarGrupoCampos";
+            this.datalistadoCargarGrupoCampos.ReadOnly = true;
+            this.datalistadoCargarGrupoCampos.RowHeadersVisible = false;
+            this.datalistadoCargarGrupoCampos.RowHeadersWidth = 20;
+            this.datalistadoCargarGrupoCampos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoCargarGrupoCampos.Size = new System.Drawing.Size(10, 10);
+            this.datalistadoCargarGrupoCampos.TabIndex = 2033;
+            // 
             // MantenimientoModelos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1181, 640);
+            this.Controls.Add(this.panelAsignarnombre);
             this.Controls.Add(this.panelDefinicionAtributos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -2212,6 +2999,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposCaracteristicas1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panelAsignarnombre.ResumeLayout(false);
+            this.panelAsignarnombre.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadockatributos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCamposAsignarNombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCargarGrupoCampos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2375,5 +3170,57 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnGuardarAtributos;
+        private System.Windows.Forms.CheckBox ckCaracteristicaAtributo1;
+        private System.Windows.Forms.CheckBox ckCaracteristicaAtributo2;
+        private System.Windows.Forms.CheckBox ckDiametroAtributos2;
+        private System.Windows.Forms.CheckBox ckDiametroAtributos1;
+        private System.Windows.Forms.CheckBox ckMedidasAtributos3;
+        private System.Windows.Forms.CheckBox ckCaracteristicaAtributo4;
+        private System.Windows.Forms.CheckBox ckCaracteristicaAtributo3;
+        private System.Windows.Forms.CheckBox ckVariosAtributos1;
+        private System.Windows.Forms.CheckBox ckVariosAtributos2;
+        private System.Windows.Forms.CheckBox ckTiposNTiposAtributos4;
+        private System.Windows.Forms.CheckBox ckTiposNTiposAtributos3;
+        private System.Windows.Forms.CheckBox ckEspesoresAtributos2;
+        private System.Windows.Forms.CheckBox ckEspesoresAtributos1;
+        private System.Windows.Forms.CheckBox ckFormasAtributos4;
+        private System.Windows.Forms.CheckBox ckFormasAtributos3;
+        private System.Windows.Forms.CheckBox ckDiseñoAcabadoAtributos2;
+        private System.Windows.Forms.CheckBox ckDiseñoAcabadoAtributos1;
+        private System.Windows.Forms.CheckBox ckDiseñoAcabadoAtributos4;
+        private System.Windows.Forms.CheckBox ckDiseñoAcabadoAtributos3;
+        private System.Windows.Forms.CheckBox ckMedidasAtributos2;
+        private System.Windows.Forms.CheckBox ckMedidasAtributos1;
+        private System.Windows.Forms.CheckBox ckMedidasAtributos4;
+        private System.Windows.Forms.CheckBox ckTiposNTiposAtributos2;
+        private System.Windows.Forms.CheckBox ckTiposNTiposAtributos1;
+        private System.Windows.Forms.CheckBox ckEspesoresAtributos4;
+        private System.Windows.Forms.CheckBox ckEspesoresAtributos3;
+        private System.Windows.Forms.CheckBox ckFormasAtributos2;
+        private System.Windows.Forms.CheckBox ckFormasAtributos1;
+        private System.Windows.Forms.CheckBox ckDiametroAtributos4;
+        private System.Windows.Forms.CheckBox ckDiametroAtributos3;
+        private System.Windows.Forms.Panel panelAsignarnombre;
+        private System.Windows.Forms.Button btnGuardarPosicion;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Panel panel32;
+        private System.Windows.Forms.Panel panel31;
+        private System.Windows.Forms.Panel panel30;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.FlowLayoutPanel flowlayoutpanelcontenedortipos;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.FlowLayoutPanel flowlayoutpanelasignarnombre;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Button btnDefiniciónNombre;
+        private System.Windows.Forms.DataGridView datalistadockatributos;
+        private System.Windows.Forms.DataGridView datalistadoCamposAsignarNombre;
+        private System.Windows.Forms.DataGridView datalistadoCargarGrupoCampos;
     }
 }
