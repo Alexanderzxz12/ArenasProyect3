@@ -1608,7 +1608,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarFormulacionMaterialSemiProducido", con);
+                cmd = new SqlCommand("CreacionFormulacion_MostrarMaterialSemiProducido", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idformulacion", idformulacion);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

@@ -512,6 +512,7 @@
       <DependentUpon>MenuProduccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Resourses\ClassResourses.cs" />
+    <Compile Include="Modulos\Resourses\CreacionNombreProducto.cs" />
     <Compile Include="Modulos\Resourses\InactivityMonitor.cs" />
     <Compile Include="Modulos\UsuariosPermisos\Usuarios.cs">
       <SubType>Form</SubType>

@@ -29,12 +29,13 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarProducto));
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.lblTituloNuevoProducto = new System.Windows.Forms.Label();
             this.datalistadoNombreProducto = new System.Windows.Forms.DataGridView();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.datalistadockatributos = new System.Windows.Forms.DataGridView();
             this.panelCamposFormas1 = new System.Windows.Forms.Panel();
             this.ckHabilitarTextoFormas2 = new System.Windows.Forms.CheckBox();
             this.ckHabilitarTextoFormas1 = new System.Windows.Forms.CheckBox();
@@ -46,6 +47,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.cboTiposFormas1 = new System.Windows.Forms.ComboBox();
             this.cboDescripcionFormas2 = new System.Windows.Forms.ComboBox();
             this.cboDescripcionFormas1 = new System.Windows.Forms.ComboBox();
+            this.floContenedorTxts = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCamposNTipos1 = new System.Windows.Forms.Panel();
             this.ckHabilitarTextoNTipos2 = new System.Windows.Forms.CheckBox();
             this.ckHabilitarTextoNTipos1 = new System.Windows.Forms.CheckBox();
@@ -57,6 +59,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.cboTiposNTipos1 = new System.Windows.Forms.ComboBox();
             this.cboDescripcionNTipos2 = new System.Windows.Forms.ComboBox();
             this.cboDescripcionNTipos1 = new System.Windows.Forms.ComboBox();
+            this.datalistadoGrupoCamposXPosicion = new System.Windows.Forms.DataGridView();
             this.panelCamposDiseñoAcabado2 = new System.Windows.Forms.Panel();
             this.ckHabilitarTextoDiseñoAcabado4 = new System.Windows.Forms.CheckBox();
             this.ckHabilitarTextoDiseñoAcabado3 = new System.Windows.Forms.CheckBox();
@@ -427,12 +430,14 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNombreProducto)).BeginInit();
             this.panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadockatributos)).BeginInit();
             this.panelCamposFormas1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionFormas2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionFormas1)).BeginInit();
             this.panelCamposNTipos1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionNTipos2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionNTipos1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoGrupoCamposXPosicion)).BeginInit();
             this.panelCamposDiseñoAcabado2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionDiseñoAcabado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionDiseñoAcabado3)).BeginInit();
@@ -544,14 +549,14 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.datalistadoNombreProducto.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.datalistadoNombreProducto.Name = "datalistadoNombreProducto";
             this.datalistadoNombreProducto.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNombreProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNombreProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datalistadoNombreProducto.RowHeadersVisible = false;
             this.datalistadoNombreProducto.RowHeadersWidth = 100;
             this.datalistadoNombreProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -561,8 +566,11 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel14.Controls.Add(this.datalistadockatributos);
             this.panel14.Controls.Add(this.panelCamposFormas1);
+            this.panel14.Controls.Add(this.floContenedorTxts);
             this.panel14.Controls.Add(this.panelCamposNTipos1);
+            this.panel14.Controls.Add(this.datalistadoGrupoCamposXPosicion);
             this.panel14.Controls.Add(this.panelCamposDiseñoAcabado2);
             this.panel14.Controls.Add(this.panelCamposEspesores1);
             this.panel14.Controls.Add(this.panelCamposDiseñoAcabado1);
@@ -625,6 +633,21 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panel14.Size = new System.Drawing.Size(60, 10);
             this.panel14.TabIndex = 1965;
             // 
+            // datalistadockatributos
+            // 
+            this.datalistadockatributos.AllowUserToAddRows = false;
+            this.datalistadockatributos.AllowUserToDeleteRows = false;
+            this.datalistadockatributos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadockatributos.Location = new System.Drawing.Point(12, 0);
+            this.datalistadockatributos.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadockatributos.Name = "datalistadockatributos";
+            this.datalistadockatributos.ReadOnly = true;
+            this.datalistadockatributos.RowHeadersVisible = false;
+            this.datalistadockatributos.RowHeadersWidth = 51;
+            this.datalistadockatributos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadockatributos.Size = new System.Drawing.Size(47, 10);
+            this.datalistadockatributos.TabIndex = 2050;
+            // 
             // panelCamposFormas1
             // 
             this.panelCamposFormas1.Controls.Add(this.ckHabilitarTextoFormas2);
@@ -655,6 +678,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoFormas2.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoFormas2.TabIndex = 1925;
             this.ckHabilitarTextoFormas2.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoFormas2.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoFormas2_CheckedChanged);
             // 
             // ckHabilitarTextoFormas1
             // 
@@ -668,6 +692,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoFormas1.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoFormas1.TabIndex = 1924;
             this.ckHabilitarTextoFormas1.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoFormas1.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoFormas1_CheckedChanged);
             // 
             // label16
             // 
@@ -766,6 +791,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.cboDescripcionFormas1.TabIndex = 1892;
             this.cboDescripcionFormas1.SelectedIndexChanged += new System.EventHandler(this.cboDescripcionFormas1_SelectedIndexChanged);
             // 
+            // floContenedorTxts
+            // 
+            this.floContenedorTxts.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.floContenedorTxts.Location = new System.Drawing.Point(4, 1);
+            this.floContenedorTxts.Margin = new System.Windows.Forms.Padding(4);
+            this.floContenedorTxts.Name = "floContenedorTxts";
+            this.floContenedorTxts.Size = new System.Drawing.Size(12, 14);
+            this.floContenedorTxts.TabIndex = 2049;
+            // 
             // panelCamposNTipos1
             // 
             this.panelCamposNTipos1.Controls.Add(this.ckHabilitarTextoNTipos2);
@@ -796,6 +830,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoNTipos2.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoNTipos2.TabIndex = 1923;
             this.ckHabilitarTextoNTipos2.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoNTipos2.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoNTipos2_CheckedChanged);
             // 
             // ckHabilitarTextoNTipos1
             // 
@@ -809,6 +844,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoNTipos1.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoNTipos1.TabIndex = 1922;
             this.ckHabilitarTextoNTipos1.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoNTipos1.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoNTipos1_CheckedChanged);
             // 
             // label22
             // 
@@ -907,6 +943,21 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.cboDescripcionNTipos1.TabIndex = 1892;
             this.cboDescripcionNTipos1.SelectedIndexChanged += new System.EventHandler(this.cboDescripcionNTipos1_SelectedIndexChanged);
             // 
+            // datalistadoGrupoCamposXPosicion
+            // 
+            this.datalistadoGrupoCamposXPosicion.AllowUserToAddRows = false;
+            this.datalistadoGrupoCamposXPosicion.AllowUserToDeleteRows = false;
+            this.datalistadoGrupoCamposXPosicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoGrupoCamposXPosicion.Location = new System.Drawing.Point(4, -4);
+            this.datalistadoGrupoCamposXPosicion.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoGrupoCamposXPosicion.Name = "datalistadoGrupoCamposXPosicion";
+            this.datalistadoGrupoCamposXPosicion.ReadOnly = true;
+            this.datalistadoGrupoCamposXPosicion.RowHeadersVisible = false;
+            this.datalistadoGrupoCamposXPosicion.RowHeadersWidth = 51;
+            this.datalistadoGrupoCamposXPosicion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoGrupoCamposXPosicion.Size = new System.Drawing.Size(10, 13);
+            this.datalistadoGrupoCamposXPosicion.TabIndex = 2048;
+            // 
             // panelCamposDiseñoAcabado2
             // 
             this.panelCamposDiseñoAcabado2.Controls.Add(this.ckHabilitarTextoDiseñoAcabado4);
@@ -937,6 +988,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiseñoAcabado4.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiseñoAcabado4.TabIndex = 1921;
             this.ckHabilitarTextoDiseñoAcabado4.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiseñoAcabado4.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiseñoAcabado4_CheckedChanged);
             // 
             // ckHabilitarTextoDiseñoAcabado3
             // 
@@ -950,6 +1002,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiseñoAcabado3.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiseñoAcabado3.TabIndex = 1920;
             this.ckHabilitarTextoDiseñoAcabado3.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiseñoAcabado3.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiseñoAcabado3_CheckedChanged);
             // 
             // label19
             // 
@@ -1078,6 +1131,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoEspesores2.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoEspesores2.TabIndex = 1923;
             this.ckHabilitarTextoEspesores2.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoEspesores2.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoEspesores2_CheckedChanged);
             // 
             // ckHabilitarTextoEspesores1
             // 
@@ -1091,6 +1145,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoEspesores1.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoEspesores1.TabIndex = 1922;
             this.ckHabilitarTextoEspesores1.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoEspesores1.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoEspesores1_CheckedChanged);
             // 
             // label18
             // 
@@ -1219,6 +1274,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiseñoAcabado2.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiseñoAcabado2.TabIndex = 1920;
             this.ckHabilitarTextoDiseñoAcabado2.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiseñoAcabado2.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiseñoAcabado2_CheckedChanged);
             // 
             // ckHabilitarTextoDiseñoAcabado1
             // 
@@ -1232,6 +1288,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiseñoAcabado1.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiseñoAcabado1.TabIndex = 1919;
             this.ckHabilitarTextoDiseñoAcabado1.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiseñoAcabado1.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiseñoAcabado1_CheckedChanged);
             // 
             // label20
             // 
@@ -1360,6 +1417,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoNTipos4.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoNTipos4.TabIndex = 1922;
             this.ckHabilitarTextoNTipos4.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoNTipos4.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoNTipos4_CheckedChanged);
             // 
             // ckHabilitarTextoNTipos3
             // 
@@ -1373,6 +1431,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoNTipos3.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoNTipos3.TabIndex = 1921;
             this.ckHabilitarTextoNTipos3.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoNTipos3.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoNTipos3_CheckedChanged);
             // 
             // label21
             // 
@@ -1498,6 +1557,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoVarios01.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoVarios01.TabIndex = 1921;
             this.ckHabilitarTextoVarios01.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoVarios01.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoVarios01_CheckedChanged);
             // 
             // label24
             // 
@@ -1993,6 +2053,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoCaracteristicas2.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoCaracteristicas2.TabIndex = 1925;
             this.ckHabilitarTextoCaracteristicas2.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoCaracteristicas2.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoCaracteristicas2_CheckedChanged);
             // 
             // ckHabilitarTextoCaracteristicas1
             // 
@@ -2006,6 +2067,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoCaracteristicas1.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoCaracteristicas1.TabIndex = 1924;
             this.ckHabilitarTextoCaracteristicas1.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoCaracteristicas1.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoCaracteristicas1_CheckedChanged);
             // 
             // label12
             // 
@@ -2134,6 +2196,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoMedidas2.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoMedidas2.TabIndex = 1923;
             this.ckHabilitarTextoMedidas2.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoMedidas2.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoMedidas2_CheckedChanged);
             // 
             // ckHabilitarTextoMedidas1
             // 
@@ -2147,6 +2210,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoMedidas1.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoMedidas1.TabIndex = 1922;
             this.ckHabilitarTextoMedidas1.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoMedidas1.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoMedidas1_CheckedChanged);
             // 
             // label10
             // 
@@ -2271,6 +2335,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoVarios02.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoVarios02.TabIndex = 1922;
             this.ckHabilitarTextoVarios02.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoVarios02.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoVarios02_CheckedChanged);
             // 
             // label23
             // 
@@ -2361,6 +2426,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoMedidas4.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoMedidas4.TabIndex = 1924;
             this.ckHabilitarTextoMedidas4.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoMedidas4.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoMedidas4_CheckedChanged);
             // 
             // ckHabilitarTextoMedidas3
             // 
@@ -2374,6 +2440,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoMedidas3.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoMedidas3.TabIndex = 1923;
             this.ckHabilitarTextoMedidas3.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoMedidas3.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoMedidas3_CheckedChanged);
             // 
             // label11
             // 
@@ -2510,6 +2577,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoCaracteristicas4.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoCaracteristicas4.TabIndex = 1923;
             this.ckHabilitarTextoCaracteristicas4.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoCaracteristicas4.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoCaracteristicas4_CheckedChanged);
             // 
             // ckHabilitarTextoCaracteristicas3
             // 
@@ -2523,6 +2591,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoCaracteristicas3.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoCaracteristicas3.TabIndex = 1922;
             this.ckHabilitarTextoCaracteristicas3.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoCaracteristicas3.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoCaracteristicas3_CheckedChanged);
             // 
             // label8
             // 
@@ -2667,6 +2736,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiametros4.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiametros4.TabIndex = 1924;
             this.ckHabilitarTextoDiametros4.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiametros4.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiametros4_CheckedChanged);
             // 
             // ckHabilitarTextoDiametros3
             // 
@@ -2680,6 +2750,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiametros3.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiametros3.TabIndex = 1923;
             this.ckHabilitarTextoDiametros3.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiametros3.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiametros3_CheckedChanged);
             // 
             // label14
             // 
@@ -2816,6 +2887,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoEspesores4.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoEspesores4.TabIndex = 1923;
             this.ckHabilitarTextoEspesores4.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoEspesores4.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoEspesores4_CheckedChanged);
             // 
             // ckHabilitarTextoEspesores3
             // 
@@ -2829,6 +2901,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoEspesores3.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoEspesores3.TabIndex = 1922;
             this.ckHabilitarTextoEspesores3.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoEspesores3.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoEspesores3_CheckedChanged);
             // 
             // label17
             // 
@@ -2989,6 +3062,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoFormas4.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoFormas4.TabIndex = 1925;
             this.ckHabilitarTextoFormas4.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoFormas4.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoFormas4_CheckedChanged);
             // 
             // ckHabilitarTextoFormas3
             // 
@@ -3002,6 +3076,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoFormas3.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoFormas3.TabIndex = 1924;
             this.ckHabilitarTextoFormas3.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoFormas3.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoFormas3_CheckedChanged);
             // 
             // label15
             // 
@@ -3154,6 +3229,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiametros2.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiametros2.TabIndex = 1925;
             this.ckHabilitarTextoDiametros2.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiametros2.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiametros2_CheckedChanged);
             // 
             // ckHabilitarTextoDiametros1
             // 
@@ -3167,6 +3243,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.ckHabilitarTextoDiametros1.Size = new System.Drawing.Size(15, 14);
             this.ckHabilitarTextoDiametros1.TabIndex = 1924;
             this.ckHabilitarTextoDiametros1.UseVisualStyleBackColor = true;
+            this.ckHabilitarTextoDiametros1.CheckedChanged += new System.EventHandler(this.ckHabilitarTextoDiametros1_CheckedChanged);
             // 
             // label13
             // 
@@ -5287,6 +5364,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.txtDescripcionGeneradaProducto.Name = "txtDescripcionGeneradaProducto";
             this.txtDescripcionGeneradaProducto.Size = new System.Drawing.Size(944, 21);
             this.txtDescripcionGeneradaProducto.TabIndex = 2021;
+            this.txtDescripcionGeneradaProducto.TextChanged += new System.EventHandler(this.txtDescripcionGeneradaProducto_TextChanged);
             // 
             // openFileDialog1
             // 
@@ -5404,6 +5482,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoNombreProducto)).EndInit();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadockatributos)).EndInit();
             this.panelCamposFormas1.ResumeLayout(false);
             this.panelCamposFormas1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionFormas2)).EndInit();
@@ -5412,6 +5491,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             this.panelCamposNTipos1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionNTipos2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionNTipos1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoGrupoCamposXPosicion)).EndInit();
             this.panelCamposDiseñoAcabado2.ResumeLayout(false);
             this.panelCamposDiseñoAcabado2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarDescripcionDiseñoAcabado4)).EndInit();
@@ -5903,5 +5983,8 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         private System.Windows.Forms.Label lblCodigoTipoIngreso;
         private System.Windows.Forms.Label lblCodigoModelo;
         private System.Windows.Forms.Button btnAbrirDatosAnexos;
+        private System.Windows.Forms.DataGridView datalistadoGrupoCamposXPosicion;
+        private System.Windows.Forms.FlowLayoutPanel floContenedorTxts;
+        private System.Windows.Forms.DataGridView datalistadockatributos;
     }
 }

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.Resourses;
+using CrystalDecisions.CrystalReports.Engine;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Spreadsheet;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +25,12 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         string nuemroProducto = "";
         int semirpoducido = 0;
         string nombreInicial = "";
+
+        //VARIABLES PARA LA VALIDACION DEL INGRESO DE DESCRIPCIONES EN BLANCO PARA LOS ATRIBUTOS DE LOS GRUPOS
+        bool habilitarcks_alIngresarDescripcion;
+        bool habilitarcks_AlCargarDescripciones;
+        bool borrarTipo;
+        bool cargardatosDeLosGrupos;
 
         //VARIABLES PARA ALMACENAR LOS CÓDIGOS DE LOS CAMPOS
         string idmercaderias;
@@ -173,6 +184,30 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             CargarTerminosCompra();
             TipoExistencia();
             BienesSujetoPercepcion();
+
+            AsignarTagsA_TxTEnPanel(new TextBox[]{txtDescripcionCaracteristicas1,txtDescripcionCaracteristicas2}, "panelCamposCaracteristicas1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionCaracteristicas3, txtDescripcionCaracteristicas4 }, "panelCamposCaracteristicas2");
+
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionMedida1, txtDescripcionMedida2 }, "panelCamposMedidas1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionMedida3, txtDescripcionMedida4 }, "panelCamposMedidas2");
+
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionDiametros1, txtDescripcionDiametros2 }, "panelCamposDiametros1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionDiametros3, txtDescripcionDiametros4 }, "panelCamposDiametros2");
+
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionFormas1, txtDescripcionFormas2 }, "panelCamposFormas1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionFormas3, txtDescripcionFormas4 }, "panelCamposFormas2");
+
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionEspesores1, txtDescripcionEspesores2 }, "panelCamposEspesores1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionEspesores3, txtDescripcionEspesores4 }, "panelCamposEspesores2");
+
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionDiseñoAcabado1, txtDescripcionDiseñoAcabado2 }, "panelCamposDiseñoAcabado1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionDiseñoAcabado3, txtDescripcionDiseñoAcabado4 }, "panelCamposDiseñoAcabado2");
+
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionNTipos1, txtDescripcionNTipos2 }, "panelCamposNTipos1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionNTipos3, txtDescripcionNTipos4 }, "panelCamposNTipos2");
+
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionVariosO1}, "panelCamposVariosO1");
+            AsignarTagsA_TxTEnPanel(new TextBox[] { txtDescripcionVariosO2}, "panelCamposVariosO2");
         }
 
         //CARGAR COMBOS - PRINCIPALES-----------------------------------------------------------------------------------
@@ -1365,6 +1400,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //COMBINACION
         public void CargaGrupoCamposXModeloSeleccionado()
         {
+            cargardatosDeLosGrupos = true;
             GenerarCodigoProducto();
 
             //DEFINICION DE NOMBRES Y DE UNOS CAMPOS MÁS SEGUN MODELO
@@ -1387,12 +1423,19 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
             //DEFINICION DE LA ESTRUCTURA DEL NOMBRE DE MI MODELOI
             //ESTANDARIZACION DE MODELO POR CODIGO
             DefinicionModelosTexto();
+
+            cargardatosDeLosGrupos = false;
         }
+
+        //CARGA DE GRUPOS DE CAMPOS POR LA POSICION DEFINIDA EN MODELOS
+
+
 
         //CARGA DE MI GRUPO DE CAMPOS Y LOS CAMPOS CON SUS DETALLES SEGÚN EL MODELO SELECCIONADO
         private void cboModelos_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargaGrupoCamposXModeloSeleccionado();
+            Estructura_NombreProducto();
         }
 
         //ACCIONES DE LOS BOTONES DE FUNCIONALIDAD--------------------------------------------------------------
@@ -1601,6 +1644,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCaracteristicas1, ckHabilitarTextoCaracteristicas1, cboDescripcionCaracteristicas1, cboTipoCaracteristicas1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO CARACTERISTICAS 2
@@ -1655,6 +1707,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio3 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCaracteristicas1, ckHabilitarTextoCaracteristicas2, cboDescripcionCaracteristicas2, cboTipoCaracteristicas2);
+                habilitarcks_alIngresarDescripcion = false;
+            }    
         }
 
         //CARGA DEL CAMPO TIPO CARACTERISTICAS 3
@@ -1718,6 +1779,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio4 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCaracteristicas2, ckHabilitarTextoCaracteristicas3, cboDescripcionCaracteristicas3, cboTipoCaracteristicas3);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO CARACTERISTICAS 4
@@ -1771,6 +1841,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio4 = "";
                 espacio5 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCaracteristicas2, ckHabilitarTextoCaracteristicas4, cboDescripcionCaracteristicas4, cboTipoCaracteristicas4);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -1954,6 +2033,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio7 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposMedida1, ckHabilitarTextoMedidas1, cboDescripcionMedida1, cboTipoCaracteristicas1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO MEDIDAS 2
@@ -2037,6 +2125,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio6 = "";
                 espacio7 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposMedida1, ckHabilitarTextoMedidas2, cboDescripcionMedida2, cboTipoCaracteristicas2);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -2137,6 +2234,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio9 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposMedida2, ckHabilitarTextoMedidas3, cboDescripcionMedida3, cboTipoCaracteristicas3);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO MEDIDAS 4
@@ -2227,6 +2333,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio8 = "";
                 espacio9 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposMedida2, ckHabilitarTextoMedidas4, cboDescripcionMedida4, cboTipoCaracteristicas4);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -2417,6 +2532,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio11 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiametros1, ckHabilitarTextoDiametros1, cboDescripcionDiametros1, cboTiposDiametros1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO DIÁMETRO 2
@@ -2507,6 +2631,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio10 = "";
                 espacio11 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiametros1, ckHabilitarTextoDiametros2, cboDescripcionDiametros2, cboTiposDiametros2);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -2613,6 +2746,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
 
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiametros2, ckHabilitarTextoDiametros3, cboDescripcionDiametros3, cboTiposDiametros3);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO DIÁMETRO 4
@@ -2703,6 +2845,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio12 = "";
                 espacio13 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiametros2, ckHabilitarTextoDiametros4, cboDescripcionDiametros4, cboTiposDiametros4);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -2903,6 +3054,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio15 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposFormas1, ckHabilitarTextoFormas1, cboDescripcionFormas1, cboTiposFormas1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO FORMAS 2
@@ -2993,6 +3153,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio14 = "";
                 espacio15 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposFormas1, ckHabilitarTextoFormas2, cboDescripcionFormas2, cboTiposFormas2);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -3094,6 +3263,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio17 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposFormas2, ckHabilitarTextoFormas3, cboDescripcionFormas3, cboTiposFormas3);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO FORMAS 4
@@ -3184,6 +3362,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio16 = "";
                 espacio17 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposFormas2, ckHabilitarTextoFormas4, cboDescripcionFormas4, cboTiposFormas4);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -3373,6 +3560,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio19 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposEspesores1, ckHabilitarTextoEspesores1, cboDescripcionEspesores1, cbooTipoEspesores1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO ESPESORES 2
@@ -3463,6 +3659,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio18 = "";
                 espacio19 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposEspesores1, ckHabilitarTextoEspesores2, cboDescripcionEspesores2, cbooTipoEspesores2);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -3564,6 +3769,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio21 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposEspesores2, ckHabilitarTextoEspesores3, cboDescripcionEspesores3, cbooTipoEspesores3);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO ESPESORES 4
@@ -3654,6 +3868,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio20 = "";
                 espacio21 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposEspesores2, ckHabilitarTextoEspesores4, cboDescripcionEspesores4, cbooTipoEspesores4);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -3845,6 +4068,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio23 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiseñoAcabado1, ckHabilitarTextoDiseñoAcabado1, cboDescripcionDiseñoAcabado1, cboTiposDiseñosAcabados1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO DISEÑO Y ACABADO 2
@@ -3935,6 +4167,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio22 = "";
                 espacio23 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiseñoAcabado1, ckHabilitarTextoDiseñoAcabado2, cboDescripcionDiseñoAcabado2, cboTiposDiseñosAcabados2);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -4037,6 +4278,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio25 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiseñoAcabado2, ckHabilitarTextoDiseñoAcabado3, cboDescripcionDiseñoAcabado3, cboTiposDiseñosAcabados3);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO DISEÑO Y ACABADO 4
@@ -4127,6 +4377,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio24 = "";
                 espacio25 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposDiseñoAcabado2, ckHabilitarTextoDiseñoAcabado4, cboDescripcionDiseñoAcabado4, cboTiposDiseñosAcabados4);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -4317,6 +4576,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio27 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposNTipos1, ckHabilitarTextoNTipos1, cboDescripcionNTipos1, cboTiposNTipos1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO N TIPOS 2
@@ -4407,6 +4675,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio26 = "";
                 espacio27 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposNTipos1, ckHabilitarTextoNTipos2, cboDescripcionNTipos2, cboTiposNTipos2);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -4509,6 +4786,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio29 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposNTipos2, ckHabilitarTextoNTipos3, cboDescripcionNTipos3, cboTiposNTipos3);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO N TIPOS 4
@@ -4599,6 +4885,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio28 = "";
                 espacio29 = "";
                 DefinicionNombreProductoXModelo();
+            }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckCamposNTipos2, ckHabilitarTextoNTipos4, cboDescripcionNTipos4, cboTiposNTipos4);
+                habilitarcks_alIngresarDescripcion = false;
             }
         }
 
@@ -4774,6 +5069,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio30 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckVariosO1, ckHabilitarTextoVarios01, cboDescripcionVariosO1, cboTiposVariosO1);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGA DEL CAMPO TIPO VARIOS 0 2
@@ -4859,6 +5163,15 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 espacio30 = "";
                 DefinicionNombreProductoXModelo();
             }
+
+            //CODIGO IMPLEMENTADO JUNTO CON LA ESTRUCTURA DEL NOMBRE DEL PRODUCTO
+            //CODIGO PARA EL DESBLOQUEO DE CKS AL ENCONTRAR UN ITEM VACIO EN LOS COMBOBOX
+            if (cargardatosDeLosGrupos != true)
+            {
+                habilitarcks_alIngresarDescripcion = true;
+                habilitarcks_alIngresarDescripcionVacia(ckVariosO2, ckHabilitarTextoVarios02, cboDescripcionVariosO2, cboTiposVariosO2);
+                habilitarcks_alIngresarDescripcion = false;
+            }
         }
 
         //CARGAR GRUPO DE CAMPO GENERAL
@@ -4926,6 +5239,10 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         public void AgregarPlano(string codigo, string idmedida, int idtipomercaderia, int idmodelo, int idlinea, int iddiferencial, string descripciongeneradaproducto, string anotaciones, CheckBox ck
             , string codigoreferenciaplno, string codigoplano, string file, DataGridView DGV)
         {
+            //LIMPIEZA DE ESPACIOS EN BLANCO EN EL NOMBRE DEL PRODUCTO
+            string textolimpio = Regex.Replace(txtDescripcionGeneradaProducto.Text.Trim(), @"\s+", " ");
+            descripciongeneradaproducto = textolimpio;
+
             //SI NO HAY PLANO AGREGADO
             if (file == "")
             {
@@ -4979,6 +5296,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 cmdp.Parameters.AddWithValue("@idmodelo", idmodelo);
                 cmdp.Parameters.AddWithValue("@idlinea", idlinea);
                 cmdp.Parameters.AddWithValue("@iddiferencial", iddiferencial);
+
                 cmdp.Parameters.AddWithValue("@detalle", descripciongeneradaproducto);
                 cmdp.Parameters.AddWithValue("@descripcion", anotaciones);
 
@@ -5895,13 +6213,18 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     }
                     else
                     {
-                        MessageBox.Show("Debe ingresar un código referencial del BSS para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
+                        MessageBox.Show("Se ha cancelado el ingreso del nuevo producto", "Operación Cancelada", MessageBoxButtons.OK);
                     }
+                    
                 }
                 else
                 {
-                    MessageBox.Show("Debe ingresar un código para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe ingresar un código referencial del BSS para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar un código para el producto.", "Nuevo Producto", MessageBoxButtons.OK);
             }
         }
 
@@ -7227,7 +7550,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                 lblTituloAdaptable.Text = "INGRESO DE NUEVOS DATOS - FORMAS 3";
                 lblCodigoModelo.Text = cboModelos.SelectedValue.ToString();
                 txtModeloIngreso.Text = cboModelos.Text;
-                lblCodigoTipoIngreso.Text = cboTiposFormas3.SelectedValue.ToString();
+                lblCodigoTipoIngreso.Text = cboTiposFormas4.SelectedValue.ToString();
                 txtTipoOngreso.Text = cboTiposFormas3.Text;
                 txtValorIngreso.Focus();
             }
@@ -7504,6 +7827,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //GAURDAR NUEVA DESCIPCIÓN
         private void btnIngresarNuevosValores_Click(object sender, EventArgs e)
         {
+            cargardatosDeLosGrupos = true;
             IngresarNuevoDato(txtTipoOngreso.Text, lblTituloAdaptable.Text, lblCodigoTipoIngreso.Text, Convert.ToInt32(lblCodigoModelo.Text), txtValorIngreso.Text, cboModelos.Text
                                , cboTipoCaracteristicas1, cboTipoCaracteristicas2, cboTipoCaracteristicas3, cboTipoCaracteristicas4, cboDescripcionCaracteristicas1, cboDescripcionCaracteristicas2
                                , cboDescripcionCaracteristicas3, cboDescripcionCaracteristicas4, cboTipoMedida1, cboTipoMedida2, cboTipoMedida3, cboTipoMedida4, cboDescripcionMedida1, cboDescripcionMedida2
@@ -7514,6 +7838,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                                , cboDescripcionDiseñoAcabado3, cboDescripcionDiseñoAcabado4, cboTiposNTipos1, cboTiposNTipos2, cboTiposNTipos3, cboTiposNTipos4, cboDescripcionNTipos1, cboDescripcionNTipos2, cboDescripcionNTipos3
                                , cboDescripcionNTipos4, cboTiposVariosO1, cboTiposVariosO2, cboDescripcionVariosO1, cboDescripcionVariosO2, datalistadoCamposPredeterminadosDetalle, panelNuevoValores);
             txtValorIngreso.Text = "";
+            cargardatosDeLosGrupos = false;
         }
 
         //CONFIRMAR INGRESO DEL DATO
@@ -8125,819 +8450,819 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         {
             //PRIMERA CUENTA------------------------------------------------------
             //MAQUINARIAS Y EQUIPOS DE EXPLORACION
-            if (cboModelos.Text == "MAQUINARIA Y EQUIPOS PARA MODULO CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 + " " + txtDescripcionCaracteristicas3.Text + espacio4 +
-                                                      " " + txtDescripcionNTipos1.Text + espacio26 + txtDescripcionNTipos2.Text + espacio27 + txtDescripcionNTipos3.Text + espacio28 + txtDescripcionNTipos4.Text + espacio29;
-            }
+            //if (cboModelos.Text == "MAQUINARIA Y EQUIPOS PARA MODULO CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 + " " + txtDescripcionCaracteristicas3.Text + espacio4 +
+            //                                          " " + txtDescripcionNTipos1.Text + espacio26 + txtDescripcionNTipos2.Text + espacio27 + txtDescripcionNTipos3.Text + espacio28 + txtDescripcionNTipos4.Text + espacio29;
+            //}
             //SEGUNDA CUENTA------------------------------------------------------
             //ABRASIVOS
-            else if (cboModelos.Text == "ARENA")
-            {
-                DescripicionProducto = nombreInicial + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + "DE " + txtDescripcionCaracteristicas2.Text;
-            }
-            else if (cboModelos.Text == "CEPILLO CIRCULAR")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 + " " +
-                txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "COPA TRENZADA")
-            {
+            //else if (cboModelos.Text == "ARENA")
+            //{
+            //    DescripicionProducto = nombreInicial + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + "DE " + txtDescripcionCaracteristicas2.Text;
+            //}
+            //else if (cboModelos.Text == "CEPILLO CIRCULAR")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 + " " +
+            //    txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "COPA TRENZADA")
+            //{
 
-            }
-            else if (cboModelos.Text == "DISCO DE CORTE DE ACERO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "DISO DE CORTE DE CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "DISCO DE DESBASTE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "GRANALLA")
-            {
-                DescripicionProducto = nombreInicial + espacio1 + " DE " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                    " " + txtDescripcionFormas1.Text + espacio14 + txtDescripcionFormas2.Text + espacio15 +
-                    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
-            }
-            else if (cboModelos.Text == "LIJA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                   " " + txtDescripcionNTipos1.Text + espacio26 + txtDescripcionNTipos2.Text + espacio27;
-            }
-            else if (cboModelos.Text == "RUEDA DE DESBASTE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
-            }
+            //}
+            //else if (cboModelos.Text == "DISCO DE CORTE DE ACERO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "DISO DE CORTE DE CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "DISCO DE DESBASTE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "GRANALLA")
+            //{
+            //    DescripicionProducto = nombreInicial + espacio1 + " DE " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //        " " + txtDescripcionFormas1.Text + espacio14 + txtDescripcionFormas2.Text + espacio15 +
+            //        " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
+            //}
+            //else if (cboModelos.Text == "LIJA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //       " " + txtDescripcionNTipos1.Text + espacio26 + txtDescripcionNTipos2.Text + espacio27;
+            //}
+            //else if (cboModelos.Text == "RUEDA DE DESBASTE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    txtDescripcionDiametros1.Text + espacio10 + " X " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 + " X " + txtDescripcionDiametros2.Text + espacio11;
+            //}
             //--------
             //METALES
-            else if (cboModelos.Text == "ALUMINIO")
-            {
+            //else if (cboModelos.Text == "ALUMINIO")
+            //{
 
-            }
+            //}
             //------
             //ACEROS
-            else if (cboModelos.Text == "ALAMBRE")
-            {
-                DescripicionProducto = nombreInicial + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 +
-                    txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                  " " + txtDescripcionCaracteristicas2.Text + espacio3;
-            }
-            else if (cboModelos.Text == "ANGULO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                    " " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
-                    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
-            }
-            else if (cboModelos.Text == "ANILLO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "ACERO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text + espacio14 + txtDescripcionFormas2.Text + espacio15 +
-                    " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "BARRA RECTANGULAR")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "BARRA REDONDA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "BARRA REDONDA PERFORADA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "BARRA CUADRADA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "BRIDA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "CABLE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + "CON " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "CANAL U")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + "CON " + txtDescripcionNTipos1.Text + espacio26 + txtDescripcionNTipos2.Text + espacio27 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "CHAPAS")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "ESTOBOL")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "ESTROBO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "RUEDA PARA CABLE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "NIPPLE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
-            }
-            else if (cboModelos.Text == "PERNO" && cboLineas.Text == "ACERO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionNTipos2.Text + espacio27 +
-                txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionNTipos1.Text + espacio26;
-            }
-            else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ACERO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "PLATINA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "REMACHE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "TEE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
-            }
-            else if (cboModelos.Text == "TORNILLO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                " " + txtDescripcionVariosO1.Text + espacio30 + txtDescripcionVariosO2.Text + espacio31;
-            }
-            else if (cboModelos.Text == "TUBO CUADRADO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
-                " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
-                " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3;
-            }
-            else if (cboModelos.Text == "TUBO REDONDO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
-                " " + txtDescripcionVariosO1.Text + espacio30 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3;
-            }
-            else if (cboModelos.Text == "TUBO RECTANGULAR")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
-                " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
-                txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
-                " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3;
-            }
-            else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "ACERO")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionNTipos1.Text + espacio26 +
-                txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                " " + txtDescripcionNTipos2.Text + espacio27;
-            }
-            else if (cboModelos.Text == "VARILLA LISA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "VARILLA ROSCADA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
-            }
-            else if (cboModelos.Text == "RODAJE")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text;
-            }
-            else if (cboModelos.Text == "BOCINA")
-            {
-                DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
-                " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
-                " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
-            }
+            //else if (cboModelos.Text == "ALAMBRE")
+            //{
+            //    DescripicionProducto = nombreInicial + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 +
+            //        txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //      " " + txtDescripcionCaracteristicas2.Text + espacio3;
+            //}
+            //else if (cboModelos.Text == "ANGULO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //        " " + txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
+            //        " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
+            //}
+            //else if (cboModelos.Text == "ANILLO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //        " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //        txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "ACERO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text + espacio14 + txtDescripcionFormas2.Text + espacio15 +
+            //        " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //        " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "BARRA RECTANGULAR")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "BARRA REDONDA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "BARRA REDONDA PERFORADA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "BARRA CUADRADA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "BRIDA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "CABLE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + "CON " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "CANAL U")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + "CON " + txtDescripcionNTipos1.Text + espacio26 + txtDescripcionNTipos2.Text + espacio27 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "CHAPAS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "ESTOBOL")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "ESTROBO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "RUEDA PARA CABLE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "NIPPLE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
+            //}
+            //else if (cboModelos.Text == "PERNO" && cboLineas.Text == "ACERO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionNTipos2.Text + espacio27 +
+            //    txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionNTipos1.Text + espacio26;
+            //}
+            //else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ACERO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "PLATINA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "REMACHE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "TEE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19;
+            //}
+            //else if (cboModelos.Text == "TORNILLO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //    " " + txtDescripcionVariosO1.Text + espacio30 + txtDescripcionVariosO2.Text + espacio31;
+            //}
+            //else if (cboModelos.Text == "TUBO CUADRADO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
+            //    " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
+            //    " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3;
+            //}
+            //else if (cboModelos.Text == "TUBO REDONDO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
+            //    " " + txtDescripcionVariosO1.Text + espacio30 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3;
+            //}
+            //else if (cboModelos.Text == "TUBO RECTANGULAR")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text + espacio22 + txtDescripcionDiseñoAcabado2.Text + espacio23 +
+            //    " " + txtDescripcionMedida2.Text + espacio6 + txtDescripcionMedida1.Text + espacio7 +
+            //    txtDescripcionEspesores1.Text + espacio18 + txtDescripcionEspesores2.Text + espacio19 +
+            //    " " + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3;
+            //}
+            //else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "ACERO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionNTipos1.Text + espacio26 +
+            //    txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //    " " + txtDescripcionNTipos2.Text + espacio27;
+            //}
+            //else if (cboModelos.Text == "VARILLA LISA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "VARILLA ROSCADA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11;
+            //}
+            //else if (cboModelos.Text == "RODAJE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text;
+            //}
+            //else if (cboModelos.Text == "BOCINA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + espacio1 + txtDescripcionCaracteristicas1.Text + espacio2 + txtDescripcionCaracteristicas2.Text + espacio3 +
+            //    " " + txtDescripcionDiametros1.Text + espacio10 + txtDescripcionDiametros2.Text + espacio11 +
+            //    " " + txtDescripcionMedida1.Text + espacio6 + txtDescripcionMedida2.Text + espacio7;
+            //}
             //-------
             //CERAMICA
-            else if (cboModelos.Text == "CERAMICA")
-            {
-                string union1 = " & ";
-                string union2 = " & ";
-                string union3 = " & ";
+            //else if (cboModelos.Text == "CERAMICA")
+            //{
+            //    string union1 = " & ";
+            //    string union2 = " & ";
+            //    string union3 = " & ";
 
-                if (txtDescripcionMedida4.Text == "") { union1 = " "; }
-                if (txtDescripcionMedida3.Text == "") { union2 = " "; }
-                if (txtDescripcionEspesores2.Text == "") { union3 = " "; }
+            //    if (txtDescripcionMedida4.Text == "") { union1 = " "; }
+            //    if (txtDescripcionMedida3.Text == "") { union2 = " "; }
+            //    if (txtDescripcionEspesores2.Text == "") { union3 = " "; }
 
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas3.Text + " " + txtDescripcionCaracteristicas2.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas4.Text + " DE ALUMINA " +
-                " " + txtDescripcionMedida1.Text + union1 + txtDescripcionMedida4.Text + " " + txtDescripcionMedida2.Text + union2 + txtDescripcionMedida3.Text +
-                " " + txtDescripcionEspesores1.Text + union3 + txtDescripcionEspesores2.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text;
-            }
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas3.Text + " " + txtDescripcionCaracteristicas2.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas4.Text + " DE ALUMINA " +
+            //    " " + txtDescripcionMedida1.Text + union1 + txtDescripcionMedida4.Text + " " + txtDescripcionMedida2.Text + union2 + txtDescripcionMedida3.Text +
+            //    " " + txtDescripcionEspesores1.Text + union3 + txtDescripcionEspesores2.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text;
+            //}
             //------
             //ELASTOMEROS
-            else if (cboModelos.Text == "FRISA ESPONJOSA")
-            {
-                DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "ORING")
-            {
-                DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
-            else if (cboModelos.Text == "PERFIL")
-            {
-                DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text + " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ELASTOMEROS")
-            {
-                DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
-            else if (cboModelos.Text == "CUERDA")
-            {
-                DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
-                " " + txtDescripcionDiametros1.Text;
-            }
-            else if (cboModelos.Text == "CODO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " DE" +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionVariosO1.Text;
-            }
-            else if (cboModelos.Text == "CONO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiametros1.Text + " " + txtDescripcionDiametros2.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
-            else if (cboModelos.Text == "DE TROMMEL")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiametros1.Text + " " + txtDescripcionDiametros2.Text;
-            }
-            else if (cboModelos.Text == "PARA MALLA TRENSABLE")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionNTipos3.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionNTipos2.Text +
-                " " + txtDescripcionNTipos1.Text;
-            }
-            else if (cboModelos.Text == "PLATINA PARA PANEL")
-            {
-                DescripicionProducto = nombreInicial +
-                " " + txtDescripcionFormas1.Text + " PARA PANEL" +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
-            else if (cboModelos.Text == "REJILLAS PARA PANEL")
-            {
-                DescripicionProducto = nombreInicial + " CON" +
-                " " + txtDescripcionNTipos1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionMedida3.Text +
-                " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "RESPALDO MODULOS CERAMICOS")
-            {
-                string union1 = " & ";
-                string union2 = " & ";
+            //else if (cboModelos.Text == "FRISA ESPONJOSA")
+            //{
+            //    DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "ORING")
+            //{
+            //    DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
+            //else if (cboModelos.Text == "PERFIL")
+            //{
+            //    DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text + " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ELASTOMEROS")
+            //{
+            //    DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
+            //else if (cboModelos.Text == "CUERDA")
+            //{
+            //    DescripicionProducto = nombreInicial + " DE " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
+            //    " " + txtDescripcionDiametros1.Text;
+            //}
+            //else if (cboModelos.Text == "CODO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " DE" +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionVariosO1.Text;
+            //}
+            //else if (cboModelos.Text == "CONO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiametros1.Text + " " + txtDescripcionDiametros2.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
+            //else if (cboModelos.Text == "DE TROMMEL")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiametros1.Text + " " + txtDescripcionDiametros2.Text;
+            //}
+            //else if (cboModelos.Text == "PARA MALLA TRENSABLE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionNTipos3.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionNTipos2.Text +
+            //    " " + txtDescripcionNTipos1.Text;
+            //}
+            //else if (cboModelos.Text == "PLATINA PARA PANEL")
+            //{
+            //    DescripicionProducto = nombreInicial +
+            //    " " + txtDescripcionFormas1.Text + " PARA PANEL" +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
+            //else if (cboModelos.Text == "REJILLAS PARA PANEL")
+            //{
+            //    DescripicionProducto = nombreInicial + " CON" +
+            //    " " + txtDescripcionNTipos1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionMedida3.Text +
+            //    " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "RESPALDO MODULOS CERAMICOS")
+            //{
+            //    string union1 = " & ";
+            //    string union2 = " & ";
 
-                if (txtDescripcionMedida3.Text == "") { union1 = " "; }
-                if (txtDescripcionMedida4.Text == "") { union2 = " "; }
+            //    if (txtDescripcionMedida3.Text == "") { union1 = " "; }
+            //    if (txtDescripcionMedida4.Text == "") { union2 = " "; }
 
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas2.Text +
-                " " + txtDescripcionMedida1.Text + union1 + txtDescripcionMedida3.Text + " " + txtDescripcionMedida2.Text + union2 + txtDescripcionMedida4.Text +
-                " " + txtDescripcionEspesores1.Text + " CON" +
-                " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "TUBO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text + " " + txtDescripcionFormas2.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "REDUCTOR")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas2.Text +
+            //    " " + txtDescripcionMedida1.Text + union1 + txtDescripcionMedida3.Text + " " + txtDescripcionMedida2.Text + union2 + txtDescripcionMedida4.Text +
+            //    " " + txtDescripcionEspesores1.Text + " CON" +
+            //    " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "TUBO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text + " " + txtDescripcionFormas2.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "REDUCTOR")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
             //-------
             //PRODUCTOS QUIMICOS
-            else if (cboModelos.Text == "ADHESIVOS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "COAGULANTES")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionVariosO2.Text +
-                " " + txtDescripcionNTipos1.Text +
-                " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "DESMOLDANTES")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text;
-            }
-            else if (cboModelos.Text == "DISOLVENTES")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text;
-            }
-            else if (cboModelos.Text == "FLOCULANTES")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
-                " " + txtDescripcionNTipos1.Text +
-                " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "GASES")
-            {
-                DescripicionProducto = nombreInicial + txtDescripcionCaracteristicas1.Text;
-            }
-            else if (cboModelos.Text == "MASILLAS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text;
-            }
-            else if (cboModelos.Text == "PASTA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "PEGAMENTOS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "PINTURA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "POLIURETANO Y COMPONENTES")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text + " " + txtDescripcionCaracteristicas3.Text;
-            }
-            else if (cboModelos.Text == "PRESERVANTE")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text;
-            }
-            else if (cboModelos.Text == "PIGMENTO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "ANTIESPUMANTE")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionVariosO2.Text +
-                " " + txtDescripcionNTipos1.Text +
-                " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "SUPRESOR DE POLVO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionVariosO2.Text +
-                " " + txtDescripcionNTipos1.Text +
-                " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "SECUESTRANTE")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionVariosO2.Text +
-                " " + txtDescripcionNTipos1.Text +
-                " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
+            //else if (cboModelos.Text == "ADHESIVOS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "COAGULANTES")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionVariosO2.Text +
+            //    " " + txtDescripcionNTipos1.Text +
+            //    " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "DESMOLDANTES")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text;
+            //}
+            //else if (cboModelos.Text == "DISOLVENTES")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text;
+            //}
+            //else if (cboModelos.Text == "FLOCULANTES")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
+            //    " " + txtDescripcionNTipos1.Text +
+            //    " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "GASES")
+            //{
+            //    DescripicionProducto = nombreInicial + txtDescripcionCaracteristicas1.Text;
+            //}
+            //else if (cboModelos.Text == "MASILLAS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text;
+            //}
+            //else if (cboModelos.Text == "PASTA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "PEGAMENTOS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "PINTURA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "POLIURETANO Y COMPONENTES")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text + " " + txtDescripcionCaracteristicas3.Text;
+            //}
+            //else if (cboModelos.Text == "PRESERVANTE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text;
+            //}
+            //else if (cboModelos.Text == "PIGMENTO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "ANTIESPUMANTE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionVariosO2.Text +
+            //    " " + txtDescripcionNTipos1.Text +
+            //    " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "SUPRESOR DE POLVO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionVariosO2.Text +
+            //    " " + txtDescripcionNTipos1.Text +
+            //    " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "SECUESTRANTE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionVariosO2.Text +
+            //    " " + txtDescripcionNTipos1.Text +
+            //    " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
             //-------
             //SOLDADURA
-            else if (cboModelos.Text == "MIG/MAG")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionNTipos1.Text +
-                " CON " + txtDescripcionDiseñoAcabado1.Text +
-                " DE " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "ARCO ELECTRICO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionNTipos1.Text +
-                " CON " + txtDescripcionDiseñoAcabado1.Text +
-                " DE " + txtDescripcionMedida1.Text;
-            }
+            //else if (cboModelos.Text == "MIG/MAG")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionNTipos1.Text +
+            //    " CON " + txtDescripcionDiseñoAcabado1.Text +
+            //    " DE " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "ARCO ELECTRICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionNTipos1.Text +
+            //    " CON " + txtDescripcionDiseñoAcabado1.Text +
+            //    " DE " + txtDescripcionMedida1.Text;
+            //}
             //-------
             //NAILON
-            else if (cboModelos.Text == "BARRA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiametros1.Text +
-                " X " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "CINTILLOS")
-            {
-                DescripicionProducto = nombreInicial + " DE " + txtDescripcionMedida1.Text + " X " + txtDescripcionMedida2.Text;
-            }
-            else if (cboModelos.Text == "PERNO" && cboLineas.Text == "NAILON")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionMedida1.Text;
-            }
-            else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "NAILON")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionDiametros1.Text;
-            }
+            //else if (cboModelos.Text == "BARRA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiametros1.Text +
+            //    " X " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "CINTILLOS")
+            //{
+            //    DescripicionProducto = nombreInicial + " DE " + txtDescripcionMedida1.Text + " X " + txtDescripcionMedida2.Text;
+            //}
+            //else if (cboModelos.Text == "PERNO" && cboLineas.Text == "NAILON")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionMedida1.Text;
+            //}
+            //else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "NAILON")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionDiametros1.Text;
+            //}
             //-------
             //MALLAS DE ACERO
-            else if (cboModelos.Text == "MALLAS DE ACERO")
-            {
-                if (cboDescripcionNTipos3.Text == "")
-                {
-                    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                    " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
-                    " " + txtDescripcionDiseñoAcabado1.Text + " " + txtDescripcionNTipos3.Text +
-                    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-                }
-                else
-                {
-                    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                    " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
-                    " " + txtDescripcionDiseñoAcabado1.Text + " X " + txtDescripcionNTipos3.Text +
-                    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-                }
+            //else if (cboModelos.Text == "MALLAS DE ACERO")
+            //{
+            //    if (cboDescripcionNTipos3.Text == "")
+            //    {
+            //        DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //        " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
+            //        " " + txtDescripcionDiseñoAcabado1.Text + " " + txtDescripcionNTipos3.Text +
+            //        " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //    }
+            //    else
+            //    {
+            //        DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //        " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
+            //        " " + txtDescripcionDiseñoAcabado1.Text + " X " + txtDescripcionNTipos3.Text +
+            //        " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //    }
 
-            }
+            //}
             //-------
             //MALLAS DE ACERO TERMOFUNDIDO
-            else if (cboModelos.Text == "MALLAS TERMOFUNDIDO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionNTipos3.Text +
-                " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text;
-            }
+            //else if (cboModelos.Text == "MALLAS TERMOFUNDIDO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionNTipos3.Text +
+            //    " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text;
+            //}
             //-------
             //MODULO CERAMICO
-            else if (cboModelos.Text == "FUNDIDO" || cboModelos.Text == "PEGADO")
-            {
-                string union1 = " & ";
-                string union2 = " & ";
+            //else if (cboModelos.Text == "FUNDIDO" || cboModelos.Text == "PEGADO")
+            //{
+            //    string union1 = " & ";
+            //    string union2 = " & ";
 
-                if (txtDescripcionMedida2.Text == "") { union1 = " "; }
-                if (txtDescripcionMedida4.Text == "") { union2 = " "; }
+            //    if (txtDescripcionMedida2.Text == "") { union1 = " "; }
+            //    if (txtDescripcionMedida4.Text == "") { union2 = " "; }
 
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text + union1 + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text + union2 + txtDescripcionMedida4.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionCaracteristicas1.Text;
-            }
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text + union1 + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text + union2 + txtDescripcionMedida4.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionCaracteristicas1.Text;
+            //}
             //-------
             //PANELES POLIURETANO
-            if (cboModelos.Text == "CIEGO" || cboModelos.Text == "CONVENCIONAL" || cboModelos.Text == "AUTOLIMPIANTE" || cboModelos.Text == "VIBROHEXAGONAL" || cboModelos.Text == "TEEPEE" || cboModelos.Text == "OBLONGA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text + " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionNTipos1.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionDiseñoAcabado3.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionFormas2.Text;
-            }
+            //if (cboModelos.Text == "CIEGO" || cboModelos.Text == "CONVENCIONAL" || cboModelos.Text == "AUTOLIMPIANTE" || cboModelos.Text == "VIBROHEXAGONAL" || cboModelos.Text == "TEEPEE" || cboModelos.Text == "OBLONGA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text + " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionNTipos1.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionDiseñoAcabado3.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionFormas2.Text;
+            //}
             //-------
             //PIEZAS DE POLIURETANO
-            else if (cboModelos.Text == "ALETA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "APEX")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO2.Text + " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "BARRAS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text;
-            }
-            else if (cboModelos.Text == "BUJE")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiametros1.Text + " " + txtDescripcionDiametros2.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "CUÑA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text + " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text;
-            }
-            else if (cboModelos.Text == "NOCKING BAR")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "PIN")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "PROTECTOR DE RIEL")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "RETENEDOR DE CARGA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS DE POLIURETANO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "SLEEVE")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text + " " + txtDescripcionDiseñoAcabado2.Text;
-            }
-            else if (cboModelos.Text == "SPALTO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " ABERTURA " + txtDescripcionNTipos1.Text +
-                " X " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionVariosO1.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text;
-            }
-            else if (cboModelos.Text == "TAPON")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "COLA DE PATO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "VORTEX")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionDiametros2.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "ZAPATA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "LINER")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text;
-            }
+            //else if (cboModelos.Text == "ALETA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "APEX")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO2.Text + " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "BARRAS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text;
+            //}
+            //else if (cboModelos.Text == "BUJE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiametros1.Text + " " + txtDescripcionDiametros2.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "CUÑA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text + " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text;
+            //}
+            //else if (cboModelos.Text == "NOCKING BAR")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "PIN")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "PROTECTOR DE RIEL")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "RETENEDOR DE CARGA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS DE POLIURETANO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "SLEEVE")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text + " " + txtDescripcionDiseñoAcabado2.Text;
+            //}
+            //else if (cboModelos.Text == "SPALTO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " ABERTURA " + txtDescripcionNTipos1.Text +
+            //    " X " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionVariosO1.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text;
+            //}
+            //else if (cboModelos.Text == "TAPON")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "COLA DE PATO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "VORTEX")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionDiametros2.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "ZAPATA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "LINER")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
             //-------
             //MALLAS DE ACERO TERMOINYECTADAS
-            else if (cboModelos.Text == "MALLAS TERMOINYECTADAS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
-                " " + txtDescripcionDiseñoAcabado1.Text +
-                " " + txtDescripcionDiametros1.Text +
-                " " + txtDescripcionNTipos3.Text +
-                " " + txtDescripcionDiseñoAcabado3.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text;
-            }
+            //else if (cboModelos.Text == "MALLAS TERMOINYECTADAS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionNTipos1.Text + " " + txtDescripcionNTipos2.Text + " " + txtDescripcionNTipos4.Text +
+            //    " " + txtDescripcionDiseñoAcabado1.Text +
+            //    " " + txtDescripcionDiametros1.Text +
+            //    " " + txtDescripcionNTipos3.Text +
+            //    " " + txtDescripcionDiseñoAcabado3.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text;
+            //}
             //-------
             //REVESTIMIENTO CERAMICO
-            else if (cboModelos.Text == "REVESTIMIENTO / APEX")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "REVESTIMIENTO / CODO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "REVESTIMIENTO / CONO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "REVESTIMIENTO / SPLASH O MANGA")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "VORTEX" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "TUBO" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas2.Text + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "REDUCTOR" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "SPOOL" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "ANILLO" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
-            else if (cboModelos.Text == "BUSHING" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
-            }
+            //else if (cboModelos.Text == "REVESTIMIENTO / APEX")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "REVESTIMIENTO / CODO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "REVESTIMIENTO / CONO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "REVESTIMIENTO / SPLASH O MANGA")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "VORTEX" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text + " " + txtDescripcionCaracteristicas2.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "TUBO" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas2.Text + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "REDUCTOR" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "SPOOL" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "ANILLO" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
+            //else if (cboModelos.Text == "BUSHING" && cboLineas.Text == "REVESTIMEINTO CERAMICO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text;
+            //}
             //-------
             //MALLAS TRENSABLES
-            else if (cboModelos.Text == " ")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado3.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado2.Text + " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "MALLAS TRENSABLES / HIBRIDO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado2.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado3.Text + " Y " + txtDescripcionDiseñoAcabado4.Text + " " + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "MALLAS TRENSABLES / CIEGO")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado2.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text +
-                " " + txtDescripcionDiseñoAcabado3.Text + " Y " + txtDescripcionDiseñoAcabado4.Text + " " + txtDescripcionDiseñoAcabado1.Text;
-            }
+            //else if (cboModelos.Text == " ")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado3.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado2.Text + " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "MALLAS TRENSABLES / HIBRIDO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado2.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado3.Text + " Y " + txtDescripcionDiseñoAcabado4.Text + " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "MALLAS TRENSABLES / CIEGO")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionDiseñoAcabado2.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    " " + txtDescripcionDiseñoAcabado3.Text + " Y " + txtDescripcionDiseñoAcabado4.Text + " " + txtDescripcionDiseñoAcabado1.Text;
+            //}
             //-------
             //PIEZAS METALICAS
-            else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS METALICAS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
-            else if (cboModelos.Text == "CLAMP")
-            {
-                string union1 = " CON ";
+            //else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS METALICAS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
+            //else if (cboModelos.Text == "CLAMP")
+            //{
+            //    string union1 = " CON ";
 
-                if (txtDescripcionDiseñoAcabado1.Text == "") { union1 = " "; }
+            //    if (txtDescripcionDiseñoAcabado1.Text == "") { union1 = " "; }
 
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                " " + txtDescripcionEspesores1.Text +
-                union1 + txtDescripcionDiseñoAcabado1.Text;
-            }
-            else if (cboModelos.Text == "ACCESORIO DE TRANSICION")
-            {
-                string union1 = " CON ";
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    " " + txtDescripcionEspesores1.Text +
+            //    union1 + txtDescripcionDiseñoAcabado1.Text;
+            //}
+            //else if (cboModelos.Text == "ACCESORIO DE TRANSICION")
+            //{
+            //    string union1 = " CON ";
 
-                if (txtDescripcionFormas1.Text == "") { union1 = " "; }
+            //    if (txtDescripcionFormas1.Text == "") { union1 = " "; }
 
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionMedida1.Text +
-                union1 + txtDescripcionFormas1.Text;
-            }
-            else if (cboModelos.Text == "RESPALDO PARA PIEZAS")
-            {
-                DescripicionProducto = nombreInicial + txtDescripcionFormas1.Text +
-                " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
-            else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "PIEZAS METALICAS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionFormas1.Text +
-                " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
-            else if (cboModelos.Text == "CHUTE" && cboLineas.Text == "PIEZAS METALICAS")
-            {
-                DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
-                " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text +
-                " " + txtDescripcionEspesores1.Text;
-            }
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionMedida1.Text +
+            //    union1 + txtDescripcionFormas1.Text;
+            //}
+            //else if (cboModelos.Text == "RESPALDO PARA PIEZAS")
+            //{
+            //    DescripicionProducto = nombreInicial + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
+            //else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "PIEZAS METALICAS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionFormas1.Text +
+            //    " " + txtDescripcionVariosO1.Text + " " + txtDescripcionVariosO2.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
+            //else if (cboModelos.Text == "CHUTE" && cboLineas.Text == "PIEZAS METALICAS")
+            //{
+            //    DescripicionProducto = nombreInicial + " " + txtDescripcionCaracteristicas1.Text +
+            //    " " + txtDescripcionMedida1.Text + " " + txtDescripcionMedida2.Text + " " + txtDescripcionMedida3.Text +
+            //    " " + txtDescripcionEspesores1.Text;
+            //}
 
-            LimpiarEspaciosDescripcionProducto();
+            //LimpiarEspaciosDescripcionProducto();
         }
 
         //FUNCION QUE LIMPIA MIS ESPACIOS EN BLANCO
@@ -8951,1140 +9276,2039 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
         //--------------------------------------------------------------------------------
         public void DefinicionModelosTexto()
         {
-            //PRIMERA CUENTA------------------------------------------------------
-            //MAQUINARIAS Y EQUIPOS DE EXPLORACION
-            if (cboModelos.Text == "MAQUINARIA Y EQUIPOS PARA MODULO CERAMICO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoCaracteristicas3.Checked = true;
-                ckHabilitarTextoCaracteristicas4.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = true;
-                ckHabilitarTextoNTipos2.Checked = false;
-            }
-            //SEGUNDA CUENTA------------------------------------------------------
-            //ABRASIVOS
-            else if (cboModelos.Text == "ARENA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-            }
-            else if (cboModelos.Text == "CEPILLO CIRCULAR")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "COPA TRENZADA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-            }
-            else if (cboModelos.Text == "DISCO DE CORTE DE ACERO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = false;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = false;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "DISO DE CORTE DE CERAMICO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = false;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = false;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "DISCO DE DESBASTE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = false;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = false;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "GRANALLA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = false;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-            }
-            else if (cboModelos.Text == "LIJA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = true;
-                ckHabilitarTextoNTipos2.Checked = false;
-            }
-            else if (cboModelos.Text == "RUEDA DE DESBASTE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = false;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = false;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            //--------
-            //METALES
-            else if (cboModelos.Text == "ALUMINIO")
-            {
-                //ckHabilitarTextoCaracteristicas1.Checked = false;
-                //ckHabilitarTextoCaracteristicas2.Checked = false;
-                //ckHabilitarTextoMedidas1.Checked = true;
-                //ckHabilitarTextoMedidas2.Checked = false;
-                //ckHabilitarTextoDiametros1.Checked = true;
-                //ckHabilitarTextoDiametros2.Checked = false;
-            }
-            //------
-            //ACEROS
-            else if (cboModelos.Text == "ALAMBRE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoCaracteristicas3.Checked = false;
-                ckHabilitarTextoCaracteristicas4.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "ANGULO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "ANILLO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "ACERO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-            }
-            else if (cboModelos.Text == "BARRA RECTANGULAR")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "BARRA REDONDA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "BARRA REDONDA PERFORADA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = true;
-            }
-            else if (cboModelos.Text == "BARRA CUADRADA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "BRIDA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "CABLE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "CANAL U")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-            }
-            else if (cboModelos.Text == "CHAPAS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "ESTOBOL")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "ESTROBO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "RUEDA PARA CABLE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = false;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "NIPPLE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "PERNO" && cboLineas.Text == "ACERO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = true;
-                ckHabilitarTextoNTipos2.Checked = true;
-            }
-            else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ACERO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "PLATINA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "REMACHE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "TEE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "TORNILLO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-            }
-            else if (cboModelos.Text == "TUBO CUADRADO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "TUBO REDONDO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = false;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = false;
-            }
-            else if (cboModelos.Text == "TUBO RECTANGULAR")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "ACERO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = true;
-            }
-            else if (cboModelos.Text == "VARILLA LISA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "VARILLA ROSCADA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "RODAJE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-            }
-            else if (cboModelos.Text == "BOCINA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            //-------
-            //CERAMICA
-            else if (cboModelos.Text == "CERAMICA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoCaracteristicas3.Checked = false;
-                ckHabilitarTextoCaracteristicas4.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoMedidas3.Checked = false;
-                ckHabilitarTextoMedidas4.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            //------
-            //ELASTOMEROS
-            else if (cboModelos.Text == "FRISA ESPONJOSA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "ORING")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "PERFIL")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = true;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = true;
-            }
-            else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ELASTOMEROS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "CUERDA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            //--------
-            //ESTRUCTURAS METALICAS
-            else if (cboModelos.Text == "CODO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = false;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = false;
-            }
-            else if (cboModelos.Text == "CONO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            else if (cboModelos.Text == "DE TROMMEL")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = true;
-            }
-            else if (cboModelos.Text == "PARA MALLA TRENSABLE")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = true;
-                ckHabilitarTextoNTipos3.Checked = true;
-                ckHabilitarTextoNTipos4.Checked = false;
-            }
-            else if (cboModelos.Text == "PLATINA PARA PANEL")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-            }
-            else if (cboModelos.Text == "REJILLAS PARA PANEL")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoMedidas3.Checked = true;
-                ckHabilitarTextoMedidas4.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-            }
-            else if (cboModelos.Text == "RESPALDO MODULOS CERAMICOS")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoMedidas3.Checked = false;
-                ckHabilitarTextoMedidas4.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "TUBO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "REDUCTOR")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            //-------
-            //PRODUCTOS QUIMICOS
-            else if (cboModelos.Text == "ADHESIVOS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-            }
-            else if (cboModelos.Text == "COAGULANTES")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = false;
-            }
-            else if (cboModelos.Text == "DESMOLANTES")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-            }
-            else if (cboModelos.Text == "FLOCULANTES")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-            }
-            else if (cboModelos.Text == "GASES")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-            }
-            else if (cboModelos.Text == "MASILLAS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-            }
-            else if (cboModelos.Text == "PASTA")
-            {
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "PEGAMENTOS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = true;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-            }
-            else if (cboModelos.Text == "PINTURA")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "POLIURETANO Y COMPONENTES")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = true;
-                ckHabilitarTextoCaracteristicas2.Checked = true;
-                ckHabilitarTextoCaracteristicas3.Checked = false;
-                ckHabilitarTextoCaracteristicas4.Checked = false;
-            }
-            else if (cboModelos.Text == "PRESERVANTE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-            }
-            else if (cboModelos.Text == "PIGMENTO")
-            {
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "ANTIESPUMANTE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = false;
-            }
-            else if (cboModelos.Text == "SUPRESOR DE POLVO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = false;
-            }
-            else if (cboModelos.Text == "SECUESTRANTE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = false;
-            }
-            //--------
-            //SOLDADURA
-            else if (cboModelos.Text == "MIG/MAG")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-            }
-            else if (cboModelos.Text == "ARCO ELECTRICO")
-            {
-                ckHabilitarTextoMedidas1.Checked = false;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-            }
-            //--------
-            //NAILON
-            else if (cboModelos.Text == "BARRA")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-            }
-            else if (cboModelos.Text == "CINTILLOS")
-            {
-                ckHabilitarTextoMedidas1.Checked = false;
-                ckHabilitarTextoMedidas2.Checked = false;
-            }
-            else if (cboModelos.Text == "PERNO" && cboLineas.Text == "NAILON")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = false;
-            }
-            else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "NAILON")
-            {
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-            }
-            //-------
-            //MALAS DE ACERO
-            else if (cboModelos.Text == "MALLAS DE ACERO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = true;
-                ckHabilitarTextoNTipos2.Checked = true;
-                ckHabilitarTextoNTipos3.Checked = false;
-                ckHabilitarTextoNTipos4.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = false;
-            }
-            //-------
-            //MALAS DE ACERO TERMOFUNDIDOS
-            else if (cboModelos.Text == "MALLAS TERMOFUNDIDO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = true;
-                ckHabilitarTextoNTipos2.Checked = true;
-                ckHabilitarTextoNTipos3.Checked = false;
-                ckHabilitarTextoNTipos4.Checked = false;
-                ckHabilitarTextoVarios01.Checked = false;
-            }
-            //-------
-            //MODULO CERAMICO
-            else if (cboModelos.Text == "FUNDIDO" || cboModelos.Text == "PEGADO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoMedidas3.Checked = true;
-                ckHabilitarTextoMedidas4.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            //-------
-            //PANELES POLIURETANO
-            else if (cboModelos.Text == "CIEGO" || cboModelos.Text == "CONVENCIONAL" || cboModelos.Text == "AUTOLIMPIANTE" || cboModelos.Text == "VIBROHEXAGONAL" || cboModelos.Text == "TEE PEE" || cboModelos.Text == "OBLONGA")
-            {
-                ckHabilitarTextoMedidas1.Checked = false;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado3.Checked = false;
-                ckHabilitarTextoDiseñoAcabado4.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-            }
-            //------
-            //PIEZAS DE POLIURETANO
-            else if (cboModelos.Text == "ALETA")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "APEX")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "BARRAS")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoFormas1.Checked = true;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "BUJE")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = true;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "CUÑA")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = true;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "NOCKING BAR")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoMedidas3.Checked = true;
-                ckHabilitarTextoMedidas4.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "PIN")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "PROTECTOR DE RIEL")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoMedidas3.Checked = true;
-                ckHabilitarTextoMedidas4.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "RETENEDOR DE CARGA")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS DE POLIURETANO")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "SLEEVE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "SPALTO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = false;
-                ckHabilitarTextoNTipos2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = false;
-            }
-            else if (cboModelos.Text == "TAPON")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "COLA DE PATO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "VORTEX")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = true;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "ZAPATA")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "LINER")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            //-------
-            //MALLAS DE ACERO TERMOINYECTADAS
-            else if (cboModelos.Text == "MALLAS TERMOINYECTADAS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoDiametros1.Checked = true;
-                ckHabilitarTextoDiametros2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado3.Checked = false;
-                ckHabilitarTextoDiseñoAcabado4.Checked = false;
-                ckHabilitarTextoNTipos1.Checked = true;
-                ckHabilitarTextoNTipos2.Checked = true;
-                ckHabilitarTextoNTipos3.Checked = true;
-                ckHabilitarTextoNTipos4.Checked = false;
-            }
-            //--------
-            //REVESTIMIENTO CERAMICO
-            else if (cboModelos.Text == "REVESTIMIENTO / APEX")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "REVESTIMIENTO / CODO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "REVESTIMIENTO / CONO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "REVESTIMIENTO / SPLASH O MANGA")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "VORTEX")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "TUBO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "REDUCTOR")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "SPOOL")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "ANILLO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "BUSHING")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            //--------
-            //MALLAS TRENSABLES
-            else if (cboModelos.Text == " ")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = true;
-                ckHabilitarTextoDiseñoAcabado2.Checked = true;
-                ckHabilitarTextoDiseñoAcabado3.Checked = false;
-                ckHabilitarTextoDiseñoAcabado4.Checked = false;
-            }
-            else if (cboModelos.Text == "MALLAS TRENSABLES / HIBRIDO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado3.Checked = true;
-                ckHabilitarTextoDiseñoAcabado4.Checked = false;
-            }
-            else if (cboModelos.Text == "MALLAS TRENSABLES / CIEGO")
-            {
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado3.Checked = true;
-                ckHabilitarTextoDiseñoAcabado4.Checked = false;
-            }
-            //--------
-            //PIEZAS METALICAS
-            else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS METALICAS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = true;
-                ckHabilitarTextoFormas2.Checked = false;
-            }
-            else if (cboModelos.Text == "CLAMP")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoDiseñoAcabado1.Checked = false;
-                ckHabilitarTextoDiseñoAcabado2.Checked = false;
-            }
-            else if (cboModelos.Text == "ACCESORIO DE TRANSICION")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-            }
-            else if (cboModelos.Text == "RESPALDO PARA PIEZAS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-            }
-            else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "PIEZAS METALICAS")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-                ckHabilitarTextoFormas1.Checked = false;
-                ckHabilitarTextoFormas2.Checked = false;
-                ckHabilitarTextoVarios01.Checked = true;
-                ckHabilitarTextoVarios02.Checked = true;
-            }
-            else if (cboModelos.Text == "CHUTE")
-            {
-                ckHabilitarTextoCaracteristicas1.Checked = false;
-                ckHabilitarTextoCaracteristicas2.Checked = false;
-                ckHabilitarTextoMedidas1.Checked = true;
-                ckHabilitarTextoMedidas2.Checked = true;
-                ckHabilitarTextoMedidas3.Checked = true;
-                ckHabilitarTextoMedidas4.Checked = false;
-                ckHabilitarTextoEspesores1.Checked = true;
-                ckHabilitarTextoEspesores2.Checked = false;
-            }
-            //--------
+            //    //PRIMERA CUENTA------------------------------------------------------
+            //    //MAQUINARIAS Y EQUIPOS DE EXPLORACION
+            //    if (cboModelos.Text == "MAQUINARIA Y EQUIPOS PARA MODULO CERAMICO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoCaracteristicas3.Checked = true;
+            //        ckHabilitarTextoCaracteristicas4.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = true;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //    }
+            //    //SEGUNDA CUENTA------------------------------------------------------
+            //    //ABRASIVOS
+            //    else if (cboModelos.Text == "ARENA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CEPILLO CIRCULAR")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "COPA TRENZADA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "DISCO DE CORTE DE ACERO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = false;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = false;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "DISO DE CORTE DE CERAMICO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = false;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = false;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "DISCO DE DESBASTE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = false;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = false;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "GRANALLA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = false;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "LIJA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = true;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "RUEDA DE DESBASTE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = false;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = false;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    //--------
+            //    //METALES
+            //    else if (cboModelos.Text == "ALUMINIO")
+            //    {
+            //        //ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        //ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        //ckHabilitarTextoMedidas1.Checked = true;
+            //        //ckHabilitarTextoMedidas2.Checked = false;
+            //        //ckHabilitarTextoDiametros1.Checked = true;
+            //        //ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    //------
+            //    //ACEROS
+            //    else if (cboModelos.Text == "ALAMBRE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoCaracteristicas3.Checked = false;
+            //        ckHabilitarTextoCaracteristicas4.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ANGULO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ANILLO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "ACERO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "BARRA RECTANGULAR")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "BARRA REDONDA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "BARRA REDONDA PERFORADA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "BARRA CUADRADA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "BRIDA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CABLE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CANAL U")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CHAPAS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ESTOBOL")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ESTROBO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "RUEDA PARA CABLE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = false;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "NIPPLE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PERNO" && cboLineas.Text == "ACERO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = true;
+            //        ckHabilitarTextoNTipos2.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ACERO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PLATINA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "REMACHE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TEE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TORNILLO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "TUBO CUADRADO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TUBO REDONDO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = false;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TUBO RECTANGULAR")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "ACERO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "VARILLA LISA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "VARILLA ROSCADA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "RODAJE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "BOCINA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    //-------
+            //    //CERAMICA
+            //    else if (cboModelos.Text == "CERAMICA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoCaracteristicas3.Checked = false;
+            //        ckHabilitarTextoCaracteristicas4.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoMedidas3.Checked = false;
+            //        ckHabilitarTextoMedidas4.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    //------
+            //    //ELASTOMEROS
+            //    else if (cboModelos.Text == "FRISA ESPONJOSA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ORING")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PERFIL")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = true;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "PLANCHA" && cboLineas.Text == "ELASTOMEROS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CUERDA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    //--------
+            //    //ESTRUCTURAS METALICAS
+            //    else if (cboModelos.Text == "CODO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = false;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CONO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "DE TROMMEL")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "PARA MALLA TRENSABLE")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = true;
+            //        ckHabilitarTextoNTipos3.Checked = true;
+            //        ckHabilitarTextoNTipos4.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PLATINA PARA PANEL")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "REJILLAS PARA PANEL")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoMedidas3.Checked = true;
+            //        ckHabilitarTextoMedidas4.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "RESPALDO MODULOS CERAMICOS")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoMedidas3.Checked = false;
+            //        ckHabilitarTextoMedidas4.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TUBO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "REDUCTOR")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    //-------
+            //    //PRODUCTOS QUIMICOS
+            //    else if (cboModelos.Text == "ADHESIVOS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "COAGULANTES")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "DESMOLANTES")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "FLOCULANTES")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "GASES")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "MASILLAS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PASTA")
+            //    {
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PEGAMENTOS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = true;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PINTURA")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "POLIURETANO Y COMPONENTES")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = true;
+            //        ckHabilitarTextoCaracteristicas2.Checked = true;
+            //        ckHabilitarTextoCaracteristicas3.Checked = false;
+            //        ckHabilitarTextoCaracteristicas4.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PRESERVANTE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PIGMENTO")
+            //    {
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ANTIESPUMANTE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "SUPRESOR DE POLVO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "SECUESTRANTE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = false;
+            //    }
+            //    //--------
+            //    //SOLDADURA
+            //    else if (cboModelos.Text == "MIG/MAG")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ARCO ELECTRICO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = false;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //    }
+            //    //--------
+            //    //NAILON
+            //    else if (cboModelos.Text == "BARRA")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CINTILLOS")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = false;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PERNO" && cboLineas.Text == "NAILON")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TUERCA" && cboLineas.Text == "NAILON")
+            //    {
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //    }
+            //    //-------
+            //    //MALAS DE ACERO
+            //    else if (cboModelos.Text == "MALLAS DE ACERO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = true;
+            //        ckHabilitarTextoNTipos2.Checked = true;
+            //        ckHabilitarTextoNTipos3.Checked = false;
+            //        ckHabilitarTextoNTipos4.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = false;
+            //    }
+            //    //-------
+            //    //MALAS DE ACERO TERMOFUNDIDOS
+            //    else if (cboModelos.Text == "MALLAS TERMOFUNDIDO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = true;
+            //        ckHabilitarTextoNTipos2.Checked = true;
+            //        ckHabilitarTextoNTipos3.Checked = false;
+            //        ckHabilitarTextoNTipos4.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = false;
+            //    }
+            //    //-------
+            //    //MODULO CERAMICO
+            //    else if (cboModelos.Text == "FUNDIDO" || cboModelos.Text == "PEGADO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoMedidas3.Checked = true;
+            //        ckHabilitarTextoMedidas4.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    //-------
+            //    //PANELES POLIURETANO
+            //    else if (cboModelos.Text == "CIEGO" || cboModelos.Text == "CONVENCIONAL" || cboModelos.Text == "AUTOLIMPIANTE" || cboModelos.Text == "VIBROHEXAGONAL" || cboModelos.Text == "TEE PEE" || cboModelos.Text == "OBLONGA")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = false;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado3.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado4.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //    }
+            //    //------
+            //    //PIEZAS DE POLIURETANO
+            //    else if (cboModelos.Text == "ALETA")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "APEX")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "BARRAS")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoFormas1.Checked = true;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "BUJE")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CUÑA")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "NOCKING BAR")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoMedidas3.Checked = true;
+            //        ckHabilitarTextoMedidas4.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PIN")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "PROTECTOR DE RIEL")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoMedidas3.Checked = true;
+            //        ckHabilitarTextoMedidas4.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "RETENEDOR DE CARGA")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS DE POLIURETANO")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "SLEEVE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "SPALTO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = false;
+            //        ckHabilitarTextoNTipos2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "TAPON")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "COLA DE PATO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "VORTEX")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ZAPATA")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "LINER")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    //-------
+            //    //MALLAS DE ACERO TERMOINYECTADAS
+            //    else if (cboModelos.Text == "MALLAS TERMOINYECTADAS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoDiametros1.Checked = true;
+            //        ckHabilitarTextoDiametros2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado3.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado4.Checked = false;
+            //        ckHabilitarTextoNTipos1.Checked = true;
+            //        ckHabilitarTextoNTipos2.Checked = true;
+            //        ckHabilitarTextoNTipos3.Checked = true;
+            //        ckHabilitarTextoNTipos4.Checked = false;
+            //    }
+            //    //--------
+            //    //REVESTIMIENTO CERAMICO
+            //    else if (cboModelos.Text == "REVESTIMIENTO / APEX")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "REVESTIMIENTO / CODO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "REVESTIMIENTO / CONO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "REVESTIMIENTO / SPLASH O MANGA")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "VORTEX")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "TUBO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "REDUCTOR")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "SPOOL")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "ANILLO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "BUSHING")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    //--------
+            //    //MALLAS TRENSABLES
+            //    else if (cboModelos.Text == " ")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado3.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado4.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "MALLAS TRENSABLES / HIBRIDO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado3.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado4.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "MALLAS TRENSABLES / CIEGO")
+            //    {
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado3.Checked = true;
+            //        ckHabilitarTextoDiseñoAcabado4.Checked = false;
+            //    }
+            //    //--------
+            //    //PIEZAS METALICAS
+            //    else if (cboModelos.Text == "RIEL" && cboLineas.Text == "PIEZAS METALICAS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = true;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "CLAMP")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado1.Checked = false;
+            //        ckHabilitarTextoDiseñoAcabado2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ACCESORIO DE TRANSICION")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "RESPALDO PARA PIEZAS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //    }
+            //    else if (cboModelos.Text == "ARANDELA" && cboLineas.Text == "PIEZAS METALICAS")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //        ckHabilitarTextoFormas1.Checked = false;
+            //        ckHabilitarTextoFormas2.Checked = false;
+            //        ckHabilitarTextoVarios01.Checked = true;
+            //        ckHabilitarTextoVarios02.Checked = true;
+            //    }
+            //    else if (cboModelos.Text == "CHUTE")
+            //    {
+            //        ckHabilitarTextoCaracteristicas1.Checked = false;
+            //        ckHabilitarTextoCaracteristicas2.Checked = false;
+            //        ckHabilitarTextoMedidas1.Checked = true;
+            //        ckHabilitarTextoMedidas2.Checked = true;
+            //        ckHabilitarTextoMedidas3.Checked = true;
+            //        ckHabilitarTextoMedidas4.Checked = false;
+            //        ckHabilitarTextoEspesores1.Checked = true;
+            //        ckHabilitarTextoEspesores2.Checked = false;
+            //    }        
         }
-    }
+        //--------
+
+        //////////////////////////////////////////---------------------------------------------------------------------------
+        ////------------------------------------------------           
+        ///IMPLEMENTACIÓN ESTRUCTURA DEL NOMBRE PARA EL PRODUCTO
+        ///
+
+        //METODO DE ASGINACIÓN DE TEXTBOX A LOS PANELES CORRESPONDIENTES
+        public void AsignarTagsA_TxTEnPanel(TextBox[] asignartagtxts,string nombrepanel)
+        {
+            foreach(TextBox txt in asignartagtxts)
+            {
+                txt.Tag = nombrepanel;
+            }      
+        }
+        //METODO PARA CARGAR LOS CHECKBOX QUE SE SELECCIONARON PARA LA VISUALIZACIÓN DEL TIPO AL MOMENTO DE DEFINIR EL NOMBRE
+        public void CargarCksAtributos(int idmodelo, DataGridView DGVCkAtributos, CheckBox ckcaracteristica1, CheckBox ckcaracteristica2, CheckBox ckcaracteristica3, CheckBox ckcaracteristica4
+            , CheckBox ckmedidas1, CheckBox ckmedidas2, CheckBox ckmedidas3, CheckBox ckmedidas4, CheckBox ckdiametros1, CheckBox ckdiametros2, CheckBox ckdiametros3, CheckBox ckdiametros4
+            , CheckBox ckformas1, CheckBox ckformas2, CheckBox ckformas3, CheckBox ckformas4, CheckBox ckespesores1, CheckBox ckespesores2, CheckBox ckespesores3, CheckBox ckespesores4
+            , CheckBox ckdiseñoaca1, CheckBox ckdiseñoaca2, CheckBox ckdiseñoaca3, CheckBox ckdiseñoaca4, CheckBox ckntipos1, CheckBox ckntipos2, CheckBox ckntipos3, CheckBox ckntipos4
+            , CheckBox ckvarios1, CheckBox ckvarios2)
+        {
+            try
+            {              
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Modelos_CargarCkAtributos", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idmodelo", idmodelo);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                if (dt.Rows.Count == 0)
+                {
+                    CheckBox[] desmarcarcks = {ckcaracteristica1,ckcaracteristica2,ckcaracteristica3,ckcaracteristica4,ckmedidas1,ckmedidas2,ckmedidas3,ckmedidas4,ckdiametros1,ckdiametros2,ckdiametros3,ckdiametros4
+                    ,ckformas1,ckformas2,ckformas3,ckformas4,ckespesores1,ckespesores2,ckespesores3,ckespesores4,ckdiseñoaca1,ckdiseñoaca2,ckdiseñoaca3,ckdiseñoaca4,ckntipos1,ckntipos2,ckntipos3,ckntipos4,ckvarios1
+                    ,ckvarios2};
+
+                    foreach(CheckBox ck in desmarcarcks)
+                    {
+                        ck.Checked = false;
+                    }
+                    
+                    return;
+                }
+                DGVCkAtributos.DataSource = dt;
+                con.Close();
+
+
+                //ESTADO CHECKBOX CARACTERISTICA 1
+                int ckestadocaracteristica1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[1].Value.ToString());
+                if (ckestadocaracteristica1 == 1)
+                {
+                    ckcaracteristica1.Checked = true;
+                }
+                else
+                {
+                    ckcaracteristica1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX CARACTERISTICA 2
+                int ckestadocaracteristica2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[2].Value.ToString());
+                if (ckestadocaracteristica2 == 1)
+                {
+                    ckcaracteristica2.Checked = true;
+
+                }
+                else
+                {
+                    ckcaracteristica2.Checked = false;
+                }
+
+
+                //ESTADO CHECKBOX CARACTERISTICA 3
+                int ckestadocaracteristica3 = Convert.ToInt32(DGVCkAtributos.SelectedCells[3].Value.ToString());
+                if (ckestadocaracteristica3 == 1)
+                {
+                    ckcaracteristica3.Checked = true;
+
+                }
+                else
+                {
+                    ckcaracteristica3.Checked = false;
+                }
+
+                //ESTADO CHECKBOX CARACTERISTICA 4
+                int ckestadocaracteristica4 = Convert.ToInt32(DGVCkAtributos.SelectedCells[4].Value.ToString());
+                if (ckestadocaracteristica4 == 1)
+                {
+                    ckcaracteristica4.Checked = true;
+
+                }
+                else
+                {
+                    ckcaracteristica4.Checked = false;
+                }
+
+                //ESTADO CHECKBOX MEDIDAS 1
+                int ckestadomedidas1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[5].Value.ToString());
+                if (ckestadomedidas1 == 1)
+                {
+                    ckmedidas1.Checked = true;
+
+                }
+                else
+                {
+                    ckmedidas1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX MEDIDAS 2
+                int ckestadomedidas2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[6].Value.ToString());
+                if (ckestadomedidas2 == 1)
+                {
+                    ckmedidas2.Checked = true;
+                }
+                else
+                {
+                    ckmedidas2.Checked = false;
+                }
+
+                //ESTADO CHECKBOX MEDIDAS 3
+                int ckestadomedidas3 = Convert.ToInt32(DGVCkAtributos.SelectedCells[7].Value.ToString());
+                if (ckestadomedidas3 == 1)
+                {
+                    ckmedidas3.Checked = true;
+                }
+                else
+                {
+                    ckmedidas3.Checked = false;
+                }
+
+                //ESTADO CHECKBOX MEDIDAS 4
+                int ckestadomedidas4 = Convert.ToInt32(DGVCkAtributos.SelectedCells[8].Value.ToString());
+                if (ckestadomedidas4 == 1)
+                {
+                    ckmedidas4.Checked = true;
+                }
+                else
+                {
+                    ckmedidas4.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DIAMETRO 1
+                int ckestadodiametro1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[9].Value.ToString());
+                if (ckestadodiametro1 == 1)
+                {
+                    ckdiametros1.Checked = true;
+
+                }
+                else
+                {
+                    ckdiametros1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DIAMETRO 2
+                int ckestadodiametro2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[10].Value.ToString());
+                if (ckestadodiametro2 == 1)
+                {
+                    ckdiametros2.Checked = true;
+                }
+                else
+                {
+                    ckdiametros2.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DIAMETRO 3
+                int ckestadodiametro3 = Convert.ToInt32(DGVCkAtributos.SelectedCells[11].Value.ToString());
+                if (ckestadodiametro3 == 1)
+                {
+                    ckdiametros3.Checked = true;
+                }
+                else
+                {
+                    ckdiametros3.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DIAMETRO 4
+                int ckestadodiametro4 = Convert.ToInt32(DGVCkAtributos.SelectedCells[12].Value.ToString());
+                if (ckestadodiametro4 == 1)
+                {
+                    ckdiametros4.Checked = true;
+                }
+                else
+                {
+                    ckdiametros4.Checked = false;
+                }
+
+                //ESTADO CHECKBOX FORMA 1
+                int ckestadoforma1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[13].Value.ToString());
+                if (ckestadoforma1 == 1)
+                {
+                    ckformas1.Checked = true;
+
+                }
+                else
+                {
+                    ckformas1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX FORMA 2
+                int ckestadoforma2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[14].Value.ToString());
+                if (ckestadoforma2 == 1)
+                {
+                    ckformas2.Checked = true;
+                }
+                else
+                {
+                    ckformas2.Checked = false;
+                }
+
+                //ESTADO CHECKBOX FORMA 3
+                int ckestadoforma3 = Convert.ToInt32(DGVCkAtributos.SelectedCells[15].Value.ToString());
+                if (ckestadoforma3 == 1)
+                {
+                    ckformas3.Checked = true;
+                }
+                else
+                {
+                    ckformas3.Checked = false;
+                }
+
+                //ESTADO CHECKBOX FORMA 4
+                int ckestadoforma4 = Convert.ToInt32(DGVCkAtributos.SelectedCells[16].Value.ToString());
+                if (ckestadoforma4 == 1)
+                {
+                    ckformas4.Checked = true;
+                }
+                else
+                {
+                    ckformas4.Checked = false;
+                }
+
+                //ESTADO CHECKBOX ESPESORES 1
+                int ckestadoespesores1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[17].Value.ToString());
+                if (ckestadoespesores1 == 1)
+                {
+                    ckespesores1.Checked = true;
+
+                }
+                else
+                {
+                    ckespesores1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX ESPESORES 2
+                int ckestadoespesores2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[18].Value.ToString());
+                if (ckestadoespesores2 == 1)
+                {
+                    ckespesores2.Checked = true;
+                }
+                else
+                {
+                    ckespesores2.Checked = false;
+                }
+
+                //ESTADO CHECKBOX ESPESORES 3
+                int ckestadoespesores3 = Convert.ToInt32(DGVCkAtributos.SelectedCells[19].Value.ToString());
+                if (ckestadoespesores3 == 1)
+                {
+                    ckespesores3.Checked = true;
+                }
+                else
+                {
+                    ckespesores3.Checked = false;
+                }
+
+                //ESTADO CHECKBOX ESPESORES 4
+                int ckestadoespesores4 = Convert.ToInt32(DGVCkAtributos.SelectedCells[20].Value.ToString());
+                if (ckestadoespesores4 == 1)
+                {
+                    ckespesores4.Checked = true;
+                }
+                else
+                {
+                    ckespesores4.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DISEÑO ACABADO 1
+                int ckestadodiseñoacabado1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[21].Value.ToString());
+                if (ckestadodiseñoacabado1 == 1)
+                {
+                    ckdiseñoaca1.Checked = true;
+
+                }
+                else
+                {
+                    ckdiseñoaca1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DISEÑO ACABADO 2
+                int ckestadodiseñoacabado2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[22].Value.ToString());
+                if (ckestadodiseñoacabado2 == 1)
+                {
+                    ckdiseñoaca2.Checked = true;
+                }
+                else
+                {
+                    ckdiseñoaca2.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DISEÑO ACABADO 3
+                int ckestadodiseñoacabado3 = Convert.ToInt32(DGVCkAtributos.SelectedCells[23].Value.ToString());
+                if (ckestadodiseñoacabado3 == 1)
+                {
+                    ckdiseñoaca3.Checked = true;
+                }
+                else
+                {
+                    ckdiseñoaca3.Checked = false;
+                }
+
+                //ESTADO CHECKBOX DISEÑO ACABADO 4
+                int ckestadodiseñoacabado4 = Convert.ToInt32(DGVCkAtributos.SelectedCells[24].Value.ToString());
+                if (ckestadodiseñoacabado4 == 1)
+                {
+                    ckdiseñoaca4.Checked = true;
+                }
+                else
+                {
+                    ckdiseñoaca4.Checked = false;
+                }
+
+                //ESTADO CHECKBOX TIPO N TIPOS 1
+                int ckestadotipontipos1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[25].Value.ToString());
+                if (ckestadotipontipos1 == 1)
+                {
+                    ckntipos1.Checked = true;
+
+                }
+                else
+                {
+                    ckntipos1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX TIPO N TIPOS 2
+                int ckestadotipontipos2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[26].Value.ToString());
+                if (ckestadotipontipos2 == 1)
+                {
+                    ckntipos2.Checked = true;
+                }
+                else
+                {
+                    ckntipos2.Checked = false;
+                }
+
+                //ESTADO CHECKBOX TIPO N TIPOS 3
+                int ckestadotipontipos3 = Convert.ToInt32(DGVCkAtributos.SelectedCells[27].Value.ToString());
+                if (ckestadotipontipos3 == 1)
+                {
+                    ckntipos3.Checked = true;
+                }
+                else
+                {
+                    ckntipos3.Checked = false;
+                }
+
+                //ESTADO CHECKBOX TIPO N TIPOS 4
+                int ckestadotipontipos4 = Convert.ToInt32(DGVCkAtributos.SelectedCells[28].Value.ToString());
+                if (ckestadotipontipos4 == 1)
+                {
+                    ckntipos4.Checked = true;
+                }
+                else
+                {
+                    ckntipos4.Checked = false;
+                }
+
+                //ESTADO CHECKBOX TIPO VARIOS 1
+                int ckestadotipovarios1 = Convert.ToInt32(DGVCkAtributos.SelectedCells[29].Value.ToString());
+                if (ckestadotipovarios1 == 1)
+                {
+                    ckvarios1.Checked = true;
+
+                }
+                else
+                {
+                    ckvarios1.Checked = false;
+                }
+
+                //ESTADO CHECKBOX TIPO VARIOS 2
+                int ckestadotipovarios2 = Convert.ToInt32(DGVCkAtributos.SelectedCells[30].Value.ToString());
+                if (ckestadotipovarios2 == 1)
+                {
+                    ckvarios2.Checked = true;
+                }
+                else
+                {
+                    ckvarios2.Checked = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Aun no esta definido este modelo ERROR: {ex.Message}");
+            }
+        }
+
+        //METODO QUE ALMACENARA LA CARGA DE DATOS PARA LA ESTRUCTURA DEL NOMBRE
+        public void Estructura_NombreProducto()
+        {
+            //METODO QUE RESEA LOS CKS PARA SU POSTERIOR USO EN OTRO MODELO
+            ResetearEstadoCks(new CheckBox[]
+            {ckHabilitarTextoCaracteristicas1, ckHabilitarTextoCaracteristicas2, ckHabilitarTextoCaracteristicas3, ckHabilitarTextoCaracteristicas4
+            ,ckHabilitarTextoMedidas1,ckHabilitarTextoMedidas2,ckHabilitarTextoMedidas3,ckHabilitarTextoMedidas4
+            ,ckHabilitarTextoDiametros1,ckHabilitarTextoDiametros2,ckHabilitarTextoDiametros3,ckHabilitarTextoDiametros4
+            ,ckHabilitarTextoFormas1,ckHabilitarTextoFormas2,ckHabilitarTextoFormas3,ckHabilitarTextoFormas4
+            ,ckHabilitarTextoEspesores1,ckHabilitarTextoEspesores2,ckHabilitarTextoEspesores3,ckHabilitarTextoEspesores4
+            ,ckHabilitarTextoDiseñoAcabado1,ckHabilitarTextoDiseñoAcabado2,ckHabilitarTextoDiseñoAcabado3,ckHabilitarTextoDiseñoAcabado4
+            ,ckHabilitarTextoNTipos1,ckHabilitarTextoNTipos2,ckHabilitarTextoNTipos3,ckHabilitarTextoNTipos4
+            ,ckHabilitarTextoVarios01,ckHabilitarTextoVarios02});
+
+            //VARIABLE GLOBAL QUE DESACTIVARA LOS METODOS DE HABILITAR LOS CKS
+            cargardatosDeLosGrupos = true;
+
+            //CARGA DE LOS GRUPOS DE CAMPOS X POSICION DEFINIDA
+            CreacionNombreProducto.CargarGrupoCamposXPosicion(Convert.ToInt32(cboModelos.SelectedValue), datalistadoGrupoCamposXPosicion);
+
+            //VARIABLE GLOBAL QUE DESBLOQUEA LOS CKS QUE PERMITEN LA VISUALIZACIÓN DEL TIPO, MIENTRAS SE CARGA LOS DATOS DE LOS CKS
+            habilitarcks_AlCargarDescripciones = true;
+
+            //CARGA DE LOS CKS SELECCIONADOS Y INGRESADOS PARA EL MODELO
+            CargarCksAtributos(Convert.ToInt32(cboModelos.SelectedValue), datalistadockatributos, ckHabilitarTextoCaracteristicas1, ckHabilitarTextoCaracteristicas2, ckHabilitarTextoCaracteristicas3, ckHabilitarTextoCaracteristicas4
+               , ckHabilitarTextoMedidas1, ckHabilitarTextoMedidas2, ckHabilitarTextoMedidas3, ckHabilitarTextoMedidas4, ckHabilitarTextoDiametros1, ckHabilitarTextoDiametros2, ckHabilitarTextoDiametros3
+               , ckHabilitarTextoDiametros4, ckHabilitarTextoFormas1, ckHabilitarTextoFormas2, ckHabilitarTextoFormas3, ckHabilitarTextoFormas4, ckHabilitarTextoEspesores1
+               , ckHabilitarTextoEspesores2, ckHabilitarTextoEspesores3, ckHabilitarTextoEspesores4, ckHabilitarTextoDiseñoAcabado1, ckHabilitarTextoDiseñoAcabado2, ckHabilitarTextoDiseñoAcabado3
+               , ckHabilitarTextoDiseñoAcabado4, ckHabilitarTextoNTipos1, ckHabilitarTextoNTipos2, ckHabilitarTextoNTipos3, ckHabilitarTextoNTipos4, ckHabilitarTextoVarios01, ckHabilitarTextoVarios02);
+
+            //DESBLOQUEO DE CKS AL ENCONTRAR UN COMBOBOX QUE CONTENGA UN ITEM(DESCRIPCION) VACIA
+            //CARACTERISTICAS
+            habilitarCks_AlCargarDescripcionVacia(ckCaracteristicas1,ckHabilitarTextoCaracteristicas1,cboDescripcionCaracteristicas1,cboTipoCaracteristicas1);
+            habilitarCks_AlCargarDescripcionVacia(ckCaracteristicas1, ckHabilitarTextoCaracteristicas2, cboDescripcionCaracteristicas2, cboTipoCaracteristicas2);
+            habilitarCks_AlCargarDescripcionVacia(ckCaracteristicas2, ckHabilitarTextoCaracteristicas3, cboDescripcionCaracteristicas3, cboTipoCaracteristicas3);
+            habilitarCks_AlCargarDescripcionVacia(ckCaracteristicas2, ckHabilitarTextoCaracteristicas4, cboDescripcionCaracteristicas4, cboTipoCaracteristicas4);
+            //MEDIDAS
+            habilitarCks_AlCargarDescripcionVacia(ckCamposMedida1, ckHabilitarTextoMedidas1, cboDescripcionMedida1, cboTipoMedida1);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposMedida1, ckHabilitarTextoMedidas2, cboDescripcionMedida2, cboTipoMedida2);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposMedida2, ckHabilitarTextoMedidas3, cboDescripcionMedida3, cboTipoMedida3);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposMedida2, ckHabilitarTextoMedidas4, cboDescripcionMedida4, cboTipoMedida4);
+            //DIAMETROS
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiametros1, ckHabilitarTextoDiametros1, cboDescripcionDiametros1, cboTiposDiametros1);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiametros1, ckHabilitarTextoDiametros2, cboDescripcionDiametros2, cboTiposDiametros2);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiametros2, ckHabilitarTextoDiametros3, cboDescripcionDiametros3, cboTiposDiametros3);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiametros2, ckHabilitarTextoDiametros4, cboDescripcionDiametros4, cboTiposDiametros4);
+            //FORMAS
+            habilitarCks_AlCargarDescripcionVacia(ckCamposFormas1, ckHabilitarTextoFormas1, cboDescripcionFormas1, cboTiposFormas1);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposFormas1, ckHabilitarTextoFormas2, cboDescripcionFormas2, cboTiposFormas2);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposFormas2, ckHabilitarTextoFormas3, cboDescripcionFormas3, cboTiposFormas3);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposFormas2, ckHabilitarTextoFormas4, cboDescripcionFormas4, cboTiposFormas4);
+            //ESPESORES
+            habilitarCks_AlCargarDescripcionVacia(ckCamposEspesores1, ckHabilitarTextoEspesores1, cboDescripcionEspesores1, cbooTipoEspesores1);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposEspesores1, ckHabilitarTextoEspesores2, cboDescripcionEspesores2, cbooTipoEspesores2);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposEspesores2, ckHabilitarTextoEspesores3, cboDescripcionEspesores3, cbooTipoEspesores3);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposEspesores2, ckHabilitarTextoEspesores4, cboDescripcionEspesores4, cbooTipoEspesores4);
+            //DISEÑO ACABADO
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiseñoAcabado1, ckHabilitarTextoDiseñoAcabado1, cboDescripcionDiseñoAcabado1, cboTiposDiseñosAcabados1);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiseñoAcabado1, ckHabilitarTextoDiseñoAcabado2, cboDescripcionDiseñoAcabado2, cboTiposDiseñosAcabados2);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiseñoAcabado2, ckHabilitarTextoDiseñoAcabado3, cboDescripcionDiseñoAcabado3, cboTiposDiseñosAcabados3);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposDiseñoAcabado2, ckHabilitarTextoDiseñoAcabado4, cboDescripcionDiseñoAcabado4, cboTiposDiseñosAcabados4);
+            //N TIPOS
+            habilitarCks_AlCargarDescripcionVacia(ckCamposNTipos1, ckHabilitarTextoNTipos1, cboDescripcionNTipos1, cboTiposNTipos1);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposNTipos1, ckHabilitarTextoNTipos2, cboDescripcionNTipos2, cboTiposNTipos2);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposNTipos2, ckHabilitarTextoNTipos3, cboDescripcionNTipos3, cboTiposNTipos3);
+            habilitarCks_AlCargarDescripcionVacia(ckCamposNTipos2, ckHabilitarTextoNTipos4, cboDescripcionNTipos4, cboTiposNTipos4);
+            //VARIOS
+            habilitarCks_AlCargarDescripcionVacia(ckVariosO1, ckHabilitarTextoVarios01, cboDescripcionVariosO1, cboTiposVariosO1);
+            habilitarCks_AlCargarDescripcionVacia(ckVariosO2, ckHabilitarTextoVarios02, cboDescripcionVariosO2, cboTiposVariosO2);
+
+
+            habilitarcks_AlCargarDescripciones = false;
+
+            //INVOCACIÓN AL METODO DE LA CLASE CREACION NOMBRE PRODUCTO PARA ORDENAR LOS TXTS QUE ALMACENARAN EL CONTENIDO SELECCIOANDO DE LOS CBOTIPODESCRIPCION
+            CreacionNombreProducto.ReordenarTxT_GrupoCamposXPosicion(datalistadoGrupoCamposXPosicion, floContenedorTxts
+                , new TextBox[]
+                {txtDescripcionCaracteristicas1, txtDescripcionCaracteristicas2, txtDescripcionCaracteristicas3, txtDescripcionCaracteristicas4
+                ,txtDescripcionMedida1,txtDescripcionMedida2,txtDescripcionMedida3,txtDescripcionMedida4,txtDescripcionDiametros1,txtDescripcionDiametros2
+                ,txtDescripcionDiametros3,txtDescripcionDiametros4,txtDescripcionFormas1,txtDescripcionFormas2,txtDescripcionFormas3,txtDescripcionFormas4
+                ,txtDescripcionEspesores1,txtDescripcionEspesores2,txtDescripcionEspesores3,txtDescripcionEspesores4,txtDescripcionDiseñoAcabado1
+                ,txtDescripcionDiseñoAcabado2,txtDescripcionDiseñoAcabado3,txtDescripcionDiseñoAcabado4,txtDescripcionNTipos1,txtDescripcionNTipos2
+                ,txtDescripcionNTipos3,txtDescripcionNTipos4,txtDescripcionVariosO1,txtDescripcionVariosO2
+                });
+
+            //METODO PARA SUSCRIBIR TODOS LOS TXTS QUE ALMACENA EL FLOWLAYOUTPANEL
+            CreacionNombreProducto.SucribirEventosTextChanged(floContenedorTxts, txtDescripcionGeneradaProducto_TextChanged);
+
+            
+            cargardatosDeLosGrupos = false;
+        }
+
+        //EVENTO DEL TXT QUE GENERARA EL NOMBRE PARA EL PRODUCTO
+        private void txtDescripcionGeneradaProducto_TextChanged(object sender, EventArgs e)
+        {
+            CreacionNombreProducto.ConstruirNombreProducto(cboModelos, floContenedorTxts, txtDescripcionGeneradaProducto);
+        }
+
+        //METODO PARA HABILITAR LOS CHECKS SI SE INGRESA UN VACIO Y DESPUES SE SELECCIONA EL ITEM INGRESADO
+        public void habilitarcks_alIngresarDescripcionVacia(CheckBox Grupo, CheckBox habilitar, ComboBox descripcion, ComboBox Tipo)
+        {
+            if (habilitarcks_alIngresarDescripcion != false)
+            {
+                if (Grupo.Checked == true)
+                {
+                    if (habilitar.Checked == true && descripcion.Text == "" && Tipo.Text != "NO APLICA")
+                    {
+                        habilitar.Enabled = true;                     
+                    }
+                }
+            }
+        }
+
+        //METODO PARA HABILITAR LOS CK AL MOMENTO DE CARGAR LAS DESCRIPCIONES
+        public void habilitarCks_AlCargarDescripcionVacia(CheckBox Grupo,CheckBox habilitar,ComboBox descripcion,ComboBox Tipo)
+        {
+            if (habilitarcks_AlCargarDescripciones != false)
+            {
+                if (Grupo.Checked == true)
+                {
+                    if(habilitar.Checked == true && Tipo.Text != "NO APLICA")
+                    {
+                        foreach (var item in descripcion.Items)
+                        {
+                            string texto = "";
+
+                            if (item is DataRowView row)
+                            {
+                                texto = Convert.ToString(row[descripcion.DisplayMember]);
+                            }
+                            else
+                            {
+                                texto = !string.IsNullOrEmpty(descripcion.DisplayMember)
+                                       ? Convert.ToString(item.GetType().GetProperty(descripcion.DisplayMember)?.GetValue(item, null))
+                                       : Convert.ToString(item);
+                            }
+
+                            if (string.IsNullOrWhiteSpace(texto))
+                            {
+                                habilitar.Enabled = true;
+                                return; 
+                            }
+                        }
+                        habilitar.Enabled = false;
+                    }
+                  
+                }
+            }
+        }
+
+        //METODO PARA CONTROLAR LA VISUALIZACIÓN DEL TIPO DESPUES DE DESACTIVAR LOS CHECKS
+        public void BorrarTipo_SiHayEspacioVacio(CheckBox Grupo, CheckBox Ck, ComboBox descripcionseleccionada, ComboBox Tipo, TextBox construirnombre, TextBox descripciongenerada)
+        {
+            if (borrarTipo != false)
+            {
+                if (Grupo.Checked == true)
+                {
+                    if (Ck.Checked == false && descripcionseleccionada.Text == "" && Tipo.Text != "NO APLICA" && descripciongenerada.Text.Contains(Tipo.Text))
+                    {
+                        descripciongenerada.Text = construirnombre.Text = "";
+                    }
+
+                    else if (Ck.Checked == false && descripcionseleccionada.Text != "" && Tipo.Text != "NO APLICA" && descripciongenerada.Text.Contains(Tipo.Text))
+                    {
+                        construirnombre.Text = descripcionseleccionada.Text;
+                        descripciongenerada.Text = construirnombre.Text;
+                    }
+
+                    else if (Ck.Checked == true && descripcionseleccionada.Text != "" && Tipo.Text != "NO APLICA" && descripciongenerada.Text.Contains(Tipo.Text))
+                    {
+                        descripciongenerada.Text = Tipo.Text + " " + construirnombre.Text;
+                    }
+
+                    else
+                    {
+                        construirnombre.Text = Tipo.Text + " " + descripcionseleccionada.Text;
+                    }               
+                }
+            }
+        }
+
+        //METODO PARA RESETEAR EL ESTADO DE LOS COMBOS
+        public void ResetearEstadoCks(CheckBox[] Cks)
+        {
+            foreach (CheckBox ck in Cks)
+            {
+                ck.Enabled = false;
+                ck.Checked = false;
+            }
+        }
+
+        //EVENTOS QUE CONTROLAN LA VISUALIZACIÓN DEL TIPO EN EL NOMBRE DEL PRODUCTO
+        //CARACTERISTICAS
+        private void ckHabilitarTextoCaracteristicas1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCaracteristicas1,ckHabilitarTextoCaracteristicas1,cboDescripcionCaracteristicas1,cboTipoCaracteristicas1,txtDescripcionCaracteristicas1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoCaracteristicas2_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCaracteristicas1, ckHabilitarTextoCaracteristicas2, cboDescripcionCaracteristicas2, cboTipoCaracteristicas2, txtDescripcionCaracteristicas2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }  
+        }
+
+        private void ckHabilitarTextoCaracteristicas3_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCaracteristicas2, ckHabilitarTextoCaracteristicas3, cboDescripcionCaracteristicas3, cboTipoCaracteristicas3, txtDescripcionCaracteristicas3, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }        
+        }
+
+        private void ckHabilitarTextoCaracteristicas4_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCaracteristicas2, ckHabilitarTextoCaracteristicas4, cboDescripcionCaracteristicas4, cboTipoCaracteristicas4, txtDescripcionCaracteristicas4,txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }   
+        }
+
+        //MEDIDAS
+
+        private void ckHabilitarTextoMedidas1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposMedida1, ckHabilitarTextoMedidas1, cboDescripcionMedida1, cboTipoMedida1, txtDescripcionMedida1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoMedidas2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposMedida1, ckHabilitarTextoMedidas2, cboDescripcionMedida2, cboTipoMedida2, txtDescripcionMedida2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoMedidas3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposMedida2, ckHabilitarTextoMedidas3, cboDescripcionMedida3, cboTipoMedida3, txtDescripcionMedida3, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoMedidas4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposMedida2, ckHabilitarTextoMedidas4, cboDescripcionMedida4, cboTipoMedida4, txtDescripcionMedida4, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        //DIAMETROS
+        private void ckHabilitarTextoDiametros1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiametros1, ckHabilitarTextoDiametros1, cboDescripcionDiametros1, cboTiposDiametros1, txtDescripcionDiametros1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoDiametros2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiametros1, ckHabilitarTextoDiametros2, cboDescripcionDiametros2, cboTiposDiametros2, txtDescripcionDiametros2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoDiametros3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiametros2, ckHabilitarTextoDiametros3, cboDescripcionDiametros3, cboTiposDiametros3, txtDescripcionDiametros3, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoDiametros4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiametros2, ckHabilitarTextoDiametros4, cboDescripcionDiametros4, cboTiposDiametros4, txtDescripcionDiametros4, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        //FORMAS
+        private void ckHabilitarTextoFormas1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposFormas1, ckHabilitarTextoFormas1, cboDescripcionFormas1, cboTiposFormas1, txtDescripcionFormas1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoFormas2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposFormas1, ckHabilitarTextoFormas2, cboDescripcionFormas2, cboTiposFormas2, txtDescripcionFormas2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoFormas3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposFormas2, ckHabilitarTextoFormas3, cboDescripcionFormas3, cboTiposFormas3, txtDescripcionFormas3, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoFormas4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposFormas2, ckHabilitarTextoFormas4, cboDescripcionFormas4, cboTiposFormas4, txtDescripcionFormas4, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        //ESPESORES
+        private void ckHabilitarTextoEspesores1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposEspesores1, ckHabilitarTextoEspesores1, cboDescripcionEspesores1, cbooTipoEspesores1, txtDescripcionEspesores1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoEspesores2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposEspesores1, ckHabilitarTextoEspesores2, cboDescripcionEspesores2, cbooTipoEspesores2, txtDescripcionEspesores2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoEspesores3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposEspesores2, ckHabilitarTextoEspesores3, cboDescripcionEspesores3, cbooTipoEspesores3, txtDescripcionEspesores3, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoEspesores4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposEspesores2, ckHabilitarTextoEspesores4, cboDescripcionEspesores4, cbooTipoEspesores4, txtDescripcionEspesores4, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        //DISEÑO ACABADO
+        private void ckHabilitarTextoDiseñoAcabado1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiseñoAcabado1, ckHabilitarTextoDiseñoAcabado1, cboDescripcionDiseñoAcabado1, cboTiposDiseñosAcabados1, txtDescripcionDiseñoAcabado1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoDiseñoAcabado2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiseñoAcabado1, ckHabilitarTextoDiseñoAcabado2, cboDescripcionDiseñoAcabado2, cboTiposDiseñosAcabados2, txtDescripcionDiseñoAcabado2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoDiseñoAcabado3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiseñoAcabado2, ckHabilitarTextoDiseñoAcabado3, cboDescripcionDiseñoAcabado3, cboTiposDiseñosAcabados3, txtDescripcionDiseñoAcabado3, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoDiseñoAcabado4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposDiseñoAcabado2, ckHabilitarTextoDiseñoAcabado4, cboDescripcionDiseñoAcabado4, cboTiposDiseñosAcabados4, txtDescripcionDiseñoAcabado4, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        //N TIPOS
+        private void ckHabilitarTextoNTipos1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposNTipos1, ckHabilitarTextoNTipos1, cboDescripcionNTipos1, cboTiposNTipos1, txtDescripcionNTipos1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoNTipos2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposNTipos1, ckHabilitarTextoNTipos2, cboDescripcionNTipos2, cboTiposNTipos2, txtDescripcionNTipos2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoNTipos3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposNTipos2, ckHabilitarTextoNTipos3, cboDescripcionNTipos3, cboTiposNTipos3, txtDescripcionNTipos3, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoNTipos4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckCamposNTipos2, ckHabilitarTextoNTipos4, cboDescripcionNTipos4, cboTiposNTipos4, txtDescripcionNTipos4, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        //VARIOS
+        private void ckHabilitarTextoVarios01_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckVariosO1, ckHabilitarTextoVarios01, cboDescripcionVariosO1, cboTiposVariosO1, txtDescripcionVariosO1, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+        private void ckHabilitarTextoVarios02_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cargardatosDeLosGrupos != true)
+            {
+                borrarTipo = true;
+                BorrarTipo_SiHayEspacioVacio(ckVariosO2, ckHabilitarTextoVarios02, cboDescripcionVariosO2, cboTiposVariosO2, txtDescripcionVariosO2, txtDescripcionGeneradaProducto);
+                borrarTipo = false;
+            }
+        }
+
+
+    }   
 }

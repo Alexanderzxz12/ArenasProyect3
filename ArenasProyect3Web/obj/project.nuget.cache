@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "7PWwD5KLa3k=",
+  "dgSpecHash": "n8tCwCYdYq8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
+  ],
   "logs": []
 }
