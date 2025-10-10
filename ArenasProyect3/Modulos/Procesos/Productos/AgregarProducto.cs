@@ -1529,59 +1529,59 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                     espacio2 = " ";
                 }
 
-                //if (cboDescripcionCaracteristicas1.SelectedValue == null) { idTipoNN = "0"; }
-                //else { idTipoNN = cboDescripcionCaracteristicas1.SelectedValue.ToString(); }
+                if (cboDescripcionCaracteristicas1.SelectedValue == null) { idTipoNN = "0"; }
+                else { idTipoNN = cboDescripcionCaracteristicas1.SelectedValue.ToString(); }
 
-                ////PRODUCTOS QUIMICOS - ADHESIVOS
-                //if (cboModelos.Text == "ADHESIVOS")
-                //{
-                //    idtipocaracteristica = cboTipoCaracteristicas2.SelectedValue.ToString();
-                //    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas2, idtipocaracteristica, idmodelo, idTipoNN);
-                //}
-                ////PRODUCTOS QUIMICOS - COAGULANTES
-                //if (cboModelos.Text == "COAGULANTES")
-                //{
-                //    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
-                //    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
-                //}
-                ////PRODUCTOS QUIMICOS - FLOCULANTES
-                //if (cboModelos.Text == "FLOCULANTES")
-                //{
-                //    idtipocaracteristica = cboTipoCaracteristicas2.SelectedValue.ToString();
-                //    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas2, idtipocaracteristica, idmodelo, idTipoNN);
-                //}
-                ////PRODUCTOS QUIMICOS - POLIURETANO Y COMPONENTES
-                //if (cboModelos.Text == "POLIURETANO Y COMPONENTES")
-                //{
-                //    idtipocaracteristica = cboTipoCaracteristicas2.SelectedValue.ToString();
-                //    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas2, idtipocaracteristica, idmodelo, idTipoNN);
-                //    idtipocaracteristica = cboTipoCaracteristicas3.SelectedValue.ToString();
-                //    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas3, idtipocaracteristica, idmodelo, idTipoNN);
-                //}
-                ////PRODUCTOS QUIMICOS - ANTIESPUMANTE
-                //if (cboModelos.Text == "ANTIESPUMANTE")
-                //{
-                //    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
-                //    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
-                //    idntipos = cboTiposNTipos1.SelectedValue.ToString();
-                //    CargarDescripcionNTipos(cboDescripcionNTipos1, idntipos, idmodelo, idTipoNN);
-                //}
-                ////PRODUCTOS QUIMICOS - SUPRESOR DE POLVO
-                //if (cboModelos.Text == "SUPRESOR DE POLVO")
-                //{
-                //    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
-                //    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
-                //    idntipos = cboTiposNTipos1.SelectedValue.ToString();
-                //    CargarDescripcionNTipos(cboDescripcionNTipos1, idntipos, idmodelo, idTipoNN);
-                //}
-                ////PRODUCTOS QUIMICOS - SECUESTRANTE
-                //if (cboModelos.Text == "SECUESTRANTE")
-                //{
-                //    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
-                //    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
-                //    idntipos = cboTiposNTipos1.SelectedValue.ToString();
-                //    CargarDescripcionNTipos(cboDescripcionNTipos1, idntipos, idmodelo, idTipoNN);
-                //}
+                //PRODUCTOS QUIMICOS - ADHESIVOS
+                if (cboModelos.Text == "ADHESIVOS")
+                {
+                    idtipocaracteristica = cboTipoCaracteristicas2.SelectedValue.ToString();
+                    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas2, idtipocaracteristica, idmodelo, idTipoNN);
+                }
+                //PRODUCTOS QUIMICOS - COAGULANTES
+                if (cboModelos.Text == "COAGULANTES")
+                {
+                    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
+                    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
+                }
+                //PRODUCTOS QUIMICOS - FLOCULANTES
+                if (cboModelos.Text == "FLOCULANTES")
+                {
+                    idtipocaracteristica = cboTipoCaracteristicas2.SelectedValue.ToString();
+                    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas2, idtipocaracteristica, idmodelo, idTipoNN);
+                }
+                //PRODUCTOS QUIMICOS - POLIURETANO Y COMPONENTES
+                if (cboModelos.Text == "POLIURETANO Y COMPONENTES")
+                {
+                    idtipocaracteristica = cboTipoCaracteristicas2.SelectedValue.ToString();
+                    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas2, idtipocaracteristica, idmodelo, idTipoNN);
+                    idtipocaracteristica = cboTipoCaracteristicas3.SelectedValue.ToString();
+                    CargarDescripcionCaracteristicas(cboDescripcionCaracteristicas3, idtipocaracteristica, idmodelo, idTipoNN);
+                }
+                //PRODUCTOS QUIMICOS - ANTIESPUMANTE
+                if (cboModelos.Text == "ANTIESPUMANTE")
+                {
+                    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
+                    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
+                    idntipos = cboTiposNTipos1.SelectedValue.ToString();
+                    CargarDescripcionNTipos(cboDescripcionNTipos1, idntipos, idmodelo, idTipoNN);
+                }
+                //PRODUCTOS QUIMICOS - SUPRESOR DE POLVO
+                if (cboModelos.Text == "SUPRESOR DE POLVO")
+                {
+                    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
+                    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
+                    idntipos = cboTiposNTipos1.SelectedValue.ToString();
+                    CargarDescripcionNTipos(cboDescripcionNTipos1, idntipos, idmodelo, idTipoNN);
+                }
+                //PRODUCTOS QUIMICOS - SECUESTRANTE
+                if (cboModelos.Text == "SECUESTRANTE")
+                {
+                    idvarioso = cboTiposVariosO2.SelectedValue.ToString();
+                    CargarDescripcionVariosO(cboDescripcionVariosO2, idvarioso, idmodelo, idTipoNN);
+                    idntipos = cboTiposNTipos1.SelectedValue.ToString();
+                    CargarDescripcionNTipos(cboDescripcionNTipos1, idntipos, idmodelo, idTipoNN);
+                }
                 DefinicionNombreProductoXModelo();
             }
             else
@@ -7565,7 +7565,7 @@ namespace ArenasProyect3.Modulos.Procesos.Productos
                             cmdp.Parameters.AddWithValue("@descripcion", valoringreso);
 
                             //PRODUCTOS QUIMICOS - ADHESIVOS
-                            if (modelos == "ADHESIVOS" && valoringreso == "COMPONENTES")
+                            if (modelos == "ADHESIVOS" && tipoOngreso == "COMPONENTES")
                             {
                                 cmdp.Parameters.AddWithValue("@idTipoNN", DesCaracteristicas1.SelectedValue);
                                 cmdp.Parameters.AddWithValue("@idDescripcionTipoNN", "CAMPO 'COMPONENTES' DEPENDIENTE DEL CAMPO 'SISTEMA'");

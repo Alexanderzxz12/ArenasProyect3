@@ -81,9 +81,6 @@ namespace ArenasProyect3.Modulos.Comercial
 
             //FUNCION PARA COLOCAR DATOS RELEVANTES
             ReporteMenuComercial(DesdeFecha.Value, HastaFecha.Value);
-
-            ////EJECUTAR INACTIVIDADA
-            //_monitor = new InactivityMonitor(this, panelInactividad, 1, 2); // 5 minutos de inactividad
         }
 
         //EVENTOS DE ACCIONES  DEL MENÚ RPINCIPAL------------------------------------------------------------------
@@ -443,7 +440,7 @@ namespace ArenasProyect3.Modulos.Comercial
                 txtAreaUsuario.Text = datalistadoBusquedaUusario.SelectedCells[7].Value.ToString();
                 txtRolusuario.Text = datalistadoBusquedaUusario.SelectedCells[9].Value.ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario, ex.Message, 0);
             }
@@ -455,25 +452,25 @@ namespace ArenasProyect3.Modulos.Comercial
             try
             {
                 DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaUusario.DataSource = dt;
-            con.Close();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaUusario.DataSource = dt;
+                con.Close();
 
-            imgUsuario.BackgroundImage = null;
-            byte[] b = (Byte[])datalistadoBusquedaUusario.SelectedCells[5].Value;
-            MemoryStream ms = new MemoryStream(b);
-            imgUsuario.Image = Image.FromStream(ms);
+                imgUsuario.BackgroundImage = null;
+                byte[] b = (Byte[])datalistadoBusquedaUusario.SelectedCells[5].Value;
+                MemoryStream ms = new MemoryStream(b);
+                imgUsuario.Image = Image.FromStream(ms);
 
-            lblusuarioActual.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
-            Program.NombreUsuarioCompleto = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+                lblusuarioActual.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+                Program.NombreUsuarioCompleto = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -568,7 +565,7 @@ namespace ArenasProyect3.Modulos.Comercial
                     panelNovedades.Visible = false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario, ex.Message, 0);
             }
@@ -673,12 +670,6 @@ namespace ArenasProyect3.Modulos.Comercial
             this.panelPrincipalComercial.Controls.Add(frm);
             this.panelPrincipalComercial.Tag = frm;
             frm.Show();
-        }
-
-        //BOTON PARA CERRAR MI INACTIVIDAD
-        private void btnCerrarInactividad_Click(object sender, EventArgs e)
-        {
-            panelInactividad.Visible = false;
         }
         //--------------------------------------------------------------------------------------------------------
     }

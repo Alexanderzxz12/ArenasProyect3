@@ -633,6 +633,23 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con.Close();
         }
 
+        //BUSCAR MI RELACION DEL PRODUCTO POR EL SEMIPORDUCIDO SI APLICA
+        public void BuscarRelacionProductoSemi(string codigoFormulacion)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("OP_BuscarRelacionFormulacion", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoFormulacion", codigoFormulacion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBuscarRelacionFormulacion.DataSource = dt;
+            con.Close();
+        }
+
         //COMBO DE DETALLES
         //CARGAR SEDE
         public void CargarSede()
@@ -712,6 +729,70 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             datalistadoTodasPedido.DataSource = dt;
             con.Close();
             RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
+
+            System.Data.DataTable dt2 = new System.Data.DataTable();
+            SqlConnection con2 = new SqlConnection();
+            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con2.Open();
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd2.Parameters.AddWithValue("@estado", 1);
+            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+            da2.Fill(dt2);
+            datalistadoPendientePedido.DataSource = dt2;
+            con2.Close();
+            RedimensionarListadoGeneralPedido(datalistadoPendientePedido);
+
+            System.Data.DataTable dt3 = new System.Data.DataTable();
+            SqlConnection con3 = new SqlConnection();
+            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con3.Open();
+            SqlCommand cmd3 = new SqlCommand();
+            cmd3 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con3);
+            cmd3.CommandType = CommandType.StoredProcedure;
+            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd3.Parameters.AddWithValue("@estado", 2);
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+            da3.Fill(dt3);
+            datalistadoIncompletoPedido.DataSource = dt3;
+            con3.Close();
+            RedimensionarListadoGeneralPedido(datalistadoIncompletoPedido);
+
+            System.Data.DataTable dt4 = new System.Data.DataTable();
+            SqlConnection con4 = new SqlConnection();
+            con4.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con4.Open();
+            SqlCommand cmd4 = new SqlCommand();
+            cmd4 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con4);
+            cmd4.CommandType = CommandType.StoredProcedure;
+            cmd4.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd4.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd4.Parameters.AddWithValue("@estado", 3);
+            SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
+            da4.Fill(dt4);
+            datalistadoCompletoPedido.DataSource = dt4;
+            con4.Close();
+            RedimensionarListadoGeneralPedido(datalistadoCompletoPedido);
+
+            System.Data.DataTable dt5 = new System.Data.DataTable();
+            SqlConnection con5 = new SqlConnection();
+            con5.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con5.Open();
+            SqlCommand cmd5 = new SqlCommand();
+            cmd5 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con5);
+            cmd5.CommandType = CommandType.StoredProcedure;
+            cmd5.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd5.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd5.Parameters.AddWithValue("@estado", 4);
+            SqlDataAdapter da5 = new SqlDataAdapter(cmd5);
+            da5.Fill(dt5);
+            datalistadoDespahacoPedido.DataSource = dt5;
+            con5.Close();
+            RedimensionarListadoGeneralPedido(datalistadoDespahacoPedido);
         }
 
         //MOSTRAR ACTAS POR CLIENTE
@@ -846,6 +927,61 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
+        private void datalistadoPendientePedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (this.datalistadoPendientePedido.Columns[e.ColumnIndex].Name == "detalles2")
+            {
+                this.datalistadoPendientePedido.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                this.datalistadoPendientePedido.Cursor = curAnterior;
+            }
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
+        private void datalistadoIncompletoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (this.datalistadoIncompletoPedido.Columns[e.ColumnIndex].Name == "detalles3")
+            {
+                this.datalistadoIncompletoPedido.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                this.datalistadoIncompletoPedido.Cursor = curAnterior;
+            }
+        }
+
+        private void datalistadoCompletoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (this.datalistadoCompletoPedido.Columns[e.ColumnIndex].Name == "detalles4")
+            {
+                this.datalistadoCompletoPedido.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                this.datalistadoCompletoPedido.Cursor = curAnterior;
+            }
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
+        private void datalistadoDespahacoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (this.datalistadoDespahacoPedido.Columns[e.ColumnIndex].Name == "detalles5")
+            {
+                this.datalistadoDespahacoPedido.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                this.datalistadoDespahacoPedido.Cursor = curAnterior;
+            }
+        }
+
         //FUNCIOAN PARA CAMBIAR MI CURSOR 
         private void datalistadoProductos_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -886,6 +1022,106 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoPendientePedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoPendientePedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoPendientePedido.SelectedCells[1].Value.ToString());
+                DataGridViewColumn currentColumnT = datalistadoPendientePedido.Columns[e.ColumnIndex];
+
+                if (currentColumnT.Name == "detalles2")
+                {
+                    cboTipoVisualizacion.SelectedIndex = 0;
+                    panelDetalleOP.Visible = true;
+                    CargarItemsGeneral(idPedido);
+                    CargarItemsGeneraoOP(idPedido);
+                    CargarCotizacionDash(idPedido);
+
+                    lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                    lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                    MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                    MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+                }
+            }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoIncompletoPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoIncompletoPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoIncompletoPedido.SelectedCells[1].Value.ToString());
+                DataGridViewColumn currentColumnT = datalistadoIncompletoPedido.Columns[e.ColumnIndex];
+
+                if (currentColumnT.Name == "detalles3")
+                {
+                    cboTipoVisualizacion.SelectedIndex = 0;
+                    panelDetalleOP.Visible = true;
+                    CargarItemsGeneral(idPedido);
+                    CargarItemsGeneraoOP(idPedido);
+                    CargarCotizacionDash(idPedido);
+
+                    lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                    lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                    MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                    MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+                }
+            }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoCompletoPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoCompletoPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoCompletoPedido.SelectedCells[1].Value.ToString());
+                DataGridViewColumn currentColumnT = datalistadoCompletoPedido.Columns[e.ColumnIndex];
+
+                if (currentColumnT.Name == "detalles4")
+                {
+                    cboTipoVisualizacion.SelectedIndex = 0;
+                    panelDetalleOP.Visible = true;
+                    CargarItemsGeneral(idPedido);
+                    CargarItemsGeneraoOP(idPedido);
+                    CargarCotizacionDash(idPedido);
+
+                    lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                    lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                    MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                    MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+                }
+            }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoDespahacoPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoDespahacoPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoDespahacoPedido.SelectedCells[1].Value.ToString());
+                DataGridViewColumn currentColumnT = datalistadoDespahacoPedido.Columns[e.ColumnIndex];
+
+                if (currentColumnT.Name == "detalles5")
+                {
+                    cboTipoVisualizacion.SelectedIndex = 0;
+                    panelDetalleOP.Visible = true;
+                    CargarItemsGeneral(idPedido);
+                    CargarItemsGeneraoOP(idPedido);
+                    CargarCotizacionDash(idPedido);
+
+                    lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                    lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                    MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                    MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+                }
+            }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
         private void datalistadoTodasPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //LIMPIAR MI LISTADO
@@ -908,7 +1144,110 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
                 MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+            }
+        }
 
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoPendientePedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //LIMPIAR MI LISTADO
+            datalistadooItemsOP.DataSource = null;
+            datalistadooItemsPedido.DataSource = null;
+            datalistadooItemsCotizacion.DataSource = null;
+
+            if (datalistadoPendientePedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoPendientePedido.SelectedCells[1].Value.ToString());
+
+                cboTipoVisualizacion.SelectedIndex = 0;
+                panelDetalleOP.Visible = true;
+                CargarItemsGeneral(idPedido);
+                CargarItemsGeneraoOP(idPedido);
+                CargarCotizacionDash(idPedido);
+
+                lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+            }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoIncompletoPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //LIMPIAR MI LISTADO
+            datalistadooItemsOP.DataSource = null;
+            datalistadooItemsPedido.DataSource = null;
+            datalistadooItemsCotizacion.DataSource = null;
+
+            if (datalistadoIncompletoPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoIncompletoPedido.SelectedCells[1].Value.ToString());
+
+                cboTipoVisualizacion.SelectedIndex = 0;
+                panelDetalleOP.Visible = true;
+                CargarItemsGeneral(idPedido);
+                CargarItemsGeneraoOP(idPedido);
+                CargarCotizacionDash(idPedido);
+
+                lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+            }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoCompletoPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //LIMPIAR MI LISTADO
+            datalistadooItemsOP.DataSource = null;
+            datalistadooItemsPedido.DataSource = null;
+            datalistadooItemsCotizacion.DataSource = null;
+
+            if (datalistadoCompletoPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoCompletoPedido.SelectedCells[1].Value.ToString());
+
+                cboTipoVisualizacion.SelectedIndex = 0;
+                panelDetalleOP.Visible = true;
+                CargarItemsGeneral(idPedido);
+                CargarItemsGeneraoOP(idPedido);
+                CargarCotizacionDash(idPedido);
+
+                lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
+            }
+        }
+
+        //VER LOS DETALLES DE MI PEDIDO Y LOS ESTADOS
+        private void datalistadoDespahacoPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //LIMPIAR MI LISTADO
+            datalistadooItemsOP.DataSource = null;
+            datalistadooItemsPedido.DataSource = null;
+            datalistadooItemsCotizacion.DataSource = null;
+
+            if (datalistadoDespahacoPedido.RowCount != 0)
+            {
+                int idPedido = Convert.ToInt32(datalistadoDespahacoPedido.SelectedCells[1].Value.ToString());
+
+                cboTipoVisualizacion.SelectedIndex = 0;
+                panelDetalleOP.Visible = true;
+                CargarItemsGeneral(idPedido);
+                CargarItemsGeneraoOP(idPedido);
+                CargarCotizacionDash(idPedido);
+
+                lblIdCotizacion.Text = datalistadoDetalleCotiDash.SelectedCells[0].Value.ToString();
+                lblCodigoCotizacionDash.Text = datalistadoDetalleCotiDash.SelectedCells[1].Value.ToString();
+
+                MostrarItemsSegunCotizacion(Convert.ToInt32(lblIdCotizacion.Text));
+                MostrarItemsSegunPedido(cboCodigoPedidoDash.Text);
             }
         }
 
@@ -975,7 +1314,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 }
             }
             //VALIDAR SI HAY OP
-            if(cboCodigoOPDash.Items.Count != 0)
+            if (cboCodigoOPDash.Items.Count != 0)
             {
                 cboCodigoOPDash.SelectedIndex = 0;
             }
@@ -1093,7 +1432,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 lblEstadoPedidoDash.Text = "INCOMPLETA";
                 lblEstadoPedidoDash.ForeColor = System.Drawing.Color.Peru;
             }
-            else if(txtEstadoPedidoDash.Text == "CULMINADA")
+            else if (txtEstadoPedidoDash.Text == "CULMINADA")
             {
                 //ACCION DE FLECHAS
                 flechaPedidoMono.Visible = false;
@@ -1162,7 +1501,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 lblEstadoOPDash.Text = "INCOMPLETA";
                 lblEstadoOPDash.ForeColor = System.Drawing.Color.Peru;
             }
-            else if(txtEstadoOPDash.Text == "CULMINADO")
+            else if (txtEstadoOPDash.Text == "CULMINADO")
             {
                 //ACCION DE FLECHAS
                 flechaOPMono.Visible = false;
@@ -1728,6 +2067,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     txtCodigoFormulacion.Text = codigoFormulacion;
                     int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
 
+                    BuscarRelacionProductoSemi(codigoFormulacion);
+
                     BuscarMaterialesFormulacion(codigoFormulacion);
                     BuscarMaterialesFormulacionSemi(codigoFormulacion);
                     BuscarLineaFormulacion(codigoFormulacion);
@@ -1785,8 +2126,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         string medida = dgv.Cells[6].Value.ToString();
                         string idFormulacion = dgv.Cells[7].Value.ToString();
                         string stock = dgv.Cells[8].Value.ToString();
+                        decimal totalProductas = 0;
 
-                        decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+                        int relacionFormulacion = Convert.ToInt16(datalistadoBuscarRelacionFormulacion.SelectedCells[1].Value);
+                        totalProductas = Convert.ToDecimal(cantidad) * numeroProducir * relacionFormulacion;
 
                         datalistadoActividadesSemi.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
                         contador2 = contador2 + 1;
@@ -1795,7 +2138,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     lblCantidadMaterialesItemsSemi.Text = Convert.ToString(datalistadoActividadesSemi.RowCount);
                     lblCantidadItemsMateriales.Text = Convert.ToString(datalistadoActividades.RowCount);
                     alternarColorFilas(datalistadoActividades);
-
                 }
             }
         }
@@ -1854,6 +2196,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             txtCodigoFormulacion.Text = codigoFormulacion;
             int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value?.ToString());
 
+            BuscarRelacionProductoSemi(codigoFormulacion);
+
             BuscarMaterialesFormulacion(codigoFormulacion);
             BuscarMaterialesFormulacionSemi(codigoFormulacion);
             BuscarLineaFormulacion(codigoFormulacion);
@@ -1911,8 +2255,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 string medida = dgv.Cells[6].Value.ToString();
                 string idFormulacion = dgv.Cells[7].Value.ToString();
                 string stock = dgv.Cells[8].Value.ToString();
+                decimal totalProductas = 0;
 
-                decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+                int relacionFormulacion = Convert.ToInt16(datalistadoBuscarRelacionFormulacion.SelectedCells[1].Value);
+                totalProductas = Convert.ToDecimal(cantidad) * numeroProducir * relacionFormulacion;
 
                 datalistadoActividadesSemi.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
                 contador2 = contador2 + 1;
@@ -2021,6 +2367,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 txtCodigoFormulacion.Text = codigoFormulacion;
                 int numeroProducir = Convert.ToInt32(datalistadoProductos.SelectedCells[6].Value.ToString());
 
+                BuscarRelacionProductoSemi(codigoFormulacion);
 
                 BuscarMaterialesFormulacion(codigoFormulacion);
                 BuscarMaterialesFormulacionSemi(codigoFormulacion);
@@ -2081,8 +2428,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     string medida = dgv.Cells[6].Value.ToString();
                     string idFormulacion = dgv.Cells[7].Value.ToString();
                     string stock = dgv.Cells[8].Value.ToString();
+                    decimal totalProductas = 0;
 
-                    decimal totalProductas = Convert.ToDecimal(cantidad) * numeroProducir;
+                    int relacionFormulacion = Convert.ToInt16(datalistadoBuscarRelacionFormulacion.SelectedCells[0].Value);
+                    totalProductas = Convert.ToDecimal(cantidad) * numeroProducir * relacionFormulacion;
 
                     datalistadoActividadesSemi.Rows.Add(new[] { Convert.ToString(contador), idMaterialDetalleActividad, idProducto, codigoBSS, codigoSistema, descripcionProducto, cantidad, Convert.ToString(totalProductas), medida, stock });
                     contador2 = contador2 + 1;
@@ -2284,7 +2633,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                                 cmd3.Parameters.AddWithValue("@idLocal", cboLocal.SelectedValue.ToString());
                                 cmd3.Parameters.AddWithValue("@idOperacion", cboOperacion.SelectedValue.ToString());
                                 cmd3.Parameters.AddWithValue("@observacion", "");
-                                cmd3.Parameters.AddWithValue("@cantidad", datalistadoProductos.SelectedCells[6].Value.ToString());
+
+                                int RelacionFormulacion = Convert.ToInt16(datalistadoBuscarRelacionFormulacion.SelectedCells[0].Value.ToString());
+                                int CantidadProducirOT = Convert.ToInt16(datalistadoProductos.SelectedCells[6].Value.ToString());
+                                int resultadoFinal = RelacionFormulacion * CantidadProducirOT;
+
+                                cmd3.Parameters.AddWithValue("@cantidad", resultadoFinal);
                                 cmd3.Parameters.AddWithValue("@idCliente", Convert.ToInt32(lblIdCliente.Text));
                                 cmd3.ExecuteNonQuery();
                                 con3.Close();

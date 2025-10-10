@@ -21,7 +21,7 @@ namespace ArenasProyect3.Modulos.Resourses
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Registrar_Auditoria", con);
+                cmd = new SqlCommand("Auditoria_Registro", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                 cmd.Parameters.AddWithValue("@mantenimiento", mantenimiento);
@@ -44,6 +44,20 @@ namespace ArenasProyect3.Modulos.Resourses
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        //MÉTODO PARA ENVIAR CORREOS POR LA ANULACIÓN DE UN REQUERIMIENTO
+        public static void Enviar(string para, string asunto, string mensaje)
+        {
+            var outlokkApp = new Microsoft.Office.Interop.Outlook.Application();
+            var mailItem = (Microsoft.Office.Interop.Outlook.MailItem)outlokkApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+            mailItem.To = para;
+            mailItem.Subject = asunto;
+            mailItem.Body = mensaje;
+
+            mailItem.Send();
+            System.Runtime.InteropServices.Marshal.FinalReleaseComObject(mailItem);
+            System.Runtime.InteropServices.Marshal.FinalReleaseComObject(outlokkApp);
         }
     }
 }

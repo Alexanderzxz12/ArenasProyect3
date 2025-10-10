@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -13,17 +15,13 @@ namespace ArenasProyect3.Modulos.Mantenimiento
 {
     public partial class MenuMantenimiento : Form
     {
-        //VARIABLES GENERALES
-        string maquina = Environment.MachineName;
-
         //CONSTRUCTOR DEL MANTENIMIENTO - MENU MANTENIMIENTO
         public MenuMantenimiento()
         {
             InitializeComponent();
         }
 
-        //CÓDIGO PARA PODER MOSTRAR LA HORA EN VIVO
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick_1(object sender, EventArgs e)
         {
             lblHoraVivo.Text = DateTime.Now.ToString("H:mm:ss tt");
             lblFechaVivo.Text = DateTime.Now.ToLongDateString();
@@ -43,10 +41,71 @@ namespace ArenasProyect3.Modulos.Mantenimiento
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        //CERRAR EL MENÚ PRINCIPAÑ
-        private void btnCerrar_Click(object sender, EventArgs e)
+        //EVENTO DE INICIO Y DE CARGA DEL MENÚ PRINCIPAL
+        private void MenuMantenimiento_Load(object sender, EventArgs e)
         {
-            Close();
+            //FUNCION PARA CARGAR DATOS DEL USUARIO
+            DatosUsuario();
+            this.Resize += new EventHandler(MenuMantenimiento_Resize);
+
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle,
+                Color.Black, 2, ButtonBorderStyle.Solid,
+                Color.Black, 2, ButtonBorderStyle.Solid,
+                Color.Black, 2, ButtonBorderStyle.Solid,
+                Color.Black, 2, ButtonBorderStyle.Solid);
+        }
+
+        //QUITAR EL BORDE PARA DIBUJARA DE NUEVO
+        private void MenuMantenimiento_Resize(object sender, EventArgs e)
+        {
+            this.Invalidate(); // Fuerza el repintado del formulario
+        }
+
+        //FUNCION PARA ARRASTRAR EL FORMULARIO
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_NCHITTEST = 0x84;
+            const int HTCLIENT = 1;
+            const int HTLEFT = 10;
+            const int HTRIGHT = 11;
+            const int HTTOP = 12;
+            const int HTTOPLEFT = 13;
+            const int HTTOPRIGHT = 14;
+            const int HTBOTTOM = 15;
+            const int HTBOTTOMLEFT = 16;
+            const int HTBOTTOMRIGHT = 17;
+
+            base.WndProc(ref m);
+
+            if (m.Msg == WM_NCHITTEST)
+            {
+                Point cursor = PointToClient(Cursor.Position);
+                int grip = 10; // Tamaño del área sensible al borde
+
+                if (cursor.X <= grip && cursor.Y <= grip)
+                    m.Result = (IntPtr)HTTOPLEFT;
+                else if (cursor.X >= Width - grip && cursor.Y <= grip)
+                    m.Result = (IntPtr)HTTOPRIGHT;
+                else if (cursor.X <= grip && cursor.Y >= Height - grip)
+                    m.Result = (IntPtr)HTBOTTOMLEFT;
+                else if (cursor.X >= Width - grip && cursor.Y >= Height - grip)
+                    m.Result = (IntPtr)HTBOTTOMRIGHT;
+                else if (cursor.X <= grip)
+                    m.Result = (IntPtr)HTLEFT;
+                else if (cursor.X >= Width - grip)
+                    m.Result = (IntPtr)HTRIGHT;
+                else if (cursor.Y <= grip)
+                    m.Result = (IntPtr)HTTOP;
+                else if (cursor.Y >= Height - grip)
+                    m.Result = (IntPtr)HTBOTTOM;
+                else
+                    m.Result = (IntPtr)HTCLIENT;
+            }
         }
 
         //MINIMIZAR EL MENÚ PRINCIPAL
@@ -55,46 +114,53 @@ namespace ArenasProyect3.Modulos.Mantenimiento
             WindowState = FormWindowState.Minimized;
         }
 
-        //ACHICAR PANTALLA
-        private void btnMinimizarTamañoEspecifico_Click(object sender, EventArgs e)
+        //CERRAR EL MENÚ PRINCIPAÑ
+        private void btnCerrar_Click(object sender, EventArgs e)
         {
-            if (this.Size == new Size(1337, 720))
+            Close();
+        }
+
+        private Rectangle tamañoOriginal;
+
+        //MINIMIZAR Y MAXIMINZAR
+        private void btnMaximinarMinimizar_Click(object sender, EventArgs e)
+        {
+            if (this.Bounds == Screen.GetWorkingArea(this))
             {
-                this.FormBorderStyle = FormBorderStyle.None; // Opcional: quitar bordes
-                this.Bounds = Screen.PrimaryScreen.WorkingArea; // Ajustar al área disponible
+                this.Bounds = tamañoOriginal;
             }
             else
             {
-                this.WindowState = FormWindowState.Normal;  // Restaurar a tamaño normal
-                this.Size = new Size(1337, 720);  // Definir un tamaño más pequeño
+                tamañoOriginal = this.Bounds;
+                this.Bounds = Screen.GetWorkingArea(this);
             }
         }
 
-        //EVENTO DE INICIO Y DE CARGA DEL MENÚ PRINCIPAL
-        private void MenuMantenimiento_Load(object sender, EventArgs e)
+        //BUSQUEDA DE USUARIO
+        public void DatosUsuario()
         {
-            this.FormBorderStyle = FormBorderStyle.None; // Opcional: quitar bordes
-            this.Bounds = Screen.PrimaryScreen.WorkingArea; // Ajustar al área disponible
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBusquedaUusario.DataSource = dt;
+            con.Close();
+
+            imgUsuario.BackgroundImage = null;
+            byte[] b = (Byte[])datalistadoBusquedaUusario.SelectedCells[5].Value;
+            MemoryStream ms = new MemoryStream(b);
+            imgUsuario.Image = Image.FromStream(ms);
+
+            lblusuarioActual.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+            Program.NombreUsuarioCompleto = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
         }
 
-        private void panel41_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void panel43_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel45_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

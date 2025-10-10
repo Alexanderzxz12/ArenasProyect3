@@ -67,7 +67,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             // 
             this.btnListadoDetalleOT.FlatAppearance.BorderSize = 0;
             this.btnListadoDetalleOT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoDetalleOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoDetalleOT.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoDetalleOT.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoDetalleOT.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoDetalleOT.Image")));
             this.btnListadoDetalleOT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,7 +85,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             // 
             this.btnListarOrdenTrabajo.FlatAppearance.BorderSize = 0;
             this.btnListarOrdenTrabajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListarOrdenTrabajo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListarOrdenTrabajo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListarOrdenTrabajo.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListarOrdenTrabajo.Image = ((System.Drawing.Image)(resources.GetObject("btnListarOrdenTrabajo.Image")));
             this.btnListarOrdenTrabajo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -103,7 +103,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             // 
             this.btnNuevaOrdenTrabajo.FlatAppearance.BorderSize = 0;
             this.btnNuevaOrdenTrabajo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevaOrdenTrabajo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevaOrdenTrabajo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevaOrdenTrabajo.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNuevaOrdenTrabajo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevaOrdenTrabajo.Image")));
             this.btnNuevaOrdenTrabajo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,7 +113,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             this.btnNuevaOrdenTrabajo.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnNuevaOrdenTrabajo.Size = new System.Drawing.Size(168, 53);
             this.btnNuevaOrdenTrabajo.TabIndex = 7;
-            this.btnNuevaOrdenTrabajo.Text = "NUEVA O. DE TRABAJO";
+            this.btnNuevaOrdenTrabajo.Text = "NUEVA O. DE \r\nTRABAJO";
             this.btnNuevaOrdenTrabajo.UseVisualStyleBackColor = true;
             this.btnNuevaOrdenTrabajo.Click += new System.EventHandler(this.btnNuevaOrdenTrabajo_Click);
             // 
@@ -121,7 +121,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             // 
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

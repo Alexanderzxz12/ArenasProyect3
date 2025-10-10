@@ -67,14 +67,21 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 da.Fill(dt);
                 datalistado.DataSource = dt;
                 con.Close();
-                datalistado.Columns[0].Width = 110;
-                datalistado.Columns[1].Width = 80;
-                datalistado.Columns[2].Width = 490;
+                OrdenarColumnas(datalistado);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
+        }
+
+        //ORDENAR EL TAMAÑO DE LAS COLUMNAS DE MI GRILLA
+        public void OrdenarColumnas(DataGridView DGV)
+        {
+            DGV.Columns[0].Width = 110;
+            DGV.Columns[1].Width = 80;
+            DGV.Columns[2].Width = 490;
         }
 
         //EVENTO DE DOBLE CLICK PARA PODER VISUALIZAR LOS DATOS DE UN REGISTRO
@@ -379,9 +386,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         da.Fill(dt);
                         dgvlistado.DataSource = dt;
                         con.Close();
-                        dgvlistado.Columns[0].Width = 110;
-                        dgvlistado.Columns[1].Width = 140;
-                        dgvlistado.Columns[2].Width = 609;
+                        
                     }
                     else
                     {
@@ -401,6 +406,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         dgvlistado.Columns[1].Width = 140;
                         dgvlistado.Columns[2].Width = 609;
                     }
+                    OrdenarColumnas(dgvlistado);
                 }
             }
             catch (Exception ex)
@@ -444,6 +450,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
+        }
+
+        //LIMPIAR MI TXT DE BUSQUEDA
+        private void cboBusquedaMaquinara_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            txtBusquedaMaquinarias.Text = "";
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 {
@@ -69,6 +70,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                 throw new Exception("Error al ejecutar procedimiento almacenado " + ex.Message);
             }
         }
@@ -76,109 +79,172 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //CARGAR TIPO DE CUENTA
         public void CargarTipoCuenta(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoCuenta, Descripcion FROM TipoCuenta WHERE Estado = 1 AND IdTipoCuenta = 4 ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "Descripcion";
-            cbo.ValueMember = "IdTipoCuenta";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoCuenta, Descripcion FROM TipoCuenta WHERE Estado = 1 AND IdTipoCuenta = 4 ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "Descripcion";
+                cbo.ValueMember = "IdTipoCuenta";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                throw new Exception("Error al ejecutar procedimiento almacenado " + ex.Message);
+            }
         }
 
         //CARGAR RESPONSABLE
         public void CargarResponsables(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "NOMBRES";
-            cbo.ValueMember = "IdUsuarios";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [NOMBRES] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "NOMBRES";
+                cbo.ValueMember = "IdUsuarios";
+                cbo.DataSource = dt;
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                throw new Exception("Error al ejecutar procedimiento almacenado " + ex.Message);
+            }
         }
 
         //CARGAR EQUIPO DE AREAS
         public void CargarEquiposAreas()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdEquipoArea, DescripcionEquipoArea FROM EquipoArea EA WHERE EA.Estado = 1 AND EA.IdEquipoArea = 4", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboEquipoArea.DisplayMember = "DescripcionEquipoArea";
-            cboEquipoArea.ValueMember = "IdEquipoArea";
-            cboEquipoArea.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdEquipoArea, DescripcionEquipoArea FROM EquipoArea EA WHERE EA.Estado = 1 AND EA.IdEquipoArea = 4", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboEquipoArea.DisplayMember = "DescripcionEquipoArea";
+                cboEquipoArea.ValueMember = "IdEquipoArea";
+                cboEquipoArea.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                throw new Exception("Error al ejecutar procedimiento almacenado " + ex.Message);
+            }
         }
 
         //CARGAR CODIGOS DE LINEAS DE TRABAJO
         public void CargarCodigoLineaTrabajo()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdLineaTrabajo FROM LineaTrabajo WHERE IdLineaTrabajo = (SELECT MAX(IdLineaTrabajo) FROM LineaTrabajo)", con);
-            da.Fill(dt);
-            datalistadoCoidgoLineaTrabajo.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdLineaTrabajo FROM LineaTrabajo WHERE IdLineaTrabajo = (SELECT MAX(IdLineaTrabajo) FROM LineaTrabajo)", con);
+                da.Fill(dt);
+                datalistadoCoidgoLineaTrabajo.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                throw new Exception("Error al ejecutar procedimiento almacenado " + ex.Message);
+            }
         }
 
         //CARGAR ANTEDECENTES DE MI LINEA DE TRABAJO
         public void CargarAntecedentesLineaTrabajo(int idcliente, int idunidad)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT TOP 1 IdLineaTrabajo,C.NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno ,LT.IdCliente ,LT.AntecedentesDescripcion FROM LineaTrabajo LT  INNER JOIN Clientes C ON C.IdCliente = LT.IdCliente  INNER JOIN Acta AC ON AC.IdActa = LT.IdActa  WHERE LT.IdCliente = @idcliente AND LT.IdUnidad =  @idunidad AND LT.Estado = 1 AND AC.EstadoActa = 2 ORDER BY IdLineaTrabajo DESC", con);
-            comando.Parameters.AddWithValue("@idcliente", idcliente);
-            comando.Parameters.AddWithValue("@idunidad", idunidad);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            datalistadoAntecedentesLineaTrabajo.DataSource = dt;
-            con.Close();
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT TOP 1 IdLineaTrabajo,C.NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno ,LT.IdCliente ,LT.AntecedentesDescripcion FROM LineaTrabajo LT  INNER JOIN Clientes C ON C.IdCliente = LT.IdCliente  INNER JOIN Acta AC ON AC.IdActa = LT.IdActa  WHERE LT.IdCliente = @idcliente AND LT.IdUnidad =  @idunidad AND LT.Estado = 1 AND AC.EstadoActa = 2 ORDER BY IdLineaTrabajo DESC", con);
+                comando.Parameters.AddWithValue("@idcliente", idcliente);
+                comando.Parameters.AddWithValue("@idunidad", idunidad);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                datalistadoAntecedentesLineaTrabajo.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                throw new Exception("Error al ejecutar procedimiento almacenado " + ex.Message);
+            }
         }
 
         //CARGAR ANTECEDENTES POR LINEA DE TRABAJO EDICION
         public void CargarAntecedentesLineaTrabajoEdicion(int idcliente, int idunidad)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT TOP 1 IdLineaTrabajo,C.NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno ,LT.IdCliente ,LT.AntecedentesDescripcion FROM LineaTrabajo LT INNER JOIN Clientes C ON C.IdCliente = LT.IdCliente INNER JOIN Acta AC ON AC.IdActa = LT.IdActa WHERE LT.IdCliente = @idcliente AND LT.IdUnidad =  @idunidad AND LT.Estado = 1 ORDER BY IdLineaTrabajo DESC", con);
-            comando.Parameters.AddWithValue("@idcliente", idcliente);
-            comando.Parameters.AddWithValue("@idunidad", idunidad);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            datalistadoAntecedentesLineaTrabajoEdicion.DataSource = dt;
-            con.Close();
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT TOP 1 IdLineaTrabajo,C.NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno ,LT.IdCliente ,LT.AntecedentesDescripcion FROM LineaTrabajo LT INNER JOIN Clientes C ON C.IdCliente = LT.IdCliente INNER JOIN Acta AC ON AC.IdActa = LT.IdActa WHERE LT.IdCliente = @idcliente AND LT.IdUnidad =  @idunidad AND LT.Estado = 1 ORDER BY IdLineaTrabajo DESC", con);
+                comando.Parameters.AddWithValue("@idcliente", idcliente);
+                comando.Parameters.AddWithValue("@idunidad", idunidad);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                datalistadoAntecedentesLineaTrabajoEdicion.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                throw new Exception("Error al ejecutar procedimiento almacenado " + ex.Message);
+            }
         }
 
         //CARGA Y BUSQUEDA DE DATOS
         public void BuscarActaGeneral(int codigoActa)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarActaPorCodigo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigo", codigoActa);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaActaGeneral.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarActaPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigo", codigoActa);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaActaGeneral.DataSource = dt;
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //CARGA CONTACTOS DEL CLIENTE
@@ -204,7 +270,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del sistema");
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del sistema",MessageBoxButtons.OK);
             }
         }
         //-----------------------------------------------------------------------------
@@ -213,40 +281,59 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //MOSTRAR REQUERIMIENTOS AL INCIO 
         public void MostrarActasPorFecha(DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarActasPorFecha_Jefatura", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasActas.DataSource = dt;
-            con.Close();
-            RediemndionarListado(datalistadoTodasActas);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarActasPorFecha_Jefatura", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasActas.DataSource = dt;
+                con.Close();
+                RediemndionarListado(datalistadoTodasActas);
+            }
+            catch (Exception ex) 
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+
         }
 
         //MOSTRAR ACTAS POR RESPONSABLE
         public void MostrarActasResponsable(string resopnsable, DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarActasPorResponsable", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@responsable", resopnsable);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasActas.DataSource = dt;
-            con.Close();
-            RediemndionarListado(datalistadoTodasActas);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarActasPorResponsable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@responsable", resopnsable);
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasActas.DataSource = dt;
+                con.Close();
+                RediemndionarListado(datalistadoTodasActas);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //FINCION PARA REDIMENCIONAR MI LISTADO
@@ -319,6 +406,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
@@ -378,48 +467,60 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //PROCESO PARA PRESIONAR Y CARGAR TODO LOS DATOS PARA EL INGRESO
         public void BuscarLineaTrabajoActa(int idActa)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarLineaTrabajoActa", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idActa", idActa);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoLineasTrabajo.DataSource = dt;
-            con.Close();
-            //OCULTAR LAS COLUMNAS QUE NO SON REELEVANTES PARA EL USUARIO
-            datalistadoLineasTrabajo.Columns[0].Visible = false;
-            datalistadoLineasTrabajo.Columns[5].Visible = false;
-            datalistadoLineasTrabajo.Columns[6].Visible = false;
-            datalistadoLineasTrabajo.Columns[7].Visible = false;
-            datalistadoLineasTrabajo.Columns[8].Visible = false;
-            datalistadoLineasTrabajo.Columns[9].Visible = false;
-            datalistadoLineasTrabajo.Columns[10].Visible = false;
-            datalistadoLineasTrabajo.Columns[11].Visible = false;
-            datalistadoLineasTrabajo.Columns[12].Visible = false;
-            datalistadoLineasTrabajo.Columns[13].Visible = false;
-            datalistadoLineasTrabajo.Columns[14].Visible = false;
-            datalistadoLineasTrabajo.Columns[15].Visible = false;
-            //REDIMENSIONAR EL TAMAÑO DE MIS COLUMAS DE MI LÍNEA DE TRABAJO
-            datalistadoLineasTrabajo.Columns[1].Width = 110;
-            datalistadoLineasTrabajo.Columns[2].Width = 110;
-            datalistadoLineasTrabajo.Columns[3].Width = 110;
-            datalistadoLineasTrabajo.Columns[4].Width = 465;
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarLineaTrabajoActa", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idActa", idActa);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoLineasTrabajo.DataSource = dt;
+                con.Close();
+                //OCULTAR LAS COLUMNAS QUE NO SON REELEVANTES PARA EL USUARIO
+                datalistadoLineasTrabajo.Columns[0].Visible = false;
+                datalistadoLineasTrabajo.Columns[5].Visible = false;
+                datalistadoLineasTrabajo.Columns[6].Visible = false;
+                datalistadoLineasTrabajo.Columns[7].Visible = false;
+                datalistadoLineasTrabajo.Columns[8].Visible = false;
+                datalistadoLineasTrabajo.Columns[9].Visible = false;
+                datalistadoLineasTrabajo.Columns[10].Visible = false;
+                datalistadoLineasTrabajo.Columns[11].Visible = false;
+                datalistadoLineasTrabajo.Columns[12].Visible = false;
+                datalistadoLineasTrabajo.Columns[13].Visible = false;
+                datalistadoLineasTrabajo.Columns[14].Visible = false;
+                datalistadoLineasTrabajo.Columns[15].Visible = false;
+                //REDIMENSIONAR EL TAMAÑO DE MIS COLUMAS DE MI LÍNEA DE TRABAJO
+                datalistadoLineasTrabajo.Columns[1].Width = 110;
+                datalistadoLineasTrabajo.Columns[2].Width = 110;
+                datalistadoLineasTrabajo.Columns[3].Width = 110;
+                datalistadoLineasTrabajo.Columns[4].Width = 465;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //SELECCIONAR UNA ACTA Y VER SUS DETALLES
         private void datalistadoTodasActas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            BuscarLineaTrabajoActa(Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
-            DatetimeFechaInicioActa.Value = Convert.ToDateTime(datalistadoTodasActas.SelectedCells[5].Value.ToString());
-            DatetimeFechaTerminoActa.Value = Convert.ToDateTime(datalistadoTodasActas.SelectedCells[6].Value.ToString());
-            txtCLienteActa.Text = datalistadoTodasActas.SelectedCells[8].Value.ToString();
-            txtUnidadActa.Text = datalistadoTodasActas.SelectedCells[10].Value.ToString();
-            txtResponsableActa.Text = datalistadoTodasActas.SelectedCells[12].Value.ToString();
-            panelNuevaActa.Visible = true;
+            if (datalistadoTodasActas.CurrentRow != null)
+            {
+                BuscarLineaTrabajoActa(Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
+                DatetimeFechaInicioActa.Value = Convert.ToDateTime(datalistadoTodasActas.SelectedCells[5].Value.ToString());
+                DatetimeFechaTerminoActa.Value = Convert.ToDateTime(datalistadoTodasActas.SelectedCells[6].Value.ToString());
+                txtCLienteActa.Text = datalistadoTodasActas.SelectedCells[8].Value.ToString();
+                txtUnidadActa.Text = datalistadoTodasActas.SelectedCells[10].Value.ToString();
+                txtResponsableActa.Text = datalistadoTodasActas.SelectedCells[12].Value.ToString();
+                panelNuevaActa.Visible = true;
+            }
         }
 
         //ACCIONES DE ACTAS - NUEVA LINEA DE TRABAJO------------------------------------------------------------
@@ -429,13 +530,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
             if (estadoActa == "CULMINADO" || estadoActa == "APROBADO" || estadoActa == "ANULADO")
             {
-                MessageBox.Show("No se puede continuar ya que el acta culminó, ya se generó o esta anulada.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                MessageBox.Show("No se puede continuar ya que el acta culminó, ya se generó o esta anulada.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
                 if (datalistadoLineasTrabajo.RowCount >= 1)
                 {
-                    MessageBox.Show("Ya se ingresó un detalle de acta.", "Validación del Sistema");
+                    MessageBox.Show("Ya se ingresó un detalle de acta.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -516,13 +617,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 if (cboEquipoArea.Text == "")
                 {
-                    MessageBox.Show("Debe seleccionar un equipo o área para poder continuar.", "Validación del Sistema");
+                    MessageBox.Show("Debe seleccionar un equipo o área para poder continuar.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
                 else
                 {
                     if (txtAntecedentes.Text == "" || txtDesarrollo.Text == "" || txtResultado.Text == "" || txtAcciones.Text == "")
                     {
-                        MessageBox.Show("Debe llenar todos los campos para poder continuar.", "Validación del Sistema");
+                        MessageBox.Show("Debe llenar todos los campos para poder continuar.", "Validación del Sistema",MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -621,26 +722,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 cmd.ExecuteNonQuery();
                                 con.Close();
 
-                                MessageBox.Show("Se ingresó el detalle del acta correctamente.", "Validación del Sistema");
-
-                                //INGRESO DE LA TABLA AUDITORA
-                                con.Open();
-                                cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                                cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Actas - Actas de Visita");
-                                cmd.Parameters.AddWithValue("@accion", "Nueva línea de trabajo");
-                                cmd.Parameters.AddWithValue("@descripcion", "Línea de trabajo creada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                                cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                                cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                                cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                                cmd.Parameters.AddWithValue("@codigoRequerimiento", Convert.ToInt32(datalistadoTodasActas.SelectedCells[15].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@codigoLiquidacion", Convert.ToInt32(datalistadoTodasActas.SelectedCells[14].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@codigoActa", coidgoActa);
-                                cmd.Parameters.AddWithValue("@codigoLineaTrabajo", codigoLineaTrabajo);
-                                cmd.ExecuteNonQuery();
-                                con.Close();
+                                MessageBox.Show("Se ingresó el detalle del acta correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
                                 panelNuevaLineaTrabajo.Visible = false;
 
@@ -653,9 +735,14 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 txtImagen1.Text = "";
                                 txtImagen2.Text = "";
                                 txtImagen3.Text = "";
+
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(1, this.Name, 6, Program.IdUsuario, "Guardar línea de trabajo.", Convert.ToInt32(codigoLineaTrabajo));
                             }
                             catch (Exception ex)
                             {
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                                 MessageBox.Show(ex.Message, "Error en el servidor");
                             }
                         }
@@ -667,13 +754,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 if (cboEquipoArea.Text == "")
                 {
-                    MessageBox.Show("Debe seleccionar un equipo o área para poder continuar.", "Validación del Sistema");
+                    MessageBox.Show("Debe seleccionar un equipo o área para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
                     if (txtAntecedentes.Text == "" || txtDesarrollo.Text == "" || txtResultado.Text == "" || txtAcciones.Text == "")
                     {
-                        MessageBox.Show("Debe llenar todos los campos para poder continuar.", "Validación del Sistema");
+                        MessageBox.Show("Debe llenar todos los campos para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -834,27 +921,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 cmd.ExecuteNonQuery();
                                 con.Close();
 
-                                MessageBox.Show("Se editó el detalle del acta correctamente.", "Validación del Sistema");
-
-                                //INGRESO DE LA TABLA AUDITORA
-                                con.Open();
-                                cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                                cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Actas - Actas de Visita");
-                                cmd.Parameters.AddWithValue("@accion", "Editar línea de trabajo número " + idLineaTrabajo);
-                                cmd.Parameters.AddWithValue("@descripcion", "Línea de trabajo editada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                                cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                                cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                                cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                                cmd.Parameters.AddWithValue("@codigoRequerimiento", Convert.ToInt32(datalistadoTodasActas.SelectedCells[15].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@codigoLiquidacion", Convert.ToInt32(datalistadoTodasActas.SelectedCells[14].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@codigoActa", coidgoActa);
-                                cmd.Parameters.AddWithValue("@codigoLineaTrabajo", idLineaTrabajo);
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-
+                                MessageBox.Show("Se editó el detalle del acta correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                                 panelNuevaLineaTrabajo.Visible = false;
 
                                 BuscarLineaTrabajoActa(Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
@@ -866,9 +933,14 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 txtImagen1.Text = "";
                                 txtImagen2.Text = "";
                                 txtImagen3.Text = "";
+
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(8, this.Name, 6, Program.IdUsuario, "Editar línea de trabajo.", Convert.ToInt32(idLineaTrabajo));
                             }
                             catch (Exception ex)
                             {
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                                 MessageBox.Show(ex.Message, "Error en el servidor.");
                             }
                         }
@@ -900,7 +972,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                 if (estadoActa == "CULMINADO" || estadoActa == "APROBADO" || estadoActa == "ANULADO")
                 {
-                    MessageBox.Show("No se puede continuar ya que el acta culminó o ya se generó.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    MessageBox.Show("No se puede continuar ya que el acta culminó o ya se generó.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -941,7 +1013,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una línea de trabajo para poder ser editada.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar una línea de trabajo para poder ser editada.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -954,60 +1026,47 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 if (estadoActa == "CULMINADO" || estadoActa == "APROBADO" || estadoActa == "ANULADO")
                 {
-                    MessageBox.Show("No se puede continuar ya que el acta culminó, ya se generó o está anulada.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    MessageBox.Show("No se puede continuar ya que el acta culminó, ya se generó o está anulada.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    int codigo = Convert.ToInt32(datalistadoLineasTrabajo.SelectedCells[0].Value.ToString());
-
-                    DialogResult boton = MessageBox.Show("¿Realmente desea eliminar esta línea de trabajo?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                    if (boton == DialogResult.OK)
+                    try
                     {
-                        SqlConnection con = new SqlConnection();
-                        SqlCommand cmd = new SqlCommand();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("EliminarLineaTrabajo", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", codigo);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                        int codigo = Convert.ToInt32(datalistadoLineasTrabajo.SelectedCells[0].Value.ToString());
 
-                        MessageBox.Show("Se eliminó esta línea de trabajo correctamente.", "Validación del Sistema");
+                        DialogResult boton = MessageBox.Show("¿Realmente desea eliminar esta línea de trabajo?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                        if (boton == DialogResult.OK)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("EliminarLineaTrabajo", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@id", codigo);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
 
-                        //INGRESO DE LA TABLA AUDITORA
-                        con.Open();
-                        cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
+                            MessageBox.Show("Se eliminó esta línea de trabajo correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
-                        cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                        cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Actas - Actas de Visita");
-                        cmd.Parameters.AddWithValue("@accion", "Eliminar línea de trabajo número " + codigo);
-                        cmd.Parameters.AddWithValue("@descripcion", "Línea de trabajo eliminada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                        cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                        cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                        cmd.Parameters.AddWithValue("@codigoRequerimiento", Convert.ToInt32(datalistadoTodasActas.SelectedCells[15].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@codigoLiquidacion", Convert.ToInt32(datalistadoTodasActas.SelectedCells[14].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@codigoActa", Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@codigoLineaTrabajo", codigo);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                            BuscarLineaTrabajoActa(Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
 
-                        BuscarLineaTrabajoActa(Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                            ClassResourses.RegistrarAuditora(2, this.Name, 6, Program.IdUsuario, "Eliminar línea de trabajo.", Convert.ToInt32(codigo));
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un registro para poder eliminar.", "Validación del Sistema");
+                MessageBox.Show("Por favor, seleccione un registro para poder eliminar.", "Validación del Sistema",MessageBoxButtons.OK);
             }
-        }
-
-        //CULIMAR ACTA-------------------------------------------------------------------------
-        private void datalistadoTodasActas_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            txtEstadoValidado.Text = "ESTADO_VALIDADO";
         }
 
         //BOTON PARA CULMINAR EL ACTA
@@ -1016,10 +1075,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (datalistadoTodasActas.CurrentRow != null)
             {
                 string estadoActa = datalistadoTodasActas.SelectedCells[13].Value.ToString();
+                bool validado = Convert.ToBoolean(datalistadoTodasActas.SelectedCells[4].Value.ToString());
 
-                if (txtEstadoValidado.Text == "false" || estadoActa == "APROBADO" || estadoActa == "ANULADA")
+                if (validado == false || estadoActa == "APROBADO" || estadoActa == "ANULADA")
                 {
-                    MessageBox.Show("No se puede continuar, ya que no se marcó el check de validado para continuar o ya ha sido aprobada.", "Validación del Sistema");
+                    MessageBox.Show("No se puede continuar, ya que no se marcó el check de validado para continuar o ya ha sido aprobada.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -1027,54 +1087,48 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                     if (datalistadoLineasTrabajo.RowCount == 0)
                     {
-                        MessageBox.Show("El acta que intenta culminar no tiene ningún detalle registrado, por favor añade una línea de trabajo válida.", "Validación del Sistema");
+                        MessageBox.Show("El acta que intenta culminar no tiene ningún detalle registrado, por favor añade una línea de trabajo válida.", "Validación del Sistema", MessageBoxButtons.OK);
                         datalistadoTodasActas.SelectedCells[4].Value = false;
                     }
                     else
                     {
-                        DialogResult boton = MessageBox.Show("¿Realmente desea validar está acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                        if (boton == DialogResult.OK)
+                        try
                         {
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("CambiarEstadoActa", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idActa", Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
-                            cmd.ExecuteNonQuery();
-                            con.Close();
+                            DialogResult boton = MessageBox.Show("¿Realmente desea validar está acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                            if (boton == DialogResult.OK)
+                            {
+                                int idActa = Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString());
 
-                            MessageBox.Show("Se validó el acta y sus detalles correctamente.", "Validación del Sistema");
+                                SqlConnection con = new SqlConnection();
+                                SqlCommand cmd = new SqlCommand();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                cmd = new SqlCommand("CambiarEstadoActa", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@idActa", idActa);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
 
-                            //INGRESO DE LA TABLA AUDITORA
-                            con.Open();
-                            cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
+                                MessageBox.Show("Se validó el acta y sus detalles correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
-                            cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                            cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Actas - Actas de Visita");
-                            cmd.Parameters.AddWithValue("@accion", "Culminar acta número " + Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@descripcion", "Acta culminada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                            cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                            cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                            cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                            cmd.Parameters.AddWithValue("@codigoRequerimiento", Convert.ToInt32(datalistadoTodasActas.SelectedCells[15].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@codigoLiquidacion", Convert.ToInt32(datalistadoTodasActas.SelectedCells[14].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@codigoActa", Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
+                                BusquedaDependiente();
 
-                            BusquedaDependiente();
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(7, this.Name, 6, Program.IdUsuario, "Culminar acta de visita.", Convert.ToInt32(idActa));
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                            ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                            MessageBox.Show(ex.Message);
                         }
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una acta para poder continuar.", "Validación del Sistema");
-
+                MessageBox.Show("Debe seleccionar una acta para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -1085,9 +1139,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 idActa = Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString());
 
-                if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO" || datalistadoTodasActas.SelectedCells[13].Value.ToString() == "ANULADO")
+                if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO" || datalistadoTodasActas.SelectedCells[13].Value.ToString() == "ANULADO" || datalistadoTodasActas.SelectedCells[13].Value.ToString() == "CULMINADO")
                 {
-                    MessageBox.Show("Esta acta ya ha sido aprobada, culminada o anulada.", "Validación del Sistema");
+                    MessageBox.Show("Esta acta ya ha sido aprobada, culminada o anulada.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -1252,7 +1306,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un acta para poder editarla.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un acta para poder editarla.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -1325,7 +1379,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -1353,7 +1409,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -1381,7 +1439,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema");
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error de carga de datos, no se tiene un contacto registrado para este cliente, " + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -1457,7 +1517,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 cmd = new SqlCommand("ModificarActa", con);
                                 cmd.CommandType = CommandType.StoredProcedure;
 
-                                cmd.Parameters.AddWithValue("@idActa", datalistadoTodasActas.SelectedCells[1].Value.ToString());
+                                cmd.Parameters.AddWithValue("@idActa", idActa);
                                 cmd.Parameters.AddWithValue("@fechaInicio", datatimeFechaInicioNuevaActa.Value);
                                 cmd.Parameters.AddWithValue("@fechaTermino", datetimeFechaTerminoNuevaActa.Value);
 
@@ -1590,32 +1650,17 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 cmd.ExecuteNonQuery();
                                 con.Close();
 
-                                MessageBox.Show("Se editó el acta correctamente en el sistema.", "Validación del Sistema");
-
-                                //INGRESO DE LA TABLA AUDITORA
-                                con.Open();
-                                cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                                cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Actas - Actas de Visita");
-                                cmd.Parameters.AddWithValue("@accion", "Modificación de acta número " + datalistadoTodasActas.SelectedCells[1].Value.ToString());
-                                cmd.Parameters.AddWithValue("@descripcion", "Acta editada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                                cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                                cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                                cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                                cmd.Parameters.AddWithValue("@codigoRequerimiento", Convert.ToInt32(datalistadoTodasActas.SelectedCells[15].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@codigoLiquidacion", Convert.ToInt32(datalistadoTodasActas.SelectedCells[14].Value.ToString()));
-                                cmd.Parameters.AddWithValue("@codigoActa", datalistadoTodasActas.SelectedCells[1].Value.ToString());
-                                cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                                cmd.ExecuteNonQuery();
-                                con.Close();
+                                MessageBox.Show("Se editó el acta correctamente en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
 
                                 panelModificarActa.Visible = false;
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(8, this.Name, 6, Program.IdUsuario, "Editar acta de visita.", Convert.ToInt32(idActa));
                             }
                         }
                         catch (Exception ex)
                         {
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                            ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                             MessageBox.Show(ex.Message, "Error en el servidor.");
                         }
                     }
@@ -1635,43 +1680,55 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             if (datalistadoTodasActas.CurrentRow != null)
             {
-                if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE")
+                try
                 {
-                    string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
-                    frm.lblCodigo.Text = codigoActaReporte;
+                    string codigoActaReporte = "";
+                
+                    if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE")
+                    {
+                        codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
+                        frm.lblCodigo.Text = codigoActaReporte;
 
-                    frm.Show();
+                        frm.Show();
+                    }
+                    else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                    {
+                        codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
+                        frm.lblCodigo.Text = codigoActaReporte;
+
+                        frm.Show();
+                    }
+                    else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "CULMINADO")
+                    {
+                        codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
+                        frm.lblCodigo.Text = codigoActaReporte;
+
+                        frm.Show();
+                    }
+                    else
+                    {
+                        codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
+                        frm.lblCodigo.Text = codigoActaReporte;
+
+                        frm.Show();
+                    }
+
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(6, this.Name, 6, Program.IdUsuario, "Visualización del acta de viaje PDF", Convert.ToInt32(codigoActaReporte));
                 }
-                else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                catch(Exception ex)
                 {
-                    string codigoCotizacionReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-
-                    frm.Show();
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                 }
-                else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "CULMINADO")
-                {
-                    string codigoCotizacionReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-
-                    frm.Show();
-                }
-                else
-                {
-                    string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
-                    frm.lblCodigo.Text = codigoActaReporte;
-
-                    frm.Show();
-                }
-
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un acta para poder generar el PDF.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un acta para poder generar el PDF.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -1684,54 +1741,55 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 if (datalistadoTodasActas.CurrentRow != null)
                 {
-                    if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE")
+                    try
                     {
-                        string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
-                        frm.lblCodigo.Text = codigoActaReporte;
+                        string codigoActaReporte = "";
 
-                        frm.Show();
+                        if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE")
+                        {
+                            codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
+                            frm.lblCodigo.Text = codigoActaReporte;
+
+                            frm.Show();
+                        }
+                        else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                        {
+                            codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
+                            frm.lblCodigo.Text = codigoActaReporte;
+
+                            frm.Show();
+                        }
+                        else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "CULMINADO")
+                        {
+                            codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
+                            frm.lblCodigo.Text = codigoActaReporte;
+
+                            frm.Show();
+                        }
+                        else
+                        {
+                            codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
+                            frm.lblCodigo.Text = codigoActaReporte;
+
+                            frm.Show();
+                        }
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(6, this.Name, 6, Program.IdUsuario, "Visualización del acta de viaje PDF", Convert.ToInt32(codigoActaReporte));
                     }
-                    else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                    catch(Exception ex)
                     {
-                        string codigoCotizacionReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
-
-                        frm.Show();
-                    }
-                    else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "CULMINADO")
-                    {
-                        string codigoCotizacionReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
-
-                        frm.Show();
-                    }
-                    else
-                    {
-                        string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
-                        frm.lblCodigo.Text = codigoActaReporte;
-
-                        frm.Show();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una acta para poder generar el PDF.", "Validación del Sistema");
-                }
-            }
-
-            if (currentColumn.Name == "VALIDAR")
-            {
-                if (txtEstadoValidado.Text == "true")
-                {
-                    txtEstadoValidado.Text = "false";
-                }
-                else
-                {
-                    txtEstadoValidado.Text = "true";
+                    MessageBox.Show("Debe seleccionar una acta para poder generar el PDF.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
         }
@@ -1754,7 +1812,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("No hay imagen cargada.", "Abrir Imagen");
+                MessageBox.Show("No hay imagen cargada.", "Abrir Imagen", MessageBoxButtons.OK);
             }
         }
 
@@ -1769,7 +1827,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("No hay imagen cargada.", "Abrir Imagen");
+                MessageBox.Show("No hay imagen cargada.", "Abrir Imagen",MessageBoxButtons.OK);
             }
         }
 
@@ -1784,7 +1842,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("No hay imagen cargada.", "Abrir Imagen");
+                MessageBox.Show("No hay imagen cargada.", "Abrir Imagen",MessageBoxButtons.OK);
             }
         }
 

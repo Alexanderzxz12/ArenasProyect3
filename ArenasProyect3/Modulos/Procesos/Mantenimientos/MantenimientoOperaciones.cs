@@ -66,14 +66,20 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 da.Fill(dt);
                 datalistado.DataSource = dt;
                 con.Close();
-                datalistado.Columns[0].Width = 110;
-                datalistado.Columns[1].Width = 80;
-                datalistado.Columns[2].Width = 490;
+                OrdenarColumnas(datalistado);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
+        }
+
+        //REORDENAR MIS COLUMNAS
+        public void OrdenarColumnas(DataGridView DGV)
+        {
+            DGV.Columns[0].Width = 110;
+            DGV.Columns[1].Width = 80;
+            DGV.Columns[2].Width = 490;
         }
 
         //ACCION DE DOBLE CLICK PARA PODER TRAER LOS DATOS DEL REGISTRO SELECIOANDO
@@ -103,6 +109,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardar2.Visible = false;
 
                 Cancelar.Visible = false;
+                lblCancelar.Visible = false;
             }
         }
 
@@ -136,6 +143,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             btnGuardar2.Visible = true;
 
             Cancelar.Visible = true;
+            lblCancelar.Visible = true;
             btnEditar.Enabled = true;
 
             cboEstado.Text = "ACTIVO";
@@ -194,6 +202,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
                             cboEstado.SelectedIndex = -1;
                             Cancelar.Visible = false;
+                            lblCancelar.Visible = false;
                         }
                         catch (Exception ex)
                         {
@@ -230,6 +239,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnEditar2.Visible = true;
 
                 Cancelar.Visible = true;
+                lblCancelar.Visible = true;
                 btnGuardar.Enabled = true;
             }
         }
@@ -316,6 +326,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             btnGuardar2.Visible = false;
 
             Cancelar.Visible = false;
+            lblCancelar.Visible = false;
 
             cboEstado.SelectedIndex = -1;
             lblCodigo.Text = "N";
@@ -389,9 +400,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         da.Fill(dt);
                         dgv.DataSource = dt;
                         con.Close();
-                        dgv.Columns[0].Width = 120;
-                        dgv.Columns[1].Width = 150;
-                        dgv.Columns[2].Width = 422;
+                        OrdenarColumnas(dgv);
                     }
                     else
                     {
@@ -407,9 +416,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         da.Fill(dt);
                         dgv.DataSource = dt;
                         con.Close();
-                        dgv.Columns[0].Width = 120;
-                        dgv.Columns[1].Width = 150;
-                        dgv.Columns[2].Width = 422;
+                        OrdenarColumnas(dgv);
                     }
                 }
             }
@@ -455,6 +462,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                 }
             }
+        }
+
+        //LIMPPIAR MI CAJA DE BUSQUEDA
+        private void cboBusquedaOperaciones_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            txtBusquedaOperaciones.Text = "";
         }
     }
 }

@@ -48,7 +48,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnEditar2 = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnGuardar2 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cboBusquedaOperaciones = new System.Windows.Forms.ComboBox();
             this.txtBusquedaOperaciones = new System.Windows.Forms.TextBox();
@@ -115,7 +115,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.Cancelar);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.lblCancelar);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.cboBusquedaOperaciones);
             this.panel2.Controls.Add(this.txtBusquedaOperaciones);
@@ -266,17 +266,17 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnGuardar2.UseVisualStyleBackColor = true;
             this.btnGuardar2.Click += new System.EventHandler(this.btnGuardar2_Click);
             // 
-            // label6
+            // lblCancelar
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(627, 152);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 2000;
-            this.label6.Text = "CANCELAR";
-            this.label6.Visible = false;
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancelar.Location = new System.Drawing.Point(627, 152);
+            this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(54, 13);
+            this.lblCancelar.TabIndex = 2000;
+            this.lblCancelar.Text = "CANCELAR";
+            this.lblCancelar.Visible = false;
             // 
             // label12
             // 
@@ -296,12 +296,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboBusquedaOperaciones.FormattingEnabled = true;
             this.cboBusquedaOperaciones.Items.AddRange(new object[] {
             "DESCRIPCIÓN",
-            "ABREVIATURA"});
+            "CÓDIGO"});
             this.cboBusquedaOperaciones.Location = new System.Drawing.Point(178, 519);
             this.cboBusquedaOperaciones.Margin = new System.Windows.Forms.Padding(4);
             this.cboBusquedaOperaciones.Name = "cboBusquedaOperaciones";
             this.cboBusquedaOperaciones.Size = new System.Drawing.Size(149, 22);
             this.cboBusquedaOperaciones.TabIndex = 1998;
+            this.cboBusquedaOperaciones.SelectedIndexChanged += new System.EventHandler(this.cboBusquedaOperaciones_SelectedIndexChanged_1);
             // 
             // txtBusquedaOperaciones
             // 
@@ -515,7 +516,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private System.Windows.Forms.Button btnEditar2;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnGuardar2;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.Button btnExportarExcel;
         private System.Windows.Forms.Label label10;
     }

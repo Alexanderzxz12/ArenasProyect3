@@ -506,5 +506,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             txtBusquedaLinea.Text = "";
         }
+
     }
 }

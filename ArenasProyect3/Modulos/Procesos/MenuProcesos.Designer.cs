@@ -2244,7 +2244,7 @@
             this.panel5.Location = new System.Drawing.Point(16, 253);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1083, 372);
+            this.panel5.Size = new System.Drawing.Size(1083, 379);
             this.panel5.TabIndex = 24;
             // 
             // pictureBox18

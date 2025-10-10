@@ -1,21 +1,22 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Modulos.ManGeneral;
-using SpreadsheetLight;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Spreadsheet;
-using CrystalDecisions.CrystalReports.Engine;
-using System.IO;
-using CrystalDecisions.Shared;
 
 namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
 {
@@ -53,22 +54,30 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
 
             if (Convert.ToInt32(datalistadoCantidadLiquidacionesNoAprobadas.SelectedCells[0].Value.ToString()) >= 5)
             {
-                MessageBox.Show("Se han detectado en el sistema más de 5 liquidaciones sin la atención respectiva, por favor regularizar las liquidaciones faltantes.", "Validación del Sistema");
+                MessageBox.Show("Se han detectado en el sistema más de 5 liquidaciones sin la atención respectiva, por favor regularizar las liquidaciones faltantes.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
         //CARGA VALIDACIÓN DE CANTIDAD DE LIQUIDACIONES----------------------------
         public void CargarCantidadLiquidacionesNoAprobadas()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT COUNT(IdLiquidacion) FROM LiquidacionVenta LIQUI WHERE EstadoContabilidad = 0 AND LIQUI.Estado = 1", con);
-            da.Fill(dt);
-            datalistadoCantidadLiquidacionesNoAprobadas.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT COUNT(IdLiquidacion) FROM LiquidacionVenta LIQUI WHERE EstadoContabilidad = 0 AND LIQUI.Estado = 1", con);
+                da.Fill(dt);
+                datalistadoCantidadLiquidacionesNoAprobadas.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //VIZUALIZAR DATOS EXCEL COMPLETO--------------------------------------------------------------------
@@ -106,44 +115,34 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         {
             if (lblCarga.Text == "0")
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarLiquidacionesVentasPorFecha_Jefatura", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoTodasLiquidacion.DataSource = dt;
-                con.Close();
-
-                datalistadoTodasLiquidacion.Columns[6].Visible = false;
-                datalistadoTodasLiquidacion.Columns[15].Visible = false;
-
-                datalistadoTodasLiquidacion.Columns[1].Width = 55;
-                datalistadoTodasLiquidacion.Columns[2].Width = 55;
-                datalistadoTodasLiquidacion.Columns[3].Width = 90;
-                datalistadoTodasLiquidacion.Columns[4].Width = 90;
-                datalistadoTodasLiquidacion.Columns[5].Width = 90;
-                datalistadoTodasLiquidacion.Columns[7].Width = 150;
-                datalistadoTodasLiquidacion.Columns[8].Width = 350;
-                datalistadoTodasLiquidacion.Columns[9].Width = 75;
-                datalistadoTodasLiquidacion.Columns[10].Width = 75;
-                datalistadoTodasLiquidacion.Columns[11].Width = 75;
-                datalistadoTodasLiquidacion.Columns[12].Width = 100;
-                datalistadoTodasLiquidacion.Columns[13].Width = 100;
-                datalistadoTodasLiquidacion.Columns[14].Width = 80;
-
-                ColoresListado();
+                try
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("MostrarLiquidacionesVentasPorFecha_Jefatura", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoTodasLiquidacion.DataSource = dt;
+                    con.Close();
+                    OrdenarListadoLiqui(datalistadoTodasLiquidacion);
+                }
+                catch (Exception ex)
+                {
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                    MessageBox.Show("Error en la operación por: " + ex.Message);
+                }
             }
             else
             {
                 lblCarga.Text = "0";
             }
-            //}
 
             //deshabilitar el click y  reordenamiento por columnas
             foreach (DataGridViewColumn column in datalistadoTodasLiquidacion.Columns)
@@ -155,86 +154,83 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         //MOSTRAR REQUERIMIENTOS POR RESPONSABLE
         public void MostrarLiquidacionesResponsable(string resopnsable, DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarLiquidacionVentasPorResponsable", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@responsable", resopnsable);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasLiquidacion.DataSource = dt;
-            con.Close();
-
-            datalistadoTodasLiquidacion.Columns[6].Visible = false;
-            datalistadoTodasLiquidacion.Columns[15].Visible = false;
-
-            datalistadoTodasLiquidacion.Columns[1].Width = 55;
-            datalistadoTodasLiquidacion.Columns[2].Width = 55;
-            datalistadoTodasLiquidacion.Columns[3].Width = 90;
-            datalistadoTodasLiquidacion.Columns[4].Width = 90;
-            datalistadoTodasLiquidacion.Columns[5].Width = 90;
-            datalistadoTodasLiquidacion.Columns[7].Width = 150;
-            datalistadoTodasLiquidacion.Columns[8].Width = 350;
-            datalistadoTodasLiquidacion.Columns[9].Width = 75;
-            datalistadoTodasLiquidacion.Columns[10].Width = 75;
-            datalistadoTodasLiquidacion.Columns[11].Width = 75;
-            datalistadoTodasLiquidacion.Columns[12].Width = 100;
-            datalistadoTodasLiquidacion.Columns[13].Width = 100;
-            datalistadoTodasLiquidacion.Columns[14].Width = 80;
-
-            ColoresListado();
-
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadoTodasLiquidacion.Columns)
+            try
             {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarLiquidacionVentasPorResponsable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@responsable", resopnsable);
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasLiquidacion.DataSource = dt;
+                con.Close();
+                OrdenarListadoLiqui(datalistadoTodasLiquidacion);
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
             }
         }
 
         //MOSTRAR REQUERIMIENTOS POR ESTADOS
         public void MostrarLiquidacionesEstados(int estados, DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarLiquidacionesVentasPorEstados_Jefatura", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@estado", estados);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasLiquidacion.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarLiquidacionesVentasPorEstados_Jefatura", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@estado", estados);
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasLiquidacion.DataSource = dt;
+                con.Close();
+                OrdenarListadoLiqui(datalistadoTodasLiquidacion);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            datalistadoTodasLiquidacion.Columns[6].Visible = false;
-            datalistadoTodasLiquidacion.Columns[15].Visible = false;
-
-            datalistadoTodasLiquidacion.Columns[1].Width = 55;
-            datalistadoTodasLiquidacion.Columns[2].Width = 55;
-            datalistadoTodasLiquidacion.Columns[3].Width = 90;
-            datalistadoTodasLiquidacion.Columns[4].Width = 90;
-            datalistadoTodasLiquidacion.Columns[5].Width = 90;
-            datalistadoTodasLiquidacion.Columns[7].Width = 150;
-            datalistadoTodasLiquidacion.Columns[8].Width = 350;
-            datalistadoTodasLiquidacion.Columns[9].Width = 75;
-            datalistadoTodasLiquidacion.Columns[10].Width = 75;
-            datalistadoTodasLiquidacion.Columns[11].Width = 75;
-            datalistadoTodasLiquidacion.Columns[12].Width = 100;
-            datalistadoTodasLiquidacion.Columns[13].Width = 100;
-            datalistadoTodasLiquidacion.Columns[14].Width = 80;
-
+        //ORDENAR MIS COLUMNAS
+        public void OrdenarListadoLiqui(DataGridView DGV)
+        {
+            DGV.Columns[6].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[1].Width = 55;
+            DGV.Columns[2].Width = 55;
+            DGV.Columns[3].Width = 90;
+            DGV.Columns[4].Width = 90;
+            DGV.Columns[5].Width = 90;
+            DGV.Columns[7].Width = 150;
+            DGV.Columns[8].Width = 350;
+            DGV.Columns[9].Width = 75;
+            DGV.Columns[10].Width = 75;
+            DGV.Columns[11].Width = 75;
+            DGV.Columns[12].Width = 100;
+            DGV.Columns[13].Width = 100;
+            DGV.Columns[14].Width = 80;
             ColoresListado();
 
             //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadoTodasLiquidacion.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
@@ -266,6 +262,8 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
@@ -317,34 +315,48 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         {
             if (datalistadoTodasLiquidacion.CurrentRow != null)
             {
-                if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+                try
                 {
-                    string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada();
-                    frm.lblCodigo.Text = codigoLiquidacionReporte;
+                    string codigoLiquidacionReporte = "";
 
-                    frm.Show();
+                    if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+                    {
+                        codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada();
+                        frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+                        frm.Show();
+                    }
+                    else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
+                    {
+                        codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada();
+                        frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+                        frm.Show();
+                    }
+                    else
+                    {
+                        codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta();
+                        frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+                        frm.Show();
+                    }
+
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(6, this.Name, 5, Program.IdUsuario, "Visualización de liquidación de viaje PDF", Convert.ToInt32(codigoLiquidacionReporte));
                 }
-                else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
+                catch(Exception ex)
                 {
-                    string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada();
-                    frm.lblCodigo.Text = codigoLiquidacionReporte;
-
-                    frm.Show();
-                }
-                else
-                {
-                    string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta();
-                    frm.lblCodigo.Text = codigoLiquidacionReporte;
-
-                    frm.Show();
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                    MessageBox.Show(ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
         //------------------------------------------------------------------------------------------------------------
@@ -353,33 +365,41 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         //PROCESO PARA BUSCAR LOS DETALLES DEL CLIENTE DE LA LIQUIDACIÓN
         public void BuscarLiquidacionDetalles(int codigoLiquidacion)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarDetallesClientesLiquidacion", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigo", codigoLiquidacion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoLiquidacionActas.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarDetallesClientesLiquidacion", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigo", codigoLiquidacion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoLiquidacionActas.DataSource = dt;
+                con.Close();
 
-            datalistadoLiquidacionActas.Columns[1].Visible = false;
-            datalistadoLiquidacionActas.Columns[4].Visible = false;
-            datalistadoLiquidacionActas.Columns[6].Visible = false;
-            datalistadoLiquidacionActas.Columns[11].Visible = false;
+                datalistadoLiquidacionActas.Columns[1].Visible = false;
+                datalistadoLiquidacionActas.Columns[4].Visible = false;
+                datalistadoLiquidacionActas.Columns[6].Visible = false;
+                datalistadoLiquidacionActas.Columns[11].Visible = false;
+                datalistadoLiquidacionActas.Columns[2].Width = 80;
+                datalistadoLiquidacionActas.Columns[3].Width = 80;
+                datalistadoLiquidacionActas.Columns[5].Width = 340;
+                datalistadoLiquidacionActas.Columns[7].Width = 100;
+                datalistadoLiquidacionActas.Columns[8].Width = 100;
+                datalistadoLiquidacionActas.Columns[9].Width = 75;
+                datalistadoLiquidacionActas.Columns[10].Width = 80;
 
-            datalistadoLiquidacionActas.Columns[2].Width = 80;
-            datalistadoLiquidacionActas.Columns[3].Width = 80;
-            datalistadoLiquidacionActas.Columns[5].Width = 340;
-            datalistadoLiquidacionActas.Columns[7].Width = 100;
-            datalistadoLiquidacionActas.Columns[8].Width = 100;
-            datalistadoLiquidacionActas.Columns[9].Width = 75;
-            datalistadoLiquidacionActas.Columns[10].Width = 80;
-
-            ColoresListadoDetalleLiquidación();
+                ColoresListadoDetalleLiquidación();
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //ABRIR DETALLES DE LA LIQUIDACIÓN------------------------------------------------------
@@ -392,45 +412,98 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
             {
                 if (datalistadoTodasLiquidacion.CurrentRow != null)
                 {
-                    if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+                    try
                     {
-                        string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada();
-                        frm.lblCodigo.Text = codigoLiquidacionReporte;
+                        string codigoLiquidacionReporte = "";
+                        if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+                        {
+                            codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada();
+                            frm.lblCodigo.Text = codigoLiquidacionReporte;
+                            frm.Show();
+                        }
+                        else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
+                        {
+                            codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada();
+                            frm.lblCodigo.Text = codigoLiquidacionReporte;
+                            frm.Show();
+                        }
+                        else
+                        {
+                            codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta();
+                            frm.lblCodigo.Text = codigoLiquidacionReporte;
+                            frm.Show();
+                        }
 
-                        frm.Show();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(6, this.Name, 5, Program.IdUsuario, "Visualización de liquidación de viaje PDF", Convert.ToInt32(codigoLiquidacionReporte));
                     }
-                    else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
+                    catch(Exception ex)
                     {
-                        string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada();
-                        frm.lblCodigo.Text = codigoLiquidacionReporte;
-
-                        frm.Show();
-                    }
-                    else
-                    {
-                        string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta();
-                        frm.lblCodigo.Text = codigoLiquidacionReporte;
-
-                        frm.Show();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                        MessageBox.Show(ex.Message);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema");
+                    MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
+            }
+        }
+
+        //VUSUALIZAR MI ACTA
+        private void btnVisualizarLiquidacionActas_Click(object sender, EventArgs e)
+        {
+            if (datalistadoLiquidacionActas.CurrentRow != null)
+            {
+                if (datalistadoLiquidacionActas.SelectedCells[10].Value.ToString() == "APROBADO")
+                {
+                    try
+                    {
+                        string codigoActaReporte = datalistadoLiquidacionActas.Rows[datalistadoLiquidacionActas.CurrentRow.Index].Cells[11].Value.ToString();
+                        Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
+                        frm.lblCodigo.Text = codigoActaReporte;
+
+                        frm.Show();
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(6, this.Name, 5, Program.IdUsuario, "Visualización de acta aprovada de viaje PDF", Convert.ToInt32(codigoActaReporte));
+                    }
+                    catch (Exception ex)
+                    {
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                        MessageBox.Show("Error en la operación por: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe tener la aprobación de las jefaturas para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una acta para poder generar el PDF.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //ABRIR LOS DETALLES DE LA LIQUIDACION CON EL EVENTO DOBLE CLICK
         private void datalistadoLiquidacionActas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int codigoLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString());
-            txtCodigoLiquidacion.Text = Convert.ToString(codigoLiquidacion);
-            panelLiquidacionActas.Visible = true;
-            BuscarLiquidacionDetalles(codigoLiquidacion);
+            if (datalistadoLiquidacionActas.CurrentRow != null)
+            {
+                int codigoLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString());
+                txtCodigoLiquidacion.Text = Convert.ToString(codigoLiquidacion);
+                panelLiquidacionActas.Visible = true;
+                BuscarLiquidacionDetalles(codigoLiquidacion);
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una liquidación para poder ver sus detalles.", "Validación del Sistema",MessageBoxButtons.OK);
+            }
         }
 
         //CERRAR LOS DETALLES DE LA LIQUIDACIÓN
@@ -468,6 +541,8 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
@@ -485,7 +560,7 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
 
                     if (estadoContabilidad == "LIQUIDADO")
                     {
-                        MessageBox.Show("Esta liquidación ya ha sido liquidada.", "Validación del Sistema");
+                        MessageBox.Show("Esta liquidación ya ha sido liquidada.", "Validación del Sistema",MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -502,31 +577,17 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MessageBox.Show("Liquidación atendida exitosamente.", "Validación del Sistema");
-
-                            //INGRESO DE LA TABLA AUDITORA
-                            con.Open();
-                            cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                            cmd.Parameters.AddWithValue("@mantenimiento", "Área contable - Menú Requerimientos y Liquidación - Liquidación de Viaje");
-                            cmd.Parameters.AddWithValue("@accion", "Atención de liquidación con código " + idLiquidacion);
-                            cmd.Parameters.AddWithValue("@descripcion", "Liquidación atendido por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                            cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                            cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                            cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                            cmd.Parameters.AddWithValue("@codigoRequerimiento", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@codigoLiquidacion", idLiquidacion);
-                            cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
+                            MessageBox.Show("Liquidación atendida exitosamente.", "Validación del Sistema",MessageBoxButtons.OK);
 
                             MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                            ClassResourses.RegistrarAuditora(3, this.Name, 5, Program.IdUsuario, "Atención de una liquidación de viaje.", Convert.ToInt32(idLiquidacion));
                         }
                         catch (Exception ex)
                         {
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                            ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                             MessageBox.Show(ex.Message);
                         }
                     }
@@ -534,7 +595,7 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder generar una liquidación.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un requerimiento para poder generar una liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -562,37 +623,23 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        //INGRESO DE LA TABLA AUDITORA
-                        con.Open();
-                        cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                        cmd.Parameters.AddWithValue("@mantenimiento", "Área contable - Menú Requerimientos y Liquidación - Liquidación de Viaje");
-                        cmd.Parameters.AddWithValue("@accion", "Anulación de liquidación con código " + idLiquidacion);
-                        cmd.Parameters.AddWithValue("@descripcion", "Liquidación anulada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                        cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                        cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                        cmd.Parameters.AddWithValue("@codigoRequerimiento", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@codigoLiquidacion", idLiquidacion);
-                        cmd.Parameters.AddWithValue("@codigoActa", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        MessageBox.Show("Liquidación y requerimiento asociado a esta, anulados exitosamente.", "Validación del Sistema");
+                        MessageBox.Show("Liquidación y requerimiento asociado a esta, anulados exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
                         MostrarLiquidación(DesdeFecha.Value, HastaFecha.Value);
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(2, this.Name, 5, Program.IdUsuario, "Anular liquidación de viaje.", Convert.ToInt32(idLiquidacion));
                     }
                     catch (Exception ex)
                     {
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
                         MessageBox.Show(ex.Message);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una liquidación para poder anularla.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar una liquidación para poder anularla.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -611,89 +658,101 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         //BOTON PARA LLAMAR A LA FUNCION DE EXPORTAR EXCEL
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            MostrarExcel();
-
-            SLDocument sl = new SLDocument();
-            SLStyle style = new SLStyle();
-            SLStyle styleC = new SLStyle();
-
-            //COLUMNAS
-            sl.SetColumnWidth(1, 15);
-            sl.SetColumnWidth(2, 15);
-            sl.SetColumnWidth(3, 20);
-            sl.SetColumnWidth(4, 20);
-            sl.SetColumnWidth(5, 20);
-            sl.SetColumnWidth(6, 35);
-            sl.SetColumnWidth(7, 75);
-            sl.SetColumnWidth(8, 20);
-            sl.SetColumnWidth(9, 20);
-            sl.SetColumnWidth(10, 20);
-            sl.SetColumnWidth(11, 35);
-            sl.SetColumnWidth(12, 35);
-            sl.SetColumnWidth(13, 35);
-
-            //CABECERA
-            style.Font.FontSize = 11;
-            style.Font.Bold = true;
-            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-            style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
-            style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            //FILAS
-            styleC.Font.FontSize = 10;
-            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-
-            styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            int ic = 1;
-            foreach (DataGridViewColumn column in datalistadoTodasLiquidacionExcel.Columns)
+            try
             {
-                sl.SetCellValue(1, ic, column.HeaderText.ToString());
-                sl.SetCellStyle(1, ic, style);
-                ic++;
-            }
+                MostrarExcel();
 
-            int ir = 2;
-            foreach (DataGridViewRow row in datalistadoTodasLiquidacionExcel.Rows)
+                SLDocument sl = new SLDocument();
+                SLStyle style = new SLStyle();
+                SLStyle styleC = new SLStyle();
+
+                //COLUMNAS
+                sl.SetColumnWidth(1, 15);
+                sl.SetColumnWidth(2, 15);
+                sl.SetColumnWidth(3, 20);
+                sl.SetColumnWidth(4, 20);
+                sl.SetColumnWidth(5, 20);
+                sl.SetColumnWidth(6, 35);
+                sl.SetColumnWidth(7, 75);
+                sl.SetColumnWidth(8, 20);
+                sl.SetColumnWidth(9, 20);
+                sl.SetColumnWidth(10, 20);
+                sl.SetColumnWidth(11, 35);
+                sl.SetColumnWidth(12, 35);
+                sl.SetColumnWidth(13, 35);
+
+                //CABECERA
+                style.Font.FontSize = 11;
+                style.Font.Bold = true;
+                style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+                style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+                style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                //FILAS
+                styleC.Font.FontSize = 10;
+                styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+                styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                int ic = 1;
+                foreach (DataGridViewColumn column in datalistadoTodasLiquidacionExcel.Columns)
+                {
+                    sl.SetCellValue(1, ic, column.HeaderText.ToString());
+                    sl.SetCellStyle(1, ic, style);
+                    ic++;
+                }
+
+                int ir = 2;
+                foreach (DataGridViewRow row in datalistadoTodasLiquidacionExcel.Rows)
+                {
+                    sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+                    sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+                    sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+                    sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+                    sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
+                    sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
+                    sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
+                    sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
+                    sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
+                    sl.SetCellValue(ir, 10, row.Cells[9].Value.ToString());
+                    sl.SetCellValue(ir, 11, row.Cells[10].Value.ToString());
+                    sl.SetCellValue(ir, 12, row.Cells[11].Value.ToString());
+                    sl.SetCellValue(ir, 13, row.Cells[12].Value.ToString());
+                    sl.SetCellStyle(ir, 1, styleC);
+                    sl.SetCellStyle(ir, 2, styleC);
+                    sl.SetCellStyle(ir, 3, styleC);
+                    sl.SetCellStyle(ir, 4, styleC);
+                    sl.SetCellStyle(ir, 5, styleC);
+                    sl.SetCellStyle(ir, 6, styleC);
+                    sl.SetCellStyle(ir, 7, styleC);
+                    sl.SetCellStyle(ir, 8, styleC);
+                    sl.SetCellStyle(ir, 9, styleC);
+                    sl.SetCellStyle(ir, 10, styleC);
+                    sl.SetCellStyle(ir, 11, styleC);
+                    sl.SetCellStyle(ir, 12, styleC);
+                    sl.SetCellStyle(ir, 13, styleC);
+                    ir++;
+                }
+
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                sl.SaveAs(desktopPath + @"\Reporte de Liquidaciones.xlsx");
+                MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(5, this.Name, 5, Program.IdUsuario, "Exportar listado de liquidaciones de ventas EXCEL", 0);
+            }
+            catch(Exception ex)
             {
-                sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
-                sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
-                sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
-                sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
-                sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
-                sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
-                sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
-                sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
-                sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
-                sl.SetCellValue(ir, 10, row.Cells[9].Value.ToString());
-                sl.SetCellValue(ir, 11, row.Cells[10].Value.ToString());
-                sl.SetCellValue(ir, 12, row.Cells[11].Value.ToString());
-                sl.SetCellValue(ir, 13, row.Cells[12].Value.ToString());
-                sl.SetCellStyle(ir, 1, styleC);
-                sl.SetCellStyle(ir, 2, styleC);
-                sl.SetCellStyle(ir, 3, styleC);
-                sl.SetCellStyle(ir, 4, styleC);
-                sl.SetCellStyle(ir, 5, styleC);
-                sl.SetCellStyle(ir, 6, styleC);
-                sl.SetCellStyle(ir, 7, styleC);
-                sl.SetCellStyle(ir, 8, styleC);
-                sl.SetCellStyle(ir, 9, styleC);
-                sl.SetCellStyle(ir, 10, styleC);
-                sl.SetCellStyle(ir, 11, styleC);
-                sl.SetCellStyle(ir, 12, styleC);
-                sl.SetCellStyle(ir, 13, styleC);
-                ir++;
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
             }
-
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de Liquidaciones.xlsx");
-            MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
         }
 
         //EXPORTAR DOCUMENTO SELECCIOANDO

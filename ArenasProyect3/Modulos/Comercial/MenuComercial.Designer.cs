@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuComercial));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.btnPaginaArenas = new System.Windows.Forms.PictureBox();
             this.datalistadoNovedades = new System.Windows.Forms.DataGridView();
@@ -60,16 +60,6 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelPrincipalComercial = new System.Windows.Forms.Panel();
             this.panelDatos = new System.Windows.Forms.Panel();
-            this.panelInactividad = new System.Windows.Forms.Panel();
-            this.panel39 = new System.Windows.Forms.Panel();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
-            this.label70 = new System.Windows.Forms.Label();
-            this.btnCerrarInactividad = new System.Windows.Forms.Button();
-            this.label71 = new System.Windows.Forms.Label();
-            this.panel40 = new System.Windows.Forms.Panel();
-            this.panel41 = new System.Windows.Forms.Panel();
-            this.panel42 = new System.Windows.Forms.Panel();
-            this.panel43 = new System.Windows.Forms.Panel();
             this.panelProhibicion = new System.Windows.Forms.Panel();
             this.btnSalirNotificacionProhibicionF = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -261,8 +251,6 @@
             this.menuStrip1.SuspendLayout();
             this.menuStrip3.SuspendLayout();
             this.panelDatos.SuspendLayout();
-            this.panelInactividad.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             this.panelProhibicion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panelDetallesUsuario.SuspendLayout();
@@ -355,35 +343,35 @@
             this.datalistadoNovedades.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoNovedades.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoNovedades.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.datalistadoNovedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoNovedades.DefaultCellStyle = dataGridViewCellStyle5;
             this.datalistadoNovedades.Location = new System.Drawing.Point(80, 14);
             this.datalistadoNovedades.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoNovedades.Name = "datalistadoNovedades";
             this.datalistadoNovedades.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoNovedades.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.datalistadoNovedades.RowHeadersVisible = false;
             this.datalistadoNovedades.RowHeadersWidth = 20;
             this.datalistadoNovedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -651,7 +639,6 @@
             // panelDatos
             // 
             this.panelDatos.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelDatos.Controls.Add(this.panelInactividad);
             this.panelDatos.Controls.Add(this.panelProhibicion);
             this.panelDatos.Controls.Add(this.panelDetallesUsuario);
             this.panelDatos.Controls.Add(this.panelNovedades);
@@ -665,125 +652,6 @@
             this.panelDatos.Name = "panelDatos";
             this.panelDatos.Size = new System.Drawing.Size(1323, 634);
             this.panelDatos.TabIndex = 17;
-            // 
-            // panelInactividad
-            // 
-            this.panelInactividad.BackColor = System.Drawing.Color.DimGray;
-            this.panelInactividad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelInactividad.Controls.Add(this.panel39);
-            this.panelInactividad.Controls.Add(this.pictureBox20);
-            this.panelInactividad.Controls.Add(this.label70);
-            this.panelInactividad.Controls.Add(this.btnCerrarInactividad);
-            this.panelInactividad.Controls.Add(this.label71);
-            this.panelInactividad.Controls.Add(this.panel40);
-            this.panelInactividad.Controls.Add(this.panel41);
-            this.panelInactividad.Controls.Add(this.panel42);
-            this.panelInactividad.Controls.Add(this.panel43);
-            this.panelInactividad.Location = new System.Drawing.Point(483, 274);
-            this.panelInactividad.Name = "panelInactividad";
-            this.panelInactividad.Size = new System.Drawing.Size(356, 86);
-            this.panelInactividad.TabIndex = 25;
-            this.panelInactividad.Visible = false;
-            // 
-            // panel39
-            // 
-            this.panel39.BackColor = System.Drawing.Color.White;
-            this.panel39.Location = new System.Drawing.Point(102, 29);
-            this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(150, 1);
-            this.panel39.TabIndex = 48;
-            // 
-            // pictureBox20
-            // 
-            this.pictureBox20.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox20.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox20.Image")));
-            this.pictureBox20.Location = new System.Drawing.Point(125, 6);
-            this.pictureBox20.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(21, 22);
-            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox20.TabIndex = 47;
-            this.pictureBox20.TabStop = false;
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label70.Location = new System.Drawing.Point(146, 10);
-            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(83, 15);
-            this.label70.TabIndex = 46;
-            this.label70.Text = "ADVERTENCIA";
-            // 
-            // btnCerrarInactividad
-            // 
-            this.btnCerrarInactividad.BackColor = System.Drawing.Color.Transparent;
-            this.btnCerrarInactividad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCerrarInactividad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrarInactividad.FlatAppearance.BorderSize = 0;
-            this.btnCerrarInactividad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarInactividad.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarInactividad.Image")));
-            this.btnCerrarInactividad.Location = new System.Drawing.Point(318, 51);
-            this.btnCerrarInactividad.Name = "btnCerrarInactividad";
-            this.btnCerrarInactividad.Size = new System.Drawing.Size(25, 25);
-            this.btnCerrarInactividad.TabIndex = 45;
-            this.btnCerrarInactividad.UseVisualStyleBackColor = false;
-            this.btnCerrarInactividad.Click += new System.EventHandler(this.btnCerrarInactividad_Click);
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label71.Location = new System.Drawing.Point(38, 36);
-            this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(279, 15);
-            this.label71.TabIndex = 43;
-            this.label71.Text = "El sisitema se cerrará en 2 minutos por inactividad";
-            // 
-            // panel40
-            // 
-            this.panel40.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.panel40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel40.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel40.Location = new System.Drawing.Point(350, 4);
-            this.panel40.Name = "panel40";
-            this.panel40.Size = new System.Drawing.Size(4, 76);
-            this.panel40.TabIndex = 42;
-            // 
-            // panel41
-            // 
-            this.panel41.BackColor = System.Drawing.Color.White;
-            this.panel41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel41.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel41.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel41.Location = new System.Drawing.Point(4, 0);
-            this.panel41.Name = "panel41";
-            this.panel41.Size = new System.Drawing.Size(350, 4);
-            this.panel41.TabIndex = 39;
-            // 
-            // panel42
-            // 
-            this.panel42.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.panel42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel42.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel42.Location = new System.Drawing.Point(0, 0);
-            this.panel42.Name = "panel42";
-            this.panel42.Size = new System.Drawing.Size(4, 80);
-            this.panel42.TabIndex = 41;
-            // 
-            // panel43
-            // 
-            this.panel43.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.panel43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel43.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel43.Location = new System.Drawing.Point(0, 80);
-            this.panel43.Name = "panel43";
-            this.panel43.Size = new System.Drawing.Size(354, 4);
-            this.panel43.TabIndex = 40;
             // 
             // panelProhibicion
             // 
@@ -2358,7 +2226,7 @@
             this.panel5.Controls.Add(this.panelDatos2);
             this.panel5.Location = new System.Drawing.Point(16, 253);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1083, 372);
+            this.panel5.Size = new System.Drawing.Size(1083, 379);
             this.panel5.TabIndex = 12;
             // 
             // pictureBox3
@@ -3005,9 +2873,6 @@
             this.menuStrip3.PerformLayout();
             this.panelDatos.ResumeLayout(false);
             this.panelDatos.PerformLayout();
-            this.panelInactividad.ResumeLayout(false);
-            this.panelInactividad.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             this.panelProhibicion.ResumeLayout(false);
             this.panelProhibicion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -3286,15 +3151,5 @@
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Button btnAbrirManual;
         private System.Windows.Forms.Button btnCerrarNovedadesF;
-        private System.Windows.Forms.Panel panelInactividad;
-        private System.Windows.Forms.Panel panel39;
-        private System.Windows.Forms.PictureBox pictureBox20;
-        private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.Button btnCerrarInactividad;
-        private System.Windows.Forms.Label label71;
-        private System.Windows.Forms.Panel panel40;
-        private System.Windows.Forms.Panel panel41;
-        private System.Windows.Forms.Panel panel42;
-        private System.Windows.Forms.Panel panel43;
     }
 }

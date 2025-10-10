@@ -81,12 +81,13 @@ namespace ArenasProyect3.Modulos
                     imgValidacionIncorrecta.Visible = true;
                 }
 
-                //INGRESO DE AUDITORA
-                ClassResourses.RegistrarAuditora(9,this.Name,1,Program.IdUsuario = 0,"",0); 
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(9, this.Name, 1, Program.IdUsuario = 0, "", 0);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error de conexión con el servidor de base de datos, no se encuentra conexión a internet o a la red. " + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
@@ -112,6 +113,7 @@ namespace ArenasProyect3.Modulos
             catch (Exception ex)
             {
                 MessageBox.Show("Error de conexión con el servidor de base de datos, no se encuentra conexión a internet o a la red. " + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
@@ -416,24 +418,32 @@ namespace ArenasProyect3.Modulos
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
             {
-
-                //ABRIR EL PANEL DEL AREA SELECCIONADA
-                area = "Mantenimiento";
-                if (panelUsuarios.Controls.Count < 1)
+                //SI EL ESTADO DEL SISTEMA ES ACTIVO
+                if (estadoSistema == "ACTIVO - CORRIENDO")
                 {
-                    panelUsuarios.Controls.Clear();
-                    flpAreas.Visible = false;
-                    panelCuentas.Visible = true;
-                    ImgRegresar.Visible = true;
-                    DibujarUsuario();
+                    //ABRIR EL PANEL DEL AREA SELECCIONADA
+                    area = "Mantenimiento";
+                    if (panelUsuarios.Controls.Count < 1)
+                    {
+                        panelUsuarios.Controls.Clear();
+                        flpAreas.Visible = false;
+                        panelCuentas.Visible = true;
+                        ImgRegresar.Visible = true;
+                        DibujarUsuario();
+                    }
+                    else
+                    {
+                        panelUsuarios.Controls.Clear();
+                        flpAreas.Visible = false;
+                        panelCuentas.Visible = true;
+                        ImgRegresar.Visible = true;
+                        DibujarUsuario();
+                    }
                 }
                 else
                 {
-                    panelUsuarios.Controls.Clear();
-                    flpAreas.Visible = false;
-                    panelCuentas.Visible = true;
-                    ImgRegresar.Visible = true;
-                    DibujarUsuario();
+                    //SI EL ESTADO DEL SISITEMA NO ESTA ACTIVO
+                    panelMantenimiento.Visible = true;
                 }
             }
             else
@@ -737,9 +747,10 @@ namespace ArenasProyect3.Modulos
                 }
                 con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error inesperado: " + ex.Message,"Validación del sistema",MessageBoxButtons.OK);
+                MessageBox.Show("Ocurrió un error inesperado: " + ex.Message, "Validación del sistema", MessageBoxButtons.OK);
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
@@ -786,6 +797,7 @@ namespace ArenasProyect3.Modulos
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 1, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
@@ -1049,6 +1061,7 @@ namespace ArenasProyect3.Modulos
         //EVENTAO PARA CERRAR MI FORMULARIO
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
             ClassResourses.RegistrarAuditora(10, this.Name, 1, Program.IdUsuario = 0, "", 0);
         }
         //-----------------------------------------------------------------------------------------------

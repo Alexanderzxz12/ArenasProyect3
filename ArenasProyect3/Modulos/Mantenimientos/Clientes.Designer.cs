@@ -97,6 +97,8 @@
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.txtNombreCLienteCondicion = new System.Windows.Forms.TextBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.panelContacto = new System.Windows.Forms.Panel();
             this.btnRegresarContacto = new System.Windows.Forms.Button();
             this.btnEliminarContactos = new System.Windows.Forms.Button();
@@ -126,6 +128,8 @@
             this.txtCodigoClienteContacto = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.txtNombreClienteContacto = new System.Windows.Forms.TextBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panelUnidad = new System.Windows.Forms.Panel();
             this.btnEiminarUnidad = new System.Windows.Forms.Button();
             this.btnCerrarUnidad = new System.Windows.Forms.Button();
@@ -155,10 +159,6 @@
             this.txtCodigoClienteUnidad = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombreClienteUnidad = new System.Windows.Forms.TextBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -266,14 +266,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadosucursal)).BeginInit();
             this.panelCondicion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).BeginInit();
-            this.panelContacto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).BeginInit();
-            this.panelUnidad.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            this.panelContacto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            this.panelUnidad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -423,12 +423,12 @@
             this.panelAgregarCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelAgregarCliente.Controls.Add(this.panelSucursal);
             this.panelAgregarCliente.Controls.Add(this.panelCondicion);
+            this.panelAgregarCliente.Controls.Add(this.panelContacto);
+            this.panelAgregarCliente.Controls.Add(this.panelUnidad);
             this.panelAgregarCliente.Controls.Add(this.pictureBox15);
             this.panelAgregarCliente.Controls.Add(this.pictureBox12);
-            this.panelAgregarCliente.Controls.Add(this.panelContacto);
             this.panelAgregarCliente.Controls.Add(this.pictureBox11);
             this.panelAgregarCliente.Controls.Add(this.pictureBox10);
-            this.panelAgregarCliente.Controls.Add(this.panelUnidad);
             this.panelAgregarCliente.Controls.Add(this.pictureBox9);
             this.panelAgregarCliente.Controls.Add(this.pictureBox8);
             this.panelAgregarCliente.Controls.Add(this.pictureBox7);
@@ -1093,6 +1093,26 @@
             this.txtNombreCLienteCondicion.Size = new System.Drawing.Size(631, 21);
             this.txtNombreCLienteCondicion.TabIndex = 11;
             // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(484, 149);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox15.TabIndex = 146;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
+            this.pictureBox12.Location = new System.Drawing.Point(358, 409);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox12.TabIndex = 145;
+            this.pictureBox12.TabStop = false;
+            // 
             // panelContacto
             // 
             this.panelContacto.Controls.Add(this.btnRegresarContacto);
@@ -1463,6 +1483,26 @@
             this.txtNombreClienteContacto.ReadOnly = true;
             this.txtNombreClienteContacto.Size = new System.Drawing.Size(631, 21);
             this.txtNombreClienteContacto.TabIndex = 7;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(232, 102);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(22, 20);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 144;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(429, 289);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 143;
+            this.pictureBox10.TabStop = false;
             // 
             // panelUnidad
             // 
@@ -1836,46 +1876,6 @@
             this.txtNombreClienteUnidad.ReadOnly = true;
             this.txtNombreClienteUnidad.Size = new System.Drawing.Size(631, 21);
             this.txtNombreClienteUnidad.TabIndex = 0;
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
-            this.pictureBox15.Location = new System.Drawing.Point(484, 149);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(18, 18);
-            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox15.TabIndex = 146;
-            this.pictureBox15.TabStop = false;
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(358, 409);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox12.TabIndex = 145;
-            this.pictureBox12.TabStop = false;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(232, 102);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(22, 20);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 144;
-            this.pictureBox11.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(429, 289);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(18, 18);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox10.TabIndex = 143;
-            this.pictureBox10.TabStop = false;
             // 
             // pictureBox9
             // 
@@ -3080,16 +3080,16 @@
             this.panelCondicion.ResumeLayout(false);
             this.panelCondicion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCondicion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.panelContacto.ResumeLayout(false);
             this.panelContacto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadocontacto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.panelUnidad.ResumeLayout(false);
             this.panelUnidad.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadounidad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();

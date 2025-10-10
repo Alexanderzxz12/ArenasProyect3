@@ -183,6 +183,70 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             datalistadoTodasPedido.DataSource = dt;
             con.Close();
             RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
+
+            DataTable dt2 = new DataTable();
+            SqlConnection con2 = new SqlConnection();
+            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con2.Open();
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd2.Parameters.AddWithValue("@estado", 1);
+            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+            da2.Fill(dt2);
+            datalistadoPendientePedido.DataSource = dt2;
+            con2.Close();
+            RedimensionarListadoGeneralPedido(datalistadoPendientePedido);
+
+            DataTable dt3 = new DataTable();
+            SqlConnection con3 = new SqlConnection();
+            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con3.Open();
+            SqlCommand cmd3 = new SqlCommand();
+            cmd3 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con3);
+            cmd3.CommandType = CommandType.StoredProcedure;
+            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd3.Parameters.AddWithValue("@estado", 2);
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+            da3.Fill(dt3);
+            datalistadoIncompletoPedido.DataSource = dt3;
+            con3.Close();
+            RedimensionarListadoGeneralPedido(datalistadoIncompletoPedido);
+
+            DataTable dt4 = new DataTable();
+            SqlConnection con4 = new SqlConnection();
+            con4.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con4.Open();
+            SqlCommand cmd4 = new SqlCommand();
+            cmd4 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con4);
+            cmd4.CommandType = CommandType.StoredProcedure;
+            cmd4.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd4.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd4.Parameters.AddWithValue("@estado", 3);
+            SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
+            da4.Fill(dt4);
+            datalistadoCompletoPedido.DataSource = dt4;
+            con4.Close();
+            RedimensionarListadoGeneralPedido(datalistadoCompletoPedido);
+
+            DataTable dt5 = new DataTable();
+            SqlConnection con5 = new SqlConnection();
+            con5.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con5.Open();
+            SqlCommand cmd5 = new SqlCommand();
+            cmd5 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con5);
+            cmd5.CommandType = CommandType.StoredProcedure;
+            cmd5.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            cmd5.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+            cmd5.Parameters.AddWithValue("@estado", 4);
+            SqlDataAdapter da5 = new SqlDataAdapter(cmd5);
+            da5.Fill(dt5);
+            datalistadoDespahacoPedido.DataSource = dt5;
+            con5.Close();
+            RedimensionarListadoGeneralPedido(datalistadoDespahacoPedido);
         }
 
         //MOSTRAR ACTAS POR CLIENTE

@@ -2095,7 +2095,7 @@ namespace ArenasProyect3.Modulos.Ingenieria
             this.panel5.Controls.Add(this.panelDatos2);
             this.panel5.Location = new System.Drawing.Point(16, 253);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1083, 372);
+            this.panel5.Size = new System.Drawing.Size(1083, 381);
             this.panel5.TabIndex = 12;
             // 
             // pictureBox3

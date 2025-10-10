@@ -602,12 +602,12 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
             }
             else
             {
-                EditarUsuario(Convert.ToInt32(lblIdUsuario.Text), txtNombre.Text, txtApellidos.Text, txtContrasena.Text, lblNumeroIcono.Text, txtArea.Text, Convert.ToInt16(cboRol.SelectedValue.ToString()), valorReque, txtDocumento.Text, txtRutaFirma.Text, txtNombre.Text, txtApellidos.Text, valorCoti, visibleUsuario);
+                EditarUsuario(Convert.ToInt32(lblIdUsuario.Text), txtNombre.Text, txtApellidos.Text, txtLogin.Text,txtContrasena.Text, lblNumeroIcono.Text, txtArea.Text, Convert.ToInt16(cboRol.SelectedValue.ToString()), valorReque, txtDocumento.Text, txtRutaFirma.Text, txtNombre.Text, txtApellidos.Text, visibleUsuario, valorCoti );
             }
         }
 
         //FUNCION PARA EDITAR MI USUARIO
-        public void EditarUsuario(int idUsuario, string nombres, string apellidos, string password, string nIcono, string area, int rol, int hbailitadoReque, string documento, string rutaFirma, string primerNombres, string apellidosDes, int visible, int habilitarCotizacion)
+        public void EditarUsuario(int idUsuario, string nombres, string apellidos, string login,string password, string nIcono, string area, int rol, int hbailitadoReque, string documento, string rutaFirma, string primerNombres, string apellidosDes, int visible, int habilitarCotizacion)
         {
             if (nombres == "" || apellidos == "" || password == "" || documento == "" || rutaFirma == "" || area == "" || rol == null || nIcono == "")
             {
@@ -629,6 +629,7 @@ namespace ArenasProyect3.Modulos.UsuariosPermisos
                         cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                         cmd.Parameters.AddWithValue("@nombres", nombres);
                         cmd.Parameters.AddWithValue("@apellidos", apellidos);
+                        cmd.Parameters.AddWithValue("@Login", login);
                         cmd.Parameters.AddWithValue("@password", password);
 
                         System.IO.MemoryStream ms = new System.IO.MemoryStream();

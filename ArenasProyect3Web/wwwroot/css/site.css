@@ -16,3 +16,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Personaliza las filas impares del cuerpo de la tabla */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e6f7ff; /* Celeste claro, puedes cambiarlo */
+}
+
+/* Opcional: personaliza las filas pares si quieres */
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffffff; /* Blanco puro */
+}
+
+/* Asegura que el texto se mantenga legible */
+.table-striped tbody tr td {
+    color: #000000; /* Negro */

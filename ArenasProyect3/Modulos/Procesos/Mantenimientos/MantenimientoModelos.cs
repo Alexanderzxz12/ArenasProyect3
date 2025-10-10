@@ -128,12 +128,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 da.Fill(dt);
                 datalistadoLineas.DataSource = dt;
                 con.Close();
-                datalistadoLineas.Columns[0].Width = 80;
-                datalistadoLineas.Columns[1].Width = 80;
-                datalistadoLineas.Columns[2].Width = 100;
-                datalistadoLineas.Columns[3].Width = 220;
-                datalistadoLineas.Columns[4].Visible = false;
-                datalistadoLineas.Columns[5].Width = 218;
+                OrdenarColumnasModelo(datalistadoLineas);
             }
             catch (Exception ex)
             {
@@ -183,6 +178,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 btnGuardar2.Visible = false;
 
                 Cancelar.Visible = false;
+                lblCancelar.Visible = false;
             }   
         }
 
@@ -2436,6 +2432,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void cboTiposVariosO1_DropDownClosed(object sender, EventArgs e)
         {
             ValidacionesVarios_TiempoReal(ckVariosO1, ckVariosO2, cboTiposVariosO1, cboTiposVariosO2);
+        }
+
+        //LIMPIAR LA BUSQUEDA DE MODELO
+        private void cboBusquedaModelo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaModelo.Text = "";
         }
     }
 }

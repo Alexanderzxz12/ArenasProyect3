@@ -24,6 +24,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         private Cursor curAnterior = null;
         int totalCantidades = 0;
         bool estadoSNG = false;
+        bool estadoSNGCulminada = false;
         bool estadoDesaprobado = false;
 
         public ListadoOrdenProduccion()
@@ -430,8 +431,8 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 3);
                 }
-                //SI COMPLETE TODOS LAS CANTIDADES PERO DENTRO NO HAY NINGUNA DESAPROBADA PERO HAY UN SNG GENERADA
-                else if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text)
+                //SI COMPLETE TODOS LAS CANTIDADES PERO DENTRO NO HAY NINGUNA DESAPROBADA PERO HAY UN SNG GENERADA O UN SNC CULMINADA
+                else if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text || txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNGCulminada == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text)
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 4);
                 }
@@ -553,6 +554,26 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     if (valorCelda == "SNC GENERADA")
                     {
                         estadoSNG = true;
+                    }
+                }
+            }
+        }
+
+        //VERIFICAR SI MI DATAGRIDVIEW ESTA SNC CULMINADA
+        public void VerificarSNGCulminada()
+        {
+            estadoSNGCulminada = false;
+
+            foreach (DataGridViewRow fila in datalistadoHistorial.Rows)
+            {
+                // Evita procesar la fila nueva que aparece al final
+                if (!fila.IsNewRow)
+                {
+                    var valorCelda = fila.Cells[5].Value?.ToString(); // Columna 4 = índice 3
+
+                    if (valorCelda == "SNC CULMINADA")
+                    {
+                        estadoSNGCulminada = true;
                     }
                 }
             }
@@ -850,7 +871,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 //RECORRIDO DE MI LISTADO
                 for (var i = 0; i <= datalistadoHistorial.RowCount - 1; i++)
                 {
-                    if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "APROBADO")
+                    if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "APROBADO" || datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "SNC CULMINADA")
                     {
                         datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
                     }
@@ -924,7 +945,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     lblGenerarCSM.Visible = false;
                 }
 
-                if (datalistadoHistorial.SelectedCells[5].Value.ToString() == "SNC GENERADA")
+                if (datalistadoHistorial.SelectedCells[5].Value.ToString() == "SNC CULMINADA")
                 {
                     btnVisualizar.Visible = true;
                     lblLeyendaVisualizar.Visible = true;
@@ -990,7 +1011,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             openFileDialog2.FilterIndex = 1;
             openFileDialog2.RestoreDirectory = true;
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
             {
                 txtImagen2.Text = openFileDialog2.FileName;
             }

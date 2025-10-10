@@ -194,7 +194,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(92, 182);
+            this.groupBox1.Size = new System.Drawing.Size(75, 148);
             this.groupBox1.TabIndex = 2025;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ACCIONES";
@@ -202,22 +202,22 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(18, 71);
+            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(12, 55);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 14);
+            this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 1990;
             this.label9.Text = "AGREGAR";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(24, 145);
+            this.label10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(18, 116);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 14);
+            this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 1991;
             this.label10.Text = "EDITAR";
             // 
@@ -227,9 +227,9 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.btnEditarF.FlatAppearance.BorderSize = 0;
             this.btnEditarF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarF.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarF.Image")));
-            this.btnEditarF.Location = new System.Drawing.Point(27, 102);
+            this.btnEditarF.Location = new System.Drawing.Point(22, 83);
             this.btnEditarF.Name = "btnEditarF";
-            this.btnEditarF.Size = new System.Drawing.Size(38, 38);
+            this.btnEditarF.Size = new System.Drawing.Size(30, 30);
             this.btnEditarF.TabIndex = 1987;
             this.btnEditarF.UseVisualStyleBackColor = true;
             this.btnEditarF.Click += new System.EventHandler(this.btnEditar2_Click);
@@ -240,9 +240,9 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.btnEditar2F.FlatAppearance.BorderSize = 0;
             this.btnEditar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2F.Image")));
-            this.btnEditar2F.Location = new System.Drawing.Point(27, 102);
+            this.btnEditar2F.Location = new System.Drawing.Point(22, 83);
             this.btnEditar2F.Name = "btnEditar2F";
-            this.btnEditar2F.Size = new System.Drawing.Size(38, 38);
+            this.btnEditar2F.Size = new System.Drawing.Size(30, 30);
             this.btnEditar2F.TabIndex = 1988;
             this.btnEditar2F.UseVisualStyleBackColor = true;
             // 
@@ -252,9 +252,9 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.btnGuardar2F.FlatAppearance.BorderSize = 0;
             this.btnGuardar2F.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2F.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2F.Image")));
-            this.btnGuardar2F.Location = new System.Drawing.Point(27, 30);
+            this.btnGuardar2F.Location = new System.Drawing.Point(22, 22);
             this.btnGuardar2F.Name = "btnGuardar2F";
-            this.btnGuardar2F.Size = new System.Drawing.Size(38, 38);
+            this.btnGuardar2F.Size = new System.Drawing.Size(30, 30);
             this.btnGuardar2F.TabIndex = 1989;
             this.btnGuardar2F.UseVisualStyleBackColor = true;
             this.btnGuardar2F.Click += new System.EventHandler(this.btnGuardar2_Click);
@@ -339,7 +339,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.datalistadoDefinicionFormulacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;

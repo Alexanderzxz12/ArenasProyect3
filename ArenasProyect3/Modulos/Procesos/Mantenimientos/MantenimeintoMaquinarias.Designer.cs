@@ -249,12 +249,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboBusquedaMaquinara.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBusquedaMaquinara.FormattingEnabled = true;
             this.cboBusquedaMaquinara.Items.AddRange(new object[] {
-            "DESCRIPCIÓN"});
+            "DESCRIPCIÓN",
+            "CÓDIGO"});
             this.cboBusquedaMaquinara.Location = new System.Drawing.Point(180, 525);
             this.cboBusquedaMaquinara.Margin = new System.Windows.Forms.Padding(5);
             this.cboBusquedaMaquinara.Name = "cboBusquedaMaquinara";
             this.cboBusquedaMaquinara.Size = new System.Drawing.Size(143, 21);
             this.cboBusquedaMaquinara.TabIndex = 1982;
+            this.cboBusquedaMaquinara.SelectedIndexChanged += new System.EventHandler(this.cboBusquedaMaquinara_SelectedIndexChanged_1);
             // 
             // txtBusquedaMaquinarias
             // 

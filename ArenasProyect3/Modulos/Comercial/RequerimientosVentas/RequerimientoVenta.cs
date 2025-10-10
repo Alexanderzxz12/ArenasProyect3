@@ -114,6 +114,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -138,6 +139,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -162,6 +164,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -184,6 +187,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -229,6 +233,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -264,6 +269,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -299,6 +305,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -311,9 +318,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             foreach (DataGridViewRow dgv in datalistadoTodasRequerimientos.Rows)
             {
                 string numeroReque = dgv.Cells[1].Value.ToString();
-                string FechaGen = dgv.Cells[2].Value.ToString();
-                string fechaInicio = dgv.Cells[3].Value.ToString();
-                string fechaTermino = dgv.Cells[4].Value.ToString();
+                string FechaGen = Convert.ToDateTime(dgv.Cells[2].Value).ToString("yyyy/MM/dd");                   
+                string fechaInicio = Convert.ToDateTime(dgv.Cells[3].Value).ToString("yyyy/MM/dd");
+                string fechaTermino = Convert.ToDateTime(dgv.Cells[4].Value).ToString("yyyy/MM/dd");
                 string responsable = dgv.Cells[5].Value.ToString();
                 string motivoViaje = dgv.Cells[6].Value.ToString();
                 string tipoMoneda = dgv.Cells[7].Value.ToString();
@@ -333,9 +340,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             foreach (DataGridViewRow dgv in datalistadoExcelCompleto.Rows)
             {
                 string numeroReque = dgv.Cells[0].Value.ToString();
-                string FechaGen = dgv.Cells[1].Value.ToString();
-                string fechaInicio = dgv.Cells[2].Value.ToString();
-                string fechaTermino = dgv.Cells[3].Value.ToString();
+                string FechaGen = Convert.ToDateTime(dgv.Cells[1].Value).ToString("yyyy/MM/dd");
+                string fechaInicio = Convert.ToDateTime(dgv.Cells[2].Value).ToString("yyyy/MM/dd");
+                string fechaTermino = Convert.ToDateTime(dgv.Cells[3].Value).ToString("yyyy/MM/dd");
                 string responsable = dgv.Cells[4].Value.ToString();
                 string colaboradores = dgv.Cells[5].Value.ToString();
                 string cliente = dgv.Cells[6].Value.ToString();
@@ -381,7 +388,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
             }
             catch (Exception ex)
-            {
+            {                
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -415,6 +423,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -442,6 +451,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -469,6 +479,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -496,6 +507,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -522,6 +534,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -586,6 +599,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             catch (Exception ex)
             {
                 MessageBox.Show("Error en la operación por: " + ex.Message);
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
 
@@ -657,15 +672,15 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 //SI NO HAY NINGUN REGISTRO SELECCIONADO
                 if (datalistadoTodasRequerimientos.CurrentRow != null)
                 {
-                    string codigoCotizacionReporte = "0";
+                    string codigoRequerimientoReporte = "0";
 
                     //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL Y YA TIENE LIQUIDACIÓN CREADA
                     if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO" && Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString()) == true)
                     {
                         //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        codigoRequerimientoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
                         Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        frm.lblCodigo.Text = codigoRequerimientoReporte;
                         //CARGAR VENTANA
                         frm.Show();
                     }
@@ -673,9 +688,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
                     {
                         //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
-                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        codigoRequerimientoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
                         Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        frm.lblCodigo.Text = codigoRequerimientoReporte;
                         //CARGAR VENTANA
                         frm.Show();
                     }
@@ -683,9 +698,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
                     {
                         //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
-                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        codigoRequerimientoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
                         Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        frm.lblCodigo.Text = codigoRequerimientoReporte;
                         //CARGAR VENTANA
                         frm.Show();
                     }
@@ -693,22 +708,24 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     else
                     {
                         //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                        codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+                        codigoRequerimientoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
                         Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
+                        frm.lblCodigo.Text = codigoRequerimientoReporte;
                         //CARGAR VENTANA
                         frm.Show();
                     }
 
-                    ClassResourses.RegistrarAuditora(6, this.Name, 4, Program.IdUsuario, "Visualización de requerimiento de viaje PDF", Convert.ToInt32(codigoCotizacionReporte));
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(6, this.Name, 4, Program.IdUsuario, "Visualización de requerimiento de viaje PDF", Convert.ToInt32(codigoRequerimientoReporte));
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema");
+                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -780,16 +797,18 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             frm.Show();
                         }
 
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                         ClassResourses.RegistrarAuditora(6, this.Name, 4, Program.IdUsuario, "Visualización de requerimiento de viaje PDF", Convert.ToInt32(codigoCotizacionReporte));
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema");
+                        MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema",MessageBoxButtons.OK);
                     }
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -806,7 +825,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {                //SI HAY 3 O MÁS CLIENTES, YA NOS E PODRAN INGRESAR MÁS
                 if (datalistadoSeleccionCliente.RowCount >= 3)
                 {
-                    MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema");
+                    MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -830,7 +849,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (datalistadoSeleccionCliente.Rows.Count > 0)
             {
                 //MENSAJE DE CONFIRMACIÓN PARA BORRAR AL CLIENTE SELECCIOANDO
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (resul == DialogResult.Yes)
                 {
                     //ACCIÓN DE ELIMINAR
@@ -866,7 +885,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (datalistadoSeleccionColaborador.Rows.Count > 0)
             {
                 //MENSAJE DE CONFIRMACIÓN PARA BORRAR A LOS COLABORADORES SELECCIOANDO
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (resul == DialogResult.Yes)
                 {
                     //ACCIÓN DE ELIMINAR
@@ -887,7 +906,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
             if (cboResponsable.SelectedValue == null)
             {
-                MessageBox.Show("Usted no esta autorizado para generar un requerimiento de viaje, por favor pedir más información a su jefatura inmediata.", "Validación del Sistema");
+                MessageBox.Show("Usted no esta autorizado para generar un requerimiento de viaje, por favor pedir más información a su jefatura inmediata.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -1011,17 +1030,17 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     }
                     else
                     {
-                        MessageBox.Show("El requerimiento que desea editar se encuentra en un estado diferente a pendiente.", "Validación del Sistema");
+                        MessageBox.Show("El requerimiento que desea editar se encuentra en un estado diferente a pendiente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Solo puede hacer el proceso el responsable de este.", "Validación del Sistema");
+                    MessageBox.Show("Solo puede hacer el proceso el responsable de este.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder editarlo.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un requerimiento para poder editarlo.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
         //-----------------------------------------------------------------------------------------------------------------------------------
@@ -1057,7 +1076,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 //SI NO HAY MOTIVO DE VIAJE O ITINERARIO O EL RESPONSABLE NO ESTA SELECCIONADO
                 if (txtMotivoViaje.Text == "" || txtItinerarioViaje.Text == "" || estadoResopnsable == false)
                 {
-                    MessageBox.Show("Debe ingresar un motívo y un itinerario o el responsable debe estar colocado en la lista de colaboradores.", "Validación del Sistema");
+                    MessageBox.Show("Debe ingresar un motívo y un itinerario o el responsable debe estar colocado en la lista de colaboradores.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 //GENERACIÓN DE FILAS PARA PODER AGREGAR MIS MONTOS DE ACUEDO AL RANGO DE DIAS SELCCIONADO
                 else
@@ -1265,7 +1284,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("No hay registro en el presupuesto para poder remover.", "Validación del Sistema");
+                MessageBox.Show("No hay registro en el presupuesto para poder remover.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
         //---------------------------------------------------------------------------------------------------------------------------------
@@ -1280,35 +1299,35 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 //SI NO SE HA SELECCIONADO NINGUNA OPCIÓN
                 if (rbNacional.Checked == false && rbExterior.Checked == false)
                 {
-                    MessageBox.Show("Por favor, seleccione el tipo de requerimiento.", "Validación del Sistema");
+                    MessageBox.Show("Por favor, seleccione el tipo de requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
                     //SI NO HAY CLIENTES O COLABORADORES AGREGADOS
                     if (datalistadoSeleccionCliente.RowCount == 0 || datalistadoSeleccionColaborador.RowCount == 0)
                     {
-                        MessageBox.Show("Por favor, seleccione a un cliente o ha un colaborador.", "Validación del Sistema");
+                        MessageBox.Show("Por favor, seleccione a un cliente o ha un colaborador.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
                         //SI NO HAY NINGUNA FILA DE PRESUPUESTO
                         if (datalistadoPresupuestoViaje.RowCount == 0)
                         {
-                            MessageBox.Show("Por favor, debe colocar el presupuesto para el viaje.", "Validación del Sistema");
+                            MessageBox.Show("Por favor, debe colocar el presupuesto para el viaje.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
                             //SI NO HAY MOTIVO DE VIAJE O ITINERARIO
                             if (txtMotivoViaje.Text == "" || txtItinerarioViaje.Text == "")
                             {
-                                MessageBox.Show("Por favor, debe ingresar el motivo o itinerario del viaje.", "Validación del Sistema");
+                                MessageBox.Show("Por favor, debe ingresar el motivo o itinerario del viaje.", "Validación del Sistema", MessageBoxButtons.OK);
                             }
                             else
                             {
                                 //SI EL SUBTOTAL NO ESTA CARGADO
                                 if (txtSubTotal.Text == "")
                                 {
-                                    MessageBox.Show("Por favor, debe ingresar valores al presupuesto del viaje.", "Validación del Sistema");
+                                    MessageBox.Show("Por favor, debe ingresar valores al presupuesto del viaje.", "Validación del Sistema", MessageBoxButtons.OK);
                                 }
                                 else
                                 {
@@ -1333,31 +1352,31 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 if (rbNacional.Checked == false && rbExterior.Checked == false)
                 {
-                    MessageBox.Show("No se ha seleccionado el tipo de requerimiento correctamente.", "Validación del Sistema");
+                    MessageBox.Show("No se ha seleccionado el tipo de requerimiento correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
                     if (datalistadoSeleccionColaborador.RowCount == 0 || datalistadoSeleccionCliente.RowCount == 0)
                     {
-                        MessageBox.Show("No se han cargado los clientes o colaboradores correctamnete.", "Validación del Sistema");
+                        MessageBox.Show("No se han cargado los clientes o colaboradores correctamnete.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
                         if (datalistadoPresupuestoViaje.RowCount == 0)
                         {
-                            MessageBox.Show("No se han cargado los detalles del requerimiento correctamente.", "Validación del Sistema");
+                            MessageBox.Show("No se han cargado los detalles del requerimiento correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
                             if (txtMotivoViaje.Text == "" || txtItinerarioViaje.Text == "")
                             {
-                                MessageBox.Show("No se ha cargado el itinerario o motivo del requerimiento.", "Validación del Sistema");
+                                MessageBox.Show("No se ha cargado el itinerario o motivo del requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
                             }
                             else
                             {
                                 if (txtSubTotal.Text == "")
                                 {
-                                    MessageBox.Show("No se ha cargado el sub-total del requerimiento.", "Validación del Sistema");
+                                    MessageBox.Show("No se ha cargado el sub-total del requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
                                 }
                                 else
                                 {
@@ -1376,7 +1395,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             //SI NO HAY JUSTIFICACIÓN INGRESADA
             if (txtRazononObservaciones.Text == "")
             {
-                MessageBox.Show("Debe ingresar un mensaje que justifique el requerimiento fuera de fecha.", "Validación del Sistema");
+                MessageBox.Show("Debe ingresar un mensaje que justifique el requerimiento fuera de fecha.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -1498,7 +1517,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Close();
                     }
 
-                    MessageBox.Show("Se registró el requerimiento exitosamente.", "Validación del Sistema");
+                    MessageBox.Show("Se registró el requerimiento exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
                     //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
                     panelNuevoRequerimiento.Visible = false;
@@ -1520,11 +1539,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     datalistadoTodasRequerimientos.Enabled = true;
 
                     BusquedaDependiente();
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                     ClassResourses.RegistrarAuditora(1, this.Name, 4, Program.IdUsuario, "Guardar requerimiento de viaje", numeroRequerimiento);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message, "Error en el servidor.");
             }
@@ -1576,7 +1597,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         //SI ESTADO DE COMERCIAL ESTA APROBADO Y EL ESTADO DE CONTABILIDAD ESTA ATENDIDO
                         if (estadoJefatura == "APROBADO" && estadoContabilidad == "ATENDIDO")
                         {
-                            MessageBox.Show("Este requerimiento ya está aprobado por las diferentes áreas.", "Validación del Sistema");
+                            MessageBox.Show("Este requerimiento ya está aprobado por las diferentes áreas.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
@@ -1586,12 +1607,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 //SI EL ESTADO DE JEFATURA COMERCIAL ESTA APROBADO
                                 if (estadoJefatura == "APROBADO")
                                 {
-                                    MessageBox.Show("Este requerimiento ya ha sido aprobado por la jefatura del área comercial.", "Validación del Sistema");
+                                    MessageBox.Show("Este requerimiento ya ha sido aprobado por la jefatura del área comercial.", "Validación del Sistema", MessageBoxButtons.OK);
                                 }
                                 //SI EL ESTADO DE JEFATURA COMERCIAL ESTA ANULADO O EL ESTADO DE CONTABILIDAD ESTA ANULADA
                                 else if (estadoJefatura == "ANULADO" || estadoContabilidad == "ANULADO")
                                 {
-                                    MessageBox.Show("Este requerimiento ha sido desaprobado por el área comercial o el área contable.", "Validación del Sistema");
+                                    MessageBox.Show("Este requerimiento ha sido desaprobado por el área comercial o el área contable.", "Validación del Sistema", MessageBoxButtons.OK);
                                 }
                                 else
                                 {
@@ -1614,11 +1635,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un requerimiento para poder aprobarlo.", "Validación del Sistema");
+                    MessageBox.Show("Debe seleccionar un requerimiento para poder aprobarlo.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message, "Error en el servidor.");
             }
@@ -1661,13 +1683,15 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                MessageBox.Show("Requerimiento aprobado exitosamente.", "Validación del Sistema");
+                MessageBox.Show("Requerimiento aprobado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
                 BusquedaDependiente();
 
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(3, this.Name, 4, Program.IdUsuario, "Aprobar requerimiento de viaje", idRequerimiento);
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message);
             }
@@ -1683,10 +1707,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder anularlo.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un requerimiento para poder anularlo.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
+        //ANULAR REQUERIMIENTO
         private void btnProcederAnulacion_Click(object sender, EventArgs e)
         {
             //SI NO HAY UNA JUSTIFICACIÓN 
@@ -1704,13 +1729,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     //SI EL ESTADO DE LIQUIDACIÓN DE MI REQUERIMIENTO ES TRUE
                     if (estadoLiquidacion == true)
                     {
-                        MessageBox.Show("Este requerimiento tiene una liquidación hecha, por favor anular por la liquidación o en su defecto por el acta.", "Validación del Sistema");
+                        MessageBox.Show("Este requerimiento tiene una liquidación hecha, por favor anular por la liquidación o en su defecto por el acta.", "Validación del Sistema", MessageBoxButtons.OK);
                         txtJustificacionAnulacion.Text = "";
                         panleAnulacion.Visible = false;
                     }
                     else if (estadoReque == "ANULADO")
                     {
-                        MessageBox.Show("Este requerimiento ya se encuentra anulado.", "Validación del Sistema");
+                        MessageBox.Show("Este requerimiento ya se encuentra anulado.", "Validación del Sistema", MessageBoxButtons.OK);
                         txtJustificacionAnulacion.Text = "";
                         panleAnulacion.Visible = false;
                     }
@@ -1718,7 +1743,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     {
                         //CARGAR FUNCIÓN PARA RECUPERAR A LA JEFATURA O AL USUARIO ADMINISTRADOR
                         CargarJefaturaActual();
-
                         try
                         {
                             SqlConnection con = new SqlConnection();
@@ -1735,19 +1759,21 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MessageBox.Show("Requerimiento anulado exitosamente.", "Validación del Sistema");
+                            MessageBox.Show("Requerimiento anulado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
                             BusquedaDependiente();
                             panleAnulacion.Visible = false;
                             txtJustificacionAnulacion.Text = "";
 
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                             ClassResourses.RegistrarAuditora(2, this.Name, 4, Program.IdUsuario, "Anular requerimiento de viaje", idRequerimiento);
 
-                            Enviar("vcornejo@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
-                            Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
                         }
                         catch (Exception ex)
                         {
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                             ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                             MessageBox.Show(ex.Message);
                         }
@@ -1756,7 +1782,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("Debe ingresar una justificación para poder anular este requerimiento.", "Validación del Sistema");
+                MessageBox.Show("Debe ingresar una justificación para poder anular este requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -1786,7 +1812,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         //SI EL ESTADO DE HABILITACIÓN DE LA JEFATURA ES IGUAL A 1
                         if (estadoHabilitadoJefatura == 1)
                         {
-                            MessageBox.Show("Este requerimiento ya ha sido liberado.", "Validación del Sistema");
+                            MessageBox.Show("Este requerimiento ya ha sido liberado.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
@@ -1801,12 +1827,14 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             con.Close();
                             BusquedaDependiente();
 
-                            MessageBox.Show("Requerimiento liberado exitosamente.", "Validación del Sistema");
+                            MessageBox.Show("Requerimiento liberado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                             ClassResourses.RegistrarAuditora(14, this.Name, 4, Program.IdUsuario, "Liberar requerimiento de viaje", idRequerimiento);
                         }
                     }
                     catch (Exception ex)
                     {
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                         ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                         MessageBox.Show(ex.Message);
                     }
@@ -1814,10 +1842,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder liberarlo.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un requerimiento para poder liberarlo.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
+        //ABRIR PANEL DE EXPORTACION
         private void btnOpcionExportaciones_Click(object sender, EventArgs e)
         {
             if (panelExportacionOpciones.Visible == false)
@@ -1852,6 +1881,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -1876,6 +1906,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -1900,6 +1931,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -1924,6 +1956,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -1962,7 +1995,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     //SI EL REQUERIMIENTO TIENE LIQUIDACIÓN
                     if (estadoLiquidacion == true)
                     {
-                        MessageBox.Show("Este requerimiento ya tiene una liquidación hecha.", "Validación del Sistema");
+                        MessageBox.Show("Este requerimiento ya tiene una liquidación hecha.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     //SI LA FECHA DE TÉRMINO MÁS 10 DIAS ES MAYOR 
                     else if (fechaTermino < DateTime.Now && estadoHabilitadoJefatura == 0)
@@ -1980,10 +2013,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             con.Close();
                             BusquedaDependiente();
 
-                            MessageBox.Show("Este requerimiento se pasó de la cantidad de dias habilitados para poder generar la liquidación, por favor comunicar a su jefatura para que lo pueda liberar.", "Validación del Sistema");
+                            MessageBox.Show("Este requerimiento se pasó de la cantidad de dias habilitados para poder generar la liquidación, por favor comunicar a su jefatura para que lo pueda liberar.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         catch (Exception ex)
                         {
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                             ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                         }
                     }
@@ -2073,18 +2107,18 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         }
                         else
                         {
-                            MessageBox.Show("Debe tener la aprobación de la jefatura comercial o del área contable para poder continuar.", "Validación del Sistema");
+                            MessageBox.Show("Debe tener la aprobación de la jefatura comercial o del área contable para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Solo puede hacer el proceso el responsable de este.", "Validación del Sistema");
+                    MessageBox.Show("Solo puede hacer el proceso el responsable de este.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder generar una liquidación.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un requerimiento para poder generar una liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -2095,7 +2129,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             //SI HAY 3 O MÁS CLIENTES, YA NOS E PODRAN INGRESAR MÁS
             if (datalistadoClientesLiquidacion.RowCount >= 3)
             {
-                MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema");
+                MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -2122,7 +2156,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (datalistadoClientesLiquidacion.Rows.Count > 0)
             {
                 //MENSAJE DE CONFIRMACIÓN DE ELIMINACIÓN DE CLIENTES
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (resul == DialogResult.Yes)
                 {
                     //ACCIÓN DE REMOVER AL CLIENTE SELECCIOANDO
@@ -2158,7 +2192,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (datalistadoColaboradoresLiquidacion.Rows.Count > 0)
             {
                 //MENSAJE DE CONFIRMACIÓN DE ELIMINACIÓN DE CLIENTES
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if ((resul == DialogResult.Yes))
                 {
                     //SI EL COLABORADOR QUE SE QUIERE REMOVER ES EL USUARIO QUE ESTA CREANDO LA LIQUIDACIÓN
@@ -2353,7 +2387,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("No hay registro en el detalle para poder remover.", "Validación del Sistema");
+                MessageBox.Show("No hay registro en el detalle para poder remover.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -2435,31 +2469,31 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             if (rbNacionalLiquidacion.Checked == false && rbExteriorLiquidacion.Checked == false)
             {
-                MessageBox.Show("No se ha seleccionado el tipo de liquidación correctamente.", "Validación del Sistema");
+                MessageBox.Show("No se ha seleccionado el tipo de liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
                 if (datalistadoClientesLiquidacion.RowCount == 0 || datalistadoColaboradoresLiquidacion.RowCount == 0)
                 {
-                    MessageBox.Show("No se han cargado los clientes correctamnete.", "Validación del Sistema");
+                    MessageBox.Show("No se han cargado los clientes correctamnete.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
                     if (datalistadoDetallesLiquidacion.RowCount == 0)
                     {
-                        MessageBox.Show("No se han cargado los detalles de la liquidación correctamente.", "Validación del Sistema");
+                        MessageBox.Show("No se han cargado los detalles de la liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
                         if (txtMotivoViajeLiquidacion.Text == "" || txtItinerarioViajeLiqudiacion.Text == "")
                         {
-                            MessageBox.Show("No se ha cargado el itinerario o motivo de la liquidación.", "Validación del Sistema");
+                            MessageBox.Show("No se ha cargado el itinerario o motivo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
                             if (txtTotaLiquidaciones.Text == "" || txtSaldoLiquidaciones.Text == "")
                             {
-                                MessageBox.Show("No se ha cargado el total ni el saldo de la liquidación.", "Validación del Sistema");
+                                MessageBox.Show("No se ha cargado el total ni el saldo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                             }
                             else
                             {
@@ -2483,7 +2517,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             if (txtRazononObservaciones2.Text == "")
             {
-                MessageBox.Show("Debe ingresar un mensaje que justifique el requerimiento fuera de fecha.", "Validación del Sistema");
+                MessageBox.Show("Debe ingresar un mensaje que justifique el requerimiento fuera de fecha.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
@@ -2639,7 +2673,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MessageBox.Show("Se registró la liquidación exitosamente.", "Validación del Sistema");
+                        MessageBox.Show("Se registró la liquidación exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
                         //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
                         panelNuevaLiquidadcion.Visible = false;
@@ -2659,16 +2693,18 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         txtRazononObservaciones2.Text = "";
 
                         BusquedaDependiente();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                         ClassResourses.RegistrarAuditora(4, this.Name, 4, Program.IdUsuario, "Generar liquidación de viaje", numeroLiquidacion);
                     }
                     else
                     {
-                        MessageBox.Show("Debe ingresar las fechas correspondientes a la visita, si no se realizó la visita, debe colocar las fechas tentativas y no marcar el cuadro 'Asistió'.", "Validación del Sistema");
+                        MessageBox.Show("Debe ingresar las fechas correspondientes a la visita, si no se realizó la visita, debe colocar las fechas tentativas y no marcar el cuadro 'Asistió'.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message, "Error en el servidor.");
             }
@@ -2774,7 +2810,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Close();
                     }
 
-                    MessageBox.Show("Se registró el requerimiento exitosamente.", "Validación del Sistema");
+                    MessageBox.Show("Se registró el requerimiento exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
                     //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
                     panelNuevoRequerimiento.Visible = false;
@@ -2796,11 +2832,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     datalistadoTodasRequerimientos.Enabled = true;
 
                     BusquedaDependiente();
-                    ClassResourses.RegistrarAuditora(8, this.Name, 4, Program.IdUsuario, "Editar requerimiento de viaje", 0);
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(8, this.Name, 4, Program.IdUsuario, "Editar requerimiento de viaje", codigoRequerimeinto);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message, "Error en el servidor.");
             }
@@ -2885,15 +2923,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoClientes.DataSource = dt;
                     con.Close();
-
-                    datalistadoClientes.Columns[1].Visible = false;
-                    datalistadoClientes.Columns[3].Visible = false;
-                    datalistadoClientes.Columns[3].Visible = false;
-                    datalistadoClientes.Columns[5].Visible = false;
-
-                    datalistadoClientes.Columns[2].Width = 300;
-                    datalistadoClientes.Columns[4].Width = 150;
-                    datalistadoClientes.Columns[6].Width = 150;
+                    AjustarColumnasBusquedaClienteDcoumento(datalistadoClientes);
 
                 }
                 else if (cboBusquedaClientes.Text == "DOCUMENTO")
@@ -2910,19 +2940,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoClientes.DataSource = dt;
                     con.Close();
-
-                    datalistadoClientes.Columns[1].Visible = false;
-                    datalistadoClientes.Columns[3].Visible = false;
-                    datalistadoClientes.Columns[3].Visible = false;
-                    datalistadoClientes.Columns[5].Visible = false;
-
-                    datalistadoClientes.Columns[2].Width = 300;
-                    datalistadoClientes.Columns[4].Width = 150;
-                    datalistadoClientes.Columns[6].Width = 150;
+                    AjustarColumnasBusquedaClienteDcoumento(datalistadoClientes);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -2946,11 +2969,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoColaboradores.DataSource = dt;
                     con.Close();
-
-                    datalistadoColaboradores.Columns[1].Visible = false;
-
-                    datalistadoColaboradores.Columns[2].Width = 420;
-
+                    AjusteBusquedaCloba(datalistadoColaboradores);
                 }
                 else if (cboBusqeudaColaborador.Text == "DOCUMENTO")
                 {
@@ -2966,14 +2985,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoColaboradores.DataSource = dt;
                     con.Close();
-
-                    datalistadoColaboradores.Columns[1].Visible = false;
-
-                    datalistadoColaboradores.Columns[2].Width = 420;
+                    AjusteBusquedaCloba(datalistadoColaboradores);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -2997,16 +3014,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoBusquedaClietneLiquidacion.DataSource = dt;
                     con.Close();
-
-                    datalistadoBusquedaClietneLiquidacion.Columns[1].Visible = false;
-                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                    datalistadoBusquedaClietneLiquidacion.Columns[5].Visible = false;
-
-                    datalistadoBusquedaClietneLiquidacion.Columns[2].Width = 300;
-                    datalistadoBusquedaClietneLiquidacion.Columns[4].Width = 150;
-                    datalistadoBusquedaClietneLiquidacion.Columns[6].Width = 150;
-
+                    AjustarColumnasBusquedaClienteDcoumento(datalistadoBusquedaClietneLiquidacion);
                 }
                 else if (cboBusquedaClientesLiquidacion.Text == "DOCUMENTO")
                 {
@@ -3022,21 +3030,26 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoBusquedaClietneLiquidacion.DataSource = dt;
                     con.Close();
-
-                    datalistadoBusquedaClietneLiquidacion.Columns[1].Visible = false;
-                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                    datalistadoBusquedaClietneLiquidacion.Columns[3].Visible = false;
-                    datalistadoBusquedaClietneLiquidacion.Columns[5].Visible = false;
-
-                    datalistadoBusquedaClietneLiquidacion.Columns[2].Width = 300;
-                    datalistadoBusquedaClietneLiquidacion.Columns[4].Width = 150;
-                    datalistadoBusquedaClietneLiquidacion.Columns[6].Width = 150;
+                    AjustarColumnasBusquedaClienteDcoumento(datalistadoBusquedaClietneLiquidacion);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
+        }
+
+        //AJUSTAR MIS COLUMNAS DE MI BUSQUEDA DE CLIENTE
+        public void AjustarColumnasBusquedaClienteDcoumento(DataGridView DGV)
+        {
+            DGV.Columns[1].Visible = false;
+            DGV.Columns[3].Visible = false;
+            DGV.Columns[3].Visible = false;
+            DGV.Columns[5].Visible = false;
+            DGV.Columns[2].Width = 300;
+            DGV.Columns[4].Width = 150;
+            DGV.Columns[6].Width = 150;
         }
 
         //BUSQUEDA DE LOS COLABORADORES POR NOMBRE/APELLIDOS Y DNI
@@ -3058,11 +3071,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoBusquedaColaboradorLiquidacion.DataSource = dt;
                     con.Close();
-
-                    datalistadoBusquedaColaboradorLiquidacion.Columns[1].Visible = false;
-
-                    datalistadoBusquedaColaboradorLiquidacion.Columns[2].Width = 420;
-
+                    AjusteBusquedaCloba(datalistadoBusquedaColaboradorLiquidacion);
                 }
                 else if (cboBusquedaColaboradorLiquidacion.Text == "DOCUMENTO")
                 {
@@ -3078,16 +3087,21 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     da.Fill(dt);
                     datalistadoBusquedaColaboradorLiquidacion.DataSource = dt;
                     con.Close();
-
-                    datalistadoBusquedaColaboradorLiquidacion.Columns[1].Visible = false;
-
-                    datalistadoBusquedaColaboradorLiquidacion.Columns[2].Width = 420;
+                    AjusteBusquedaCloba(datalistadoBusquedaColaboradorLiquidacion);
                 }
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
+        }
+
+        //AJUSTAR MIS COLUMNAS DE MI BUSQUEDA DE COLABORADORES
+        public void AjusteBusquedaCloba(DataGridView DGV)
+        {
+            DGV.Columns[1].Visible = false;
+            DGV.Columns[2].Width = 420;
         }
 
         //VALIDACIÓN DE SOLO NGRESO DE NÚMEROS A MI DATAGRIDVIEW
@@ -3214,10 +3228,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
 
                 panelExportacionOpciones.Visible = false;
+
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(5, this.Name, 4, Program.IdUsuario, "Exportar listado de requerimientos de ventas EXCEL", 0);
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
         }
@@ -3232,7 +3249,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("MostrarRequerimientosVentasPorFecha_Excel", con);
+                cmd = new SqlCommand("RequerimientoViaje_MostrarPorFechaExcel", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@fechaInicio", DesdeFecha.Value);
                 cmd.Parameters.AddWithValue("@fechaTermino", HastaFecha.Value);
@@ -3326,26 +3343,15 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
 
                 panelExportacionOpciones.Visible = false;
+
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(5, this.Name, 4, Program.IdUsuario, "Exportar listado de requerimientos de ventas EXCEL", 0);
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
-        }
-
-        //MÉTODO PARA ENVIAR CORREOS POR LA ANULACIÓN DE UN REQUERIMIENTO
-        public void Enviar(string para, string asunto, string mensaje)
-        {
-            var outlokkApp = new Microsoft.Office.Interop.Outlook.Application();
-            var mailItem = (Microsoft.Office.Interop.Outlook.MailItem)outlokkApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
-            mailItem.To = para;
-            mailItem.Subject = asunto;
-            mailItem.Body = mensaje;
-
-            mailItem.Send();
-            System.Runtime.InteropServices.Marshal.FinalReleaseComObject(mailItem);
-            System.Runtime.InteropServices.Marshal.FinalReleaseComObject(outlokkApp);
         }
 
         //ELIMINAR UN COLABORADOR SELECCIOANDO
@@ -3355,7 +3361,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (datalistadoColaboradoresLiquidacion.Rows.Count > 0)
             {
                 //MENSAJE DE CONFIRMACIÓN DE ELIMINACIÓN DE CLIENTES
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (resul == DialogResult.Yes)
                 {
                     //ACCIÓN DE REMOVER AL CLIENTE SELECCIOANDO
@@ -3439,15 +3445,18 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                 MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(5, this.Name, 4, Program.IdUsuario, "Exportar requerimiento de viaje PDF", idRequerimiento);
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        //LIMPIEZA DE LA CAJA BUSQUEDA DEL RESPONSABLE
         private void cboBusqeuda_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBusquedaResponsable.Text = "";

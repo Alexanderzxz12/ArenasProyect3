@@ -1,21 +1,22 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Modulos.ManGeneral;
-using SpreadsheetLight;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Spreadsheet;
-using CrystalDecisions.CrystalReports.Engine;
-using System.IO;
-using CrystalDecisions.Shared;
 
 namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 {
@@ -78,60 +79,87 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //MOSTRAR ACTAS AL INCIO 
         public void MostrarActasPorFecha(DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarActasPorFecha_Jefatura", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasActas.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneralActas(datalistadoTodasActas);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarActasPorFecha_Jefatura", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasActas.DataSource = dt;
+                con.Close();
+                RedimensionarListadoGeneralActas(datalistadoTodasActas);
+            }
+            catch(Exception ex)
+            {                
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //MOSTRAR ACTAS POR RESPONSABLE
         public void MostrarActasResponsable(string resopnsable, DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarActasPorResponsable", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@responsable", resopnsable);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasActas.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneralActas(datalistadoTodasActas);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarActasPorResponsable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@responsable", resopnsable);
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasActas.DataSource = dt;
+                con.Close();
+                RedimensionarListadoGeneralActas(datalistadoTodasActas);
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //MOSTRAR ACTAS POR CLIENTE
         public void MostrarActasCliente(string cliente, DateTime fechaInicio, DateTime fechaTermino)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarActasPorCliente", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@cliente", cliente);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasActas.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneralActas(datalistadoTodasActas);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarActasPorCliente", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@cliente", cliente);
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTodasActas.DataSource = dt;
+                con.Close();
+                RedimensionarListadoGeneralActas(datalistadoTodasActas);
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
         }
 
         //FUNCION PARA REDIMENSIONAR MIS LISTADOS
@@ -204,6 +232,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
@@ -257,34 +287,48 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             if (datalistadoTodasActas.CurrentRow != null)
             {
-                if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE" || datalistadoTodasActas.SelectedCells[13].Value.ToString() == "CULMINADO")
+                try
                 {
-                    string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
-                    frm.lblCodigo.Text = codigoActaReporte;
+                    string codigoActaReporte = "";
 
-                    frm.Show();
+                    if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE" || datalistadoTodasActas.SelectedCells[13].Value.ToString() == "CULMINADO")
+                    {
+                        codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
+                        frm.lblCodigo.Text = codigoActaReporte;
+
+                        frm.Show();
+                    }
+                    else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                    {
+                        codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
+                        frm.lblCodigo.Text = codigoActaReporte;
+
+                        frm.Show();
+                    }
+                    else
+                    {
+                        codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
+                        frm.lblCodigo.Text = codigoActaReporte;
+
+                        frm.Show();
+                    }
+
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(6, this.Name, 6, Program.IdUsuario, "Visualización del acta de viaje PDF", Convert.ToInt32(codigoActaReporte));
                 }
-                else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                catch(Exception ex)
                 {
-                    string codigoCotizacionReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-
-                    frm.Show();
-                }
-                else
-                {
-                    string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
-                    frm.lblCodigo.Text = codigoActaReporte;
-
-                    frm.Show();
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                    MessageBox.Show(ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un acta para poder generar el PDF.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un acta para poder generar el PDF.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -304,9 +348,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         string estadoActa = datalistadoTodasActas.SelectedCells[13].Value.ToString();
 
-                        if (estadoActa == "APROBADO")
+                        if (estadoActa == "APROBADO" || estadoActa == "ANULADO")
                         {
-                            MessageBox.Show("Esta acta ya está aprobado.", "Validación del Sistema");
+                            MessageBox.Show("Esta acta ya está aprobado o anulada.", "Validación del Sistema",MessageBoxButtons.OK);
                         }
                         else
                         {
@@ -327,48 +371,34 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                     cmd.ExecuteNonQuery();
                                     con.Close();
 
-                                    MessageBox.Show("Acta aprobado exitosamente.", "Validación del Sistema");
+                                    MessageBox.Show("Acta aprobado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
                                     MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
 
-                                    //INGRESO DE LA TABLA AUDITORA
-                                    con.Open();
-                                    cmd = new SqlCommand("InsertarDatosTablaAuditora_Comercial", con);
-                                    cmd.CommandType = CommandType.StoredProcedure;
-
-                                    cmd.Parameters.AddWithValue("@idUsuario", Program.IdUsuario);
-                                    cmd.Parameters.AddWithValue("@mantenimiento", "Área comercial - Menú Actas - Actas de Visita");
-                                    cmd.Parameters.AddWithValue("@accion", "Aprobación de una acta de visita número " + idActa);
-                                    cmd.Parameters.AddWithValue("@descripcion", "Acta de visita aprobada por el usuario " + Program.UnoNombreUnoApellidoUsuario + " en la fecha " + DateTime.Now);
-                                    cmd.Parameters.AddWithValue("@maquina", Environment.MachineName);
-                                    cmd.Parameters.AddWithValue("@fechaAccion", DateTime.Now);
-                                    cmd.Parameters.AddWithValue("@nameUsuarioSesion", Environment.UserName);
-                                    cmd.Parameters.AddWithValue("@codigoRequerimiento", idRequerimiento);
-                                    cmd.Parameters.AddWithValue("@codigoLiquidacion", idLiquidacion);
-                                    cmd.Parameters.AddWithValue("@codigoActa", idActa);
-                                    cmd.Parameters.AddWithValue("@codigoLineaTrabajo", DBNull.Value);
-                                    cmd.ExecuteNonQuery();
-                                    con.Close();
+                                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                    ClassResourses.RegistrarAuditora(6, this.Name, 6, Program.IdUsuario, "Aprobación de acta de viaje.", Convert.ToInt32(idActa));
                                 }
                                 catch (Exception ex)
                                 {
+                                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                    ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                                     MessageBox.Show(ex.Message);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Esta acta aún no se ha culminado.", "Validación del Sistema");
+                                MessageBox.Show("Esta acta aún no se ha culminado.", "Validación del Sistema",MessageBoxButtons.OK);
                             }
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Esta acta aún no esta validada ni culminada.", "Validación del Sistema");
+                    MessageBox.Show("Esta acta aún no esta validada ni culminada.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una acta para poder aprobarla.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar una acta para poder aprobarla.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -387,37 +417,47 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 if (datalistadoTodasActas.CurrentRow != null)
                 {
-                    if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE")
+                    try
                     {
-                        string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
-                        frm.lblCodigo.Text = codigoActaReporte;
+                        string codigoActaReporte = "";
 
-                        frm.Show();
+                        if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "PENDIENTE")
+                        {
+                            codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarActa frm = new Visualizadores.VisualizarActa();
+                            frm.lblCodigo.Text = codigoActaReporte;
+                            frm.Show();
+                        }
+                        else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                        {
+                            codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
+                            frm.lblCodigo.Text = codigoActaReporte;
+                            frm.Show();
+                        }
+                        else
+                        {
+                            codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
+                            Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
+                            frm.lblCodigo.Text = codigoActaReporte;
+                            frm.Show();
+                        }
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(6, this.Name, 6, Program.IdUsuario, "Visualización del acta de viaje PDF", Convert.ToInt32(codigoActaReporte));
                     }
-                    else if (datalistadoTodasActas.SelectedCells[13].Value.ToString() == "APROBADO")
+                    catch(Exception ex)
                     {
-                        string codigoCotizacionReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarActaAprobada frm = new Visualizadores.VisualizarActaAprobada();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
-
-                        frm.Show();
-                    }
-                    else
-                    {
-                        string codigoActaReporte = datalistadoTodasActas.Rows[datalistadoTodasActas.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarActaDesaprobada frm = new Visualizadores.VisualizarActaDesaprobada();
-                        frm.lblCodigo.Text = codigoActaReporte;
-
-                        frm.Show();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                        MessageBox.Show(ex.Message);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una acta para poder generar el PDF.", "Validación del Sistema");
+                    MessageBox.Show("Debe seleccionar una acta para poder generar el PDF.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
             }
-
         }
 
         //FUNCION PARA PROCEDER A ANULAR MI ACTA, LIQUIDACION Y REQUERIMITNO
@@ -428,44 +468,67 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 int idActa = Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString());
                 int idLiquidacion = Convert.ToInt32(datalistadoTodasActas.SelectedCells[14].Value.ToString());
                 int idRequerimiento = Convert.ToInt32(datalistadoTodasActas.SelectedCells[15].Value.ToString());
+                string estadoActa = datalistadoTodasActas.SelectedCells[13].Value.ToString();
 
                 DialogResult boton = MessageBox.Show("¿Realmente desea anular esta acta?. Se anulará el requerimeinto así como la liquidación asociada ha esta acta.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    try
+                    if(estadoActa == "APROBADO" || estadoActa == "ANULADO")
                     {
-                        SqlConnection con = new SqlConnection();
-                        SqlCommand cmd = new SqlCommand();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("DesaprobarActa", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idacta", idActa);
-                        cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
-                        cmd.Parameters.AddWithValue("@idrequerimiento", idRequerimiento);
-                        cmd.Parameters.AddWithValue("@mensajeAnulado", txtJustificacionAnulacion.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        MessageBox.Show("Acta, liquidación y requerimiento asociado a esta, anuladas exitosamente.", "Validación del Sistema");
-                        MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
-
-                        panleAnulacion.Visible = false;
-                        txtJustificacionAnulacion.Text = "";
-
-                        Enviar("vcornejo@arenassrl.com.pe", "ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now);
+                        MessageBox.Show("No se puede anular esta acta ya que se encuentra aprobada o anulada.", "Validación del Sistema",MessageBoxButtons.OK);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
+                        if(txtJustificacionAnulacion.Text != "")
+                        {
+                            try
+                            {
+                                SqlConnection con = new SqlConnection();
+                                SqlCommand cmd = new SqlCommand();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                cmd = new SqlCommand("DesaprobarActa", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@idacta", idActa);
+                                cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
+                                cmd.Parameters.AddWithValue("@idrequerimiento", idRequerimiento);
+                                cmd.Parameters.AddWithValue("@mensajeAnulado", txtJustificacionAnulacion.Text);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+
+                                MessageBox.Show("Acta, liquidación y requerimiento asociado a esta, anuladas exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                                MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
+
+                                panleAnulacion.Visible = false;
+                                txtJustificacionAnulacion.Text = "";
+
+                                ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL ACTA N°. " + idActa, "Correo de verificación de anulación de una acta por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                                ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL ACTA N°. " + idActa, "Correo de verificación de anulación de una acta por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(2, this.Name, 6, Program.IdUsuario, "Anular acta de viaje.", Convert.ToInt32(idActa));
+                            }
+                            catch (Exception ex)
+                            {
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe ingresar una justificación para poder anular el acta.", "Validación del Sistema", MessageBoxButtons.OK);
+                        }
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un acta para poder anularla.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un acta para poder anularla.", "Validación del Sistema", MessageBoxButtons.OK);
             }
+
             txtJustificacionAnulacion.Text = "";
+            panleAnulacion.Visible = false;
         }
 
         //BOTON PARA RETROCEDER DE LA ANULACION
@@ -478,92 +541,90 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //FUNCIO PARA EXPORTAR TODOS LOS DATOS POR EXCEL
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            MostrarExcel();
-
-            SLDocument sl = new SLDocument();
-            SLStyle style = new SLStyle();
-            SLStyle styleC = new SLStyle();
-
-            //COLUMNAS
-            sl.SetColumnWidth(1, 15);
-            sl.SetColumnWidth(2, 15);
-            sl.SetColumnWidth(3, 20);
-            sl.SetColumnWidth(4, 20);
-            sl.SetColumnWidth(5, 20);
-            sl.SetColumnWidth(6, 50);
-            sl.SetColumnWidth(7, 35);
-            sl.SetColumnWidth(8, 40);
-            sl.SetColumnWidth(9, 30);
-
-            //CABECERA
-            style.Font.FontSize = 11;
-            style.Font.Bold = true;
-            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-            style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
-            style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            //FILAS
-            styleC.Font.FontSize = 10;
-            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-
-            styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            int ic = 1;
-            foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+            try
             {
-                sl.SetCellValue(1, ic, column.HeaderText.ToString());
-                sl.SetCellStyle(1, ic, style);
-                ic++;
-            }
+                MostrarExcel();
 
-            int ir = 2;
-            foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                SLDocument sl = new SLDocument();
+                SLStyle style = new SLStyle();
+                SLStyle styleC = new SLStyle();
+
+                //COLUMNAS
+                sl.SetColumnWidth(1, 15);
+                sl.SetColumnWidth(2, 15);
+                sl.SetColumnWidth(3, 20);
+                sl.SetColumnWidth(4, 20);
+                sl.SetColumnWidth(5, 20);
+                sl.SetColumnWidth(6, 50);
+                sl.SetColumnWidth(7, 35);
+                sl.SetColumnWidth(8, 40);
+                sl.SetColumnWidth(9, 30);
+
+                //CABECERA
+                style.Font.FontSize = 11;
+                style.Font.Bold = true;
+                style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+                style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+                style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                //FILAS
+                styleC.Font.FontSize = 10;
+                styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+                styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                int ic = 1;
+                foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+                {
+                    sl.SetCellValue(1, ic, column.HeaderText.ToString());
+                    sl.SetCellStyle(1, ic, style);
+                    ic++;
+                }
+
+                int ir = 2;
+                foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                {
+                    sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+                    sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+                    sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+                    sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+                    sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
+                    sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
+                    sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
+                    sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
+                    sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
+                    sl.SetCellStyle(ir, 1, styleC);
+                    sl.SetCellStyle(ir, 2, styleC);
+                    sl.SetCellStyle(ir, 3, styleC);
+                    sl.SetCellStyle(ir, 4, styleC);
+                    sl.SetCellStyle(ir, 5, styleC);
+                    sl.SetCellStyle(ir, 6, styleC);
+                    sl.SetCellStyle(ir, 7, styleC);
+                    sl.SetCellStyle(ir, 8, styleC);
+                    sl.SetCellStyle(ir, 9, styleC);
+                    sl.SetCellStyle(ir, 10, styleC);
+                    ir++;
+                }
+
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                sl.SaveAs(desktopPath + @"\Reporte de actas.xlsx");
+                MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(5, this.Name, 6, Program.IdUsuario, "Exportar listado de liquidaciones de ventas EXCEL", 0);
+            }
+            catch(Exception ex)
             {
-                sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
-                sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
-                sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
-                sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
-                sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
-                sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
-                sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
-                sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
-                sl.SetCellValue(ir, 9, row.Cells[8].Value.ToString());
-                sl.SetCellStyle(ir, 1, styleC);
-                sl.SetCellStyle(ir, 2, styleC);
-                sl.SetCellStyle(ir, 3, styleC);
-                sl.SetCellStyle(ir, 4, styleC);
-                sl.SetCellStyle(ir, 5, styleC);
-                sl.SetCellStyle(ir, 6, styleC);
-                sl.SetCellStyle(ir, 7, styleC);
-                sl.SetCellStyle(ir, 8, styleC);
-                sl.SetCellStyle(ir, 9, styleC);
-                sl.SetCellStyle(ir, 10, styleC);
-                ir++;
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
             }
-
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de actas.xlsx");
-            MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
-        }
-
-        //MÉTODO PARA ENVIAR CORREOS POR LA ANULACIÓN DE UN REQUERIMIENTO
-        public void Enviar(string para, string asunto, string mensaje)
-        {
-            var outlokkApp = new Microsoft.Office.Interop.Outlook.Application();
-            var mailItem = (Microsoft.Office.Interop.Outlook.MailItem)outlokkApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
-            mailItem.To = para;
-            mailItem.Subject = asunto;
-            mailItem.Body = mensaje;
-
-            mailItem.Send();
-            System.Runtime.InteropServices.Marshal.FinalReleaseComObject(mailItem);
-            System.Runtime.InteropServices.Marshal.FinalReleaseComObject(outlokkApp);
         }
 
         //FUNCION PARA ABRIR EL MANUAL DE USUARIO
