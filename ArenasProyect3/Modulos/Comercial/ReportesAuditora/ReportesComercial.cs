@@ -62,21 +62,43 @@ namespace ArenasProyect3.Modulos.Comercial
             tbReportesReque.Visible = true;
             panelReportesRequerimiento.Visible = true;
 
+            tabControl1.Visible = false;
+            tabControl2.Visible = false;
 
             panelReportesLiquidaciones.Visible = false;
             panelReportesActas.Visible = false;
 
-
-            //DEFINICIÓN PARA LAS FECHAS DE LA SECCIÓN DE GRAFICOS CON REQUERIMIENTOS
-            DateTime fechaactual = DateTime.Now;
-            DateTime primerdiaMes = new DateTime(fechaactual.Year, fechaactual.Month, 1).AddMonths(-1);
-            DateTime ultimodiaMes = new DateTime(fechaactual.Year, fechaactual.Month, 1).AddMonths(1).AddDays(-1); DesdeGrafi.Value = primerdiaMes;
-            HastaGrafi.Value = ultimodiaMes;
-
+            //METODO QUE ESTABLECER LAS FECHAS
+            Establecer_Fechas(DesdeGrafi,HastaGrafi);
+            Establecer_Fechas(DesdeGrafiLiqui, HastaGrafiLiqui);
+            Establecer_Fechas(DesdeGrafiActas, HastaGrafiActas);
+        
             //CARGA DE GRAFICOS A TRAVES DE LAS FECHAS ESTABLECIDAS
             Requerimientos_MostrarGraficoBarras(DesdeGrafi.Value, HastaGrafi.Value);
             Requerimientos_MostrarGraficoCircular(DesdeGrafi.Value, HastaGrafi.Value);
 
+            //CARGA DE GRAFICOS DE LIQUIDACIONES A TRAVES DE LAS FECHAS ESTABLECIDAS
+            Liquidaciones_MostrarGraficoBarras(DesdeGrafiLiqui.Value,HastaGrafiLiqui.Value);
+            Liquidaciones_MostrarGraficoCircular(DesdeGrafiLiqui.Value,HastaGrafiLiqui.Value);
+
+            //CARGA DE GRAFICOS DE ACTAS A TRAVES DE LAS FECHAS ESTABLECIDAS
+            Actas_MostrarGraficoBarras(DesdeGrafiActas.Value, HastaGrafiActas.Value);
+            Actas_MostrarGraficoCircular(DesdeGrafiActas.Value, HastaGrafiActas.Value);
+        }
+
+        //METODO PARA DEFINIR LAS FECHAS DE LOS GRAFICOS
+        public void Establecer_Fechas(DateTimePicker Desde, DateTimePicker Hasta)
+        {
+            DateTime fechaactual = DateTime.Now;
+
+            DateTime primerdiaMes = new DateTime(fechaactual.Year, fechaactual.Month, 1).AddMonths(-1);
+            DateTime ultimodiaMes = new DateTime(fechaactual.Year, fechaactual.Month, 1).AddMonths(1).AddDays(-1);
+
+            //PRIMER DIA DEL MES ANTERIOR
+            Desde.Value = primerdiaMes;
+
+            //ULTIMO DIA DEL MES ACTUAL
+            Hasta.Value = ultimodiaMes;
         }
 
         //METODO QUE AGREGAR LOS ITEMS A MI COMBOBOX DE SELECCION DE TIPOS
@@ -1826,6 +1848,7 @@ namespace ArenasProyect3.Modulos.Comercial
 
         private void btnReporteLiquidaciones_Click(object sender, EventArgs e)
         {
+            tabControl1.Visible = true;
             panelReportesLiquidaciones.Visible = true;
 
             tbReportesReque.Visible = false;
@@ -3235,13 +3258,169 @@ namespace ArenasProyect3.Modulos.Comercial
                 , ckPendienteLiqui, ckAnuladoLiqui, ckliquidadoLiqui, ckporliquidarLiqui);
         }
 
+        //////-----------------------------------------------------
+        ///SECCIÓN DE Liquidaciones CON GRAFICOS
+        ///
+        
+        //CARGA DE DATOS PARA EL GRAFICO DE BARRAS
+        public void Liquidaciones_MostrarGraficoBarras(DateTime Desde, DateTime Hasta)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("ReporteComercial_MostrarLiquidacionesXGrafico", con);
+                cmd.Parameters.AddWithValue("@fechadesde", Desde);
+                cmd.Parameters.AddWithValue("@fechahasta", Hasta);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                con.Close();
+
+
+                if (dt.Rows.Count > 0)
+                {
+                    //SE TOMA LA PRIMERA FILA DEL DATABLE 
+                    DataRow row = dt.Rows[0];
+
+                    //LIMPIEZA DE LAS SERIES PARA EVITAR DUPLICADOS
+                    foreach (var serie in new[] { "Aprobado", "Pendiente", "Anulados" })
+                    {
+                        chBarrasTotalLiquiXEstado.Series[serie].Points.Clear();
+                    }
+
+                    //OBTENCION DE LOS VALORES DE FILA A TRAVES DE SUS RESPECTIVAS COLUMNAS
+                    int aprobados = Convert.ToInt32(row["LiquidacionesAprobadas"]);
+                    int pendientes = Convert.ToInt32(row["LiquidacionesPendientes"]);
+                    int desaprobados = Convert.ToInt32(row["LiquidacionesAnuladas"]);
+                    int total = aprobados + pendientes + desaprobados;
+
+                    //AGREGAR LOS VALORES A CADA SERIE CORRESPONDIENTE
+                    chBarrasTotalLiquiXEstado.Series["Aprobado"].Points.AddY(aprobados);
+                    chBarrasTotalLiquiXEstado.Series["Pendiente"].Points.AddY(pendientes);
+                    chBarrasTotalLiquiXEstado.Series["Anulados"].Points.AddY(desaprobados);
+
+
+                    //RECORRIDO DE TODAS LAS SERIES PARA AÑADIR LAS ETIQUETAS DE CADA BARRA (VALOR + PORCENTAJE)
+                    foreach (var serie in chBarrasTotalLiquiXEstado.Series)
+                    {
+                        if (serie.Points.Count > 0)
+                        {
+                            //CANTIDAD LIQUIDACIONES DEL ESTADO X TOTAL CANTIDAD DE REQUERIMIENTOS / DIVIDIDO ENTRE 100
+                            int valor = (int)serie.Points[0].YValues[0];
+                            double porcentaje = total > 0
+                                ? (Convert.ToDouble(valor) / total) * 100
+                                : 0;
+
+                            serie.Points[0].Label = $"{valor} ({porcentaje:0}%)";
+
+                            serie.LegendText = $"{serie.Name}: {valor} ({porcentaje:0}%)";
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //CARGA DE DATOS PARA EL GRAFICO CIRCULAR
+        public void Liquidaciones_MostrarGraficoCircular(DateTime Desde, DateTime Hasta)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("ReporteComercial_MostrarLiquidacionesXGrafico", con);
+                cmd.Parameters.AddWithValue("@fechadesde", Desde);
+                cmd.Parameters.AddWithValue("@fechahasta", Hasta);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                con.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+
+                    int aprobados = Convert.ToInt32(row["LiquidacionesAprobadas"]);
+                    int pendientes = Convert.ToInt32(row["LiquidacionesPendientes"]);
+                    int desaprobados = Convert.ToInt32(row["LiquidacionesAnuladas"]);
+                    int total = aprobados + pendientes + desaprobados;
+
+                    //USO DE 1 SOLA SERIE DEL GRAFICO
+                    var serie = chCircularTotalLiquiXEstado.Series["Estados"];
+                    serie.Points.Clear();
+
+                    //AGREGADO DE PUNTOS PARA LA SERIE (PORCIONES DEL GRAFICO)
+                    serie.Points.AddXY("Aprobados", aprobados);
+                    serie.Points.AddXY("Pendientes", pendientes);
+                    serie.Points.AddXY("Anulados", desaprobados);
+
+                    //COLOR PARA LAS PORCIONES DEL GRAFICO
+                    serie.Points[0].Color = System.Drawing.Color.SeaGreen;
+                    serie.Points[1].Color = System.Drawing.Color.Goldenrod;
+                    serie.Points[2].Color = System.Drawing.Color.Firebrick;
+
+                    //MUESTRA DE ETIQUETAS CON VALOR + PORCENTAJE
+                    if (total > 0)
+                    {
+                        foreach (var point in serie.Points)
+                        {
+                            //ejem: Cantidad de aprobados / Dividios Cantidad de Liquidaciones X multiplicados por 100
+                            double porcentaje = (point.YValues[0] / total) * 100;
+
+                            point.Label = $"{point.YValues[0]} ({porcentaje:0}%)";
+
+                            point.LegendText = $"{point.AxisLabel}: {point.YValues[0]} ({porcentaje:0}%)";
+
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //EVENTO DEL BOTON QUE REALIZARA LA VISUALIZACIÓN DE LOS GRAFICOS CON DATOS
+        private void btnMostrarGraficoLiqui_Click(object sender, EventArgs e)
+        {
+            if(DesdeGrafiLiqui.Value.Date > HastaGrafi.Value.Date)
+            {
+                MessageBox.Show("Verifique las fechas: la fecha 'Desde' debe ser menor o igual a la fecha 'Hasta'", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                Liquidaciones_MostrarGraficoBarras(DesdeGrafiLiqui.Value,HastaGrafiLiqui.Value);
+                Liquidaciones_MostrarGraficoCircular(DesdeGrafiLiqui.Value,HastaGrafiLiqui.Value);
+            }
+        }
+
         //REPORTES DE ACTAS---------------------------------------------------------------
         //HABILITAR ACTAS
 
         private void btnReportesActas_Click(object sender, EventArgs e)
         {
+            tabControl2.Visible = true;
             panelReportesActas.Visible = true;
 
+            tabControl1.Visible = false;
             tbReportesReque.Visible = false;
             panelReportesRequerimiento.Visible = false;
             panelReportesLiquidaciones.Visible = false;
@@ -4136,6 +4315,161 @@ namespace ArenasProyect3.Modulos.Comercial
         {
             MostrarActasPor_Descripcion(DesdeActas.Value, HastaActas.Value, cboCriterioBusquedaActas.Text, txtBusquedaActas.Text, datalistadoActas);
         }
+
+        //////-----------------------------------------------------
+        ///SECCIÓN DE ACTAS CON GRAFICOS
+        ///
+
+        //CARGA DE DATOS PARA EL GRAFICO DE BARRAS
+        public void Actas_MostrarGraficoBarras(DateTime Desde, DateTime Hasta)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("ReporteComercial_MostrarActassXGrafico", con);
+                cmd.Parameters.AddWithValue("@fechadesde", Desde);
+                cmd.Parameters.AddWithValue("@fechahasta", Hasta);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                con.Close();
+
+
+                if (dt.Rows.Count > 0)
+                {
+                    //SE TOMA LA PRIMERA FILA DEL DATABLE 
+                    DataRow row = dt.Rows[0];
+
+                    //LIMPIEZA DE LAS SERIES PARA EVITAR DUPLICADOS
+                    foreach (var serie in new[] { "Aprobado", "Culminadas", "Pendientes" })
+                    {
+                        chBarrasTotalActasXEstado.Series[serie].Points.Clear();
+                    }
+
+                    //OBTENCION DE LOS VALORES DE FILA A TRAVES DE SUS RESPECTIVAS COLUMNAS
+                    int aprobados = Convert.ToInt32(row["ActasAprobadoas"]);
+                    int pendientes = Convert.ToInt32(row["ActasCulminadas"]);
+                    int desaprobados = Convert.ToInt32(row["ActasPendientes"]);
+                    int total = aprobados + pendientes + desaprobados;
+
+                    //AGREGAR LOS VALORES A CADA SERIE CORRESPONDIENTE
+                    chBarrasTotalActasXEstado.Series["Aprobado"].Points.AddY(aprobados);
+                    chBarrasTotalActasXEstado.Series["Culminadas"].Points.AddY(pendientes);
+                    chBarrasTotalActasXEstado.Series["Pendientes"].Points.AddY(desaprobados);
+
+
+                    //RECORRIDO DE TODAS LAS SERIES PARA AÑADIR LAS ETIQUETAS DE CADA BARRA (VALOR + PORCENTAJE)
+                    foreach (var serie in chBarrasTotalActasXEstado.Series)
+                    {
+                        if (serie.Points.Count > 0)
+                        {
+                            //CANTIDAD LIQUIDACIONES DEL ESTADO X TOTAL CANTIDAD DE REQUERIMIENTOS / DIVIDIDO ENTRE 100
+                            int valor = (int)serie.Points[0].YValues[0];
+                            double porcentaje = total > 0
+                                ? (Convert.ToDouble(valor) / total) * 100
+                                : 0;
+
+                            serie.Points[0].Label = $"{valor} ({porcentaje:0}%)";
+
+                            serie.LegendText = $"{serie.Name}: {valor} ({porcentaje:0}%)";
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //CARGA DE DATOS PARA EL GRAFICO CIRCULAR
+        public void Actas_MostrarGraficoCircular(DateTime Desde, DateTime Hasta)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("ReporteComercial_MostrarActassXGrafico", con);
+                cmd.Parameters.AddWithValue("@fechadesde", Desde);
+                cmd.Parameters.AddWithValue("@fechahasta", Hasta);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                con.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+
+                    int aprobados = Convert.ToInt32(row["ActasAprobadoas"]);
+                    int pendientes = Convert.ToInt32(row["ActasCulminadas"]);
+                    int desaprobados = Convert.ToInt32(row["ActasPendientes"]);
+                    int total = aprobados + pendientes + desaprobados;
+
+                    //USO DE 1 SOLA SERIE DEL GRAFICO
+                    var serie = chCircularTotalActasXEstado.Series["Estados"];
+                    serie.Points.Clear();
+
+                    //AGREGADO DE PUNTOS PARA LA SERIE (PORCIONES DEL GRAFICO)
+                    serie.Points.AddXY("Aprobados", aprobados);
+                    serie.Points.AddXY("Culminadas", pendientes);
+                    serie.Points.AddXY("Pendientes", desaprobados);
+
+                    //COLOR PARA LAS PORCIONES DEL GRAFICO
+                    serie.Points[0].Color = System.Drawing.Color.SeaGreen;
+                    serie.Points[1].Color = System.Drawing.Color.Goldenrod;
+                    serie.Points[2].Color = System.Drawing.Color.Firebrick;
+
+                    //MUESTRA DE ETIQUETAS CON VALOR + PORCENTAJE
+                    if (total > 0)
+                    {
+                        foreach (var point in serie.Points)
+                        {
+                            //ejem: Cantidad de aprobados / Dividios Cantidad de Actas X multiplicados por 100
+                            double porcentaje = (point.YValues[0] / total) * 100;
+
+                            point.Label = $"{point.YValues[0]} ({porcentaje:0}%)";
+
+                            point.LegendText = $"{point.AxisLabel}: {point.YValues[0]} ({porcentaje:0}%)";
+
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnMostrarGraficoActas_Click(object sender, EventArgs e)
+        {
+            if (DesdeGrafiActas.Value.Date > HastaGrafiActas.Value.Date)
+            {
+                MessageBox.Show("Verifique las fechas: la fecha 'Desde' debe ser menor o igual a la fecha 'Hasta'", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                Actas_MostrarGraficoBarras(DesdeGrafiActas.Value, HastaGrafiActas.Value);
+                Actas_MostrarGraficoCircular(DesdeGrafiActas.Value, HastaGrafiActas.Value);
+            }
+        }
+
+     
     }
      
 }
