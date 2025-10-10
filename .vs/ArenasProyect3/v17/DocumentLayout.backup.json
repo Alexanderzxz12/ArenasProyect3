@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\comercial\\reportesauditora\\reportescomercial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\reportesauditora\\reportescomercial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\comercial\\reportesauditora\\reportescomercial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\reportesauditora\\reportescomercial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\comercial\\reportesauditora\\reportescomercial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\reportesauditora\\reportescomercial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\comercial\\reportesauditora\\reportescomercial.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ReportesComercial.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\ReportesAuditora\\ReportesComercial.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\ReportesAuditora\\ReportesComercial.cs",
@@ -67,17 +67,18 @@
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\ReportesAuditora\\ReportesComercial.Designer.cs",
               "ViewState": "AgIAACwHAAAAAAAAAADwv0QHAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T15:22:28.905Z"
+              "WhenOpened": "2025-09-18T15:22:28.905Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ReportesComercial.cs",
               "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\ReportesAuditora\\ReportesComercial.cs",
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\ReportesAuditora\\ReportesComercial.cs",
               "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\ReportesAuditora\\ReportesComercial.cs",
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\ReportesAuditora\\ReportesComercial.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGsAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T19:33:42.26Z",
               "EditorCaption": ""
