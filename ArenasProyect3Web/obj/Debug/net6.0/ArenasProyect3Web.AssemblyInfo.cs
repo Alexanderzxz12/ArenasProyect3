@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArenasProyect3Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9342ae2ab342c14b61b30f229419788ff9017e03")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cb247de29f6129ef79d3ed51c748b22e9a0e05b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArenasProyect3Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArenasProyect3Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
