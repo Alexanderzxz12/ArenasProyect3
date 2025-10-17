@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,6 +31,14 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private Cursor curAnterior = null;
         string ruta = Manual.manualAreaComercial;
         int idJefatura = 0;
+
+        //VARIABLES PARA LAS VALIDACIONES
+        bool filasvacias;
+        bool fechasvacias;
+        bool contactosvacios;
+
+
+        List<string> asistentes = new List<string>();
 
         //CONSTRUCTOR DEL MANTENIMIENTO - LIQUIDACION DE VENTA
         public LiquidacionVenta()
@@ -215,13 +224,25 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 SqlDataAdapter data = new SqlDataAdapter(comando);
                 DataTable dt = new DataTable();
                 data.Fill(dt);
-                cbo.DisplayMember = "Descripcion";
-                cbo.ValueMember = "IdDatosAnexosClienteContacto";
-                DataRow row = dt.Rows[0];
-                lblTelefono.Text = System.Convert.ToString(row["Telefono"]);
-                lblCargo.Text = System.Convert.ToString(row["Descripcion"]);
-                lblCorreo.Text = System.Convert.ToString(row["Correo"]);
-                cbo.DataSource = dt;
+
+                if (dt.Rows.Count == 0)
+                {
+                    contactosvacios = true;
+                    return;
+                }
+                else
+                {
+                    contactosvacios = false;
+                    cbo.DisplayMember = "Descripcion";
+                    cbo.ValueMember = "IdDatosAnexosClienteContacto";
+                    DataRow row = dt.Rows[0];
+                    lblTelefono.Text = System.Convert.ToString(row["Telefono"]);
+                    lblCargo.Text = System.Convert.ToString(row["Descripcion"]);
+                    lblCorreo.Text = System.Convert.ToString(row["Correo"]);
+                    cbo.DataSource = dt;
+                    con.Close();
+                }
+
             }
             catch (Exception ex)
             {
@@ -772,6 +793,34 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 idLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString());
                 bool estadoActa = Convert.ToBoolean(datalistadoTodasLiquidacion.SelectedCells[14].Value.ToString());
 
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO  
+                foreach(DataGridViewColumn columns in datalistadoClientesLiquidacion.Columns)
+                {
+                    if(columns.Index == 0)
+                    {
+                        columns.ReadOnly = false;
+                    }
+                    else
+                    {
+                        columns.ReadOnly = true;
+                    }
+                }
+                
+                foreach(DataGridViewColumn columns in datalistadoColaboradoresLiquidacion.Columns)
+                {
+                    if(columns.Index == 0)
+                    {
+                        columns.ReadOnly = false;
+                    }
+                    else
+                    {
+                        columns.ReadOnly = true;
+                    }
+                }
+                //////////////////////////--------------------------------------------------------------------------
+
+
                 if (datalistadoTodasLiquidacion.SelectedCells[13].Value.ToString() == "LIQUIDADO" || datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO" || estadoActa == true)
                 {
                     MessageBox.Show("Esta liquidación ya ha sido revisada por el área contable, esta anulada, aprobada o se genero un acta.", "Validación del Sistema", MessageBoxButtons.OK);
@@ -861,6 +910,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         datalistadoDetallesLiquidacion.Rows.Add(new[] { null, fechaRequerimeintoDetalle, conbustible, hospedaje, viatico, peaje, movilidad, otros, subTotal });
                     }
+
+                    ////////////////////////////////-----------------------------------------------------------
+                    //CODIGO IMPLEMENTADO-----------------------------------------------
+                    Evitar_Clientes_Duplicados(datalistadoBusquedaClietneLiquidacion, datalistadoClientesLiquidacion);
+                    Evitar_Colaboradores_Duplicados(datalistadoBusquedaColaboradorLiquidacion, datalistadoColaboradoresLiquidacion);
+                    ////////////////////////////////-----------------------------------------------------------
                 }
             }
             else
@@ -1095,175 +1150,190 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //GUARDAR LIQUIDAICON - FUNCION DE EDICION
         private void btnGuardarLiquidacion_Click(object sender, EventArgs e)
         {
-            if (rbNacionalLiquidacion.Checked == false && rbExteriorLiquidacion.Checked == false)
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO
+            ValidarFilasVacias(datalistadoDetallesLiquidacion);
+            ValidarFechaVacias_Liquidacion(datalistadoClientesLiquidacion);
+            if(filasvacias == true)
             {
-                MessageBox.Show("No se ha seleccionado el tipo de liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
             }
             else
             {
-                if (datalistadoClientesLiquidacion.RowCount == 0 || datalistadoColaboradoresLiquidacion.RowCount == 0)
+                //////////////////////////--------------------------------------------------------------------------
+                if (rbNacionalLiquidacion.Checked == false && rbExteriorLiquidacion.Checked == false)
                 {
-                    MessageBox.Show("No se han cargado los clientes correctamnete.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("No se ha seleccionado el tipo de liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    if (datalistadoDetallesLiquidacion.RowCount == 0)
+                    if (datalistadoClientesLiquidacion.RowCount == 0 || datalistadoColaboradoresLiquidacion.RowCount == 0)
                     {
-                        MessageBox.Show("No se han cargado los detalles de la liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("No se han cargado los clientes correctamnete.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
-                        if (txtMotivoViajeLiquidacion.Text == "" || txtItinerarioViajeLiqudiacion.Text == "")
+                        if (datalistadoDetallesLiquidacion.RowCount == 0)
                         {
-                            MessageBox.Show("No se ha cargado el itinerario o motivo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                            MessageBox.Show("No se han cargado los detalles de la liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
-                            if (txtTotaLiquidaciones.Text == "")
+                            if (txtMotivoViajeLiquidacion.Text == "" || txtItinerarioViajeLiqudiacion.Text == "")
                             {
-                                MessageBox.Show("No se ha cargado el total ni el saldo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                                MessageBox.Show("No se ha cargado el itinerario o motivo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                             }
                             else
                             {
-                                try
+                                if (txtTotaLiquidaciones.Text == "")
                                 {
-                                    DialogResult boton = MessageBox.Show("¿Realmente desea editar esta liquidación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                                    if (boton == DialogResult.OK)
+                                    MessageBox.Show("No se ha cargado el total ni el saldo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                                }
+                                else
+                                {
+                                    try
                                     {
-                                        SqlConnection con = new SqlConnection();
-                                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                        con.Open();
-                                        SqlCommand cmd = new SqlCommand();
-                                        cmd = new SqlCommand("EditarLiquidacionVenta", con);
-                                        cmd.CommandType = CommandType.StoredProcedure;
-
-                                        //INGRESO DEL ENCABEZADO DE LA LIQUIDACIÓN
-                                        cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
-                                        cmd.Parameters.AddWithValue("@fechaLiquidacion", datatimeFechaRequerimientoLiquidacion.Value);
-                                        cmd.Parameters.AddWithValue("@fechaInicio", datetimeDesdeLiquidacion.Value);
-                                        cmd.Parameters.AddWithValue("@fechaTermino", datetiemHastaLiquidacion.Value);
-
-                                        if (rbNacionalLiquidacion.Checked == true)
+                                        DialogResult boton = MessageBox.Show("¿Realmente desea editar esta liquidación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                                        if (boton == DialogResult.OK)
                                         {
-                                            cmd.Parameters.AddWithValue("@nacional", 1);
-                                            cmd.Parameters.AddWithValue("@extranjeto", 0);
-                                        }
-                                        else
-                                        {
-                                            cmd.Parameters.AddWithValue("@nacional", 0);
-                                            cmd.Parameters.AddWithValue("@extranjeto", 1);
-                                        }
-
-                                        cmd.Parameters.AddWithValue("@motivoVisita", txtMotivoViajeLiquidacion.Text);
-
-                                        cmd.Parameters.AddWithValue("@idvehiculo", cboVehiculoLiquidacion.SelectedValue.ToString());
-                                        cmd.Parameters.AddWithValue("@itinerarioViaje", txtItinerarioViajeLiqudiacion.Text);
-                                        cmd.Parameters.AddWithValue("@total", txtTotaLiquidaciones.Text);
-                                        cmd.Parameters.AddWithValue("@adelanto", txtAdelantoLiquidaciones.Text);
-                                        cmd.Parameters.AddWithValue("@saldo", txtSaldoLiquidaciones.Text);
-                                        cmd.ExecuteNonQuery();
-                                        con.Close();
-
-                                        //LIMPIAR REGISTROS ANTERIORES
-                                        con.Open();
-                                        cmd = new SqlCommand("EliminarDetallesLiquidacion", con);
-                                        cmd.CommandType = CommandType.StoredProcedure;
-                                        cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
-                                        cmd.ExecuteNonQuery();
-                                        con.Close();
-
-                                        //INGRESO DE LOS DETALLES DEL VAIJE/PRESUPEUSTO CON UN FOREACH
-                                        foreach (DataGridViewRow row in datalistadoDetallesLiquidacion.Rows)
-                                        {
-                                            //PROCEDIMIENTO ALMACENADO PARA GUARDAR EL PRESUPUESTO DEL VIAJE
+                                            SqlConnection con = new SqlConnection();
+                                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
                                             con.Open();
-                                            cmd = new SqlCommand("InsertarEdicionLiquidacionVenta_DetalleLiquidacion", con);
+                                            SqlCommand cmd = new SqlCommand();
+                                            cmd = new SqlCommand("EditarLiquidacionVenta", con);
+                                            cmd.CommandType = CommandType.StoredProcedure;
+
+                                            //INGRESO DEL ENCABEZADO DE LA LIQUIDACIÓN
+                                            cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
+                                            cmd.Parameters.AddWithValue("@fechaLiquidacion", datatimeFechaRequerimientoLiquidacion.Value);
+                                            cmd.Parameters.AddWithValue("@fechaInicio", datetimeDesdeLiquidacion.Value);
+                                            cmd.Parameters.AddWithValue("@fechaTermino", datetiemHastaLiquidacion.Value);
+
+                                            if (rbNacionalLiquidacion.Checked == true)
+                                            {
+                                                cmd.Parameters.AddWithValue("@nacional", 1);
+                                                cmd.Parameters.AddWithValue("@extranjeto", 0);
+                                            }
+                                            else
+                                            {
+                                                cmd.Parameters.AddWithValue("@nacional", 0);
+                                                cmd.Parameters.AddWithValue("@extranjeto", 1);
+                                            }
+
+                                            cmd.Parameters.AddWithValue("@motivoVisita", txtMotivoViajeLiquidacion.Text);
+
+                                            cmd.Parameters.AddWithValue("@idvehiculo", cboVehiculoLiquidacion.SelectedValue.ToString());
+                                            cmd.Parameters.AddWithValue("@itinerarioViaje", txtItinerarioViajeLiqudiacion.Text);
+                                            cmd.Parameters.AddWithValue("@total", txtTotaLiquidaciones.Text);
+                                            cmd.Parameters.AddWithValue("@adelanto", txtAdelantoLiquidaciones.Text);
+                                            cmd.Parameters.AddWithValue("@saldo", txtSaldoLiquidaciones.Text);
+                                            cmd.ExecuteNonQuery();
+                                            con.Close();
+
+                                            //LIMPIAR REGISTROS ANTERIORES
+                                            con.Open();
+                                            cmd = new SqlCommand("EliminarDetallesLiquidacion", con);
                                             cmd.CommandType = CommandType.StoredProcedure;
                                             cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
-                                            cmd.Parameters.AddWithValue("@fechaLiquiracion", Convert.ToString(row.Cells[1].Value));
-                                            cmd.Parameters.AddWithValue("@combustible", Convert.ToString(row.Cells[2].Value));
-                                            cmd.Parameters.AddWithValue("@hospedaje", Convert.ToString(row.Cells[3].Value));
-                                            cmd.Parameters.AddWithValue("@viatico", Convert.ToString(row.Cells[4].Value));
-                                            cmd.Parameters.AddWithValue("@peaje", Convert.ToString(row.Cells[5].Value));
-                                            cmd.Parameters.AddWithValue("@movilidad", Convert.ToString(row.Cells[6].Value));
-                                            cmd.Parameters.AddWithValue("@otros", Convert.ToString(row.Cells[7].Value));
-                                            cmd.Parameters.AddWithValue("@subtotal", Convert.ToString(row.Cells[8].Value));
                                             cmd.ExecuteNonQuery();
                                             con.Close();
+
+                                            //INGRESO DE LOS DETALLES DEL VAIJE/PRESUPEUSTO CON UN FOREACH
+                                            foreach (DataGridViewRow row in datalistadoDetallesLiquidacion.Rows)
+                                            {
+                                                //PROCEDIMIENTO ALMACENADO PARA GUARDAR EL PRESUPUESTO DEL VIAJE
+                                                con.Open();
+                                                cmd = new SqlCommand("InsertarEdicionLiquidacionVenta_DetalleLiquidacion", con);
+                                                cmd.CommandType = CommandType.StoredProcedure;
+                                                cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
+                                                cmd.Parameters.AddWithValue("@fechaLiquiracion", Convert.ToString(row.Cells[1].Value));
+                                                cmd.Parameters.AddWithValue("@combustible", Convert.ToString(row.Cells[2].Value));
+                                                cmd.Parameters.AddWithValue("@hospedaje", Convert.ToString(row.Cells[3].Value));
+                                                cmd.Parameters.AddWithValue("@viatico", Convert.ToString(row.Cells[4].Value));
+                                                cmd.Parameters.AddWithValue("@peaje", Convert.ToString(row.Cells[5].Value));
+                                                cmd.Parameters.AddWithValue("@movilidad", Convert.ToString(row.Cells[6].Value));
+                                                cmd.Parameters.AddWithValue("@otros", Convert.ToString(row.Cells[7].Value));
+                                                cmd.Parameters.AddWithValue("@subtotal", Convert.ToString(row.Cells[8].Value));
+                                                cmd.ExecuteNonQuery();
+                                                con.Close();
+                                            }
+
+                                            //INGRESO DE LOS CLIENTES Y SUS DATOS ANEXOS CON UN FOREACH
+                                            foreach (DataGridViewRow row in datalistadoClientesLiquidacion.Rows)
+                                            {
+                                                //SELECCIONAMOS LOS CÓDIGOS QUE TIENE NUESTRO LISTADO
+                                                bool estadoCliente = Convert.ToBoolean(row.Cells["btnAsistioClienteLiquidacionF"].Value);
+                                                DateTime fechaInicio = Convert.ToDateTime(row.Cells["txtFechaInicioLiquidacionF"].Value);
+                                                DateTime fechaTermino = Convert.ToDateTime(row.Cells["txtFechaTerminoLiquidacionF"].Value);
+                                                int codigoDetalleCliente = Convert.ToInt32(row.Cells["txtCodigoClietneLiquidacionF"].Value);
+                                                int codigoDetalleUnidad = Convert.ToInt32(row.Cells["txtCodigoUnidadLiquidadcionF"].Value);
+                                                string codigoDetalleDestino = Convert.ToString(row.Cells["txtCodigoDepartamentoF"].Value);
+
+                                                //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS CLIENTES Y SUS DATOS ANEXOS
+                                                con.Open();
+                                                cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleCliente", con);
+                                                cmd.CommandType = CommandType.StoredProcedure;
+                                                cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
+                                                cmd.Parameters.AddWithValue("@asistencia", estadoCliente);
+
+
+                                                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                                                cmd.Parameters.AddWithValue("@datetimeTermino", fechaTermino);
+
+                                                cmd.Parameters.AddWithValue("@idClienteDetalle", codigoDetalleCliente);
+                                                cmd.Parameters.AddWithValue("@idUnidadDetalle", codigoDetalleUnidad);
+                                                cmd.Parameters.AddWithValue("@codigoDestinoDetalle", codigoDetalleDestino);
+                                                cmd.ExecuteNonQuery();
+                                                con.Close();
+                                            }
+
+                                            //INGRESO DE LOS COLABORADORES O VENDEDORES CON UN FOREACH
+                                            foreach (DataGridViewRow row in datalistadoColaboradoresLiquidacion.Rows)
+                                            {
+                                                //SELECCIONAMOS LOS CÓDIGOS QUE TIENE NUESTRO LISTADO
+                                                bool estadoAsistencia = Convert.ToBoolean(row.Cells["btnAsistioColaboradorLiquidacion"].Value);
+                                                int codigoDetalleColaborador = Convert.ToInt32(row.Cells["txtIdVendedorLiquidacion"].Value);
+
+                                                //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS VENDEODRES O COLABORADORES
+                                                con.Open();
+                                                cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleVendedores", con);
+                                                cmd.CommandType = CommandType.StoredProcedure;
+                                                cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
+                                                cmd.Parameters.AddWithValue("@estadoAsistencia", estadoAsistencia);
+                                                cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
+                                                cmd.ExecuteNonQuery();
+                                                con.Close();
+                                            }
+
+                                            MessageBox.Show("Se registró la liquidación exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
+
+                                            //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
+                                            panelNuevaLiquidadcion.Visible = false;
+
+                                            datalistadoDetallesLiquidacion.Rows.Clear();
+                                            datalistadoClientesLiquidacion.Rows.Clear();
+                                            datalistadoColaboradoresLiquidacion.Rows.Clear();
+                                            datalistadoBusquedaClietneLiquidacion.DataSource = null;
+                                            datalistadoBusquedaColaboradorLiquidacion.DataSource = null;
+                                            rbNacionalLiquidacion.Checked = false;
+                                            rbExteriorLiquidacion.Checked = false;
+                                            txtMotivoViajeLiquidacion.Text = "";
+                                            txtItinerarioViajeLiqudiacion.Text = "";
+                                            txtTotaLiquidaciones.Text = "";
+                                            txtAdelantoLiquidaciones.Text = "";
+                                            txtSaldoLiquidaciones.Text = "";
+                                            txtBusquedaCLienteLiquidacion.Text = "";
+                                            txtBusquedaColaboradorLiquidacion.Text = "";
+                                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                            ClassResourses.RegistrarAuditora(8, this.Name, 5, Program.IdUsuario, "Editar liquidación de viaje.", Convert.ToInt32(idLiquidacion));
                                         }
-
-                                        //INGRESO DE LOS CLIENTES Y SUS DATOS ANEXOS CON UN FOREACH
-                                        foreach (DataGridViewRow row in datalistadoClientesLiquidacion.Rows)
-                                        {
-                                            //SELECCIONAMOS LOS CÓDIGOS QUE TIENE NUESTRO LISTADO
-                                            bool estadoCliente = Convert.ToBoolean(row.Cells["btnAsistioClienteLiquidacionF"].Value);
-                                            DateTime fechaInicio = Convert.ToDateTime(row.Cells["txtFechaInicioLiquidacionF"].Value);
-                                            DateTime fechaTermino = Convert.ToDateTime(row.Cells["txtFechaTerminoLiquidacionF"].Value);
-                                            int codigoDetalleCliente = Convert.ToInt32(row.Cells["txtCodigoClietneLiquidacionF"].Value);
-                                            int codigoDetalleUnidad = Convert.ToInt32(row.Cells["txtCodigoUnidadLiquidadcionF"].Value);
-                                            string codigoDetalleDestino = Convert.ToString(row.Cells["txtCodigoDepartamentoF"].Value);
-
-                                            //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS CLIENTES Y SUS DATOS ANEXOS
-                                            con.Open();
-                                            cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleCliente", con);
-                                            cmd.CommandType = CommandType.StoredProcedure;
-                                            cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
-                                            cmd.Parameters.AddWithValue("@asistencia", estadoCliente);
-
-
-                                            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                                            cmd.Parameters.AddWithValue("@datetimeTermino", fechaTermino);
-
-                                            cmd.Parameters.AddWithValue("@idClienteDetalle", codigoDetalleCliente);
-                                            cmd.Parameters.AddWithValue("@idUnidadDetalle", codigoDetalleUnidad);
-                                            cmd.Parameters.AddWithValue("@codigoDestinoDetalle", codigoDetalleDestino);
-                                            cmd.ExecuteNonQuery();
-                                            con.Close();
-                                        }
-
-                                        //INGRESO DE LOS COLABORADORES O VENDEDORES CON UN FOREACH
-                                        foreach (DataGridViewRow row in datalistadoColaboradoresLiquidacion.Rows)
-                                        {
-                                            //SELECCIONAMOS LOS CÓDIGOS QUE TIENE NUESTRO LISTADO
-                                            bool estadoAsistencia = Convert.ToBoolean(row.Cells["btnAsistioColaboradorLiquidacion"].Value);
-                                            int codigoDetalleColaborador = Convert.ToInt32(row.Cells["txtIdVendedorLiquidacion"].Value);
-
-                                            //PROCEDIMIENTO ALMACENADO PARA GUARDAR A LOS VENDEODRES O COLABORADORES
-                                            con.Open();
-                                            cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleVendedores", con);
-                                            cmd.CommandType = CommandType.StoredProcedure;
-                                            cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
-                                            cmd.Parameters.AddWithValue("@estadoAsistencia", estadoAsistencia);
-                                            cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
-                                            cmd.ExecuteNonQuery();
-                                            con.Close();
-                                        }
-
-                                        MessageBox.Show("Se registró la liquidación exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
-
-                                        //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
-                                        panelNuevaLiquidadcion.Visible = false;
-
-                                        datalistadoDetallesLiquidacion.Rows.Clear();
-                                        datalistadoClientesLiquidacion.Rows.Clear();
-                                        datalistadoColaboradoresLiquidacion.Rows.Clear();
-                                        rbNacionalLiquidacion.Checked = false;
-                                        rbExteriorLiquidacion.Checked = false;
-                                        txtMotivoViajeLiquidacion.Text = "";
-                                        txtItinerarioViajeLiqudiacion.Text = "";
-                                        txtTotaLiquidaciones.Text = "";
-                                        txtAdelantoLiquidaciones.Text = "";
-                                        txtSaldoLiquidaciones.Text = "";
-
-                                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                                        ClassResourses.RegistrarAuditora(8, this.Name, 5, Program.IdUsuario, "Editar liquidación de viaje.", Convert.ToInt32(idLiquidacion));
                                     }
-                                }
-                                catch (Exception ex)
-                                {
-                                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                                    ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
-                                    MessageBox.Show(ex.Message, "Error en el servidor.", MessageBoxButtons.OK);
+                                    catch (Exception ex)
+                                    {
+                                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                        ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                                        MessageBox.Show(ex.Message, "Error en el servidor.", MessageBoxButtons.OK);
+                                    }
                                 }
                             }
                         }
@@ -1278,6 +1348,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             panelNuevaLiquidadcion.Visible = false;
             txtNumFecha2.Text = "1";
             datatimeCalculador2.Value = datetiemHastaLiquidacion.Value;
+
+            txtBusquedaCLienteLiquidacion.Text = "";
+            txtBusquedaColaboradorLiquidacion.Text = "";
+            datalistadoBusquedaClietneLiquidacion.DataSource = null;
+            datalistadoBusquedaColaboradorLiquidacion.DataSource = null;    
 
             //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
             datalistadoClientesLiquidacion.Rows.Clear();
@@ -1374,8 +1449,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             MessageBox.Show("Liquidación y requerimiento asociado a esta, anuladas exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
                             BusquedaDependiente();
 
-                            ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
-                            ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            //ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            //ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
 
                             //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                             ClassResourses.RegistrarAuditora(2, this.Name, 5, Program.IdUsuario, "Anular liquidación de viaje.", Convert.ToInt32(idLiquidacion));
@@ -2028,7 +2103,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 string codigoActaReporte = cboCodigoActaDash.Text;
 
-                if(codigoActaReporte != "")
+                if (codigoActaReporte != "")
                 {
                     if (txtEstadoDashDash.Text == "PENDIENTE")
                     {
@@ -2261,15 +2336,27 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 CargarResponsables(txtAsistentes3NuevaActa);
                                 txtAsistentes2NuevaActa.SelectedIndex = -1;
                                 txtAsistentes3NuevaActa.SelectedIndex = -1;
+
                                 CargarContactoSegunCLiente(txtContactoCliente1NuevaActa, idCLiente, lblContactoTelefono1, lblClienteCargo1, lblContactoCorreo1);
                                 CargarContactoSegunCLiente(txtContactoCliente2NuevaActa, idCLiente, lblContactoTelefono2, lblClienteCargo2, lblContactoCorreo2);
                                 CargarContactoSegunCLiente(txtContactoCliente3NuevaActa, idCLiente, lblContactoTelefono3, lblClienteCargo3, lblContactoCorreo3);
-                                txtContactoCliente1NuevaActa.SelectedIndex = -1;
-                                txtContactoCliente2NuevaActa.SelectedIndex = -1;
-                                txtContactoCliente3NuevaActa.SelectedIndex = -1;
 
-                                panelNuevaActa.Visible = true;
-                                datalistadoLiquidacionActas.Enabled = false;
+                                if (contactosvacios == true)
+                                {
+                                    MessageBox.Show("El cliente seleccionado no tiene contactos ingresados", "Validación del Sistema", MessageBoxButtons.OK);                                  
+                                    return;
+                                }
+
+                                else
+                                {
+                                    txtContactoCliente1NuevaActa.SelectedIndex = -1;
+                                    txtContactoCliente2NuevaActa.SelectedIndex = -1;
+                                    txtContactoCliente3NuevaActa.SelectedIndex = -1;
+
+                                    panelNuevaActa.Visible = true;
+                                    datalistadoLiquidacionActas.Enabled = false;
+                                    ckPresenteAsistente1.Checked = true;
+                                }
                             }
                         }
                     }
@@ -2302,195 +2389,210 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
                 else
                 {
-                    if (txtContactoCliente1NuevaActa.Text == "")
+                    if (txtContactoCliente1NuevaActa.Text == "" && txtContactoCliente2NuevaActa.Text == "" && txtContactoCliente3NuevaActa.Text == "")
                     {
                         MessageBox.Show("Debe seleccionar al menos un contacto del cliente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
-                        try
+                        if (txtAsistentes1NuevaActa.Text == "" && txtAsistentes2NuevaActa.Text == "" && txtAsistentes3NuevaActa.Text == "")
                         {
-                            DialogResult boton = MessageBox.Show("¿Realmente desea guardar esta acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                            if (boton == DialogResult.OK)
-                            {
-                                SqlConnection con = new SqlConnection();
-                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con.Open();
-                                SqlCommand cmd = new SqlCommand();
-                                cmd = new SqlCommand("InsertarActa", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                codigoActa();
-                                //INGRESO DEL ENCABEZADO DEL REQUERIMIENTO
-                                cmd.Parameters.AddWithValue("@idActa", numeroActa);
-                                cmd.Parameters.AddWithValue("@idClienteDetalleLiquidacion", Convert.ToInt32(datalistadoLiquidacionActas.SelectedCells[1].Value.ToString()));
-
-                                cmd.Parameters.AddWithValue("@fechaInicio", datatimeFechaInicioNuevaActa.Value);
-                                cmd.Parameters.AddWithValue("@fechaTermino", datetimeFechaTerminoNuevaActa.Value);
-
-                                if (rbTipoClienteActualNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckActual", 1);
-                                    cmd.Parameters.AddWithValue("@ckFuturoPotencial", 0);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckActual", 0);
-                                    cmd.Parameters.AddWithValue("@ckFuturoPotencial", 1);
-                                }
-
-                                if (rbFrecuenciaAltaNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckAlto", 1);
-                                    cmd.Parameters.AddWithValue("@ckMedia", 0);
-                                    cmd.Parameters.AddWithValue("@ckBaja", 0);
-                                }
-                                else if (rbFrecuenciaMediaNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckAlto", 0);
-                                    cmd.Parameters.AddWithValue("@ckMedia", 1);
-                                    cmd.Parameters.AddWithValue("@ckBaja", 0);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckAlto", 0);
-                                    cmd.Parameters.AddWithValue("@ckMedia", 0);
-                                    cmd.Parameters.AddWithValue("@ckBaja", 1);
-                                }
-
-                                cmd.Parameters.AddWithValue("@asistente1", txtAsistentes1NuevaActa.Text);
-                                cmd.Parameters.AddWithValue("@asistente2", txtAsistentes2NuevaActa.Text);
-                                cmd.Parameters.AddWithValue("@asistente3", txtAsistentes3NuevaActa.Text);
-
-                                cmd.Parameters.AddWithValue("@idCliente", Convert.ToInt32(datalistadoLiquidacionActas.SelectedCells[4].Value.ToString()));
-
-                                if (txtContactoCliente1NuevaActa.Text == "")
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente1", "");
-                                    cmd.Parameters.AddWithValue("@correocliente1", "");
-                                    cmd.Parameters.AddWithValue("@cargocliente1", "");
-                                    cmd.Parameters.AddWithValue("@telefonocliente1", "");
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente1", txtContactoCliente1NuevaActa.Text);
-                                    cmd.Parameters.AddWithValue("@correocliente1", lblContactoCorreo1.Text);
-                                    cmd.Parameters.AddWithValue("@cargocliente1", lblClienteCargo1.Text);
-                                    cmd.Parameters.AddWithValue("@telefonocliente1", lblContactoTelefono1.Text);
-                                }
-
-                                if (txtContactoCliente2NuevaActa.Text == "")
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente2", "");
-                                    cmd.Parameters.AddWithValue("@correocliente2", "");
-                                    cmd.Parameters.AddWithValue("@cargocliente2", "");
-                                    cmd.Parameters.AddWithValue("@telefonocliente2", "");
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente2", txtContactoCliente2NuevaActa.Text);
-                                    cmd.Parameters.AddWithValue("@correocliente2", lblContactoCorreo2.Text);
-                                    cmd.Parameters.AddWithValue("@cargocliente2", lblClienteCargo2.Text);
-                                    cmd.Parameters.AddWithValue("@telefonocliente2", lblContactoTelefono2.Text);
-                                }
-
-                                if (txtContactoCliente3NuevaActa.Text == "")
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente3", "");
-                                    cmd.Parameters.AddWithValue("@correocliente3", "");
-                                    cmd.Parameters.AddWithValue("@cargocliente3", "");
-                                    cmd.Parameters.AddWithValue("@telefonocliente3", "");
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente3", txtContactoCliente3NuevaActa.Text);
-                                    cmd.Parameters.AddWithValue("@correocliente3", lblContactoCorreo3.Text);
-                                    cmd.Parameters.AddWithValue("@cargocliente3", lblClienteCargo3.Text);
-                                    cmd.Parameters.AddWithValue("@telefonocliente3", lblContactoTelefono3.Text);
-                                }
-
-                                cmd.Parameters.AddWithValue("@idUnidad", Convert.ToInt32(datalistadoLiquidacionActas.SelectedCells[6].Value.ToString()));
-
-                                if (ckSostenimientoNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckSostenimiento", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckSostenimiento", 0);
-                                }
-
-                                if (ckCaptacionNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckCapacitacion", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckCapacitacion", 0);
-                                }
-
-                                if (ckRecuperacionNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckRecuperacion", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckRecuperacion", 0);
-                                }
-
-                                if (ckReclamoNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckReclamo", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckReclamo", 0);
-                                }
-
-                                cmd.Parameters.AddWithValue("@fechaActa", datetimeActa.Value);
-
-                                if (ckPresenteAsistente1.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 0);
-                                }
-
-                                cmd.Parameters.AddWithValue("@idResponsable", Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[6].Value.ToString()));
-                                CargarJefaturaActual();
-                                cmd.Parameters.AddWithValue("@idJefatura", idJefatura);
-
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-
-                                MessageBox.Show("Se generó el acta correctamente en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
-
-                                panelNuevaActa.Visible = false;
-                                int codigoLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString());
-                                BuscarLiquidacionDetalles(codigoLiquidacion);
-
-                                rbTipoClienteActualNuevaActa.Checked = false;
-                                rbTipoClienteFuturoNuevaActa.Checked = false;
-                                rbFrecuenciaAltaNuevaActa.Checked = false;
-                                rbFrecuenciaMediaNuevaActa.Checked = false;
-                                rbFrecuenduaBajaNuevaActa.Checked = false;
-                                ckSostenimientoNuevaActa.Checked = false;
-                                ckCaptacionNuevaActa.Checked = false;
-                                ckRecuperacionNuevaActa.Checked = false;
-                                ckReclamoNuevaActa.Checked = false;
-                                datalistadoLiquidacionActas.Enabled = true;
-
-                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                                ClassResourses.RegistrarAuditora(4, this.Name, 5, Program.IdUsuario, "Generar acta de viaje", Convert.ToInt32(numeroActa));
-                            }
+                            MessageBox.Show("Debe seleccionar al menos un Asistente", "Validación del Sistema", MessageBoxButtons.OK);
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                            ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
-                            MessageBox.Show(ex.Message, "Error en el servidor");
+                            if (ckSostenimientoNuevaActa.Checked == false && ckCaptacionNuevaActa.Checked == false && ckRecuperacionNuevaActa.Checked == false && ckReclamoNuevaActa.Checked == false)
+                            {
+                                MessageBox.Show("Debe seleccionar un objetivo de viaje", "Validación del Sistema", MessageBoxButtons.OK);
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    DialogResult boton = MessageBox.Show("¿Realmente desea guardar esta acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                                    if (boton == DialogResult.OK)
+                                    {
+                                        SqlConnection con = new SqlConnection();
+                                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                        con.Open();
+                                        SqlCommand cmd = new SqlCommand();
+                                        cmd = new SqlCommand("InsertarActa", con);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+
+                                        codigoActa();
+                                        //INGRESO DEL ENCABEZADO DEL REQUERIMIENTO
+                                        cmd.Parameters.AddWithValue("@idActa", numeroActa);
+                                        cmd.Parameters.AddWithValue("@idClienteDetalleLiquidacion", Convert.ToInt32(datalistadoLiquidacionActas.SelectedCells[1].Value.ToString()));
+
+                                        cmd.Parameters.AddWithValue("@fechaInicio", datatimeFechaInicioNuevaActa.Value);
+                                        cmd.Parameters.AddWithValue("@fechaTermino", datetimeFechaTerminoNuevaActa.Value);
+
+                                        if (rbTipoClienteActualNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckActual", 1);
+                                            cmd.Parameters.AddWithValue("@ckFuturoPotencial", 0);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckActual", 0);
+                                            cmd.Parameters.AddWithValue("@ckFuturoPotencial", 1);
+                                        }
+
+                                        if (rbFrecuenciaAltaNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckAlto", 1);
+                                            cmd.Parameters.AddWithValue("@ckMedia", 0);
+                                            cmd.Parameters.AddWithValue("@ckBaja", 0);
+                                        }
+                                        else if (rbFrecuenciaMediaNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckAlto", 0);
+                                            cmd.Parameters.AddWithValue("@ckMedia", 1);
+                                            cmd.Parameters.AddWithValue("@ckBaja", 0);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckAlto", 0);
+                                            cmd.Parameters.AddWithValue("@ckMedia", 0);
+                                            cmd.Parameters.AddWithValue("@ckBaja", 1);
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@asistente1", txtAsistentes1NuevaActa.Text);
+                                        cmd.Parameters.AddWithValue("@asistente2", txtAsistentes2NuevaActa.Text);
+                                        cmd.Parameters.AddWithValue("@asistente3", txtAsistentes3NuevaActa.Text);
+
+                                        cmd.Parameters.AddWithValue("@idCliente", Convert.ToInt32(datalistadoLiquidacionActas.SelectedCells[4].Value.ToString()));
+
+                                        if (txtContactoCliente1NuevaActa.Text == "")
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente1", "");
+                                            cmd.Parameters.AddWithValue("@correocliente1", "");
+                                            cmd.Parameters.AddWithValue("@cargocliente1", "");
+                                            cmd.Parameters.AddWithValue("@telefonocliente1", "");
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente1", txtContactoCliente1NuevaActa.Text);
+                                            cmd.Parameters.AddWithValue("@correocliente1", lblContactoCorreo1.Text);
+                                            cmd.Parameters.AddWithValue("@cargocliente1", lblClienteCargo1.Text);
+                                            cmd.Parameters.AddWithValue("@telefonocliente1", lblContactoTelefono1.Text);
+                                        }
+
+                                        if (txtContactoCliente2NuevaActa.Text == "")
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente2", "");
+                                            cmd.Parameters.AddWithValue("@correocliente2", "");
+                                            cmd.Parameters.AddWithValue("@cargocliente2", "");
+                                            cmd.Parameters.AddWithValue("@telefonocliente2", "");
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente2", txtContactoCliente2NuevaActa.Text);
+                                            cmd.Parameters.AddWithValue("@correocliente2", lblContactoCorreo2.Text);
+                                            cmd.Parameters.AddWithValue("@cargocliente2", lblClienteCargo2.Text);
+                                            cmd.Parameters.AddWithValue("@telefonocliente2", lblContactoTelefono2.Text);
+                                        }
+
+                                        if (txtContactoCliente3NuevaActa.Text == "")
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente3", "");
+                                            cmd.Parameters.AddWithValue("@correocliente3", "");
+                                            cmd.Parameters.AddWithValue("@cargocliente3", "");
+                                            cmd.Parameters.AddWithValue("@telefonocliente3", "");
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente3", txtContactoCliente3NuevaActa.Text);
+                                            cmd.Parameters.AddWithValue("@correocliente3", lblContactoCorreo3.Text);
+                                            cmd.Parameters.AddWithValue("@cargocliente3", lblClienteCargo3.Text);
+                                            cmd.Parameters.AddWithValue("@telefonocliente3", lblContactoTelefono3.Text);
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@idUnidad", Convert.ToInt32(datalistadoLiquidacionActas.SelectedCells[6].Value.ToString()));
+
+                                        if (ckSostenimientoNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckSostenimiento", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckSostenimiento", 0);
+                                        }
+
+                                        if (ckCaptacionNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckCapacitacion", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckCapacitacion", 0);
+                                        }
+
+                                        if (ckRecuperacionNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckRecuperacion", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckRecuperacion", 0);
+                                        }
+
+                                        if (ckReclamoNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckReclamo", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckReclamo", 0);
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@fechaActa", datetimeActa.Value);
+
+                                        if (ckPresenteAsistente1.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 0);
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@idResponsable", Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[6].Value.ToString()));
+                                        CargarJefaturaActual();
+                                        cmd.Parameters.AddWithValue("@idJefatura", idJefatura);
+
+                                        cmd.ExecuteNonQuery();
+                                        con.Close();
+
+                                        MessageBox.Show("Se generó el acta correctamente en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
+
+                                        panelNuevaActa.Visible = false;
+                                        int codigoLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString());
+                                        BuscarLiquidacionDetalles(codigoLiquidacion);
+
+                                        rbTipoClienteActualNuevaActa.Checked = false;
+                                        rbTipoClienteFuturoNuevaActa.Checked = false;
+                                        rbFrecuenciaAltaNuevaActa.Checked = false;
+                                        rbFrecuenciaMediaNuevaActa.Checked = false;
+                                        rbFrecuenduaBajaNuevaActa.Checked = false;
+                                        ckSostenimientoNuevaActa.Checked = false;
+                                        ckCaptacionNuevaActa.Checked = false;
+                                        ckRecuperacionNuevaActa.Checked = false;
+                                        ckReclamoNuevaActa.Checked = false;
+                                        ckPresenteAsistente1.Checked = false;
+                                        datalistadoLiquidacionActas.Enabled = true;
+
+                                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                        ClassResourses.RegistrarAuditora(4, this.Name, 5, Program.IdUsuario, "Generar acta de viaje", Convert.ToInt32(numeroActa));
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                    ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                                    MessageBox.Show(ex.Message, "Error en el servidor");
+                                }
+                            }
                         }
                     }
                 }
@@ -2512,18 +2614,21 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             ckCaptacionNuevaActa.Checked = false;
             ckRecuperacionNuevaActa.Checked = false;
             ckReclamoNuevaActa.Checked = false;
+            ckPresenteAsistente1.Checked = false;
         }
 
         //LIMPIEZA DE CAMPOS LLENADOS - ASISTENTES Y CONTACTOS DEL CLIENTE
         private void btnCargarDatosAsistente2NuevaActa_Click(object sender, EventArgs e)
         {
-            txtAsistentes2NuevaActa.Text = "";
+            txtAsistentes2NuevaActa.SelectedIndex = -1;
+            //txtAsistentes2NuevaActa.Text = "";
         }
 
         //LIMPIEZA DE CAMPOS LLENADOS - ASISTENTES Y CONTACTOS DEL CLIENTE
         private void btnCargarDatosAsistente3NuevaActa_Click(object sender, EventArgs e)
         {
-            txtAsistentes3NuevaActa.Text = "";
+            txtAsistentes3NuevaActa.SelectedIndex = -1;
+            //txtAsistentes3NuevaActa.Text = "";
         }
 
         //LIMPIEZA DE CAMPOS LLENADOS - ASISTENTES Y CONTACTOS DEL CLIENTE
@@ -2738,6 +2843,397 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //////////////////////////////////////////////---------------------------------------------------------------------
+        ///////////////////--------------------------------------------
+        //METODOS VALIDACIONES LIQUIDACIONES
 
+        //METODO QUE BORRA LOS CLIENTES SELECCIONADOS
+        public void BorrarSeleccionCliente(DataGridView DGV)
+        {
+            //SI NO HAY CLIENTES CARGADOS
+            if (DGV.Rows.Count > 0)
+            {
+                //MENSAJE DE CONFIRMACIÓN PARA BORRAR AL CLIENTE SELECCIOANDO
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (resul == DialogResult.OK)
+                {
+                    //ACCIÓN DE ELIMINAR
+                    DGV.Rows.Remove(DGV.CurrentRow);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay clientes agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //METODO QUE BORRA LOS COLABORADORES SELECCIONADOS
+        public void BorrarSeleccionColaborador(DataGridView DGV)
+        {
+            //SI NO HAY COLABORADORES CARGADOS
+            if (DGV.Rows.Count > 0)
+            {
+                //MENSAJE DE CONFIRMACIÓN PARA BORRAR A LOS COLABORADORES SELECCIOANDO
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (resul == DialogResult.OK)
+                {
+                    //ACCIÓN DE ELIMINAR
+                    DGV.Rows.Remove(DGV.CurrentRow);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay colaboradores agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //CONTROLES QUE BORRAN CLIENTES Y COLABORADORES SELECCIONADOS
+        private void btnBorrarSeleccionClienteLiquidacion_Click(object sender, EventArgs e)
+        {
+            BorrarSeleccionCliente(datalistadoClientesLiquidacion);
+        }
+
+        private void btnBorrarColaboradorLiquidacion_Click(object sender, EventArgs e)
+        {
+            BorrarSeleccionColaborador(datalistadoColaboradoresLiquidacion);
+        }
+
+        //METODO QUE VALIDA SI LAS FILAS TIENEN VALORES VACIOS
+        public void ValidarFilasVacias(DataGridView DGV)
+        {
+            foreach (DataGridViewRow rows in DGV.Rows)
+            {
+                int indice = 0;
+
+                foreach (DataGridViewCell cell in rows.Cells)
+                {
+                    if (indice >= 1)
+                    {
+                        if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                        {
+                            MessageBox.Show("Falta ingresar valores en el Presupuesto de Viaje", "Validación del Sistema", MessageBoxButtons.OK);
+                            filasvacias = true;
+                            return;
+                        }
+                        else
+                        {
+                            filasvacias = false;
+                        }
+                    }
+                    indice++;
+                }
+            }
+        }
+
+        //METODO QUE VALIDA QUE SE SELECCIONE LAS FECHAS EN LA EDICIÓN DE LIQUIDACION
+        public void ValidarFechaVacias_Liquidacion(DataGridView DGV)
+        {
+            foreach (DataGridViewRow rows in DGV.Rows)
+            {
+                int indicecolumn = 0;
+
+                foreach (DataGridViewCell cell in rows.Cells)
+                {
+                    if (indicecolumn == 2 || indicecolumn == 4)
+                    {
+                        if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                        {
+                            MessageBox.Show("No se ha seleccionado ninguna fecha", "Validación del Sistema");
+                            fechasvacias = true;
+                            return;
+                        }
+                        else
+                        {
+                            fechasvacias = false;
+                        }
+                    }
+                    indicecolumn++;
+                }
+            }
+
+        }
+
+        ///-------------------------------------------------------
+        //------------------------------------
+        //METODOS PARA EVITAR CLIENTES Y COLABORADORES DUPLICADOS
+
+        //FUNCION PARA EVITAR CLIENTES DUPLICADOS
+        public void Evitar_Clientes_Duplicados(DataGridView DGV1, DataGridView DGV2)
+        {
+
+            List<string> codigoseleccionados = new List<string>();
+
+            //recorrido para el listado que contiene los clientes ingresados a la liquidacion
+            foreach (DataGridViewRow rows in DGV2.Rows)
+            {
+                if (rows.Cells[5].Value != null)
+                {
+                    codigoseleccionados.Add(rows.Cells[5].Value.ToString());
+                }
+            }
+
+            //recorrido del listado de colaboradores donde verificara si el codigo colaborador es el mismo
+            for (int i = DGV1.Rows.Count - 1; i >= 0; i--)
+            {
+                var fila = DGV1.Rows[i];
+
+                if (fila.Cells[1].Value != null)
+                {
+                    string codigo = fila.Cells[1].Value.ToString();
+
+                    if (codigoseleccionados.Contains(codigo))
+                    {
+                        DGV1.Rows.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        //EVENTO DE AGREGADO DE CLIENTE SELECCIONADO Y BORRADO DEL CLIENTE DE LA LISTA DE BUSQUEDA
+        private void datalistadoBusquedaClietneLiquidacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
+            else
+            {
+                DataGridViewColumn currentColumn = datalistadoBusquedaClietneLiquidacion.Columns[e.ColumnIndex];
+                //SI HAY 3 O MÁS CLIENTES, YA NOS E PODRAN INGRESAR MÁS
+                if (datalistadoClientesLiquidacion.RowCount >= 3)
+                {
+                    MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    //SI SE PRECIONA SOBRE LA COLUMNA CON ESE NOMBRE
+                    if (currentColumn.Name == "btnSeleccionarClienteLiquidacion")
+                    {
+                        //SE CAPTURA LAS VARIABLES 
+                        string codigo = datalistadoBusquedaClietneLiquidacion.SelectedCells[1].Value.ToString();
+                        string cliente = datalistadoBusquedaClietneLiquidacion.SelectedCells[2].Value.ToString();
+                        string idunidad = datalistadoBusquedaClietneLiquidacion.SelectedCells[3].Value.ToString();
+                        string unidad = datalistadoBusquedaClietneLiquidacion.SelectedCells[4].Value.ToString();
+                        string iddestino = datalistadoBusquedaClietneLiquidacion.SelectedCells[5].Value.ToString();
+                        string destino = datalistadoBusquedaClietneLiquidacion.SelectedCells[6].Value.ToString();
+                        //SE AGREGA A LA NUEVA LISTA
+                        datalistadoClientesLiquidacion.Rows.Add(new[] { null, null, null, null, null, codigo, cliente, idunidad, unidad, iddestino, destino });
+
+
+                        datalistadoBusquedaClietneLiquidacion.Rows.RemoveAt(e.RowIndex);
+                    }
+                }
+            }
+        }
+
+
+        //FUNCION PARA EVITAR COLABORADORES DUPLICADOS
+        public void Evitar_Colaboradores_Duplicados(DataGridView DGV1, DataGridView DGV2)
+        {
+            List<string> codigosseleccionados = new List<string>();
+
+            //recorrido para el listado que contiene los colaboradores ingresados a la liquidacion
+            foreach (DataGridViewRow rows in DGV2.Rows)
+            {
+                if (rows.Cells[1].Value != null)
+                {
+                    codigosseleccionados.Add(rows.Cells[1].Value.ToString());
+                }
+            }
+
+            //recorrido del listado de colaboradores donde verificara si el codigo colaborador es el mismo
+            for (int i = DGV1.Rows.Count - 1; i >= 0; i--)
+            {
+                var fila = DGV1.Rows[i];
+
+                if (fila.Cells[1].Value != null)
+                {
+                    string codigo = fila.Cells[1].Value.ToString();
+
+                    if (codigosseleccionados.Contains(codigo))
+                    {
+                        DGV1.Rows.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        //EVENTO DE AGREGADO DE COLABORADOR SELECCIONADO Y BORRADO DEL COLABORADOR DE LA LISTA DE BUSQUEDA
+        private void datalistadoBusquedaColaboradorLiquidacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
+            else
+            {
+                DataGridViewColumn currentColumn = datalistadoBusquedaColaboradorLiquidacion.Columns[e.ColumnIndex];
+
+                //SI SE PRECIONA SOBRE LA COLUMNA CON ESE NOMBRE
+                if (currentColumn.Name == "btnSeleccionarColaboradorLiquidacion")
+                {
+                    //SE CAPTURA LAS VARIABLES 
+                    string codigo = datalistadoBusquedaColaboradorLiquidacion.SelectedCells[1].Value.ToString();
+                    string colaborador = datalistadoBusquedaColaboradorLiquidacion.SelectedCells[2].Value.ToString();
+                    //SE AGREGA A LA NUEVA LISTA
+                    datalistadoColaboradoresLiquidacion.Rows.Add(new[] { null, codigo, colaborador });
+
+                    datalistadoBusquedaColaboradorLiquidacion.Rows.RemoveAt(e.RowIndex);
+                }
+            }
+        }
+
+        //------------------------------------------------------------------------------------------------------
+        //---------------------METODOS PARA LOS FILTROS DE BUSQUEDA POR CLIENTE Y COLABORADOR
+
+        //METODO PARA AJUSTAR MIS COLUMNAS DE MI BUSQUEDA DE CLIENTE
+        public void AjustarColumnasBusquedaClienteDcoumento(DataGridView DGV)
+        {
+            DGV.Columns[1].Visible = false;
+            DGV.Columns[3].Visible = false;
+            DGV.Columns[3].Visible = false;
+            DGV.Columns[5].Visible = false;
+            DGV.Columns[2].Width = 300;
+            DGV.Columns[4].Width = 150;
+            DGV.Columns[6].Width = 150;
+        }
+
+        //METODO DE FILTROS BUSQUEDA DE CLIENTES
+        public void FiltroClientes(string tipobusqueda, string descripcion, DataGridView DGVClien)
+        {
+            try
+            {
+                if (tipobusqueda == "NOMBRES")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarClientePorNombre_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombre", descripcion);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    DGVClien.DataSource = dt;
+                    con.Close();
+                    AjustarColumnasBusquedaClienteDcoumento(DGVClien);
+                }
+                else if (tipobusqueda == "DOCUMENTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarClientePorDocumento_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", descripcion);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    DGVClien.DataSource = dt;
+                    con.Close();
+                    AjustarColumnasBusquedaClienteDcoumento(DGVClien);
+                }
+
+
+                Evitar_Clientes_Duplicados(DGVClien, datalistadoClientesLiquidacion);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //EVENTOS DE BUSQUEDA POR DESCRIPCION PARA CLIENTES
+        private void txtBusquedaCLienteLiquidacion_TextChanged(object sender, EventArgs e)
+        {
+            FiltroClientes(cboBusquedaClientesLiquidacion.Text, txtBusquedaCLienteLiquidacion.Text, datalistadoBusquedaClietneLiquidacion);
+        }
+
+        //AJUSTAR MIS COLUMNAS DE MI BUSQUEDA DE COLABORADORES
+        public void AjusteBusquedaCloba(DataGridView DGV)
+        {
+            DGV.Columns[1].Visible = false;
+            DGV.Columns[2].Width = 420;
+        }
+
+        //METODO DE FILTROS BUSQUEDA DE COLABORADORES
+        public void FiltroColaboradores(string tipobusqueda, string descripcion, DataGridView DGVColabora)
+        {
+            try
+            {
+                if (tipobusqueda == "NOMBRES")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarColaboradorPorNombre_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombre", descripcion);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    DGVColabora.DataSource = dt;
+                    con.Close();
+                    AjusteBusquedaCloba(DGVColabora);
+                }
+                else if (tipobusqueda == "DOCUMENTO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("BuscarColaboradorPorDocumento_Requerimiento", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", descripcion);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    DGVColabora.DataSource = dt;
+                    con.Close();
+                    AjusteBusquedaCloba(DGVColabora);
+                }
+                Evitar_Colaboradores_Duplicados(DGVColabora, datalistadoColaboradoresLiquidacion);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //EVENTOS DE BUSQUEDA POR DESCRIPCION PARA COLABORADORES
+        private void txtBusquedaColaboradorLiquidacion_TextChanged(object sender, EventArgs e)
+        {
+            FiltroColaboradores(cboBusquedaColaboradorLiquidacion.Text, txtBusquedaColaboradorLiquidacion.Text, datalistadoBusquedaColaboradorLiquidacion);
+        }
+
+       
+
+        //EVENTO PARA QUE SE LLENE EL CAMPO DE ASISTENTE 1 CON EL NOMBRE DEL USUARIO COMERCIAL LOGEADO
+        private void ckPresenteAsistente1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ckPresenteAsistente1.Checked == true)
+            {
+                txtAsistentes1NuevaActa.Text = datalistadoTodasLiquidacion.SelectedCells[7].Value.ToString();
+            }
+            else
+            {
+                txtAsistentes1NuevaActa.Text = "";
+            }
+        }
+
+        //VALIDACION PARA QUE SOLO PUEDA BORRAR
+        private void txtAsistentes1NuevaActa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }          
+        }
     }
 }
+    
