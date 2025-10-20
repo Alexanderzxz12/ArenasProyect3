@@ -621,10 +621,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
                 else
                 {
-                    if (txtAntecedentes.Text == "" || txtDesarrollo.Text == "" || txtResultado.Text == "" || txtAcciones.Text == "")
+                    //////////////////////////--------------------------------------------------------------------------
+                    //CODIGO IMPLEMENTADO 
+                    if (string.IsNullOrWhiteSpace(txtAntecedentes.Text) /*= ""*/ || string.IsNullOrWhiteSpace(txtDesarrollo.Text) /*== "" */ || string.IsNullOrWhiteSpace(txtResultado.Text) /*== ""*/ || string.IsNullOrWhiteSpace(txtAcciones.Text) /*== ""*/)
                     {
                         MessageBox.Show("Debe llenar todos los campos para poder continuar.", "Validación del Sistema",MessageBoxButtons.OK);
                     }
+                    //////////////////////////--------------------------------------------------------------------------
                     else
                     {
                         DialogResult boton = MessageBox.Show("¿Realmente desea guardar este detalle de acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
@@ -758,10 +761,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
                 else
                 {
-                    if (txtAntecedentes.Text == "" || txtDesarrollo.Text == "" || txtResultado.Text == "" || txtAcciones.Text == "")
+                    //////////////////////////--------------------------------------------------------------------------
+                    //CODIGO IMPLEMENTADO 
+                    if (string.IsNullOrWhiteSpace(txtAntecedentes.Text) /*== "" */ || string.IsNullOrWhiteSpace(txtDesarrollo.Text) /*== "" */ || string.IsNullOrWhiteSpace(txtResultado.Text) /*== ""*/ || string.IsNullOrWhiteSpace(txtAcciones.Text) /*== ""*/)
                     {
                         MessageBox.Show("Debe llenar todos los campos para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
+                    //////////////////////////--------------------------------------------------------------------------
                     else
                     {
                         DialogResult boton = MessageBox.Show("¿Realmente desea guardar este detalle de acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
@@ -1489,179 +1495,196 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             if (rbTipoClienteActualNuevaActa.Checked == false && rbTipoClienteFuturoNuevaActa.Checked == false)
             {
-                MessageBox.Show("Debe seleccionar un tipo de cliente.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar un tipo de cliente.", "Validación del Sistema",MessageBoxButtons.OK);
             }
             else
             {
                 if (rbFrecuenciaAltaNuevaActa.Checked == false && rbFrecuenciaMediaNuevaActa.Checked == false && rbFrecuenduaBajaNuevaActa.Checked == false)
                 {
-                    MessageBox.Show("Debe seleccionar una frecuencia y volúmen de compra.", "Validación del Sistema");
+                    MessageBox.Show("Debe seleccionar una frecuencia y volúmen de compra.", "Validación del Sistema",MessageBoxButtons.OK);
                 }
                 else
                 {
-                    if (txtContactoCliente1NuevaActa.Text == "")
+                    //////////////////////////--------------------------------------------------------------------------
+                    //CODIGO IMPLEMENTADO 
+                    if (txtContactoCliente1NuevaActa.Text == "" && txtContactoCliente2NuevaActa.Text == "" && txtContactoCliente3NuevaActa.Text == "")
                     {
-                        MessageBox.Show("Debe seleccionar al menos un contacto del cliente.", "Validación del Sistema");
+                        MessageBox.Show("Debe seleccionar al menos un contacto del cliente.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
-                        try
+                        if (txtAsistentes1NuevaActa.Text == "" && txtAsistentes2NuevaActa.Text == "" && txtAsistentes3NuevaActa.Text == "")
                         {
-                            DialogResult boton = MessageBox.Show("¿Realmente desea editar esta acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                            if (boton == DialogResult.OK)
-                            {
-                                SqlConnection con = new SqlConnection();
-                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                con.Open();
-                                SqlCommand cmd = new SqlCommand();
-                                cmd = new SqlCommand("ModificarActa", con);
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                cmd.Parameters.AddWithValue("@idActa", idActa);
-                                cmd.Parameters.AddWithValue("@fechaInicio", datatimeFechaInicioNuevaActa.Value);
-                                cmd.Parameters.AddWithValue("@fechaTermino", datetimeFechaTerminoNuevaActa.Value);
-
-                                if (rbTipoClienteActualNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckActual", 1);
-                                    cmd.Parameters.AddWithValue("@ckFuturoPotencial", 0);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckActual", 0);
-                                    cmd.Parameters.AddWithValue("@ckFuturoPotencial", 1);
-                                }
-
-                                if (rbFrecuenciaAltaNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckAlto", 1);
-                                    cmd.Parameters.AddWithValue("@ckMedia", 0);
-                                    cmd.Parameters.AddWithValue("@ckBaja", 0);
-                                }
-                                else if (rbFrecuenciaMediaNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckAlto", 0);
-                                    cmd.Parameters.AddWithValue("@ckMedia", 1);
-                                    cmd.Parameters.AddWithValue("@ckBaja", 0);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckAlto", 0);
-                                    cmd.Parameters.AddWithValue("@ckMedia", 0);
-                                    cmd.Parameters.AddWithValue("@ckBaja", 1);
-                                }
-
-                                cmd.Parameters.AddWithValue("@asistente1", txtAsistentes1NuevaActa.Text);
-                                cmd.Parameters.AddWithValue("@asistente2", txtAsistentes2NuevaActa.Text);
-                                cmd.Parameters.AddWithValue("@asistente3", txtAsistentes3NuevaActa.Text);
-
-                                if (txtContactoCliente1NuevaActa.Text == "")
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente1", "");
-                                    cmd.Parameters.AddWithValue("@correocliente1", "");
-                                    cmd.Parameters.AddWithValue("@cargocliente1", "");
-                                    cmd.Parameters.AddWithValue("@telefonocliente1", "");
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente1", txtContactoCliente1NuevaActa.Text);
-                                    cmd.Parameters.AddWithValue("@correocliente1", lblContactoCorreo1.Text);
-                                    cmd.Parameters.AddWithValue("@cargocliente1", lblClienteCargo1.Text);
-                                    cmd.Parameters.AddWithValue("@telefonocliente1", lblContactoTelefono1.Text);
-                                }
-
-                                if (txtContactoCliente2NuevaActa.Text == "")
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente2", "");
-                                    cmd.Parameters.AddWithValue("@correocliente2", "");
-                                    cmd.Parameters.AddWithValue("@cargocliente2", "");
-                                    cmd.Parameters.AddWithValue("@telefonocliente2", "");
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente2", txtContactoCliente2NuevaActa.Text);
-                                    cmd.Parameters.AddWithValue("@correocliente2", lblContactoCorreo2.Text);
-                                    cmd.Parameters.AddWithValue("@cargocliente2", lblClienteCargo2.Text);
-                                    cmd.Parameters.AddWithValue("@telefonocliente2", lblContactoTelefono2.Text);
-                                }
-
-                                if (txtContactoCliente3NuevaActa.Text == "")
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente3", "");
-                                    cmd.Parameters.AddWithValue("@correocliente3", "");
-                                    cmd.Parameters.AddWithValue("@cargocliente3", "");
-                                    cmd.Parameters.AddWithValue("@telefonocliente3", "");
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ContactoCliente3", txtContactoCliente3NuevaActa.Text);
-                                    cmd.Parameters.AddWithValue("@correocliente3", lblContactoCorreo3.Text);
-                                    cmd.Parameters.AddWithValue("@cargocliente3", lblClienteCargo3.Text);
-                                    cmd.Parameters.AddWithValue("@telefonocliente3", lblContactoTelefono3.Text);
-                                }
-
-                                if (ckSostenimientoNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckSostenimiento", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckSostenimiento", 0);
-                                }
-
-                                if (ckCaptacionNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckCapacitacion", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckCapacitacion", 0);
-                                }
-
-                                if (ckRecuperacionNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckRecuperacion", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckRecuperacion", 0);
-                                }
-
-                                if (ckReclamoNuevaActa.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@ckReclamo", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@ckReclamo", 0);
-                                }
-
-                                cmd.Parameters.AddWithValue("@fechaActa", datetimeActa.Value);
-
-                                if (ckPresenteAsistente1.Checked == true)
-                                {
-                                    cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 1);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 0);
-                                }
-
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-
-                                MessageBox.Show("Se editó el acta correctamente en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
-
-                                panelModificarActa.Visible = false;
-                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                                ClassResourses.RegistrarAuditora(8, this.Name, 6, Program.IdUsuario, "Editar acta de visita.", Convert.ToInt32(idActa));
-                            }
+                            MessageBox.Show("Debe seleccionar al menos un asistente", "Validación del Sistema", MessageBoxButtons.OK);
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                            ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
-                            MessageBox.Show(ex.Message, "Error en el servidor.");
+                            if (ckSostenimientoNuevaActa.Checked == false && ckRecuperacionNuevaActa.Checked == false && ckCaptacionNuevaActa.Checked == false && ckReclamoNuevaActa.Checked == false)
+                            {
+                                MessageBox.Show("Debe seleccionar un objetivo de viaje", "Validación del Sistema", MessageBoxButtons.OK);
+                            }
+                            else
+                            {
+                                //////////////////////////--------------------------------------------------------------------------
+                                try
+                                {
+                                    DialogResult boton = MessageBox.Show("¿Realmente desea editar esta acta?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                                    if (boton == DialogResult.OK)
+                                    {
+                                        SqlConnection con = new SqlConnection();
+                                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                        con.Open();
+                                        SqlCommand cmd = new SqlCommand();
+                                        cmd = new SqlCommand("ModificarActa", con);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+
+                                        cmd.Parameters.AddWithValue("@idActa", idActa);
+                                        cmd.Parameters.AddWithValue("@fechaInicio", datatimeFechaInicioNuevaActa.Value);
+                                        cmd.Parameters.AddWithValue("@fechaTermino", datetimeFechaTerminoNuevaActa.Value);
+
+                                        if (rbTipoClienteActualNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckActual", 1);
+                                            cmd.Parameters.AddWithValue("@ckFuturoPotencial", 0);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckActual", 0);
+                                            cmd.Parameters.AddWithValue("@ckFuturoPotencial", 1);
+                                        }
+
+                                        if (rbFrecuenciaAltaNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckAlto", 1);
+                                            cmd.Parameters.AddWithValue("@ckMedia", 0);
+                                            cmd.Parameters.AddWithValue("@ckBaja", 0);
+                                        }
+                                        else if (rbFrecuenciaMediaNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckAlto", 0);
+                                            cmd.Parameters.AddWithValue("@ckMedia", 1);
+                                            cmd.Parameters.AddWithValue("@ckBaja", 0);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckAlto", 0);
+                                            cmd.Parameters.AddWithValue("@ckMedia", 0);
+                                            cmd.Parameters.AddWithValue("@ckBaja", 1);
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@asistente1", txtAsistentes1NuevaActa.Text);
+                                        cmd.Parameters.AddWithValue("@asistente2", txtAsistentes2NuevaActa.Text);
+                                        cmd.Parameters.AddWithValue("@asistente3", txtAsistentes3NuevaActa.Text);
+
+                                        if (txtContactoCliente1NuevaActa.Text == "")
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente1", "");
+                                            cmd.Parameters.AddWithValue("@correocliente1", "");
+                                            cmd.Parameters.AddWithValue("@cargocliente1", "");
+                                            cmd.Parameters.AddWithValue("@telefonocliente1", "");
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente1", txtContactoCliente1NuevaActa.Text);
+                                            cmd.Parameters.AddWithValue("@correocliente1", lblContactoCorreo1.Text);
+                                            cmd.Parameters.AddWithValue("@cargocliente1", lblClienteCargo1.Text);
+                                            cmd.Parameters.AddWithValue("@telefonocliente1", lblContactoTelefono1.Text);
+                                        }
+
+                                        if (txtContactoCliente2NuevaActa.Text == "")
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente2", "");
+                                            cmd.Parameters.AddWithValue("@correocliente2", "");
+                                            cmd.Parameters.AddWithValue("@cargocliente2", "");
+                                            cmd.Parameters.AddWithValue("@telefonocliente2", "");
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente2", txtContactoCliente2NuevaActa.Text);
+                                            cmd.Parameters.AddWithValue("@correocliente2", lblContactoCorreo2.Text);
+                                            cmd.Parameters.AddWithValue("@cargocliente2", lblClienteCargo2.Text);
+                                            cmd.Parameters.AddWithValue("@telefonocliente2", lblContactoTelefono2.Text);
+                                        }
+
+                                        if (txtContactoCliente3NuevaActa.Text == "")
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente3", "");
+                                            cmd.Parameters.AddWithValue("@correocliente3", "");
+                                            cmd.Parameters.AddWithValue("@cargocliente3", "");
+                                            cmd.Parameters.AddWithValue("@telefonocliente3", "");
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ContactoCliente3", txtContactoCliente3NuevaActa.Text);
+                                            cmd.Parameters.AddWithValue("@correocliente3", lblContactoCorreo3.Text);
+                                            cmd.Parameters.AddWithValue("@cargocliente3", lblClienteCargo3.Text);
+                                            cmd.Parameters.AddWithValue("@telefonocliente3", lblContactoTelefono3.Text);
+                                        }
+
+                                        if (ckSostenimientoNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckSostenimiento", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckSostenimiento", 0);
+                                        }
+
+                                        if (ckCaptacionNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckCapacitacion", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckCapacitacion", 0);
+                                        }
+
+                                        if (ckRecuperacionNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckRecuperacion", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckRecuperacion", 0);
+                                        }
+
+                                        if (ckReclamoNuevaActa.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckReclamo", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@ckReclamo", 0);
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@fechaActa", datetimeActa.Value);
+
+                                        if (ckPresenteAsistente1.Checked == true)
+                                        {
+                                            cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 1);
+                                        }
+                                        else
+                                        {
+                                            cmd.Parameters.AddWithValue("@presenciaAsistente1Encargado", 0);
+                                        }
+
+                                        cmd.ExecuteNonQuery();
+                                        con.Close();
+
+                                        MessageBox.Show("Se editó el acta correctamente en el sistema.", "Validación del Sistema", MessageBoxButtons.OK);
+
+                                        panelModificarActa.Visible = false;
+                                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                        ClassResourses.RegistrarAuditora(8, this.Name, 6, Program.IdUsuario, "Editar acta de visita.", Convert.ToInt32(idActa));
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                    ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
+                                    MessageBox.Show(ex.Message, "Error en el servidor.");
+                                }
+                            }
                         }
                     }
                 }
@@ -1888,5 +1911,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             Process.Start(ruta);
         }
+
+
+        //////////////////////////////////////////////---------------------------------------------------------------------
+        ///////////////////--------------------------------------------
+        //METODOS VALIDACIONES ACTAS
     }
 }
