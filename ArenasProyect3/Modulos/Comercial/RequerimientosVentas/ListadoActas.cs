@@ -479,8 +479,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     }
                     else
                     {
-                        if(txtJustificacionAnulacion.Text != "")
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        if (!string.IsNullOrWhiteSpace(txtJustificacionAnulacion.Text) /*!= ""*/)
                         {
+                            //////////////////////////--------------------------------------------------------------------------
                             try
                             {
                                 SqlConnection con = new SqlConnection();
@@ -502,8 +505,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                 panleAnulacion.Visible = false;
                                 txtJustificacionAnulacion.Text = "";
 
-                                ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL ACTA N°. " + idActa, "Correo de verificación de anulación de una acta por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
-                                ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL ACTA N°. " + idActa, "Correo de verificación de anulación de una acta por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                                //ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL ACTA N°. " + idActa, "Correo de verificación de anulación de una acta por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                                //ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL ACTA N°. " + idActa, "Correo de verificación de anulación de una acta por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
 
                                 //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                                 ClassResourses.RegistrarAuditora(2, this.Name, 6, Program.IdUsuario, "Anular acta de viaje.", Convert.ToInt32(idActa));
@@ -697,9 +700,12 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
 
                 MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClassResourses.RegistrarAuditora(5, this.Name, 6, Program.IdUsuario, "Exportar Acta PDF", idActa);
             }
             catch (Exception ex)
             {
+                ClassResourses.RegistrarAuditora(13, this.Name, 6, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
