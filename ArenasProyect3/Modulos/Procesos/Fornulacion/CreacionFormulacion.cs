@@ -1246,7 +1246,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
 
                         MostrarDetalleFormulacionesProducto(datalistadoactividadesproducto, textocodigoformulacion);
                         MostrarMaterialFormulacionesProducto(datalistadomaterialproducto, textocodigoformulacion);
-                        datalistadoactividadesproducto.Size = new Size(1108, 170);
+                        datalistadoactividadesproducto.Size = new Size(1108, 190);
                         datalistadomaterialproducto.Size = new Size(628, 170);
                         datalistadoactividadsemiproducido.Size = new Size(1108, 126);
                         datalistadomaterialsemiproducido.Size = new Size(628, 126);
@@ -1269,7 +1269,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                     textocodigoformulacion = datalistadoFormulaciones.Rows[filaActual].Cells[2].Value.ToString();
                     lblCodigoFormulacion.Text = datalistadoFormulaciones.Rows[filaActual].Cells[2].Value.ToString();
                     idartproducto = Convert.ToInt32(datalistadoFormulaciones.Rows[filaActual].Cells[3].Value.ToString());
-                    lblCodigoProducto.Text = datalistadoFormulaciones.Rows[filaActual].Cells[4].Value.ToString(); 
+                    lblCodigoProducto.Text = datalistadoFormulaciones.Rows[filaActual].Cells[4].Value.ToString();
                     lblCodigoBSSProducto.Text = datalistadoFormulaciones.Rows[filaActual].Cells[19].Value.ToString();
                     txtProducto.Text = datalistadoFormulaciones.Rows[filaActual].Cells[5].Value.ToString();
                     idartsemiproducido = Convert.ToInt32(datalistadoFormulaciones.Rows[filaActual].Cells[7].Value.ToString());
@@ -2075,6 +2075,23 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //ABRIR EL PANEL APRA AGREGAR UNA NUEVA ACTIVIDADA A MI PRODUCOT
         private void btnAgregarActividadProducto_Click(object sender, EventArgs e)
         {
+            lblTipoActividadProducto.Text = "Agregar nueva actividad";
+            AbrirPanelActividad(lblTipoActividadProducto);
+        }
+
+        //ABRIR EL PANEL PARA EDITAR UNA NUEVA ACTIVIDADA A MI PRODUCOT
+        private void btnEditarActividad_Click(object sender, EventArgs e)
+        {
+            lblTipoActividadProducto.Text = "Editar actividad";
+            lblCodigoFormulacionActividad.Text = "**************";
+            lblCodigoActividad.Text = "**************";
+
+            AbrirPanelActividad(lblTipoActividadProducto);
+        }
+
+        //FUNCION PARA MIS BOTONES DE AGREGAR Y EDITAR
+        public void AbrirPanelActividad(Label lblTipoActividad)
+        {
             panelActividadProducto.Visible = true;
             CargarLineas();
             CargarCorrelativo();
@@ -2083,6 +2100,21 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             MostrarDetalleFormulacionesProducto(datalistadoactividadproductosseleccionar, lblCodigoFormulacionVision.Text);
             alternarColorFilas(datalistadoactividadproductosseleccionar);
             AumentarPosicionCorrelativoProducto(datalistadoactividadproductosseleccionar, cboCorrelativo);
+
+            if (lblTipoActividad.Text == "Agregar nueva actividad")
+            {
+                btnConfirmarActividadProducto.Visible = true;
+                lblConfirmarActividadProducto.Visible = true;
+                btnEditarActividadProducto.Visible = false;
+                lblEditarActividadProducto.Visible = false;
+            }
+            else
+            {
+                btnConfirmarActividadProducto.Visible = false;
+                lblConfirmarActividadProducto.Visible = false;
+                btnEditarActividadProducto.Visible = true;
+                lblEditarActividadProducto.Visible = true;
+            }
         }
 
         //VALIDAR LA POCISIÓN Y EL VALOR DEL CORRELATIVO
@@ -2198,7 +2230,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //TRAER MIS DATOWS DE MI ACTIVIDAD
         private void datalistadoactividadproductosseleccionar_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(datalistadoactividadproductosseleccionar.RowCount > 0)
+            if (datalistadoactividadproductosseleccionar.RowCount > 0)
             {
                 lblCodigoActividad.Text = datalistadoactividadproductosseleccionar.SelectedCells[0].Value.ToString();
                 lblCodigoFormulacionActividad.Text = datalistadoactividadproductosseleccionar.SelectedCells[1].Value.ToString();
@@ -2623,6 +2655,23 @@ Convert.ToDecimal(txtToperacion.Text), Convert.ToInt32(txtTpor.Text), Convert.To
         //ABRIR EL PANEL PARA AGREGAR UNA NUEVA ACTIVIDADA A MI SEMIPRODUCIDO
         private void btnAgregarActividadSemiProducido_Click(object sender, EventArgs e)
         {
+            lblTipoActividadProductoSemi.Text = "Agregar nueva actividad";
+            AbrirPanelActividadSemi(lblTipoActividadProductoSemi);
+        }
+
+        //ABRIR EL PANEL PARA EDITAR UNA NUEVA ACTIVIDADA A MI SEMIPRODUCIDO
+        private void btnEditarActividadSemi_Click(object sender, EventArgs e)
+        {
+            lblTipoActividadProductoSemi.Text = "Editar actividad";
+            lblIdFormulacionS.Text = "**************";
+            lblCodigoActividad2.Text = "**************";
+
+            AbrirPanelActividadSemi(lblTipoActividadProductoSemi);
+        }
+
+        //FUNCION PARA MIS BOTONES DE AGREGAR Y EDITAR
+        public void AbrirPanelActividadSemi(Label lblTipoActividadS)
+        {
             panelActividadSemiProducido.Visible = true;
             CargarLineasS();
             CargarModeloS();
@@ -2632,6 +2681,21 @@ Convert.ToDecimal(txtToperacion.Text), Convert.ToInt32(txtTpor.Text), Convert.To
             MostrarDetalleFormulacionesSemiProducido(datalistadoactividadsemiproducidoseleccionar, lblIdFormulacionS.Text);
             alternarColorFilas(datalistadoactividadsemiproducidoseleccionar);
             AumentarPosicionCorrelativoProducto(datalistadoactividadsemiproducidoseleccionar, cboCorrelativoS);
+
+            if (lblTipoActividadS.Text == "Agregar nueva actividad")
+            {
+                btnConfirmarActividadSemiProducido.Visible = true;
+                lblConfirmarActividadSemiProducido.Visible = true;
+                btnEditarActividadSemiProducido.Visible = false;
+                lblEditarActividadSemiProducido.Visible = false;
+            }
+            else
+            {
+                btnConfirmarActividadSemiProducido.Visible = false;
+                lblConfirmarActividadSemiProducido.Visible = false;
+                btnEditarActividadSemiProducido.Visible = true;
+                lblEditarActividadSemiProducido.Visible = true;
+            }
         }
 
         //VALIDAR LA POCISIÓN Y EL VALOR DEL CORRELATIVO
@@ -3637,5 +3701,7 @@ Convert.ToDecimal(txtToperacion.Text), Convert.ToInt32(txtTpor.Text), Convert.To
         {
             FiltrarFormulaciones(cboBusquedaFormulacion, datalistadoFormulaciones, txtFormulaciones.Text);
         }
+
+
     }
 }

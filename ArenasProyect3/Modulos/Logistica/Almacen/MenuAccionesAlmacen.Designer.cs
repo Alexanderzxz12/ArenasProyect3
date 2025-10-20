@@ -98,7 +98,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnListadoNotaIngreso.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnListadoNotaIngreso.FlatAppearance.BorderSize = 0;
             this.btnListadoNotaIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoNotaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoNotaIngreso.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoNotaIngreso.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoNotaIngreso.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoNotaIngreso.Image")));
             this.btnListadoNotaIngreso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -124,7 +124,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnListadoKardex.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnListadoKardex.FlatAppearance.BorderSize = 0;
             this.btnListadoKardex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoKardex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoKardex.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoKardex.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoKardex.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoKardex.Image")));
             this.btnListadoKardex.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -142,7 +142,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnListadoNotaSalida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnListadoNotaSalida.FlatAppearance.BorderSize = 0;
             this.btnListadoNotaSalida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoNotaSalida.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoNotaSalida.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoNotaSalida.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoNotaSalida.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoNotaSalida.Image")));
             this.btnListadoNotaSalida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,7 +160,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnNotaSalida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNotaSalida.FlatAppearance.BorderSize = 0;
             this.btnNotaSalida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNotaSalida.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNotaSalida.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNotaSalida.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNotaSalida.Image = ((System.Drawing.Image)(resources.GetObject("btnNotaSalida.Image")));
             this.btnNotaSalida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -178,7 +178,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnManualUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnManualUsuario.FlatAppearance.BorderSize = 0;
             this.btnManualUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualUsuario.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,7 +196,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnNotaIngreso.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNotaIngreso.FlatAppearance.BorderSize = 0;
             this.btnNotaIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNotaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNotaIngreso.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNotaIngreso.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNotaIngreso.Image = ((System.Drawing.Image)(resources.GetObject("btnNotaIngreso.Image")));
             this.btnNotaIngreso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -214,7 +214,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnTipoCambio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTipoCambio.FlatAppearance.BorderSize = 0;
             this.btnTipoCambio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTipoCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTipoCambio.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTipoCambio.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTipoCambio.Image = ((System.Drawing.Image)(resources.GetObject("btnTipoCambio.Image")));
             this.btnTipoCambio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,7 +232,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
             this.btnListadoProveedores.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnListadoProveedores.FlatAppearance.BorderSize = 0;
             this.btnListadoProveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoProveedores.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListadoProveedores.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoProveedores.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoProveedores.Image")));
             this.btnListadoProveedores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

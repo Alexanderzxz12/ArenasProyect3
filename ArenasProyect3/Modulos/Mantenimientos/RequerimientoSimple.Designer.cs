@@ -30,42 +30,44 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RequerimientoSimple));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelInformacionFecha = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnInformacionFechas = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.datalistadoCargarCantidadRequerimeintoSimple = new System.Windows.Forms.DataGridView();
-            this.datalistadoBusquedaJefatura = new System.Windows.Forms.DataGridView();
-            this.datalistadoBusquedaUusario = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.txtJefatura = new System.Windows.Forms.TextBox();
             this.cboLocal = new System.Windows.Forms.ComboBox();
+            this.cboSede = new System.Windows.Forms.ComboBox();
+            this.cboTipoRequerimiento = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboPrioridad = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnBuscarOT = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimeFechaRequerida = new System.Windows.Forms.DateTimePicker();
-            this.dateTimeFechaSolicitada = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnBuscarOP = new System.Windows.Forms.Button();
-            this.cboSede = new System.Windows.Forms.ComboBox();
-            this.txtCodigoOrdenProduccion = new System.Windows.Forms.TextBox();
+            this.dateTimeFechaSolicitada = new System.Windows.Forms.DateTimePicker();
             this.txtCodigoOrdenTrabajo = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cboTipoRequerimiento = new System.Windows.Forms.ComboBox();
-            this.cboPrioridad = new System.Windows.Forms.ComboBox();
+            this.btnBuscarOP = new System.Windows.Forms.Button();
+            this.txtCodigoOrdenProduccion = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.datalistadoCargarCantidadRequerimeintoSimple = new System.Windows.Forms.DataGridView();
+            this.datalistadoBusquedaJefatura = new System.Windows.Forms.DataGridView();
+            this.datalistadoBusquedaUusario = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
@@ -109,6 +111,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.unidadOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.almacenOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelBuscarProductos = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
             this.btnRefrescar = new System.Windows.Forms.Button();
             this.btnBorrarBusquedaProductps = new System.Windows.Forms.Button();
             this.btnRegresarBusqeudaProductos = new System.Windows.Forms.Button();
@@ -139,6 +142,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.ckAprobacionAuto = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panelInformacionFecha.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCargarCantidadRequerimeintoSimple)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaJefatura)).BeginInit();
@@ -162,28 +167,29 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.panelInformacionFecha);
+            this.groupBox1.Controls.Add(this.pictureBox3);
+            this.groupBox1.Controls.Add(this.pictureBox25);
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.btnInformacionFechas);
-            this.groupBox1.Controls.Add(this.panel5);
             this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.txtJefatura);
             this.groupBox1.Controls.Add(this.cboLocal);
+            this.groupBox1.Controls.Add(this.cboSede);
+            this.groupBox1.Controls.Add(this.cboTipoRequerimiento);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cboPrioridad);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnBuscarOT);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.dateTimeFechaRequerida);
-            this.groupBox1.Controls.Add(this.dateTimeFechaSolicitada);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.btnBuscarOP);
-            this.groupBox1.Controls.Add(this.cboSede);
-            this.groupBox1.Controls.Add(this.txtCodigoOrdenProduccion);
+            this.groupBox1.Controls.Add(this.dateTimeFechaSolicitada);
             this.groupBox1.Controls.Add(this.txtCodigoOrdenTrabajo);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cboTipoRequerimiento);
-            this.groupBox1.Controls.Add(this.cboPrioridad);
+            this.groupBox1.Controls.Add(this.btnBuscarOP);
+            this.groupBox1.Controls.Add(this.txtCodigoOrdenProduccion);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(134, 31);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -198,7 +204,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.panelInformacionFecha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelInformacionFecha.Controls.Add(this.label25);
-            this.panelInformacionFecha.Location = new System.Drawing.Point(656, 42);
+            this.panelInformacionFecha.Location = new System.Drawing.Point(673, 46);
             this.panelInformacionFecha.Margin = new System.Windows.Forms.Padding(4);
             this.panelInformacionFecha.Name = "panelInformacionFecha";
             this.panelInformacionFecha.Size = new System.Drawing.Size(126, 64);
@@ -217,12 +223,45 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.label25.Text = "Por defecto la fecha \r\nsolicitada es mayor a\r\n2 dias a la fecha actual";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(519, 112);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 2013;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox25
+            // 
+            this.pictureBox25.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox25.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox25.Image")));
+            this.pictureBox25.Location = new System.Drawing.Point(642, 112);
+            this.pictureBox25.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox25.TabIndex = 2012;
+            this.pictureBox25.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.Location = new System.Drawing.Point(452, 22);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1, 57);
+            this.panel1.TabIndex = 10;
+            // 
             // btnInformacionFechas
             // 
             this.btnInformacionFechas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInformacionFechas.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInformacionFechas.Image = ((System.Drawing.Image)(resources.GetObject("btnInformacionFechas.Image")));
-            this.btnInformacionFechas.Location = new System.Drawing.Point(654, 104);
+            this.btnInformacionFechas.Location = new System.Drawing.Point(671, 108);
             this.btnInformacionFechas.Margin = new System.Windows.Forms.Padding(4);
             this.btnInformacionFechas.Name = "btnInformacionFechas";
             this.btnInformacionFechas.Size = new System.Drawing.Size(28, 26);
@@ -230,12 +269,223 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnInformacionFechas.UseVisualStyleBackColor = true;
             this.btnInformacionFechas.Click += new System.EventHandler(this.btnInformacionFechas_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Green;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(4, 141);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(896, 12);
+            this.panel3.TabIndex = 20;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(18, 25);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Jefatura:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(34, 86);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Local:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(35, 56);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Sede:";
+            // 
+            // txtJefatura
+            // 
+            this.txtJefatura.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJefatura.Location = new System.Drawing.Point(83, 22);
+            this.txtJefatura.Margin = new System.Windows.Forms.Padding(4);
+            this.txtJefatura.Name = "txtJefatura";
+            this.txtJefatura.ReadOnly = true;
+            this.txtJefatura.Size = new System.Drawing.Size(325, 21);
+            this.txtJefatura.TabIndex = 1;
+            // 
+            // cboLocal
+            // 
+            this.cboLocal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLocal.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLocal.FormattingEnabled = true;
+            this.cboLocal.Location = new System.Drawing.Point(83, 83);
+            this.cboLocal.Margin = new System.Windows.Forms.Padding(4);
+            this.cboLocal.Name = "cboLocal";
+            this.cboLocal.Size = new System.Drawing.Size(212, 21);
+            this.cboLocal.TabIndex = 9;
+            // 
+            // cboSede
+            // 
+            this.cboSede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSede.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSede.FormattingEnabled = true;
+            this.cboSede.Location = new System.Drawing.Point(83, 53);
+            this.cboSede.Margin = new System.Windows.Forms.Padding(4);
+            this.cboSede.Name = "cboSede";
+            this.cboSede.Size = new System.Drawing.Size(260, 21);
+            this.cboSede.TabIndex = 8;
+            // 
+            // cboTipoRequerimiento
+            // 
+            this.cboTipoRequerimiento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipoRequerimiento.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoRequerimiento.FormattingEnabled = true;
+            this.cboTipoRequerimiento.Location = new System.Drawing.Point(610, 22);
+            this.cboTipoRequerimiento.Margin = new System.Windows.Forms.Padding(4);
+            this.cboTipoRequerimiento.Name = "cboTipoRequerimiento";
+            this.cboTipoRequerimiento.Size = new System.Drawing.Size(272, 21);
+            this.cboTipoRequerimiento.TabIndex = 2;
+            this.cboTipoRequerimiento.SelectedIndexChanged += new System.EventHandler(this.cboTipoRequerimiento_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(485, 25);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tipo de Requerimiento:";
+            // 
+            // cboPrioridad
+            // 
+            this.cboPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPrioridad.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPrioridad.FormattingEnabled = true;
+            this.cboPrioridad.Location = new System.Drawing.Point(610, 53);
+            this.cboPrioridad.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPrioridad.Name = "cboPrioridad";
+            this.cboPrioridad.Size = new System.Drawing.Size(272, 21);
+            this.cboPrioridad.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(548, 56);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Prioridad:";
+            // 
+            // btnBuscarOT
+            // 
+            this.btnBuscarOT.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarOT.Location = new System.Drawing.Point(821, 86);
+            this.btnBuscarOT.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarOT.Name = "btnBuscarOT";
+            this.btnBuscarOT.Size = new System.Drawing.Size(61, 26);
+            this.btnBuscarOT.TabIndex = 17;
+            this.btnBuscarOT.Text = "O/T";
+            this.btnBuscarOT.UseVisualStyleBackColor = true;
+            this.btnBuscarOT.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(555, 93);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Fecha Solicitada:";
+            // 
+            // dateTimeFechaRequerida
+            // 
+            this.dateTimeFechaRequerida.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimeFechaRequerida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeFechaRequerida.Location = new System.Drawing.Point(558, 112);
+            this.dateTimeFechaRequerida.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimeFechaRequerida.Name = "dateTimeFechaRequerida";
+            this.dateTimeFechaRequerida.Size = new System.Drawing.Size(79, 21);
+            this.dateTimeFechaRequerida.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(432, 93);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Fecha Requerida";
+            // 
+            // dateTimeFechaSolicitada
+            // 
+            this.dateTimeFechaSolicitada.Enabled = false;
+            this.dateTimeFechaSolicitada.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimeFechaSolicitada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeFechaSolicitada.Location = new System.Drawing.Point(435, 112);
+            this.dateTimeFechaSolicitada.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimeFechaSolicitada.Name = "dateTimeFechaSolicitada";
+            this.dateTimeFechaSolicitada.Size = new System.Drawing.Size(79, 21);
+            this.dateTimeFechaSolicitada.TabIndex = 11;
+            // 
+            // txtCodigoOrdenTrabajo
+            // 
+            this.txtCodigoOrdenTrabajo.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtCodigoOrdenTrabajo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoOrdenTrabajo.Location = new System.Drawing.Point(811, 115);
+            this.txtCodigoOrdenTrabajo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoOrdenTrabajo.Name = "txtCodigoOrdenTrabajo";
+            this.txtCodigoOrdenTrabajo.ReadOnly = true;
+            this.txtCodigoOrdenTrabajo.Size = new System.Drawing.Size(80, 21);
+            this.txtCodigoOrdenTrabajo.TabIndex = 16;
+            this.txtCodigoOrdenTrabajo.Visible = false;
+            // 
+            // btnBuscarOP
+            // 
+            this.btnBuscarOP.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarOP.Location = new System.Drawing.Point(734, 86);
+            this.btnBuscarOP.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarOP.Name = "btnBuscarOP";
+            this.btnBuscarOP.Size = new System.Drawing.Size(61, 26);
+            this.btnBuscarOP.TabIndex = 19;
+            this.btnBuscarOP.Text = "O/P";
+            this.btnBuscarOP.UseVisualStyleBackColor = true;
+            this.btnBuscarOP.Visible = false;
+            // 
+            // txtCodigoOrdenProduccion
+            // 
+            this.txtCodigoOrdenProduccion.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtCodigoOrdenProduccion.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoOrdenProduccion.Location = new System.Drawing.Point(725, 115);
+            this.txtCodigoOrdenProduccion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoOrdenProduccion.Name = "txtCodigoOrdenProduccion";
+            this.txtCodigoOrdenProduccion.ReadOnly = true;
+            this.txtCodigoOrdenProduccion.Size = new System.Drawing.Size(80, 21);
+            this.txtCodigoOrdenProduccion.TabIndex = 18;
+            this.txtCodigoOrdenProduccion.Visible = false;
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.datalistadoCargarCantidadRequerimeintoSimple);
             this.panel5.Controls.Add(this.datalistadoBusquedaJefatura);
             this.panel5.Controls.Add(this.datalistadoBusquedaUusario);
-            this.panel5.Location = new System.Drawing.Point(381, 90);
+            this.panel5.Location = new System.Drawing.Point(146, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(27, 22);
@@ -286,226 +536,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoBusquedaUusario.Size = new System.Drawing.Size(13, 31);
             this.datalistadoBusquedaUusario.TabIndex = 15;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Green;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(4, 141);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(896, 12);
-            this.panel3.TabIndex = 20;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 25);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 14);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Jefatura:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(34, 86);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 14);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Local:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(35, 56);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 14);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Sede:";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Location = new System.Drawing.Point(433, 32);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1, 80);
-            this.panel1.TabIndex = 10;
-            // 
-            // txtJefatura
-            // 
-            this.txtJefatura.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJefatura.Location = new System.Drawing.Point(83, 22);
-            this.txtJefatura.Margin = new System.Windows.Forms.Padding(4);
-            this.txtJefatura.Name = "txtJefatura";
-            this.txtJefatura.ReadOnly = true;
-            this.txtJefatura.Size = new System.Drawing.Size(325, 22);
-            this.txtJefatura.TabIndex = 1;
-            // 
-            // cboLocal
-            // 
-            this.cboLocal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLocal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLocal.FormattingEnabled = true;
-            this.cboLocal.Location = new System.Drawing.Point(83, 83);
-            this.cboLocal.Margin = new System.Windows.Forms.Padding(4);
-            this.cboLocal.Name = "cboLocal";
-            this.cboLocal.Size = new System.Drawing.Size(212, 22);
-            this.cboLocal.TabIndex = 9;
-            // 
-            // btnBuscarOT
-            // 
-            this.btnBuscarOT.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarOT.Location = new System.Drawing.Point(804, 80);
-            this.btnBuscarOT.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscarOT.Name = "btnBuscarOT";
-            this.btnBuscarOT.Size = new System.Drawing.Size(61, 26);
-            this.btnBuscarOT.TabIndex = 17;
-            this.btnBuscarOT.Text = "O/T";
-            this.btnBuscarOT.UseVisualStyleBackColor = true;
-            this.btnBuscarOT.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(445, 89);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 14);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Fecha Solicitada:";
-            // 
-            // dateTimeFechaRequerida
-            // 
-            this.dateTimeFechaRequerida.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimeFechaRequerida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeFechaRequerida.Location = new System.Drawing.Point(554, 107);
-            this.dateTimeFechaRequerida.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimeFechaRequerida.Name = "dateTimeFechaRequerida";
-            this.dateTimeFechaRequerida.Size = new System.Drawing.Size(97, 21);
-            this.dateTimeFechaRequerida.TabIndex = 12;
-            // 
-            // dateTimeFechaSolicitada
-            // 
-            this.dateTimeFechaSolicitada.Enabled = false;
-            this.dateTimeFechaSolicitada.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimeFechaSolicitada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeFechaSolicitada.Location = new System.Drawing.Point(446, 107);
-            this.dateTimeFechaSolicitada.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimeFechaSolicitada.Name = "dateTimeFechaSolicitada";
-            this.dateTimeFechaSolicitada.Size = new System.Drawing.Size(97, 21);
-            this.dateTimeFechaSolicitada.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(553, 89);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 14);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Fecha Requerida";
-            // 
-            // btnBuscarOP
-            // 
-            this.btnBuscarOP.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarOP.Location = new System.Drawing.Point(715, 80);
-            this.btnBuscarOP.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscarOP.Name = "btnBuscarOP";
-            this.btnBuscarOP.Size = new System.Drawing.Size(61, 26);
-            this.btnBuscarOP.TabIndex = 19;
-            this.btnBuscarOP.Text = "O/P";
-            this.btnBuscarOP.UseVisualStyleBackColor = true;
-            this.btnBuscarOP.Visible = false;
-            // 
-            // cboSede
-            // 
-            this.cboSede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSede.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSede.FormattingEnabled = true;
-            this.cboSede.Location = new System.Drawing.Point(83, 53);
-            this.cboSede.Margin = new System.Windows.Forms.Padding(4);
-            this.cboSede.Name = "cboSede";
-            this.cboSede.Size = new System.Drawing.Size(260, 22);
-            this.cboSede.TabIndex = 8;
-            // 
-            // txtCodigoOrdenProduccion
-            // 
-            this.txtCodigoOrdenProduccion.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtCodigoOrdenProduccion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoOrdenProduccion.Location = new System.Drawing.Point(706, 109);
-            this.txtCodigoOrdenProduccion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigoOrdenProduccion.Name = "txtCodigoOrdenProduccion";
-            this.txtCodigoOrdenProduccion.ReadOnly = true;
-            this.txtCodigoOrdenProduccion.Size = new System.Drawing.Size(80, 22);
-            this.txtCodigoOrdenProduccion.TabIndex = 18;
-            this.txtCodigoOrdenProduccion.Visible = false;
-            // 
-            // txtCodigoOrdenTrabajo
-            // 
-            this.txtCodigoOrdenTrabajo.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtCodigoOrdenTrabajo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoOrdenTrabajo.Location = new System.Drawing.Point(794, 109);
-            this.txtCodigoOrdenTrabajo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigoOrdenTrabajo.Name = "txtCodigoOrdenTrabajo";
-            this.txtCodigoOrdenTrabajo.ReadOnly = true;
-            this.txtCodigoOrdenTrabajo.Size = new System.Drawing.Size(80, 22);
-            this.txtCodigoOrdenTrabajo.TabIndex = 16;
-            this.txtCodigoOrdenTrabajo.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(458, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tipo de Requerimiento:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(534, 56);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 14);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Prioridad:";
-            // 
-            // cboTipoRequerimiento
-            // 
-            this.cboTipoRequerimiento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoRequerimiento.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTipoRequerimiento.FormattingEnabled = true;
-            this.cboTipoRequerimiento.Location = new System.Drawing.Point(602, 22);
-            this.cboTipoRequerimiento.Margin = new System.Windows.Forms.Padding(4);
-            this.cboTipoRequerimiento.Name = "cboTipoRequerimiento";
-            this.cboTipoRequerimiento.Size = new System.Drawing.Size(272, 22);
-            this.cboTipoRequerimiento.TabIndex = 2;
-            this.cboTipoRequerimiento.SelectedIndexChanged += new System.EventHandler(this.cboTipoRequerimiento_SelectedIndexChanged);
-            // 
-            // cboPrioridad
-            // 
-            this.cboPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPrioridad.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboPrioridad.FormattingEnabled = true;
-            this.cboPrioridad.Location = new System.Drawing.Point(602, 53);
-            this.cboPrioridad.Margin = new System.Windows.Forms.Padding(4);
-            this.cboPrioridad.Name = "cboPrioridad";
-            this.cboPrioridad.Size = new System.Drawing.Size(272, 22);
-            this.cboPrioridad.TabIndex = 3;
-            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -528,6 +558,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.panelMovimientoFrm.BackColor = System.Drawing.Color.BurlyWood;
             this.panelMovimientoFrm.Controls.Add(this.label17);
+            this.panelMovimientoFrm.Controls.Add(this.panel5);
             this.panelMovimientoFrm.Controls.Add(this.pictureBox12);
             this.panelMovimientoFrm.Controls.Add(this.btnInfo);
             this.panelMovimientoFrm.Controls.Add(this.btnAtudaFormularioArena);
@@ -541,14 +572,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // label17
             // 
             this.label17.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label17.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(23, 0);
             this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(144, 18);
             this.label17.TabIndex = 2;
             this.label17.Text = "REQUERIMIENTO SIMPLE";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox12
             // 
@@ -591,11 +622,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(152, 199);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 14);
+            this.label8.Size = new System.Drawing.Size(75, 13);
             this.label8.TabIndex = 1941;
             this.label8.Text = "Solicitado por:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -603,68 +634,68 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // txtSolicitante
             // 
             this.txtSolicitante.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtSolicitante.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSolicitante.Location = new System.Drawing.Point(263, 196);
+            this.txtSolicitante.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSolicitante.Location = new System.Drawing.Point(251, 196);
             this.txtSolicitante.Margin = new System.Windows.Forms.Padding(4);
             this.txtSolicitante.Name = "txtSolicitante";
             this.txtSolicitante.ReadOnly = true;
-            this.txtSolicitante.Size = new System.Drawing.Size(279, 22);
+            this.txtSolicitante.Size = new System.Drawing.Size(279, 21);
             this.txtSolicitante.TabIndex = 1940;
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.DarkBlue;
             this.label24.Location = new System.Drawing.Point(391, 228);
             this.label24.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(247, 28);
+            this.label24.Size = new System.Drawing.Size(225, 26);
             this.label24.TabIndex = 1942;
             this.label24.Text = "Si no se ingresa una cantidad, automáticamente \r\nla cantidad es 1";
             // 
             // cboAreaGeneral
             // 
             this.cboAreaGeneral.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAreaGeneral.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAreaGeneral.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAreaGeneral.FormattingEnabled = true;
             this.cboAreaGeneral.Location = new System.Drawing.Point(779, 228);
             this.cboAreaGeneral.Margin = new System.Windows.Forms.Padding(4);
             this.cboAreaGeneral.Name = "cboAreaGeneral";
-            this.cboAreaGeneral.Size = new System.Drawing.Size(246, 22);
+            this.cboAreaGeneral.Size = new System.Drawing.Size(246, 21);
             this.cboAreaGeneral.TabIndex = 1946;
             // 
             // cboCentroCostos
             // 
             this.cboCentroCostos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCentroCostos.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCentroCostos.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCentroCostos.FormattingEnabled = true;
             this.cboCentroCostos.Location = new System.Drawing.Point(779, 196);
             this.cboCentroCostos.Margin = new System.Windows.Forms.Padding(4);
             this.cboCentroCostos.Name = "cboCentroCostos";
-            this.cboCentroCostos.Size = new System.Drawing.Size(246, 22);
+            this.cboCentroCostos.Size = new System.Drawing.Size(246, 21);
             this.cboCentroCostos.TabIndex = 1945;
             this.cboCentroCostos.SelectedIndexChanged += new System.EventHandler(this.cboCentroCostos_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(738, 231);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 14);
+            this.label10.Size = new System.Drawing.Size(32, 13);
             this.label10.TabIndex = 1944;
             this.label10.Text = "Área:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(679, 199);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 14);
+            this.label9.Size = new System.Drawing.Size(88, 13);
             this.label9.TabIndex = 1943;
             this.label9.Text = "Centro de Costos:";
             // 
@@ -680,13 +711,13 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label11.Location = new System.Drawing.Point(363, 2);
+            this.label11.Location = new System.Drawing.Point(0, 0);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(137, 14);
+            this.label11.Size = new System.Drawing.Size(896, 20);
             this.label11.TabIndex = 7;
             this.label11.Text = "Detalle del Requerimiento";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -694,23 +725,23 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(156, 495);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 14);
+            this.label14.Size = new System.Drawing.Size(77, 13);
             this.label14.TabIndex = 1950;
             this.label14.Text = "Observaciones:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtObservaciones
             // 
-            this.txtObservaciones.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservaciones.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtObservaciones.Location = new System.Drawing.Point(146, 513);
             this.txtObservaciones.Margin = new System.Windows.Forms.Padding(4);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(454, 104);
+            this.txtObservaciones.Size = new System.Drawing.Size(527, 104);
             this.txtObservaciones.TabIndex = 1949;
             // 
             // btnRegresar
@@ -719,7 +750,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnRegresar.FlatAppearance.BorderSize = 0;
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresar.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresar.Image")));
-            this.btnRegresar.Location = new System.Drawing.Point(800, 551);
+            this.btnRegresar.Location = new System.Drawing.Point(842, 543);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(35, 35);
             this.btnRegresar.TabIndex = 2024;
@@ -732,7 +763,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnConfirmar.FlatAppearance.BorderSize = 0;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirmar.Image")));
-            this.btnConfirmar.Location = new System.Drawing.Point(729, 551);
+            this.btnConfirmar.Location = new System.Drawing.Point(771, 543);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(35, 35);
             this.btnConfirmar.TabIndex = 2023;
@@ -743,7 +774,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(720, 590);
+            this.label19.Location = new System.Drawing.Point(762, 582);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 14);
@@ -754,7 +785,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(799, 589);
+            this.label12.Location = new System.Drawing.Point(841, 581);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 14);
@@ -815,14 +846,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoProductosRequerimiento.AllowUserToResizeRows = false;
             this.datalistadoProductosRequerimiento.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoProductosRequerimiento.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoProductosRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoProductosRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.datalistadoProductosRequerimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoProductosRequerimiento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -831,14 +862,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.UNIDAD,
             this.CANTIDAD,
             this.stock});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoProductosRequerimiento.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoProductosRequerimiento.DefaultCellStyle = dataGridViewCellStyle10;
             this.datalistadoProductosRequerimiento.Location = new System.Drawing.Point(138, 285);
             this.datalistadoProductosRequerimiento.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoProductosRequerimiento.Name = "datalistadoProductosRequerimiento";
@@ -869,7 +900,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.DESCRIPCIÓN.HeaderText = "DESCRIPCIÓN";
             this.DESCRIPCIÓN.MinimumWidth = 6;
             this.DESCRIPCIÓN.Name = "DESCRIPCIÓN";
-            this.DESCRIPCIÓN.Width = 530;
+            this.DESCRIPCIÓN.Width = 520;
             // 
             // UNIDAD
             // 
@@ -901,14 +932,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoProductosRequerimientoOP.AllowUserToResizeRows = false;
             this.datalistadoProductosRequerimientoOP.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoProductosRequerimientoOP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoProductosRequerimientoOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoProductosRequerimientoOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.datalistadoProductosRequerimientoOP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoProductosRequerimientoOP.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.seleccionarOP,
@@ -919,14 +950,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.cantidadTotalOP,
             this.unidadOP,
             this.almacenOP});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoProductosRequerimientoOP.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoProductosRequerimientoOP.DefaultCellStyle = dataGridViewCellStyle12;
             this.datalistadoProductosRequerimientoOP.Location = new System.Drawing.Point(138, 285);
             this.datalistadoProductosRequerimientoOP.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoProductosRequerimientoOP.MultiSelect = false;
@@ -939,10 +970,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             // seleccionarOP
             // 
-            this.seleccionarOP.HeaderText = "SELECCIONAR";
+            this.seleccionarOP.HeaderText = "SELEC.";
             this.seleccionarOP.MinimumWidth = 6;
             this.seleccionarOP.Name = "seleccionarOP";
-            this.seleccionarOP.Width = 122;
+            this.seleccionarOP.Width = 40;
             // 
             // idOP
             // 
@@ -957,28 +988,28 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.codigoOP.HeaderText = "CÓDIGO";
             this.codigoOP.MinimumWidth = 6;
             this.codigoOP.Name = "codigoOP";
-            this.codigoOP.Width = 110;
+            this.codigoOP.Width = 90;
             // 
             // descripcionProductoOP
             // 
             this.descripcionProductoOP.HeaderText = "DESCRIPCIÓN DEL PRODUCTO";
             this.descripcionProductoOP.MinimumWidth = 6;
             this.descripcionProductoOP.Name = "descripcionProductoOP";
-            this.descripcionProductoOP.Width = 630;
+            this.descripcionProductoOP.Width = 550;
             // 
             // cantidadUnitariaOP
             // 
             this.cantidadUnitariaOP.HeaderText = "CANTIDAD UNITARIA";
             this.cantidadUnitariaOP.MinimumWidth = 6;
             this.cantidadUnitariaOP.Name = "cantidadUnitariaOP";
-            this.cantidadUnitariaOP.Width = 122;
+            this.cantidadUnitariaOP.Width = 70;
             // 
             // cantidadTotalOP
             // 
             this.cantidadTotalOP.HeaderText = "CANTIDAD TOTAL";
             this.cantidadTotalOP.MinimumWidth = 6;
             this.cantidadTotalOP.Name = "cantidadTotalOP";
-            this.cantidadTotalOP.Width = 122;
+            this.cantidadTotalOP.Width = 70;
             // 
             // unidadOP
             // 
@@ -997,6 +1028,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             // panelBuscarProductos
             // 
+            this.panelBuscarProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBuscarProductos.Controls.Add(this.label15);
             this.panelBuscarProductos.Controls.Add(this.btnRefrescar);
             this.panelBuscarProductos.Controls.Add(this.btnBorrarBusquedaProductps);
             this.panelBuscarProductos.Controls.Add(this.btnRegresarBusqeudaProductos);
@@ -1015,12 +1048,23 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelBuscarProductos.Controls.Add(this.txtBusquedaProducto);
             this.panelBuscarProductos.Controls.Add(this.label13);
             this.panelBuscarProductos.Controls.Add(this.panel9);
-            this.panelBuscarProductos.Location = new System.Drawing.Point(79, 54);
+            this.panelBuscarProductos.Location = new System.Drawing.Point(79, 67);
             this.panelBuscarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.panelBuscarProductos.Name = "panelBuscarProductos";
-            this.panelBuscarProductos.Size = new System.Drawing.Size(1014, 529);
+            this.panelBuscarProductos.Size = new System.Drawing.Size(1014, 502);
             this.panelBuscarProductos.TabIndex = 2034;
             this.panelBuscarProductos.Visible = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(936, 33);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(57, 13);
+            this.label15.TabIndex = 2029;
+            this.label15.Text = "REFRESCAR";
             // 
             // btnRefrescar
             // 
@@ -1028,9 +1072,9 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnRefrescar.FlatAppearance.BorderSize = 0;
             this.btnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefrescar.Image = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Image")));
-            this.btnRefrescar.Location = new System.Drawing.Point(891, 27);
+            this.btnRefrescar.Location = new System.Drawing.Point(904, 27);
             this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.Size = new System.Drawing.Size(24, 24);
+            this.btnRefrescar.Size = new System.Drawing.Size(25, 25);
             this.btnRefrescar.TabIndex = 2028;
             this.btnRefrescar.UseVisualStyleBackColor = true;
             this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
@@ -1041,9 +1085,9 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnBorrarBusquedaProductps.FlatAppearance.BorderSize = 0;
             this.btnBorrarBusquedaProductps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarBusquedaProductps.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrarBusquedaProductps.Image")));
-            this.btnBorrarBusquedaProductps.Location = new System.Drawing.Point(876, 472);
+            this.btnBorrarBusquedaProductps.Location = new System.Drawing.Point(876, 450);
             this.btnBorrarBusquedaProductps.Name = "btnBorrarBusquedaProductps";
-            this.btnBorrarBusquedaProductps.Size = new System.Drawing.Size(35, 35);
+            this.btnBorrarBusquedaProductps.Size = new System.Drawing.Size(31, 33);
             this.btnBorrarBusquedaProductps.TabIndex = 2027;
             this.btnBorrarBusquedaProductps.UseVisualStyleBackColor = true;
             this.btnBorrarBusquedaProductps.Click += new System.EventHandler(this.btnBorrarBusquedaProductps_Click);
@@ -1054,9 +1098,9 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnRegresarBusqeudaProductos.FlatAppearance.BorderSize = 0;
             this.btnRegresarBusqeudaProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresarBusqeudaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresarBusqeudaProductos.Image")));
-            this.btnRegresarBusqeudaProductos.Location = new System.Drawing.Point(943, 472);
+            this.btnRegresarBusqeudaProductos.Location = new System.Drawing.Point(939, 450);
             this.btnRegresarBusqeudaProductos.Name = "btnRegresarBusqeudaProductos";
-            this.btnRegresarBusqeudaProductos.Size = new System.Drawing.Size(35, 35);
+            this.btnRegresarBusqeudaProductos.Size = new System.Drawing.Size(31, 31);
             this.btnRegresarBusqeudaProductos.TabIndex = 2026;
             this.btnRegresarBusqeudaProductos.UseVisualStyleBackColor = true;
             this.btnRegresarBusqeudaProductos.Click += new System.EventHandler(this.btnRegresarBusqeudaProductos_Click);
@@ -1067,9 +1111,9 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnConfirmarBusquedaProductos.FlatAppearance.BorderSize = 0;
             this.btnConfirmarBusquedaProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmarBusquedaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirmarBusquedaProductos.Image")));
-            this.btnConfirmarBusquedaProductos.Location = new System.Drawing.Point(803, 472);
+            this.btnConfirmarBusquedaProductos.Location = new System.Drawing.Point(804, 450);
             this.btnConfirmarBusquedaProductos.Name = "btnConfirmarBusquedaProductos";
-            this.btnConfirmarBusquedaProductos.Size = new System.Drawing.Size(35, 35);
+            this.btnConfirmarBusquedaProductos.Size = new System.Drawing.Size(31, 31);
             this.btnConfirmarBusquedaProductos.TabIndex = 2025;
             this.btnConfirmarBusquedaProductos.UseVisualStyleBackColor = true;
             this.btnConfirmarBusquedaProductos.Click += new System.EventHandler(this.btnConfirmarBusquedaProductos_Click);
@@ -1077,10 +1121,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(849, 29);
+            this.pictureBox2.Location = new System.Drawing.Point(853, 30);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(25, 22);
+            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 153;
             this.pictureBox2.TabStop = false;
@@ -1089,12 +1133,12 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Blue;
-            this.label20.Location = new System.Drawing.Point(27, 483);
+            this.label20.Location = new System.Drawing.Point(27, 461);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(459, 28);
+            this.label20.Size = new System.Drawing.Size(428, 26);
             this.label20.TabIndex = 53;
             this.label20.Text = "Debe buscar un producto por código o descripción para luego seleccionarlo y pueda" +
     " pasar al \r\nlistado de la parte inferior";
@@ -1103,59 +1147,59 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(1013, 18);
+            this.panel10.Location = new System.Drawing.Point(1011, 18);
             this.panel10.Margin = new System.Windows.Forms.Padding(4);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1, 510);
+            this.panel10.Size = new System.Drawing.Size(1, 481);
             this.panel10.TabIndex = 52;
             // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 528);
+            this.panel11.Location = new System.Drawing.Point(0, 499);
             this.panel11.Margin = new System.Windows.Forms.Padding(4);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1014, 1);
+            this.panel11.Size = new System.Drawing.Size(1012, 1);
             this.panel11.TabIndex = 51;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(786, 509);
+            this.label21.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(791, 484);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(70, 14);
+            this.label21.Size = new System.Drawing.Size(62, 13);
             this.label21.TabIndex = 50;
             this.label21.Text = "CONFIRMAR";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(868, 509);
+            this.label22.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(869, 484);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(50, 14);
+            this.label22.Size = new System.Drawing.Size(44, 13);
             this.label22.TabIndex = 48;
             this.label22.Text = "BORRAR";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(932, 509);
+            this.label23.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(929, 484);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(61, 14);
+            this.label23.Size = new System.Drawing.Size(53, 13);
             this.label23.TabIndex = 46;
             this.label23.Text = "REGRESAR";
             // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel12.Location = new System.Drawing.Point(107, 271);
+            this.panel12.Location = new System.Drawing.Point(107, 249);
             this.panel12.Margin = new System.Windows.Forms.Padding(4);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(800, 1);
@@ -1169,14 +1213,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoSeleccionBusquedaProducto.AllowUserToResizeRows = false;
             this.datalistadoSeleccionBusquedaProducto.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoSeleccionBusquedaProducto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoSeleccionBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoSeleccionBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.datalistadoSeleccionBusquedaProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoSeleccionBusquedaProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1184,15 +1228,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoSeleccionBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle6;
-            this.datalistadoSeleccionBusquedaProducto.Location = new System.Drawing.Point(9, 280);
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoSeleccionBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle14;
+            this.datalistadoSeleccionBusquedaProducto.Location = new System.Drawing.Point(9, 258);
             this.datalistadoSeleccionBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoSeleccionBusquedaProducto.MultiSelect = false;
             this.datalistadoSeleccionBusquedaProducto.Name = "datalistadoSeleccionBusquedaProducto";
@@ -1219,7 +1263,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 110;
+            this.dataGridViewTextBoxColumn2.Width = 90;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -1227,7 +1271,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 690;
+            this.dataGridViewTextBoxColumn3.Width = 640;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -1235,7 +1279,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 160;
+            this.dataGridViewTextBoxColumn4.Width = 150;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -1243,7 +1287,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 97;
+            this.dataGridViewTextBoxColumn5.Width = 90;
             // 
             // datalistadoBusquedaProducto
             // 
@@ -1253,25 +1297,25 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoBusquedaProducto.BackgroundColor = System.Drawing.SystemColors.WindowFrame;
             this.datalistadoBusquedaProducto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoBusquedaProducto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.datalistadoBusquedaProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoBusquedaProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ckSeleccionarProducto});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle16;
             this.datalistadoBusquedaProducto.Location = new System.Drawing.Point(9, 62);
             this.datalistadoBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaProducto.MultiSelect = false;
@@ -1280,7 +1324,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoBusquedaProducto.RowHeadersVisible = false;
             this.datalistadoBusquedaProducto.RowHeadersWidth = 50;
             this.datalistadoBusquedaProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoBusquedaProducto.Size = new System.Drawing.Size(996, 201);
+            this.datalistadoBusquedaProducto.Size = new System.Drawing.Size(996, 179);
             this.datalistadoBusquedaProducto.TabIndex = 42;
             this.datalistadoBusquedaProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoBusquedaProducto_CellContentClick);
             // 
@@ -1294,38 +1338,38 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // cboTipoBusquedaProducto
             // 
             this.cboTipoBusquedaProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoBusquedaProducto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoBusquedaProducto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoBusquedaProducto.FormattingEnabled = true;
             this.cboTipoBusquedaProducto.Items.AddRange(new object[] {
             "CÓDIGO",
             "DESCRIPCIÓN",
             "CÓDIGO BSS"});
-            this.cboTipoBusquedaProducto.Location = new System.Drawing.Point(229, 29);
+            this.cboTipoBusquedaProducto.Location = new System.Drawing.Point(233, 29);
             this.cboTipoBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoBusquedaProducto.Name = "cboTipoBusquedaProducto";
-            this.cboTipoBusquedaProducto.Size = new System.Drawing.Size(138, 22);
+            this.cboTipoBusquedaProducto.Size = new System.Drawing.Size(138, 21);
             this.cboTipoBusquedaProducto.TabIndex = 40;
             this.cboTipoBusquedaProducto.SelectedIndexChanged += new System.EventHandler(this.cboTipoBusquedaProducto_SelectedIndexChanged);
             // 
             // txtBusquedaProducto
             // 
             this.txtBusquedaProducto.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtBusquedaProducto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusquedaProducto.Location = new System.Drawing.Point(375, 29);
+            this.txtBusquedaProducto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusquedaProducto.Location = new System.Drawing.Point(379, 29);
             this.txtBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusquedaProducto.Name = "txtBusquedaProducto";
-            this.txtBusquedaProducto.Size = new System.Drawing.Size(470, 22);
+            this.txtBusquedaProducto.Size = new System.Drawing.Size(470, 21);
             this.txtBusquedaProducto.TabIndex = 38;
             this.txtBusquedaProducto.TextChanged += new System.EventHandler(this.txtBusquedaProducto_TextChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(131, 33);
+            this.label13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(142, 33);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(92, 14);
+            this.label13.Size = new System.Drawing.Size(83, 13);
             this.label13.TabIndex = 39;
             this.label13.Text = "BÚSQUEDA POR:";
             // 
@@ -1339,7 +1383,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Margin = new System.Windows.Forms.Padding(4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1014, 18);
+            this.panel9.Size = new System.Drawing.Size(1012, 18);
             this.panel9.TabIndex = 34;
             // 
             // btnInfoBusquedaProductos
@@ -1347,7 +1391,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnInfoBusquedaProductos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInfoBusquedaProductos.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnInfoBusquedaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoBusquedaProductos.Image")));
-            this.btnInfoBusquedaProductos.Location = new System.Drawing.Point(989, 0);
+            this.btnInfoBusquedaProductos.Location = new System.Drawing.Point(987, 0);
             this.btnInfoBusquedaProductos.Margin = new System.Windows.Forms.Padding(5);
             this.btnInfoBusquedaProductos.Name = "btnInfoBusquedaProductos";
             this.btnInfoBusquedaProductos.Size = new System.Drawing.Size(25, 18);
@@ -1364,10 +1408,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.label18.Location = new System.Drawing.Point(27, 0);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(153, 18);
+            this.label18.Size = new System.Drawing.Size(205, 18);
             this.label18.TabIndex = 34;
             this.label18.Text = "BÚSQUEDA DE PRODUCTOS";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 
@@ -1388,10 +1432,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.ckAprobacionAuto.Checked = true;
             this.ckAprobacionAuto.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckAprobacionAuto.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ckAprobacionAuto.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckAprobacionAuto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckAprobacionAuto.Location = new System.Drawing.Point(155, 231);
             this.ckAprobacionAuto.Name = "ckAprobacionAuto";
-            this.ckAprobacionAuto.Size = new System.Drawing.Size(201, 19);
+            this.ckAprobacionAuto.Size = new System.Drawing.Size(179, 18);
             this.ckAprobacionAuto.TabIndex = 2035;
             this.ckAprobacionAuto.Text = "Aprobar de manera automática";
             this.ckAprobacionAuto.UseVisualStyleBackColor = true;
@@ -1437,6 +1481,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.groupBox1.PerformLayout();
             this.panelInformacionFecha.ResumeLayout(false);
             this.panelInformacionFecha.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCargarCantidadRequerimeintoSimple)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaJefatura)).EndInit();
@@ -1446,7 +1492,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoProductosRequerimiento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoProductosRequerimientoOP)).EndInit();
             this.panelBuscarProductos.ResumeLayout(false);
@@ -1520,14 +1565,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private System.Windows.Forms.Label label69;
         public System.Windows.Forms.DataGridView datalistadoProductosRequerimiento;
         public System.Windows.Forms.DataGridView datalistadoProductosRequerimientoOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn seleccionarOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigoOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionProductoOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadUnitariaOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadTotalOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unidadOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn almacenOP;
         private System.Windows.Forms.Panel panelBuscarProductos;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel10;
@@ -1546,22 +1583,33 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnBorrarBusquedaProductps;
+        private System.Windows.Forms.Button btnRegresarBusqeudaProductos;
+        private System.Windows.Forms.Button btnConfirmarBusquedaProductos;
+        private System.Windows.Forms.Button btnRefrescar;
+        private System.Windows.Forms.CheckBox ckAprobacionAuto;
+        private System.Windows.Forms.PictureBox btnInfoBusquedaProductos;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn seleccionarOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionProductoOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadUnitariaOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadTotalOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unidadOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn almacenOP;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.Button btnBorrarBusquedaProductps;
-        private System.Windows.Forms.Button btnRegresarBusqeudaProductos;
-        private System.Windows.Forms.Button btnConfirmarBusquedaProductos;
-        private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn CÓDIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCIÓN;
         private System.Windows.Forms.DataGridViewTextBoxColumn UNIDAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn stock;
-        private System.Windows.Forms.CheckBox ckAprobacionAuto;
-        private System.Windows.Forms.PictureBox btnInfoBusquedaProductos;
     }
 }

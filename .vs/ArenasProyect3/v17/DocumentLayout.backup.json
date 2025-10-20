@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\comercial\\requerimientosventas\\liquidacionventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\requerimientosventas\\liquidacionventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\ahuaman-pc\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientolineas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,13 +23,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LiquidacionVenta.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\LiquidacionVenta.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\LiquidacionVenta.cs",
-              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\LiquidacionVenta.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\LiquidacionVenta.cs [Dise\u00F1o]",
+              "Title": "MantenimientoLineas.cs",
+              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
+              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
+              "ViewState": "AgIAAJkBAAAAAAAAAAAQwMYBAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T13:35:47.829Z",
+              "WhenOpened": "2025-10-17T19:30:17.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MantenimientoLineas.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs",
+              "ToolTip": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoLineas.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T19:30:16.559Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

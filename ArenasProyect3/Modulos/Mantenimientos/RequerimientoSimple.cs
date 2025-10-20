@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +13,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -99,6 +100,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -107,144 +110,207 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //CARGAR TIPO DE REQUERIMIENTO
         public void CargarTipoRequerimiento()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoRequerimiento, Descripcion FROM TipoRequerimientoGeneral WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoRequerimiento.DisplayMember = "Descripcion";
-            cboTipoRequerimiento.ValueMember = "IdTipoRequerimiento";
-            cboTipoRequerimiento.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoRequerimiento, Descripcion FROM TipoRequerimientoGeneral WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoRequerimiento.DisplayMember = "Descripcion";
+                cboTipoRequerimiento.ValueMember = "IdTipoRequerimiento";
+                cboTipoRequerimiento.DataSource = dt;
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR SEDE
         public void CargarSede()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdSede, Descripcion FROM Sede WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboSede.DisplayMember = "Descripcion";
-            cboSede.ValueMember = "IdSede";
-            cboSede.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdSede, Descripcion FROM Sede WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboSede.DisplayMember = "Descripcion";
+                cboSede.ValueMember = "IdSede";
+                cboSede.DataSource = dt;
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR LOCAL
         public void CargarLocal()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLocal, Descripcion FROM Local WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboLocal.DisplayMember = "Descripcion";
-            cboLocal.ValueMember = "IdLocal";
-            cboLocal.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLocal, Descripcion FROM Local WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboLocal.DisplayMember = "Descripcion";
+                cboLocal.ValueMember = "IdLocal";
+                cboLocal.DataSource = dt;
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR PRIORIDAD
         public void CargarPrioridad()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdPrioridad, Descripcion FROM Prioridades WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboPrioridad.DisplayMember = "Descripcion";
-            cboPrioridad.ValueMember = "IdPrioridad";
-            cboPrioridad.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdPrioridad, Descripcion FROM Prioridades WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboPrioridad.DisplayMember = "Descripcion";
+                cboPrioridad.ValueMember = "IdPrioridad";
+                cboPrioridad.DataSource = dt;
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR CENTRO DE COSTOS
         public void CargarCentroCostos()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdCentroCostos, Descripcion FROM CentroCostos WHERE Estado = 1 AND IdCentroCostos = @idcentrocostos", con);
-            comando.Parameters.AddWithValue("@idcentrocostos", datalistadoBusquedaJefatura.SelectedCells[10].Value.ToString());
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboCentroCostos.ValueMember = "IdCentroCostos";
-            cboCentroCostos.DisplayMember = "Descripcion";
-            cboCentroCostos.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdCentroCostos, Descripcion FROM CentroCostos WHERE Estado = 1 AND IdCentroCostos = @idcentrocostos", con);
+                comando.Parameters.AddWithValue("@idcentrocostos", datalistadoBusquedaJefatura.SelectedCells[10].Value.ToString());
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboCentroCostos.ValueMember = "IdCentroCostos";
+                cboCentroCostos.DisplayMember = "Descripcion";
+                cboCentroCostos.DataSource = dt;
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR EL LAS AREAS SEGÚN EL CENTRO DE COSTOS
         public void CargarAreaSegunCentroCostos(string idCentroCostos)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdArea,Descripcion  FROM AreaGeneral WHERE Estado = 1 AND CentroCostos = @idCentroCsotos", con);
-            comando.Parameters.AddWithValue("@idCentroCsotos", idCentroCostos);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboAreaGeneral.ValueMember = "IdArea";
-            cboAreaGeneral.DisplayMember = "Descripcion";
-            cboAreaGeneral.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdArea,Descripcion  FROM AreaGeneral WHERE Estado = 1 AND CentroCostos = @idCentroCsotos", con);
+                comando.Parameters.AddWithValue("@idCentroCsotos", idCentroCostos);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboAreaGeneral.ValueMember = "IdArea";
+                cboAreaGeneral.DisplayMember = "Descripcion";
+                cboAreaGeneral.DataSource = dt;
+            }
+            catch (Exception ex) 
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CONTAR LA CANTIDAD DE REQUERIMIENTOS QUE HAY EN MI TABLA
         public void ConteoRequerimientosSimples()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdRequerimientoSimple FROM RequerimientoSimple WHERE IdRequerimientoSimple = (SELECT MAX(IdRequerimientoSimple) FROM RequerimientoSimple)", con);
-            da.Fill(dt);
-            datalistadoCargarCantidadRequerimeintoSimple.DataSource = dt;
-            con.Close();
-
-            if (datalistadoCargarCantidadRequerimeintoSimple.RowCount > 0)
+            try
             {
-                cantidadRequerimiento = datalistadoCargarCantidadRequerimeintoSimple.SelectedCells[0].Value.ToString();
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdRequerimientoSimple FROM RequerimientoSimple WHERE IdRequerimientoSimple = (SELECT MAX(IdRequerimientoSimple) FROM RequerimientoSimple)", con);
+                da.Fill(dt);
+                datalistadoCargarCantidadRequerimeintoSimple.DataSource = dt;
+                con.Close();
 
-                if (cantidadRequerimiento.Length == 1)
+                if (datalistadoCargarCantidadRequerimeintoSimple.RowCount > 0)
                 {
-                    cantidadRequerimiento2 = "000000" + cantidadRequerimiento;
+                    cantidadRequerimiento = datalistadoCargarCantidadRequerimeintoSimple.SelectedCells[0].Value.ToString();
+
+                    if (cantidadRequerimiento.Length == 1)
+                    {
+                        cantidadRequerimiento2 = "000000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 2)
+                    {
+                        cantidadRequerimiento2 = "00000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 3)
+                    {
+                        cantidadRequerimiento2 = "0000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 4)
+                    {
+                        cantidadRequerimiento2 = "000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 5)
+                    {
+                        cantidadRequerimiento2 = "00" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 6)
+                    {
+                        cantidadRequerimiento2 = "0" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 7)
+                    {
+                        cantidadRequerimiento2 = cantidadRequerimiento;
+                    }
                 }
-                else if (cantidadRequerimiento.Length == 2)
-                {
-                    cantidadRequerimiento2 = "00000" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 3)
-                {
-                    cantidadRequerimiento2 = "0000" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 4)
-                {
-                    cantidadRequerimiento2 = "000" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 5)
-                {
-                    cantidadRequerimiento2 = "00" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 6)
-                {
-                    cantidadRequerimiento2 = "0" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 7)
+                else
                 {
                     cantidadRequerimiento2 = cantidadRequerimiento;
                 }
             }
-            else
+            catch(Exception ex)
             {
-                cantidadRequerimiento2 = cantidadRequerimiento;
+                //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -252,29 +318,36 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         public void GenerarCodigoRequerimientoSimple()
         {
             ConteoRequerimientosSimples();
-
             DateTime date = DateTime.Now;
-
             codigoRequerimientoSimple = Convert.ToString(date.Year) + cantidadRequerimiento2;
         }
 
         //LISTAR TODOS LOS PRODUTOS PARA SELECCIONAR EN MI REQUERIMIENTO
         public void MostrarProductosRequerimientoGeneral()
         {
-            //PROCEDIMIENTO ALMACENADO PARA LISTAR LOS PRODUCTOS
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("ListarProductosRequerimientoGeneral_SP", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaProducto.DataSource = dt;
-            con.Close();
-            Rediemnsion(datalistadoBusquedaProducto);
-            alternarColorFilas(datalistadoBusquedaProducto);
+            try
+            {
+                //PROCEDIMIENTO ALMACENADO PARA LISTAR LOS PRODUCTOS
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("ListarProductosRequerimientoGeneral_SP", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaProducto.DataSource = dt;
+                con.Close();
+                Rediemnsion(datalistadoBusquedaProducto);
+                alternarColorFilas(datalistadoBusquedaProducto);
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //FUNCION DE REDIEMNSION
@@ -284,10 +357,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             DGV.Columns[1].Width = 100;
             DGV.Columns[2].Width = 80;
             DGV.Columns[3].Width = 520;
-            DGV.Columns[4].Width = 150;
+            DGV.Columns[4].Width = 120;
             DGV.Columns[9].Width = 88;
-            DGV.Columns[10].Width = 80;
-            DGV.Columns[11].Width = 87;
+            DGV.Columns[10].Width = 70;
+            DGV.Columns[11].Width = 70;
             //SE QUITA LAS COLUMNAS QUE NO SON RELEVANTES PARA EL USUARIO
             DGV.Columns[5].Visible = false;
             DGV.Columns[6].Visible = false;
@@ -300,7 +373,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-
             alternarColorFilas(DGV);
         }
 
@@ -532,7 +604,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
             else
             {
-                DialogResult boton = MessageBox.Show("¿Realmente desea guardar este requerimiento?", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                DialogResult boton = MessageBox.Show("¿Realmente desea guardar este requerimiento?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
                     try
@@ -541,7 +613,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         con.ConnectionString = Conexion.ConexionMaestra.conexion;
                         con.Open();
                         SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("InsertarRequerimientoSimple", con);
+                        cmd = new SqlCommand("RequerimientoSimple_Insertar", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         //INGRESO - PARTE GENERAL DEL REQUERIMIENTO SIMPLE
                         GenerarCodigoRequerimientoSimple();
@@ -583,7 +655,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
 
                             //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
                             con.Open();
-                            cmd = new SqlCommand("InsertarRequerimientoSimple_DetalleProductos", con);
+                            cmd = new SqlCommand("RequerimientoSimple_InsertarDetalles", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@item", contador);
                             cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[0].Value));
@@ -598,7 +670,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                             }
 
                             cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[5].Value));
-                            cmd.Parameters.AddWithValue("@cantidadTotal", 0.000);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
@@ -606,13 +677,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                             contador++;
                         }
 
-                        MessageBox.Show("Se ingresó el requerimiento correctamente.", "Validación del Sistema");
+                        MessageBox.Show("Se ingresó el requerimiento correctamente.", "Validación del Sistema",MessageBoxButtons.OK);
 
                         datalistadoProductosRequerimiento.Rows.Clear();
                         txtObservaciones.Text = "";
                     }
                     catch(Exception ex)
                     {
+                        //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
                         MessageBox.Show(ex.Message);
                     }
                 }
@@ -630,94 +703,121 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //BUSQUEDA DE USUARIO
         public void DatosUsuario()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaUusario.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaUusario.DataSource = dt;
+                con.Close();
 
-            IdUsuario = Convert.ToInt32(datalistadoBusquedaUusario.SelectedCells[0].Value.ToString());
-            txtSolicitante.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
-            area = datalistadoBusquedaUusario.SelectedCells[7].Value.ToString();
+                IdUsuario = Convert.ToInt32(datalistadoBusquedaUusario.SelectedCells[0].Value.ToString());
+                txtSolicitante.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+                area = datalistadoBusquedaUusario.SelectedCells[7].Value.ToString();
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //BUSQUEDA DE JEFATURAS
         public void DatosJefaturas(int idusuario)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarJefaturas", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idRol", idusuario);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaJefatura.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarJefaturas", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idRol", idusuario);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaJefatura.DataSource = dt;
+                con.Close();
 
-            txtJefatura.Text = datalistadoBusquedaJefatura.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaJefatura.SelectedCells[2].Value.ToString();
+                txtJefatura.Text = datalistadoBusquedaJefatura.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaJefatura.SelectedCells[2].Value.ToString();
+            }
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //BÚSQUEDA-------------------------------------------------------------------------
         //BUSCAR PRODUCTO POR CÓDIGO Y DESCIPCIÓ
         private void txtBusquedaProducto_TextChanged(object sender, EventArgs e)
         {
-            if (cboTipoBusquedaProducto.Text == "CÓDIGO")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorCodigo_SP", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigo", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaProducto.DataSource = dt;
-                con.Close();
-                Rediemnsion(datalistadoBusquedaProducto);
+                if (cboTipoBusquedaProducto.Text == "CÓDIGO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorCodigo_SP", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codigo", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaProducto.DataSource = dt;
+                    con.Close();
+                    Rediemnsion(datalistadoBusquedaProducto);
+                }
+                else if (cboTipoBusquedaProducto.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorDescripcion_SP", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaProducto.DataSource = dt;
+                    con.Close();
+                    Rediemnsion(datalistadoBusquedaProducto);
+                }
+                else if (cboTipoBusquedaProducto.Text == "CÓDIGO BSS")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("[ListarProductosRequerimientoGeneral_PorCodigoBSS_SP]", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaProducto.DataSource = dt;
+                    con.Close();
+                    Rediemnsion(datalistadoBusquedaProducto);
+                }
             }
-            else if (cboTipoBusquedaProducto.Text == "DESCRIPCIÓN")
+            catch(Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorDescripcion_SP", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaProducto.DataSource = dt;
-                con.Close();
-                Rediemnsion(datalistadoBusquedaProducto);
-            }
-            else if (cboTipoBusquedaProducto.Text == "CÓDIGO BSS")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("[ListarProductosRequerimientoGeneral_PorCodigoBSS_SP]", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaProducto.DataSource = dt;
-                con.Close();
-                Rediemnsion(datalistadoBusquedaProducto);
+                //INGRESO DE AUDITORA | ACCION - MANTIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show(ex.Message);
             }
         }
 

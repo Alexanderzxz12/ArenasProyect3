@@ -1,23 +1,12 @@
-wwwroot\css\site.css
-wwwroot\favicon.ico
-wwwroot\js\site.js
-wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
-wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
-wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-wwwroot\lib\jquery-validation\dist\additional-methods.js
-wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-wwwroot\lib\jquery-validation\dist\jquery.validate.js
-wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-wwwroot\lib\jquery-validation\LICENSE.md
-wwwroot\lib\jquery\dist\jquery.js
-wwwroot\lib\jquery\dist\jquery.min.js
-wwwroot\lib\jquery\dist\jquery.min.map
-wwwroot\lib\jquery\LICENSE.txt
 wwwroot\css\adminlte.css
 wwwroot\css\adminlte.css.map
-wwwroot\Recursos\Imagenes\Logo Arenas.png
+wwwroot\css\site.css
+wwwroot\favicon.ico
 wwwroot\js\adminlte.js
 wwwroot\js\adminlte.js.map
+wwwroot\js\generic.js
+wwwroot\js\site.js
+wwwroot\js\sweetalert.js
 wwwroot\lib\bootstrap\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\css\bootstrap-grid.min.css
@@ -154,5 +143,16 @@ wwwroot\lib\bootstrap\scss\_type.scss
 wwwroot\lib\bootstrap\scss\_utilities.scss
 wwwroot\lib\bootstrap\scss\_variables-dark.scss
 wwwroot\lib\bootstrap\scss\_variables.scss
-wwwroot\js\sweetalert.js
-wwwroot\js\generic.js
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\lib\jquery-validation\LICENSE.md
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\LICENSE.txt
+wwwroot\Recursos\Imagenes\Logo Arenas.png

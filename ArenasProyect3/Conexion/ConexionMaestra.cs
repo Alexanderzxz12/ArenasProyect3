@@ -15,10 +15,6 @@ namespace ArenasProyect3.Conexion
         public static string conexionSoft = @"Data Source=192.168.1.203\SA,1433;Initial Catalog=dbarenasprod;User ID=sa;Password=Arenas2019";
         public static string conexion = @"Server = tcp:192.168.1.154,1433;DataBase=BD_VENTAS_2;User = sa;Password=Arenas.2020!";
         //public static string conexion = @"Server = AHUAMAN-PC;DataBase=BD_VENTAS_2;User = sa;Password=123456";
-        //PRUEBA DE GIT
-        public string Prueba = "";
-
-        public string Prueba2 = "";
     }
 
 }

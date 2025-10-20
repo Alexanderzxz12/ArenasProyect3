@@ -73,9 +73,10 @@
             this.btnValidacionJeftura.Location = new System.Drawing.Point(0, 377);
             this.btnValidacionJeftura.Margin = new System.Windows.Forms.Padding(4);
             this.btnValidacionJeftura.Name = "btnValidacionJeftura";
+            this.btnValidacionJeftura.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnValidacionJeftura.Size = new System.Drawing.Size(147, 53);
             this.btnValidacionJeftura.TabIndex = 8;
-            this.btnValidacionJeftura.Text = "      VALIDACIÓN \r\n       POR JEFATURA";
+            this.btnValidacionJeftura.Text = "           VALIDACIÓN \r\n           POR JEFATURA";
             this.btnValidacionJeftura.UseVisualStyleBackColor = true;
             this.btnValidacionJeftura.Click += new System.EventHandler(this.btnValidacionJeftura_Click);
             // 
@@ -90,9 +91,10 @@
             this.btnListadoRequerimientoSimple.Location = new System.Drawing.Point(0, 317);
             this.btnListadoRequerimientoSimple.Margin = new System.Windows.Forms.Padding(4);
             this.btnListadoRequerimientoSimple.Name = "btnListadoRequerimientoSimple";
+            this.btnListadoRequerimientoSimple.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnListadoRequerimientoSimple.Size = new System.Drawing.Size(147, 53);
             this.btnListadoRequerimientoSimple.TabIndex = 7;
-            this.btnListadoRequerimientoSimple.Text = "       LISTADO\r\n       REQUERIMIENTO";
+            this.btnListadoRequerimientoSimple.Text = "          LISTADO\r\n          REQUERIMIENTO";
             this.btnListadoRequerimientoSimple.UseVisualStyleBackColor = true;
             this.btnListadoRequerimientoSimple.Click += new System.EventHandler(this.btnListadoRequerimientoSimple_Click);
             // 
@@ -107,9 +109,10 @@
             this.btnManualUsuario.Location = new System.Drawing.Point(0, 429);
             this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnManualUsuario.Name = "btnManualUsuario";
+            this.btnManualUsuario.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnManualUsuario.Size = new System.Drawing.Size(147, 53);
             this.btnManualUsuario.TabIndex = 6;
-            this.btnManualUsuario.Text = "      MANUAL DE \r\n      USUARIO";
+            this.btnManualUsuario.Text = "          MANUAL DE \r\n          USUARIO";
             this.btnManualUsuario.UseVisualStyleBackColor = true;
             this.btnManualUsuario.Click += new System.EventHandler(this.btnManualUsuario_Click);
             // 
@@ -124,9 +127,10 @@
             this.btnRequerimientossSimple.Location = new System.Drawing.Point(0, 256);
             this.btnRequerimientossSimple.Margin = new System.Windows.Forms.Padding(4);
             this.btnRequerimientossSimple.Name = "btnRequerimientossSimple";
+            this.btnRequerimientossSimple.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnRequerimientossSimple.Size = new System.Drawing.Size(152, 53);
             this.btnRequerimientossSimple.TabIndex = 5;
-            this.btnRequerimientossSimple.Text = "      NUEVO \r\n       REQUERIMIENTO";
+            this.btnRequerimientossSimple.Text = "         NUEVO \r\n         REQUERIMIENTO";
             this.btnRequerimientossSimple.UseVisualStyleBackColor = true;
             this.btnRequerimientossSimple.Click += new System.EventHandler(this.btnRequerimientossSimple_Click);
             // 

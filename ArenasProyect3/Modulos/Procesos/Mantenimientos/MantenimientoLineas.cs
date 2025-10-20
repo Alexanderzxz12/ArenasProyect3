@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.Resourses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -67,6 +68,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
         }
@@ -92,6 +95,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
         }
@@ -117,6 +122,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
         }
@@ -279,6 +286,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         }
                         catch (Exception ex)
                         {
+                            //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                            ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
                             MessageBox.Show("Hubo un error inesperado, " + ex.Message);
                         }
                     }
@@ -361,6 +370,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                     }
                     catch (Exception ex)
                     {
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
                         MessageBox.Show(ex.Message);
                     }
                 }
@@ -463,6 +474,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             }
             catch (Exception ex)
             {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -475,30 +488,39 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //METODO PARA EXPORTAR LAS CUENTAS A EXCEL
         public void ExportarDatos(DataGridView datalistado)
         {
-            Microsoft.Office.Interop.Excel.Application exportarexcel = new Microsoft.Office.Interop.Excel.Application();
-
-            exportarexcel.Application.Workbooks.Add(true);
-
-            int indicecolumna = 0;
-            foreach (DataGridViewColumn columna in datalistado.Columns)
+            try
             {
-                indicecolumna++;
+                Microsoft.Office.Interop.Excel.Application exportarexcel = new Microsoft.Office.Interop.Excel.Application();
 
-                exportarexcel.Cells[1, indicecolumna] = columna.Name;
-            }
+                exportarexcel.Application.Workbooks.Add(true);
 
-            int indicefila = 0;
-            foreach (DataGridViewRow fila in datalistado.Rows)
-            {
-                indicefila++;
-                indicecolumna = 0;
+                int indicecolumna = 0;
                 foreach (DataGridViewColumn columna in datalistado.Columns)
                 {
                     indicecolumna++;
-                    exportarexcel.Cells[indicefila + 1, indicecolumna] = fila.Cells[columna.Name].Value;
+
+                    exportarexcel.Cells[1, indicecolumna] = columna.Name;
                 }
+
+                int indicefila = 0;
+                foreach (DataGridViewRow fila in datalistado.Rows)
+                {
+                    indicefila++;
+                    indicecolumna = 0;
+                    foreach (DataGridViewColumn columna in datalistado.Columns)
+                    {
+                        indicecolumna++;
+                        exportarexcel.Cells[indicefila + 1, indicecolumna] = fila.Cells[columna.Name].Value;
+                    }
+                }
+                exportarexcel.Visible = true;
             }
-            exportarexcel.Visible = true;
+            catch(Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+            }
         }
 
         //LIMPIAR CAJA DE BUSQUEDA DE LINEA
@@ -506,6 +528,5 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             txtBusquedaLinea.Text = "";
         }
-
     }
 }

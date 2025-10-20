@@ -31,6 +31,7 @@ namespace ArenasProyect3.Modulos.Comercial
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuReportes));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAuditor = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -38,7 +39,6 @@ namespace ArenasProyect3.Modulos.Comercial
             this.panelMantenimientos = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnAuditor = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelMantenimientos.SuspendLayout();
@@ -59,11 +59,29 @@ namespace ArenasProyect3.Modulos.Comercial
             this.panel1.Size = new System.Drawing.Size(154, 647);
             this.panel1.TabIndex = 7;
             // 
+            // btnAuditor
+            // 
+            this.btnAuditor.FlatAppearance.BorderSize = 0;
+            this.btnAuditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAuditor.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuditor.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAuditor.Image = ((System.Drawing.Image)(resources.GetObject("btnAuditor.Image")));
+            this.btnAuditor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAuditor.Location = new System.Drawing.Point(0, 334);
+            this.btnAuditor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAuditor.Name = "btnAuditor";
+            this.btnAuditor.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnAuditor.Size = new System.Drawing.Size(152, 53);
+            this.btnAuditor.TabIndex = 6;
+            this.btnAuditor.Text = "  AUDITOR";
+            this.btnAuditor.UseVisualStyleBackColor = true;
+            this.btnAuditor.Click += new System.EventHandler(this.btnAuditor_Click);
+            // 
             // btnReportes
             // 
             this.btnReportes.FlatAppearance.BorderSize = 0;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
             this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -73,7 +91,7 @@ namespace ArenasProyect3.Modulos.Comercial
             this.btnReportes.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnReportes.Size = new System.Drawing.Size(152, 53);
             this.btnReportes.TabIndex = 5;
-            this.btnReportes.Text = "    REPORTES";
+            this.btnReportes.Text = " REPORTES";
             this.btnReportes.UseVisualStyleBackColor = true;
             this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
@@ -139,24 +157,6 @@ namespace ArenasProyect3.Modulos.Comercial
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
-            // 
-            // btnAuditor
-            // 
-            this.btnAuditor.FlatAppearance.BorderSize = 0;
-            this.btnAuditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAuditor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuditor.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAuditor.Image = ((System.Drawing.Image)(resources.GetObject("btnAuditor.Image")));
-            this.btnAuditor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAuditor.Location = new System.Drawing.Point(0, 334);
-            this.btnAuditor.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAuditor.Name = "btnAuditor";
-            this.btnAuditor.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnAuditor.Size = new System.Drawing.Size(152, 53);
-            this.btnAuditor.TabIndex = 6;
-            this.btnAuditor.Text = "   AUDITOR";
-            this.btnAuditor.UseVisualStyleBackColor = true;
-            this.btnAuditor.Click += new System.EventHandler(this.btnAuditor_Click);
             // 
             // MenuReportes
             // 

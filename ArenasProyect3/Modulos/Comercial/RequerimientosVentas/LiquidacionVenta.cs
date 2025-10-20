@@ -1647,6 +1647,33 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //BUSCAR LINEA DE TRABAJO POR ACTA
+        public void TraerDatosLineaTrabajoPorIdActa(int idActa)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarLineaTrabajoDatos_Dash", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idActa", idActa);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoDatosLineaTrabajjo.DataSource = null;
+                datalistadoDatosLineaTrabajjo.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 5, Program.IdUsuario, ex.Message, 0);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
+
         //SELECCION DEL DETALLE Y SEGUIMEINTO DE MI LIQUIDACION
         private void datalistadoTodasLiquidacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1795,6 +1822,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (cboCodigoActaDash.Text != null)
             {
                 TraerDatosActaPorId(Convert.ToInt32(cboCodigoActaDash.Text));
+                TraerDatosLineaTrabajoPorIdActa(Convert.ToInt32(cboCodigoActaDash.Text));
 
                 dtDesde.Value = Convert.ToDateTime(datalistadoDatosActaDahs.SelectedCells[1].Value.ToString());
                 dtHasta.Value = Convert.ToDateTime(datalistadoDatosActaDahs.SelectedCells[2].Value.ToString());
@@ -1864,6 +1892,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             if (cboCodigoActaDash.Text != null)
             {
                 TraerDatosActaPorId(Convert.ToInt32(cboCodigoActaDash.Text));
+                TraerDatosLineaTrabajoPorIdActa(Convert.ToInt32(cboCodigoActaDash.Text));
 
                 dtDesde.Value = Convert.ToDateTime(datalistadoDatosActaDahs.SelectedCells[1].Value.ToString());
                 dtHasta.Value = Convert.ToDateTime(datalistadoDatosActaDahs.SelectedCells[2].Value.ToString());
@@ -2028,7 +2057,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             {
                 string codigoActaReporte = cboCodigoActaDash.Text;
 
-                if(codigoActaReporte != "")
+                if (codigoActaReporte != "")
                 {
                     if (txtEstadoDashDash.Text == "PENDIENTE")
                     {
@@ -2074,9 +2103,73 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //VISUALIZAR ANTECEDENTES - DESARROLLO - RESULTADOS
+        private void btnMostarAntecedentes_Click(object sender, EventArgs e)
+        {
+            if (datalistadoDatosLineaTrabajjo.CurrentRow != null)
+            {
+                if(panelDescripcionAntecedentes.Visible == true)
+                {
+                    panelDescripcionAntecedentes.Visible = false;
+                }
+                else
+                {
+                    txtDescripcionAntecedentes.Text = datalistadoDatosLineaTrabajjo.SelectedCells[0].Value.ToString();
+                    panelDescripcionAntecedentes.Visible = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay una línea de trabajo definida.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //VISUALIZAR ANTECEDENTES - DESARROLLO - RESULTADOS
+        private void btnMostrarDesarrollo_Click(object sender, EventArgs e)
+        {
+            if (datalistadoDatosLineaTrabajjo.CurrentRow != null)
+            {
+                if (panelDescripcionDesarrollo.Visible == true)
+                {
+                    panelDescripcionDesarrollo.Visible = false;
+                }
+                else
+                {
+                    txtDescripcionDesarrollo.Text = datalistadoDatosLineaTrabajjo.SelectedCells[1].Value.ToString();
+                    panelDescripcionDesarrollo.Visible = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay una línea de trabajo definida.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //VISUALIZAR ANTECEDENTES - DESARROLLO - RESULTADOS
+        private void btnMostrarResultados_Click(object sender, EventArgs e)
+        {
+            if (datalistadoDatosLineaTrabajjo.CurrentRow != null)
+            {
+                if (panelDescripcionRsultados.Visible == true)
+                {
+                    panelDescripcionRsultados.Visible = false;
+                }
+                else
+                {
+                    txtDescripcionRsultados.Text = datalistadoDatosLineaTrabajjo.SelectedCells[2].Value.ToString();
+                    panelDescripcionRsultados.Visible = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay una línea de trabajo definida.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
         //SALIR DE MI DASH
         private void btnSalirSeguimiento_Click(object sender, EventArgs e)
         {
+            datalistadoDatosLineaTrabajjo.DataSource = null;
             panelDetalleRQ.Visible = false;
         }
 
@@ -2737,7 +2830,5 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }

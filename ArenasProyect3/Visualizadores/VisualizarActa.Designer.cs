@@ -60,7 +60,7 @@ namespace ArenasProyect3.Visualizadores
             this.ClientSize = new System.Drawing.Size(990, 526);
             this.Controls.Add(this.CrvVisualizarActaVisita);
             this.Controls.Add(this.lblCodigo);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VisualizarActa";
             this.Text = "Visualizar Acta";
             this.Load += new System.EventHandler(this.VisualizarActa_Load);
