@@ -2833,6 +2833,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
 
                 MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClassResourses.RegistrarAuditora(5, this.Name, 5, Program.IdUsuario, "Exportar liquidación de viaje PDF", idLiquidacion);
+
             }
             catch (Exception ex)
             {
