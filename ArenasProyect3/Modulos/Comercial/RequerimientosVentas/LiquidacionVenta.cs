@@ -2355,7 +2355,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                                     panelNuevaActa.Visible = true;
                                     datalistadoLiquidacionActas.Enabled = false;
-                                    ckPresenteAsistente1.Checked = true;
                                 }
                             }
                         }
@@ -3209,31 +3208,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private void txtBusquedaColaboradorLiquidacion_TextChanged(object sender, EventArgs e)
         {
             FiltroColaboradores(cboBusquedaColaboradorLiquidacion.Text, txtBusquedaColaboradorLiquidacion.Text, datalistadoBusquedaColaboradorLiquidacion);
-        }
-
-       
-
-        //EVENTO PARA QUE SE LLENE EL CAMPO DE ASISTENTE 1 CON EL NOMBRE DEL USUARIO COMERCIAL LOGEADO
-        private void ckPresenteAsistente1_CheckedChanged(object sender, EventArgs e)
-        {
-            if(ckPresenteAsistente1.Checked == true)
-            {
-                txtAsistentes1NuevaActa.Text = datalistadoTodasLiquidacion.SelectedCells[7].Value.ToString();
-            }
-            else
-            {
-                txtAsistentes1NuevaActa.Text = "";
-            }
-        }
-
-        //VALIDACION PARA QUE SOLO PUEDA BORRAR
-        private void txtAsistentes1NuevaActa_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }          
-        }
+        }    
     }
 }
     
