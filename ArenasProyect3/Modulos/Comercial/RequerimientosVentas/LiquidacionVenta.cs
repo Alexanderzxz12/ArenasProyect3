@@ -1179,10 +1179,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         }
                         else
                         {
-                            if (txtMotivoViajeLiquidacion.Text == "" || txtItinerarioViajeLiqudiacion.Text == "")
+                            //////////////////////////--------------------------------------------------------------------------
+                            //CODIGO IMPLEMENTADO 
+                            if (string.IsNullOrWhiteSpace(txtMotivoViajeLiquidacion.Text) /*== ""*/ || string.IsNullOrWhiteSpace(txtItinerarioViajeLiqudiacion.Text) /*== ""*/)
                             {
                                 MessageBox.Show("No se ha cargado el itinerario o motivo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                             }
+                            //////////////////////////--------------------------------------------------------------------------
                             else
                             {
                                 if (txtTotaLiquidaciones.Text == "")
