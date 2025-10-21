@@ -30,7 +30,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 {
     public partial class Cotizacion : Form
     {
-        //COMENTARIO AGREGADO PARA VLAIDACION DE LA HERRAMIENTA GITHUB
+        //COMENTARIO AGREGADO PARA VLAIDACION DE LA HERRAMIENTA GITHUB *****WC 1.1!!
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         private Cursor curAnterior = null;
         string ruta = ManGeneral.Manual.manualAreaComercial;
