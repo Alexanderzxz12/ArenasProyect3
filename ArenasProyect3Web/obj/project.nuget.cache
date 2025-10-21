@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tROYiGbxTYU=",
+  "dgSpecHash": "+gngYt5nbi4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
+  "projectFilePath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenaProyect1.0\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AHUAMAN-PC\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\AHUAMAN-PC\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

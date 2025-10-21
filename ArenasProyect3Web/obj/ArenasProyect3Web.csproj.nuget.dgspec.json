@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\ArenasProyect3Web.csproj": {}
+    "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenaProyect1.0\\ArenasProyect3Web\\ArenasProyect3Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\ArenasProyect3Web.csproj": {
+    "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenaProyect1.0\\ArenasProyect3Web\\ArenasProyect3Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
+        "projectUniqueName": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenaProyect1.0\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
         "projectName": "ArenasProyect3Web",
-        "projectPath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
+        "projectPath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenaProyect1.0\\ArenasProyect3Web\\ArenasProyect3Web.csproj",
         "packagesPath": "C:\\Users\\AHUAMAN-PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenasProyect3\\ArenasProyect3Web\\obj\\",
+        "outputPath": "C:\\Users\\AHUAMAN-PC\\Desktop\\ArenaProyect1.0\\ArenasProyect3Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
