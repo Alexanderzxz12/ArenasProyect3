@@ -32,6 +32,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         int numeroRequerimiento = 0;
         string ruta = ManGeneral.Manual.manualAreaComercial;
 
+        //VARIABLES BOLEANAS PARA EL CONTROL DE FILAS VACIAS EN EL PRESUPUESTO DE VIAJE
+        bool filasvacias;
+        bool fechasvacias;
+
         //CONSTRUCTOR DEL MANTENIMIENTO - REQUERIMIENTOS DE VENTA
         public RequerimientoVenta()
         {
@@ -318,7 +322,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             foreach (DataGridViewRow dgv in datalistadoTodasRequerimientos.Rows)
             {
                 string numeroReque = dgv.Cells[1].Value.ToString();
-                string FechaGen = Convert.ToDateTime(dgv.Cells[2].Value).ToString("yyyy/MM/dd");                   
+                string FechaGen = Convert.ToDateTime(dgv.Cells[2].Value).ToString("yyyy/MM/dd");
                 string fechaInicio = Convert.ToDateTime(dgv.Cells[3].Value).ToString("yyyy/MM/dd");
                 string fechaTermino = Convert.ToDateTime(dgv.Cells[4].Value).ToString("yyyy/MM/dd");
                 string responsable = dgv.Cells[5].Value.ToString();
@@ -388,7 +392,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
             }
             catch (Exception ex)
-            {                
+            {
                 //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
             }
@@ -720,7 +724,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema",MessageBoxButtons.OK);
+                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
             }
             catch (Exception ex)
@@ -802,7 +806,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema",MessageBoxButtons.OK);
+                        MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                 }
             }
@@ -818,26 +822,40 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //CARGA DEL CLIENTE SELCCIONADO AL OTRO LISTADO
         private void datalistadoClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewColumn currentColumn = datalistadoClientes.Columns[e.ColumnIndex];
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
+            else
+            {
+                DataGridViewColumn currentColumn = datalistadoClientes.Columns[e.ColumnIndex];
 
-            //SI SE PRESIONA SOBRE LA COLUMNA QUE CONTIENE LA FLECHA PARA COLOCAR LOS CLIENTES
-            if (currentColumn.Name == "btnSeleccionarCliente")
-            {                //SI HAY 3 O MÁS CLIENTES, YA NOS E PODRAN INGRESAR MÁS
-                if (datalistadoSeleccionCliente.RowCount >= 3)
-                {
-                    MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    //RECOPILACIÓN DE DATOS Y ALMACENAMIENTO
-                    string codigo = datalistadoClientes.SelectedCells[1].Value.ToString();
-                    string cliente = datalistadoClientes.SelectedCells[2].Value.ToString();
-                    string idunidad = datalistadoClientes.SelectedCells[3].Value.ToString();
-                    string unidad = datalistadoClientes.SelectedCells[4].Value.ToString();
-                    string iddestino = datalistadoClientes.SelectedCells[5].Value.ToString();
-                    string destino = datalistadoClientes.SelectedCells[6].Value.ToString();
-                    //CARGA DE DATOS AL NUEVO LISTADO
-                    datalistadoSeleccionCliente.Rows.Add(new[] { codigo, cliente, idunidad, unidad, iddestino, destino });
+                //SI SE PRESIONA SOBRE LA COLUMNA QUE CONTIENE LA FLECHA PARA COLOCAR LOS CLIENTES
+                if (currentColumn.Name == "btnSeleccionarCliente")
+                {                //SI HAY 3 O MÁS CLIENTES, YA NOS E PODRAN INGRESAR MÁS
+                    if (datalistadoSeleccionCliente.RowCount >= 3)
+                    {
+                        MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        //RECOPILACIÓN DE DATOS Y ALMACENAMIENTO
+                        string codigo = datalistadoClientes.SelectedCells[1].Value.ToString();
+                        string cliente = datalistadoClientes.SelectedCells[2].Value.ToString();
+                        string idunidad = datalistadoClientes.SelectedCells[3].Value.ToString();
+                        string unidad = datalistadoClientes.SelectedCells[4].Value.ToString();
+                        string iddestino = datalistadoClientes.SelectedCells[5].Value.ToString();
+                        string destino = datalistadoClientes.SelectedCells[6].Value.ToString();
+                        //CARGA DE DATOS AL NUEVO LISTADO
+                        datalistadoSeleccionCliente.Rows.Add(new[] { codigo, cliente, idunidad, unidad, iddestino, destino });
+
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        datalistadoClientes.Rows.RemoveAt(e.RowIndex);
+                        //////////////////////////--------------------------------------------------------------------------
+                    }
                 }
             }
         }
@@ -845,26 +863,22 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //LIMPIEZA DEL CLIENTE SELCCIONADO Y CARGADO
         private void btnBorrarSeleccionCliente_Click(object sender, EventArgs e)
         {
-            //SI NO HAY CLIENTES CARGADOS
-            if (datalistadoSeleccionCliente.Rows.Count > 0)
-            {
-                //MENSAJE DE CONFIRMACIÓN PARA BORRAR AL CLIENTE SELECCIOANDO
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (resul == DialogResult.Yes)
-                {
-                    //ACCIÓN DE ELIMINAR
-                    datalistadoSeleccionCliente.Rows.Remove(datalistadoSeleccionCliente.CurrentRow);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hay clientes agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            BorrarSeleccionCliente(datalistadoSeleccionCliente);
+            //////////////////////////--------------------------------------------------------------------------
         }
 
         //CARGA DEL COLABORADOR SELCCIONADO AL OTRO LISTADO
         private void datalistadoColaboradores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
+            //////////////////////////--------------------------------------------------------------------------
             DataGridViewColumn currentColumn = datalistadoColaboradores.Columns[e.ColumnIndex];
 
             //SI SE PRESIONA SOBRE LA COLUMNA QUE CONTIENE LA FLECHA PARA COLOCAR LOS COLABORADORES
@@ -875,27 +889,32 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 string colaborador = datalistadoColaboradores.SelectedCells[2].Value.ToString();
                 //CARGA DE DATOS AL NUEVO LISTADO
                 datalistadoSeleccionColaborador.Rows.Add(new[] { codigo, colaborador });
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                datalistadoBusquedaColaboradorLiquidacion.Rows.RemoveAt(e.RowIndex);
+                //////////////////////////--------------------------------------------------------------------------
             }
         }
 
         //LIMPIEZA DEL COLABORADOR SELCCIONADO Y CARGADO
         private void btnBorrarSeleccionColaboradores_Click(object sender, EventArgs e)
         {
-            //SI NO HAY COLABORADORES CARGADOS
-            if (datalistadoSeleccionColaborador.Rows.Count > 0)
-            {
-                //MENSAJE DE CONFIRMACIÓN PARA BORRAR A LOS COLABORADORES SELECCIOANDO
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (resul == DialogResult.Yes)
-                {
-                    //ACCIÓN DE ELIMINAR
-                    datalistadoSeleccionColaborador.Rows.Remove(datalistadoSeleccionColaborador.CurrentRow);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hay colaboradores agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
+            BorrarSeleccionColaborador(datalistadoSeleccionColaborador);
+            ////SI NO HAY COLABORADORES CARGADOS
+            //if (datalistadoSeleccionColaborador.Rows.Count > 0)
+            //{
+            //    //MENSAJE DE CONFIRMACIÓN PARA BORRAR A LOS COLABORADORES SELECCIOANDO
+            //    DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+            //    if (resul == DialogResult.Yes)
+            //    {
+            //        //ACCIÓN DE ELIMINAR
+            //        datalistadoSeleccionColaborador.Rows.Remove(datalistadoSeleccionColaborador.CurrentRow);
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No hay colaboradores agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
+            //}
         }
 
         //HABILITAR LA VENTANA DE NUEVO REQUERIMIENTO
@@ -915,8 +934,19 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 panelNuevoRequerimiento.Visible = true;
                 cboBusquedaClientes.SelectedIndex = 0;
                 cboBusqeudaColaborador.SelectedIndex = 0;
-                //CARGA DE USUARIO LOGEADO AL LISTADO DE COLABORADORES
 
+                //////////////////////-------------------------------------------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO PARA EL RESETEO DE LAS FECHAS AL MOMENTO DE REGISTRAR UN REQUERIMIENTO EN LA INTERFAZ DE "NUEVO REQUERIMIENTO"
+                datetimeDesde.Value = DateTime.Now;
+                datetiemHasta.Value = DateTime.Now;
+
+                //CODIGO IMPLEMENTADO PARA EL RESETEO DE LOS TIPOS DE REQUERIMIENTO EN LA INTERFAZ DE "NUEVO REQUERIMIENTO"
+                rbNacional.Checked = true;
+                rbExterior.Checked = false;
+
+                //////////////////////-------------------------------------------------------------------------------------------------------------
+
+                //CARGA DE USUARIO LOGEADO AL LISTADO DE COLABORADORES
                 string codigoColaborador = cboResponsable.SelectedValue.ToString();
                 string NombreColaborador = cboResponsable.Text;
                 datalistadoSeleccionColaborador.Rows.Add(new[] { codigoColaborador, NombreColaborador });
@@ -1230,7 +1260,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 {
                     subtotal += Convert.ToDecimal(row.Cells[8].Value);
                 }
-
             }
             txtSubTotal.Text = String.Format("{0:#,0.00}", subtotal);
         }
@@ -1253,7 +1282,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     subtotal += Convert.ToDecimal(row.Cells[8].Value);
                 }
             }
-
             txtTotaLiquidaciones.Text = String.Format("{0:#,0.00}", subtotal);
         }
 
@@ -1295,52 +1323,64 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         {
             if (lblTituloRequerimiento.Text == "Nuevo Requerimiento")
             {
-                //INSERTAR NUEVO REQUERIMIENTO
-                //SI NO SE HA SELECCIONADO NINGUNA OPCIÓN
-                if (rbNacional.Checked == false && rbExterior.Checked == false)
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ValidarFilasVacias(datalistadoPresupuestoViaje);
+                if (filasvacias == true)
                 {
-                    MessageBox.Show("Por favor, seleccione el tipo de requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Se debe ingresar un monto o valores al detalle del requerimiento", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
                 }
+                //////////////////////////--------------------------------------------------------------------------
                 else
                 {
-                    //SI NO HAY CLIENTES O COLABORADORES AGREGADOS
-                    if (datalistadoSeleccionCliente.RowCount == 0 || datalistadoSeleccionColaborador.RowCount == 0)
+                    //INSERTAR NUEVO REQUERIMIENTO
+                    //SI NO SE HA SELECCIONADO NINGUNA OPCIÓN
+                    if (rbNacional.Checked == false && rbExterior.Checked == false)
                     {
-                        MessageBox.Show("Por favor, seleccione a un cliente o ha un colaborador.", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("Por favor, seleccione el tipo de requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
-                        //SI NO HAY NINGUNA FILA DE PRESUPUESTO
-                        if (datalistadoPresupuestoViaje.RowCount == 0)
+                        //SI NO HAY CLIENTES O COLABORADORES AGREGADOS
+                        if (datalistadoSeleccionCliente.RowCount == 0 || datalistadoSeleccionColaborador.RowCount == 0)
                         {
-                            MessageBox.Show("Por favor, debe colocar el presupuesto para el viaje.", "Validación del Sistema", MessageBoxButtons.OK);
+                            MessageBox.Show("Por favor, seleccione a un cliente o ha un colaborador.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
-                            //SI NO HAY MOTIVO DE VIAJE O ITINERARIO
-                            if (txtMotivoViaje.Text == "" || txtItinerarioViaje.Text == "")
+                            //SI NO HAY NINGUNA FILA DE PRESUPUESTO
+                            if (datalistadoPresupuestoViaje.RowCount == 0)
                             {
-                                MessageBox.Show("Por favor, debe ingresar el motivo o itinerario del viaje.", "Validación del Sistema", MessageBoxButtons.OK);
+                                MessageBox.Show("Por favor, debe colocar el presupuesto para el viaje.", "Validación del Sistema", MessageBoxButtons.OK);
                             }
                             else
                             {
-                                //SI EL SUBTOTAL NO ESTA CARGADO
-                                if (txtSubTotal.Text == "")
+                                //SI NO HAY MOTIVO DE VIAJE O ITINERARIO
+                                if (txtMotivoViaje.Text == "" || txtItinerarioViaje.Text == "")
                                 {
-                                    MessageBox.Show("Por favor, debe ingresar valores al presupuesto del viaje.", "Validación del Sistema", MessageBoxButtons.OK);
+                                    MessageBox.Show("Por favor, debe ingresar el motivo o itinerario del viaje.", "Validación del Sistema", MessageBoxButtons.OK);
                                 }
                                 else
                                 {
-                                    //SI LA FECHA DESDE ES MENOR A LA FECHA ACTUAL DE CREACIÓN
-                                    if (datetimeDesde.Value.Date < datatimeFechaRequerimiento.Value.Date)
+                                    //SI EL SUBTOTAL NO ESTA CARGADO
+                                    if (txtSubTotal.Text == "")
                                     {
-                                        //PANEL PARA INGRESAR OBSERVACIONES
-                                        panelObservacionesRequeAtrasado.Visible = true;
+                                        MessageBox.Show("Por favor, debe ingresar valores al presupuesto del viaje.", "Validación del Sistema", MessageBoxButtons.OK);
                                     }
                                     else
                                     {
-                                        //SI TODO ESTA OK
-                                        GuardarRequerimiento(0, "");
+                                        //SI LA FECHA DESDE ES MENOR A LA FECHA ACTUAL DE CREACIÓN
+                                        if (datetimeDesde.Value.Date < datatimeFechaRequerimiento.Value.Date)
+                                        {
+                                            //PANEL PARA INGRESAR OBSERVACIONES
+                                            panelObservacionesRequeAtrasado.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            //SI TODO ESTA OK
+                                            GuardarRequerimiento(0, "");
+                                        }
                                     }
                                 }
                             }
@@ -1399,6 +1439,11 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO
+                //METODO IMPLEMENTADO PARA LIMPIAR LOS ESPACIOS EN BLANCO
+                ClassResourses.LimpiarTexto_EspaciosEnBlanco(txtRazononObservaciones);
+                //////////////////////////--------------------------------------------------------------------------
                 GuardarRequerimiento(1, txtRazononObservaciones.Text);
             }
         }
@@ -1533,6 +1578,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     txtMotivoViaje.Text = "";
                     txtItinerarioViaje.Text = "";
                     txtSubTotal.Text = "";
+
+                    ////////////////---------------------------------------------------------------------------------------------------
+                    //CODIGO IMPLEMENTADO PARA LA LIMPIEZA DE JUSTIFICACIÓN EN LA INTERFAZ DE "NUEVO REQUERIMIENTO"
+                    txtRazononObservaciones.Text = "";
 
                     datalistadoClientes.DataSource = null;
                     datalistadoColaboradores.DataSource = null;
@@ -1714,8 +1763,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //ANULAR REQUERIMIENTO
         private void btnProcederAnulacion_Click(object sender, EventArgs e)
         {
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            ClassResourses.LimpiarTexto_EspaciosEnBlanco(txtJustificacionAnulacion);
+            //////////////////////////--------------------------------------------------------------------------
+
             //SI NO HAY UNA JUSTIFICACIÓN 
-            if (txtJustificacionAnulacion.Text != "")
+            if (!string.IsNullOrWhiteSpace(txtJustificacionAnulacion.Text))
             {
                 //MENSAJE DE CONFIRMACIÓN PARA LA ANLACIÓN DE UN REQUERIMIENTO
                 DialogResult boton = MessageBox.Show("¿Realmente desea anular este requerimiento?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
@@ -1973,8 +2027,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             datalistadoClientesLiquidacion.Columns[8].ReadOnly = true;
             datalistadoClientesLiquidacion.Columns[10].ReadOnly = true;
             //DATALISTADO LIQUIDACION COLABORADORES
-            datalistadoColaboradoresLiquidacion.Columns[1].ReadOnly = true;
-            datalistadoColaboradoresLiquidacion.Columns[1].ReadOnly = true;
+            datalistadoColaboradoresLiquidacion.Columns[2].ReadOnly = true;
 
             //SI NO HAY REQUERIMIENTO SELECCIONADO
             if (datalistadoTodasRequerimientos.CurrentRow != null)
@@ -2102,7 +2155,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                                 datalistadoDetallesLiquidacion.Rows.Add(new[] { null, fechaRequerimeintoDetalle, conbustible, hospedaje, viatico, peaje, movilidad, otros, subTotal });
                             }
-
                             datalistadoTodasRequerimientos.Enabled = false;
                         }
                         else
@@ -2125,63 +2177,82 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //AGREGAR MÁS CLIENTES A MI LIQUIDACIÓN
         private void datalistadoBusquedaClietneLiquidacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewColumn currentColumn = datalistadoBusquedaClietneLiquidacion.Columns[e.ColumnIndex];
-            //SI HAY 3 O MÁS CLIENTES, YA NOS E PODRAN INGRESAR MÁS
-            if (datalistadoClientesLiquidacion.RowCount >= 3)
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
             {
-                MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
             }
+            //////////////////////////--------------------------------------------------------------------------
             else
             {
-                //SI SE PRECIONA SOBRE LA COLUMNA CON ESE NOMBRE
-                if (currentColumn.Name == "btnSeleccionarClienteLiquidacion")
+                DataGridViewColumn currentColumn = datalistadoBusquedaClietneLiquidacion.Columns[e.ColumnIndex];
+                //SI HAY 3 O MÁS CLIENTES, YA NOS E PODRAN INGRESAR MÁS
+                if (datalistadoClientesLiquidacion.RowCount >= 3)
                 {
-                    //SE CAPTURA LAS VARIABLES 
-                    string codigo = datalistadoBusquedaClietneLiquidacion.SelectedCells[1].Value.ToString();
-                    string cliente = datalistadoBusquedaClietneLiquidacion.SelectedCells[2].Value.ToString();
-                    string idunidad = datalistadoBusquedaClietneLiquidacion.SelectedCells[3].Value.ToString();
-                    string unidad = datalistadoBusquedaClietneLiquidacion.SelectedCells[4].Value.ToString();
-                    string iddestino = datalistadoBusquedaClietneLiquidacion.SelectedCells[5].Value.ToString();
-                    string destino = datalistadoBusquedaClietneLiquidacion.SelectedCells[6].Value.ToString();
-                    //SE AGREGA A LA NUEVA LISTA
-                    datalistadoClientesLiquidacion.Rows.Add(new[] { null, null, null, null, null, codigo, cliente, idunidad, unidad, iddestino, destino });
+                    MessageBox.Show("Solo se pueden ingresar un máximo de 3 clientes por liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
-            }
+                else
+                {
+                    //SI SE PRECIONA SOBRE LA COLUMNA CON ESE NOMBRE
+                    if (currentColumn.Name == "btnSeleccionarClienteLiquidacion")
+                    {
+                        //SE CAPTURA LAS VARIABLES 
+                        string codigo = datalistadoBusquedaClietneLiquidacion.SelectedCells[1].Value.ToString();
+                        string cliente = datalistadoBusquedaClietneLiquidacion.SelectedCells[2].Value.ToString();
+                        string idunidad = datalistadoBusquedaClietneLiquidacion.SelectedCells[3].Value.ToString();
+                        string unidad = datalistadoBusquedaClietneLiquidacion.SelectedCells[4].Value.ToString();
+                        string iddestino = datalistadoBusquedaClietneLiquidacion.SelectedCells[5].Value.ToString();
+                        string destino = datalistadoBusquedaClietneLiquidacion.SelectedCells[6].Value.ToString();
+                        //SE AGREGA A LA NUEVA LISTA
+                        datalistadoClientesLiquidacion.Rows.Add(new[] { null, null, null, null, null, codigo, cliente, idunidad, unidad, iddestino, destino });
+
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        datalistadoBusquedaClietneLiquidacion.Rows.RemoveAt(e.RowIndex);
+                        //////////////////////////--------------------------------------------------------------------------
+                    }
+                }
+            }  
         }
 
         //LIMPIEZA DEL CLIENTE SELCCIONADO Y CARGADO
         private void btnBorrarSeleccionClienteLiquidacion_Click(object sender, EventArgs e)
         {
-            //SI EN EL LISTADO DE CLIENTES NO HAY REGIUSTROS
-            if (datalistadoClientesLiquidacion.Rows.Count > 0)
-            {
-                //MENSAJE DE CONFIRMACIÓN DE ELIMINACIÓN DE CLIENTES
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (resul == DialogResult.Yes)
-                {
-                    //ACCIÓN DE REMOVER AL CLIENTE SELECCIOANDO
-                    datalistadoClientesLiquidacion.Rows.Remove(datalistadoClientesLiquidacion.CurrentRow);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hay clientes agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            BorrarSeleccionCliente(datalistadoClientesLiquidacion);
+            //////////////////////////--------------------------------------------------------------------------
         }
 
         //AGREGAR MÁS COLABORADORES A MI LIQUIDACIÓN
         private void datalistadoBusquedaColaboradorLiquidacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewColumn currentColumn = datalistadoBusquedaColaboradorLiquidacion.Columns[e.ColumnIndex];
-
-            //SI SE PRECIONA SOBRE LA COLUMNA CON ESE NOMBRE
-            if (currentColumn.Name == "btnSeleccionarColaboradorLiquidacion")
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
             {
-                //SE CAPTURA LAS VARIABLES 
-                string codigo = datalistadoBusquedaColaboradorLiquidacion.SelectedCells[1].Value.ToString();
-                string colaborador = datalistadoBusquedaColaboradorLiquidacion.SelectedCells[2].Value.ToString();
-                //SE AGREGA A LA NUEVA LISTA
-                datalistadoColaboradoresLiquidacion.Rows.Add(new[] { null, codigo, colaborador });
+                return;
+            }
+            //////////////////////////--------------------------------------------------------------------------
+            else
+            {
+                DataGridViewColumn currentColumn = datalistadoBusquedaColaboradorLiquidacion.Columns[e.ColumnIndex];
+
+                //SI SE PRECIONA SOBRE LA COLUMNA CON ESE NOMBRE
+                if (currentColumn.Name == "btnSeleccionarColaboradorLiquidacion")
+                {
+                    //SE CAPTURA LAS VARIABLES 
+                    string codigo = datalistadoBusquedaColaboradorLiquidacion.SelectedCells[1].Value.ToString();
+                    string colaborador = datalistadoBusquedaColaboradorLiquidacion.SelectedCells[2].Value.ToString();
+                    //SE AGREGA A LA NUEVA LISTA
+                    datalistadoColaboradoresLiquidacion.Rows.Add(new[] { null, codigo, colaborador });
+
+                    //////////////////////////--------------------------------------------------------------------------
+                    //CODIGO IMPLEMENTADO 
+                    datalistadoBusquedaColaboradorLiquidacion.Rows.RemoveAt(e.RowIndex);
+                    //////////////////////////--------------------------------------------------------------------------
+                }
             }
         }
 
@@ -2387,7 +2458,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
-                MessageBox.Show("No hay registro en el detalle para poder remover.", "Validación del Sistema",MessageBoxButtons.OK);
+                MessageBox.Show("No hay registro en el detalle para poder remover.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -2467,49 +2538,61 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //PROCESO DE GAUREDAR LIQUIDACIÓN
         private void btnGuardarLiquidacion_Click(object sender, EventArgs e)
         {
-            if (rbNacionalLiquidacion.Checked == false && rbExteriorLiquidacion.Checked == false)
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            ValidarFilasVacias(datalistadoDetallesLiquidacion);
+            ValidarFechaVacias_GenLiquidacion(datalistadoClientesLiquidacion);
+            if (filasvacias == true || fechasvacias == true)
             {
-                MessageBox.Show("No se ha seleccionado el tipo de liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
             }
             else
             {
-                if (datalistadoClientesLiquidacion.RowCount == 0 || datalistadoColaboradoresLiquidacion.RowCount == 0)
+                //////////////////////////--------------------------------------------------------------------------
+                if (rbNacionalLiquidacion.Checked == false && rbExteriorLiquidacion.Checked == false)
                 {
-                    MessageBox.Show("No se han cargado los clientes correctamnete.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("No se ha seleccionado el tipo de liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    if (datalistadoDetallesLiquidacion.RowCount == 0)
+                    if (datalistadoClientesLiquidacion.RowCount == 0 || datalistadoColaboradoresLiquidacion.RowCount == 0)
                     {
-                        MessageBox.Show("No se han cargado los detalles de la liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("No se han cargado los clientes correctamnete.", "Validación del Sistema", MessageBoxButtons.OK);
                     }
                     else
                     {
-                        if (txtMotivoViajeLiquidacion.Text == "" || txtItinerarioViajeLiqudiacion.Text == "")
+                        if (datalistadoDetallesLiquidacion.RowCount == 0)
                         {
-                            MessageBox.Show("No se ha cargado el itinerario o motivo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                            MessageBox.Show("No se han cargado los detalles de la liquidación correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                         }
                         else
                         {
-                            if (txtTotaLiquidaciones.Text == "" || txtSaldoLiquidaciones.Text == "")
+                            if (txtMotivoViajeLiquidacion.Text == "" || txtItinerarioViajeLiqudiacion.Text == "")
                             {
-                                MessageBox.Show("No se ha cargado el total ni el saldo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
+                                MessageBox.Show("No se ha cargado el itinerario o motivo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                             }
                             else
                             {
-                                if (ckEstadoFueraFecha.Checked == true)
+                                if (txtTotaLiquidaciones.Text == "" || txtSaldoLiquidaciones.Text == "")
                                 {
-                                    panelObservacionesLiquiFueraFecha.Visible = true;
+                                    MessageBox.Show("No se ha cargado el total ni el saldo de la liquidación.", "Validación del Sistema", MessageBoxButtons.OK);
                                 }
                                 else
                                 {
-                                    GuardarLiquidacion(txtRazononObservaciones2.Text);
+                                    if (ckEstadoFueraFecha.Checked == true)
+                                    {
+                                        panelObservacionesLiquiFueraFecha.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        GuardarLiquidacion(txtRazononObservaciones2.Text);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
+            }     
         }
 
         //BOTON PARA GUARDAR OBSERVACIONES 2
@@ -2521,6 +2604,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
             else
             {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                //METODO IMPLEMENTADO PARA LIMPIAR LOS ESPACIOS EN BLANCO
+                ClassResourses.LimpiarTexto_EspaciosEnBlanco(txtItinerarioViajeLiqudiacion);
                 GuardarLiquidacion(txtRazononObservaciones2.Text);
             }
         }
@@ -2851,6 +2938,17 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             txtNumFecha2.Text = "1";
             datatimeCalculador2.Value = datetiemHastaLiquidacion.Value;
 
+            //CODIGO IMPLEMENTADO
+            txtBusquedaCLienteLiquidacion.Text = "";
+            txtBusquedaColaboradorLiquidacion.Text = "";
+
+            datalistadoBusquedaClietneLiquidacion.DataSource = null;
+            datalistadoBusquedaColaboradorLiquidacion.DataSource = null;
+
+            panelFechaInicio.Visible = false;
+            panelFechaTermino.Visible = false;
+            //--------------------------------------------------------------
+
             //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
             datalistadoClientesLiquidacion.Rows.Clear();
             datalistadoColaboradoresLiquidacion.Rows.Clear();
@@ -2942,6 +3040,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     con.Close();
                     AjustarColumnasBusquedaClienteDcoumento(datalistadoClientes);
                 }
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                Evitar_Clientes_Duplicados(datalistadoClientes, datalistadoSeleccionCliente, lblTituloRequerimiento.Text, SSASA.Text);
+                //////////////////////////--------------------------------------------------------------------------
             }
             catch (Exception ex)
             {
@@ -2987,6 +3089,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     con.Close();
                     AjusteBusquedaCloba(datalistadoColaboradores);
                 }
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO
+                Evitar_Colaboradores_Duplicados(datalistadoColaboradores, datalistadoSeleccionColaborador, lblTituloRequerimiento.Text, SSASA.Text);
+                //////////////////////////--------------------------------------------------------------------------
             }
             catch (Exception ex)
             {
@@ -3032,6 +3138,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     con.Close();
                     AjustarColumnasBusquedaClienteDcoumento(datalistadoBusquedaClietneLiquidacion);
                 }
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                Evitar_Clientes_Duplicados(datalistadoBusquedaClietneLiquidacion, datalistadoClientesLiquidacion, lblTituloRequerimiento.Text, SSASA.Text);
+                //////////////////////////--------------------------------------------------------------------------
             }
             catch (Exception ex)
             {
@@ -3089,6 +3199,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     con.Close();
                     AjusteBusquedaCloba(datalistadoBusquedaColaboradorLiquidacion);
                 }
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                Evitar_Colaboradores_Duplicados(datalistadoBusquedaColaboradorLiquidacion, datalistadoColaboradoresLiquidacion, lblTituloRequerimiento.Text, SSASA.Text);
+                //////////////////////////--------------------------------------------------------------------------
             }
             catch (Exception ex)
             {
@@ -3147,6 +3261,214 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //LIMPIEZA DE LA CAJA BUSQUEDA DEL RESPONSABLE
+        private void cboBusqeuda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaResponsable.Text = "";
+        }
+
+        //ELIMINAR UN COLABORADOR SELECCIOANDO
+        private void btnBorrarSeleccionColaboradorLiquidacion_Click(object sender, EventArgs e)
+        {
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            BorrarSeleccionColaborador(datalistadoColaboradoresLiquidacion);
+            //////////////////////////--------------------------------------------------------------------------
+        }
+
+        //////////////////////////////////////////////---------------------------------------------------------------------
+        ///////////////////--------------------------------------------
+        //VALIDACIONES REQUERIMIENTOS
+        //METODO QUE BORRA LOS CLIENTES SELECCIONADOS
+        public void BorrarSeleccionCliente(DataGridView DGV)
+        {
+            //SI NO HAY CLIENTES CARGADOS
+            if (DGV.Rows.Count > 0)
+            {
+                //MENSAJE DE CONFIRMACIÓN PARA BORRAR AL CLIENTE SELECCIOANDO
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este cliente?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (resul == DialogResult.OK)
+                {
+                    //ACCIÓN DE ELIMINAR
+                    DGV.Rows.Remove(DGV.CurrentRow);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay clientes agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //METODO QUE BORRA LOS COLABORADORES SELECCIONADOS
+        public void BorrarSeleccionColaborador(DataGridView DGV)
+        {
+            //SI NO HAY COLABORADORES CARGADOS
+            if (DGV.Rows.Count > 0)
+            {
+                //MENSAJE DE CONFIRMACIÓN PARA BORRAR A LOS COLABORADORES SELECCIOANDO
+                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (resul == DialogResult.OK)
+                {
+                    //ACCIÓN DE ELIMINAR
+                    DGV.Rows.Remove(DGV.CurrentRow);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay colaboradores agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //METODO QUE VALIDA SI LAS FILAS TIENEN VALORES VACIOS
+        public void ValidarFilasVacias(DataGridView DGV)
+        {
+            foreach (DataGridViewRow rows in DGV.Rows)
+            {
+                //VARIABLE PARA LAS COLUMNAS
+                int indice = 0;
+
+                foreach (DataGridViewCell cell in rows.Cells)
+                {
+                    //VALIDACIÓN DE LA COLUMNA 1 PARA ADELANTE NO SE CUENTA LA COLUMNA 0
+                    if (indice >= 1)
+                    {
+                        if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                        {
+                            MessageBox.Show("Falta ingresar valores en el Presupuesto de Viaje.", "Validación del Sistema", MessageBoxButtons.OK);
+                            filasvacias = true;
+                            return;
+                        }
+                        else
+                        {
+                            filasvacias = false;
+                        }
+                    }
+                    indice++;
+                }
+            }
+        }
+
+        //METODO QUE VALIDA QUE SE SELECCIONE LAS FECHAS EN LA GENERACIÓN DE LA LIQUIDACION
+        public void ValidarFechaVacias_GenLiquidacion(DataGridView DGV)
+        {
+            foreach (DataGridViewRow rows in DGV.Rows)
+            {
+                int indicecolumn = 0;
+
+                foreach (DataGridViewCell cell in rows.Cells)
+                {
+                    if (indicecolumn == 2 || indicecolumn == 4)
+                    {
+                        if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                        {
+                            MessageBox.Show("No se ha seleccionado ninguna fecha.", "Validación del Sistema");
+                            fechasvacias = true;
+                            return;
+                        }
+                        else
+                        {
+                            fechasvacias = false;
+                        }
+                    }
+                    indicecolumn++;
+                }
+            }
+        }
+
+        //-------------------------------------------------------------
+        //------------------METODOS PARA EVITAR CLIENTES Y COLABORADORES DUPLICADOS
+
+        //METODO PARA EVITAR COLABORADORES DUPLICADOS
+        public void Evitar_Colaboradores_Duplicados(DataGridView DGV1, DataGridView DGV2, string titulorequerimiento, string tituloliquidacion)
+        {
+            List<string> codigosseleccionados = new List<string>();
+
+            //RECORRIDO LISTADO QUE ALMACENA LOS CLIENTES SELECCIOANDOS
+            if (titulorequerimiento == "Nuevo Requerimiento" || titulorequerimiento == "Edición Requerimiento")
+            {
+                foreach (DataGridViewRow rows in DGV2.Rows)
+                {
+                    if (rows.Cells[0].Value != null)
+                    {
+                        codigosseleccionados.Add(rows.Cells[0].Value.ToString());
+                    }
+                }
+            }
+
+            if (tituloliquidacion == "NUEVA LIQUIDACIÓN")
+            {
+                foreach (DataGridViewRow rows in DGV2.Rows)
+                {
+                    if (rows.Cells[1].Value != null)
+                    {
+                        codigosseleccionados.Add(rows.Cells[1].Value.ToString());
+                    }
+                }
+            }
+
+            //RECORRIDO DE ARRIBA HACIA ABAJO PARA ELIMINAR AL CLIENTE QUE YA FUE SELECCIOANDO
+            for (int i = DGV1.Rows.Count - 1; i >= 0; i--)
+            {
+                var fila = DGV1.Rows[i];
+
+                if (fila.Cells[1].Value != null)
+                {
+                    string codigo = fila.Cells[1].Value.ToString();
+
+                    if (codigosseleccionados.Contains(codigo))
+                    {
+                        DGV1.Rows.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        //METODO PARA EVITAR CLIENTES DUPLICADOS
+        public void Evitar_Clientes_Duplicados(DataGridView DGV1, DataGridView DGV2, string titulorequerimiento, string tituloliquidacion)
+        {
+            List<string> codigoseleccionados = new List<string>();
+
+            //RECORRIDO LISTADO QUE ALMACENA LOS CLIENTES SELECCIOANDOS
+            if (titulorequerimiento == "Nuevo Requerimiento" || titulorequerimiento == "Edición Requerimiento")
+            {
+                foreach (DataGridViewRow rows in DGV2.Rows)
+                {
+                    if (rows.Cells[0].Value != null)
+                    {
+                        codigoseleccionados.Add(rows.Cells[0].Value.ToString());
+                    }
+                }
+            }
+
+            if (tituloliquidacion == "NUEVA LIQUIDACIÓN")
+            {
+                foreach (DataGridViewRow rows in DGV2.Rows)
+                {
+                    if (rows.Cells[5].Value != null)
+                    {
+                        codigoseleccionados.Add(rows.Cells[5].Value.ToString());
+                    }
+                }
+            }
+
+            //RECORRIDO DE ARRIBA HACIA ABAJO PARA ELIMINAR AL CLIENTE QUE YA FUE SELECCIOANDO
+            for (int i = DGV1.Rows.Count - 1; i >= 0; i--)
+            {
+                var fila = DGV1.Rows[i];
+
+                if (fila.Cells[1].Value != null)
+                {
+                    string codigo = fila.Cells[1].Value.ToString();
+
+                    if (codigoseleccionados.Contains(codigo))
+                    {
+                        DGV1.Rows.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        //EXPORTACIONES -----------------------------------------------------------------------------------
         //METODO PARA EXPORTAR A EXCEL MI LISTADO
         public void btnExportacionBasica_Click(object sender, EventArgs e)
         {
@@ -3354,26 +3676,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
-        //ELIMINAR UN COLABORADOR SELECCIOANDO
-        private void btnBorrarSeleccionColaboradorLiquidacion_Click(object sender, EventArgs e)
-        {
-            //SI EN EL LISTADO DE CLIENTES NO HAY REGIUSTROS
-            if (datalistadoColaboradoresLiquidacion.Rows.Count > 0)
-            {
-                //MENSAJE DE CONFIRMACIÓN DE ELIMINACIÓN DE CLIENTES
-                DialogResult resul = MessageBox.Show("¿Seguro que desea borrar ha este colaborador?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (resul == DialogResult.Yes)
-                {
-                    //ACCIÓN DE REMOVER AL CLIENTE SELECCIOANDO
-                    datalistadoColaboradoresLiquidacion.Rows.Remove(datalistadoColaboradoresLiquidacion.CurrentRow);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hay colaboradores agregados para poder borrarlos.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
         //FUNCION PARA EXPORTAR  EL PDF A MI ESCRITORIO
         private void btnExportar_Click(object sender, EventArgs e)
         {
@@ -3384,7 +3686,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                 // Ruta del reporte .rpt
                 //string rutaBase = Application.StartupPath;
-                string rutaBase = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Recursos y Programas\";
+                string rutaBase = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Documentos\";
                 string rutaReporte = "";
 
                 //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
@@ -3454,12 +3756,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        //LIMPIEZA DE LA CAJA BUSQUEDA DEL RESPONSABLE
-        private void cboBusqeuda_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtBusquedaResponsable.Text = "";
         }
     }
 }

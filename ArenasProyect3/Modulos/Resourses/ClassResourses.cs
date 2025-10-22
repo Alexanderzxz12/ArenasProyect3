@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -58,6 +59,14 @@ namespace ArenasProyect3.Modulos.Resourses
             mailItem.Send();
             System.Runtime.InteropServices.Marshal.FinalReleaseComObject(mailItem);
             System.Runtime.InteropServices.Marshal.FinalReleaseComObject(outlokkApp);
+        }
+
+        //METODO PARA LIMPIAR EL TEXTO SI CONTIENE ESPACIOS EN BLANCO O SALTOS DE LINEA
+        public static void LimpiarTexto_EspaciosEnBlanco(TextBox txt)
+        {
+            string limpiartexto = Regex.Replace(txt.Text.Trim(), @"\s+", " ");
+
+            txt.Text = limpiartexto;
         }
     }
 }
