@@ -189,7 +189,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            SqlCommand comando = new SqlCommand("SELECT CodigoProvincia, Descripcion FROM  UbicacionProvincia WHERE CodigoDepartamento= @iddepartamento", con);
+            SqlCommand comando = new SqlCommand("SELECT CodigoProvincia, Descripcion FROM  UbicacionProvincia WHERE CodigoDepartamento= @iddepartamento AND Estado=1", con);
             comando.Parameters.AddWithValue("@iddepartamento", iddepartamento);
             SqlDataAdapter data = new SqlDataAdapter(comando);
             DataTable dt = new DataTable();
@@ -1936,6 +1936,109 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void btnInfoPrincipal_Click(object sender, EventArgs e)
         {
             Process.Start(Manual);
+        }
+
+        private void txtSoles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 1. Permite la tecla de control (como Backspace)
+            if (char.IsControl(e.KeyChar))
+            {
+                return; // Permite el carácter y sale
+            }
+
+            // 2. Permite dígitos del 0 al 9
+            if (char.IsDigit(e.KeyChar))
+            {
+                return; // Permite el dígito y sale
+            }
+
+            // 3. Permite el punto decimal '.'
+            // (Asegúrate de que solo se pueda ingresar uno y que el control lo tenga como separador decimal)
+            if (e.KeyChar == '.')
+            {
+                // El TextBox actual
+                TextBox textBox = (TextBox)sender;
+
+                // Si el texto ya contiene un punto, o si es la primera posición y no es un punto...
+                if (textBox.Text.Contains("."))
+                {
+                    e.Handled = true; // Ignora el punto si ya existe uno
+                    return;
+                }
+                return; // Permite el primer punto y sale
+            }
+
+            // Si no es un dígito, control, o el primer punto, se ignora
+            e.Handled = true;
+        }
+
+        //private void txtSoles_TextChanged(object sender, EventArgs e)
+        //{
+
+        //}
+
+        private void txtSoles_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (char.IsControl(e.KeyChar))
+            {
+                return; 
+            }
+
+            // 2. PERMITIR Dígitos (0-9)
+            if (char.IsDigit(e.KeyChar))
+            {
+                return; 
+            }
+
+            
+            if (e.KeyChar == '.')
+            {
+                
+                if (textBox.Text.Contains("."))
+                {
+                    e.Handled = true; 
+                    return;
+                }
+                return; 
+            }
+
+            
+            e.Handled = true; 
+        }
+
+        private void txtDolares_KeyPress(object sender, KeyPressEventArgs e)
+        {
+    
+            TextBox textBox = (TextBox)sender;
+
+           
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+           
+            if (char.IsDigit(e.KeyChar))
+            {
+                return; 
+            }
+
+            
+            if (e.KeyChar == '.')
+            {
+               
+                if (textBox.Text.Contains("."))
+                {
+                    e.Handled = true; 
+                    return;
+                }
+                return; 
+            }
+
+          
+            e.Handled = true; 
         }
     }
 }
