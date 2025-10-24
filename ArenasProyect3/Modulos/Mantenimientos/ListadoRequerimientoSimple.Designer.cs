@@ -30,22 +30,21 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoRequerimientoSimple));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle331 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle333 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle332 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle334 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle335 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle336 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle337 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle338 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle339 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle340 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle341 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle342 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle343 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle344 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle345 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.lblCarga = new System.Windows.Forms.Label();
@@ -54,6 +53,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.btnInfo = new System.Windows.Forms.PictureBox();
             this.btnAtudaFormularioArena = new System.Windows.Forms.PictureBox();
+            this.datalistadoCodigoRequerimientoSimple = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabControlRequerimientosGenerales = new System.Windows.Forms.TabControl();
@@ -250,6 +250,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCodigoRequerimientoSimple)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabControlRequerimientosGenerales.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -314,6 +315,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelMovimientoFrm.Controls.Add(this.pictureBox12);
             this.panelMovimientoFrm.Controls.Add(this.btnInfo);
             this.panelMovimientoFrm.Controls.Add(this.btnAtudaFormularioArena);
+            this.panelMovimientoFrm.Controls.Add(this.datalistadoCodigoRequerimientoSimple);
             this.panelMovimientoFrm.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMovimientoFrm.Location = new System.Drawing.Point(0, 0);
             this.panelMovimientoFrm.Margin = new System.Windows.Forms.Padding(5);
@@ -415,6 +417,18 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnAtudaFormularioArena.TabIndex = 54;
             this.btnAtudaFormularioArena.TabStop = false;
             // 
+            // datalistadoCodigoRequerimientoSimple
+            // 
+            this.datalistadoCodigoRequerimientoSimple.AllowUserToAddRows = false;
+            this.datalistadoCodigoRequerimientoSimple.AllowUserToDeleteRows = false;
+            this.datalistadoCodigoRequerimientoSimple.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoCodigoRequerimientoSimple.Location = new System.Drawing.Point(199, 5);
+            this.datalistadoCodigoRequerimientoSimple.Name = "datalistadoCodigoRequerimientoSimple";
+            this.datalistadoCodigoRequerimientoSimple.ReadOnly = true;
+            this.datalistadoCodigoRequerimientoSimple.RowHeadersWidth = 51;
+            this.datalistadoCodigoRequerimientoSimple.Size = new System.Drawing.Size(14, 13);
+            this.datalistadoCodigoRequerimientoSimple.TabIndex = 2044;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -469,25 +483,25 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoRequerimiento.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoRequerimiento.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoRequerimiento.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle331.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle331.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle331.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle331.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle331.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle331.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle331.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle331;
             this.datalistadoRequerimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoRequerimiento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Seleccionar});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoRequerimiento.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle333.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle333.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle333.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle333.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle333.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle333.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle333.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoRequerimiento.DefaultCellStyle = dataGridViewCellStyle333;
             this.datalistadoRequerimiento.Location = new System.Drawing.Point(9, 142);
             this.datalistadoRequerimiento.Margin = new System.Windows.Forms.Padding(5);
             this.datalistadoRequerimiento.MultiSelect = false;
@@ -503,10 +517,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             // Seleccionar
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.Seleccionar.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle332.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle332.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle332.NullValue")));
+            dataGridViewCellStyle332.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Seleccionar.DefaultCellStyle = dataGridViewCellStyle332;
             this.Seleccionar.HeaderText = "SEL";
             this.Seleccionar.Image = ((System.Drawing.Image)(resources.GetObject("Seleccionar.Image")));
             this.Seleccionar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -1033,10 +1047,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelBuscarProductos.Controls.Add(this.txtBusquedaProducto);
             this.panelBuscarProductos.Controls.Add(this.label14);
             this.panelBuscarProductos.Controls.Add(this.panel9);
-            this.panelBuscarProductos.Location = new System.Drawing.Point(1132, 594);
+            this.panelBuscarProductos.Location = new System.Drawing.Point(48, 28);
             this.panelBuscarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.panelBuscarProductos.Name = "panelBuscarProductos";
-            this.panelBuscarProductos.Size = new System.Drawing.Size(1094, 528);
+            this.panelBuscarProductos.Size = new System.Drawing.Size(1086, 526);
             this.panelBuscarProductos.TabIndex = 2035;
             this.panelBuscarProductos.Visible = false;
             // 
@@ -1117,20 +1131,20 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             // 
             this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(1093, 18);
+            this.panel10.Location = new System.Drawing.Point(1085, 18);
             this.panel10.Margin = new System.Windows.Forms.Padding(4);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1, 509);
+            this.panel10.Size = new System.Drawing.Size(1, 507);
             this.panel10.TabIndex = 52;
             // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 527);
+            this.panel11.Location = new System.Drawing.Point(0, 525);
             this.panel11.Margin = new System.Windows.Forms.Padding(4);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1094, 1);
+            this.panel11.Size = new System.Drawing.Size(1086, 1);
             this.panel11.TabIndex = 51;
             // 
             // label21
@@ -1183,14 +1197,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoSeleccionBusquedaProducto.AllowUserToResizeRows = false;
             this.datalistadoSeleccionBusquedaProducto.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoSeleccionBusquedaProducto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoSeleccionBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle334.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle334.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle334.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle334.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle334.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle334.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle334.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoSeleccionBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle334;
             this.datalistadoSeleccionBusquedaProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoSeleccionBusquedaProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1198,14 +1212,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoSeleccionBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle335.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle335.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle335.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle335.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle335.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle335.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle335.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoSeleccionBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle335;
             this.datalistadoSeleccionBusquedaProducto.Location = new System.Drawing.Point(9, 280);
             this.datalistadoSeleccionBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoSeleccionBusquedaProducto.MultiSelect = false;
@@ -1267,25 +1281,25 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoBusquedaProducto.BackgroundColor = System.Drawing.SystemColors.WindowFrame;
             this.datalistadoBusquedaProducto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.datalistadoBusquedaProducto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle336.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle336.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle336.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle336.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle336.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle336.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle336.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle336;
             this.datalistadoBusquedaProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoBusquedaProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ckSeleccionarProducto});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle337.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle337.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle337.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle337.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle337.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle337.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle337.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaProducto.DefaultCellStyle = dataGridViewCellStyle337;
             this.datalistadoBusquedaProducto.Location = new System.Drawing.Point(9, 61);
             this.datalistadoBusquedaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaProducto.MultiSelect = false;
@@ -1353,7 +1367,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Margin = new System.Windows.Forms.Padding(4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1094, 18);
+            this.panel9.Size = new System.Drawing.Size(1086, 18);
             this.panel9.TabIndex = 34;
             // 
             // btnInfoBusquedaProductos
@@ -1361,7 +1375,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnInfoBusquedaProductos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInfoBusquedaProductos.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnInfoBusquedaProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoBusquedaProductos.Image")));
-            this.btnInfoBusquedaProductos.Location = new System.Drawing.Point(1068, 0);
+            this.btnInfoBusquedaProductos.Location = new System.Drawing.Point(1060, 0);
             this.btnInfoBusquedaProductos.Margin = new System.Windows.Forms.Padding(5);
             this.btnInfoBusquedaProductos.Name = "btnInfoBusquedaProductos";
             this.btnInfoBusquedaProductos.Size = new System.Drawing.Size(26, 18);
@@ -1416,7 +1430,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelDetallesRequerimiento.Controls.Add(this.label24);
             this.panelDetallesRequerimiento.Controls.Add(this.txtCodigoRequerimiento);
             this.panelDetallesRequerimiento.Controls.Add(this.panel6);
-            this.panelDetallesRequerimiento.Location = new System.Drawing.Point(950, 598);
+            this.panelDetallesRequerimiento.Location = new System.Drawing.Point(120, 142);
             this.panelDetallesRequerimiento.Margin = new System.Windows.Forms.Padding(4);
             this.panelDetallesRequerimiento.Name = "panelDetallesRequerimiento";
             this.panelDetallesRequerimiento.Size = new System.Drawing.Size(912, 373);
@@ -1574,36 +1588,28 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoDetallesRequerimiento.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoDetallesRequerimiento.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoDetallesRequerimiento.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoDetallesRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle338.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle338.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle338.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle338.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle338.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle338.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle338.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoDetallesRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle338;
             this.datalistadoDetallesRequerimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoDetallesRequerimiento.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle339.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle339.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle339.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle339.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle339.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle339.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle339.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoDetallesRequerimiento.DefaultCellStyle = dataGridViewCellStyle339;
             this.datalistadoDetallesRequerimiento.Location = new System.Drawing.Point(9, 66);
             this.datalistadoDetallesRequerimiento.Margin = new System.Windows.Forms.Padding(5);
             this.datalistadoDetallesRequerimiento.MultiSelect = false;
             this.datalistadoDetallesRequerimiento.Name = "datalistadoDetallesRequerimiento";
             this.datalistadoDetallesRequerimiento.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoDetallesRequerimiento.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.datalistadoDetallesRequerimiento.RowHeadersVisible = false;
             this.datalistadoDetallesRequerimiento.RowHeadersWidth = 20;
             this.datalistadoDetallesRequerimiento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1732,7 +1738,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panleAnulacion.Controls.Add(this.label57);
             this.panleAnulacion.Controls.Add(this.label58);
             this.panleAnulacion.Controls.Add(this.panel4);
-            this.panleAnulacion.Location = new System.Drawing.Point(875, 612);
+            this.panleAnulacion.Location = new System.Drawing.Point(320, 142);
             this.panleAnulacion.Margin = new System.Windows.Forms.Padding(4);
             this.panleAnulacion.Name = "panleAnulacion";
             this.panleAnulacion.Size = new System.Drawing.Size(521, 246);
@@ -1915,7 +1921,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelEditarRequerimiento.Controls.Add(this.label46);
             this.panelEditarRequerimiento.Controls.Add(this.txtSolicitante);
             this.panelEditarRequerimiento.Controls.Add(this.groupBox3);
-            this.panelEditarRequerimiento.Location = new System.Drawing.Point(981, 598);
+            this.panelEditarRequerimiento.Location = new System.Drawing.Point(125, 23);
             this.panelEditarRequerimiento.Margin = new System.Windows.Forms.Padding(4);
             this.panelEditarRequerimiento.Name = "panelEditarRequerimiento";
             this.panelEditarRequerimiento.Size = new System.Drawing.Size(918, 600);
@@ -1930,14 +1936,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoProductosRequerimientoOP.AllowUserToResizeRows = false;
             this.datalistadoProductosRequerimientoOP.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoProductosRequerimientoOP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoProductosRequerimientoOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle340.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle340.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle340.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle340.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle340.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle340.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle340.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoProductosRequerimientoOP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle340;
             this.datalistadoProductosRequerimientoOP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoProductosRequerimientoOP.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.seleccionarOP,
@@ -1948,14 +1954,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.cantidadTotalOP,
             this.unidadOP,
             this.almacenOP});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoProductosRequerimientoOP.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle341.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle341.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle341.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle341.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle341.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle341.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle341.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoProductosRequerimientoOP.DefaultCellStyle = dataGridViewCellStyle341;
             this.datalistadoProductosRequerimientoOP.Location = new System.Drawing.Point(898, 592);
             this.datalistadoProductosRequerimientoOP.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoProductosRequerimientoOP.Name = "datalistadoProductosRequerimientoOP";
@@ -2031,14 +2037,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoProductosRequerimiento.AllowUserToResizeRows = false;
             this.datalistadoProductosRequerimiento.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoProductosRequerimiento.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoProductosRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle342.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle342.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle342.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle342.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle342.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle342.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle342.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoProductosRequerimiento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle342;
             this.datalistadoProductosRequerimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoProductosRequerimiento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -2049,14 +2055,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.stock,
             this.IdArt,
             this.Item});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoProductosRequerimiento.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle343.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle343.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle343.Font = new System.Drawing.Font("Calibri", 8F);
+            dataGridViewCellStyle343.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle343.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle343.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle343.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoProductosRequerimiento.DefaultCellStyle = dataGridViewCellStyle343;
             this.datalistadoProductosRequerimiento.Location = new System.Drawing.Point(8, 263);
             this.datalistadoProductosRequerimiento.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoProductosRequerimiento.Name = "datalistadoProductosRequerimiento";
@@ -2725,14 +2731,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoExcel.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoExcel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoExcel.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle344.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle344.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle344.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle344.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle344.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle344.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle344.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle344;
             this.datalistadoExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoExcel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numeroRequerimientoSimple,
@@ -2743,14 +2749,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.centroCosto,
             this.area,
             this.estadoAtencion});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle345.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle345.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle345.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle345.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle345.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle345.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle345.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoExcel.DefaultCellStyle = dataGridViewCellStyle345;
             this.datalistadoExcel.Location = new System.Drawing.Point(19, 507);
             this.datalistadoExcel.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoExcel.MultiSelect = false;
@@ -2841,8 +2847,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1172, 636);
             this.Controls.Add(this.panelBuscarProductos);
-            this.Controls.Add(this.panelMovimientoFrm);
             this.Controls.Add(this.panelEditarRequerimiento);
+            this.Controls.Add(this.panelMovimientoFrm);
             this.Controls.Add(this.panelDetallesRequerimiento);
             this.Controls.Add(this.panleAnulacion);
             this.Controls.Add(this.tabControlRequerimientosGenerales);
@@ -2870,6 +2876,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCodigoRequerimientoSimple)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabControlRequerimientosGenerales.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -3137,5 +3144,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.PictureBox btnInfoBusquedaProductos;
         private System.Windows.Forms.DataGridViewImageColumn Seleccionar;
+        private System.Windows.Forms.DataGridView datalistadoCodigoRequerimientoSimple;
     }
 }
