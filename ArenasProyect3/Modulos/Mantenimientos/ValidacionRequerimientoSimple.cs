@@ -1,20 +1,22 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Produccion.ConsultasOT;
+using ArenasProyect3.Modulos.Resourses;
+using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml.Spreadsheet;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Spreadsheet;
-using System.Diagnostics;
-using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -27,6 +29,8 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         int IdUsuario = 0;
         private Cursor curAnterior = null;
         string ruta = ManGeneral.Manual.manualAreaLogistica;
+
+ 
 
         public ValidacionRequerimientoSimple()
         {
@@ -164,21 +168,32 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //MOSTRAR REQUERIMIENTOS POR FECHA 
         public void MostrarRequerimientoPorFecha(DateTime fechaInicio, DateTime fechaTermino, string jefatura)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarRequerimientoSimplePorJefatura1", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd.Parameters.AddWithValue("@jefatura", jefatura);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoRequerimiento.DataSource = dt;
-            con.Close();
-            Redimencionar(datalistadoRequerimiento);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarRequerimientoSimplePorJefatura1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                cmd.Parameters.AddWithValue("@jefatura", jefatura);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoRequerimiento.DataSource = dt;
+                con.Close();
+                Redimencionar(datalistadoRequerimiento);
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //REDIMENSION DE MIS COLUMNAS
@@ -352,25 +367,41 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //VISULIZAR EL PDF DEL REQUERIMEINTO SIMPLE
         private void btnVerReque_Click(object sender, EventArgs e)
         {
-            if (datalistadoRequerimiento.CurrentRow != null)
+            try
             {
-                if (datalistadoRequerimiento.SelectedCells[13].Value.ToString() == "ANULADO")
+                if (datalistadoRequerimiento.CurrentRow != null)
                 {
-                    MessageBox.Show("El requerimiento se encuentra anulado, no se puede visualizar el requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
+                    if (datalistadoRequerimiento.SelectedCells[13].Value.ToString() == "ANULADO")
+                    {
+                        MessageBox.Show("El requerimiento se encuentra anulado, no se puede visualizar el requerimiento.", "Validación del Sistema", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        string codigoReporte = datalistadoRequerimiento.Rows[datalistadoRequerimiento.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarRequerimientoSimple frm = new Visualizadores.VisualizarRequerimientoSimple();
+                        frm.lblCodigo.Text = codigoReporte;
+
+                        frm.Show();
+
+                        int numRequerimientoSimple = Convert.ToInt32(datalistadoRequerimiento.SelectedCells[1].Value);
+                        ClassResourses.RegistrarAuditora(6, this.Name, 10, Program.IdUsuario, "Visualización de Requerimiento Simple PDF", numRequerimientoSimple);
+                    }
                 }
                 else
                 {
-                    string codigoReporte = datalistadoRequerimiento.Rows[datalistadoRequerimiento.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoSimple frm = new Visualizadores.VisualizarRequerimientoSimple();
-                    frm.lblCodigo.Text = codigoReporte;
-
-                    frm.Show();
+                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF.", "Validación del Sistema");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF.", "Validación del Sistema");
+
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
             }
+            
         }
 
         //MOSTRAR TODOS LOS REQUERIMIENTOS SEGÚN LA FECHA
@@ -451,22 +482,37 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 DialogResult boton = MessageBox.Show("¿Realmente desea atender este requerimiento?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("CambioEstadoRequerimientoSimple_Jefatura", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    //APROBAR - REQUERIMIENTO SIMPLE
-                    cmd.Parameters.AddWithValue("@idRequerimientoSimple", datalistadoRequerimiento.SelectedCells[1].Value.ToString());
-                    cmd.Parameters.AddWithValue("@estado", 2);
-                    cmd.Parameters.AddWithValue("@mensajeAnulacion", "");
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("CambioEstadoRequerimientoSimple_Jefatura", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //APROBAR - REQUERIMIENTO SIMPLE
+                        cmd.Parameters.AddWithValue("@idRequerimientoSimple", datalistadoRequerimiento.SelectedCells[1].Value.ToString());
+                        cmd.Parameters.AddWithValue("@estado", 2);
+                        cmd.Parameters.AddWithValue("@mensajeAnulacion", "");
+                        cmd.ExecuteNonQuery();
+                        con.Close();
 
-                    MessageBox.Show("Se atendió el requerimiento correctamente.", "Validación del Sistema");
+                        int numRequerimientoSimple = Convert.ToInt32(datalistadoRequerimiento.SelectedCells[1].Value.ToString());
 
-                    MostrarRequerimientoPorFecha(DesdeFecha.Value, HastaFecha.Value, txtBusquedaJefatura.Text);
+                        MessageBox.Show("Se atendió el requerimiento correctamente.", "Validación del Sistema");
+                        ClassResourses.RegistrarAuditora(3, this.Name, 10, Program.IdUsuario, "Aprobar Requerimiento Simple", numRequerimientoSimple);
+
+                        MostrarRequerimientoPorFecha(DesdeFecha.Value, HastaFecha.Value, txtBusquedaJefatura.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                        //////////////////////////--------------------------------------------------------------------------
+                        MessageBox.Show(ex.Message);
+                    }
+                 
                 }
             }
         }
@@ -500,7 +546,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void btnProcederAnulacion_Click(object sender, EventArgs e)
         {
             //SI NO HAY UN REQUERIMIENTO SELECCIOANOD
-            if (txtJustificacionAnulacion.Text != "")
+            if (!string.IsNullOrWhiteSpace(txtJustificacionAnulacion.Text) /*!= ""*/)
             {
                 //MENSAJE DE CONFIRMACIÓN PARA LA ANLACIÓN DE UN REQUERIMIENTO
                 DialogResult boton = MessageBox.Show("¿Realmente desea anular este requerimiento?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
@@ -529,11 +575,17 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idRequerimientoSimple", idRequerimiento);
                             cmd.Parameters.AddWithValue("@estado", 0);
+                            //////////////////////////--------------------------------------------------------------------------
+                            //CODIGO IMPLEMENTADO 
+                            ClassResourses.LimpiarTexto_EspaciosEnBlanco(txtJustificacionAnulacion);
+                            //////////////////////////--------------------------------------------------------------------------
+
                             cmd.Parameters.AddWithValue("@mensajeAnulacion", txtJustificacionAnulacion.Text);
                             cmd.ExecuteNonQuery();
                             con.Close();
-
+                                                      
                             MessageBox.Show("Requerimiento anulado exitosamente.", "Validación del Sistema");
+                            ClassResourses.RegistrarAuditora(2, this.Name, 10, Program.IdUsuario, "Anular Requerimiento Simple", idRequerimiento);
 
                             MostrarRequerimientoPorFecha(DesdeFecha.Value, HastaFecha.Value, txtBusquedaJefatura.Text);
                             panleAnulacion.Visible = false;
@@ -541,6 +593,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         }
                         catch (Exception ex)
                         {
+                            //////////////////////////--------------------------------------------------------------------------
+                            //CODIGO IMPLEMENTADO 
+                            ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                            //////////////////////////--------------------------------------------------------------------------
                             MessageBox.Show(ex.Message);
                         }
                     }
@@ -562,74 +618,88 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //FUNCIO PARA EXPORTAR TODOS LOS DATOS POR EXCEL
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            MostrarExcel();
-
-            SLDocument sl = new SLDocument();
-            SLStyle style = new SLStyle();
-            SLStyle styleC = new SLStyle();
-
-            //COLUMNAS
-            sl.SetColumnWidth(1, 20);
-            sl.SetColumnWidth(2, 20);
-            sl.SetColumnWidth(3, 20);
-            sl.SetColumnWidth(4, 45);
-            sl.SetColumnWidth(5, 45);
-            sl.SetColumnWidth(6, 45);
-            sl.SetColumnWidth(7, 45);
-            sl.SetColumnWidth(8, 45);
-
-            //CABECERA
-            style.Font.FontSize = 11;
-            style.Font.Bold = true;
-            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-            style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
-            style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            //FILAS
-            styleC.Font.FontSize = 10;
-            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-
-            styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            int ic = 1;
-            foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+            try
             {
-                sl.SetCellValue(1, ic, column.HeaderText.ToString());
-                sl.SetCellStyle(1, ic, style);
-                ic++;
-            }
+                MostrarExcel();
 
-            int ir = 2;
-            foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                SLDocument sl = new SLDocument();
+                SLStyle style = new SLStyle();
+                SLStyle styleC = new SLStyle();
+
+                //COLUMNAS
+                sl.SetColumnWidth(1, 20);
+                sl.SetColumnWidth(2, 20);
+                sl.SetColumnWidth(3, 20);
+                sl.SetColumnWidth(4, 45);
+                sl.SetColumnWidth(5, 45);
+                sl.SetColumnWidth(6, 45);
+                sl.SetColumnWidth(7, 45);
+                sl.SetColumnWidth(8, 45);
+
+                //CABECERA
+                style.Font.FontSize = 11;
+                style.Font.Bold = true;
+                style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+                style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+                style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                //FILAS
+                styleC.Font.FontSize = 10;
+                styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+                styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                int ic = 1;
+                foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+                {
+                    sl.SetCellValue(1, ic, column.HeaderText.ToString());
+                    sl.SetCellStyle(1, ic, style);
+                    ic++;
+                }
+
+                int ir = 2;
+                foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                {
+                    sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+                    sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+                    sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+                    sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+                    sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
+                    sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
+                    sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
+                    sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
+                    sl.SetCellStyle(ir, 1, styleC);
+                    sl.SetCellStyle(ir, 2, styleC);
+                    sl.SetCellStyle(ir, 3, styleC);
+                    sl.SetCellStyle(ir, 4, styleC);
+                    sl.SetCellStyle(ir, 5, styleC);
+                    sl.SetCellStyle(ir, 6, styleC);
+                    sl.SetCellStyle(ir, 7, styleC);
+                    sl.SetCellStyle(ir, 8, styleC);
+                    ir++;
+                }
+
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                sl.SaveAs(desktopPath + @"\Reporte de Requerimento Simple.xlsx");
+                MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(5, this.Name, 10, Program.IdUsuario, "Exportar listado de Requerimientos Simples EXCEL", 0);
+
+            }
+            catch (Exception ex)
             {
-                sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
-                sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
-                sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
-                sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
-                sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
-                sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
-                sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
-                sl.SetCellValue(ir, 8, row.Cells[7].Value.ToString());
-                sl.SetCellStyle(ir, 1, styleC);
-                sl.SetCellStyle(ir, 2, styleC);
-                sl.SetCellStyle(ir, 3, styleC);
-                sl.SetCellStyle(ir, 4, styleC);
-                sl.SetCellStyle(ir, 5, styleC);
-                sl.SetCellStyle(ir, 6, styleC);
-                sl.SetCellStyle(ir, 7, styleC);
-                sl.SetCellStyle(ir, 8, styleC);
-                ir++;
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
             }
-
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de Requerimento Simple.xlsx");
-            MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+           
         }
 
         //EXPORTAR DOCUMENTO SELECCIOANDO
@@ -679,9 +749,17 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
 
                 MessageBox.Show($"Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClassResourses.RegistrarAuditora(5, this.Name, 10, Program.IdUsuario, "Exportar Requerimiento Simple PDF", idReque);
+
             }
             catch (Exception ex)
             {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
