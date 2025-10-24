@@ -126,19 +126,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 //RECORRIDO DE MI LISTADO
                 for (var i = 0; i <= DGV.RowCount - 1; i++)
                 {
-                    if (DGV.Rows[i].Cells[13].Value.ToString() == "FUERA DE FECHA")
+                    if (DGV.Rows[i].Cells[15].Value.ToString() == "FUERA DE FECHA")
                     {
                         DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
                     }
-                    else if (DGV.Rows[i].Cells[13].Value.ToString() == "LÍMITE")
+                    else if (DGV.Rows[i].Cells[15].Value.ToString() == "LÍMITE")
                     {
                         DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
                     }
-                    else if (DGV.Rows[i].Cells[13].Value.ToString() == "PENDIENTE")
+                    else if (DGV.Rows[i].Cells[15].Value.ToString() == "PENDIENTE")
                     {
                         DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
                     }
-                    else if (DGV.Rows[i].Cells[13].Value.ToString() == "CULMINADO")
+                    else if (DGV.Rows[i].Cells[15].Value.ToString() == "CULMINADO")
                     {
                         DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }
@@ -167,11 +167,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 string cantidad = dgv.Cells[9].Value.ToString();
                 string color = dgv.Cells[10].Value.ToString();
                 string numeroPedido = dgv.Cells[11].Value.ToString();
-                string cantidadRealizada = dgv.Cells[12].Value.ToString();
-                string estado = dgv.Cells[12].Value.ToString();
-                string estadoOC = dgv.Cells[14].Value.ToString();
+                string cantidadRealizada = dgv.Cells[14].Value.ToString();
+                string estado = dgv.Cells[15].Value.ToString();
+                string estadoOC = dgv.Cells[16].Value.ToString();
                 //COLUMNAS EXTRAS DE MI REPORTE
-                string fechaCulminacionV = dgv.Cells[22].Value.ToString();
+                string fechaCulminacionV = dgv.Cells[23].Value.ToString();
                 string fechaCulminacion;
                 int diferenciasDias = 0;
 
@@ -187,7 +187,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     fechaCulminacion = Convert.ToString(fechaCulminacionO);
                 }
 
-                string area = dgv.Cells[23].Value.ToString();
+                string area = dgv.Cells[25].Value.ToString();
 
                 datalistadoExcel.Rows.Add(new[] { numeroOP, Convert.ToString(fechaInicio), Convert.ToString(fechaFinal), Convert.ToString(fechaCulminacion), Convert.ToString(diferenciasDias), area, cliente, unidad, item, descripcionDescripcion, cantidad, color, numeroPedido, estado, cantidadRealizada, estado, estadoOC });
             }
@@ -240,7 +240,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             //CONTAR CUANTAS CANTIDADES HAY
             foreach (DataGridViewRow row in datalistadoCantidades.Rows)
             {
-                totalCantidades = totalCantidades + Convert.ToInt32(row.Cells[1].Value.ToString());
+                if(row.Cells[3].Value.ToString() == "ENTREGADO")
+                {
+                    totalCantidades = totalCantidades + Convert.ToInt32(row.Cells[1].Value.ToString());
+                }
+            }
+
+            //DESCONTAR CUANTAS CANTIDADES HAY
+            foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+            {
+                if (row.Cells[3].Value.ToString() == "DESAPROBADO")
+                {
+                    totalCantidades = totalCantidades -Convert.ToInt32(row.Cells[1].Value.ToString());
+                }
             }
         }
 
@@ -580,15 +592,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[9].Width = 60;
             DGV.Columns[10].Width = 85;
             DGV.Columns[11].Width = 75;
-            DGV.Columns[12].Width = 75;
-            DGV.Columns[13].Width = 110;
-            DGV.Columns[14].Width = 65;
+            DGV.Columns[14].Width = 75;
+            DGV.Columns[15].Width = 110;
+            DGV.Columns[16].Width = 65;
             //SE HACE NO VISIBLE LAS COLUMNAS QUE NO LES INTERESA AL USUARIO
             DGV.Columns[1].Visible = false;
-            DGV.Columns[15].Visible = false;
-            DGV.Columns[16].Visible = false;
-            DGV.Columns[15].Visible = false;
-            DGV.Columns[16].Visible = false;
+            DGV.Columns[12].Visible = false;
+            DGV.Columns[13].Visible = false;
             DGV.Columns[17].Visible = false;
             DGV.Columns[18].Visible = false;
             DGV.Columns[19].Visible = false;
@@ -596,6 +606,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[21].Visible = false;
             DGV.Columns[22].Visible = false;
             DGV.Columns[23].Visible = false;
+            DGV.Columns[24].Visible = false;
+            DGV.Columns[25].Visible = false;
             //SE BLOQUEA MI LISTADO
             DGV.Columns[2].ReadOnly = true;
             DGV.Columns[3].ReadOnly = true;
@@ -628,21 +640,21 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[2].Width = 80;
             DGV.Columns[3].Width = 80;
             DGV.Columns[4].Width = 80;
-            DGV.Columns[5].Width = 250;
+            DGV.Columns[5].Width = 300;
             DGV.Columns[6].Width = 130;
-            DGV.Columns[7].Width = 35;
-            DGV.Columns[8].Width = 350;
+            DGV.Columns[7].Width = 40;
+            DGV.Columns[8].Width = 300;
             DGV.Columns[9].Width = 60;
             DGV.Columns[10].Width = 85;
             DGV.Columns[11].Width = 75;
-            DGV.Columns[12].Width = 75;
-            DGV.Columns[13].Width = 110;
-            DGV.Columns[14].Width = 110;
-            DGV.Columns[15].Width = 60;
+            DGV.Columns[14].Width = 75;
+            DGV.Columns[15].Width = 110;
+            DGV.Columns[16].Width = 110;
+            DGV.Columns[17].Width = 65;
             //SE HACE NO VISIBLE LAS COLUMNAS QUE NO LES INTERESA AL USUARIO
             DGV.Columns[1].Visible = false;
-            DGV.Columns[16].Visible = false;
-            DGV.Columns[17].Visible = false;
+            DGV.Columns[12].Visible = false;
+            DGV.Columns[13].Visible = false;
             DGV.Columns[18].Visible = false;
             DGV.Columns[19].Visible = false;
             DGV.Columns[20].Visible = false;
@@ -650,6 +662,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[22].Visible = false;
             DGV.Columns[23].Visible = false;
             DGV.Columns[24].Visible = false;
+            DGV.Columns[25].Visible = false;
             //SE BLOQUEA MI LISTADO
             DGV.Columns[2].ReadOnly = true;
             DGV.Columns[3].ReadOnly = true;
@@ -681,15 +694,15 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 //RECORRIDO DE MI LISTADO
                 for (var i = 0; i <= datalistadoObservadas.RowCount - 1; i++)
                 {
-                    if (datalistadoObservadas.Rows[i].Cells[14].Value.ToString() == "REVISIÓN PARCIAL")
+                    if (datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "REVISIÓN PARCIAL")
                     {
                         datalistadoObservadas.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
                     }
-                    else if (datalistadoObservadas.Rows[i].Cells[14].Value.ToString() == "CULMINADA" || datalistadoObservadas.Rows[i].Cells[14].Value.ToString() == "CULMINADA - SNG")
+                    else if (datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "CULMINADA" || datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "CULMINADA - SNC")
                     {
                         datalistadoObservadas.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }
-                    else if (datalistadoObservadas.Rows[i].Cells[14].Value.ToString() == "ANULADO" || datalistadoObservadas.Rows[i].Cells[14].Value.ToString() == "NO DEFINIDO")
+                    else if (datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "ANULADO" || datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "NO DEFINIDO")
                     {
                         datalistadoObservadas.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
                     }
@@ -1090,6 +1103,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
         public void AbrirDetalles(DataGridView DGV)
         {
+            btnVisualizarSNC.Visible = false;
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (DGV.CurrentRow != null)
             {
@@ -1118,14 +1132,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 lblCantidadTotalInghresada.Text = Convert.ToString(totalCantidades);
                 txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadRequerida.Text) - Convert.ToInt32(lblCantidadTotalInghresada.Text));
 
-                if (txtCantidadRestante.Text == "0")
-                {
-                    DGV.Enabled = true;
-                    panelIngresoCantidades.Visible = false;
-                    MessageBox.Show("Esta OP ya culminó satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else
-                {
+                //if (txtCantidadRestante.Text == "0")
+                //{
+                //    DGV.Enabled = true;
+                //    panelIngresoCantidades.Visible = false;
+                //    MessageBox.Show("Esta OP ya culminó satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                //}
+                //else
+                //{
                     DGV.Enabled = false;
                     panelIngresoCantidades.Visible = true;
 
@@ -1149,11 +1163,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         txtCantidadRealizada.ReadOnly = false;
                         lblIdOP.Text = DGV.SelectedCells[1].Value.ToString();
                     }
-                }
+                //}
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -1212,7 +1226,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una OP para poder generar el PDF.", "Validación del Sistema");
+                MessageBox.Show("Debe seleccionar una OP para poder generar el PDF.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -1279,7 +1293,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema");
+                            MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema",MessageBoxButtons.OK);
                             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                             LimpiarCantidades();
