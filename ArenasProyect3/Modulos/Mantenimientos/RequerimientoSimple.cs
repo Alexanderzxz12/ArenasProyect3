@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +13,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -24,6 +25,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         int IdUsuario = 0;
         string area = "";
         string ruta = ManGeneral.Manual.manualAreaLogistica;
+
+        //VARIABLE GLOBAL PARA AUDIORA
+        int codigorequesimple = 0;
+
 
         //CONSTRUCTOR DE MI MANTENIMIENTO
         public RequerimientoSimple()
@@ -80,7 +85,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             dateTimeFechaRequerida.Value = fechaActual;
 
             //VISUALIZAR EL VALIDADO AUTO
-            if(txtJefatura.Text == txtSolicitante.Text)
+            if (txtJefatura.Text == txtSolicitante.Text)
             {
                 ckAprobacionAuto.Visible = true;
             }
@@ -107,144 +112,223 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //CARGAR TIPO DE REQUERIMIENTO
         public void CargarTipoRequerimiento()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoRequerimiento, Descripcion FROM TipoRequerimientoGeneral WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoRequerimiento.DisplayMember = "Descripcion";
-            cboTipoRequerimiento.ValueMember = "IdTipoRequerimiento";
-            cboTipoRequerimiento.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoRequerimiento, Descripcion FROM TipoRequerimientoGeneral WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoRequerimiento.DisplayMember = "Descripcion";
+                cboTipoRequerimiento.ValueMember = "IdTipoRequerimiento";
+                cboTipoRequerimiento.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         //CARGAR SEDE
         public void CargarSede()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdSede, Descripcion FROM Sede WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboSede.DisplayMember = "Descripcion";
-            cboSede.ValueMember = "IdSede";
-            cboSede.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdSede, Descripcion FROM Sede WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboSede.DisplayMember = "Descripcion";
+                cboSede.ValueMember = "IdSede";
+                cboSede.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         //CARGAR LOCAL
         public void CargarLocal()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLocal, Descripcion FROM Local WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboLocal.DisplayMember = "Descripcion";
-            cboLocal.ValueMember = "IdLocal";
-            cboLocal.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdLocal, Descripcion FROM Local WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboLocal.DisplayMember = "Descripcion";
+                cboLocal.ValueMember = "IdLocal";
+                cboLocal.DataSource = dt;
+            }catch(Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR PRIORIDAD
         public void CargarPrioridad()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdPrioridad, Descripcion FROM Prioridades WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboPrioridad.DisplayMember = "Descripcion";
-            cboPrioridad.ValueMember = "IdPrioridad";
-            cboPrioridad.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdPrioridad, Descripcion FROM Prioridades WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboPrioridad.DisplayMember = "Descripcion";
+                cboPrioridad.ValueMember = "IdPrioridad";
+                cboPrioridad.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
+        
         }
 
         //CARGAR CENTRO DE COSTOS
         public void CargarCentroCostos()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdCentroCostos, Descripcion FROM CentroCostos WHERE Estado = 1 AND IdCentroCostos = @idcentrocostos", con);
-            comando.Parameters.AddWithValue("@idcentrocostos", datalistadoBusquedaJefatura.SelectedCells[10].Value.ToString());
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboCentroCostos.ValueMember = "IdCentroCostos";
-            cboCentroCostos.DisplayMember = "Descripcion";
-            cboCentroCostos.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdCentroCostos, Descripcion FROM CentroCostos WHERE Estado = 1 AND IdCentroCostos = @idcentrocostos", con);
+                comando.Parameters.AddWithValue("@idcentrocostos", datalistadoBusquedaJefatura.SelectedCells[10].Value.ToString());
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboCentroCostos.ValueMember = "IdCentroCostos";
+                cboCentroCostos.DisplayMember = "Descripcion";
+                cboCentroCostos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //CARGAR EL LAS AREAS SEGÚN EL CENTRO DE COSTOS
         public void CargarAreaSegunCentroCostos(string idCentroCostos)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdArea,Descripcion  FROM AreaGeneral WHERE Estado = 1 AND CentroCostos = @idCentroCsotos", con);
-            comando.Parameters.AddWithValue("@idCentroCsotos", idCentroCostos);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboAreaGeneral.ValueMember = "IdArea";
-            cboAreaGeneral.DisplayMember = "Descripcion";
-            cboAreaGeneral.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdArea,Descripcion  FROM AreaGeneral WHERE Estado = 1 AND CentroCostos = @idCentroCsotos", con);
+                comando.Parameters.AddWithValue("@idCentroCsotos", idCentroCostos);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboAreaGeneral.ValueMember = "IdArea";
+                cboAreaGeneral.DisplayMember = "Descripcion";
+                cboAreaGeneral.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
         //CONTAR LA CANTIDAD DE REQUERIMIENTOS QUE HAY EN MI TABLA
         public void ConteoRequerimientosSimples()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT IdRequerimientoSimple FROM RequerimientoSimple WHERE IdRequerimientoSimple = (SELECT MAX(IdRequerimientoSimple) FROM RequerimientoSimple)", con);
-            da.Fill(dt);
-            datalistadoCargarCantidadRequerimeintoSimple.DataSource = dt;
-            con.Close();
-
-            if (datalistadoCargarCantidadRequerimeintoSimple.RowCount > 0)
+            try
             {
-                cantidadRequerimiento = datalistadoCargarCantidadRequerimeintoSimple.SelectedCells[0].Value.ToString();
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdRequerimientoSimple FROM RequerimientoSimple WHERE IdRequerimientoSimple = (SELECT MAX(IdRequerimientoSimple) FROM RequerimientoSimple)", con);
+                da.Fill(dt);
+                datalistadoCargarCantidadRequerimeintoSimple.DataSource = dt;
+                con.Close();
 
-                if (cantidadRequerimiento.Length == 1)
+                if (datalistadoCargarCantidadRequerimeintoSimple.RowCount > 0)
                 {
-                    cantidadRequerimiento2 = "000000" + cantidadRequerimiento;
+                    cantidadRequerimiento = datalistadoCargarCantidadRequerimeintoSimple.SelectedCells[0].Value.ToString();
+
+                    if (cantidadRequerimiento.Length == 1)
+                    {
+                        cantidadRequerimiento2 = "000000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 2)
+                    {
+                        cantidadRequerimiento2 = "00000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 3)
+                    {
+                        cantidadRequerimiento2 = "0000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 4)
+                    {
+                        cantidadRequerimiento2 = "000" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 5)
+                    {
+                        cantidadRequerimiento2 = "00" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 6)
+                    {
+                        cantidadRequerimiento2 = "0" + cantidadRequerimiento;
+                    }
+                    else if (cantidadRequerimiento.Length == 7)
+                    {
+                        cantidadRequerimiento2 = cantidadRequerimiento;
+                    }
                 }
-                else if (cantidadRequerimiento.Length == 2)
-                {
-                    cantidadRequerimiento2 = "00000" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 3)
-                {
-                    cantidadRequerimiento2 = "0000" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 4)
-                {
-                    cantidadRequerimiento2 = "000" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 5)
-                {
-                    cantidadRequerimiento2 = "00" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 6)
-                {
-                    cantidadRequerimiento2 = "0" + cantidadRequerimiento;
-                }
-                else if (cantidadRequerimiento.Length == 7)
+                else
                 {
                     cantidadRequerimiento2 = cantidadRequerimiento;
                 }
-            }
-            else
+            }catch(Exception ex)
             {
-                cantidadRequerimiento2 = cantidadRequerimiento;
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -261,20 +345,31 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //LISTAR TODOS LOS PRODUTOS PARA SELECCIONAR EN MI REQUERIMIENTO
         public void MostrarProductosRequerimientoGeneral()
         {
-            //PROCEDIMIENTO ALMACENADO PARA LISTAR LOS PRODUCTOS
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("ListarProductosRequerimientoGeneral_SP", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaProducto.DataSource = dt;
-            con.Close();
-            Rediemnsion(datalistadoBusquedaProducto);
-            alternarColorFilas(datalistadoBusquedaProducto);
+            try
+            {
+                //PROCEDIMIENTO ALMACENADO PARA LISTAR LOS PRODUCTOS
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("ListarProductosRequerimientoGeneral_SP", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaProducto.DataSource = dt;
+                con.Close();
+                Rediemnsion(datalistadoBusquedaProducto);
+                alternarColorFilas(datalistadoBusquedaProducto);
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //FUNCION DE REDIEMNSION
@@ -354,6 +449,9 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 datalistadoProductosRequerimiento.Visible = true;
                 datalistadoProductosRequerimientoOP.Visible = false;
             }
+          datalistadoProductosRequerimiento.Rows.Clear();
+          datalistadoProductosRequerimientoOP.Rows.Clear();
+
         }
 
         //ACCIÓN ENLAZADA DE LA CARGA DEL CENTRO DE COSTOS
@@ -408,7 +506,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 datalistadoSeleccionBusquedaProducto.Rows.Add(new[] { id, codigo, producto, tipoMedida, stock });
                 alternarColorFilas(datalistadoSeleccionBusquedaProducto);
                 //SE BORRA EL REGISTRO SELECCIONADO
-                datalistadoBusquedaProducto.Rows.Remove(datalistadoBusquedaProducto.CurrentRow);
+                //datalistadoBusquedaProducto.Rows.Remove(datalistadoBusquedaProducto.CurrentRow);
+
+                datalistadoBusquedaProducto.Rows.RemoveAt(e.RowIndex);
+
+
             }
         }
 
@@ -417,6 +519,12 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             //HACER EL LLAMADO AL MÉTODO DE LISTAD DE NUEVO
             MostrarProductosRequerimientoGeneral();
+
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            Evitar_Productos_Duplicados(datalistadoBusquedaProducto, datalistadoSeleccionBusquedaProducto);
+            //////////////////////////--------------------------------------------------------------------------
+
             //LIMPIAR LA BARRA DE BÚSQUEDA Y REINICIAR EL CBO
             txtBusquedaProducto.Text = "";
             cboTipoBusquedaProducto.SelectedIndex = 0;
@@ -454,27 +562,44 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //LLEVAR LOS PRODUCTOS A MI OTRO FORMULARIO
         private void btnConfirmarBusquedaProductos_Click(object sender, EventArgs e)
         {
-            //SE USA EL FOREACH PARA RECORRER TODAS LAS FILAS SELECCIOANDAS
-            foreach (DataGridViewRow row in datalistadoSeleccionBusquedaProducto.Rows)
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            if (cboTipoRequerimiento.Text == "SIN ORDEN DE PRODUCCIÓN")
             {
-                //SE CAPTURA LAS VARIABLES 
-                string id = Convert.ToString(row.Cells[0].Value);
-                string codigo = Convert.ToString(row.Cells[1].Value);
-                string producto = Convert.ToString(row.Cells[2].Value);
-                string tipoMedida = Convert.ToString(row.Cells[3].Value);
-                string stock = Convert.ToString(row.Cells[4].Value);
+                //////////////////////////--------------------------------------------------------------------------
 
-                //SE AGREGA A LA NUEVA LISTA
-                datalistadoProductosRequerimiento.Rows.Add(new[] { id, codigo, producto, tipoMedida, null, stock });
+                //SE USA EL FOREACH PARA RECORRER TODAS LAS FILAS SELECCIOANDAS
+                foreach (DataGridViewRow row in datalistadoSeleccionBusquedaProducto.Rows)
+                {
+                    //SE CAPTURA LAS VARIABLES 
+                    string id = Convert.ToString(row.Cells[0].Value);
+                    string codigo = Convert.ToString(row.Cells[1].Value);
+                    string producto = Convert.ToString(row.Cells[2].Value);
+                    string tipoMedida = Convert.ToString(row.Cells[3].Value);
+                    string stock = Convert.ToString(row.Cells[4].Value);
+
+                    //SE AGREGA A LA NUEVA LISTA
+                    datalistadoProductosRequerimiento.Rows.Add(new[] { id, codigo, producto, tipoMedida, null, stock });
+                }
+
+                //LIMPIAR Y REINICIAR LA BÚSQUEDA DE PRODUCTOS
+                panelBuscarProductos.Visible = false;
+                panelBuscarProductos.Visible = false;
+                txtBusquedaProducto.Text = "";
+                cboTipoBusquedaProducto.SelectedIndex = 1;
+                datalistadoSeleccionBusquedaProducto.Rows.Clear();
+                alternarColorFilas(datalistadoProductosRequerimiento);
             }
-
-            //LIMPIAR Y REINICIAR LA BÚSQUEDA DE PRODUCTOS
-            panelBuscarProductos.Visible = false;
-            panelBuscarProductos.Visible = false;
-            txtBusquedaProducto.Text = "";
-            cboTipoBusquedaProducto.SelectedIndex = 1;
-            datalistadoSeleccionBusquedaProducto.Rows.Clear();
-            alternarColorFilas(datalistadoProductosRequerimiento);
+            else
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                panelBuscarProductos.Visible = false;
+                txtBusquedaProducto.Text = "";
+                cboTipoBusquedaProducto.SelectedIndex = 1;
+                datalistadoSeleccionBusquedaProducto.Rows.Clear();
+                //////////////////////////--------------------------------------------------------------------------
+            }
         }
 
         //VALIDACIÓN DEL LISTADO DE PRESUPUESTO
@@ -501,7 +626,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             }
 
             row.Cells[4].Value = String.Format("{0:#,0.000}", a);
+            //row.Cells[4].Value = String.Format("{0:#,1.000}", a);
+
         }
+
+
 
         //BORRAR UN PRODICTO DE MI LISTADO DE MI REQUERIMIENTO
         private void btnBorrarProducto_Click(object sender, EventArgs e)
@@ -583,7 +712,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
 
                             //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
                             con.Open();
-                            cmd = new SqlCommand("InsertarRequerimientoSimple_DetalleProductos", con);
+                            cmd = new SqlCommand("OP_InsertarRequerimientoSimpleDetalleProductos", con);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@item", contador);
                             cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[0].Value));
@@ -597,7 +726,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                                 cmd.Parameters.AddWithValue("@cantidad", cantidad);
                             }
 
-                            cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[5].Value));
+                            cmd.Parameters.AddWithValue("@stock", Convert.ToDecimal(row.Cells[5].Value));
                             cmd.Parameters.AddWithValue("@cantidadTotal", 0.000);
                             cmd.ExecuteNonQuery();
                             con.Close();
@@ -606,23 +735,35 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                             contador++;
                         }
 
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        CodigoRequerimientoSimple(datalistadoCodigoRequerimientoSimple);
+
                         MessageBox.Show("Se ingresó el requerimiento correctamente.", "Validación del Sistema");
+                        ClassResourses.RegistrarAuditora(1, this.Name, 10, Program.IdUsuario, "Guardar Requerimiento Simple", codigorequesimple);
+                        //////////////////////////--------------------------------------------------------------------------
 
                         datalistadoProductosRequerimiento.Rows.Clear();
                         txtObservaciones.Text = "";
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                        //////////////////////////--------------------------------------------------------------------------
                         MessageBox.Show(ex.Message);
                     }
                 }
             }
         }
 
+
+
         //ACCIÓN DE CERRAR EL MANTENIMIENTO DE NUEVO REQUERIMIENTO SIMPLE
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close();        
         }
 
         //CARGA DE METODOS - GENERAL----------------------------------------------------------------------------------
@@ -630,94 +771,134 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //BUSQUEDA DE USUARIO
         public void DatosUsuario()
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaUusario.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarUsuarioPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idusuario", Program.IdUsuario);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaUusario.DataSource = dt;
+                con.Close();
 
-            IdUsuario = Convert.ToInt32(datalistadoBusquedaUusario.SelectedCells[0].Value.ToString());
-            txtSolicitante.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
-            area = datalistadoBusquedaUusario.SelectedCells[7].Value.ToString();
+                IdUsuario = Convert.ToInt32(datalistadoBusquedaUusario.SelectedCells[0].Value.ToString());
+                txtSolicitante.Text = datalistadoBusquedaUusario.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaUusario.SelectedCells[2].Value.ToString();
+                area = datalistadoBusquedaUusario.SelectedCells[7].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }         
         }
 
         //BUSQUEDA DE JEFATURAS
         public void DatosJefaturas(int idusuario)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("BuscarJefaturas", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idRol", idusuario);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBusquedaJefatura.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("BuscarJefaturas", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idRol", idusuario);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaJefatura.DataSource = dt;
+                con.Close();
 
-            txtJefatura.Text = datalistadoBusquedaJefatura.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaJefatura.SelectedCells[2].Value.ToString();
+                txtJefatura.Text = datalistadoBusquedaJefatura.SelectedCells[1].Value.ToString() + " " + datalistadoBusquedaJefatura.SelectedCells[2].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
         //BÚSQUEDA-------------------------------------------------------------------------
         //BUSCAR PRODUCTO POR CÓDIGO Y DESCIPCIÓ
         private void txtBusquedaProducto_TextChanged(object sender, EventArgs e)
         {
-            if (cboTipoBusquedaProducto.Text == "CÓDIGO")
+            try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorCodigo_SP", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigo", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaProducto.DataSource = dt;
-                con.Close();
-                Rediemnsion(datalistadoBusquedaProducto);
+                if (cboTipoBusquedaProducto.Text == "CÓDIGO")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorCodigo_SP", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codigo", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaProducto.DataSource = dt;
+                    con.Close();
+                    Rediemnsion(datalistadoBusquedaProducto);
+                }
+                else if (cboTipoBusquedaProducto.Text == "DESCRIPCIÓN")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorDescripcion_SP", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaProducto.DataSource = dt;
+                    con.Close();
+                    Rediemnsion(datalistadoBusquedaProducto);
+                }
+                else if (cboTipoBusquedaProducto.Text == "CÓDIGO BSS")
+                {
+                    DataTable dt = new DataTable();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd = new SqlCommand("[ListarProductosRequerimientoGeneral_PorCodigoBSS_SP]", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoBusquedaProducto.DataSource = dt;
+                    con.Close();
+                    Rediemnsion(datalistadoBusquedaProducto);
+                }
+
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                Evitar_Productos_Duplicados(datalistadoBusquedaProducto, datalistadoSeleccionBusquedaProducto);
+                //////////////////////////--------------------------------------------------------------------------
+
             }
-            else if (cboTipoBusquedaProducto.Text == "DESCRIPCIÓN")
+            catch (Exception ex)
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("ListarProductosRequerimientoGeneral_PorDescripcion_SP", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaProducto.DataSource = dt;
-                con.Close();
-                Rediemnsion(datalistadoBusquedaProducto);
-            }
-            else if (cboTipoBusquedaProducto.Text == "CÓDIGO BSS")
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("[ListarProductosRequerimientoGeneral_PorCodigoBSS_SP]", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@descripcion", txtBusquedaProducto.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoBusquedaProducto.DataSource = dt;
-                con.Close();
-                Rediemnsion(datalistadoBusquedaProducto);
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -744,5 +925,107 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             Process.Start(ruta);
         }
+
+
+        //////////////////////////////////////////////---------------------------------------------------------------------
+        ///////////////////--------------------------------------------
+        //VALIDACION REQUERIMIENTO SIMPLE
+
+        //BLOQUEO DE CONTROLES PARA SOLO NÚMEROS EN EL DATAGRIWVIEW
+        private void datalistadoProductosRequerimiento_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (datalistadoProductosRequerimiento.CurrentCell.ColumnIndex == 4)
+            {
+                TextBox txt = e.Control as TextBox;
+
+                if (txt != null)
+                {
+                    //ASIGNACIÓN DE EVENTO CREADO
+                    txt.KeyPress += new KeyPressEventHandler(SoloNumeros_KeyPress);
+                }
+            }
+        }
+
+        //EVENTO CREADO PARA SOLO NÚMEROS Y TECLAS DE CONTROL
+        private void SoloNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //SI NO ES NUMEROS O TECLA DE CONTROL
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; //BLOQUEA EL INGRESO
+            }
+        }
+
+        //CARGAR CODIGO PARA ALMACENAR EL NUEVO REQUERIMIENTO SIMPLE Y LA RESPECTIVA VALIDACION
+        public void CodigoRequerimientoSimple(DataGridView DGV1)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdRequerimientoSimple FROM RequerimientoSimple WHERE IdRequerimientoSimple = (SELECT MAX(IdRequerimientoSimple) FROM RequerimientoSimple)", con);
+                da.Fill(dt);
+                DGV1.DataSource = dt;
+                con.Close();
+
+                if (DGV1.Rows.Count != 0)
+                {
+                    codigorequesimple = Convert.ToInt32(DGV1.SelectedCells[0].Value.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("Se debe inicializar la tabla REQUERIMIENTO SIMPLE.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                ClassResourses.RegistrarAuditora(13, this.Name, 10, Program.IdUsuario, ex.Message, 0);
+                //////////////////////////--------------------------------------------------------------------------
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+        //MÉTODO PARA EVITAR PRODUCTOS DUPLICADOS EN LA SELECCIÓN DE PRODUCTOS
+        public void Evitar_Productos_Duplicados(DataGridView DGV1,DataGridView DGV2)
+        {
+            List<string> productosseleccionados = new List<string>();
+
+            //LISTADO DE PRODUCTOS SELECCIONADOS
+            foreach(DataGridViewRow rows in DGV2.Rows)
+            {
+                if (rows.Cells[1].Value != null)
+                {
+                    productosseleccionados.Add(rows.Cells[1].Value.ToString());
+                }
+
+                //LISTADO DE BUSQUEDA DE PRODUCTOS A SELECCIONAR
+                //RECORRIDO INVERSO PARA ELIMINAR SIN AFECTAR EL ÍNDICE
+                for (int i = DGV1.Rows.Count -1; i >= 0; i--)
+                {
+                    var fila = DGV1.Rows[i];
+
+                    if (fila.Cells[1].Value != null)
+                    {
+                        string codigo = fila.Cells[1].Value.ToString();
+
+                        if (productosseleccionados.Contains(codigo))
+                        {
+                            DGV1.Rows.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
+
+
+    
+
+

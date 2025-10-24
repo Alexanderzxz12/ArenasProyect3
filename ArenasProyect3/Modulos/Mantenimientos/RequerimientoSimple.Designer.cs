@@ -73,6 +73,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.btnInfo = new System.Windows.Forms.PictureBox();
             this.btnAtudaFormularioArena = new System.Windows.Forms.PictureBox();
+            this.datalistadoCodigoRequerimientoSimple = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.txtSolicitante = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -147,6 +148,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCodigoRequerimientoSimple)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoProductosRequerimiento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoProductosRequerimientoOP)).BeginInit();
@@ -531,6 +533,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelMovimientoFrm.Controls.Add(this.pictureBox12);
             this.panelMovimientoFrm.Controls.Add(this.btnInfo);
             this.panelMovimientoFrm.Controls.Add(this.btnAtudaFormularioArena);
+            this.panelMovimientoFrm.Controls.Add(this.datalistadoCodigoRequerimientoSimple);
             this.panelMovimientoFrm.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMovimientoFrm.Location = new System.Drawing.Point(0, 0);
             this.panelMovimientoFrm.Margin = new System.Windows.Forms.Padding(5);
@@ -587,6 +590,18 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.btnAtudaFormularioArena.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnAtudaFormularioArena.TabIndex = 54;
             this.btnAtudaFormularioArena.TabStop = false;
+            // 
+            // datalistadoCodigoRequerimientoSimple
+            // 
+            this.datalistadoCodigoRequerimientoSimple.AllowUserToAddRows = false;
+            this.datalistadoCodigoRequerimientoSimple.AllowUserToDeleteRows = false;
+            this.datalistadoCodigoRequerimientoSimple.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalistadoCodigoRequerimientoSimple.Location = new System.Drawing.Point(134, 3);
+            this.datalistadoCodigoRequerimientoSimple.Name = "datalistadoCodigoRequerimientoSimple";
+            this.datalistadoCodigoRequerimientoSimple.ReadOnly = true;
+            this.datalistadoCodigoRequerimientoSimple.RowHeadersWidth = 51;
+            this.datalistadoCodigoRequerimientoSimple.Size = new System.Drawing.Size(10, 12);
+            this.datalistadoCodigoRequerimientoSimple.TabIndex = 2029;
             // 
             // label8
             // 
@@ -848,6 +863,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoProductosRequerimiento.Size = new System.Drawing.Size(896, 194);
             this.datalistadoProductosRequerimiento.TabIndex = 2032;
             this.datalistadoProductosRequerimiento.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoProductosRequerimiento_CellEndEdit);
+            this.datalistadoProductosRequerimiento.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.datalistadoProductosRequerimiento_EditingControlShowing);
             // 
             // id
             // 
@@ -1171,7 +1187,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoSeleccionBusquedaProducto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1186,7 +1202,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.dataGridViewTextBoxColumn5});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1255,7 +1271,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.datalistadoBusquedaProducto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1266,7 +1282,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.ckSeleccionarProducto});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1445,6 +1461,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoCodigoRequerimientoSimple)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoProductosRequerimiento)).EndInit();
@@ -1563,5 +1580,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private System.Windows.Forms.DataGridViewTextBoxColumn stock;
         private System.Windows.Forms.CheckBox ckAprobacionAuto;
         private System.Windows.Forms.PictureBox btnInfoBusquedaProductos;
+        private System.Windows.Forms.DataGridView datalistadoCodigoRequerimientoSimple;
     }
 }
