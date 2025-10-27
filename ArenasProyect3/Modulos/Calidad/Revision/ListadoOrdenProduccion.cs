@@ -419,6 +419,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         {
             VerificarDesaprobados();
             VerificarSNG();
+            VerificarSNGCulminada();
 
             if (datalistadoHistorial.RowCount == 0)
             {
@@ -432,7 +433,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 3);
                 }
                 //SI COMPLETE TODOS LAS CANTIDADES PERO DENTRO NO HAY NINGUNA DESAPROBADA PERO HAY UN SNG GENERADA O UN SNC CULMINADA
-                else if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text || txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNGCulminada == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text)
+                else if (txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNG == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text || txtCantidadInspeccionar.Text == txtCantidadRestante.Text && estadoSNGCulminada == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text || Convert.ToInt16(txtCantidadInspeccionar.Text) >= Convert.ToInt16(txtCantidadRestante.Text) && estadoSNGCulminada == true && txtCantidadEntregada.Text == txtCantidadTotalOP.Text)
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 4);
                 }
@@ -907,7 +908,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     {
                         datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
                     }
-                    else if (datalistadoTodasOP.Rows[i].Cells[15].Value.ToString() == "CULMINADA" || datalistadoTodasOP.Rows[i].Cells[15].Value.ToString() == "CULMINADA - SNG")
+                    else if (datalistadoTodasOP.Rows[i].Cells[15].Value.ToString() == "CULMINADA" || datalistadoTodasOP.Rows[i].Cells[15].Value.ToString() == "CULMINADA - SNC")
                     {
                         datalistadoTodasOP.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }
