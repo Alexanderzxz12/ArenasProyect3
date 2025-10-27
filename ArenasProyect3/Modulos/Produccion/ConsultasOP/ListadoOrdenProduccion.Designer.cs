@@ -2194,7 +2194,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.panelRevisionOP.Controls.Add(this.panel10);
             this.panelRevisionOP.Controls.Add(this.label36);
             this.panelRevisionOP.Controls.Add(this.panel8);
-            this.panelRevisionOP.Location = new System.Drawing.Point(959, 27);
+            this.panelRevisionOP.Location = new System.Drawing.Point(325, 25);
             this.panelRevisionOP.Name = "panelRevisionOP";
             this.panelRevisionOP.Size = new System.Drawing.Size(526, 601);
             this.panelRevisionOP.TabIndex = 2048;
