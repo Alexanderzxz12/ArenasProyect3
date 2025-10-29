@@ -1,18 +1,19 @@
-﻿using SpreadsheetLight;
+﻿using ArenasProyect3.Modulos.ManGeneral;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
-using ArenasProyect3.Modulos.ManGeneral;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -44,6 +45,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             //PRIMERA CARGA DEL FORMULACIO
             Mostrar();
             cboTipoBusqueda.SelectedIndex = 0;
+
+
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            txtCliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            CargarSugerenciasClientes(cboTipoBusqueda.Text); 
+            //////////////////////////--------------------------------------------------------------------------
         }
 
         //CARGA DE LOS CAMBOS-------------------------------------------------------------------
@@ -1166,6 +1176,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             else
             {
                 lblCodigoUnida.Text = datalistadounidad.SelectedCells[6].Value.ToString();
+                //////////////////////////--------------------------------------------------------------------------
+                //CODIGO IMPLEMENTADO 
+                CargarLinkUbicacion(datalistadounidad,lnkUbicacion);
+                //////////////////////////--------------------------------------------------------------------------
+
             }
         }
 
@@ -1199,6 +1214,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         cmd.Parameters.AddWithValue("@longitud", Convert.ToDecimal(txtLongitud.Text));
                         cmd.Parameters.AddWithValue("@latitud", Convert.ToDecimal(txtLatitud.Text));
 
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        cmd.Parameters.AddWithValue("@linkubicacion", txtLinkUbicacion.Text);
+                        //////////////////////////--------------------------------------------------------------------------
+
                         cmd.ExecuteNonQuery();
                         con.Close();
 
@@ -1208,6 +1228,12 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         txtLatitud.Text = "";
                         txtLongitud.Text = "";
                         txtNombreUnidad.Text = "";
+
+                        //////////////////////////--------------------------------------------------------------------------
+                        //CODIGO IMPLEMENTADO 
+                        txtLinkUbicacion.Text = "";
+                        //////////////////////////--------------------------------------------------------------------------
+
                     }
                     catch (Exception ex)
                     {
@@ -1662,6 +1688,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void cboTipoBusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtCliente.Text = "";
+
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            CargarSugerenciasClientes(cboTipoBusqueda.Text);
+            //////////////////////////--------------------------------------------------------------------------
         }
 
         //BUSCAR CLEITNE POR NOMBRE O DOCUEMTO
@@ -1936,6 +1967,117 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         private void btnInfoPrincipal_Click(object sender, EventArgs e)
         {
             Process.Start(Manual);
+        }
+
+
+        //////////////------------------------------------------------------
+        //////////////////////////////////--------------------------------
+        //IMPLEMENTACIONES
+        //METODO PARA CARGAR LA UBICACION EN EL LINKLABEL
+
+        public void CargarLinkUbicacion(DataGridView DGV, LinkLabel lnk)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(DGV.SelectedCells[7].Value.ToString()))
+                {
+                    string url = DGV.SelectedCells[7].Value.ToString();
+
+                    //VALIDACION PARA SABER SI ES UN LINK DE GOOGLE MAPS
+                    if (url.StartsWith("https://maps.app.goo.gl/", StringComparison.OrdinalIgnoreCase))
+                    {
+                        lnk.Text = "Ver Ubicación en Google Maps";
+                        lnk.Links.Clear();
+                        //RANGO CLICKEABLE DESDE EL INICIO HASTA EL FINAL DEL TEXTO,LUEGO LE DAMOS LA URL
+                        lnk.Links.Add(0, lnk.Text.Length, url);
+                        lnk.LinkColor = System.Drawing.Color.Blue;
+                        lnk.LinkBehavior = LinkBehavior.HoverUnderline;
+                        lnk.Visible = true;
+                    }
+                    else
+                    {
+                        lnk.Visible = false;
+                    }
+                }
+                else
+                {
+                    lnk.Visible = false;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }          
+
+        }
+
+        //METODO QUE ABRE EL LINK DE UBICACION EN EL NAVEGADOR PREDETERMINADO
+        private void lnkUbicacion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = e.Link.LinkData.ToString();
+
+            try
+            {
+                //ABRIR LINK EN EL NAVGEADOR PREDETERMINADO
+                Process.Start(new ProcessStartInfo
+                {
+                    //URL DE LA UBICACION EN GOOGLE MAPS
+                    FileName = url,
+                    //ABRIR EL ARCHIVO USANDO EL OGRAMA PREDETERMINADO DEL SISTEMA
+                    UseShellExecute = true,
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        //METODOS PARA LA CARGA DE SUGERENCIAS AL ESCRIBIR EN EL CAMPO DE TEXTO
+        public void CargarSugerenciasClientes(string tipobusqueda)
+        {
+            AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd;
+
+                if (tipobusqueda == "NOMBRES")
+                {
+                    cmd = new SqlCommand("SELECT NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno as [Cliente] FROM Clientes ORDER BY NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno", con);
+                }
+                else
+                {
+                    cmd = new SqlCommand("SELECT Dni + Ruc + OtroDocumento as [DNI / RUC / OTRO] FROM Clientes ORDER BY Dni + Ruc + OtroDocumento", con);
+                }
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    string texto = dr[0]?.ToString() ?? string.Empty;
+
+                    //LIMPIEZA DE TEXTO ELIMINACIÓN DE ESPACIOS EXTRAS Y SALTOS DE LINEA
+                    texto = texto.Trim(); 
+                    texto = Regex.Replace(texto, @"\s{2,}", " "); 
+
+                    //SI NO ESTA VACIO ENTRA
+                    if (!string.IsNullOrEmpty(texto))
+                    {
+                        sugerencias.Add(texto);
+                    }
+                }
+                // SUGERENCIA LIMPIA ENVIADA AL TXT 
+                txtCliente.AutoCompleteCustomSource = sugerencias;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
