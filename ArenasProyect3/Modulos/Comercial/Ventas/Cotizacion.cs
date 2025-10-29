@@ -22,6 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Document = iTextSharp.text.Document;
@@ -82,6 +83,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 btnAnularCotizacion.Visible = true;
                 lblLeyendaAnularCotizacion.Visible = true;
             }
+        
+            CargarSugerenciasClientes(txtBusquedaClientes);
         }
 
         //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
@@ -1687,13 +1690,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //ABRIR LA VENTANA DE BSUAQUEDA DE CLIENTES
         private void txtBusquedaClientes_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-            {
-                cboTipoBusquedaClientes.SelectedIndex = 0;
-                panelBusquedaClientes.Visible = true;
-                txtBusquedaClientes2.Text = txtBusquedaClientes.Text;
-                txtBusquedaClientes2.Focus();
-            }
+            //if ((int)e.KeyChar == (int)Keys.Enter)
+            //{
+            //    cboTipoBusquedaClientes.SelectedIndex = 0;
+            //    panelBusquedaClientes.Visible = true;
+            //    txtBusquedaClientes2.Text = txtBusquedaClientes.Text;
+            //    txtBusquedaClientes2.Focus();
+            //}              
         }
 
         //POSISCIONARSE EN MI CAJA DE BÚISQUEDA
@@ -4605,6 +4608,68 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesParcial);
             CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesCompletado);
             CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesVencidos);
+        }
+
+
+        //////////////////////////////////////////////---------------------------------------------------------------------
+        ///////////////////--------------------------------------------
+        //IMPLEMENTACION DE SUGERENCIA DE BUSQUEDA PARA LOS CLIENTES
+
+        public void CargarSugerenciasClientes(TextBox txt)
+        {
+            try
+            {
+                //COLECCION QUE ALMACENA LOS NOMBRES DE LOS CLIENTES Y QUE SE VISUALIZARAN MIENTRAS EL USUARIO ESCRIBE
+                AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT NombreCliente + PrimerNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno AS [CLIENTE] FROM Clientes WHERE Estado = 1 ORDER BY NombreCliente + PrimerNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno ", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    string texto = dr[0].ToString();
+
+                    texto = texto.Trim();
+                    texto = Regex.Replace(texto, @"\s{2,}", " ");
+
+                    //SI NO ESTA VACIO ENTRA A LA COLECCION
+                    if (!string.IsNullOrEmpty(texto))
+                    {
+                        sugerencias.Add(texto);
+                    }
+                }
+
+            
+                //ASIGNACION DE SUGERENCIAS PARA QUE COINCIDAN CON LO QUE TECLEA EL USUARIO
+                txt.AutoCompleteCustomSource = sugerencias;
+
+                //MUESTRA LA LISTA CON LAS SUGERENCIAS Y ENVIA EL TEXTO AL TXT
+                txtBusquedaClientes.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+                //INDICAR DE DONDE TRAERA LAS SUGERENCIAS DE BUSQUEDA
+                txtBusquedaClientes.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //EVENTO AGREGADO AL TEXTBOX KEYDOWN PARA QUE ABRA EL PANEL YA QUE KEYPRESS NO ABRE EL PANEL
+        private void txtBusquedaClientes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+
+                cboTipoBusquedaClientes.SelectedIndex = 0;
+                panelBusquedaClientes.Visible = true;
+                txtBusquedaClientes2.Text = txtBusquedaClientes.Text;
+                txtBusquedaClientes2.Focus();
+            }
         }
     }
 }
