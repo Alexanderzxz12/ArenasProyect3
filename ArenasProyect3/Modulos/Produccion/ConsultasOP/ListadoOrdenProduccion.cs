@@ -218,6 +218,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         public void MostrarCantidadesSegunOP(int idOrdenProduccion)
         {
             totalCantidades = 0;
+            datalistadoCantidades.Columns.Clear();
 
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection();
@@ -236,11 +237,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             datalistadoCantidades.Columns[2].Width = 100;
             alternarColorFilas(datalistadoCantidades);
 
-
             //CONTAR CUANTAS CANTIDADES HAY
             foreach (DataGridViewRow row in datalistadoCantidades.Rows)
             {
-                if(row.Cells[3].Value.ToString() == "ENTREGADO")
+                if (row.Cells[3].Value.ToString() == "ENTREGADO")
                 {
                     totalCantidades = totalCantidades + Convert.ToInt32(row.Cells[1].Value.ToString());
                 }
@@ -251,7 +251,38 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             {
                 if (row.Cells[3].Value.ToString() == "DESAPROBADO")
                 {
-                    totalCantidades = totalCantidades -Convert.ToInt32(row.Cells[1].Value.ToString());
+                    totalCantidades = totalCantidades - Convert.ToInt32(row.Cells[1].Value.ToString());
+                }
+            }
+        }
+
+        //FUNCION PARA COLOCAR IMAGENES A MIS REGISTROS DE CANTIDADES
+        public void ColocarImagenesListadoCaantidadaesOP()
+        {
+            DataGridViewImageColumn colEstado = new DataGridViewImageColumn();
+            colEstado.Name = "imgEstado";
+            colEstado.HeaderText = "Estado IMG";
+            colEstado.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen
+            colEstado.Width = 60;
+            datalistadoCantidades.Columns.Insert(0, colEstado);
+
+            Image imgAprobado = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Producción\Imagenes\flechaCorrecta.png");     // Imagen para aprobado
+            Image imgDesaprobado = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Producción\Imagenes\flechaIncorrecta.png"); // Imagen para desaprobado
+
+            foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+            {
+                if (row.Cells[4].Value != null)
+                {
+                    string estado = row.Cells[4].Value.ToString();
+
+                    if (estado == "ENTREGADO")
+                    {
+                        row.Cells["imgEstado"].Value = imgAprobado;
+                    }
+                    else if (estado == "DESAPROBADO")
+                    {
+                        row.Cells["imgEstado"].Value = imgDesaprobado;
+                    }
                 }
             }
         }
@@ -282,6 +313,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 datalistadoHistorial.Columns[1].Visible = false;
                 datalistadoHistorial.Columns[6].Visible = false;
                 ColoresListadoCantidades();
+
+                //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
+                foreach (DataGridViewColumn column in datalistadoHistorial.Columns)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
             }
             catch (Exception ex)
             {
@@ -663,6 +700,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[23].Visible = false;
             DGV.Columns[24].Visible = false;
             DGV.Columns[25].Visible = false;
+            DGV.Columns[26].Visible = false;
             //SE BLOQUEA MI LISTADO
             DGV.Columns[2].ReadOnly = true;
             DGV.Columns[3].ReadOnly = true;
@@ -778,6 +816,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             if (datalistadoObservadas.RowCount != 0)
             {
+                btnVisualizarSNC.Visible = false;
                 panelControlCalidad.Visible = true;
 
                 lblIdOP.Text = datalistadoObservadas.SelectedCells[1].Value.ToString();
@@ -930,10 +969,52 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //SELECCION DE UN TIPO DE ACCION - LIBERACION
+        private void ckLiberacion_CheckedChanged(object sender, EventArgs e)
+        {
+            cboTipoArchivo.SelectedIndex = 0;
+            txtRutaArchivo.Text = "";
+
+            if (ckLiberacion.Checked == true)
+            {
+                panelCargaImagen.Visible = true;
+            }
+            else
+            {
+                panelCargaImagen.Visible = false;
+            }
+        }
+
+        //LIMPIAR MI RUTA DE ARCHVO
+        private void btnLimpiarArchivo_Click(object sender, EventArgs e)
+        {
+            txtRutaArchivo.Text = "";
+        }
+
+        private void btnAgregarArhcivo_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    txtRutaArchivo.Text = openFileDialog1.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         //GUARDAR LA SNC POR PARTE DEL PRODUCCION
         private void btnGuardarSNC_Click(object sender, EventArgs e)
         {
-            if(txtOrdenProduccionSNC.Text == "" || txtDescripcionSNC.Text == "" || txtCausaSNC.Text == "" || txtAccionesTomadas.Text == "" || txtOportunidadMejora.Text == "")
+            if (txtOrdenProduccionSNC.Text == "" || txtDescripcionSNC.Text == "" || txtCausaSNC.Text == "" || txtAccionesTomadas.Text == "" || txtOportunidadMejora.Text == "")
             {
                 MessageBox.Show("Debe completar todos los campos obligatorios para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
@@ -1002,7 +1083,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             cmd.Parameters.AddWithValue("@recuperacion", 0);
                         }
                         //------------------------------
-                        if (ckDestruccion.Checked == true)
+                        if (ckReposicion.Checked == true)
                         {
                             cmd.Parameters.AddWithValue("@destruccion", 1);
                         }
@@ -1027,9 +1108,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         cmd.ExecuteNonQuery();
                         con.Close();
 
+                        if (ckReproceso.Checked == true)
+                        {
+                            CambiarEstadoCalidad(txtOrdenProduccionSNC.Text, 2);
+                        }
+
                         MessageBox.Show("Salida No Conforme registrada correctamente.", "Validación del Sistema");
                         LimpairCampos();
                         panelRevisionOP.Visible = false;
+
+
                     }
                     catch (Exception ex)
                     {
@@ -1039,10 +1127,32 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //CAMBIAR EL ESTADO DE MI OP A FINALIZADA
+        public void CambiarEstadoCalidad(string codigoOP, int estadoCalidad)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("OP_EstadoCalidad", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoOP", codigoOP);
+                cmd.Parameters.AddWithValue("@estadoCalidad", estadoCalidad);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //CHECKBOX OTROS
         private void ckOtros_CheckedChanged(object sender, EventArgs e)
         {
-            if(ckOtros.Checked == true)
+            if (ckOtros.Checked == true)
             {
                 txtDescripcionOtros.ReadOnly = false;
                 txtDescripcionOtros.Text = "";
@@ -1098,12 +1208,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ckOtros.Checked = false;
             ckCorrecion.Checked = false;
             ckReclasificacion.Checked = false;
-            ckDestruccion.Checked = false;
+            ckReposicion.Checked = false;
         }
 
+        //FUNCION PARA ABIRI MIS DETALLES D EIGRESO DE CANTUIDADES DEPENDIENDO EL ISTADO
         public void AbrirDetalles(DataGridView DGV)
         {
-            btnVisualizarSNC.Visible = false;
+            
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (DGV.CurrentRow != null)
             {
@@ -1140,34 +1251,36 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 //}
                 //else
                 //{
-                    DGV.Enabled = false;
-                    panelIngresoCantidades.Visible = true;
+                DGV.Enabled = false;
+                panelIngresoCantidades.Visible = true;
 
-                    if (count != 1)
-                    {
-                        btnGenerarGuardarCantidades.Visible = true;
-                        lblGenerarGuardarCantidades.Visible = true;
-                        btnGuardarCantidad.Visible = false;
-                        lblGuardarCantidad.Visible = false;
-                        txtCantidadRealizada.ReadOnly = true;
-                        txtCantidadRealizada.Text = "Gen. Automática";
-                        lblIdOP.Text = "Varios";
-                        txtCantidadRestante.Text = "0";
-                    }
-                    else
-                    {
-                        btnGuardarCantidad.Visible = true;
-                        lblGuardarCantidad.Visible = true;
-                        btnGenerarGuardarCantidades.Visible = false;
-                        lblGenerarGuardarCantidades.Visible = false;
-                        txtCantidadRealizada.ReadOnly = false;
-                        lblIdOP.Text = DGV.SelectedCells[1].Value.ToString();
-                    }
+                if (count != 1)
+                {
+                    btnGenerarGuardarCantidades.Visible = true;
+                    lblGenerarGuardarCantidades.Visible = true;
+                    btnGuardarCantidad.Visible = false;
+                    lblGuardarCantidad.Visible = false;
+                    txtCantidadRealizada.ReadOnly = true;
+                    txtCantidadRealizada.Text = "Gen. Automática";
+                    lblIdOP.Text = "Varios";
+                    txtCantidadRestante.Text = "0";
+                }
+                else
+                {
+                    btnGuardarCantidad.Visible = true;
+                    lblGuardarCantidad.Visible = true;
+                    btnGenerarGuardarCantidades.Visible = false;
+                    lblGenerarGuardarCantidades.Visible = false;
+                    txtCantidadRealizada.ReadOnly = false;
+                    lblIdOP.Text = DGV.SelectedCells[1].Value.ToString();
+                }
                 //}
+
+                ColocarImagenesListadoCaantidadaesOP();
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema",MessageBoxButtons.OK);
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -1226,7 +1339,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una OP para poder generar el PDF.", "Validación del Sistema",MessageBoxButtons.OK);
+                MessageBox.Show("Debe seleccionar una OP para poder generar el PDF.", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -1293,7 +1406,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema",MessageBoxButtons.OK);
+                            MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
                             LimpiarCantidades();
