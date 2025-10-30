@@ -764,7 +764,7 @@
             this.panelSNC.Controls.Add(this.groupBox3);
             this.panelSNC.Controls.Add(this.panel4);
             this.panelSNC.Controls.Add(this.label26);
-            this.panelSNC.Location = new System.Drawing.Point(9, 131);
+            this.panelSNC.Location = new System.Drawing.Point(10, 114);
             this.panelSNC.Margin = new System.Windows.Forms.Padding(4);
             this.panelSNC.Name = "panelSNC";
             this.panelSNC.Size = new System.Drawing.Size(568, 290);
