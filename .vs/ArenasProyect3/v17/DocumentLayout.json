@@ -3,32 +3,84 @@
   "WorkspaceRootPath": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\comercial\\ventas\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\ventas\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadodetallesncdestruc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadodetallesncdestruc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\ventas\\cotizacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadodetallesncdestruc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadodetallesncdestruc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\comercial\\ventas\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\ventas\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\warren cuadros\\desktop\\arenas codigo\\arenaproyect1.0\\arenasproyect3\\modulos\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\menuconsultasop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\menuconsultasop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\visualizadores\\visualizarsnc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\visualizadores\\visualizarsnc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\visualizadores\\visualizarsnc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\visualizadores\\visualizarsnc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\calidad\\revision\\listadoordenproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\calidad\\revision\\menuconsultasop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\calidad\\revision\\menuconsultasop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\menuconsultasop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\menuconsultasop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\mantenimientos\\clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\mantenimientos\\clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadodetallesncdestruc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadodetallesncdestruc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadodetalleordenproduccion.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\menuconsultasop.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\menuconsultasop.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\arenasproyect3\\modulos\\produccion\\consultasop\\listadopedidos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\produccion\\consultasop\\listadopedidos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,93 +90,239 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Cotizacion.cs",
-              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs",
-              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T16:35:02.149Z",
+              "Title": "ListadoOrdenProduccion.resx",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.resx",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.resx",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.resx",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-10-30T14:25:10.322Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Cotizacion.resx",
-              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.resx",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.resx",
-              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.resx",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-10-21T16:34:55.602Z",
+              "Title": "ListadoOrdenProduccion.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.Designer.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.Designer.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.Designer.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.Designer.cs",
+              "ViewState": "AgIAAAYDAAAAAAAAAAAAABYDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T14:23:25.387Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Cotizacion.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.Designer.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.Designer.cs",
-              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.Designer.cs",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ListadoDetalleSncDestruc.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAwwFgAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T16:34:51.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Cotizacion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs",
-              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Cotizacion.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T16:34:44.238Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Pedido.cs",
-              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs",
-              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T16:34:27.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T15:51:12.715Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Pedido.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs",
-              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\Ventas\\Pedido.cs [Dise\u00F1o]",
+              "Title": "ListadoOrdenProduccion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoOrdenProduccion.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoOrdenProduccion.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoOrdenProduccion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoOrdenProduccion.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T16:34:23.827Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-27T13:48:57.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "VisualizarSNC.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Visualizadores\\VisualizarSNC.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Visualizadores\\VisualizarSNC.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Visualizadores\\VisualizarSNC.cs",
+              "RelativeToolTip": "ArenasProyect3\\Visualizadores\\VisualizarSNC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T16:25:40.177Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Login.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Login.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Login.cs",
-              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Login.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Login.cs [Dise\u00F1o]",
+              "Title": "MenuConsultasOP.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T14:38:57.03Z",
+              "WhenOpened": "2025-10-27T14:54:14.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ListadoOrdenProduccion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T15:37:22.195Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "VisualizarSNC.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Visualizadores\\VisualizarSNC.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Visualizadores\\VisualizarSNC.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Visualizadores\\VisualizarSNC.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Visualizadores\\VisualizarSNC.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T16:24:28.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ListadoDetalleSncDestruc.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T15:28:56.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ListadoDetalleOrdenProduccion.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAIwAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T15:31:13.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ListadoDetalleOrdenProduccion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T15:21:05.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ListadoOrdenProduccion.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Calidad\\Revision\\ListadoOrdenProduccion.cs",
+              "ViewState": "AgIAAEYDAAAAAAAAAAAhwFsDAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T15:37:44.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MenuConsultasOP.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\MenuConsultasOP.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Calidad\\Revision\\MenuConsultasOP.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Calidad\\Revision\\MenuConsultasOP.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Calidad\\Revision\\MenuConsultasOP.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T15:50:57.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MenuConsultasOP.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T13:48:22.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Clientes.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Mantenimientos\\Clientes.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Mantenimientos\\Clientes.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Mantenimientos\\Clientes.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Mantenimientos\\Clientes.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T15:33:06.452Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ListadoDetalleSncDestruc.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.Designer.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.Designer.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.Designer.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleSncDestruc.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T14:57:12.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ListadoDetalleOrdenProduccion.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.Designer.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.Designer.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.Designer.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.Designer.cs",
+              "ViewState": "AgIAACECAAAAAAAAAADgvzUCAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T15:47:01.353Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ListadoDetalleOrdenProduccion.resx",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.resx",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.resx",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.resx",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoDetalleOrdenProduccion.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-10-27T15:39:37.68Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MenuConsultasOP.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.Designer.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.Designer.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.Designer.cs",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\MenuConsultasOP.Designer.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAtwPoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T15:00:43.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ListadoPedidos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoPedidos.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoPedidos.cs",
+              "ToolTip": "C:\\Users\\Warren Cuadros\\Desktop\\Arenas Codigo\\ArenaProyect1.0\\ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoPedidos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Produccion\\ConsultasOP\\ListadoPedidos.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T14:48:26.288Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

@@ -31,5 +31,10 @@ namespace ArenasProyect3.Visualizadores
             string rutaReporte = @"C:\ArenasSoftBrochure\Cotizacion.pdf";
             reporteD.ExportToDisk(ExportFormatType.PortableDocFormat, rutaReporte);
         }
+
+        private void CrvVisualizarActaVisita_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

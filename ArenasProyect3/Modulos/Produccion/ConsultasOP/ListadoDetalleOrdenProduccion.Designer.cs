@@ -335,6 +335,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.groupBox2.TabIndex = 170;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Estados";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // pictureBox5
             // 
@@ -444,6 +445,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.datalistadoTodas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoTodas.Size = new System.Drawing.Size(1167, 387);
             this.datalistadoTodas.TabIndex = 215;
+            this.datalistadoTodas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoTodas_CellContentClick);
             this.datalistadoTodas.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.datalistadoTodas_RowPrePaint);
             // 
             // btnExportarExcel

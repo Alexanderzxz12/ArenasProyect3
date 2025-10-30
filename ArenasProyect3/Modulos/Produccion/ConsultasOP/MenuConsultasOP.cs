@@ -90,5 +90,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             Process.Start(ruta);
         }
+
+        private void btnListarSNCdestruc_Click(object sender, EventArgs e)
+        {
+            if (panelMantenimientos.Controls.Count == 1)
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoDetalleSncDestruc());
+            }
+            else
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoDetalleSncDestruc());
+            }
+        }
     }
 }

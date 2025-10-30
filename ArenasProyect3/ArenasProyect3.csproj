@@ -463,6 +463,12 @@
     <Compile Include="Modulos\Procesos\Productos\ListadoProductos.Designer.cs">
       <DependentUpon>ListadoProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOP\ListadoDetalleSncDestruc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOP\ListadoDetalleSncDestruc.Designer.cs">
+      <DependentUpon>ListadoDetalleSncDestruc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Produccion\ConsultasOP\ListadoDetalleOrdenProduccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -907,6 +913,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\ListadoDetalleOrdenProduccion.resx">
       <DependentUpon>ListadoDetalleOrdenProduccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\ListadoDetalleSncDestruc.resx">
+      <DependentUpon>ListadoDetalleSncDestruc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\ListadoOrdenProduccion.resx">
       <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>

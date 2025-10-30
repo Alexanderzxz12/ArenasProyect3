@@ -31,6 +31,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuConsultasOP));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnListadoSNCdestruc = new System.Windows.Forms.Button();
             this.btnListadoDetalleOP = new System.Windows.Forms.Button();
             this.btnListadoOP = new System.Windows.Forms.Button();
             this.btnListadoPedidois = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.btnListadoSNCdestruc);
             this.panel1.Controls.Add(this.btnListadoDetalleOP);
             this.panel1.Controls.Add(this.btnListadoOP);
             this.panel1.Controls.Add(this.btnListadoPedidois);
@@ -63,6 +65,24 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.panel1.Size = new System.Drawing.Size(154, 647);
             this.panel1.TabIndex = 8;
             // 
+            // btnListadoSNCdestruc
+            // 
+            this.btnListadoSNCdestruc.FlatAppearance.BorderSize = 0;
+            this.btnListadoSNCdestruc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListadoSNCdestruc.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoSNCdestruc.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListadoSNCdestruc.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoSNCdestruc.Image")));
+            this.btnListadoSNCdestruc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListadoSNCdestruc.Location = new System.Drawing.Point(10, 384);
+            this.btnListadoSNCdestruc.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListadoSNCdestruc.Name = "btnListadoSNCdestruc";
+            this.btnListadoSNCdestruc.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnListadoSNCdestruc.Size = new System.Drawing.Size(168, 53);
+            this.btnListadoSNCdestruc.TabIndex = 10;
+            this.btnListadoSNCdestruc.Text = "LISTADO \r\n DE SNC PARA DESTRUCCIÓN  ";
+            this.btnListadoSNCdestruc.UseVisualStyleBackColor = true;
+            this.btnListadoSNCdestruc.Click += new System.EventHandler(this.btnListarSNCdestruc_Click);
+            // 
             // btnListadoDetalleOP
             // 
             this.btnListadoDetalleOP.FlatAppearance.BorderSize = 0;
@@ -71,7 +91,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnListadoDetalleOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoDetalleOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoDetalleOP.Image")));
             this.btnListadoDetalleOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListadoDetalleOP.Location = new System.Drawing.Point(2, 337);
+            this.btnListadoDetalleOP.Location = new System.Drawing.Point(8, 313);
             this.btnListadoDetalleOP.Margin = new System.Windows.Forms.Padding(4);
             this.btnListadoDetalleOP.Name = "btnListadoDetalleOP";
             this.btnListadoDetalleOP.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -89,7 +109,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnListadoOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoOP.Image")));
             this.btnListadoOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListadoOP.Location = new System.Drawing.Point(2, 266);
+            this.btnListadoOP.Location = new System.Drawing.Point(2, 243);
             this.btnListadoOP.Margin = new System.Windows.Forms.Padding(4);
             this.btnListadoOP.Name = "btnListadoOP";
             this.btnListadoOP.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -107,7 +127,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnListadoPedidois.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoPedidois.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoPedidois.Image")));
             this.btnListadoPedidois.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListadoPedidois.Location = new System.Drawing.Point(2, 195);
+            this.btnListadoPedidois.Location = new System.Drawing.Point(2, 172);
             this.btnListadoPedidois.Margin = new System.Windows.Forms.Padding(4);
             this.btnListadoPedidois.Name = "btnListadoPedidois";
             this.btnListadoPedidois.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -125,7 +145,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManualUsuario.Location = new System.Drawing.Point(2, 398);
+            this.btnManualUsuario.Location = new System.Drawing.Point(10, 454);
             this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnManualUsuario.Name = "btnManualUsuario";
             this.btnManualUsuario.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -231,5 +251,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private System.Windows.Forms.Panel panelMantenimientos;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnListadoSNCdestruc;
     }
 }

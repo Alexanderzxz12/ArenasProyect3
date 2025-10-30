@@ -2257,6 +2257,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 string stock = dgv.Cells[8].Value.ToString();
                 decimal totalProductas = 0;
 
+
                 int relacionFormulacion = Convert.ToInt16(datalistadoBuscarRelacionFormulacion.SelectedCells[1].Value);
                 totalProductas = Convert.ToDecimal(cantidad) * numeroProducir * relacionFormulacion;
 

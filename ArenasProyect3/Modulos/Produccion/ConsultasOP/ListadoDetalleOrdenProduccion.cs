@@ -152,5 +152,15 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             MostrarDetallePedidoXOPPorCodigoPedido(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
         }
+
+        private void datalistadoTodas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
