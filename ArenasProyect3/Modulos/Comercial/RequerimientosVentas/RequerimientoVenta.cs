@@ -99,6 +99,19 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 lblMensajeHabilitacion.Visible = true;
                 lblSeparacion.Visible = false;
             }
+
+            //////////////////////////--------------------------------------------------------------------------
+            //CODIGO IMPLEMENTADO 
+            txtBusqeudaCliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtBusqeudaCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            txtBusquedaColaborador.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtBusquedaColaborador.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            CargarSugerenciasBusquedaClientes(cboBusquedaClientes.Text);
+            CargarSugerenciasBusquedaColaboradores(cboBusqeudaColaborador.Text);
+
+            //////////////////////////--------------------------------------------------------------------------
         }
         //-----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1640,7 +1653,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     datalistadoColaboradores.DataSource = null;
                     datalistadoTodasRequerimientos.Enabled = true;
 
-                    BusquedaDependiente();
+
+                    //METODO QUE REFRESCA LOS REQUERIMIENTOS MANTENIENDO EL SCROLL Y LA FILA SELECCIONADA
+                    ClassResourses.RefrescarRequerimientos("guardar", datalistadoTodasRequerimientos, BusquedaDependiente);
+                    //BusquedaDependiente();
                     //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                     ClassResourses.RegistrarAuditora(1, this.Name, 4, Program.IdUsuario, "Guardar requerimiento de viaje", numeroRequerimiento);
                 }
@@ -1785,7 +1801,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 con.Close();
 
                 MessageBox.Show("Requerimiento aprobado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                BusquedaDependiente();
+
+                //METODO QUE REFRESCA LOS REQUERIMIENTOS MANTENIENDO EL SCROLL Y LA FILA SELECCIONADA
+                ClassResourses.RefrescarRequerimientos("aprobar", datalistadoTodasRequerimientos, BusquedaDependiente);
+                //BusquedaDependiente();
 
                 //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                 ClassResourses.RegistrarAuditora(3, this.Name, 4, Program.IdUsuario, "Aprobar requerimiento de viaje", idRequerimiento);
@@ -1867,7 +1886,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                             MessageBox.Show("Requerimiento anulado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
 
-                            BusquedaDependiente();
+                            //METODO QUE REFRESCA LOS REQUERIMIENTOS MANTENIENDO EL SCROLL Y LA FILA SELECCIONADA
+                            ClassResourses.RefrescarRequerimientos("anular", datalistadoTodasRequerimientos, BusquedaDependiente);
+                            //BusquedaDependiente();
                             panleAnulacion.Visible = false;
                             txtJustificacionAnulacion.Text = "";
 
@@ -1931,7 +1952,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             cmd.Parameters.AddWithValue("@idRequerimiento", idRequerimiento);
                             cmd.ExecuteNonQuery();
                             con.Close();
-                            BusquedaDependiente();
+
+                            //METODO QUE REFRESCA LOS REQUERIMIENTOS MANTENIENDO EL SCROLL Y LA FILA SELECCIONADA
+                            ClassResourses.RefrescarRequerimientos("liberar", datalistadoTodasRequerimientos, BusquedaDependiente);
+                            //BusquedaDependiente();
 
                             MessageBox.Show("Requerimiento liberado exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
                             //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
@@ -2855,7 +2879,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         panelObservacionesLiquiFueraFecha.Visible = false;
                         txtRazononObservaciones2.Text = "";
 
-                        BusquedaDependiente();
+                        //METODO QUE REFRESCA LOS REQUERIMIENTOS MANTENIENDO EL SCROLL Y LA FILA SELECCIONADA
+                        ClassResourses.RefrescarRequerimientos("generar",datalistadoTodasRequerimientos,BusquedaDependiente);
+                        //BusquedaDependiente();
+
                         //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                         ClassResourses.RegistrarAuditora(4, this.Name, 4, Program.IdUsuario, "Generar liquidación de viaje", numeroLiquidacion);
                     }
@@ -2995,7 +3022,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     datalistadoColaboradores.DataSource = null;
                     datalistadoTodasRequerimientos.Enabled = true;
 
-                    BusquedaDependiente();
+                    //METODO QUE REFRESCA LOS REQUERIMIENTOS MANTENIENDO EL SCROLL Y LA FILA SELECCIONADA
+                    ClassResourses.RefrescarRequerimientos("editar", datalistadoTodasRequerimientos, BusquedaDependiente);
+                    //BusquedaDependiente();
                     //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                     ClassResourses.RegistrarAuditora(8, this.Name, 4, Program.IdUsuario, "Editar requerimiento de viaje", codigoRequerimeinto);
                 }
@@ -3052,12 +3081,14 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private void cboBusquedaClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBusqeudaCliente.Text = "";
+            CargarSugerenciasBusquedaClientes(cboBusquedaClientes.Text);
         }
 
         //LIMPIEZA DE LA CAJA BUSQUEDA DEL COLABORADOR
         private void cboBusqeudaColaborador_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBusquedaColaborador.Text = "";
+            CargarSugerenciasBusquedaColaboradores(cboBusqeudaColaborador.Text);
         }
 
         //BOTON PARA ABRIR EL MAUAL DE SUAURIO
@@ -3798,7 +3829,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
             }
 
-            //RECORRIDO DE ARRIBA HACIA ABAJO PARA ELIMINAR AL CLIENTE QUE YA FUE SELECCIOANDO
+            //RECORRIDO DE ABAJO HACIA ARRIBA PARA ELIMINAR AL CLIENTE QUE YA FUE SELECCIOANDO
             for (int i = DGV1.Rows.Count - 1; i >= 0; i--)
             {
                 var fila = DGV1.Rows[i];
@@ -3843,7 +3874,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
             }
 
-            //RECORRIDO DE ARRIBA HACIA ABAJO PARA ELIMINAR AL CLIENTE QUE YA FUE SELECCIOANDO
+            //RECORRIDO DE ABAJO HACIA ARRIBA PARA ELIMINAR AL CLIENTE QUE YA FUE SELECCIOANDO
             for (int i = DGV1.Rows.Count - 1; i >= 0; i--)
             {
                 var fila = DGV1.Rows[i];
@@ -3859,6 +3890,97 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 }
             }
         }
+        
+        //METODO PARA LAS SUGERENCIAS DE BUSQUEDA DE CLIENTKE 
+        public void CargarSugerenciasBusquedaClientes(string tipobusqueda)
+        {
+            try
+            {
+                AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd;
+
+                if(cboBusquedaClientes.Text == "NOMBRES")
+                {
+                    cmd = new SqlCommand("SELECT NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno as [Cliente] FROM Clientes C INNER JOIN DatosAnexosCliente_Unidad DACU ON DACU.IdCliente = C.IdCliente WHERE C.Estado = 1 AND DACU.Estado = 1  ORDER BY NombreCliente + ' ' + PrimerNombre + ' ' + SegundoNombre + ' ' + ApellidoPaterno + ' ' + ApellidoMaterno", con);
+                }
+                else
+                {
+                    cmd = new SqlCommand("SELECT Dni + Ruc + OtroDocumento as [DNI / RUC / OTRO] FROM Clientes C INNER JOIN DatosAnexosCliente_Unidad DACU ON DACU.IdCliente = C.IdCliente WHERE C.Estado = 1 AND DACU.Estado = 1 ORDER BY Dni + Ruc + OtroDocumento\r\n", con);
+                }
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    string texto = dr[0].ToString();
+
+
+                    texto = texto.Trim();
+                    texto = Regex.Replace(texto, @"\s{2,}", " ");
+
+                    //SI NO ESTA VACIO ENTRA
+                    if (!string.IsNullOrEmpty(texto))
+                    {
+                        sugerencias.Add(texto);
+                    }
+                }
+                // SUGERENCIA LIMPIA ENVIADA AL TXT 
+                txtBusqeudaCliente.AutoCompleteCustomSource = sugerencias;
+            }           
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void CargarSugerenciasBusquedaColaboradores(string tipobusqueda)
+        {
+            try
+            {
+                AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd;
+
+                if (tipobusqueda == "NOMBRES")
+                {
+                    cmd = new SqlCommand("SELECT Nombres + ' ' + Apellidos  AS [NOMBRES Y APELLIDOS] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY  Nombres + ' ' + Apellidos  \r\n", con);
+                }
+                else
+                {
+                    cmd = new SqlCommand("SELECT Documento AS [DNI] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Documento\r\n", con);
+                }
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    string texto = dr[0].ToString();
+
+                    texto = texto.Trim();
+                    texto = Regex.Replace(texto, @"\s{2,}", " ");
+
+                    //SI NO ESTA VACIO ENTRA
+                    if (!string.IsNullOrEmpty(texto))
+                    {
+                        sugerencias.Add(texto);
+                    }
+                }
+
+                txtBusquedaColaborador.AutoCompleteCustomSource = sugerencias;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }
 
