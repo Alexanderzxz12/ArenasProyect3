@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\comercial\\requerimientosventas\\requerimientoventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\requerimientosventas\\requerimientoventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientomodelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\procesos\\mantenimientos\\mantenimientomodelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\comercial\\requerimientosventas\\requerimientoventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\requerimientosventas\\requerimientoventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\resourses\\classresourses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|c:\\users\\kevin\\desktop\\arenasproyect3\\arenasproyect3\\modulos\\resourses\\classresourses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\resourses\\classresourses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|C:\\Users\\kevin\\Desktop\\ArenasProyect3\\arenasproyect3\\modulos\\comercial\\requerimientosventas\\requerimientoventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B942BF7C-92E1-46CB-AC5E-C649D34927EA}|ArenasProyect3\\ArenasProyect3.csproj|solutionrelative:arenasproyect3\\modulos\\comercial\\requerimientosventas\\requerimientoventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,6 +29,34 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MantenimientoModelos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs",
+              "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Procesos\\Mantenimientos\\MantenimientoModelos.cs [Dise\u00F1o]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T14:11:30.383Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RequerimientoVenta.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs",
+              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs",
+              "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T21:06:38.073Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ClassResourses.cs",
@@ -32,22 +64,10 @@
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Resourses\\ClassResourses.cs",
               "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Resourses\\ClassResourses.cs",
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Resourses\\ClassResourses.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAUwGAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T15:15:43.839Z",
+              "WhenOpened": "2025-11-06T20:28:07.384Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RequerimientoVenta.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs",
-              "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs",
-              "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T14:30:27.023Z",
-              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }
@@ -57,12 +77,12 @@
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
-        "Id": "e62790ba-2ea3-4d6e-a338-2851785b774d",
+        "Id": "d00dacea-054c-4da0-b474-90788bf17147",
         "Display": 0,
-        "X": 372,
-        "Y": 80,
-        "Width": 1553,
-        "Height": 957,
+        "X": 375,
+        "Y": 75,
+        "Width": 1528,
+        "Height": 759,
         "WindowState": 2
       },
       "DocumentGroups": [
@@ -78,9 +98,9 @@
               "RelativeDocumentMoniker": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs",
               "ToolTip": "C:\\Users\\kevin\\Desktop\\ArenasProyect3\\ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs",
               "RelativeToolTip": "ArenasProyect3\\Modulos\\Comercial\\RequerimientosVentas\\RequerimientoVenta.cs",
-              "ViewState": "AgIAAMoEAAAAAAAAAAAAwN8EAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAKkLAAAAAAAAAAAswL4LAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T14:38:30.824Z",
+              "WhenOpened": "2025-11-06T21:06:39.294Z",
               "EditorCaption": ""
             }
           ]

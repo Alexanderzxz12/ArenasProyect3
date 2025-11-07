@@ -375,7 +375,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                     MostrarActasPorFecha(DesdeFecha.Value, HastaFecha.Value);
 
                                     //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                                    ClassResourses.RegistrarAuditora(6, this.Name, 6, Program.IdUsuario, "Aprobación de acta de viaje.", Convert.ToInt32(idActa));
+                                    ClassResourses.RegistrarAuditora(3, this.Name, 6, Program.IdUsuario, "Aprobación de acta de viaje.", Convert.ToInt32(idActa));
                                 }
                                 catch (Exception ex)
                                 {
