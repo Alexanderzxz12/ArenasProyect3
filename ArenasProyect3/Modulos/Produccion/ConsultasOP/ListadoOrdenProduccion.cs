@@ -2,6 +2,7 @@
 using CrystalDecisions.Shared;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
+using iTextSharp.text.pdf.codec.wmf;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private Cursor curAnterior = null;
         int totalCantidades = 0;
         DataGridView dgvActivo = null;
+        string codigoRequerimientoSimple = "";
+        string cantidadRequerimiento = "0000000";
+        string cantidadRequerimiento2 = "";
 
         //CONMSTRUCTOR DE MI FORMULARIO
         public ListadoOrdenProduccion()
@@ -203,7 +207,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
-            datalistadoEnProcesoOP.DataSource = null;
             cboBusqeuda.SelectedIndex = 0;
 
             //PREFILES Y PERSIMOS---------------------------------------------------------------
@@ -383,6 +386,68 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                 datalistadoMaterialesFormulacion.Rows.Add(new[] { null, codigoBSS, desProducto, Convert.ToString(CantidadTotal), Stock, idArt });
             }
+        }
+
+        //CONTAR LA CANTIDAD DE REQUERIMIENTOS QUE HAY EN MI TABLA me estoy moudie de s
+        public void ConteoRequerimientosSimples()
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlDataAdapter da;
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            da = new SqlDataAdapter("SELECT IdRequerimientoSimple FROM RequerimientoSimple WHERE IdRequerimientoSimple = (SELECT MAX(IdRequerimientoSimple) FROM RequerimientoSimple)", con);
+            da.Fill(dt);
+            datalistadoCargarCantidadRequerimeintoSimple.DataSource = dt;
+            con.Close();
+
+            if (datalistadoCargarCantidadRequerimeintoSimple.RowCount > 0)
+            {
+                cantidadRequerimiento = datalistadoCargarCantidadRequerimeintoSimple.SelectedCells[0].Value.ToString();
+
+                if (cantidadRequerimiento.Length == 1)
+                {
+                    cantidadRequerimiento2 = "000000" + cantidadRequerimiento;
+                }
+                else if (cantidadRequerimiento.Length == 2)
+                {
+                    cantidadRequerimiento2 = "00000" + cantidadRequerimiento;
+                }
+                else if (cantidadRequerimiento.Length == 3)
+                {
+                    cantidadRequerimiento2 = "0000" + cantidadRequerimiento;
+                }
+                else if (cantidadRequerimiento.Length == 4)
+                {
+                    cantidadRequerimiento2 = "000" + cantidadRequerimiento;
+                }
+                else if (cantidadRequerimiento.Length == 5)
+                {
+                    cantidadRequerimiento2 = "00" + cantidadRequerimiento;
+                }
+                else if (cantidadRequerimiento.Length == 6)
+                {
+                    cantidadRequerimiento2 = "0" + cantidadRequerimiento;
+                }
+                else if (cantidadRequerimiento.Length == 7)
+                {
+                    cantidadRequerimiento2 = cantidadRequerimiento;
+                }
+            }
+            else
+            {
+                cantidadRequerimiento2 = cantidadRequerimiento;
+            }
+        }
+
+        //CARGAR Y GENERAR EL CÓDIGO DEL REQUERIMIENTO SIMPLE
+        public void GenerarCodigoRequerimientoSimple()
+        {
+            ConteoRequerimientosSimples();
+
+            DateTime date = DateTime.Now;
+
+            codigoRequerimientoSimple = Convert.ToString(date.Year) + cantidadRequerimiento2;
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
@@ -738,6 +803,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[25].Visible = false;
             DGV.Columns[26].Visible = false;
             DGV.Columns[27].Visible = false;
+            DGV.Columns[28].Visible = false;
             //SE BLOQUEA MI LISTADO
             DGV.Columns[2].ReadOnly = true;
             DGV.Columns[3].ReadOnly = true;
@@ -850,7 +916,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //EVENTO PARA ABRIR EL INGRESO DE LA SNC
         private void datalistadoObservadas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (datalistadoObservadas.RowCount != 0)
             {
                 btnVisualizarSNC.Visible = false;
@@ -860,6 +925,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 txtCoidgoOPCalidad.Text = datalistadoObservadas.SelectedCells[2].Value.ToString();
                 txtDescripcionProductoCalidad.Text = datalistadoObservadas.SelectedCells[8].Value.ToString();
                 txtArea.Text = datalistadoObservadas.SelectedCells[26].Value.ToString();
+                txtIdArea.Text = datalistadoObservadas.SelectedCells[28].Value.ToString();
+                txtIdOP.Text = datalistadoObservadas.SelectedCells[1].Value.ToString();
                 MostrarCantidadesSegunOPCalidad(Convert.ToInt32(lblIdOP.Text));
                 btnGenerarCSM.Visible = false;
                 lblGenerarCSM.Visible = false;
@@ -948,6 +1015,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             lblIdSNC.Text = datalistadoSNCDatos.SelectedCells[8].Value.ToString();
             txtCantidadObservada.Text = datalistadoHistorial.SelectedCells[3].Value.ToString();
             txtAreaSNC.Text = txtArea.Text;
+            txtIdAreaSNC.Text = txtIdArea.Text;
+            txtIdOPSNC.Text = txtIdOP.Text;
         }
 
         //VISUALIZAR IMAGEN 1
@@ -1019,6 +1088,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             if (ckLiberacion.Checked == true)
             {
                 panelCargaImagen.Visible = true;
+                ckReproceso.Checked = false;
+                ckReposicion.Checked = false;
             }
             else
             {
@@ -1032,10 +1103,22 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             if (ckReproceso.Checked)
             {
                 btnInfoMaterialesRepro.Visible = true;
+                ckReposicion.Checked = false;
+                ckLiberacion.Checked = false;
             }
             else
             {
                 btnInfoMaterialesRepro.Visible = false;
+            }
+        }
+
+        //SELECCION DE UN TIPO DE ACCION - REPROSISION
+        private void ckReposicion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckReproceso.Checked)
+            {
+                ckLiberacion.Checked = false;
+                ckReproceso.Checked = false;
             }
         }
 
@@ -1055,8 +1138,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 }
             }
 
-
-
             if (algunaMarcada)
             {
                 panelGeneracionRequeRepro.Visible = true;
@@ -1075,6 +1156,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             txtCodigoOPReque.Text = txtOrdenProduccionSNC.Text;
             txtCantidadObserbadaReque.Text = txtCantidadObservada.Text;
             txtCodigoFormulacionReque.Text = datalistadoObservadas.SelectedCells[27].Value.ToString();
+            txtIdOPSNCRQ.Text = txtIdOPSNC.Text;
             BuscarMaterialesFormulacion(txtCodigoFormulacionReque.Text);
         }
 
@@ -1184,32 +1266,113 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             if (ckReproceso.Checked == true)
             {
-
+                GenerarRQAdicional();
             }
 
             if (ckReposicion.Checked == true)
             {
-                try
+                GenerarOPAdicional();
+            }
+
+            LimpairCampos();
+        }
+
+        //FUNCION PARA GENERAR UNA OP ADICIONAL POR REQPOSISCION
+        public void GenerarOPAdicional()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("OP_InsertarReposicion", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Codigo_OP_Original", txtOrdenProduccionSNC.Text);
+                cmd.Parameters.AddWithValue("@Nueva_Fecha_Entrega", dtpFinal.Value);
+                cmd.Parameters.AddWithValue("@idCantCal", Convert.ToInt16(datalistadoHistorial.SelectedCells[1].Value.ToString()));
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Se generó la OP por reposición automaticamnete: OP " + txtOrdenProduccionSNC.Text, "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //FUNCION PARA GENERAR UN RQ PARA PRODUCCION ADICIONAL
+        public void GenerarRQAdicional()
+        {
+            GenerarCodigoRequerimientoSimple();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd = new SqlCommand("OP_InsertarRequerimientoSimple", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //INGRESAR LOS DATOS GENERALES DE MI REQUERIMIENTO
+            cmd.Parameters.AddWithValue("@codigoRequerimeintoSimple", codigoRequerimientoSimple);
+            cmd.Parameters.AddWithValue("@fechaRequerida", DateTime.Now);
+            cmd.Parameters.AddWithValue("@fechaSolicitada", DateTime.Now);
+            cmd.Parameters.AddWithValue("@desJefatura", "EDUARDO LORO ALMEYDA");
+            cmd.Parameters.AddWithValue("@idSolicitante", 1052);
+            cmd.Parameters.AddWithValue("@idCentroCostos", 8);
+            cmd.Parameters.AddWithValue("@observaciones", "REQUERIMIENTO PARA ORDEN DE PRODUCCION");
+            cmd.Parameters.AddWithValue("@idSede", 1);
+            cmd.Parameters.AddWithValue("@idLocal", 1);
+            cmd.Parameters.AddWithValue("@idArea", Convert.ToInt16(txtIdAreaSNC.Text));
+            cmd.Parameters.AddWithValue("@idipo", 2);
+            cmd.Parameters.AddWithValue("@estadoLogistica", 1);
+            cmd.Parameters.AddWithValue("@mensajeAnulacion", "");
+            cmd.Parameters.AddWithValue("@idJefatura", 1052);
+            cmd.Parameters.AddWithValue("@aliasCargaJefatura", "Jefe de Producción");
+
+            int cantidadItems = 0;
+            foreach (DataGridViewRow row in datalistadoMaterialesFormulacion.Rows)
+            {
+                bool estado = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
+                if (estado == true)
                 {
-                    SqlConnection con = new SqlConnection();
-                    SqlCommand cmd = new SqlCommand();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    cmd = new SqlCommand("OP_InsertarReposicion", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Codigo_OP_Original", txtOrdenProduccionSNC.Text);
-                    cmd.Parameters.AddWithValue("@Nueva_Fecha_Entrega", dtpFinal.Value);
-                    cmd.Parameters.AddWithValue("@idCantCal", Convert.ToInt16(datalistadoHistorial.SelectedCells[1].Value.ToString()));
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    MessageBox.Show("Se generó la OP por reposición automaticamnete: OP " + txtOrdenProduccionSNC.Text, "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    cantidadItems = cantidadItems + 1;
                 }
             }
-            LimpairCampos();
+
+            cmd.Parameters.AddWithValue("@cantidadItems", cantidadItems);
+            cmd.Parameters.AddWithValue("@idPrioridad", 1);
+            cmd.Parameters.AddWithValue("@idOP", txtIdOPSNCRQ.Text);
+            cmd.Parameters.AddWithValue("@idOT", 0);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Se generó el requerimiento " + codigoRequerimientoSimple + " para la OP " + txtCodigoOPReque.Text + ".", "Validación del Sistema", MessageBoxButtons.OK);
+
+            //VARIABLE PARA CONTAR LA CANTIDAD DE ITEMS QUE HAY
+            int contador = 1;
+            //INGRESO DE LOS DETALLES DEL REQUERIMIENTO SIMPLE CON UN FOREACH
+            foreach (DataGridViewRow row in datalistadoMaterialesFormulacion.Rows)
+            {
+                bool estado = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
+                if (estado == true)
+                {
+                    decimal cantidad = Convert.ToDecimal(row.Cells["cantidad"].Value);
+
+                    //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
+                    con.Open();
+                    cmd = new SqlCommand("OP_InsertarRequerimientoSimpleDetalleProductos", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@item", contador);
+                    cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[5].Value));
+                    //SACAR LA CANTIDAD REAL POR UNO
+                    cantidad = cantidad / Convert.ToDecimal(txtCantidadObserbadaReque.Text);
+                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                    cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[4].Value));
+                    cmd.Parameters.AddWithValue("@cantidadTotal", Convert.ToString(row.Cells[3].Value));
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    //AUMENTAR
+                    contador++;
+                }
+            }
         }
 
         //CAMBIAR EL ESTADO DE MI OP A FINALIZADA
@@ -1932,6 +2095,14 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
         //CAMBIAR MI LISTADO
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ColoresListado(datalistadoEnProcesoOP);
+            ColoresListado(datalistadoTodasOP);
+            RedimensionarListadoOPCalidad(datalistadoObservadas);
+        }
+
+        //COLOREAR LISTADO
+        private void datalistadoEnProcesoOP_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             ColoresListado(datalistadoEnProcesoOP);
             ColoresListado(datalistadoTodasOP);
