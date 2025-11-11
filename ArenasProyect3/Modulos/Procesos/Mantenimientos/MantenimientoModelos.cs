@@ -20,6 +20,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //VARIABLES DE VALIDACIÓN PARA EL INGRESO Y EDICIÓN DE DATOS
         bool repetidoDescripcion;
         bool repetidoAbreviatura;
+        bool habilitarValidaciones;
 
         //CONSTRUCTOR DEL MANTENIMIENTO - MANTENIEMINTO DE LINEAS
         public MantenimientoModelos()
@@ -69,7 +70,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 cboTipoLinea.DisplayMember = "Descripcion";
                 cboTipoLinea.ValueMember = "IdLinea";
                 DataRow row = dt.Rows[0];
-                lblCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
+                txtCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
                 cboTipoLinea.DataSource = dt;
             }
             catch (Exception ex)
@@ -95,7 +96,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    lblCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
+                    txtCodigoLinea.Text = System.Convert.ToString(row["Desciripcion"]);
                 }
             }
             catch (Exception ex)
@@ -108,7 +109,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void cboTipoLinea_SelectedIndexChanged(object sender, EventArgs e)
         {
             Mostrar(Convert.ToInt32(cboTipoLinea.SelectedValue));
-
         }
 
         //MOSTRAR TODAS MIS LÍNEAS SUGUN EL TIPO DE CUENTA SELECCIOANDO - METODO
@@ -146,19 +146,17 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
                 cboTipoLinea.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
 
-                if (datalistadoLineas.SelectedCells[6].Value.ToString() == "NO DEFINIDO")
+                string estadoAtirubutos = datalistadoLineas.SelectedCells[6].Value.ToString();
+                if (estadoAtirubutos == "NO DEFINIDO")
                 {
-                    lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
-                    lblEstadoAtributo.ForeColor = Color.Red;
+                    cboEstadoAtributo.Text = "MODELO POR DEFINIR";
                 }
                 else
                 {
-                    lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
-                    lblEstadoAtributo.ForeColor = Color.Green;
+                    cboEstadoAtributo.Text = "MODELO YA DEFINIDO";
                 }
 
                 string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
-
                 if (estado == "ACTIVO")
                 {
                     cboEstado.Text = "ACTIVO";
@@ -238,7 +236,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
-                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)\r\n", con);
+                da = new SqlDataAdapter("SELECT IdModelo FROM MODELOS WHERE Estado = 1 AND IdModelo = (SELECT MAX(IdModelo) FROM MODELOS)", con);
                 da.Fill(dt);
                 datalistadoModeloRecienIngresado.DataSource = dt;
                 con.Close();
@@ -271,7 +269,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
             lblCodigo.Text = "N";
 
-            lblEstadoAtributo.Text = "MODELO NO DEFINIDO";
+            cboEstadoAtributo.Text = "MODELO NO DEFINIDO";
         }
 
         //METODO ENCARGADO DE AGREGAR UN NUEVO MODELO A MI BASE DE DATOS
@@ -280,6 +278,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             if (repetidoDescripcion == true)
             {
                 MessageBox.Show("No se puede ingresar dos registros iguales.", "Validación del Sistema", MessageBoxButtons.OK);
+                txtDescripcion.Focus();
             }
             else
             {
@@ -289,7 +288,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 && ckCamposEspesores1.Checked == false && ckCamposEspesores2.Checked == false && ckCamposDiseñoAcabado1.Checked == false && ckCamposDiseñoAcabado2.Checked == false
                 && ckCamposNTipos1.Checked == false && ckCamposNTipos2.Checked == false && ckVariosO1.Checked == false && ckVariosO2.Checked == false && ckGenerales.Checked == false)
                 {
-                    MessageBox.Show("Debe ingresar todos los campos necesarios para pode continuar.", "Validación del Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe ingresar todos los campos necesarios incluyendo los atributos del modelo para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
                     txtDescripcion.Focus();
                 }
                 else
@@ -329,8 +328,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             Cancelar.Visible = false;
                             lblCancelar.Visible = false;
 
-                            lblEstadoAtributo.Text = "***";
-
+                            cboEstadoAtributo.Text = "***";
                         }
                         catch (Exception ex)
                         {
@@ -350,158 +348,32 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
-                            if (ckCaracteristicas1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campcaracteristicas1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campcaracteristicas1", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campcaracteristicas1", ckCaracteristicas1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campcaracteristicas2", ckCaracteristicas2.Checked ? 1 : 0);
 
-                            if (ckCaracteristicas2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campcaracteristicas2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campcaracteristicas2", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campmedidas1", ckCamposMedida1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campmedidas2", ckCamposMedida2.Checked ? 1 : 0);
 
-                            if (ckCamposMedida1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campmedidas1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campmedidas1", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campdiametro1", ckCamposDiametros1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campdiametro2", ckCamposDiametros2.Checked ? 1 : 0);
 
-                            if (ckCamposMedida2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campmedidas2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campmedidas2", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campformas1", ckCamposFormas1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campformas2", ckCamposFormas2.Checked ? 1 : 0);
 
-                            if (ckCamposDiametros1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campdiametro1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campdiametro1", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campespesores1", ckCamposEspesores1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campespesores2", ckCamposEspesores2.Checked ? 1 : 0);
 
-                            if (ckCamposDiametros2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campdiametro2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campdiametro2", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campdiseñoacabados1", ckCamposDiseñoAcabado1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campdiseñoacabados2", ckCamposDiseñoAcabado2.Checked ? 1 : 0);
+  
+                            cmd.Parameters.AddWithValue("@campntipos1", ckCamposNTipos1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campntipos2", ckCamposNTipos2.Checked ? 1 : 0);
 
-                            if (ckCamposFormas1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campformas1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campformas1", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campvarios1", ckVariosO1.Checked ? 1 : 0);
+                            cmd.Parameters.AddWithValue("@campvarios2", ckVariosO2.Checked ? 1 : 0);
 
-                            if (ckCamposFormas2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campformas2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campformas2", 0);
-                            }
+                            cmd.Parameters.AddWithValue("@campgenerales", ckGenerales.Checked ? 1 : 0);
 
-                            if (ckCamposEspesores1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campespesores1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campespesores1", 0);
-                            }
-
-                            if (ckCamposEspesores2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campespesores2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campespesores2", 0);
-                            }
-
-                            if (ckCamposDiseñoAcabado1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campdiseñoacabados1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campdiseñoacabados1", 0);
-                            }
-
-                            if (ckCamposDiseñoAcabado2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campdiseñoacabados2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campdiseñoacabados2", 0);
-                            }
-
-                            if (ckCamposNTipos1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campntipos1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campntipos1", 0);
-                            }
-
-                            if (ckCamposNTipos2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campntipos2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campntipos2", 0);
-                            }
-
-                            if (ckVariosO1.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campvarios1", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campvarios1", 0);
-                            }
-
-                            if (ckVariosO2.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campvarios2", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campvarios2", 0);
-                            }
-
-                            if (ckGenerales.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("@campgenerales", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campgenerales", 0);
-                            }
                             cmd.ExecuteNonQuery();
                             con.Close();
 
@@ -512,289 +384,51 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idmodelo", lblCodigo.Text);
 
-                            if (cboTipoCaracteristicas1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia1", cboTipoCaracteristicas1.SelectedValue.ToString());
-                            }
+                            cmd.Parameters.AddWithValue("@idtipomercaderia1", (object)cboTipoCaracteristicas1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipomercaderia2", (object)cboTipoCaracteristicas2.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipomercaderia3", (object)cboTipoCaracteristicas3.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipomercaderia4", (object)cboTipoCaracteristicas4.SelectedValue ?? DBNull.Value);
+                            
+                            cmd.Parameters.AddWithValue("@idtipomedida1", (object)cboTipoMedida1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipomedida2", (object)cboTipoMedida2.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipomedida3", (object)cboTipoMedida3.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipomedida4", (object)cboTipoMedida4.SelectedValue ?? DBNull.Value);
+                            
+                            cmd.Parameters.AddWithValue("@idtipodiametro1", (object)cboTiposDiametros1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipodiametro2", (object)cboTiposDiametros2.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipodiametro3", (object)cboTiposDiametros3.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipodiametro4", (object)cboTiposDiametros4.SelectedValue ?? DBNull.Value);
+                           
+                            cmd.Parameters.AddWithValue("@idtipoformas1", (object)cboTiposFormas1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipoformas2", (object)cboTiposFormas2.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipoformas3", (object)cboTiposFormas3.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipoformas4", (object)cboTiposFormas4.SelectedValue ?? DBNull.Value);
+                            
+                            cmd.Parameters.AddWithValue("@idtipoespesores1", (object)cbooTipoEspesores1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipoespesores2", (object)cbooTipoEspesores2.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipoespesores3", (object)cbooTipoEspesores3.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipoespesores4", (object)cbooTipoEspesores4.SelectedValue ?? DBNull.Value);
+                            
+                            cmd.Parameters.AddWithValue("@idtipodiametroacabados1", (object)cboTiposDiseñosAcabados1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipodiametroacabados2", (object)cboTiposDiseñosAcabados2.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipodiametroacabados3", (object)cboTiposDiseñosAcabados3.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipodiametroacabados4", (object)cboTiposDiseñosAcabados4.SelectedValue ?? DBNull.Value);
+                            
+                            cmd.Parameters.AddWithValue("@idtipontipos1", (object)cboTiposNTipos1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipontipos2", (object)cboTiposNTipos2.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipontipos3", (object)cboTiposNTipos3.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtipontipos4", (object)cboTiposNTipos4.SelectedValue ?? DBNull.Value);
+                            
+                            cmd.Parameters.AddWithValue("@idtpovarios1", (object)cboTiposVariosO1.SelectedValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idtpovarios2", (object)cboTiposVariosO2.SelectedValue ?? DBNull.Value);
+                           
+                            cmd.Parameters.AddWithValue("@campogeneral", DBNull.Value);
 
-                            if (cboTipoCaracteristicas2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia2", cboTipoCaracteristicas2.SelectedValue.ToString());
-                            }
-
-                            if (cboTipoCaracteristicas3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia3", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia3", cboTipoCaracteristicas3.SelectedValue.ToString());
-                            }
-
-                            if (cboTipoCaracteristicas4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia4", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomercaderia4", cboTipoCaracteristicas4.SelectedValue.ToString());
-                            }
-
-                            if (cboTipoMedida1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida1", cboTipoMedida1.SelectedValue.ToString());
-                            }
-
-                            if (cboTipoMedida2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida2", cboTipoMedida2.SelectedValue.ToString());
-                            }
-
-                            if (cboTipoMedida3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida3", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida3", cboTipoMedida3.SelectedValue.ToString());
-                            }
-
-                            if (cboTipoMedida4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida4", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipomedida4", cboTipoMedida4.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiametros1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro1", cboTiposDiametros1.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiametros2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro2", cboTiposDiametros2.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiametros3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro3", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro3", cboTiposDiametros3.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiametros4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro4", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametro4", cboTiposDiametros4.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposFormas1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas1", cboTiposFormas1.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposFormas2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas2", cboTiposFormas2.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposFormas3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas3", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas3", cboTiposFormas3.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposFormas4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas4", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoformas4", cboTiposFormas4.SelectedValue.ToString());
-                            }
-
-                            if (cbooTipoEspesores1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores1", cbooTipoEspesores1.SelectedValue.ToString());
-                            }
-
-                            if (cbooTipoEspesores2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores2", cbooTipoEspesores2.SelectedValue.ToString());
-                            }
-
-                            if (cbooTipoEspesores3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores3", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores3", cbooTipoEspesores3.SelectedValue.ToString());
-                            }
-
-                            if (cbooTipoEspesores4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores4", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipoespesores4", cbooTipoEspesores4.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiseñosAcabados1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados1", cboTiposDiseñosAcabados1.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiseñosAcabados2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados2", cboTiposDiseñosAcabados2.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiseñosAcabados3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados3", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados3", cboTiposDiseñosAcabados3.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposDiseñosAcabados4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados4", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipodiametroacabados4", cboTiposDiseñosAcabados4.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposNTipos1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos1", cboTiposNTipos1.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposNTipos2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos2", cboTiposNTipos2.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposNTipos3.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos3", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos3", cboTiposNTipos3.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposNTipos4.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos4", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtipontipos4", cboTiposNTipos4.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposVariosO1.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtpovarios1", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtpovarios1", cboTiposVariosO1.SelectedValue.ToString());
-                            }
-
-                            if (cboTiposVariosO2.SelectedValue == null)
-                            {
-                                cmd.Parameters.AddWithValue("@idtpovarios2", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idtpovarios2", cboTiposVariosO2.SelectedValue.ToString());
-                            }
-
-                            if (ckGenerales.Checked == false)
-                            {
-                                cmd.Parameters.AddWithValue("@campogeneral", DBNull.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@campogeneral", DBNull.Value);
-                            }
                             cmd.ExecuteNonQuery();
                             con.Close();
 
                             Mostrar(codigolinea);
-                            lblEstadoAtributo.Text = "MODELO YA DEFINIDO";
+                            cboEstadoAtributo.SelectedText = "MODELO YA DEFINIDO";
 
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
                             Limpiar();
@@ -825,6 +459,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 txtDescripcion.Enabled = true;
                 txtAbreviatura.Enabled = true;
+                cboTipoLinea.Enabled = false;
 
                 btnEditar.Visible = false;
                 btnEditar2.Visible = true;
@@ -859,16 +494,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.Parameters.AddWithValue("@descripcion", descripcion);
                         cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
                         cmd.Parameters.AddWithValue("@codigolinea", codigolinea);
-
-                        if (cboEstado.Text == "ACTIVO")
-                        {
-                            cmd.Parameters.AddWithValue("@estado", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@estado", 0);
-                        }
-
+                        cmd.Parameters.AddWithValue("@estado", cboEstado.Text == "ACTIVO" ? 1 : 0);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
@@ -878,7 +504,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
                         ColorDescripcion();
 
-                        txtDescripcion.Enabled = true;
+                        txtDescripcion.Enabled = false;
                         txtAbreviatura.Enabled = false;
 
                         btnEditar.Visible = true;
@@ -890,6 +516,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cboEstado.SelectedIndex = -1;
                         Cancelar.Visible = false;
                         lblCancelar.Visible = false;
+                        cboTipoLinea.Enabled = true;
                     }
                     catch (Exception ex)
                     {
@@ -927,11 +554,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             Cancelar.Visible = false;
             lblCancelar.Visible = false;
 
+            cboTipoLinea.Enabled = true;
             cboEstado.SelectedIndex = -1;
             txtDescripcion.Text = "";
             txtAbreviatura.Text = "";
 
-            lblEstadoAtributo.Text = "***";
+            cboEstadoAtributo.Text = "***";
+            lblCodigo.Text = "N";
         }
 
         //VALIDACIONES DE INGRESO DE DATOS Y EXISTENCOA DE ESTOS-----------------------------
@@ -985,13 +614,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //CONFIJURACION DE ATRIBUTOS---------------------------------------------------------------
         private void CargarAtributos_Click(object sender, EventArgs e)
         {
-            if (lblEstadoAtributo.Text == "MODELO YA DEFINIDO" || lblEstadoAtributo.Text == "***")
+            if (cboEstadoAtributo.Text == "MODELO YA DEFINIDO" || cboEstadoAtributo.Text == "***")
             {
                 MessageBox.Show("Este modelo ya ha sido definido.", "Validación del Sistema", MessageBoxButtons.OK);
             }
             else
             {
-                if (lblCodigoLinea.Text == "PRODUCTO TERMINADO")
+                if (txtCodigoLinea.Text == "PRODUCTO TERMINADO")
                 {
                     ckGenerales.Visible = false;
                 }
@@ -1034,11 +663,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             {
                 if (ckCaracteristicas1.Checked == true)
                 {
-
                     flowLayoutPanel.Controls.Add(panelCamposCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas1);
                     CargarTiposCaracteriticas(cboTipoCaracteristicas2);
-
                 }
                 else
                 {
@@ -1673,10 +1300,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         //FUNCION PARA ORDENAR MIS COLUMNAS DE MI BUSQUEDAS
         public void OrdenarColumnasModelo(DataGridView DGV)
         {
-            DGV.Columns[0].Width = 80;
-            DGV.Columns[1].Width = 80;
+            DGV.Columns[0].Width = 75;
+            DGV.Columns[1].Width = 75;
             DGV.Columns[2].Width = 100;
-            DGV.Columns[3].Width = 220;
+            DGV.Columns[3].Width = 230;
             DGV.Columns[4].Visible = false;
             DGV.Columns[5].Width = 218;
         }

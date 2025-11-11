@@ -1,5 +1,6 @@
 ﻿using ArenasProyect3.Modulos.Mantenimientos;
 using ArenasProyect3.Modulos.Resourses;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Presentation;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -27,6 +28,8 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         bool estadoSNG = false;
         bool estadoSNGCulminada = false;
         bool estadoDesaprobado = false;
+        DataGridView dgvActivo = null;
+
 
         public ListadoOrdenProduccion()
         {
@@ -147,7 +150,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         {
             try
             {
-                DataTable dt = new DataTable();
+                System.Data.DataTable dt = new System.Data.DataTable();
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
                 con.Open();
@@ -183,7 +186,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             {
                 if (cboBusqeuda.Text == "CÓDIGO OP")
                 {
-                    DataTable dt = new DataTable();
+                    System.Data.DataTable dt = new System.Data.DataTable();
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
@@ -198,7 +201,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     datalistadoTodasOP.DataSource = dt;
                     con.Close();
 
-                    DataTable dt2 = new DataTable();
+                    System.Data.DataTable dt2 = new System.Data.DataTable();
                     SqlConnection con2 = new SqlConnection();
                     con2.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con2.Open();
@@ -215,7 +218,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 }
                 else if (cboBusqeuda.Text == "CLIENTE")
                 {
-                    DataTable dt = new DataTable();
+                    System.Data.DataTable dt = new System.Data.DataTable();
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
@@ -230,7 +233,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     datalistadoTodasOP.DataSource = dt;
                     con.Close();
 
-                    DataTable dt2 = new DataTable();
+                    System.Data.DataTable dt2 = new System.Data.DataTable();
                     SqlConnection con2 = new SqlConnection();
                     con2.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con2.Open();
@@ -247,7 +250,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 }
                 else if (cboBusqeuda.Text == "DESCRIPCIÓN PRODUCTO")
                 {
-                    DataTable dt = new DataTable();
+                    System.Data.DataTable dt = new System.Data.DataTable();
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
@@ -275,7 +278,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         public void RedimensionarListadoGeneralPedido(DataGridView DGV)
         {
             //REDIEMNSION DE PEDIDOS
-            DGV.Columns[2].Width = 80;
+            DGV.Columns[2].Width = 95;
             DGV.Columns[3].Width = 80;
             DGV.Columns[4].Width = 80;
             DGV.Columns[5].Width = 250;
@@ -419,7 +422,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 con.Open();
                 SqlCommand comando = new SqlCommand("SELECT IdTipoHallazgo, Nombre FROM TipoHallazgo WHERE Estado = 1", con);
                 SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
+                System.Data.DataTable dt = new System.Data.DataTable();
                 data.Fill(dt);
                 cboTipoHallazgo.ValueMember = "IdTipoHallazgo";
                 cboTipoHallazgo.DisplayMember = "Nombre";
@@ -428,21 +431,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             catch (Exception ex)
             {
                 MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
-        //SE VALIDA QUE SI ESTA CONFORME O SI SE V A ACOLOCAR UNA OBSERVACIONS
-        private void cboTipoHallazgo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboTipoHallazgo.Text == "TODO CONFORME")
-            {
-                lblDescripcionHallazgo.Visible = false;
-                txtObservaciones.Visible = false;
-            }
-            else
-            {
-                lblDescripcionHallazgo.Visible = true;
-                txtObservaciones.Visible = true;
             }
         }
 
@@ -611,6 +599,19 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             MostrarOrdenProduccionPorCriterios(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
         }
 
+        //VERIFICAR EN QUE LSITADO ESTOY
+        public void VerificarDGVActivo()
+        {
+            if (TabControl.SelectedTab.Text == "OP en Proceso")
+            {
+                dgvActivo = datalistadoEnProcesoOP;
+            }
+            else if (TabControl.SelectedTab.Text == "Todas las OP")
+            {
+                dgvActivo = datalistadoTodasOP;
+            }
+        }
+
         //MOSTRAR OPRDENES PRODUCCION DEPENDIENTO LA OPCIÓN ESCOGIDA
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
@@ -634,10 +635,11 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         //GENERACION DE REPORTES
         private void btnGenerarOrdenProduccionPDF_Click(object sender, EventArgs e)
         {
+            VerificarDGVActivo();
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOP.CurrentRow != null)
+            if (dgvActivo.CurrentRow != null)
             {
-                string codigoOrdenProduccion = datalistadoTodasOP.Rows[datalistadoTodasOP.CurrentRow.Index].Cells[1].Value.ToString();
+                string codigoOrdenProduccion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
                 Visualizadores.VisualizarOrdenProduccion frm = new Visualizadores.VisualizarOrdenProduccion();
                 frm.lblCodigo.Text = codigoOrdenProduccion;
 
@@ -741,7 +743,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoTodasOP.CurrentRow != null)
             {
-                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "")
+                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "" && cboTipoHallazgo.Text != "TODO CONFORME")
                 {
                     MessageBox.Show("Debe ingresar una cantidad u obserbación válida para poder aprobar o desaprobar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
@@ -823,7 +825,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoTodasOP.CurrentRow != null)
             {
-                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "")
+                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "" && cboTipoHallazgo.Text != "TODO CONFORME")
                 {
                     MessageBox.Show("Debe ingresar una cantidad u obserbación válida para poder aprobar o desaprobar.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
@@ -972,6 +974,9 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                         MostrarCantidadesSegunOP(Convert.ToInt16(lblIdOP.Text));
                         panelSNC.Visible = false;
                         LimpiarSNC();
+                        MostrarSNC(datalistadoHistorial);
+
+                        //ClassResourses.Enviar("arenassoft@arenassrl.com.pe", "CORREO AUTOMATIZADO - CREACIÓN DE UNA SNC", "Correo de creación de una salida no conforme a la OP número " + txtOrdenProduccionSNC.Text + " por parte del usuario " + Program.UnoNombreUnoApellidoUsuario + " el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
                     }
                     catch (Exception ex)
                     {
@@ -1073,28 +1078,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoHistorial.CurrentRow != null)
             {
-                //EVALUAR SI ESTA DESAPROBADO O TIENE SNC
-                if (datalistadoHistorial.SelectedCells[5].Value.ToString() == "DESAPROBADO")
-                {
-                    btnGenerarCSM.Visible = true;
-                    lblGenerarCSM.Visible = true;
-                }
-                else
-                {
-                    btnGenerarCSM.Visible = false;
-                    lblGenerarCSM.Visible = false;
-                }
-
-                if (datalistadoHistorial.SelectedCells[5].Value.ToString() == "SNC CULMINADA")
-                {
-                    btnVisualizar.Visible = true;
-                    lblLeyendaVisualizar.Visible = true;
-                }
-                else
-                {
-                    btnVisualizar.Visible = false;
-                    lblLeyendaVisualizar.Visible = false;
-                }
+                MostrarSNC(datalistadoHistorial);
 
                 //ABRIR PANEL DE OBSERVACIONES
                 if (datalistadoHistorial.RowCount != 0)
@@ -1111,6 +1095,33 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             else
             {
                 MessageBox.Show("Deben haber registros cargados.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //CARGAR SI SE MUESTRA O NO LOS BOTONES
+        public void MostrarSNC(DataGridView DGV)
+        {
+            //EVALUAR SI ESTA DESAPROBADO O TIENE SNC
+            if (DGV.SelectedCells[5].Value.ToString() == "DESAPROBADO")
+            {
+                btnGenerarCSM.Visible = true;
+                lblGenerarCSM.Visible = true;
+            }
+            else
+            {
+                btnGenerarCSM.Visible = false;
+                lblGenerarCSM.Visible = false;
+            }
+
+            if (DGV.SelectedCells[5].Value.ToString() == "SNC CULMINADA")
+            {
+                btnVisualizar.Visible = true;
+                lblLeyendaVisualizar.Visible = true;
+            }
+            else
+            {
+                btnVisualizar.Visible = false;
+                lblLeyendaVisualizar.Visible = false;
             }
         }
 

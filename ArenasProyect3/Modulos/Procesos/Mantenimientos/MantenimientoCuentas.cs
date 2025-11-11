@@ -1,4 +1,5 @@
 ﻿using ArenasProyect3.Modulos.Resourses;
+using DocumentFormat.OpenXml.Office.Word;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -212,16 +213,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             cmd.Parameters.AddWithValue("@descripcion", descripcion);
                             cmd.Parameters.AddWithValue("@abreviatura", abreavitura);
                             cmd.Parameters.AddWithValue("@codigosunat", codigosunat);
-
-                            if (cboEstado.Text == "ACTIVO")
-                            {
-                                cmd.Parameters.AddWithValue("@estado", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@estado", 0);
-                            }
-
                             cmd.ExecuteNonQuery();
                             con.Close();
                             Mostrar();
@@ -309,16 +300,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.Parameters.AddWithValue("@descripcion", descripcion);
                         cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
                         cmd.Parameters.AddWithValue("@codigosunat", codigosunat);
-
-                        if (cboEstado.Text == "ACTIVO")
-                        {
-                            cmd.Parameters.AddWithValue("@estado", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@estado", 0);
-                        }
-
+                        cmd.Parameters.AddWithValue("@estado", cboEstado.Text == "ACTIVO" ? 1 : 0);
                         cmd.ExecuteNonQuery();
                         con.Close();
                         Mostrar();

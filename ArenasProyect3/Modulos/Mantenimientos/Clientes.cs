@@ -1,18 +1,21 @@
-﻿using SpreadsheetLight;
+﻿using ArenasProyect3.Modulos.ManGeneral;
+using ArenasProyect3.Modulos.Resourses;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Wordprocessing;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
-using ArenasProyect3.Modulos.ManGeneral;
+using HorizontalAlignmentValues = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues;
 
 namespace ArenasProyect3.Modulos.Mantenimientos
 {
@@ -32,6 +35,13 @@ namespace ArenasProyect3.Modulos.Mantenimientos
 
         string Manual = ManGeneral.Manual.manualAreaComercial;
 
+        //CODIGO Y IDS
+        int codigoCliente = 0;
+        int codigoUnidad = 0;
+        int codigoContecto = 0;
+        int codigoCondicion = 0;
+        int codigoSucursal = 0;
+
         //CONSTRUCTOR DEL MANTENIMIENTO - CLIENTES
         public Clientes()
         {
@@ -50,169 +60,372 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //CARGAR TIPOD DE CLIENTES
         public void CargarTipoCliente()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoClientes, Descripcion FROM TipoClientes WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoClientes.DisplayMember = "Descripcion";
-            cboTipoClientes.ValueMember = "IdTipoClientes";
-            cboTipoClientes.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoClientes, Descripcion FROM TipoClientes WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoClientes.DisplayMember = "Descripcion";
+                cboTipoClientes.ValueMember = "IdTipoClientes";
+                cboTipoClientes.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPO DE DOCUMENTOS
         public void CargarTipoDocumentos()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoDocumento, Descripcion FROM TipoDocumentos WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboTipoDocumento.DisplayMember = "Descripcion";
-            cboTipoDocumento.ValueMember = "IdTipoDocumento";
-            cboTipoDocumento.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoDocumento, Descripcion FROM TipoDocumentos WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboTipoDocumento.DisplayMember = "Descripcion";
+                cboTipoDocumento.ValueMember = "IdTipoDocumento";
+                cboTipoDocumento.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPO DE GRUPOS
         public void CargarTipoGrupo()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoGrupo, Descripcion FROM TipoGrupo WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboGrupo.DisplayMember = "Descripcion";
-            cboGrupo.ValueMember = "IdTipoGrupo";
-            cboGrupo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoGrupo, Descripcion FROM TipoGrupo WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboGrupo.DisplayMember = "Descripcion";
+                cboGrupo.ValueMember = "IdTipoGrupo";
+                cboGrupo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPÓ DE MONEDA
         public void CargarTipoMoneda()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoMonedas, Descripcion FROM TipoMonedas WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboMoneda.DisplayMember = "Descripcion";
-            cboMoneda.ValueMember = "IdTipoMonedas";
-            cboMoneda.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoMonedas, Descripcion FROM TipoMonedas WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboMoneda.DisplayMember = "Descripcion";
+                cboMoneda.ValueMember = "IdTipoMonedas";
+                cboMoneda.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPO DE RETENCION
         public void CargarTipoRetencion()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdTipoRetencion, Descripcion FROM TipoRetencion WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboRetencion.DisplayMember = "Descripcion";
-            cboRetencion.ValueMember = "IdTipoRetencion";
-            cboRetencion.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoRetencion, Descripcion FROM TipoRetencion WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboRetencion.DisplayMember = "Descripcion";
+                cboRetencion.ValueMember = "IdTipoRetencion";
+                cboRetencion.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPO DE CONDICION
         public void CargarCondicion()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("Select IdCondicionPago, Descripcion from CondicionPago WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboCondicionCondicion.DisplayMember = "Descripcion";
-            cboCondicionCondicion.ValueMember = "IdCondicionPago";
-            cboCondicionCondicion.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("Select IdCondicionPago, Descripcion from CondicionPago WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboCondicionCondicion.DisplayMember = "Descripcion";
+                cboCondicionCondicion.ValueMember = "IdCondicionPago";
+                cboCondicionCondicion.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR TIPO DE FORMA
         public void CargarForma()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdFormaPago, Descripcion FROM FormaPago WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboFormaCondicion.DisplayMember = "Descripcion";
-            cboFormaCondicion.ValueMember = "IdFormaPago";
-            cboFormaCondicion.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdFormaPago, Descripcion FROM FormaPago WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboFormaCondicion.DisplayMember = "Descripcion";
+                cboFormaCondicion.ValueMember = "IdFormaPago";
+                cboFormaCondicion.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //SE UTILIZA PARA EL CLIENTE Y SUCURSAL Y UNIDAD - PAIS
         public void CargarPais(ComboBox cbo)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT CodigoPais, Descripcion FROM UbicacionPais WHERE Estado = 1 ORDER BY Descripcion", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.DisplayMember = "Descripcion";
-            cbo.ValueMember = "CodigoPais";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT CodigoPais, Descripcion FROM UbicacionPais WHERE Estado = 1 ORDER BY Descripcion", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.DisplayMember = "Descripcion";
+                cbo.ValueMember = "CodigoPais";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //SE UTILIZA PARA EL CLIENTE Y SUCURSAL Y UNIDAD - PROVINCIA
         public void CargarDepartamento(ComboBox cbo, string idpais)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT CodigoDepartamento, Descripcion FROM UbicacionDepartamento WHERE CodigoPais = @idpais", con);
-            comando.Parameters.AddWithValue("@idpais", idpais);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "CodigoDepartamento";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT CodigoDepartamento, Descripcion FROM UbicacionDepartamento WHERE CodigoPais = @idpais", con);
+                comando.Parameters.AddWithValue("@idpais", idpais);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "CodigoDepartamento";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //SE UTILIZA PARA EL CLIENTE Y SUCURSAL - PROVINCIA
         public void CargarProvincia(ComboBox cbo, string iddepartamento)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT CodigoProvincia, Descripcion FROM  UbicacionProvincia WHERE CodigoDepartamento= @iddepartamento AND Estado=1", con);
-            comando.Parameters.AddWithValue("@iddepartamento", iddepartamento);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "CodigoProvincia";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT CodigoProvincia, Descripcion FROM  UbicacionProvincia WHERE CodigoDepartamento= @iddepartamento AND Estado=1", con);
+                comando.Parameters.AddWithValue("@iddepartamento", iddepartamento);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "CodigoProvincia";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //SE UTILIZA PARA EL CLIENTE Y SUCURSAL - DISTRITO
         public void CargarDistrito(ComboBox cbo, string idprovincia)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT CodigoDistrito,Descripcion FROM  UbicacionDistrito WHERE CodigoProvincia = @idprovincia", con);
-            comando.Parameters.AddWithValue("@idprovincia", idprovincia);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cbo.ValueMember = "CodigoDistrito";
-            cbo.DisplayMember = "Descripcion";
-            cbo.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT CodigoDistrito,Descripcion FROM  UbicacionDistrito WHERE CodigoProvincia = @idprovincia", con);
+                comando.Parameters.AddWithValue("@idprovincia", idprovincia);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "CodigoDistrito";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //CARGAR EL ULTIMO CODFIGO DE CLIENTE
+        public void CargarCodigoCliente()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdCliente FROM Clientes WHERE IdCliente = (SELECT MAX(IdCliente) FROM Clientes)", con);
+                da.Fill(dt);
+                datalistadoUltimosCodigos.DataSource = dt;
+                con.Close();
+                codigoCliente = Convert.ToInt32(datalistadoUltimosCodigos.SelectedCells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //CARGAR EL ULTIMO CODFIGO DE CLIENTE
+        public void CargarCodigoUnidad()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdDatosAnexosClienteUnidad FROM DatosAnexosCliente_Unidad WHERE IdDatosAnexosClienteUnidad = (SELECT MAX(IdDatosAnexosClienteUnidad) FROM DatosAnexosCliente_Unidad)", con);
+                da.Fill(dt);
+                datalistadoUltimosCodigos.DataSource = dt;
+                con.Close();
+                codigoUnidad = Convert.ToInt32(datalistadoUltimosCodigos.SelectedCells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 13, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //CARGAR EL ULTIMO CODIGO DE CONTACTO
+        public void CargarCodigoContacto()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdDatosAnexosClienteContacto FROM DatosAnexosCliente_Contacto WHERE IdDatosAnexosClienteContacto = (SELECT MAX(IdDatosAnexosClienteContacto) FROM DatosAnexosCliente_Contacto)", con);
+                da.Fill(dt);
+                datalistadoUltimosCodigos.DataSource = dt;
+                con.Close();
+                codigoContecto = Convert.ToInt32(datalistadoUltimosCodigos.SelectedCells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 14, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //CARGAR EL ULTIMO CODIGO DE CONDICION
+        public void CargarCodigoCondicion()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdDatosAnexosClienteCondicion FROM DatosAnexosCliente_Cindicion WHERE IdDatosAnexosClienteCondicion = (SELECT MAX(IdDatosAnexosClienteCondicion) FROM DatosAnexosCliente_Cindicion)", con);
+                da.Fill(dt);
+                datalistadoUltimosCodigos.DataSource = dt;
+                con.Close();
+                codigoCondicion = Convert.ToInt32(datalistadoUltimosCodigos.SelectedCells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 15, Program.IdUsuario, ex.Message, 0);
+            }
+        }
+
+        //CARGAR EL ULTIMO CODIGO DE LAS SUCURSALES
+        public void CargarCodigoSucursal()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdDatosAnexosClienteSucursal FROM DatosAnexosCliente_Sucursal WHERE IdDatosAnexosClienteSucursal = (SELECT MAX(IdDatosAnexosClienteSucursal) FROM DatosAnexosCliente_Sucursal)", con);
+                da.Fill(dt);
+                datalistadoUltimosCodigos.DataSource = dt;
+                con.Close();
+                codigoSucursal = Convert.ToInt32(datalistadoUltimosCodigos.SelectedCells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 16, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //ACCIONES DE LOS COMBOS AL SELECCIONAR - UBICACION DE CLIENTES Y OTROS MANTENIMIENTOS
@@ -249,22 +462,34 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //VIZUALIZAR DATOS--------------------------------------------------------------------
         public void Mostrar()
         {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da;
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            da = new SqlDataAdapter("SELECT TC.Descripcion AS [TIPO CLIENTE], C.Dni + C.Ruc + C.OtroDocumento as [DNI / RUC / OTRO], NombreCliente + C.PrimerNombre + ' ' + C.ApellidoPaterno + ' ' + C.ApellidoMaterno AS[RAZÓN SOCIAL / NOMBRES Y APELLIDOS], COALESCE(CONVERT(VARCHAR, C.TelefonoCelular), C.TelefonoFijo) AS[TELÉFONO / TELÉDONO FIJO], C.Correo1 AS[CORREO], C.Correo2, C.Dni, C.Ruc, C.OtroDocumento, C.NombreCliente, C.PrimerNombre, C.SegundoNombre, C.ApellidoPaterno, C.ApellidoMaterno, C.IdTipoCliente, C.TelefonoFijo, C.Correo2, C.IdGrupo, C.IdTipoMoneda, C.IdRetencion, C.IdTipoDocumento, C.Direccion, C.Referencia, P.CodigoPais, D.CodigoDepartamento, PR.CodigoProvincia, DI.CodigoDistrito, C.Lsoles, C.Ldolares, C.Codigo, C.IdCliente FROM Clientes C INNER JOIN TipoClientes TC ON C.IdTipoCliente = TC.IdTipoClientes INNER JOIN UbicacionPais P ON C.CodigoPais = P.CodigoPais INNER JOIN UbicacionDepartamento D ON C.CodigoDepartamento = D.CodigoDepartamento INNER JOIN UbicacionProvincia PR ON C.CodigoProvincia = PR.CodigoProvincia INNER JOIN UbicacionDistrito DI ON C.CodigoDistrito = DI.CodigoDistrito WHERE C.Estado = 1 ORDER BY NombreCliente + C.PrimerNombre + ' ' + C.ApellidoPaterno + ' ' + C.ApellidoMaterno", con);
-            da.Fill(dt);
-            datalistado.DataSource = dt;
-            con.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT TC.Descripcion AS [TIPO CLIENTE], C.Dni + C.Ruc + C.OtroDocumento as [DNI / RUC / OTRO], NombreCliente + C.PrimerNombre + ' ' + C.ApellidoPaterno + ' ' + C.ApellidoMaterno AS[RAZÓN SOCIAL / NOMBRES Y APELLIDOS], COALESCE(CONVERT(VARCHAR, C.TelefonoCelular), C.TelefonoFijo) AS[TELÉFONO / TELÉDONO FIJO], C.Correo1 AS[CORREO], C.Correo2, C.Dni, C.Ruc, C.OtroDocumento, C.NombreCliente, C.PrimerNombre, C.SegundoNombre, C.ApellidoPaterno, C.ApellidoMaterno, C.IdTipoCliente, C.TelefonoFijo, C.Correo2, C.IdGrupo, C.IdTipoMoneda, C.IdRetencion, C.IdTipoDocumento, C.Direccion, C.Referencia, P.CodigoPais, D.CodigoDepartamento, PR.CodigoProvincia, DI.CodigoDistrito, C.Lsoles, C.Ldolares, C.Codigo, C.IdCliente FROM Clientes C INNER JOIN TipoClientes TC ON C.IdTipoCliente = TC.IdTipoClientes INNER JOIN UbicacionPais P ON C.CodigoPais = P.CodigoPais INNER JOIN UbicacionDepartamento D ON C.CodigoDepartamento = D.CodigoDepartamento INNER JOIN UbicacionProvincia PR ON C.CodigoProvincia = PR.CodigoProvincia INNER JOIN UbicacionDistrito DI ON C.CodigoDistrito = DI.CodigoDistrito WHERE C.Estado = 1 ORDER BY NombreCliente + C.PrimerNombre + ' ' + C.ApellidoPaterno + ' ' + C.ApellidoMaterno", con);
+                da.Fill(dt);
+                datalistado.DataSource = dt;
+                con.Close();
+                ReordenarListado();
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
+        }
 
+        //CARGAR EL TAMAÑO DE MIS COLUMNAS Y VOLVER INVISIBLES OTRAS
+        public void ReordenarListado()
+        {
             datalistado.Columns[0].Width = 145;
             datalistado.Columns[1].Width = 150;
             datalistado.Columns[2].Width = 420;
             datalistado.Columns[3].Width = 140;
             datalistado.Columns[4].Width = 162;
-
             datalistado.Columns[5].Visible = false;
             datalistado.Columns[6].Visible = false;
             datalistado.Columns[7].Visible = false;
@@ -291,7 +516,6 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             datalistado.Columns[28].Visible = false;
             datalistado.Columns[29].Visible = false;
             datalistado.Columns[30].Visible = false;
-
             alternarColorFilas(datalistado);
         }
 
@@ -302,10 +526,10 @@ namespace ArenasProyect3.Modulos.Mantenimientos
 
             foreach (DataGridViewRow dgv in datalistado.Rows)
             {
-                string tipocliente = dgv.Cells[1].Value.ToString();
+                string tipocliente = dgv.Cells[0].Value.ToString();
                 string documento = dgv.Cells[1].Value.ToString();
-                string cliente = dgv.Cells[1].Value.ToString();
-                string telefono = dgv.Cells[1].Value.ToString();
+                string cliente = dgv.Cells[2].Value.ToString();
+                string telefono = dgv.Cells[3].Value.ToString();
 
                 datalistadoExcel.Rows.Add(new[] { tipocliente, documento, cliente, telefono });
             }
@@ -372,9 +596,14 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 MessageBox.Show(ex.Message);
             }
+            BloquearRedimension(dgv);
+        }
 
+        //FUNCION PARA BLOQUERA LA REDIMENSION
+        public void BloquearRedimension(DataGridView DGV)
+        {
             //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistado.Columns)
+            foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
@@ -688,10 +917,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                     }
                     else
                     {
-                        try
+
+                        DialogResult boton = MessageBox.Show("¿Realmente desea guardar a este cliente?.", "Registro de Cliente", MessageBoxButtons.OKCancel);
+                        if (boton == DialogResult.OK)
                         {
-                            DialogResult boton = MessageBox.Show("¿Realmente desea guardar a este cliente?.", "Registro de Cliente", MessageBoxButtons.OKCancel);
-                            if (boton == DialogResult.OK)
+                            try
                             {
                                 SqlConnection con = new SqlConnection();
                                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
@@ -774,11 +1004,17 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                                 panelAgregarCliente.Visible = false;
                                 Mostrar();
                                 LimpiarCamposNuevoCliente();
+
+                                CargarCodigoCliente();
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(1, this.Name, 9, Program.IdUsuario, "Guardar cliente", codigoCliente);
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+                            }
                         }
                     }
                 }
@@ -814,10 +1050,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                     }
                     else
                     {
-                        try
+
+                        DialogResult boton = MessageBox.Show("¿Realmente desea editar a este cliente?.", "Registro de Cliente", MessageBoxButtons.OKCancel);
+                        if (boton == DialogResult.OK)
                         {
-                            DialogResult boton = MessageBox.Show("¿Realmente desea editar a este cliente?.", "Registro de Cliente", MessageBoxButtons.OKCancel);
-                            if (boton == DialogResult.OK)
+                            try
                             {
                                 SqlConnection con = new SqlConnection();
                                 con.ConnectionString = Conexion.ConexionMaestra.conexion;
@@ -901,11 +1138,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                                 panelAgregarCliente.Visible = false;
                                 Mostrar();
                                 LimpiarCamposNuevoCliente();
+
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(8, this.Name, 9, Program.IdUsuario, "Editar cliente", idclienteseleccionado);
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+                            }
                         }
                     }
                 }
@@ -918,128 +1160,132 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //MOSTARA UNIDADES DEL CLIENTE SELECCIOANDO
         public void MostrarUnidad(int idcliente)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteUnidad", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idcliente", idcliente);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadounidad.DataSource = dt;
-            con.Close();
-
-            datalistadounidad.Columns[6].Visible = false;
-
-            datalistadounidad.Columns[0].Width = 260;
-            datalistadounidad.Columns[1].Width = 190;
-            datalistadounidad.Columns[2].Width = 150;
-            datalistadounidad.Columns[3].Width = 150;
-            datalistadounidad.Columns[4].Width = 100;
-            datalistadounidad.Columns[5].Width = 103;
-
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadounidad.Columns)
+            try
             {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarClienteUnidad", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadounidad.DataSource = dt;
+                con.Close();
+                datalistadounidad.Columns[6].Visible = false;
+                datalistadounidad.Columns[0].Width = 260;
+                datalistadounidad.Columns[1].Width = 190;
+                datalistadounidad.Columns[2].Width = 150;
+                datalistadounidad.Columns[3].Width = 150;
+                datalistadounidad.Columns[4].Width = 100;
+                datalistadounidad.Columns[5].Width = 103;
+                BloquearRedimension(datalistadounidad);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //MOSTRAR CONTACTOS DEL CLIENTE SELECCIOANDO
         public void MostrarContacto(int idcliente)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteContacto", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idcliente", idcliente);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadocontacto.DataSource = dt;
-            con.Close();
-
-            datalistadocontacto.Columns[7].Visible = false;
-
-            datalistadocontacto.Columns[0].Width = 220;
-            datalistadocontacto.Columns[1].Width = 85;
-            datalistadocontacto.Columns[2].Width = 85;
-            datalistadocontacto.Columns[3].Width = 180;
-            datalistadocontacto.Columns[4].Width = 172;
-            datalistadocontacto.Columns[5].Width = 105;
-            datalistadocontacto.Columns[6].Width = 105;
-
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadocontacto.Columns)
+            try
             {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarClienteContacto", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadocontacto.DataSource = dt;
+                con.Close();
+                datalistadocontacto.Columns[7].Visible = false;
+                datalistadocontacto.Columns[0].Width = 220;
+                datalistadocontacto.Columns[1].Width = 85;
+                datalistadocontacto.Columns[2].Width = 85;
+                datalistadocontacto.Columns[3].Width = 180;
+                datalistadocontacto.Columns[4].Width = 172;
+                datalistadocontacto.Columns[5].Width = 105;
+                datalistadocontacto.Columns[6].Width = 105;
+                BloquearRedimension(datalistadocontacto);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //MOSTRAR CONDICIONES DEL CLIENTE SELECCIOAND
         public void MostrarCondicion(int idcliente)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteCondicion", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idcliente", idcliente);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoCondicion.DataSource = dt;
-            con.Close();
-
-            datalistadoCondicion.Columns[3].Visible = false;
-
-            datalistadoCondicion.Columns[0].Width = 430;
-            datalistadoCondicion.Columns[1].Width = 290;
-            datalistadoCondicion.Columns[2].Width = 233;
-
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadoCondicion.Columns)
+            try
             {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarClienteCondicion", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoCondicion.DataSource = dt;
+                con.Close();
+                datalistadoCondicion.Columns[3].Visible = false;
+                datalistadoCondicion.Columns[0].Width = 430;
+                datalistadoCondicion.Columns[1].Width = 290;
+                datalistadoCondicion.Columns[2].Width = 233;
+                BloquearRedimension(datalistadoCondicion);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
             }
         }
 
         //MOSTRAR SUCURSALES DEL CLEINTE SELECCIOANDO
         public void MostrarSucursal(int idcliente)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarClienteSucursal", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idcliente", idcliente);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadosucursal.DataSource = dt;
-            con.Close();
-
-            datalistadosucursal.Columns[8].Visible = false;
-
-            datalistadosucursal.Columns[0].Width = 250;
-            datalistadosucursal.Columns[1].Width = 120;
-            datalistadosucursal.Columns[2].Width = 150;
-            datalistadosucursal.Columns[3].Width = 90;
-            datalistadosucursal.Columns[4].Width = 100;
-            datalistadosucursal.Columns[5].Width = 140;
-            datalistadosucursal.Columns[6].Width = 140;
-            datalistadosucursal.Columns[7].Width = 140;
-
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in datalistadosucursal.Columns)
+            try
             {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("MostrarClienteSucursal", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadosucursal.DataSource = dt;
+                con.Close();
+                datalistadosucursal.Columns[8].Visible = false;
+                datalistadosucursal.Columns[0].Width = 250;
+                datalistadosucursal.Columns[1].Width = 120;
+                datalistadosucursal.Columns[2].Width = 150;
+                datalistadosucursal.Columns[3].Width = 90;
+                datalistadosucursal.Columns[4].Width = 100;
+                datalistadosucursal.Columns[5].Width = 140;
+                datalistadosucursal.Columns[6].Width = 140;
+                datalistadosucursal.Columns[7].Width = 140;
+                BloquearRedimension(datalistadosucursal);
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
             }
         }
 
@@ -1047,77 +1293,117 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //CARGAR RESPONSABLES
         public void CargarResponsable()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS NOMBRE FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres + ' ' + Apellidos", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboResponsable.DisplayMember = "NOMBRE";
-            cboResponsable.ValueMember = "IdUsuarios";
-            cboResponsable.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS NOMBRE FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoRequerimientoVenta = 1 ORDER BY Nombres + ' ' + Apellidos", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboResponsable.DisplayMember = "NOMBRE";
+                cboResponsable.ValueMember = "IdUsuarios";
+                cboResponsable.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR ZONAS
         public void CargarZona()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdZona, Descripcion FROM Zona WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboZona.DisplayMember = "Descripcion";
-            cboZona.ValueMember = "IdZona";
-            cboZona.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdZona, Descripcion FROM Zona WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboZona.DisplayMember = "Descripcion";
+                cboZona.ValueMember = "IdZona";
+                cboZona.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR AREAS
         public void CargarArea()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdArea, Descripcion FROM Area WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboAreaContacto.DisplayMember = "Descripcion";
-            cboAreaContacto.ValueMember = "IdArea";
-            cboAreaContacto.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdArea, Descripcion FROM Area WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboAreaContacto.DisplayMember = "Descripcion";
+                cboAreaContacto.ValueMember = "IdArea";
+                cboAreaContacto.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR CARGOS
         public void CargarCargo()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdCargo, Descripcion FROM Cargo WHERE Estado = 1", con);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboCargoContacto.DisplayMember = "Descripcion";
-            cboCargoContacto.ValueMember = "IdCargo";
-            cboCargoContacto.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdCargo, Descripcion FROM Cargo WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboCargoContacto.DisplayMember = "Descripcion";
+                cboCargoContacto.ValueMember = "IdCargo";
+                cboCargoContacto.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //CARGAR UNIDADES DE DATOS ANEZOS
         public void CargarUnidadDatosAnexos(int idcliente)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand comando = new SqlCommand("Select IdDatosAnexosClienteUnidad, Descripcion from DatosAnexosCliente_Unidad where Estado = 1 and IdCLiente = @idcliente", con);
-            comando.Parameters.AddWithValue("@idcliente", idcliente);
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable dt = new DataTable();
-            data.Fill(dt);
-            cboUnidadContacto.DisplayMember = "Descripcion";
-            cboUnidadContacto.ValueMember = "IdDatosAnexosClienteUnidad";
-            cboUnidadContacto.DataSource = dt;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("Select IdDatosAnexosClienteUnidad, Descripcion from DatosAnexosCliente_Unidad where Estado = 1 and IdCLiente = @idcliente", con);
+                comando.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboUnidadContacto.DisplayMember = "Descripcion";
+                cboUnidadContacto.ValueMember = "IdDatosAnexosClienteUnidad";
+                cboUnidadContacto.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }
         }
 
         //ACCIONES UNIDAD------------------------------------------------------------------------
@@ -1161,7 +1447,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             if (datalistadounidad.RowCount == 0)
             {
-                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema");
+                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema",MessageBoxButtons.OK);
             }
             else
             {
@@ -1208,10 +1494,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         txtLatitud.Text = "";
                         txtLongitud.Text = "";
                         txtNombreUnidad.Text = "";
+
+                        CargarCodigoUnidad();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(1, this.Name, 13, Program.IdUsuario, "Guardar unidad cliente", codigoUnidad);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 13, Program.IdUsuario, ex.Message, 0);
                     }
                 }
             }
@@ -1241,10 +1533,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         lblCodigoUnida.Text = "0";
 
                         MostrarUnidad(idclienteseleccionado);
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(2, this.Name, 13, Program.IdUsuario, "Eliminar unidad cliente", Convert.ToInt32(lblCodigoUnida.Text));
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 13, Program.IdUsuario, ex.Message, 0);
                     }
                 }
                 else
@@ -1294,7 +1591,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             if (datalistadocontacto.RowCount == 0)
             {
-                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema");
+                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema",MessageBoxButtons.OK);
             }
             else
             {
@@ -1341,10 +1638,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         txtTelefonoContacto.Text = "";
                         txtAnexoContacto.Text = "";
                         txtCorreoContacto.Text = "";
+                        
+                        CargarCodigoContacto();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(1, this.Name, 14, Program.IdUsuario, "Guardar contacto cliente", codigoContecto);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 14, Program.IdUsuario, ex.Message, 0);
                     }
                 }
             }
@@ -1373,10 +1676,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         MostrarContacto(idclienteseleccionado);
                         MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación Contacto", MessageBoxButtons.OK);
                         lblCodigoContacto.Text = "0";
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(2, this.Name, 14, Program.IdUsuario, "Eliminar contacto cliente", Convert.ToInt32(lblCodigoContacto.Text));
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 14, Program.IdUsuario, ex.Message, 0);
                     }
                 }
                 else
@@ -1425,7 +1733,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             if (datalistadoCondicion.RowCount == 0)
             {
-                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema");
+                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema",MessageBoxButtons.OK);
             }
             else
             {
@@ -1456,10 +1764,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
 
                     MostrarCondicion(idclienteseleccionado);
                     MessageBox.Show("Registro ingresado exitosamente.", "Nueva Condición", MessageBoxButtons.OK);
+
+                    CargarCodigoCondicion();
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(1, this.Name, 15, Program.IdUsuario, "Guardar condición cliente", codigoCondicion);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(13, this.Name, 15, Program.IdUsuario, ex.Message, 0);
                 }
             }
         }
@@ -1487,10 +1801,15 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         MostrarCondicion(idclienteseleccionado);
                         MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación de una Condición", MessageBoxButtons.OK);
                         lblCodigoCOndicion.Text = "0";
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(2, this.Name, 15, Program.IdUsuario, "Eliminar condición cliente", Convert.ToInt32(lblCodigoCOndicion.Text));
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 15, Program.IdUsuario, ex.Message, 0);
                     }
                 }
                 else
@@ -1565,7 +1884,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         {
             if (datalistadosucursal.RowCount == 0)
             {
-                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema");
+                MessageBox.Show("No hay registros para poder visualizar.", "Validación del Sistema",MessageBoxButtons.OK);
             }
             else
             {
@@ -1611,10 +1930,16 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                         txtNombreSucursal.Text = "";
                         txtDireccionSucursal.Text = "";
                         txtTelefonoSucursal.Text = "";
+
+                        CargarCodigoSucursal();
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(1, this.Name, 16, Program.IdUsuario, "Guardar sucursal cliente", codigoSucursal);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 16, Program.IdUsuario, ex.Message, 0);
                     }
                 }
             }
@@ -1628,19 +1953,31 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 if (lblCodigoSucursal.Text != "0")
                 {
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("EliminarCliente_Sucursal", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(lblCodigoSucursal.Text));
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("EliminarCliente_Sucursal", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", Convert.ToInt32(lblCodigoSucursal.Text));
+                        cmd.ExecuteNonQuery();
+                        con.Close();
 
-                    MostrarSucursal(idclienteseleccionado);
-                    MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación nueva", MessageBoxButtons.OK);
-                    lblCodigoSucursal.Text = "0";
+                        MostrarSucursal(idclienteseleccionado);
+                        MessageBox.Show("Eliminación correcta, operación hecha satisfactoriamente.", "Eliminación nueva", MessageBoxButtons.OK);
+                        lblCodigoSucursal.Text = "0";
+
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(2, this.Name, 16, Program.IdUsuario, "Eliminar sucursal cliente", codigoSucursal);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                        ClassResourses.RegistrarAuditora(13, this.Name, 16, Program.IdUsuario, ex.Message, 0);
+                    }
                 }
                 else
                 {
@@ -1683,43 +2020,13 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                     da.Fill(dt);
                     datalistado.DataSource = dt;
                     con.Close();
-
-                    datalistado.Columns[0].Width = 145;
-                    datalistado.Columns[1].Width = 150;
-                    datalistado.Columns[2].Width = 420;
-                    datalistado.Columns[3].Width = 140;
-                    datalistado.Columns[4].Width = 162;
-
-                    datalistado.Columns[5].Visible = false;
-                    datalistado.Columns[6].Visible = false;
-                    datalistado.Columns[7].Visible = false;
-                    datalistado.Columns[8].Visible = false;
-                    datalistado.Columns[9].Visible = false;
-                    datalistado.Columns[10].Visible = false;
-                    datalistado.Columns[11].Visible = false;
-                    datalistado.Columns[12].Visible = false;
-                    datalistado.Columns[13].Visible = false;
-                    datalistado.Columns[14].Visible = false;
-                    datalistado.Columns[15].Visible = false;
-                    datalistado.Columns[16].Visible = false;
-                    datalistado.Columns[17].Visible = false;
-                    datalistado.Columns[18].Visible = false;
-                    datalistado.Columns[19].Visible = false;
-                    datalistado.Columns[20].Visible = false;
-                    datalistado.Columns[21].Visible = false;
-                    datalistado.Columns[22].Visible = false;
-                    datalistado.Columns[23].Visible = false;
-                    datalistado.Columns[24].Visible = false;
-                    datalistado.Columns[25].Visible = false;
-                    datalistado.Columns[26].Visible = false;
-                    datalistado.Columns[27].Visible = false;
-                    datalistado.Columns[28].Visible = false;
-                    datalistado.Columns[29].Visible = false;
-                    datalistado.Columns[30].Visible = false;
+                    ReordenarListado();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
                 }
             }
             else if (cboTipoBusqueda.Text == "DOCUMENTO")
@@ -1738,43 +2045,13 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                     da.Fill(dt);
                     datalistado.DataSource = dt;
                     con.Close();
-
-                    datalistado.Columns[0].Width = 145;
-                    datalistado.Columns[1].Width = 150;
-                    datalistado.Columns[2].Width = 420;
-                    datalistado.Columns[3].Width = 140;
-                    datalistado.Columns[4].Width = 162;
-
-                    datalistado.Columns[5].Visible = false;
-                    datalistado.Columns[6].Visible = false;
-                    datalistado.Columns[7].Visible = false;
-                    datalistado.Columns[8].Visible = false;
-                    datalistado.Columns[9].Visible = false;
-                    datalistado.Columns[10].Visible = false;
-                    datalistado.Columns[11].Visible = false;
-                    datalistado.Columns[12].Visible = false;
-                    datalistado.Columns[13].Visible = false;
-                    datalistado.Columns[14].Visible = false;
-                    datalistado.Columns[15].Visible = false;
-                    datalistado.Columns[16].Visible = false;
-                    datalistado.Columns[17].Visible = false;
-                    datalistado.Columns[18].Visible = false;
-                    datalistado.Columns[19].Visible = false;
-                    datalistado.Columns[20].Visible = false;
-                    datalistado.Columns[21].Visible = false;
-                    datalistado.Columns[22].Visible = false;
-                    datalistado.Columns[23].Visible = false;
-                    datalistado.Columns[24].Visible = false;
-                    datalistado.Columns[25].Visible = false;
-                    datalistado.Columns[26].Visible = false;
-                    datalistado.Columns[27].Visible = false;
-                    datalistado.Columns[28].Visible = false;
-                    datalistado.Columns[29].Visible = false;
-                    datalistado.Columns[30].Visible = false;
+                    ReordenarListado();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                    ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
                 }
             }
         }
@@ -1868,62 +2145,74 @@ namespace ArenasProyect3.Modulos.Mantenimientos
         //BOTON PARA EXPORTAR MI LISTADO DE CLIENTES
         private void btnExportarListadoClientes_Click(object sender, EventArgs e)
         {
-            MostrarExcel();
-
-            SLDocument sl = new SLDocument();
-            SLStyle style = new SLStyle();
-            SLStyle styleC = new SLStyle();
-
-            //COLUMNAS
-            sl.SetColumnWidth(1, 20);
-            sl.SetColumnWidth(2, 20);
-            sl.SetColumnWidth(3, 70);
-            sl.SetColumnWidth(4, 15);
-
-            //CABECERA
-            style.Font.FontSize = 11;
-            style.Font.Bold = true;
-            style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-            style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
-            style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            //FILAS
-            styleC.Font.FontSize = 10;
-            styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-
-            styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-            styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
-
-            int ic = 1;
-            foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+            try
             {
-                sl.SetCellValue(1, ic, column.HeaderText.ToString());
-                sl.SetCellStyle(1, ic, style);
-                ic++;
-            }
+                MostrarExcel();
 
-            int ir = 2;
-            foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                SLDocument sl = new SLDocument();
+                SLStyle style = new SLStyle();
+                SLStyle styleC = new SLStyle();
+
+                //COLUMNAS
+                sl.SetColumnWidth(1, 20);
+                sl.SetColumnWidth(2, 20);
+                sl.SetColumnWidth(3, 70);
+                sl.SetColumnWidth(4, 15);
+
+                //CABECERA
+                style.Font.FontSize = 11;
+                style.Font.Bold = true;
+                style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+                style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+                style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                //FILAS
+                styleC.Font.FontSize = 10;
+                styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+                styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+                styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+
+                int ic = 1;
+                foreach (DataGridViewColumn column in datalistadoExcel.Columns)
+                {
+                    sl.SetCellValue(1, ic, column.HeaderText.ToString());
+                    sl.SetCellStyle(1, ic, style);
+                    ic++;
+                }
+
+                int ir = 2;
+                foreach (DataGridViewRow row in datalistadoExcel.Rows)
+                {
+                    sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+                    sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+                    sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+                    sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+                    sl.SetCellStyle(ir, 1, styleC);
+                    sl.SetCellStyle(ir, 2, styleC);
+                    sl.SetCellStyle(ir, 3, styleC);
+                    sl.SetCellStyle(ir, 4, styleC);
+                    ir++;
+                }
+
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                sl.SaveAs(desktopPath + @"\Reporte de Clientes.xlsx");
+                MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la ubicación siguiente: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(5, this.Name, 9, Program.IdUsuario, "Exportar listado de clientes en EXCEL", 0);
+            }
+            catch(Exception ex)
             {
-                sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
-                sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
-                sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
-                sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
-                sl.SetCellStyle(ir, 1, styleC);
-                sl.SetCellStyle(ir, 2, styleC);
-                sl.SetCellStyle(ir, 3, styleC);
-                sl.SetCellStyle(ir, 4, styleC);
-                ir++;
-            }
-
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sl.SaveAs(desktopPath + @"\Reporte de Clientes.xlsx");
-            MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la ubicación siguiente: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message);
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 9, Program.IdUsuario, ex.Message, 0);
+            }    
         }
 
         //BOTON PARA ABIRIR MI MANUAL DE USUARIO
@@ -1938,6 +2227,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             Process.Start(Manual);
         }
 
+        //EVITAR CARGAR DATOS O INGRESAR LETRAS
         private void txtSoles_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 1. Permite la tecla de control (como Backspace)
@@ -1945,13 +2235,11 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             {
                 return; // Permite el carácter y sale
             }
-
             // 2. Permite dígitos del 0 al 9
             if (char.IsDigit(e.KeyChar))
             {
                 return; // Permite el dígito y sale
             }
-
             // 3. Permite el punto decimal '.'
             // (Asegúrate de que solo se pueda ingresar uno y que el control lo tenga como separador decimal)
             if (e.KeyChar == '.')
@@ -1967,78 +2255,40 @@ namespace ArenasProyect3.Modulos.Mantenimientos
                 }
                 return; // Permite el primer punto y sale
             }
-
             // Si no es un dígito, control, o el primer punto, se ignora
             e.Handled = true;
         }
 
-        //private void txtSoles_TextChanged(object sender, EventArgs e)
-        //{
-
-        //}
-
-        private void txtSoles_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-
-            if (char.IsControl(e.KeyChar))
-            {
-                return; 
-            }
-
-            // 2. PERMITIR Dígitos (0-9)
-            if (char.IsDigit(e.KeyChar))
-            {
-                return; 
-            }
-
-            
-            if (e.KeyChar == '.')
-            {
-                
-                if (textBox.Text.Contains("."))
-                {
-                    e.Handled = true; 
-                    return;
-                }
-                return; 
-            }
-
-            
-            e.Handled = true; 
-        }
-
+        //EVITAR CARGAR DATOS O INGRESAR LETRAS
         private void txtDolares_KeyPress(object sender, KeyPressEventArgs e)
         {
-    
-            TextBox textBox = (TextBox)sender;
-
-           
+            // 1. Permite la tecla de control (como Backspace)
             if (char.IsControl(e.KeyChar))
             {
-                return;
+                return; // Permite el carácter y sale
             }
-
-           
+            // 2. Permite dígitos del 0 al 9
             if (char.IsDigit(e.KeyChar))
             {
-                return; 
+                return; // Permite el dígito y sale
             }
-
-            
+            // 3. Permite el punto decimal '.'
+            // (Asegúrate de que solo se pueda ingresar uno y que el control lo tenga como separador decimal)
             if (e.KeyChar == '.')
             {
-               
+                // El TextBox actual
+                TextBox textBox = (TextBox)sender;
+
+                // Si el texto ya contiene un punto, o si es la primera posición y no es un punto...
                 if (textBox.Text.Contains("."))
                 {
-                    e.Handled = true; 
+                    e.Handled = true; // Ignora el punto si ya existe uno
                     return;
                 }
-                return; 
+                return; // Permite el primer punto y sale
             }
-
-          
-            e.Handled = true; 
+            // Si no es un dígito, control, o el primer punto, se ignora
+            e.Handled = true;
         }
     }
 }

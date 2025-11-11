@@ -30,37 +30,41 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoModelos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.datalistadoModeloRecienIngresado = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.cboEstadoNombre = new System.Windows.Forms.ComboBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.cboEstadoAtributo = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtCodigoLinea = new System.Windows.Forms.TextBox();
             this.Cancelar = new System.Windows.Forms.Button();
+            this.datalistadoLineas = new System.Windows.Forms.DataGridView();
             this.label32 = new System.Windows.Forms.Label();
             this.cboBusquedaModelo = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtBusquedaModelo = new System.Windows.Forms.TextBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.btnEditar2 = new System.Windows.Forms.Button();
-            this.CargarAtributos = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.label30 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnGuardar2 = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.datalistadoLineas = new System.Windows.Forms.DataGridView();
+            this.CargarAtributos = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.lblCodigoLinea = new System.Windows.Forms.Label();
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.lblEstadoAtributo = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtAbreviatura = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -75,6 +79,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label1 = new System.Windows.Forms.Label();
             this.panelDefinicionAtributos = new System.Windows.Forms.Panel();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ckGenerales = new System.Windows.Forms.CheckBox();
             this.panel21 = new System.Windows.Forms.Panel();
             this.panelCamposGeneral = new System.Windows.Forms.Panel();
             this.label51 = new System.Windows.Forms.Label();
@@ -158,8 +164,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel24 = new System.Windows.Forms.Panel();
             this.cboTipoCaracteristicas2 = new System.Windows.Forms.ComboBox();
             this.cboTipoCaracteristicas1 = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ckGenerales = new System.Windows.Forms.CheckBox();
             this.panel25 = new System.Windows.Forms.Panel();
             this.ckCaracteristicas1 = new System.Windows.Forms.CheckBox();
             this.ckCamposMedida1 = new System.Windows.Forms.CheckBox();
@@ -191,14 +195,60 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel26 = new System.Windows.Forms.Panel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
+            this.panelDefinicionNombre = new System.Windows.Forms.Panel();
+            this.btnRetrocederNombre = new System.Windows.Forms.Button();
+            this.label41 = new System.Windows.Forms.Label();
+            this.btnGuardarDefinicionNombre = new System.Windows.Forms.Button();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.panel30 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.flpanelDefinido = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.flpanelSeleccionado = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.ckTipoCaracteristicas1 = new System.Windows.Forms.CheckBox();
+            this.ckTipoCaracteristicas2 = new System.Windows.Forms.CheckBox();
+            this.ckTipoCaracteristicas4 = new System.Windows.Forms.CheckBox();
+            this.ckTipoCaracteristicas3 = new System.Windows.Forms.CheckBox();
+            this.ckTipoMedida2 = new System.Windows.Forms.CheckBox();
+            this.ckTipoMedida1 = new System.Windows.Forms.CheckBox();
+            this.ckTipoMedida4 = new System.Windows.Forms.CheckBox();
+            this.ckTipoMedida3 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiametro2 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiametro1 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiametro3 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiametro4 = new System.Windows.Forms.CheckBox();
+            this.ckTipoFormas2 = new System.Windows.Forms.CheckBox();
+            this.ckTipoFormas1 = new System.Windows.Forms.CheckBox();
+            this.ckTipoFormas4 = new System.Windows.Forms.CheckBox();
+            this.ckTipoFormas3 = new System.Windows.Forms.CheckBox();
+            this.ckTipoEspesores2 = new System.Windows.Forms.CheckBox();
+            this.ckTipoEspesores1 = new System.Windows.Forms.CheckBox();
+            this.ckTipoEspesores4 = new System.Windows.Forms.CheckBox();
+            this.ckTipoEspesores3 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiseño2 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiseño1 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiseño4 = new System.Windows.Forms.CheckBox();
+            this.ckTipoDiseño3 = new System.Windows.Forms.CheckBox();
+            this.ckTipoNumeroTipos1 = new System.Windows.Forms.CheckBox();
+            this.ckTipoNumeroTipos2 = new System.Windows.Forms.CheckBox();
+            this.ckTipoNumeroTipos4 = new System.Windows.Forms.CheckBox();
+            this.ckTipoNumeroTipos3 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoModeloRecienIngresado)).BeginInit();
             this.panel2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoLineas)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelDefinicionAtributos.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel21.SuspendLayout();
             this.panelCamposGeneral.SuspendLayout();
             this.panelCamposVariosO1.SuspendLayout();
@@ -217,8 +267,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposMedidas2.SuspendLayout();
             this.panelCamposCaracteristicas2.SuspendLayout();
             this.panelCamposCaracteristicas1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panelDefinicionNombre.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -249,7 +302,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(0, 0);
@@ -281,19 +334,21 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.btnExportarExcel);
+            this.panel2.Controls.Add(this.cboEstadoNombre);
+            this.panel2.Controls.Add(this.label37);
+            this.panel2.Controls.Add(this.cboEstadoAtributo);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.txtCodigoLinea);
             this.panel2.Controls.Add(this.Cancelar);
+            this.panel2.Controls.Add(this.datalistadoLineas);
             this.panel2.Controls.Add(this.label32);
             this.panel2.Controls.Add(this.cboBusquedaModelo);
-            this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.txtBusquedaModelo);
             this.panel2.Controls.Add(this.lblCancelar);
             this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Controls.Add(this.datalistadoLineas);
             this.panel2.Controls.Add(this.label35);
-            this.panel2.Controls.Add(this.lblCodigoLinea);
             this.panel2.Controls.Add(this.cboEstado);
             this.panel2.Controls.Add(this.label28);
-            this.panel2.Controls.Add(this.lblEstadoAtributo);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.txtAbreviatura);
             this.panel2.Controls.Add(this.label6);
@@ -306,9 +361,9 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(192, 41);
+            this.panel2.Location = new System.Drawing.Point(173, 31);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(797, 560);
+            this.panel2.Size = new System.Drawing.Size(834, 597);
             this.panel2.TabIndex = 1985;
             // 
             // btnExportarExcel
@@ -317,12 +372,75 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnExportarExcel.FlatAppearance.BorderSize = 0;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
-            this.btnExportarExcel.Location = new System.Drawing.Point(742, 367);
+            this.btnExportarExcel.Location = new System.Drawing.Point(778, 386);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(38, 38);
             this.btnExportarExcel.TabIndex = 2005;
             this.btnExportarExcel.UseVisualStyleBackColor = true;
             this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
+            // cboEstadoNombre
+            // 
+            this.cboEstadoNombre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEstadoNombre.Enabled = false;
+            this.cboEstadoNombre.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstadoNombre.FormattingEnabled = true;
+            this.cboEstadoNombre.Items.AddRange(new object[] {
+            "ACTIVO",
+            "INACTIVO"});
+            this.cboEstadoNombre.Location = new System.Drawing.Point(568, 240);
+            this.cboEstadoNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboEstadoNombre.Name = "cboEstadoNombre";
+            this.cboEstadoNombre.Size = new System.Drawing.Size(120, 22);
+            this.cboEstadoNombre.TabIndex = 2007;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(462, 243);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(99, 14);
+            this.label37.TabIndex = 2006;
+            this.label37.Text = "ESTADO NOMBRE:";
+            // 
+            // cboEstadoAtributo
+            // 
+            this.cboEstadoAtributo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEstadoAtributo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstadoAtributo.FormattingEnabled = true;
+            this.cboEstadoAtributo.Items.AddRange(new object[] {
+            "MODELO YA DEFINIDO",
+            "MODELO POR DEFINIR"});
+            this.cboEstadoAtributo.Location = new System.Drawing.Point(524, 208);
+            this.cboEstadoAtributo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboEstadoAtributo.Name = "cboEstadoAtributo";
+            this.cboEstadoAtributo.Size = new System.Drawing.Size(164, 21);
+            this.cboEstadoAtributo.TabIndex = 2005;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(771, 427);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 13);
+            this.label11.TabIndex = 1999;
+            this.label11.Text = "EXPORTAR";
+            // 
+            // txtCodigoLinea
+            // 
+            this.txtCodigoLinea.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigoLinea.Enabled = false;
+            this.txtCodigoLinea.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoLinea.Location = new System.Drawing.Point(173, 240);
+            this.txtCodigoLinea.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoLinea.MaxLength = 2;
+            this.txtCodigoLinea.Name = "txtCodigoLinea";
+            this.txtCodigoLinea.Size = new System.Drawing.Size(238, 21);
+            this.txtCodigoLinea.TabIndex = 2004;
             // 
             // Cancelar
             // 
@@ -330,7 +448,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.Cancelar.FlatAppearance.BorderSize = 0;
             this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Cancelar.Image")));
-            this.Cancelar.Location = new System.Drawing.Point(647, 95);
+            this.Cancelar.Location = new System.Drawing.Point(671, 119);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(30, 30);
             this.Cancelar.TabIndex = 2003;
@@ -338,11 +456,59 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.Cancelar.Visible = false;
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
+            // datalistadoLineas
+            // 
+            this.datalistadoLineas.AllowUserToAddRows = false;
+            this.datalistadoLineas.AllowUserToDeleteRows = false;
+            this.datalistadoLineas.AllowUserToResizeColumns = false;
+            this.datalistadoLineas.AllowUserToResizeRows = false;
+            this.datalistadoLineas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoLineas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.datalistadoLineas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle89.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle89.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle89.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle89.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle89.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle89.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle89;
+            this.datalistadoLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle90.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle90.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle90.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle90.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle90.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle90.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle90;
+            this.datalistadoLineas.Location = new System.Drawing.Point(17, 276);
+            this.datalistadoLineas.Margin = new System.Windows.Forms.Padding(4);
+            this.datalistadoLineas.MultiSelect = false;
+            this.datalistadoLineas.Name = "datalistadoLineas";
+            this.datalistadoLineas.ReadOnly = true;
+            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle91.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle91.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle91;
+            this.datalistadoLineas.RowHeadersVisible = false;
+            this.datalistadoLineas.RowHeadersWidth = 51;
+            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle92;
+            this.datalistadoLineas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoLineas.Size = new System.Drawing.Size(753, 276);
+            this.datalistadoLineas.TabIndex = 1994;
+            this.datalistadoLineas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoLineas_CellDoubleClick);
+            // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(30, 532);
+            this.label32.Location = new System.Drawing.Point(15, 565);
             this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(127, 13);
@@ -357,32 +523,21 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboBusquedaModelo.Items.AddRange(new object[] {
             "DESCRIPCIÓN",
             "ABREVIATURA"});
-            this.cboBusquedaModelo.Location = new System.Drawing.Point(165, 529);
+            this.cboBusquedaModelo.Location = new System.Drawing.Point(150, 560);
             this.cboBusquedaModelo.Margin = new System.Windows.Forms.Padding(4);
             this.cboBusquedaModelo.Name = "cboBusquedaModelo";
             this.cboBusquedaModelo.Size = new System.Drawing.Size(133, 21);
             this.cboBusquedaModelo.TabIndex = 2000;
             this.cboBusquedaModelo.SelectedIndexChanged += new System.EventHandler(this.cboBusquedaModelo_SelectedIndexChanged);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(735, 408);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 13);
-            this.label11.TabIndex = 1999;
-            this.label11.Text = "EXPORTAR";
-            // 
             // txtBusquedaModelo
             // 
             this.txtBusquedaModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusquedaModelo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusquedaModelo.Location = new System.Drawing.Point(311, 529);
+            this.txtBusquedaModelo.Location = new System.Drawing.Point(290, 560);
             this.txtBusquedaModelo.Margin = new System.Windows.Forms.Padding(4);
             this.txtBusquedaModelo.Name = "txtBusquedaModelo";
-            this.txtBusquedaModelo.Size = new System.Drawing.Size(424, 21);
+            this.txtBusquedaModelo.Size = new System.Drawing.Size(480, 21);
             this.txtBusquedaModelo.TabIndex = 2001;
             this.txtBusquedaModelo.TextChanged += new System.EventHandler(this.txtBusquedaModelo_TextChanged);
             // 
@@ -390,7 +545,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.lblCancelar.AutoSize = true;
             this.lblCancelar.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancelar.Location = new System.Drawing.Point(636, 127);
+            this.lblCancelar.Location = new System.Drawing.Point(660, 151);
             this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelar.Name = "lblCancelar";
             this.lblCancelar.Size = new System.Drawing.Size(54, 13);
@@ -401,24 +556,38 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox2.Controls.Add(this.label36);
             this.groupBox2.Controls.Add(this.btnEditar2);
-            this.groupBox2.Controls.Add(this.CargarAtributos);
             this.groupBox2.Controls.Add(this.btnGuardar);
-            this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnGuardar2);
             this.groupBox2.Controls.Add(this.btnEditar);
+            this.groupBox2.Controls.Add(this.CargarAtributos);
+            this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox2.Location = new System.Drawing.Point(694, 22);
+            this.groupBox2.Location = new System.Drawing.Point(720, 22);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(82, 213);
+            this.groupBox2.Size = new System.Drawing.Size(96, 246);
             this.groupBox2.TabIndex = 1996;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ACCIONES";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(12, 222);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(72, 13);
+            this.label36.TabIndex = 2006;
+            this.label36.Text = "DEFI. NOMBRE";
+            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnEditar2
             // 
@@ -426,25 +595,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnEditar2.FlatAppearance.BorderSize = 0;
             this.btnEditar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar2.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar2.Image")));
-            this.btnEditar2.Location = new System.Drawing.Point(26, 88);
+            this.btnEditar2.Location = new System.Drawing.Point(33, 74);
             this.btnEditar2.Name = "btnEditar2";
             this.btnEditar2.Size = new System.Drawing.Size(30, 30);
             this.btnEditar2.TabIndex = 2002;
             this.btnEditar2.UseVisualStyleBackColor = true;
             this.btnEditar2.Click += new System.EventHandler(this.btnEditar2_Click);
-            // 
-            // CargarAtributos
-            // 
-            this.CargarAtributos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CargarAtributos.FlatAppearance.BorderSize = 0;
-            this.CargarAtributos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CargarAtributos.Image = ((System.Drawing.Image)(resources.GetObject("CargarAtributos.Image")));
-            this.CargarAtributos.Location = new System.Drawing.Point(26, 155);
-            this.CargarAtributos.Name = "CargarAtributos";
-            this.CargarAtributos.Size = new System.Drawing.Size(30, 30);
-            this.CargarAtributos.TabIndex = 2004;
-            this.CargarAtributos.UseVisualStyleBackColor = true;
-            this.CargarAtributos.Click += new System.EventHandler(this.CargarAtributos_Click);
             // 
             // btnGuardar
             // 
@@ -452,29 +608,18 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(26, 26);
+            this.btnGuardar.Location = new System.Drawing.Point(33, 22);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(30, 30);
             this.btnGuardar.TabIndex = 2000;
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(11, 188);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(60, 13);
-            this.label30.TabIndex = 1930;
-            this.label30.Text = "DEFINICIÓN";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(22, 121);
+            this.label7.Location = new System.Drawing.Point(29, 107);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(38, 13);
@@ -485,12 +630,24 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(16, 59);
+            this.label9.Location = new System.Drawing.Point(23, 55);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 1925;
             this.label9.Text = "AGREGAR";
+            // 
+            // button1
+            // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(33, 189);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 30);
+            this.button1.TabIndex = 2005;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnGuardar2
             // 
@@ -498,7 +655,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnGuardar2.FlatAppearance.BorderSize = 0;
             this.btnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar2.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar2.Image")));
-            this.btnGuardar2.Location = new System.Drawing.Point(26, 26);
+            this.btnGuardar2.Location = new System.Drawing.Point(33, 22);
             this.btnGuardar2.Name = "btnGuardar2";
             this.btnGuardar2.Size = new System.Drawing.Size(30, 30);
             this.btnGuardar2.TabIndex = 2003;
@@ -511,82 +668,48 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(26, 88);
+            this.btnEditar.Location = new System.Drawing.Point(33, 74);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(30, 30);
             this.btnEditar.TabIndex = 2001;
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // datalistadoLineas
+            // CargarAtributos
             // 
-            this.datalistadoLineas.AllowUserToAddRows = false;
-            this.datalistadoLineas.AllowUserToDeleteRows = false;
-            this.datalistadoLineas.AllowUserToResizeColumns = false;
-            this.datalistadoLineas.AllowUserToResizeRows = false;
-            this.datalistadoLineas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.datalistadoLineas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.datalistadoLineas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.datalistadoLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoLineas.DefaultCellStyle = dataGridViewCellStyle14;
-            this.datalistadoLineas.Location = new System.Drawing.Point(33, 266);
-            this.datalistadoLineas.Margin = new System.Windows.Forms.Padding(4);
-            this.datalistadoLineas.MultiSelect = false;
-            this.datalistadoLineas.Name = "datalistadoLineas";
-            this.datalistadoLineas.ReadOnly = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineas.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.datalistadoLineas.RowHeadersVisible = false;
-            this.datalistadoLineas.RowHeadersWidth = 51;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.datalistadoLineas.RowsDefaultCellStyle = dataGridViewCellStyle16;
-            this.datalistadoLineas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoLineas.Size = new System.Drawing.Size(702, 255);
-            this.datalistadoLineas.TabIndex = 1994;
-            this.datalistadoLineas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoLineas_CellDoubleClick);
+            this.CargarAtributos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CargarAtributos.FlatAppearance.BorderSize = 0;
+            this.CargarAtributos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CargarAtributos.Image = ((System.Drawing.Image)(resources.GetObject("CargarAtributos.Image")));
+            this.CargarAtributos.Location = new System.Drawing.Point(33, 128);
+            this.CargarAtributos.Name = "CargarAtributos";
+            this.CargarAtributos.Size = new System.Drawing.Size(30, 30);
+            this.CargarAtributos.TabIndex = 2004;
+            this.CargarAtributos.UseVisualStyleBackColor = true;
+            this.CargarAtributos.Click += new System.EventHandler(this.CargarAtributos_Click);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(8, 161);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(81, 13);
+            this.label30.TabIndex = 1930;
+            this.label30.Text = "DEFI. ATRIBUTOS";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(394, 198);
+            this.label35.Location = new System.Drawing.Point(53, 243);
             this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(93, 14);
             this.label35.TabIndex = 1993;
             this.label35.Text = "TIPO DE CUENTA:";
-            // 
-            // lblCodigoLinea
-            // 
-            this.lblCodigoLinea.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoLinea.Location = new System.Drawing.Point(495, 198);
-            this.lblCodigoLinea.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodigoLinea.Name = "lblCodigoLinea";
-            this.lblCodigoLinea.Size = new System.Drawing.Size(189, 14);
-            this.lblCodigoLinea.TabIndex = 1992;
-            this.lblCodigoLinea.Text = "N";
-            this.lblCodigoLinea.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cboEstado
             // 
@@ -596,39 +719,28 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboEstado.Items.AddRange(new object[] {
             "ACTIVO",
             "INACTIVO"});
-            this.cboEstado.Location = new System.Drawing.Point(170, 230);
+            this.cboEstado.Location = new System.Drawing.Point(173, 208);
             this.cboEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(164, 22);
+            this.cboEstado.Size = new System.Drawing.Size(147, 22);
             this.cboEstado.TabIndex = 1984;
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(81, 234);
+            this.label28.Location = new System.Drawing.Point(96, 211);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(50, 14);
             this.label28.TabIndex = 1991;
             this.label28.Text = "ESTADO:";
             // 
-            // lblEstadoAtributo
-            // 
-            this.lblEstadoAtributo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstadoAtributo.Location = new System.Drawing.Point(495, 230);
-            this.lblEstadoAtributo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblEstadoAtributo.Name = "lblEstadoAtributo";
-            this.lblEstadoAtributo.Size = new System.Drawing.Size(189, 20);
-            this.lblEstadoAtributo.TabIndex = 1990;
-            this.lblEstadoAtributo.Text = "***";
-            this.lblEstadoAtributo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(377, 234);
+            this.label8.Location = new System.Drawing.Point(407, 211);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(110, 14);
@@ -640,7 +752,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.txtAbreviatura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAbreviatura.Enabled = false;
             this.txtAbreviatura.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAbreviatura.Location = new System.Drawing.Point(170, 192);
+            this.txtAbreviatura.Location = new System.Drawing.Point(173, 176);
             this.txtAbreviatura.Margin = new System.Windows.Forms.Padding(4);
             this.txtAbreviatura.MaxLength = 2;
             this.txtAbreviatura.Name = "txtAbreviatura";
@@ -652,7 +764,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(50, 197);
+            this.label6.Location = new System.Drawing.Point(65, 179);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 14);
@@ -664,10 +776,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoLinea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoLinea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoLinea.FormattingEnabled = true;
-            this.cboTipoLinea.Location = new System.Drawing.Point(170, 153);
+            this.cboTipoLinea.Location = new System.Drawing.Point(173, 143);
             this.cboTipoLinea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipoLinea.Name = "cboTipoLinea";
-            this.cboTipoLinea.Size = new System.Drawing.Size(444, 22);
+            this.cboTipoLinea.Size = new System.Drawing.Size(336, 22);
             this.cboTipoLinea.TabIndex = 1982;
             this.cboTipoLinea.SelectedIndexChanged += new System.EventHandler(this.cboTipoLinea_SelectedIndexChanged);
             this.cboTipoLinea.SelectionChangeCommitted += new System.EventHandler(this.cboTipoLinea_SelectionChangeCommitted);
@@ -676,7 +788,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(92, 157);
+            this.label4.Location = new System.Drawing.Point(107, 146);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 14);
@@ -687,7 +799,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.lblCodigo.AutoSize = true;
             this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblCodigo.Location = new System.Drawing.Point(167, 82);
+            this.lblCodigo.Location = new System.Drawing.Point(170, 79);
             this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(17, 15);
@@ -698,7 +810,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(80, 84);
+            this.label5.Location = new System.Drawing.Point(95, 81);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 14);
@@ -710,10 +822,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(170, 113);
+            this.txtDescripcion.Location = new System.Drawing.Point(173, 109);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(421, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(252, 22);
             this.txtDescripcion.TabIndex = 1981;
             this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
@@ -721,7 +833,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(75, 117);
+            this.label3.Location = new System.Drawing.Point(90, 112);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 14);
@@ -731,7 +843,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(232, 48);
+            this.panel6.Location = new System.Drawing.Point(211, 45);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(330, 1);
@@ -742,7 +854,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(262, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(241, 19);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(37, 22);
@@ -754,7 +866,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(307, 25);
+            this.label1.Location = new System.Drawing.Point(286, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(226, 19);
@@ -780,21 +892,64 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelDefinicionAtributos.Controls.Add(this.panel26);
             this.panelDefinicionAtributos.Controls.Add(this.panel27);
             this.panelDefinicionAtributos.Controls.Add(this.label31);
-            this.panelDefinicionAtributos.Location = new System.Drawing.Point(125, 29);
+            this.panelDefinicionAtributos.Location = new System.Drawing.Point(105, 36);
             this.panelDefinicionAtributos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDefinicionAtributos.Name = "panelDefinicionAtributos";
-            this.panelDefinicionAtributos.Size = new System.Drawing.Size(930, 589);
+            this.panelDefinicionAtributos.Size = new System.Drawing.Size(970, 589);
             this.panelDefinicionAtributos.TabIndex = 1986;
             this.panelDefinicionAtributos.Visible = false;
             // 
             // flowLayoutPanel
             // 
             this.flowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(324, 56);
+            this.flowLayoutPanel.Location = new System.Drawing.Point(318, 56);
             this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(594, 418);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(645, 418);
             this.flowLayoutPanel.TabIndex = 105;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ckGenerales);
+            this.groupBox1.Controls.Add(this.panel25);
+            this.groupBox1.Controls.Add(this.ckCaracteristicas1);
+            this.groupBox1.Controls.Add(this.ckCamposMedida1);
+            this.groupBox1.Controls.Add(this.ckVariosO2);
+            this.groupBox1.Controls.Add(this.ckCamposDiametros1);
+            this.groupBox1.Controls.Add(this.ckCamposFormas1);
+            this.groupBox1.Controls.Add(this.ckCamposEspesores1);
+            this.groupBox1.Controls.Add(this.ckCamposNTipos2);
+            this.groupBox1.Controls.Add(this.ckCamposDiseñoAcabado1);
+            this.groupBox1.Controls.Add(this.ckVariosO1);
+            this.groupBox1.Controls.Add(this.ckCamposNTipos1);
+            this.groupBox1.Controls.Add(this.ckCamposDiseñoAcabado2);
+            this.groupBox1.Controls.Add(this.ckCaracteristicas2);
+            this.groupBox1.Controls.Add(this.ckCamposEspesores2);
+            this.groupBox1.Controls.Add(this.ckCamposMedida2);
+            this.groupBox1.Controls.Add(this.ckCamposDiametros2);
+            this.groupBox1.Controls.Add(this.ckCamposFormas2);
+            this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(7, 68);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(305, 344);
+            this.groupBox1.TabIndex = 104;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Campos Modulares";
+            // 
+            // ckGenerales
+            // 
+            this.ckGenerales.AutoSize = true;
+            this.ckGenerales.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckGenerales.Location = new System.Drawing.Point(8, 305);
+            this.ckGenerales.Margin = new System.Windows.Forms.Padding(4);
+            this.ckGenerales.Name = "ckGenerales";
+            this.ckGenerales.Size = new System.Drawing.Size(86, 17);
+            this.ckGenerales.TabIndex = 1926;
+            this.ckGenerales.Text = "C. Generales";
+            this.ckGenerales.UseVisualStyleBackColor = true;
+            this.ckGenerales.CheckedChanged += new System.EventHandler(this.ckGenerales_CheckedChanged);
             // 
             // panel21
             // 
@@ -815,10 +970,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel21.Controls.Add(this.panelCamposMedidas2);
             this.panel21.Controls.Add(this.panelCamposCaracteristicas2);
             this.panel21.Controls.Add(this.panelCamposCaracteristicas1);
-            this.panel21.Location = new System.Drawing.Point(320, 66);
+            this.panel21.Location = new System.Drawing.Point(9, 418);
             this.panel21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 51);
+            this.panel21.Size = new System.Drawing.Size(10, 110);
             this.panel21.TabIndex = 106;
             // 
             // panelCamposGeneral
@@ -868,13 +1023,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // panelCamposVariosO1
             // 
             this.panelCamposVariosO1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCamposVariosO1.Controls.Add(this.checkBox1);
             this.panelCamposVariosO1.Controls.Add(this.label24);
             this.panelCamposVariosO1.Controls.Add(this.panel20);
             this.panelCamposVariosO1.Controls.Add(this.cboTiposVariosO1);
-            this.panelCamposVariosO1.Location = new System.Drawing.Point(605, 292);
+            this.panelCamposVariosO1.Location = new System.Drawing.Point(442, 292);
             this.panelCamposVariosO1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposVariosO1.Name = "panelCamposVariosO1";
-            this.panelCamposVariosO1.Size = new System.Drawing.Size(186, 59);
+            this.panelCamposVariosO1.Size = new System.Drawing.Size(205, 59);
             this.panelCamposVariosO1.TabIndex = 1920;
             // 
             // label24
@@ -882,7 +1038,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label24.Location = new System.Drawing.Point(24, 5);
+            this.label24.Location = new System.Drawing.Point(25, 4);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(51, 13);
@@ -911,13 +1067,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposVariosO2
             // 
+            this.panelCamposVariosO2.Controls.Add(this.checkBox2);
             this.panelCamposVariosO2.Controls.Add(this.label23);
             this.panelCamposVariosO2.Controls.Add(this.panel18);
             this.panelCamposVariosO2.Controls.Add(this.cboTiposVariosO2);
-            this.panelCamposVariosO2.Location = new System.Drawing.Point(407, 292);
+            this.panelCamposVariosO2.Location = new System.Drawing.Point(658, 293);
             this.panelCamposVariosO2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposVariosO2.Name = "panelCamposVariosO2";
-            this.panelCamposVariosO2.Size = new System.Drawing.Size(189, 59);
+            this.panelCamposVariosO2.Size = new System.Drawing.Size(205, 59);
             this.panelCamposVariosO2.TabIndex = 1919;
             // 
             // label23
@@ -925,7 +1082,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label23.Location = new System.Drawing.Point(17, 5);
+            this.label23.Location = new System.Drawing.Point(25, 4);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(51, 13);
@@ -954,14 +1111,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposNTipos1
             // 
+            this.panelCamposNTipos1.Controls.Add(this.ckTipoNumeroTipos2);
+            this.panelCamposNTipos1.Controls.Add(this.ckTipoNumeroTipos1);
             this.panelCamposNTipos1.Controls.Add(this.label22);
             this.panelCamposNTipos1.Controls.Add(this.panel17);
             this.panelCamposNTipos1.Controls.Add(this.cboTiposNTipos2);
             this.panelCamposNTipos1.Controls.Add(this.cboTiposNTipos1);
-            this.panelCamposNTipos1.Location = new System.Drawing.Point(4, 295);
+            this.panelCamposNTipos1.Location = new System.Drawing.Point(4, 292);
             this.panelCamposNTipos1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposNTipos1.Name = "panelCamposNTipos1";
-            this.panelCamposNTipos1.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposNTipos1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposNTipos1.TabIndex = 1918;
             // 
             // label22
@@ -990,7 +1149,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposNTipos2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposNTipos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposNTipos2.FormattingEnabled = true;
-            this.cboTiposNTipos2.Location = new System.Drawing.Point(13, 55);
+            this.cboTiposNTipos2.Location = new System.Drawing.Point(13, 57);
             this.cboTiposNTipos2.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposNTipos2.Name = "cboTiposNTipos2";
             this.cboTiposNTipos2.Size = new System.Drawing.Size(160, 21);
@@ -1001,7 +1160,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposNTipos1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposNTipos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposNTipos1.FormattingEnabled = true;
-            this.cboTiposNTipos1.Location = new System.Drawing.Point(13, 23);
+            this.cboTiposNTipos1.Location = new System.Drawing.Point(13, 25);
             this.cboTiposNTipos1.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposNTipos1.Name = "cboTiposNTipos1";
             this.cboTiposNTipos1.Size = new System.Drawing.Size(160, 21);
@@ -1009,14 +1168,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposNTipos2
             // 
+            this.panelCamposNTipos2.Controls.Add(this.ckTipoNumeroTipos3);
+            this.panelCamposNTipos2.Controls.Add(this.ckTipoNumeroTipos4);
             this.panelCamposNTipos2.Controls.Add(this.label21);
             this.panelCamposNTipos2.Controls.Add(this.panel14);
             this.panelCamposNTipos2.Controls.Add(this.cboTiposNTipos4);
             this.panelCamposNTipos2.Controls.Add(this.cboTiposNTipos3);
-            this.panelCamposNTipos2.Location = new System.Drawing.Point(601, 102);
+            this.panelCamposNTipos2.Location = new System.Drawing.Point(224, 292);
             this.panelCamposNTipos2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposNTipos2.Name = "panelCamposNTipos2";
-            this.panelCamposNTipos2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposNTipos2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposNTipos2.TabIndex = 1917;
             // 
             // label21
@@ -1024,7 +1185,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label21.Location = new System.Drawing.Point(17, 4);
+            this.label21.Location = new System.Drawing.Point(25, 4);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(98, 13);
@@ -1045,7 +1206,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposNTipos4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposNTipos4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposNTipos4.FormattingEnabled = true;
-            this.cboTiposNTipos4.Location = new System.Drawing.Point(13, 55);
+            this.cboTiposNTipos4.Location = new System.Drawing.Point(13, 57);
             this.cboTiposNTipos4.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposNTipos4.Name = "cboTiposNTipos4";
             this.cboTiposNTipos4.Size = new System.Drawing.Size(160, 21);
@@ -1056,7 +1217,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposNTipos3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposNTipos3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposNTipos3.FormattingEnabled = true;
-            this.cboTiposNTipos3.Location = new System.Drawing.Point(13, 23);
+            this.cboTiposNTipos3.Location = new System.Drawing.Point(13, 25);
             this.cboTiposNTipos3.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposNTipos3.Name = "cboTiposNTipos3";
             this.cboTiposNTipos3.Size = new System.Drawing.Size(160, 21);
@@ -1064,14 +1225,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposEspesores1
             // 
+            this.panelCamposEspesores1.Controls.Add(this.ckTipoEspesores1);
+            this.panelCamposEspesores1.Controls.Add(this.ckTipoEspesores2);
             this.panelCamposEspesores1.Controls.Add(this.label18);
             this.panelCamposEspesores1.Controls.Add(this.panel13);
             this.panelCamposEspesores1.Controls.Add(this.cbooTipoEspesores2);
             this.panelCamposEspesores1.Controls.Add(this.cbooTipoEspesores1);
-            this.panelCamposEspesores1.Location = new System.Drawing.Point(601, 198);
+            this.panelCamposEspesores1.Location = new System.Drawing.Point(4, 198);
             this.panelCamposEspesores1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposEspesores1.Name = "panelCamposEspesores1";
-            this.panelCamposEspesores1.Size = new System.Drawing.Size(187, 87);
+            this.panelCamposEspesores1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposEspesores1.TabIndex = 1916;
             // 
             // label18
@@ -1100,7 +1263,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cbooTipoEspesores2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbooTipoEspesores2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbooTipoEspesores2.FormattingEnabled = true;
-            this.cbooTipoEspesores2.Location = new System.Drawing.Point(13, 55);
+            this.cbooTipoEspesores2.Location = new System.Drawing.Point(13, 57);
             this.cbooTipoEspesores2.Margin = new System.Windows.Forms.Padding(4);
             this.cbooTipoEspesores2.Name = "cbooTipoEspesores2";
             this.cbooTipoEspesores2.Size = new System.Drawing.Size(160, 21);
@@ -1111,7 +1274,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cbooTipoEspesores1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbooTipoEspesores1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbooTipoEspesores1.FormattingEnabled = true;
-            this.cbooTipoEspesores1.Location = new System.Drawing.Point(13, 23);
+            this.cbooTipoEspesores1.Location = new System.Drawing.Point(13, 25);
             this.cbooTipoEspesores1.Margin = new System.Windows.Forms.Padding(4);
             this.cbooTipoEspesores1.Name = "cbooTipoEspesores1";
             this.cbooTipoEspesores1.Size = new System.Drawing.Size(160, 21);
@@ -1119,14 +1282,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposEspesores2
             // 
+            this.panelCamposEspesores2.Controls.Add(this.ckTipoEspesores3);
+            this.panelCamposEspesores2.Controls.Add(this.ckTipoEspesores4);
             this.panelCamposEspesores2.Controls.Add(this.label17);
             this.panelCamposEspesores2.Controls.Add(this.panel12);
             this.panelCamposEspesores2.Controls.Add(this.cbooTipoEspesores4);
             this.panelCamposEspesores2.Controls.Add(this.cbooTipoEspesores3);
-            this.panelCamposEspesores2.Location = new System.Drawing.Point(205, 298);
+            this.panelCamposEspesores2.Location = new System.Drawing.Point(225, 198);
             this.panelCamposEspesores2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposEspesores2.Name = "panelCamposEspesores2";
-            this.panelCamposEspesores2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposEspesores2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposEspesores2.TabIndex = 1915;
             // 
             // label17
@@ -1134,7 +1299,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label17.Location = new System.Drawing.Point(17, 4);
+            this.label17.Location = new System.Drawing.Point(25, 4);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(68, 13);
@@ -1155,7 +1320,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cbooTipoEspesores4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbooTipoEspesores4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbooTipoEspesores4.FormattingEnabled = true;
-            this.cbooTipoEspesores4.Location = new System.Drawing.Point(13, 55);
+            this.cbooTipoEspesores4.Location = new System.Drawing.Point(13, 57);
             this.cbooTipoEspesores4.Margin = new System.Windows.Forms.Padding(4);
             this.cbooTipoEspesores4.Name = "cbooTipoEspesores4";
             this.cbooTipoEspesores4.Size = new System.Drawing.Size(160, 21);
@@ -1174,14 +1339,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposFormas1
             // 
+            this.panelCamposFormas1.Controls.Add(this.ckTipoFormas1);
+            this.panelCamposFormas1.Controls.Add(this.ckTipoFormas2);
             this.panelCamposFormas1.Controls.Add(this.label16);
             this.panelCamposFormas1.Controls.Add(this.panel11);
             this.panelCamposFormas1.Controls.Add(this.cboTiposFormas2);
             this.panelCamposFormas1.Controls.Add(this.cboTiposFormas1);
-            this.panelCamposFormas1.Location = new System.Drawing.Point(4, 202);
+            this.panelCamposFormas1.Location = new System.Drawing.Point(442, 103);
             this.panelCamposFormas1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposFormas1.Name = "panelCamposFormas1";
-            this.panelCamposFormas1.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposFormas1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposFormas1.TabIndex = 1914;
             // 
             // label16
@@ -1189,7 +1356,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label16.Location = new System.Drawing.Point(25, 2);
+            this.label16.Location = new System.Drawing.Point(25, 4);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(56, 13);
@@ -1210,7 +1377,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposFormas2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposFormas2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposFormas2.FormattingEnabled = true;
-            this.cboTiposFormas2.Location = new System.Drawing.Point(13, 54);
+            this.cboTiposFormas2.Location = new System.Drawing.Point(13, 57);
             this.cboTiposFormas2.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposFormas2.Name = "cboTiposFormas2";
             this.cboTiposFormas2.Size = new System.Drawing.Size(160, 21);
@@ -1221,7 +1388,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposFormas1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposFormas1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposFormas1.FormattingEnabled = true;
-            this.cboTiposFormas1.Location = new System.Drawing.Point(13, 22);
+            this.cboTiposFormas1.Location = new System.Drawing.Point(13, 25);
             this.cboTiposFormas1.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposFormas1.Name = "cboTiposFormas1";
             this.cboTiposFormas1.Size = new System.Drawing.Size(160, 21);
@@ -1229,14 +1396,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposFormas2
             // 
+            this.panelCamposFormas2.Controls.Add(this.ckTipoFormas3);
+            this.panelCamposFormas2.Controls.Add(this.ckTipoFormas4);
             this.panelCamposFormas2.Controls.Add(this.label15);
             this.panelCamposFormas2.Controls.Add(this.panel16);
             this.panelCamposFormas2.Controls.Add(this.cboTiposFormas4);
             this.panelCamposFormas2.Controls.Add(this.cboTiposFormas3);
-            this.panelCamposFormas2.Location = new System.Drawing.Point(400, 197);
+            this.panelCamposFormas2.Location = new System.Drawing.Point(658, 103);
             this.panelCamposFormas2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposFormas2.Name = "panelCamposFormas2";
-            this.panelCamposFormas2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposFormas2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposFormas2.TabIndex = 1913;
             // 
             // label15
@@ -1244,7 +1413,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label15.Location = new System.Drawing.Point(17, 2);
+            this.label15.Location = new System.Drawing.Point(25, 4);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(56, 13);
@@ -1265,7 +1434,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposFormas4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposFormas4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposFormas4.FormattingEnabled = true;
-            this.cboTiposFormas4.Location = new System.Drawing.Point(16, 54);
+            this.cboTiposFormas4.Location = new System.Drawing.Point(13, 57);
             this.cboTiposFormas4.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposFormas4.Name = "cboTiposFormas4";
             this.cboTiposFormas4.Size = new System.Drawing.Size(160, 21);
@@ -1276,7 +1445,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposFormas3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposFormas3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposFormas3.FormattingEnabled = true;
-            this.cboTiposFormas3.Location = new System.Drawing.Point(16, 22);
+            this.cboTiposFormas3.Location = new System.Drawing.Point(13, 25);
             this.cboTiposFormas3.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposFormas3.Name = "cboTiposFormas3";
             this.cboTiposFormas3.Size = new System.Drawing.Size(160, 21);
@@ -1284,14 +1453,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiametros2
             // 
+            this.panelCamposDiametros2.Controls.Add(this.ckTipoDiametro4);
+            this.panelCamposDiametros2.Controls.Add(this.ckTipoDiametro3);
             this.panelCamposDiametros2.Controls.Add(this.label14);
             this.panelCamposDiametros2.Controls.Add(this.panel15);
             this.panelCamposDiametros2.Controls.Add(this.cboTiposDiametros4);
             this.panelCamposDiametros2.Controls.Add(this.cboTiposDiametros3);
-            this.panelCamposDiametros2.Location = new System.Drawing.Point(201, 203);
+            this.panelCamposDiametros2.Location = new System.Drawing.Point(225, 103);
             this.panelCamposDiametros2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiametros2.Name = "panelCamposDiametros2";
-            this.panelCamposDiametros2.Size = new System.Drawing.Size(187, 87);
+            this.panelCamposDiametros2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposDiametros2.TabIndex = 1912;
             // 
             // label14
@@ -1299,7 +1470,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label14.Location = new System.Drawing.Point(25, 5);
+            this.label14.Location = new System.Drawing.Point(25, 4);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(71, 13);
@@ -1339,6 +1510,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiametros1
             // 
+            this.panelCamposDiametros1.Controls.Add(this.ckTipoDiametro1);
+            this.panelCamposDiametros1.Controls.Add(this.ckTipoDiametro2);
             this.panelCamposDiametros1.Controls.Add(this.label13);
             this.panelCamposDiametros1.Controls.Add(this.panel8);
             this.panelCamposDiametros1.Controls.Add(this.cboTiposDiametros2);
@@ -1346,7 +1519,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposDiametros1.Location = new System.Drawing.Point(4, 103);
             this.panelCamposDiametros1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiametros1.Name = "panelCamposDiametros1";
-            this.panelCamposDiametros1.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposDiametros1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposDiametros1.TabIndex = 1911;
             // 
             // label13
@@ -1354,7 +1527,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label13.Location = new System.Drawing.Point(16, 5);
+            this.label13.Location = new System.Drawing.Point(25, 4);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(71, 13);
@@ -1394,14 +1567,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiseñoAcabado1
             // 
+            this.panelCamposDiseñoAcabado1.Controls.Add(this.ckTipoDiseño1);
+            this.panelCamposDiseñoAcabado1.Controls.Add(this.ckTipoDiseño2);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.label20);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.panel9);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.cboTiposDiseñosAcabados2);
             this.panelCamposDiseñoAcabado1.Controls.Add(this.cboTiposDiseñosAcabados1);
-            this.panelCamposDiseñoAcabado1.Location = new System.Drawing.Point(403, 105);
+            this.panelCamposDiseñoAcabado1.Location = new System.Drawing.Point(442, 198);
             this.panelCamposDiseñoAcabado1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiseñoAcabado1.Name = "panelCamposDiseñoAcabado1";
-            this.panelCamposDiseñoAcabado1.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposDiseñoAcabado1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposDiseñoAcabado1.TabIndex = 1910;
             // 
             // label20
@@ -1430,7 +1605,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiseñosAcabados2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposDiseñosAcabados2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposDiseñosAcabados2.FormattingEnabled = true;
-            this.cboTiposDiseñosAcabados2.Location = new System.Drawing.Point(13, 55);
+            this.cboTiposDiseñosAcabados2.Location = new System.Drawing.Point(13, 57);
             this.cboTiposDiseñosAcabados2.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposDiseñosAcabados2.Name = "cboTiposDiseñosAcabados2";
             this.cboTiposDiseñosAcabados2.Size = new System.Drawing.Size(160, 21);
@@ -1441,7 +1616,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiseñosAcabados1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposDiseñosAcabados1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposDiseñosAcabados1.FormattingEnabled = true;
-            this.cboTiposDiseñosAcabados1.Location = new System.Drawing.Point(13, 23);
+            this.cboTiposDiseñosAcabados1.Location = new System.Drawing.Point(13, 25);
             this.cboTiposDiseñosAcabados1.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposDiseñosAcabados1.Name = "cboTiposDiseñosAcabados1";
             this.cboTiposDiseñosAcabados1.Size = new System.Drawing.Size(160, 21);
@@ -1449,14 +1624,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposDiseñoAcabado2
             // 
+            this.panelCamposDiseñoAcabado2.Controls.Add(this.ckTipoDiseño3);
+            this.panelCamposDiseñoAcabado2.Controls.Add(this.ckTipoDiseño4);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.label19);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.panel10);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.cboTiposDiseñosAcabados4);
             this.panelCamposDiseñoAcabado2.Controls.Add(this.cboTiposDiseñosAcabados3);
-            this.panelCamposDiseñoAcabado2.Location = new System.Drawing.Point(201, 105);
+            this.panelCamposDiseñoAcabado2.Location = new System.Drawing.Point(658, 198);
             this.panelCamposDiseñoAcabado2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposDiseñoAcabado2.Name = "panelCamposDiseñoAcabado2";
-            this.panelCamposDiseñoAcabado2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposDiseñoAcabado2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposDiseñoAcabado2.TabIndex = 1909;
             // 
             // label19
@@ -1464,7 +1641,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label19.Location = new System.Drawing.Point(17, 4);
+            this.label19.Location = new System.Drawing.Point(25, 4);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(108, 13);
@@ -1485,7 +1662,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiseñosAcabados4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposDiseñosAcabados4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposDiseñosAcabados4.FormattingEnabled = true;
-            this.cboTiposDiseñosAcabados4.Location = new System.Drawing.Point(17, 55);
+            this.cboTiposDiseñosAcabados4.Location = new System.Drawing.Point(13, 57);
             this.cboTiposDiseñosAcabados4.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposDiseñosAcabados4.Name = "cboTiposDiseñosAcabados4";
             this.cboTiposDiseñosAcabados4.Size = new System.Drawing.Size(160, 21);
@@ -1496,7 +1673,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTiposDiseñosAcabados3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposDiseñosAcabados3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTiposDiseñosAcabados3.FormattingEnabled = true;
-            this.cboTiposDiseñosAcabados3.Location = new System.Drawing.Point(17, 23);
+            this.cboTiposDiseñosAcabados3.Location = new System.Drawing.Point(13, 25);
             this.cboTiposDiseñosAcabados3.Margin = new System.Windows.Forms.Padding(4);
             this.cboTiposDiseñosAcabados3.Name = "cboTiposDiseñosAcabados3";
             this.cboTiposDiseñosAcabados3.Size = new System.Drawing.Size(160, 21);
@@ -1504,14 +1681,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposMedidas1
             // 
+            this.panelCamposMedidas1.Controls.Add(this.ckTipoMedida1);
+            this.panelCamposMedidas1.Controls.Add(this.ckTipoMedida2);
             this.panelCamposMedidas1.Controls.Add(this.label10);
             this.panelCamposMedidas1.Controls.Add(this.panel7);
             this.panelCamposMedidas1.Controls.Add(this.cboTipoMedida2);
             this.panelCamposMedidas1.Controls.Add(this.cboTipoMedida1);
-            this.panelCamposMedidas1.Location = new System.Drawing.Point(601, 7);
+            this.panelCamposMedidas1.Location = new System.Drawing.Point(442, 6);
             this.panelCamposMedidas1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposMedidas1.Name = "panelCamposMedidas1";
-            this.panelCamposMedidas1.Size = new System.Drawing.Size(187, 87);
+            this.panelCamposMedidas1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposMedidas1.TabIndex = 1907;
             // 
             // label10
@@ -1519,7 +1698,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label10.Location = new System.Drawing.Point(25, 2);
+            this.label10.Location = new System.Drawing.Point(25, 4);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(65, 13);
@@ -1559,14 +1738,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposMedidas2
             // 
+            this.panelCamposMedidas2.Controls.Add(this.ckTipoMedida3);
+            this.panelCamposMedidas2.Controls.Add(this.ckTipoMedida4);
             this.panelCamposMedidas2.Controls.Add(this.label12);
             this.panelCamposMedidas2.Controls.Add(this.cboTipoMedida4);
             this.panelCamposMedidas2.Controls.Add(this.cboTipoMedida3);
             this.panelCamposMedidas2.Controls.Add(this.panel3);
-            this.panelCamposMedidas2.Location = new System.Drawing.Point(403, 7);
+            this.panelCamposMedidas2.Location = new System.Drawing.Point(658, 6);
             this.panelCamposMedidas2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposMedidas2.Name = "panelCamposMedidas2";
-            this.panelCamposMedidas2.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposMedidas2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposMedidas2.TabIndex = 1906;
             // 
             // label12
@@ -1574,7 +1755,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label12.Location = new System.Drawing.Point(16, 4);
+            this.label12.Location = new System.Drawing.Point(25, 4);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(59, 13);
@@ -1586,7 +1767,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoMedida4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoMedida4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMedida4.FormattingEnabled = true;
-            this.cboTipoMedida4.Location = new System.Drawing.Point(17, 57);
+            this.cboTipoMedida4.Location = new System.Drawing.Point(13, 57);
             this.cboTipoMedida4.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoMedida4.Name = "cboTipoMedida4";
             this.cboTipoMedida4.Size = new System.Drawing.Size(160, 21);
@@ -1597,7 +1778,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoMedida3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoMedida3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMedida3.FormattingEnabled = true;
-            this.cboTipoMedida3.Location = new System.Drawing.Point(16, 25);
+            this.cboTipoMedida3.Location = new System.Drawing.Point(13, 25);
             this.cboTipoMedida3.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoMedida3.Name = "cboTipoMedida3";
             this.cboTipoMedida3.Size = new System.Drawing.Size(160, 21);
@@ -1614,14 +1795,16 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposCaracteristicas2
             // 
+            this.panelCamposCaracteristicas2.Controls.Add(this.ckTipoCaracteristicas3);
+            this.panelCamposCaracteristicas2.Controls.Add(this.ckTipoCaracteristicas4);
             this.panelCamposCaracteristicas2.Controls.Add(this.label26);
             this.panelCamposCaracteristicas2.Controls.Add(this.panel19);
             this.panelCamposCaracteristicas2.Controls.Add(this.cboTipoCaracteristicas4);
             this.panelCamposCaracteristicas2.Controls.Add(this.cboTipoCaracteristicas3);
-            this.panelCamposCaracteristicas2.Location = new System.Drawing.Point(201, 7);
+            this.panelCamposCaracteristicas2.Location = new System.Drawing.Point(225, 6);
             this.panelCamposCaracteristicas2.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposCaracteristicas2.Name = "panelCamposCaracteristicas2";
-            this.panelCamposCaracteristicas2.Size = new System.Drawing.Size(195, 87);
+            this.panelCamposCaracteristicas2.Size = new System.Drawing.Size(205, 87);
             this.panelCamposCaracteristicas2.TabIndex = 1904;
             // 
             // label26
@@ -1629,7 +1812,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label26.Location = new System.Drawing.Point(16, 2);
+            this.label26.Location = new System.Drawing.Point(25, 4);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(89, 13);
@@ -1650,7 +1833,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoCaracteristicas4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoCaracteristicas4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoCaracteristicas4.FormattingEnabled = true;
-            this.cboTipoCaracteristicas4.Location = new System.Drawing.Point(17, 57);
+            this.cboTipoCaracteristicas4.Location = new System.Drawing.Point(13, 57);
             this.cboTipoCaracteristicas4.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoCaracteristicas4.Name = "cboTipoCaracteristicas4";
             this.cboTipoCaracteristicas4.Size = new System.Drawing.Size(160, 21);
@@ -1661,7 +1844,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoCaracteristicas3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoCaracteristicas3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoCaracteristicas3.FormattingEnabled = true;
-            this.cboTipoCaracteristicas3.Location = new System.Drawing.Point(16, 25);
+            this.cboTipoCaracteristicas3.Location = new System.Drawing.Point(13, 25);
             this.cboTipoCaracteristicas3.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoCaracteristicas3.Name = "cboTipoCaracteristicas3";
             this.cboTipoCaracteristicas3.Size = new System.Drawing.Size(160, 21);
@@ -1669,6 +1852,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             // panelCamposCaracteristicas1
             // 
+            this.panelCamposCaracteristicas1.Controls.Add(this.ckTipoCaracteristicas2);
+            this.panelCamposCaracteristicas1.Controls.Add(this.ckTipoCaracteristicas1);
             this.panelCamposCaracteristicas1.Controls.Add(this.label27);
             this.panelCamposCaracteristicas1.Controls.Add(this.panel24);
             this.panelCamposCaracteristicas1.Controls.Add(this.cboTipoCaracteristicas2);
@@ -1676,7 +1861,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposCaracteristicas1.Location = new System.Drawing.Point(4, 7);
             this.panelCamposCaracteristicas1.Margin = new System.Windows.Forms.Padding(4);
             this.panelCamposCaracteristicas1.Name = "panelCamposCaracteristicas1";
-            this.panelCamposCaracteristicas1.Size = new System.Drawing.Size(189, 87);
+            this.panelCamposCaracteristicas1.Size = new System.Drawing.Size(205, 87);
             this.panelCamposCaracteristicas1.TabIndex = 1905;
             // 
             // label27
@@ -1722,54 +1907,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.cboTipoCaracteristicas1.Size = new System.Drawing.Size(160, 21);
             this.cboTipoCaracteristicas1.TabIndex = 1894;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.ckGenerales);
-            this.groupBox1.Controls.Add(this.panel25);
-            this.groupBox1.Controls.Add(this.ckCaracteristicas1);
-            this.groupBox1.Controls.Add(this.ckCamposMedida1);
-            this.groupBox1.Controls.Add(this.ckVariosO2);
-            this.groupBox1.Controls.Add(this.ckCamposDiametros1);
-            this.groupBox1.Controls.Add(this.ckCamposFormas1);
-            this.groupBox1.Controls.Add(this.ckCamposEspesores1);
-            this.groupBox1.Controls.Add(this.ckCamposNTipos2);
-            this.groupBox1.Controls.Add(this.ckCamposDiseñoAcabado1);
-            this.groupBox1.Controls.Add(this.ckVariosO1);
-            this.groupBox1.Controls.Add(this.ckCamposNTipos1);
-            this.groupBox1.Controls.Add(this.ckCamposDiseñoAcabado2);
-            this.groupBox1.Controls.Add(this.ckCaracteristicas2);
-            this.groupBox1.Controls.Add(this.ckCamposEspesores2);
-            this.groupBox1.Controls.Add(this.ckCamposMedida2);
-            this.groupBox1.Controls.Add(this.ckCamposDiametros2);
-            this.groupBox1.Controls.Add(this.ckCamposFormas2);
-            this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(4, 56);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(309, 344);
-            this.groupBox1.TabIndex = 104;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Campos Modulares";
-            // 
-            // ckGenerales
-            // 
-            this.ckGenerales.AutoSize = true;
-            this.ckGenerales.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckGenerales.Location = new System.Drawing.Point(13, 305);
-            this.ckGenerales.Margin = new System.Windows.Forms.Padding(4);
-            this.ckGenerales.Name = "ckGenerales";
-            this.ckGenerales.Size = new System.Drawing.Size(86, 17);
-            this.ckGenerales.TabIndex = 1926;
-            this.ckGenerales.Text = "C. Generales";
-            this.ckGenerales.UseVisualStyleBackColor = true;
-            this.ckGenerales.CheckedChanged += new System.EventHandler(this.ckGenerales_CheckedChanged);
-            // 
             // panel25
             // 
             this.panel25.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel25.Location = new System.Drawing.Point(155, 65);
+            this.panel25.Location = new System.Drawing.Point(139, 65);
             this.panel25.Margin = new System.Windows.Forms.Padding(4);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(1, 209);
@@ -1780,7 +1922,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.ckCaracteristicas1.AutoSize = true;
             this.ckCaracteristicas1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ckCaracteristicas1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCaracteristicas1.Location = new System.Drawing.Point(13, 33);
+            this.ckCaracteristicas1.Location = new System.Drawing.Point(8, 33);
             this.ckCaracteristicas1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCaracteristicas1.Name = "ckCaracteristicas1";
             this.ckCaracteristicas1.Size = new System.Drawing.Size(116, 17);
@@ -1793,7 +1935,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposMedida1.AutoSize = true;
             this.ckCamposMedida1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposMedida1.Location = new System.Drawing.Point(13, 65);
+            this.ckCamposMedida1.Location = new System.Drawing.Point(8, 65);
             this.ckCamposMedida1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposMedida1.Name = "ckCamposMedida1";
             this.ckCamposMedida1.Size = new System.Drawing.Size(95, 17);
@@ -1806,7 +1948,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckVariosO2.AutoSize = true;
             this.ckVariosO2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckVariosO2.Location = new System.Drawing.Point(170, 271);
+            this.ckVariosO2.Location = new System.Drawing.Point(160, 272);
             this.ckVariosO2.Margin = new System.Windows.Forms.Padding(4);
             this.ckVariosO2.Name = "ckVariosO2";
             this.ckVariosO2.Size = new System.Drawing.Size(94, 17);
@@ -1819,7 +1961,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposDiametros1.AutoSize = true;
             this.ckCamposDiametros1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposDiametros1.Location = new System.Drawing.Point(13, 98);
+            this.ckCamposDiametros1.Location = new System.Drawing.Point(8, 98);
             this.ckCamposDiametros1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiametros1.Name = "ckCamposDiametros1";
             this.ckCamposDiametros1.Size = new System.Drawing.Size(109, 17);
@@ -1832,7 +1974,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposFormas1.AutoSize = true;
             this.ckCamposFormas1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposFormas1.Location = new System.Drawing.Point(13, 132);
+            this.ckCamposFormas1.Location = new System.Drawing.Point(8, 132);
             this.ckCamposFormas1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposFormas1.Name = "ckCamposFormas1";
             this.ckCamposFormas1.Size = new System.Drawing.Size(94, 17);
@@ -1846,7 +1988,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.ckCamposEspesores1.AutoSize = true;
             this.ckCamposEspesores1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ckCamposEspesores1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposEspesores1.Location = new System.Drawing.Point(13, 165);
+            this.ckCamposEspesores1.Location = new System.Drawing.Point(8, 165);
             this.ckCamposEspesores1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposEspesores1.Name = "ckCamposEspesores1";
             this.ckCamposEspesores1.Size = new System.Drawing.Size(104, 17);
@@ -1859,7 +2001,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposNTipos2.AutoSize = true;
             this.ckCamposNTipos2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposNTipos2.Location = new System.Drawing.Point(170, 235);
+            this.ckCamposNTipos2.Location = new System.Drawing.Point(160, 236);
             this.ckCamposNTipos2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposNTipos2.Name = "ckCamposNTipos2";
             this.ckCamposNTipos2.Size = new System.Drawing.Size(103, 17);
@@ -1872,7 +2014,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposDiseñoAcabado1.AutoSize = true;
             this.ckCamposDiseñoAcabado1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposDiseñoAcabado1.Location = new System.Drawing.Point(13, 200);
+            this.ckCamposDiseñoAcabado1.Location = new System.Drawing.Point(8, 200);
             this.ckCamposDiseñoAcabado1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiseñoAcabado1.Name = "ckCamposDiseñoAcabado1";
             this.ckCamposDiseñoAcabado1.Size = new System.Drawing.Size(123, 17);
@@ -1885,7 +2027,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckVariosO1.AutoSize = true;
             this.ckVariosO1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckVariosO1.Location = new System.Drawing.Point(13, 271);
+            this.ckVariosO1.Location = new System.Drawing.Point(8, 271);
             this.ckVariosO1.Margin = new System.Windows.Forms.Padding(4);
             this.ckVariosO1.Name = "ckVariosO1";
             this.ckVariosO1.Size = new System.Drawing.Size(94, 17);
@@ -1898,7 +2040,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposNTipos1.AutoSize = true;
             this.ckCamposNTipos1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposNTipos1.Location = new System.Drawing.Point(13, 235);
+            this.ckCamposNTipos1.Location = new System.Drawing.Point(8, 235);
             this.ckCamposNTipos1.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposNTipos1.Name = "ckCamposNTipos1";
             this.ckCamposNTipos1.Size = new System.Drawing.Size(103, 17);
@@ -1911,7 +2053,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposDiseñoAcabado2.AutoSize = true;
             this.ckCamposDiseñoAcabado2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposDiseñoAcabado2.Location = new System.Drawing.Point(170, 200);
+            this.ckCamposDiseñoAcabado2.Location = new System.Drawing.Point(160, 201);
             this.ckCamposDiseñoAcabado2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiseñoAcabado2.Name = "ckCamposDiseñoAcabado2";
             this.ckCamposDiseñoAcabado2.Size = new System.Drawing.Size(137, 17);
@@ -1924,7 +2066,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCaracteristicas2.AutoSize = true;
             this.ckCaracteristicas2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCaracteristicas2.Location = new System.Drawing.Point(170, 32);
+            this.ckCaracteristicas2.Location = new System.Drawing.Point(160, 33);
             this.ckCaracteristicas2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCaracteristicas2.Name = "ckCaracteristicas2";
             this.ckCaracteristicas2.Size = new System.Drawing.Size(116, 17);
@@ -1937,7 +2079,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposEspesores2.AutoSize = true;
             this.ckCamposEspesores2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposEspesores2.Location = new System.Drawing.Point(170, 165);
+            this.ckCamposEspesores2.Location = new System.Drawing.Point(160, 166);
             this.ckCamposEspesores2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposEspesores2.Name = "ckCamposEspesores2";
             this.ckCamposEspesores2.Size = new System.Drawing.Size(107, 17);
@@ -1950,7 +2092,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposMedida2.AutoSize = true;
             this.ckCamposMedida2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposMedida2.Location = new System.Drawing.Point(170, 64);
+            this.ckCamposMedida2.Location = new System.Drawing.Point(160, 65);
             this.ckCamposMedida2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposMedida2.Name = "ckCamposMedida2";
             this.ckCamposMedida2.Size = new System.Drawing.Size(95, 17);
@@ -1963,7 +2105,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposDiametros2.AutoSize = true;
             this.ckCamposDiametros2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposDiametros2.Location = new System.Drawing.Point(170, 97);
+            this.ckCamposDiametros2.Location = new System.Drawing.Point(160, 98);
             this.ckCamposDiametros2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposDiametros2.Name = "ckCamposDiametros2";
             this.ckCamposDiametros2.Size = new System.Drawing.Size(109, 17);
@@ -1976,7 +2118,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.ckCamposFormas2.AutoSize = true;
             this.ckCamposFormas2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckCamposFormas2.Location = new System.Drawing.Point(170, 131);
+            this.ckCamposFormas2.Location = new System.Drawing.Point(160, 132);
             this.ckCamposFormas2.Margin = new System.Windows.Forms.Padding(4);
             this.ckCamposFormas2.Name = "ckCamposFormas2";
             this.ckCamposFormas2.Size = new System.Drawing.Size(94, 17);
@@ -1991,7 +2133,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(783, 530);
+            this.btnCancelar.Location = new System.Drawing.Point(859, 530);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(38, 38);
             this.btnCancelar.TabIndex = 2006;
@@ -2004,7 +2146,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(858, 530);
+            this.btnSalir.Location = new System.Drawing.Point(911, 530);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(38, 38);
             this.btnSalir.TabIndex = 2005;
@@ -2017,7 +2159,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.btnGuardarAtributos.FlatAppearance.BorderSize = 0;
             this.btnGuardarAtributos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarAtributos.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarAtributos.Image")));
-            this.btnGuardarAtributos.Location = new System.Drawing.Point(693, 530);
+            this.btnGuardarAtributos.Location = new System.Drawing.Point(792, 530);
             this.btnGuardarAtributos.Name = "btnGuardarAtributos";
             this.btnGuardarAtributos.Size = new System.Drawing.Size(38, 38);
             this.btnGuardarAtributos.TabIndex = 2004;
@@ -2050,7 +2192,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(864, 571);
+            this.label34.Location = new System.Drawing.Point(917, 571);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(32, 13);
@@ -2061,7 +2203,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(780, 571);
+            this.label33.Location = new System.Drawing.Point(856, 571);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(45, 13);
@@ -2072,7 +2214,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(689, 571);
+            this.label29.Location = new System.Drawing.Point(786, 571);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(52, 13);
@@ -2082,13 +2224,13 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label25.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Blue;
             this.label25.Location = new System.Drawing.Point(10, 530);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(320, 54);
+            this.label25.Size = new System.Drawing.Size(318, 52);
             this.label25.TabIndex = 110;
             this.label25.Text = resources.GetString("label25.Text");
             // 
@@ -2099,7 +2241,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel23.Location = new System.Drawing.Point(3, 588);
             this.panel23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(924, 1);
+            this.panel23.Size = new System.Drawing.Size(964, 1);
             this.panel23.TabIndex = 109;
             // 
             // panel22
@@ -2109,14 +2251,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panel22.Location = new System.Drawing.Point(3, 0);
             this.panel22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(924, 1);
+            this.panel22.Size = new System.Drawing.Size(964, 1);
             this.panel22.TabIndex = 104;
             // 
             // panel26
             // 
             this.panel26.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel26.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel26.Location = new System.Drawing.Point(927, 0);
+            this.panel26.Location = new System.Drawing.Point(967, 0);
             this.panel26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel26.Name = "panel26";
             this.panel26.Size = new System.Drawing.Size(3, 589);
@@ -2143,12 +2285,455 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.label31.TabIndex = 4;
             this.label31.Text = "Asignación de Atributos y campos al Modelo";
             // 
+            // panelDefinicionNombre
+            // 
+            this.panelDefinicionNombre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panelDefinicionNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDefinicionNombre.Controls.Add(this.btnRetrocederNombre);
+            this.panelDefinicionNombre.Controls.Add(this.label41);
+            this.panelDefinicionNombre.Controls.Add(this.btnGuardarDefinicionNombre);
+            this.panelDefinicionNombre.Controls.Add(this.label40);
+            this.panelDefinicionNombre.Controls.Add(this.label39);
+            this.panelDefinicionNombre.Controls.Add(this.panel30);
+            this.panelDefinicionNombre.Controls.Add(this.groupBox4);
+            this.panelDefinicionNombre.Controls.Add(this.groupBox3);
+            this.panelDefinicionNombre.Controls.Add(this.panel29);
+            this.panelDefinicionNombre.Controls.Add(this.pictureBox4);
+            this.panelDefinicionNombre.Controls.Add(this.label38);
+            this.panelDefinicionNombre.Controls.Add(this.panel5);
+            this.panelDefinicionNombre.Location = new System.Drawing.Point(258, 26);
+            this.panelDefinicionNombre.Name = "panelDefinicionNombre";
+            this.panelDefinicionNombre.Size = new System.Drawing.Size(664, 599);
+            this.panelDefinicionNombre.TabIndex = 1987;
+            this.panelDefinicionNombre.Visible = false;
+            // 
+            // btnRetrocederNombre
+            // 
+            this.btnRetrocederNombre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRetrocederNombre.FlatAppearance.BorderSize = 0;
+            this.btnRetrocederNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetrocederNombre.Image = ((System.Drawing.Image)(resources.GetObject("btnRetrocederNombre.Image")));
+            this.btnRetrocederNombre.Location = new System.Drawing.Point(610, 555);
+            this.btnRetrocederNombre.Name = "btnRetrocederNombre";
+            this.btnRetrocederNombre.Size = new System.Drawing.Size(24, 24);
+            this.btnRetrocederNombre.TabIndex = 2008;
+            this.btnRetrocederNombre.UseVisualStyleBackColor = true;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(607, 581);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(32, 13);
+            this.label41.TabIndex = 2007;
+            this.label41.Text = "SALIR";
+            // 
+            // btnGuardarDefinicionNombre
+            // 
+            this.btnGuardarDefinicionNombre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardarDefinicionNombre.FlatAppearance.BorderSize = 0;
+            this.btnGuardarDefinicionNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarDefinicionNombre.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarDefinicionNombre.Image")));
+            this.btnGuardarDefinicionNombre.Location = new System.Drawing.Point(553, 555);
+            this.btnGuardarDefinicionNombre.Name = "btnGuardarDefinicionNombre";
+            this.btnGuardarDefinicionNombre.Size = new System.Drawing.Size(24, 24);
+            this.btnGuardarDefinicionNombre.TabIndex = 2006;
+            this.btnGuardarDefinicionNombre.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(540, 581);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(52, 13);
+            this.label40.TabIndex = 2005;
+            this.label40.Text = "GUARDAR";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label39.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.Color.Blue;
+            this.label39.Location = new System.Drawing.Point(16, 561);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(299, 26);
+            this.label39.TabIndex = 1988;
+            this.label39.Text = "Organice los grupos de campos arrastrando al panel derecho.\r\nEl orden definido se" +
+    " usara para generar el nombre del producto.";
+            // 
+            // panel30
+            // 
+            this.panel30.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel30.Location = new System.Drawing.Point(332, 105);
+            this.panel30.Margin = new System.Windows.Forms.Padding(4);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(2, 400);
+            this.panel30.TabIndex = 1983;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.flpanelDefinido);
+            this.groupBox4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(355, 75);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(296, 474);
+            this.groupBox4.TabIndex = 1982;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Grupo definido";
+            // 
+            // flpanelDefinido
+            // 
+            this.flpanelDefinido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpanelDefinido.Location = new System.Drawing.Point(3, 17);
+            this.flpanelDefinido.Name = "flpanelDefinido";
+            this.flpanelDefinido.Size = new System.Drawing.Size(290, 454);
+            this.flpanelDefinido.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.flpanelSeleccionado);
+            this.groupBox3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(13, 75);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(296, 474);
+            this.groupBox3.TabIndex = 1981;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Grupo seleccionado";
+            // 
+            // flpanelSeleccionado
+            // 
+            this.flpanelSeleccionado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpanelSeleccionado.Location = new System.Drawing.Point(3, 17);
+            this.flpanelSeleccionado.Name = "flpanelSeleccionado";
+            this.flpanelSeleccionado.Size = new System.Drawing.Size(290, 454);
+            this.flpanelSeleccionado.TabIndex = 0;
+            // 
+            // panel29
+            // 
+            this.panel29.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel29.Location = new System.Drawing.Point(82, 56);
+            this.panel29.Margin = new System.Windows.Forms.Padding(4);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(500, 1);
+            this.panel29.TabIndex = 1980;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(118, 30);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(37, 22);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 1978;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(163, 33);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(383, 19);
+            this.label38.TabIndex = 1977;
+            this.label38.Text = "Asignación de Posiciones para el Nombre del Producto";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.DarkRed;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(662, 16);
+            this.panel5.TabIndex = 7;
+            // 
+            // ckTipoCaracteristicas1
+            // 
+            this.ckTipoCaracteristicas1.AutoSize = true;
+            this.ckTipoCaracteristicas1.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoCaracteristicas1.Name = "ckTipoCaracteristicas1";
+            this.ckTipoCaracteristicas1.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoCaracteristicas1.TabIndex = 1937;
+            this.ckTipoCaracteristicas1.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoCaracteristicas2
+            // 
+            this.ckTipoCaracteristicas2.AutoSize = true;
+            this.ckTipoCaracteristicas2.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoCaracteristicas2.Name = "ckTipoCaracteristicas2";
+            this.ckTipoCaracteristicas2.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoCaracteristicas2.TabIndex = 1938;
+            this.ckTipoCaracteristicas2.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoCaracteristicas4
+            // 
+            this.ckTipoCaracteristicas4.AutoSize = true;
+            this.ckTipoCaracteristicas4.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoCaracteristicas4.Name = "ckTipoCaracteristicas4";
+            this.ckTipoCaracteristicas4.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoCaracteristicas4.TabIndex = 1938;
+            this.ckTipoCaracteristicas4.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoCaracteristicas3
+            // 
+            this.ckTipoCaracteristicas3.AutoSize = true;
+            this.ckTipoCaracteristicas3.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoCaracteristicas3.Name = "ckTipoCaracteristicas3";
+            this.ckTipoCaracteristicas3.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoCaracteristicas3.TabIndex = 1939;
+            this.ckTipoCaracteristicas3.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoMedida2
+            // 
+            this.ckTipoMedida2.AutoSize = true;
+            this.ckTipoMedida2.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoMedida2.Name = "ckTipoMedida2";
+            this.ckTipoMedida2.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoMedida2.TabIndex = 1940;
+            this.ckTipoMedida2.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoMedida1
+            // 
+            this.ckTipoMedida1.AutoSize = true;
+            this.ckTipoMedida1.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoMedida1.Name = "ckTipoMedida1";
+            this.ckTipoMedida1.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoMedida1.TabIndex = 1941;
+            this.ckTipoMedida1.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoMedida4
+            // 
+            this.ckTipoMedida4.AutoSize = true;
+            this.ckTipoMedida4.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoMedida4.Name = "ckTipoMedida4";
+            this.ckTipoMedida4.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoMedida4.TabIndex = 1940;
+            this.ckTipoMedida4.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoMedida3
+            // 
+            this.ckTipoMedida3.AutoSize = true;
+            this.ckTipoMedida3.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoMedida3.Name = "ckTipoMedida3";
+            this.ckTipoMedida3.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoMedida3.TabIndex = 1941;
+            this.ckTipoMedida3.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiametro2
+            // 
+            this.ckTipoDiametro2.AutoSize = true;
+            this.ckTipoDiametro2.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoDiametro2.Name = "ckTipoDiametro2";
+            this.ckTipoDiametro2.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiametro2.TabIndex = 1938;
+            this.ckTipoDiametro2.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiametro1
+            // 
+            this.ckTipoDiametro1.AutoSize = true;
+            this.ckTipoDiametro1.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoDiametro1.Name = "ckTipoDiametro1";
+            this.ckTipoDiametro1.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiametro1.TabIndex = 1939;
+            this.ckTipoDiametro1.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiametro3
+            // 
+            this.ckTipoDiametro3.AutoSize = true;
+            this.ckTipoDiametro3.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoDiametro3.Name = "ckTipoDiametro3";
+            this.ckTipoDiametro3.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiametro3.TabIndex = 1938;
+            this.ckTipoDiametro3.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiametro4
+            // 
+            this.ckTipoDiametro4.AutoSize = true;
+            this.ckTipoDiametro4.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoDiametro4.Name = "ckTipoDiametro4";
+            this.ckTipoDiametro4.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiametro4.TabIndex = 1939;
+            this.ckTipoDiametro4.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoFormas2
+            // 
+            this.ckTipoFormas2.AutoSize = true;
+            this.ckTipoFormas2.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoFormas2.Name = "ckTipoFormas2";
+            this.ckTipoFormas2.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoFormas2.TabIndex = 1938;
+            this.ckTipoFormas2.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoFormas1
+            // 
+            this.ckTipoFormas1.AutoSize = true;
+            this.ckTipoFormas1.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoFormas1.Name = "ckTipoFormas1";
+            this.ckTipoFormas1.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoFormas1.TabIndex = 1939;
+            this.ckTipoFormas1.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoFormas4
+            // 
+            this.ckTipoFormas4.AutoSize = true;
+            this.ckTipoFormas4.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoFormas4.Name = "ckTipoFormas4";
+            this.ckTipoFormas4.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoFormas4.TabIndex = 1938;
+            this.ckTipoFormas4.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoFormas3
+            // 
+            this.ckTipoFormas3.AutoSize = true;
+            this.ckTipoFormas3.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoFormas3.Name = "ckTipoFormas3";
+            this.ckTipoFormas3.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoFormas3.TabIndex = 1939;
+            this.ckTipoFormas3.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoEspesores2
+            // 
+            this.ckTipoEspesores2.AutoSize = true;
+            this.ckTipoEspesores2.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoEspesores2.Name = "ckTipoEspesores2";
+            this.ckTipoEspesores2.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoEspesores2.TabIndex = 1940;
+            this.ckTipoEspesores2.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoEspesores1
+            // 
+            this.ckTipoEspesores1.AutoSize = true;
+            this.ckTipoEspesores1.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoEspesores1.Name = "ckTipoEspesores1";
+            this.ckTipoEspesores1.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoEspesores1.TabIndex = 1941;
+            this.ckTipoEspesores1.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoEspesores4
+            // 
+            this.ckTipoEspesores4.AutoSize = true;
+            this.ckTipoEspesores4.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoEspesores4.Name = "ckTipoEspesores4";
+            this.ckTipoEspesores4.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoEspesores4.TabIndex = 1940;
+            this.ckTipoEspesores4.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoEspesores3
+            // 
+            this.ckTipoEspesores3.AutoSize = true;
+            this.ckTipoEspesores3.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoEspesores3.Name = "ckTipoEspesores3";
+            this.ckTipoEspesores3.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoEspesores3.TabIndex = 1941;
+            this.ckTipoEspesores3.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiseño2
+            // 
+            this.ckTipoDiseño2.AutoSize = true;
+            this.ckTipoDiseño2.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoDiseño2.Name = "ckTipoDiseño2";
+            this.ckTipoDiseño2.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiseño2.TabIndex = 1940;
+            this.ckTipoDiseño2.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiseño1
+            // 
+            this.ckTipoDiseño1.AutoSize = true;
+            this.ckTipoDiseño1.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoDiseño1.Name = "ckTipoDiseño1";
+            this.ckTipoDiseño1.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiseño1.TabIndex = 1941;
+            this.ckTipoDiseño1.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiseño4
+            // 
+            this.ckTipoDiseño4.AutoSize = true;
+            this.ckTipoDiseño4.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoDiseño4.Name = "ckTipoDiseño4";
+            this.ckTipoDiseño4.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiseño4.TabIndex = 1940;
+            this.ckTipoDiseño4.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoDiseño3
+            // 
+            this.ckTipoDiseño3.AutoSize = true;
+            this.ckTipoDiseño3.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoDiseño3.Name = "ckTipoDiseño3";
+            this.ckTipoDiseño3.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoDiseño3.TabIndex = 1941;
+            this.ckTipoDiseño3.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoNumeroTipos1
+            // 
+            this.ckTipoNumeroTipos1.AutoSize = true;
+            this.ckTipoNumeroTipos1.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoNumeroTipos1.Name = "ckTipoNumeroTipos1";
+            this.ckTipoNumeroTipos1.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoNumeroTipos1.TabIndex = 1942;
+            this.ckTipoNumeroTipos1.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoNumeroTipos2
+            // 
+            this.ckTipoNumeroTipos2.AutoSize = true;
+            this.ckTipoNumeroTipos2.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoNumeroTipos2.Name = "ckTipoNumeroTipos2";
+            this.ckTipoNumeroTipos2.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoNumeroTipos2.TabIndex = 1943;
+            this.ckTipoNumeroTipos2.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoNumeroTipos4
+            // 
+            this.ckTipoNumeroTipos4.AutoSize = true;
+            this.ckTipoNumeroTipos4.Location = new System.Drawing.Point(180, 61);
+            this.ckTipoNumeroTipos4.Name = "ckTipoNumeroTipos4";
+            this.ckTipoNumeroTipos4.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoNumeroTipos4.TabIndex = 1942;
+            this.ckTipoNumeroTipos4.UseVisualStyleBackColor = true;
+            // 
+            // ckTipoNumeroTipos3
+            // 
+            this.ckTipoNumeroTipos3.AutoSize = true;
+            this.ckTipoNumeroTipos3.Location = new System.Drawing.Point(180, 29);
+            this.ckTipoNumeroTipos3.Name = "ckTipoNumeroTipos3";
+            this.ckTipoNumeroTipos3.Size = new System.Drawing.Size(15, 14);
+            this.ckTipoNumeroTipos3.TabIndex = 1943;
+            this.ckTipoNumeroTipos3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(180, 29);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 1942;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(180, 29);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 1942;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // MantenimientoModelos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1181, 640);
+            this.Controls.Add(this.panelDefinicionNombre);
             this.Controls.Add(this.panelDefinicionAtributos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -2161,12 +2746,14 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoModeloRecienIngresado)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoLineas)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoLineas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelDefinicionAtributos.ResumeLayout(false);
             this.panelDefinicionAtributos.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel21.ResumeLayout(false);
             this.panelCamposGeneral.ResumeLayout(false);
             this.panelCamposGeneral.PerformLayout();
@@ -2202,9 +2789,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             this.panelCamposCaracteristicas2.PerformLayout();
             this.panelCamposCaracteristicas1.ResumeLayout(false);
             this.panelCamposCaracteristicas1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panelDefinicionNombre.ResumeLayout(false);
+            this.panelDefinicionNombre.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2220,10 +2810,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label lblCodigoLinea;
         private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label lblEstadoAtributo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtAbreviatura;
         private System.Windows.Forms.Label label6;
@@ -2368,5 +2956,56 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnGuardarAtributos;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.ComboBox cboEstadoAtributo;
+        private System.Windows.Forms.TextBox txtCodigoLinea;
+        private System.Windows.Forms.ComboBox cboEstadoNombre;
+        private System.Windows.Forms.Panel panelDefinicionNombre;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel30;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Button btnRetrocederNombre;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Button btnGuardarDefinicionNombre;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.FlowLayoutPanel flpanelDefinido;
+        private System.Windows.Forms.FlowLayoutPanel flpanelSeleccionado;
+        private System.Windows.Forms.CheckBox ckTipoCaracteristicas3;
+        private System.Windows.Forms.CheckBox ckTipoCaracteristicas4;
+        private System.Windows.Forms.CheckBox ckTipoCaracteristicas2;
+        private System.Windows.Forms.CheckBox ckTipoCaracteristicas1;
+        private System.Windows.Forms.CheckBox ckTipoMedida1;
+        private System.Windows.Forms.CheckBox ckTipoMedida2;
+        private System.Windows.Forms.CheckBox ckTipoMedida3;
+        private System.Windows.Forms.CheckBox ckTipoMedida4;
+        private System.Windows.Forms.CheckBox ckTipoFormas1;
+        private System.Windows.Forms.CheckBox ckTipoFormas2;
+        private System.Windows.Forms.CheckBox ckTipoFormas3;
+        private System.Windows.Forms.CheckBox ckTipoFormas4;
+        private System.Windows.Forms.CheckBox ckTipoDiametro4;
+        private System.Windows.Forms.CheckBox ckTipoDiametro3;
+        private System.Windows.Forms.CheckBox ckTipoDiametro1;
+        private System.Windows.Forms.CheckBox ckTipoDiametro2;
+        private System.Windows.Forms.CheckBox ckTipoEspesores1;
+        private System.Windows.Forms.CheckBox ckTipoEspesores2;
+        private System.Windows.Forms.CheckBox ckTipoEspesores3;
+        private System.Windows.Forms.CheckBox ckTipoEspesores4;
+        private System.Windows.Forms.CheckBox ckTipoDiseño1;
+        private System.Windows.Forms.CheckBox ckTipoDiseño2;
+        private System.Windows.Forms.CheckBox ckTipoDiseño3;
+        private System.Windows.Forms.CheckBox ckTipoDiseño4;
+        private System.Windows.Forms.CheckBox ckTipoNumeroTipos2;
+        private System.Windows.Forms.CheckBox ckTipoNumeroTipos1;
+        private System.Windows.Forms.CheckBox ckTipoNumeroTipos3;
+        private System.Windows.Forms.CheckBox ckTipoNumeroTipos4;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

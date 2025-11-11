@@ -27,8 +27,9 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         private void DefinicionFormulacion_Load(object sender, EventArgs e)
         {
             cboBusqueda.SelectedIndex = 0;
-            CargarLineas(cboLinea);
+            CargarLineas(cboLineaArea);
             CargarTipoFormulacion(cboTipo);
+            CargarArea(cboArea);
             lineasrepetidas();
             MostrarTodos();
             alternarColorFilas(datalistadoDefinicionFormulacion);
@@ -62,7 +63,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 int valor1 = Convert.ToInt32(dgv.Cells["IdLinea"].Value);
                 int valor2 = Convert.ToInt32(dgv.Cells["IdTipo"].Value);
 
-                if (valor1 == Convert.ToInt32(cboLinea.SelectedValue) && valor2 == Convert.ToInt32(cboTipo.SelectedValue))
+                if (valor1 == Convert.ToInt32(cboLineaArea.SelectedValue) && valor2 == Convert.ToInt32(cboTipo.SelectedValue))
                 {
                     repetidalinea = true;
                     return;
@@ -91,12 +92,27 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
             con.Open();
-            SqlCommand comando = new SqlCommand("SELECT IdLinea, Descripcion FROM  LINEAS WHERE Estado = 1", con);
+            SqlCommand comando = new SqlCommand("SELECT IdLinea, Descripcion FROM LINEAS WHERE Estado = 1", con);
             SqlDataAdapter data = new SqlDataAdapter(comando);
             DataTable dt = new DataTable();
             data.Fill(dt);
             cbo.DisplayMember = "Descripcion";
             cbo.ValueMember = "IdLinea";
+            cbo.DataSource = dt;
+        }
+
+        //CARGA DE DATOS - CATEGORIA DE FORMULACION
+        public void CargarArea(ComboBox cbo)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand comando = new SqlCommand("SELECT IdArea, Descripcion FROM AreaGeneral WHERE Estado = 1", con);
+            SqlDataAdapter data = new SqlDataAdapter(comando);
+            DataTable dt = new DataTable();
+            data.Fill(dt);
+            cbo.DisplayMember = "Descripcion";
+            cbo.ValueMember = "IdArea";
             cbo.DataSource = dt;
         }
 
@@ -130,8 +146,9 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         private void datalistadoDefinicionFormulacion_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             lblCodigo.Text = datalistadoDefinicionFormulacion.SelectedCells[1].Value.ToString();
-            cboLinea.SelectedValue = datalistadoDefinicionFormulacion.SelectedCells[2].Value.ToString();
+            cboLineaArea.SelectedValue = datalistadoDefinicionFormulacion.SelectedCells[2].Value.ToString();
             cboTipo.SelectedValue = datalistadoDefinicionFormulacion.SelectedCells[4].Value.ToString();
+            cboArea.SelectedValue = datalistadoDefinicionFormulacion.SelectedCells[6].Value.ToString();
             string estado = datalistadoDefinicionFormulacion.SelectedCells[0].Value.ToString();
 
             if (estado == "ACTIVO")
@@ -145,7 +162,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         }
 
         //METODO PARA GUARDAR EN LA BASE DE DATOS UNA NUEVA DEFINICION DE FORMULACION
-        public void AgregarDefinicionFormulacion(int idlinea, int idtipo, ComboBox cbo)
+        public void AgregarDefinicionFormulacion(int idlinea, int idtipo, ComboBox cbo, int idArea)
         {
             lineasrepetidas();
             try
@@ -167,6 +184,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idLinea", idlinea);
                         cmd.Parameters.AddWithValue("@idTipo", idtipo);
+                        cmd.Parameters.AddWithValue("@idArea", idArea);
                         if (cbo.Text == "ACTIVO")
                         {
                             cmd.Parameters.AddWithValue("@estado", 1);
@@ -195,60 +213,54 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //EVENTO DE BOTON PARA EJECUTAR LA FUNCION DE GUARDAR FORMULACION
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
-            AgregarDefinicionFormulacion(Convert.ToInt32(cboLinea.SelectedValue), Convert.ToInt32(cboTipo.SelectedValue), cboEstado);
+            AgregarDefinicionFormulacion(Convert.ToInt32(cboLineaArea.SelectedValue), Convert.ToInt32(cboTipo.SelectedValue), cboEstado, Convert.ToInt32(cboArea.SelectedValue));
         }
 
         //EDITAR UNA CUENTA DE MI BASE DE DATO
-        public void EditarDefinicionFormulacion(int codigo, ComboBox cbo)
+        public void EditarDefinicionFormulacion(int codigo, ComboBox cbo, int idArea)
         {
-            lineasrepetidas();
-            if (repetidalinea == true)
+            DialogResult boton = MessageBox.Show("¿Realmente desea editar el estado de esta definición de una formulación?.", "Validación de Sistema", MessageBoxButtons.OKCancel);
+            if (boton == DialogResult.OK)
             {
-                MessageBox.Show("No se puede ingresar dos registros iguales.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            else
-            {
-                DialogResult boton = MessageBox.Show("¿Realmente desea editar el estado de esta definición de una formulación?.", "Validación de Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
+
+                if (Convert.ToString(codigo) == "N")
                 {
-
-                    if (Convert.ToString(codigo) == "N")
+                    MessageBox.Show("Debe seleccionar un registro para poder cambiar el estado.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    try
                     {
-                        MessageBox.Show("Debe seleccionar un registro para poder cambiar el estado.", "Validación del Sistema", MessageBoxButtons.OK);
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd = new SqlCommand("DefinicionFormulacion_Editar", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+
+                        if (cbo.Text == "ACTIVO")
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 1);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@estado", 0);
+                        }
+
+                        cmd.Parameters.AddWithValue("@idArea", idArea);
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        MostrarTodos();
+                        MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
+                        lineasrepetidas();
+
+                        cbo.SelectedIndex = 0;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        try
-                        {
-                            SqlConnection con = new SqlConnection();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            SqlCommand cmd = new SqlCommand();
-                            cmd = new SqlCommand("DefinicionFormulacion_Editar", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@codigo", codigo);
-
-                            if (cbo.Text == "ACTIVO")
-                            {
-                                cmd.Parameters.AddWithValue("@estado", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@estado", 0);
-                            }
-
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                            MostrarTodos();
-                            MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
-                            lineasrepetidas();
-
-                            cbo.SelectedIndex = 0;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -257,7 +269,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         //EVENTO DE BOTON PARA EJECUTAR LA FUNCION DE EDITAR
         private void btnEditar2_Click(object sender, EventArgs e)
         {
-            EditarDefinicionFormulacion(Convert.ToInt32(lblCodigo.Text), cboEstado);
+            EditarDefinicionFormulacion(Convert.ToInt32(lblCodigo.Text), cboEstado, Convert.ToInt32(cboArea.SelectedValue));
         }
 
         //VALIDACION Y BUSQUEDA DE DEFINICIONES SEGUN CRITERIOS-----------
@@ -302,8 +314,10 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             dgv.Columns[1].Width = 60;
             dgv.Columns[3].Width = 240;
             dgv.Columns[5].Width = 240;
+            dgv.Columns[7].Width = 240;
             dgv.Columns[2].Visible = false;
             dgv.Columns[4].Visible = false;
+            dgv.Columns[6].Visible = false;
         }
 
         //EVENTO DE CAJA DE TEXTO QUE EJECITA MI BUSCAR DEFINICIONES DE FORMUYLACION

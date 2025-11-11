@@ -80,27 +80,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
         public void RedimensionarListadoSNC(DataGridView DGV)
         {
-
-            DGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-
-            if (DGV.Columns.Count > 5)
-            {
-                DGV.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                DGV.Columns[5].FillWeight = 150;
-            }
-
-            if (DGV.Columns.Count > 6)
-            {
-    
-                DGV.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                DGV.Columns[6].FillWeight = 150;
-            }
+            DGV.Columns[0].Width = 55;
+            DGV.Columns[1].Width = 190;
+            DGV.Columns[2].Width = 90;
+            DGV.Columns[4].Width = 100;
+            DGV.Columns[5].Width = 390;
+            DGV.Columns[7].Width = 80;
+            DGV.Columns[8].Width = 150;
+            DGV.Columns[11].Width = 80;
+            DGV.Columns[3].Visible = false;
+            DGV.Columns[6].Visible = false;
             DGV.Columns[9].Visible = false;
+            DGV.Columns[10].Visible = false;
             CargarColores();
-
-
-
         }
 
         public void CargarColores()
@@ -132,10 +124,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DateTime fechaInicio = DesdeFecha.Value;
             DateTime fechaTermino = HastaFecha.Value;
 
-         
             string codigoOp = string.IsNullOrWhiteSpace(txtBusqueda.Text) ? string.Empty : txtBusqueda.Text.Trim();
 
-           
             MostrarListaSncDestruc(fechaInicio, fechaTermino, codigoOp);
         }
 
@@ -214,10 +204,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -237,7 +223,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             if (datalistadoTodasSNC.CurrentRow != null)
             {
                 //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                string codigoDetalleCantidadCalidad = datalistadoTodasSNC.Rows[datalistadoTodasSNC.CurrentRow.Index].Cells[0].Value.ToString();
+                string codigoDetalleCantidadCalidad = datalistadoTodasSNC.Rows[datalistadoTodasSNC.CurrentRow.Index].Cells[10].Value.ToString();
                 Visualizadores.VisualizarSNC frm = new Visualizadores.VisualizarSNC();
                 frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
                 //CARGAR VENTANA

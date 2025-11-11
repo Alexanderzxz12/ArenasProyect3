@@ -24,6 +24,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         private Cursor curAnterior = null;
         int totalCantidades = 0;
+        DataGridView dgvActivo = null;
 
         //CONMSTRUCTOR DE MI FORMULARIO
         public ListadoOrdenProduccion()
@@ -350,6 +351,40 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //BUSCAR DETALLES Y MATERIALES DE MI FORMULACION
+        public void BuscarMaterialesFormulacion(string codigoFormulacion)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("OP_BuscarMaterialesFormulacion", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigoFormulacion", codigoFormulacion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalsitadoMaterialesPre.DataSource = dt;
+            con.Close();
+
+            datalistadoMaterialesFormulacion.Rows.Clear();
+
+            foreach (DataGridViewRow dgv in datalsitadoMaterialesPre.Rows)
+            {
+                string codigoBSS = dgv.Cells[2].Value.ToString();
+                string desProducto = dgv.Cells[4].Value.ToString();
+
+                decimal cantidadObserbada = Convert.ToDecimal(txtCantidadObserbadaReque.Text);
+                decimal cantidad = Convert.ToDecimal(dgv.Cells[5].Value.ToString());
+                decimal CantidadTotal = cantidadObserbada * cantidad;
+
+                string Stock = dgv.Cells[8].Value.ToString();
+                string idArt = dgv.Cells[1].Value.ToString();
+
+                datalistadoMaterialesFormulacion.Rows.Add(new[] { null, codigoBSS, desProducto, Convert.ToString(CantidadTotal), Stock, idArt });
+            }
+        }
+
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
         public void ColoresListadoCantidades()
         {
@@ -532,7 +567,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con2.ConnectionString = Conexion.ConexionMaestra.conexion;
             con2.Open();
             SqlCommand cmd2 = new SqlCommand();
-            cmd2 = new SqlCommand("OP_MostrarPorCliente_EnProceso", con2);
+            cmd2 = new SqlCommand("OP_MostrarPorCodigo_EnProceso", con2);
             cmd2.CommandType = CommandType.StoredProcedure;
             cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -547,7 +582,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con3.ConnectionString = Conexion.ConexionMaestra.conexion;
             con3.Open();
             SqlCommand cmd3 = new SqlCommand();
-            cmd3 = new SqlCommand("OP_MostrarPorCliente_Observadas", con3);
+            cmd3 = new SqlCommand("OP_MostrarPorCodigo_Observada", con3);
             cmd3.CommandType = CommandType.StoredProcedure;
             cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -585,7 +620,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con2.ConnectionString = Conexion.ConexionMaestra.conexion;
             con2.Open();
             SqlCommand cmd2 = new SqlCommand();
-            cmd2 = new SqlCommand("OP_MostrarPorCliente_EnProceso", con2);
+            cmd2 = new SqlCommand("OP_MostrarPorDescripcion_EnProceso", con2);
             cmd2.CommandType = CommandType.StoredProcedure;
             cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -600,7 +635,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             con3.ConnectionString = Conexion.ConexionMaestra.conexion;
             con3.Open();
             SqlCommand cmd3 = new SqlCommand();
-            cmd3 = new SqlCommand("OP_MostrarPorCliente_Observadas", con3);
+            cmd3 = new SqlCommand("OP_MostrarPorDescripcion_Observada", con3);
             cmd3.CommandType = CommandType.StoredProcedure;
             cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
             cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -619,7 +654,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         public void RedimensionarListadoGeneralPedido(DataGridView DGV)
         {
             //REDIEMNSION DE PEDIDOS
-            DGV.Columns[2].Width = 80;
+            DGV.Columns[2].Width = 95;
             DGV.Columns[3].Width = 80;
             DGV.Columns[4].Width = 80;
             DGV.Columns[5].Width = 300;
@@ -645,6 +680,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[23].Visible = false;
             DGV.Columns[24].Visible = false;
             DGV.Columns[25].Visible = false;
+            DGV.Columns[26].Visible = false;
             //SE BLOQUEA MI LISTADO
             DGV.Columns[2].ReadOnly = true;
             DGV.Columns[3].ReadOnly = true;
@@ -674,7 +710,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         public void RedimensionarListadoOPCalidad(DataGridView DGV)
         {
             //REDIEMNSION DE PEDIDOS
-            DGV.Columns[2].Width = 80;
+            DGV.Columns[2].Width = 95;
             DGV.Columns[3].Width = 80;
             DGV.Columns[4].Width = 80;
             DGV.Columns[5].Width = 300;
@@ -701,6 +737,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[24].Visible = false;
             DGV.Columns[25].Visible = false;
             DGV.Columns[26].Visible = false;
+            DGV.Columns[27].Visible = false;
             //SE BLOQUEA MI LISTADO
             DGV.Columns[2].ReadOnly = true;
             DGV.Columns[3].ReadOnly = true;
@@ -822,9 +859,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 lblIdOP.Text = datalistadoObservadas.SelectedCells[1].Value.ToString();
                 txtCoidgoOPCalidad.Text = datalistadoObservadas.SelectedCells[2].Value.ToString();
                 txtDescripcionProductoCalidad.Text = datalistadoObservadas.SelectedCells[8].Value.ToString();
+                txtArea.Text = datalistadoObservadas.SelectedCells[26].Value.ToString();
                 MostrarCantidadesSegunOPCalidad(Convert.ToInt32(lblIdOP.Text));
                 btnGenerarCSM.Visible = false;
                 lblGenerarCSM.Visible = false;
+                datalistadoObservadas.Enabled = false;
             }
         }
 
@@ -907,6 +946,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             lblImagen2.Text = datalistadoSNCDatos.SelectedCells[6].Value.ToString();
             lblImagen3.Text = datalistadoSNCDatos.SelectedCells[7].Value.ToString();
             lblIdSNC.Text = datalistadoSNCDatos.SelectedCells[8].Value.ToString();
+            txtCantidadObservada.Text = datalistadoHistorial.SelectedCells[3].Value.ToString();
+            txtAreaSNC.Text = txtArea.Text;
         }
 
         //VISUALIZAR IMAGEN 1
@@ -985,6 +1026,58 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //SELECCION DE UN TIPO DE ACCION - REPROCESO
+        private void ckReproceso_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckReproceso.Checked)
+            {
+                btnInfoMaterialesRepro.Visible = true;
+            }
+            else
+            {
+                btnInfoMaterialesRepro.Visible = false;
+            }
+        }
+
+        //ABIRIR PABNEL DE MATERIALES
+        private void btnInfoMaterialesRepro_Click(object sender, EventArgs e)
+        {
+            bool algunaMarcada = false;
+
+            foreach (DataGridViewRow row in datalistadoMaterialesFormulacion.Rows)
+            {
+                bool estadoCheck = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
+
+                if (estadoCheck == true)
+                {
+                    algunaMarcada = true;
+                    break; // Ya encontramos una, no hace falta seguir
+                }
+            }
+
+
+
+            if (algunaMarcada)
+            {
+                panelGeneracionRequeRepro.Visible = true;
+            }
+            else
+            {
+                panelGeneracionRequeRepro.Visible = true;
+                CargarDatos();
+            }
+        }
+
+        //CARGAR DATOS DE MI GENERACION DE REQUERIMIENTO
+        public void CargarDatos()
+        {
+            txtResponsableRegistroProduccion.Text = Program.NombreUsuarioCompleto;
+            txtCodigoOPReque.Text = txtOrdenProduccionSNC.Text;
+            txtCantidadObserbadaReque.Text = txtCantidadObservada.Text;
+            txtCodigoFormulacionReque.Text = datalistadoObservadas.SelectedCells[27].Value.ToString();
+            BuscarMaterialesFormulacion(txtCodigoFormulacionReque.Text);
+        }
+
         //LIMPIAR MI RUTA DE ARCHVO
         private void btnLimpiarArchivo_Click(object sender, EventArgs e)
         {
@@ -1014,7 +1107,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //GUARDAR LA SNC POR PARTE DEL PRODUCCION
         private void btnGuardarSNC_Click(object sender, EventArgs e)
         {
-            if (txtOrdenProduccionSNC.Text == "" || txtDescripcionSNC.Text == "" || txtCausaSNC.Text == "" || txtAccionesTomadas.Text == "" || txtOportunidadMejora.Text == "")
+            if (txtOrdenProduccionSNC.Text == "" || txtDescripcionSNC.Text == "" || txtCausaSNC.Text == "" || txtAccionesTomadas.Text == "" || txtOportunidadMejora.Text == "" || ckLiberacion.Checked == true && txtRutaArchivo.Text == "")
             {
                 MessageBox.Show("Debe completar todos los campos obligatorios para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
             }
@@ -1037,74 +1130,40 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         cmd.Parameters.AddWithValue("@idAutoriza", Program.IdUsuario);
                         cmd.Parameters.AddWithValue("@inicio", dtpInicio.Value);
                         cmd.Parameters.AddWithValue("@finaliza", dtpFinal.Value);
+
                         //------------------------------
-                        if (ckLiberacion.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@liberacion", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@liberacion", 0);
-                        }
+                        cmd.Parameters.AddWithValue("@liberacion", ckLiberacion.Checked ? 1 : 0);
                         //------------------------------
-                        if (ckCorrecion.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@correcion", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@correcion", 0);
-                        }
+                        cmd.Parameters.AddWithValue("@correcion", ckLiberacion.Checked ? 1 : 0);
                         //------------------------------
-                        if (ckReproceso.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@reproceso", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@reproceso", 0);
-                        }
+                        cmd.Parameters.AddWithValue("@reproceso", ckLiberacion.Checked ? 1 : 0);
                         //------------------------------
-                        if (ckReclasificacion.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@reclasificacion", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@reclasificacion", 0);
-                        }
+                        cmd.Parameters.AddWithValue("@reclasificacion", ckLiberacion.Checked ? 1 : 0);
                         //------------------------------
-                        if (ckRecuperacion.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@recuperacion", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@recuperacion", 0);
-                        }
+                        cmd.Parameters.AddWithValue("@recuperacion", ckLiberacion.Checked ? 1 : 0);
                         //------------------------------
-                        if (ckReposicion.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@destruccion", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@destruccion", 0);
-                        }
+                        cmd.Parameters.AddWithValue("@destruccion", ckLiberacion.Checked ? 1 : 0);
                         //------------------------------
-                        if (ckOtros.Checked == true)
-                        {
-                            cmd.Parameters.AddWithValue("@otros", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@otros", 0);
-                        }
+                        cmd.Parameters.AddWithValue("@otros", ckLiberacion.Checked ? 1 : 0);
 
                         cmd.Parameters.AddWithValue("@descripcionOtros", txtDescripcionOtros.Text);
                         cmd.Parameters.AddWithValue("@fechaRegistroProduccion", DateTime.Now);
                         cmd.Parameters.AddWithValue("@causaConformidad", txtCausaSNC.Text);
                         cmd.Parameters.AddWithValue("@oprtunidadMejora", txtOportunidadMejora.Text);
+
+                        if (txtRutaArchivo.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("@rutaLiberacionEvi", "");
+                        }
+                        else
+                        {
+                            string NombreGenerado = "OP " + txtOrdenProduccionSNC.Text + " SNC " + datalistadoHistorial.SelectedCells[1].Value.ToString();
+                            string RutaOld = txtRutaArchivo.Text;
+                            string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Calidad\SNC Evidencia\" + NombreGenerado + ".pdf";
+                            File.Copy(RutaOld, RutaNew, true);
+                            cmd.Parameters.AddWithValue("@rutaLiberacionEvi", RutaNew);
+                        }
+
                         cmd.ExecuteNonQuery();
                         con.Close();
 
@@ -1113,11 +1172,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             CambiarEstadoCalidad(txtOrdenProduccionSNC.Text, 2);
                         }
 
-                        MessageBox.Show("Salida No Conforme registrada correctamente.", "Validación del Sistema");
-                        LimpairCampos();
+                        MessageBox.Show("Salida No Conforme registrada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                         panelRevisionOP.Visible = false;
-
-
                     }
                     catch (Exception ex)
                     {
@@ -1125,6 +1181,35 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     }
                 }
             }
+
+            if (ckReproceso.Checked == true)
+            {
+
+            }
+
+            if (ckReposicion.Checked == true)
+            {
+                try
+                {
+                    SqlConnection con = new SqlConnection();
+                    SqlCommand cmd = new SqlCommand();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    cmd = new SqlCommand("OP_InsertarReposicion", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Codigo_OP_Original", txtOrdenProduccionSNC.Text);
+                    cmd.Parameters.AddWithValue("@Nueva_Fecha_Entrega", dtpFinal.Value);
+                    cmd.Parameters.AddWithValue("@idCantCal", Convert.ToInt16(datalistadoHistorial.SelectedCells[1].Value.ToString()));
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Se generó la OP por reposición automaticamnete: OP " + txtOrdenProduccionSNC.Text, "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            LimpairCampos();
         }
 
         //CAMBIAR EL ESTADO DE MI OP A FINALIZADA
@@ -1174,6 +1259,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void btnRegresarControl_Click(object sender, EventArgs e)
         {
             panelControlCalidad.Visible = false;
+            datalistadoObservadas.Enabled = true;
         }
 
         //CERRAR EL PANEL DE GENERAR SNC
@@ -1181,6 +1267,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             panelRevisionOP.Visible = false;
             panelControlCalidad.Visible = true;
+            datalistadoObservadas.Enabled = false;
             LimpairCampos();
         }
 
@@ -1189,6 +1276,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         {
             panelRevisionOP.Visible = false;
             panelControlCalidad.Visible = true;
+            datalistadoObservadas.Enabled = false;
             LimpairCampos();
         }
 
@@ -1214,7 +1302,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //FUNCION PARA ABIRI MIS DETALLES D EIGRESO DE CANTUIDADES DEPENDIENDO EL ISTADO
         public void AbrirDetalles(DataGridView DGV)
         {
-            
+
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (DGV.CurrentRow != null)
             {
@@ -1325,13 +1413,31 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //VERIFICAR EN QUE LSITADO ESTOY
+        public void VerificarDGVActivo()
+        {
+            if (TabControl.SelectedTab.Text == "OP en Proceso")
+            {
+                dgvActivo = datalistadoEnProcesoOP;
+            }
+            else if (TabControl.SelectedTab.Text == "Todas las OP")
+            {
+                dgvActivo = datalistadoTodasOP;
+            }
+            else if (TabControl.SelectedTab.Text == "OP Observadas")
+            {
+                dgvActivo = datalistadoObservadas;
+            }
+        }
+
         //GENERACION DE REPORTES
         private void btnGenerarOrdenProduccionPDF_Click(object sender, EventArgs e)
         {
+            VerificarDGVActivo();
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoEnProcesoOP.CurrentRow != null)
+            if (dgvActivo.CurrentRow != null)
             {
-                string codigoOrdenProduccion = datalistadoEnProcesoOP.Rows[datalistadoEnProcesoOP.CurrentRow.Index].Cells[1].Value.ToString();
+                string codigoOrdenProduccion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
                 Visualizadores.VisualizarOrdenProduccion frm = new Visualizadores.VisualizarOrdenProduccion();
                 frm.lblCodigo.Text = codigoOrdenProduccion;
 
@@ -1598,7 +1704,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             {
                 int idOrdenProduccion = Convert.ToInt32(datalistadoEnProcesoOP.SelectedCells[1].Value.ToString());
 
-                DialogResult boton = MessageBox.Show("¿Realmente desea modificar esta fecha de orden de producción?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                DialogResult boton = MessageBox.Show("¿Realmente desea modificar esta fech" +
+                    "+36" +
+                    "+a de orden de producción?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
                     try
@@ -1613,7 +1721,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         cmd.Parameters.AddWithValue("@fechaEntrega", dtpModiFechaEntrega.Value);
                         cmd.Parameters.AddWithValue("@observacion", txtModiObservacionModiFecha.Text);
                         string mensaje = cmd.ExecuteScalar()?.ToString();
-                        //cmd.ExecuteScalar();
+                        cmd.ExecuteScalar();
                         con.Close();
 
                         if (mensaje == "")
@@ -1842,6 +1950,55 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
                 //CARGAR VENTANA
                 frm.Show();
+            }
+        }
+
+        //CARGA DEL FACTOR DE FALLO
+        private void txtAreaSNC_TextChanged(object sender, EventArgs e)
+        {
+            cboFactorFallo.Items.Clear();
+
+            if (txtAreaSNC.Text == "MODULOS CERAMICOS")
+            {
+                cboFactorFallo.Items.AddRange(new string[] { "MEDIDAS", "COLOR", "DUREZA", "DISTANCIA ENTRE PINES", "POSICIÓN DE ABERTURA" });
+            }
+            else if (txtAreaSNC.Text == "MALLAS DE ACERO")
+            {
+                cboFactorFallo.Items.AddRange(new string[] { "MEDIDAS", "COLOR", "TIPO DE PLIEGUE", "TIPO DE ALAMBRE", "POSICIÓN" });
+            }
+            else if (txtAreaSNC.Text == "PANELES Y PIEZAS DE POLIURETANO")
+            {
+                cboFactorFallo.Items.AddRange(new string[] { "MEDIDAS", "COLOR", "TIPO DE PLIEGUE", "TIPO DE ALAMBRE", "POSICIÓN" });
+            }
+            cboFactorFallo.SelectedIndex = 0;
+        }
+
+        //LIMPIAR CUANDO SE CAMBIA DE TIPO DE ARCHIVO
+        private void cboTipoArchivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtRutaArchivo.Text = "";
+        }
+
+        //CERRAR MI PANEL DE GENERACION DE REQUERIMIENTO
+        private void btnCerrarGeneracionReque_Click(object sender, EventArgs e)
+        {
+            panelGeneracionRequeRepro.Visible = false;
+        }
+
+        //CERRAR MI PANEL DE DETALLES DE EVALUACION
+        private void lblCerrarDetallesEvaluacion_Click(object sender, EventArgs e)
+        {
+            panelControlCalidad.Visible = false;
+            datalistadoObservadas.Enabled = true;
+        }
+
+        //ACTIALIZAR MI DATAGRIDVIEW NI BIEN MODIFIQUE UN DATO
+        private void datalistadoMaterialesFormulacion_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (datalistadoMaterialesFormulacion.IsCurrentCellDirty &&
+        datalistadoMaterialesFormulacion.CurrentCell is DataGridViewCheckBoxCell)
+            {
+                datalistadoMaterialesFormulacion.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
     }

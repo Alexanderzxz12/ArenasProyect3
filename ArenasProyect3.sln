@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArenasProyect3", "ArenasProyect3\ArenasProyect3.csproj", "{B942BF7C-92E1-46CB-AC5E-C649D34927EA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArenasProyect3Web", "ArenasProyect3Web\ArenasProyect3Web.csproj", "{BB857D9B-CAAF-4D3F-A411-ED49D05FE1BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{B942BF7C-92E1-46CB-AC5E-C649D34927EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B942BF7C-92E1-46CB-AC5E-C649D34927EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B942BF7C-92E1-46CB-AC5E-C649D34927EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB857D9B-CAAF-4D3F-A411-ED49D05FE1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB857D9B-CAAF-4D3F-A411-ED49D05FE1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB857D9B-CAAF-4D3F-A411-ED49D05FE1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB857D9B-CAAF-4D3F-A411-ED49D05FE1BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

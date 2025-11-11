@@ -79,19 +79,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             try
             {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Lineas_MostrarSegunCuenta", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@cuenta", cboTipoMercaderia.SelectedValue.ToString());
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoLineas.DataSource = dt;
-                con.Close();
-                ReordenarFilas(datalistadoLineas);
+                Mostrar(Convert.ToInt32(cboTipoMercaderia.SelectedValue.ToString()));
             }
             catch (Exception ex)
             {
@@ -148,6 +136,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 txtAbreviatura.Text = datalistadoLineas.SelectedCells[2].Value.ToString();
                 txtDescripcion.Text = datalistadoLineas.SelectedCells[3].Value.ToString();
                 cboTipoMercaderia.SelectedValue = datalistadoLineas.SelectedCells[4].Value.ToString();
+                txtBusquedaLinea.Text = "";
                 string estado = datalistadoLineas.SelectedCells[0].Value.ToString();
 
                 if (estado == "ACTIVO")
@@ -267,19 +256,10 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                             cmd.Parameters.AddWithValue("@descripcion", descripcion);
                             cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
                             cmd.Parameters.AddWithValue("@codigotipomercaderia", codigotipomercaderia);
-                            if (cboEstado.Text == "ACTIVO")
-                            {
-                                cmd.Parameters.AddWithValue("@estado", 1);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@estado", 0);
-                            }
-
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            int cuenta = Convert.ToInt32(codigotipomercaderia);
+                            int cuenta = codigotipomercaderia;
                             Mostrar(cuenta);
                             MessageBox.Show("Se ingresó el nuevo registro correctamente.", "Registro Nuevo", MessageBoxButtons.OK);
                             CamposBloqueados();
@@ -347,20 +327,11 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                         cmd.Parameters.AddWithValue("@descripcion", descripcion);
                         cmd.Parameters.AddWithValue("@abreviatura", abreviatura);
                         cmd.Parameters.AddWithValue("@idtipomercaderia", idtipomercaderia);
-
-                        if (cboEstado.Text == "ACTIVO")
-                        {
-                            cmd.Parameters.AddWithValue("@estado", 1);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@estado", 0);
-                        }
-
+                        cmd.Parameters.AddWithValue("@estado", cboEstado.Text == "ACTIVO" ? 1 : 0);
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        int cuenta = Convert.ToInt32(idtipomercaderia);
+                        int cuenta = idtipomercaderia;
                         Mostrar(cuenta);
 
                         MessageBox.Show("Se editó correctamente el registro.", "Edición", MessageBoxButtons.OK);
@@ -391,6 +362,7 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             lblCodigo.Text = "N";
             txtDescripcion.Text = "";
             txtAbreviatura.Text = "";
+            cboTipoMercaderia.Enabled = true;
         }
 
         //FUNCION PARA BLOQUEAR LOS CAMPOS
@@ -401,7 +373,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
 
             btnEditarF.Visible = true;
             btnEditar2F.Visible = false;
-
 
             btnGuardarF.Visible = true;
             btnGuardar2F.Visible = false;
@@ -428,6 +399,8 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
         {
             ExportarDatos(datalistadoLineas);
         }
+
+        //BUSCAR LINEAS POR TIPO DE MERCADERIA
         public void FiltrarLineas(string busquedalinea, DataGridView dgv, ComboBox cbo)
         {
             try
@@ -485,6 +458,12 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
             FiltrarLineas(txtBusquedaLinea.Text, datalistadoLineas, cboBusquedaLinea);
         }
 
+        //LIMPIAR CAJA DE BUSQUEDA DE LINEA
+        private void cboBusquedaLinea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaLinea.Text = "";
+        }
+
         //METODO PARA EXPORTAR LAS CUENTAS A EXCEL
         public void ExportarDatos(DataGridView datalistado)
         {
@@ -521,12 +500,6 @@ namespace ArenasProyect3.Modulos.Procesos.Mantenimientos
                 ClassResourses.RegistrarAuditora(13, this.Name, 12, Program.IdUsuario, ex.Message, 0);
                 MessageBox.Show("Hubo un error inesperado, " + ex.Message);
             }
-        }
-
-        //LIMPIAR CAJA DE BUSQUEDA DE LINEA
-        private void cboBusquedaLinea_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtBusquedaLinea.Text = "";
         }
     }
 }

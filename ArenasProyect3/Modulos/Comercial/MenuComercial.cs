@@ -109,6 +109,7 @@ namespace ArenasProyect3.Modulos.Comercial
         private void btnDetalleUsuario_Click(object sender, EventArgs e)
         {
             panelDetallesUsuario.Visible = true;
+            panelConfiguracion.Visible = false;
             VisualizarDatosUsuario();
         }
 
@@ -124,12 +125,14 @@ namespace ArenasProyect3.Modulos.Comercial
         private void btnPersonalizacionAccesibilidad_Click(object sender, EventArgs e)
         {
             panelProhibicion.Visible = true;
+            panelConfiguracion.Visible = false;
         }
 
         //ABRIR EL PANEL DE GESTION DE GRAFICOS
         private void btnAreaGraficos_Click(object sender, EventArgs e)
         {
             panelProhibicion.Visible = true;
+            panelConfiguracion.Visible = false;
         }
 
         //ABRIRI EL PANEL CON LOS DATOS DE LA TABLA AUDITORA
@@ -146,24 +149,28 @@ namespace ArenasProyect3.Modulos.Comercial
                 AbrirFormularios(new MenuReportes());
             }
             panelDatos.Visible = false;
+            panelConfiguracion.Visible = false;
         }
 
         //ABRIR EL PANEL PAR ADMINISTRAR LAS NOTIFICACIONES
         private void btnAdministrarNotificaciones_Click(object sender, EventArgs e)
         {
             panelProhibicion.Visible = true;
+            panelConfiguracion.Visible = false;
         }
 
         //ABRIR EL PANLE PARA ADMINISTRAR USUARIOS
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             panelProhibicion.Visible = true;
+            panelConfiguracion.Visible = false;
         }
 
         //ABRIR ULTIMOS CAMBIOS REALOZADPS
         private void btnUltimosCambios_Click(object sender, EventArgs e)
         {
             panelProhibicion.Visible = true;
+            panelConfiguracion.Visible = false;
         }
 
         //ABRIR EL PANEL DE CONFIRMACIÓN DE VISUALIZACIÓN DE CONTRASEÑA

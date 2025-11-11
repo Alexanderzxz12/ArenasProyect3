@@ -55,6 +55,21 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             }
         }
 
+        //ABRIR LISTADO DE SNC
+        private void btnListadoSNC_Click(object sender, EventArgs e)
+        {
+            if (panelMantenimientos.Controls.Count == 1)
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoSNC());
+            }
+            else
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoSNC());
+            }
+        }
+
         //ABIRIR EL MANUAL DE USUARIO
         private void btnManualUsuario_Click(object sender, EventArgs e)
         {

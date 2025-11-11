@@ -2089,6 +2089,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         }
                     }
 
+                    txtIdArea.Text = datalistadoLineaFormulacion.SelectedCells[2].Value.ToString();
                     txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
                     datalistadoActividades.Rows.Clear();
                     datalistadoActividadesSemi.Rows.Clear();
@@ -2218,6 +2219,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 }
             }
 
+            txtIdArea.Text = datalistadoLineaFormulacion.SelectedCells[2].Value.ToString();
             txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
             datalistadoActividades.Rows.Clear();
             datalistadoActividadesSemi.Rows.Clear();
@@ -2256,7 +2258,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 string idFormulacion = dgv.Cells[7].Value.ToString();
                 string stock = dgv.Cells[8].Value.ToString();
                 decimal totalProductas = 0;
-
 
                 int relacionFormulacion = Convert.ToInt16(datalistadoBuscarRelacionFormulacion.SelectedCells[1].Value);
                 totalProductas = Convert.ToDecimal(cantidad) * numeroProducir * relacionFormulacion;
@@ -2392,6 +2393,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     }
                 }
 
+                txtIdArea.Text = datalistadoLineaFormulacion.SelectedCells[2].Value.ToString();
                 txtArea.Text = datalistadoLineaFormulacion.SelectedCells[1].Value.ToString();
                 datalistadoActividades.Rows.Clear();
                 datalistadoActividadesSemi.Rows.Clear();
@@ -2561,7 +2563,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             cmd2.Parameters.AddWithValue("@observaciones", "REQUERIMIENTO PARA ORDEN DE PRODUCCION");
                             cmd2.Parameters.AddWithValue("@idSede", 1);
                             cmd2.Parameters.AddWithValue("@idLocal", 1);
-                            cmd2.Parameters.AddWithValue("@idArea", 1);
+                            cmd2.Parameters.AddWithValue("@idArea", Convert.ToInt16(txtIdArea.Text));
                             cmd2.Parameters.AddWithValue("@idipo", 2);
                             cmd2.Parameters.AddWithValue("@estadoLogistica", 1);
                             cmd2.Parameters.AddWithValue("@mensajeAnulacion", "");

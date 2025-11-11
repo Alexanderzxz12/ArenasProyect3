@@ -56,7 +56,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.cboTipo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cboLinea = new System.Windows.Forms.ComboBox();
+            this.cboLineaArea = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label28 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,6 +64,8 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.label5 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cboArea = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAtudaFormularioArena)).BeginInit();
@@ -129,6 +131,8 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cboArea);
+            this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.btnDefinicionPredeterminada);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.groupBox1);
@@ -141,7 +145,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.panel2.Controls.Add(this.cboEstado);
             this.panel2.Controls.Add(this.cboTipo);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.cboLinea);
+            this.panel2.Controls.Add(this.cboLineaArea);
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.label28);
             this.panel2.Controls.Add(this.label6);
@@ -375,7 +379,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.cboEstado.Items.AddRange(new object[] {
             "ACTIVO",
             "INACTIVO"});
-            this.cboEstado.Location = new System.Drawing.Point(182, 200);
+            this.cboEstado.Location = new System.Drawing.Point(182, 194);
             this.cboEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboEstado.Name = "cboEstado";
             this.cboEstado.Size = new System.Drawing.Size(147, 22);
@@ -386,7 +390,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.cboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipo.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipo.FormattingEnabled = true;
-            this.cboTipo.Location = new System.Drawing.Point(182, 161);
+            this.cboTipo.Location = new System.Drawing.Point(182, 142);
             this.cboTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipo.Name = "cboTipo";
             this.cboTipo.Size = new System.Drawing.Size(298, 22);
@@ -396,23 +400,23 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(110, 165);
+            this.label4.Location = new System.Drawing.Point(110, 146);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 14);
             this.label4.TabIndex = 2012;
             this.label4.Text = "TIPO:";
             // 
-            // cboLinea
+            // cboLineaArea
             // 
-            this.cboLinea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLinea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLinea.FormattingEnabled = true;
-            this.cboLinea.Location = new System.Drawing.Point(182, 120);
-            this.cboLinea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboLinea.Name = "cboLinea";
-            this.cboLinea.Size = new System.Drawing.Size(339, 22);
-            this.cboLinea.TabIndex = 2011;
+            this.cboLineaArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLineaArea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLineaArea.FormattingEnabled = true;
+            this.cboLineaArea.Location = new System.Drawing.Point(182, 116);
+            this.cboLineaArea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboLineaArea.Name = "cboLineaArea";
+            this.cboLineaArea.Size = new System.Drawing.Size(339, 22);
+            this.cboLineaArea.TabIndex = 2011;
             // 
             // panel6
             // 
@@ -427,7 +431,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(93, 204);
+            this.label28.Location = new System.Drawing.Point(93, 198);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(50, 14);
@@ -438,12 +442,12 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(107, 124);
+            this.label6.Location = new System.Drawing.Point(107, 120);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 14);
+            this.label6.Size = new System.Drawing.Size(37, 14);
             this.label6.TabIndex = 2006;
-            this.label6.Text = "LINEA";
+            this.label6.Text = "ÁREA:";
             // 
             // lblCodigo
             // 
@@ -491,6 +495,28 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             this.label2.TabIndex = 2001;
             this.label2.Text = "DEFINICIÓN DE FORMULACIONES";
             // 
+            // cboArea
+            // 
+            this.cboArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboArea.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboArea.FormattingEnabled = true;
+            this.cboArea.Location = new System.Drawing.Point(182, 168);
+            this.cboArea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboArea.Name = "cboArea";
+            this.cboArea.Size = new System.Drawing.Size(298, 22);
+            this.cboArea.TabIndex = 2028;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(106, 171);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(37, 14);
+            this.label8.TabIndex = 2027;
+            this.label8.Text = "ÁREA:";
+            // 
             // DefinicionFormulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,7 +552,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.ComboBox cboTipo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cboLinea;
+        private System.Windows.Forms.ComboBox cboLineaArea;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label6;
@@ -548,5 +574,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         private System.Windows.Forms.Button btnDefinicionPredeterminada;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnGuardar2F;
+        private System.Windows.Forms.ComboBox cboArea;
+        private System.Windows.Forms.Label label8;
     }
 }

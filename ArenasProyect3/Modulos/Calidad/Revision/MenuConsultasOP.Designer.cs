@@ -38,6 +38,7 @@
             this.panelMantenimientos = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnListadoSNC = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelMantenimientos.SuspendLayout();
@@ -48,6 +49,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.btnListadoSNC);
             this.panel1.Controls.Add(this.btnListadoOP);
             this.panel1.Controls.Add(this.btnManualUsuario);
             this.panel1.Controls.Add(this.panel4);
@@ -84,7 +86,7 @@
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManualUsuario.Location = new System.Drawing.Point(4, 327);
+            this.btnManualUsuario.Location = new System.Drawing.Point(4, 388);
             this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnManualUsuario.Name = "btnManualUsuario";
             this.btnManualUsuario.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -157,6 +159,24 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
+            // btnListadoSNC
+            // 
+            this.btnListadoSNC.FlatAppearance.BorderSize = 0;
+            this.btnListadoSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListadoSNC.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoSNC.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListadoSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoSNC.Image")));
+            this.btnListadoSNC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListadoSNC.Location = new System.Drawing.Point(4, 327);
+            this.btnListadoSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListadoSNC.Name = "btnListadoSNC";
+            this.btnListadoSNC.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnListadoSNC.Size = new System.Drawing.Size(169, 53);
+            this.btnListadoSNC.TabIndex = 9;
+            this.btnListadoSNC.Text = "  LISTADO SNC";
+            this.btnListadoSNC.UseVisualStyleBackColor = true;
+            this.btnListadoSNC.Click += new System.EventHandler(this.btnListadoSNC_Click);
+            // 
             // MenuConsultasOP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,5 +208,6 @@
         private System.Windows.Forms.Panel panelMantenimientos;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnListadoSNC;
     }
 }

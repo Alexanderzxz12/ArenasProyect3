@@ -3047,7 +3047,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelNuevaCotizacion.Controls.Add(this.lblAplicaBrochure);
             this.panelNuevaCotizacion.Controls.Add(this.ckAplicarBrochure);
             this.panelNuevaCotizacion.Controls.Add(this.datalistadoCotizacionMer);
-            this.panelNuevaCotizacion.Location = new System.Drawing.Point(81, 39);
+            this.panelNuevaCotizacion.Location = new System.Drawing.Point(81, 18);
             this.panelNuevaCotizacion.Name = "panelNuevaCotizacion";
             this.panelNuevaCotizacion.Size = new System.Drawing.Size(1011, 618);
             this.panelNuevaCotizacion.TabIndex = 126;
@@ -5160,7 +5160,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.panelGenerarPedido.Controls.Add(this.label138);
             this.panelGenerarPedido.Controls.Add(this.FechaAhoraPedido);
             this.panelGenerarPedido.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelGenerarPedido.Location = new System.Drawing.Point(81, 34);
+            this.panelGenerarPedido.Location = new System.Drawing.Point(81, 18);
             this.panelGenerarPedido.Name = "panelGenerarPedido";
             this.panelGenerarPedido.Size = new System.Drawing.Size(1011, 618);
             this.panelGenerarPedido.TabIndex = 2023;
