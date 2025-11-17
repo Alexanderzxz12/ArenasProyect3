@@ -515,10 +515,12 @@ namespace ArenasProyect3.Modulos.Contabilidad
                 SqlCommand cmd = new SqlCommand();
                 cmd = new SqlCommand("SP_A_REPORTE_OP_PAOLA", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 300;
                 cmd.Parameters.AddWithValue("@DESCLI", cliente);
                 cmd.Parameters.AddWithValue("@DESDE", inicio);
                 cmd.Parameters.AddWithValue("@HASTA", fin);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.SelectCommand.CommandTimeout = 300;
                 da.Fill(dt);
                 datalistadoReporteOPFechas.DataSource = dt;
                 con.Close();

@@ -34,7 +34,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         {
             datalistadoExcel.Rows.Clear();
 
-            foreach (DataGridViewRow dgv in datalistadoTodasOT.Rows)
+            foreach (DataGridViewRow dgv in datalistadoEnProc.Rows)
             {
                 string numeroOT = dgv.Cells[2].Value.ToString();
                 string fechaInicio = dgv.Cells[3].Value.ToString();
@@ -52,91 +52,91 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO Y VER SI ESTAN VENCIDOS
-        public void CargarColoresListadoOPGeneral()
-        {
-            try
-            {
-                //VARIABLE DE FECHA
-                var DateAndTime = DateTime.Now;
-                //RECORRER MI LISTADO PARA VALIDAR MIS OPs, SI ESTAN VENCIDAS O NO
-                foreach (DataGridViewRow datorecuperado in datalistadoTodasOT.Rows)
-                {
-                    //RECUERAR LA FECHA Y EL CÓDIGO DE MI OP
-                    DateTime fechaEntrega = Convert.ToDateTime(datorecuperado.Cells["FECHA DE ENTREGA"].Value);
-                    int codigoOP = Convert.ToInt32(datorecuperado.Cells["ID"].Value);
-                    string estadoOP = Convert.ToString(datorecuperado.Cells["ESTADO"].Value);
+        //public void CargarColoresListadoOPGeneral()
+        //{
+        //    try
+        //    {
+        //        //VARIABLE DE FECHA
+        //        var DateAndTime = DateTime.Now;
+        //        //RECORRER MI LISTADO PARA VALIDAR MIS OPs, SI ESTAN VENCIDAS O NO
+        //        foreach (DataGridViewRow datorecuperado in datalistadoEnProc.Rows)
+        //        {
+        //            //RECUERAR LA FECHA Y EL CÓDIGO DE MI OP
+        //            DateTime fechaEntrega = Convert.ToDateTime(datorecuperado.Cells["FECHA DE ENTREGA"].Value);
+        //            int codigoOP = Convert.ToInt32(datorecuperado.Cells["ID"].Value);
+        //            string estadoOP = Convert.ToString(datorecuperado.Cells["ESTADO"].Value);
 
-                    int cantidadEsperada = Convert.ToInt32(datorecuperado.Cells["CANTIDAD"].Value);
-                    int cantidadRealizada = Convert.ToInt32(datorecuperado.Cells["CANTIDAD REALIZADA"].Value);
+        //            int cantidadEsperada = Convert.ToInt32(datorecuperado.Cells["CANTIDAD"].Value);
+        //            int cantidadRealizada = Convert.ToInt32(datorecuperado.Cells["CANTIDAD REALIZADA"].Value);
 
-                    if (estadoOP != "ANULADO")
-                    {
-                        //SI LA FECHA DE VALIDEZ ES MAYOR A LA FECHA ACTUAL CONSULTADA
-                        if (fechaEntrega == DateAndTime.Date)
-                        {
-                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOT", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOT", codigoOP);
-                            cmd.Parameters.AddWithValue("@estadoOT", 2);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                        }
-                        else if (fechaEntrega < DateAndTime.Date)
-                        {
-                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOT", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOT", codigoOP);
-                            cmd.Parameters.AddWithValue("@estadoOT", 3);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                        }
-                        else if (fechaEntrega > DateAndTime)
-                        {
-                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOT", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOT", codigoOP);
-                            cmd.Parameters.AddWithValue("@estadoOT", 1);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                        }
+        //            if (estadoOP != "ANULADO")
+        //            {
+        //                //SI LA FECHA DE VALIDEZ ES MAYOR A LA FECHA ACTUAL CONSULTADA
+        //                if (fechaEntrega == DateAndTime.Date)
+        //                {
+        //                    //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+        //                    SqlConnection con = new SqlConnection();
+        //                    SqlCommand cmd = new SqlCommand();
+        //                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //                    con.Open();
+        //                    cmd = new SqlCommand("CambiarEstadoOT", con);
+        //                    cmd.CommandType = CommandType.StoredProcedure;
+        //                    cmd.Parameters.AddWithValue("@idOT", codigoOP);
+        //                    cmd.Parameters.AddWithValue("@estadoOT", 2);
+        //                    cmd.ExecuteNonQuery();
+        //                    con.Close();
+        //                }
+        //                else if (fechaEntrega < DateAndTime.Date)
+        //                {
+        //                    //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+        //                    SqlConnection con = new SqlConnection();
+        //                    SqlCommand cmd = new SqlCommand();
+        //                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //                    con.Open();
+        //                    cmd = new SqlCommand("CambiarEstadoOT", con);
+        //                    cmd.CommandType = CommandType.StoredProcedure;
+        //                    cmd.Parameters.AddWithValue("@idOT", codigoOP);
+        //                    cmd.Parameters.AddWithValue("@estadoOT", 3);
+        //                    cmd.ExecuteNonQuery();
+        //                    con.Close();
+        //                }
+        //                else if (fechaEntrega > DateAndTime)
+        //                {
+        //                    //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+        //                    SqlConnection con = new SqlConnection();
+        //                    SqlCommand cmd = new SqlCommand();
+        //                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //                    con.Open();
+        //                    cmd = new SqlCommand("CambiarEstadoOT", con);
+        //                    cmd.CommandType = CommandType.StoredProcedure;
+        //                    cmd.Parameters.AddWithValue("@idOT", codigoOP);
+        //                    cmd.Parameters.AddWithValue("@estadoOT", 1);
+        //                    cmd.ExecuteNonQuery();
+        //                    con.Close();
+        //                }
 
-                        if (cantidadEsperada == cantidadRealizada)
-                        {
-                            //CAMBIAR EL ESTADO DE MI OP
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("CambiarEstadoOT", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOT", codigoOP);
-                            cmd.Parameters.AddWithValue("@estadoOT", 4);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-            }
-        }
+        //                if (cantidadEsperada == cantidadRealizada)
+        //                {
+        //                    //CAMBIAR EL ESTADO DE MI OP
+        //                    SqlConnection con = new SqlConnection();
+        //                    SqlCommand cmd = new SqlCommand();
+        //                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //                    con.Open();
+        //                    cmd = new SqlCommand("CambiarEstadoOT", con);
+        //                    cmd.CommandType = CommandType.StoredProcedure;
+        //                    cmd.Parameters.AddWithValue("@idOT", codigoOP);
+        //                    cmd.Parameters.AddWithValue("@estadoOT", 4);
+        //                    cmd.ExecuteNonQuery();
+        //                    con.Close();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error en la operación por: " + ex.Message);
+        //    }
+        //}
 
         //PRIMERA CARGA DE MI FORMULARIO
         private void ListadoOT_Load(object sender, EventArgs e)
@@ -147,9 +147,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
 
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
-            datalistadoTodasOT.DataSource = null;
+            //datalistadoTodasOT.DataSource = null;
             cboBusqeuda.SelectedIndex = 0;
-
+            // MostrarOrdenTrabajoPorFecha(oPrimerDiaDelMes, oUltimoDiaDelMes);
+            //MostrarOrdenTrabajo(oPrimerDiaDelMes, oUltimoDiaDelMes);
             //PREFILES Y PERSIMOS---------------------------------------------------------------
             if (Program.RangoEfecto != 1)
             {
@@ -188,6 +189,50 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             }
         }
 
+        public void MostrarCantidadesSegunOTCalidad(int idOrdenServicio)
+        {
+            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+            using (SqlCommand cmd = new SqlCommand("OT_MostrarCantidadesCalidad", con)) // Nuevo SP para OT
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idOrdenServicio", idOrdenServicio); // Ajustamos el nombre del parámetro
+
+                try
+                {
+                    con.Open();
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    datalistadoHistorial.DataSource = dt;
+
+                    // OPTIMIZACIÓN DE REDIMENSIONAMIENTO POR NOMBRE Y AUTOAJUSTE
+                    datalistadoHistorial.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                    // Ajustes manuales por NOMBRE de columna (más robusto)
+                    if (datalistadoHistorial.Columns.Contains("FECHA"))
+                        datalistadoHistorial.Columns["FECHA"].Width = 120;
+                    if (datalistadoHistorial.Columns.Contains("OBSERVACIONES"))
+                        datalistadoHistorial.Columns["OBSERVACIONES"].Width = 250;
+
+                    // Ocultar columnas por NOMBRE
+                    if (datalistadoHistorial.Columns.Contains("ID"))
+                        datalistadoHistorial.Columns["ID"].Visible = false;
+                    if (datalistadoHistorial.Columns.Contains("OBSERVACIONES"))
+                        datalistadoHistorial.Columns["OBSERVACIONES"].Visible = false; // El índice 6 del original
+
+                    //ColoresListadoCantidades();
+
+                    // DESHABILITAR CLICK Y REORDENAMIENTO
+                    foreach (DataGridViewColumn column in datalistadoHistorial.Columns)
+                        column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar detalle de calidad: " + ex.Message);
+                }
+            }
+        }
+
         //COLOREAR MI LISTADO
         public void alternarColorFilas(DataGridView dgv)
         {
@@ -213,122 +258,182 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
 
         //LISTADO DE OT Y SELECCION DE PDF Y ESTADO DE OT---------------------
         //MOSTRAR OT AL INCIO 
-        public void MostrarOrdenTrabajoPorFecha(DateTime fechaInicio, DateTime fechaTermino)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenServicionPorFecha", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasOT.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneral(datalistadoTodasOT);
-        }
 
-        //MOSTRAR OT POR CLIENTE
-        public void MostrarOrdenTrabajoPorCliente(DateTime fechaInicio, DateTime fechaTermino, string cliente)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenServicionPorCliente", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd.Parameters.AddWithValue("@cliente", cliente);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasOT.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneral(datalistadoTodasOT);
-        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //MOSTRAR OP POR CODIGO OT
-        public void MostrarOrdenServicioPorCodigoOT(DateTime fechaInicio, DateTime fechaTermino, string codigoOT)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenServicionPorCodigoOT", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd.Parameters.AddWithValue("@codigoOT", codigoOT);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasOT.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneral(datalistadoTodasOT);
-        }
+        //public void MostrarOrdenTrabajoPorFecha(DateTime fechaInicio, DateTime fechaTermino)
+        //{
+        //    DataTable dt = new DataTable();
+        //    SqlConnection con = new SqlConnection();
+        //    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd = new SqlCommand("MostrarOrdenServicionPorFecha", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+        //    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(dt);
+        //    datalistadoTodasOT.DataSource = dt;
+        //    con.Close();
+        //    RedimensionarListadoGeneral(datalistadoTodasOT);
+        //}
 
-        //MOSTRAR OP POR CODIGO OT
-        public void MostrarOrdenServicioPorDescripcion(DateTime fechaInicio, DateTime fechaTermino, string descripcipon)
+        ////MOSTRAR OT POR CLIENTE
+        //public void MostrarOrdenTrabajoPorCliente(DateTime fechaInicio, DateTime fechaTermino, string cliente)
+        //{
+        //    DataTable dt = new DataTable();
+        //    SqlConnection con = new SqlConnection();
+        //    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd = new SqlCommand("MostrarOrdenServicionPorCliente", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+        //    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+        //    cmd.Parameters.AddWithValue("@cliente", cliente);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(dt);
+        //    datalistadoTodasOT.DataSource = dt;
+        //    con.Close();
+        //    RedimensionarListadoGeneral(datalistadoTodasOT);
+        //}
+
+        ////MOSTRAR OP POR CODIGO OT
+        //public void MostrarOrdenServicioPorCodigoOT(DateTime fechaInicio, DateTime fechaTermino, string codigoOT)
+        //{
+        //    DataTable dt = new DataTable();
+        //    SqlConnection con = new SqlConnection();
+        //    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd = new SqlCommand("MostrarOrdenServicionPorCodigoOT", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+        //    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+        //    cmd.Parameters.AddWithValue("@codigoOT", codigoOT);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(dt);
+        //    datalistadoTodasOT.DataSource = dt;
+        //    con.Close();
+        //    RedimensionarListadoGeneral(datalistadoTodasOT);
+        //}
+
+        ////MOSTRAR OP POR CODIGO OT
+        //public void MostrarOrdenServicioPorDescripcion(DateTime fechaInicio, DateTime fechaTermino, string descripcipon)
+        //{
+        //    DataTable dt = new DataTable();
+        //    SqlConnection con = new SqlConnection();
+        //    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd = new SqlCommand("MostrarOrdenServicionPorDescripcion", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+        //    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+        //    cmd.Parameters.AddWithValue("@descripcion", descripcipon);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(dt);
+        //    datalistadoTodasOT.DataSource = dt;
+        //    con.Close();
+        //    RedimensionarListadoGeneral(datalistadoTodasOT);
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        public void MostrarOrdenTrabajo(
+            DateTime fechaInicio,
+            DateTime fechaTermino,
+            string cliente = null,
+            string codigoOT = null,
+            string descripcion = null)
         {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("MostrarOrdenServicionPorDescripcion", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd.Parameters.AddWithValue("@descripcion", descripcipon);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasOT.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneral(datalistadoTodasOT);
+            // Usamos 'using' para asegurar que la conexión se cierre y se libere la memoria correctamente
+            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+            using (SqlCommand cmd = new SqlCommand("OT_MostrarOrdenServicio", con))
+            {
+                // Nuevo SP unificado
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    cmd.Parameters.AddWithValue("@cliente", (object)cliente ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@codigoOT", (object)codigoOT ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@descripcion", (object)descripcion ?? DBNull.Value);
+
+                    try
+                    {
+                        con.Open();
+                        DataTable dt = new DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+
+                        datalistadoTodasOT.DataSource = dt;
+                        DataRow[] rowsEnProceso = dt.Select("ESTADO = 'PENDIENTE'");
+                        // Si hay filas, crea un nuevo DataTable, si no, usa una copia vacía del esquema.
+                        DataTable dtEnProceso = rowsEnProceso.Any() ? rowsEnProceso.CopyToDataTable() : dt.Clone();
+                        datalistadoEnProc.DataSource = dtEnProceso; // Asumiendo este es el nombre de tu DataGrid
+
+                        // --- 2.3. OT Observadas (Asumimos que el estado "Observadas" es FUERA DE FECHA o LÍMITE) ---
+                        DataRow[] rowsObservadas = dt.Select("[INDICADOR SNC] = 1");
+                        DataTable dtObservadas = rowsObservadas.Any() ? rowsObservadas.CopyToDataTable() : dt.Clone();
+                        datalistadoObs.DataSource = dtObservadas; // Asumiendo este es el nombre de tu DataGrid
+
+                        RedimensionarListadoGeneral(datalistadoTodasOT);
+                        RedimensionarListadoGeneral(datalistadoEnProc);
+                        RedimensionarListadoGeneral(datalistadoObs);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar el error, por ejemplo, mostrando un mensaje
+                        MessageBox.Show("Error al cargar las órdenes de trabajo: " + ex.Message);
+                    }
+                }
+            }
         }
 
         //FUNCION PARA REDIMENSIONAR MIS LISTADOS
         public void RedimensionarListadoGeneral(DataGridView DGV)
         {
-            //REDIEMNSION DE PEDIDOS
-            DGV.Columns[2].Width = 80;
-            DGV.Columns[3].Width = 80;
-            DGV.Columns[4].Width = 80;
-            DGV.Columns[5].Width = 270;
-            DGV.Columns[6].Width = 350;
-            DGV.Columns[7].Width = 70;
-            DGV.Columns[8].Width = 110;
-            DGV.Columns[9].Width = 80;
-            DGV.Columns[10].Width = 80;
-            DGV.Columns[11].Width = 120;
-            //SE HACE NO VISIBLE LAS COLUMNAS QUE NO LES INTERESA AL USUARIO
+            DGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            DGV.ReadOnly = true;
+            int columna_Cliente = 5;
+            int columna_Descripcion = 6;
+            int columna_EstadoCalidad = 16;
+
+
             DGV.Columns[1].Visible = false;
-            DGV.Columns[12].Visible = false;
-            DGV.Columns[13].Visible = false;
-            //SE BLOQUEA MI LISTADO
-            DGV.Columns[2].ReadOnly = true;
-            DGV.Columns[3].ReadOnly = true;
-            DGV.Columns[4].ReadOnly = true;
-            DGV.Columns[5].ReadOnly = true;
-            DGV.Columns[6].ReadOnly = true;
-            DGV.Columns[7].ReadOnly = true;
-            DGV.Columns[8].ReadOnly = true;
-            DGV.Columns[9].ReadOnly = true;
-            DGV.Columns[10].ReadOnly = true;
-            DGV.Columns[11].ReadOnly = true;
+            DGV.Columns[10].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
 
-            CargarColoresListadoOPGeneral();
-            ColoresListado();
+            if (DGV.Columns.Count > columna_Cliente)
+            {
+                DGV.Columns[columna_Cliente].Width = 270;
+            }
+            if (DGV.Columns.Count > columna_Descripcion)
+            {
+                DGV.Columns[columna_Descripcion].Width = 350;
+            }
 
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
+            if (DGV.Name == "datalistadoObs")
+            {
+                if (DGV.Columns.Count > columna_EstadoCalidad)
+                {
+                    DGV.Columns[columna_EstadoCalidad].Visible = true;
+                    // Opcional: Dale un ancho específico si es necesario
+                    // DGV.Columns[columna_EstadoCalidad].Width = 100;
+                }
+            }
+
             foreach (DataGridViewColumn column in DGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+            //CargarColoresListadoOPGeneral();
+           // ColoresListado();
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO
@@ -337,23 +442,23 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             try
             {
                 //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= datalistadoTodasOT.RowCount - 1; i++)
+                for (var i = 0; i <= datalistadoEnProc.RowCount - 1; i++)
                 {
-                    if (datalistadoTodasOT.Rows[i].Cells[11].Value.ToString() == "FUERA DE FECHA")
+                    if (datalistadoEnProc.Rows[i].Cells[11].Value.ToString() == "FUERA DE FECHA")
                     {
-                        datalistadoTodasOT.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                        datalistadoEnProc.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
                     }
-                    else if (datalistadoTodasOT.Rows[i].Cells[11].Value.ToString() == "LÍMITE")
+                    else if (datalistadoEnProc.Rows[i].Cells[11].Value.ToString() == "LÍMITE")
                     {
-                        datalistadoTodasOT.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
+                        datalistadoEnProc.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
                     }
-                    else if (datalistadoTodasOT.Rows[i].Cells[11].Value.ToString() == "PENDIENTE")
+                    else if (datalistadoEnProc.Rows[i].Cells[11].Value.ToString() == "PENDIENTE")
                     {
-                        datalistadoTodasOT.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                        datalistadoEnProc.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
                     }
-                    else if (datalistadoTodasOT.Rows[i].Cells[11].Value.ToString() == "CULMINADO")
+                    else if (datalistadoEnProc.Rows[i].Cells[11].Value.ToString() == "CULMINADO")
                     {
-                        datalistadoTodasOT.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
+                        datalistadoEnProc.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }
                 }
             }
@@ -367,49 +472,72 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         private void datalistadoTodasOT_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
             //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasOT.Columns[e.ColumnIndex].Name == "detalles")
+            if (this.datalistadoEnProc.Columns[e.ColumnIndex].Name == "detalles")
             {
-                this.datalistadoTodasOT.Cursor = Cursors.Hand;
+                this.datalistadoEnProc.Cursor = Cursors.Hand;
             }
             else
             {
-                this.datalistadoTodasOT.Cursor = curAnterior;
+                this.datalistadoEnProc.Cursor = curAnterior;
             }
         }
 
         //MOSTRAR OT POR FECHA
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            //MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR OT POR FECHA
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            //MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR OT POR FECHA
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            //MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR OPRDENES TRABAJO DEPENDIENTO LA OPCIÓN ESCOGIDA
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
+         
+            string cliente = null;
+            string codigoOT = null;
+            string descripcion = null;
+            string textoBusqueda = txtBusqueda.Text;
+
+            // 2. Determinar qué filtro debe usarse (basado en el ComboBox)
             if (cboBusqeuda.Text == "CÓDIGO OT")
             {
-                MostrarOrdenServicioPorCodigoOT(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                // Si el usuario selecciona "CÓDIGO OT", solo asignamos el texto a 'codigoOT'.
+                codigoOT = textoBusqueda;
             }
             else if (cboBusqeuda.Text == "CLIENTE")
             {
-                MostrarOrdenTrabajoPorCliente(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                // Si el usuario selecciona "CLIENTE", solo asignamos el texto a 'cliente'.
+                cliente = textoBusqueda;
             }
             else if (cboBusqeuda.Text == "DESCRIPCIÓN PRODUCTO")
             {
-                MostrarOrdenServicioPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                // Si el usuario selecciona "DESCRIPCIÓN PRODUCTO", solo asignamos el texto a 'descripcion'.
+                descripcion = textoBusqueda;
             }
+
+            // 3. Llamar al método UNIFICADO 'MostrarOrdenTrabajo'.
+            //    Solo el parámetro que se eligió tendrá el valor de búsqueda; los otros serán NULL.
+            MostrarOrdenTrabajo(
+                DesdeFecha.Value,
+                HastaFecha.Value,
+                cliente,
+                codigoOT,
+                descripcion
+            );
         }
 
         //LIMPIAR EL CAMBIO DE BUSQUEDA
@@ -423,7 +551,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         {
             try
             {
-                Process.Start(datalistadoTodasOT.SelectedCells[13].Value.ToString());
+                Process.Start(datalistadoEnProc.SelectedCells[13].Value.ToString());
             }
             catch (Exception ex)
             {
@@ -436,7 +564,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         {
             try
             {
-                Process.Start(datalistadoTodasOT.SelectedCells[12].Value.ToString());
+                Process.Start(datalistadoEnProc.SelectedCells[12].Value.ToString());
             }
             catch (Exception ex)
             {
@@ -448,10 +576,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         private void datalistadoTodasOT_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOT.CurrentRow != null)
+            if (datalistadoEnProc.CurrentRow != null)
             {
                 int count = 0;
-                foreach (DataGridViewRow row in datalistadoTodasOT.Rows)
+                foreach (DataGridViewRow row in datalistadoEnProc.Rows)
                 {
                     if (Convert.ToBoolean(row.Cells[0].Value))
                     {
@@ -463,11 +591,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
 
                 txtOtsSeleccionadas.Text = Convert.ToString(count);
                 //CARGA DE DAOTS
-                txtCodigoOT.Text = datalistadoTodasOT.SelectedCells[2].Value.ToString();
-                int IdOrdenServicio = Convert.ToInt32(datalistadoTodasOT.SelectedCells[1].Value.ToString());
-                txtDescripcionSub_Producto.Text = datalistadoTodasOT.SelectedCells[6].Value.ToString();
-                txtCantidadTotalOT.Text = datalistadoTodasOT.SelectedCells[7].Value.ToString();
-                txtCantidadRequerida.Text = datalistadoTodasOT.SelectedCells[7].Value.ToString();
+                txtCodigoOT.Text = datalistadoEnProc.SelectedCells[2].Value.ToString();
+                int IdOrdenServicio = Convert.ToInt32(datalistadoEnProc.SelectedCells[1].Value.ToString());
+                txtDescripcionSub_Producto.Text = datalistadoEnProc.SelectedCells[6].Value.ToString();
+                txtCantidadTotalOT.Text = datalistadoEnProc.SelectedCells[7].Value.ToString();
+                txtCantidadRequerida.Text = datalistadoEnProc.SelectedCells[7].Value.ToString();
                 dtpFechaRealizada.Value = DateTime.Now;
                 txtCantidadRealizada.Text = "";
                 txtCantidadRestante.Text = "";
@@ -477,13 +605,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
 
                 if (txtCantidadRestante.Text == "0")
                 {
-                    datalistadoTodasOT.Enabled = true;
+                    datalistadoEnProc.Enabled = true;
                     panelIngresoCantidades.Visible = false;
                     MessageBox.Show("Esta OT ya culminó satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    datalistadoTodasOT.Enabled = false;
+                    datalistadoEnProc.Enabled = false;
                     panelIngresoCantidades.Visible = true;
 
                     if (count != 1)
@@ -504,7 +632,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
                         btnGenerarGuardarCantidades.Visible = false;
                         lblGenerarGuardarCantidades.Visible = false;
                         txtCantidadRealizada.ReadOnly = false;
-                        lblIdOT.Text = datalistadoTodasOT.SelectedCells[1].Value.ToString();
+                        lblIdOT.Text = datalistadoEnProc.SelectedCells[1].Value.ToString();
                     }
                 }
             }
@@ -514,13 +642,68 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             }
         }
 
+        private void datalistadoObs_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (datalistadoObs.RowCount != 0)
+            //{
+            //    btnVisualizarSNC.Visible = false;
+            //    panelControlCalidad.Visible = true;
+
+            //    lblIdOP.Text = datalistadoObs.SelectedCells[1].Value.ToString();
+            //    txtCoidgoOPCalidad.Text = datalistadoObs.SelectedCells[2].Value.ToString();
+            //    txtDescripcionProductoCalidad.Text = datalistadoObs.SelectedCells[8].Value.ToString();
+            //    txtArea.Text = datalistadoObs.SelectedCells[26].Value.ToString();
+            //    txtIdArea.Text = datalistadoObs.SelectedCells[28].Value.ToString();
+            //    txtIdOP.Text = datalistadoObs.SelectedCells[1].Value.ToString();
+            //    MostrarCantidadesSegunOPCalidad(Convert.ToInt32(lblIdOP.Text));
+            //    btnGenerarCSM.Visible = false;
+            //    lblGenerarCSM.Visible = false;
+            //    datalistadoObs.Enabled = false;
+            //}
+            if (datalistadoObs.CurrentRow != null) // Usamos CurrentRow en lugar de RowCount != 0
+            {
+                btnVisualizarSNC.Visible = false;
+                panelControlCalidad.Visible = true;
+
+                DataGridViewRow selectedRow = datalistadoObs.CurrentRow;
+
+                // --- LECTURA OPTIMIZADA POR NOMBRE DE COLUMNA ---
+
+                // Asumiendo estos nombres de columna en el grid de OT (SP: OT_MostrarOrdenServicio)
+                // Por favor, verifica los nombres exactos si son diferentes (ej. [ID] o [N°. OT])
+
+                string idOT = selectedRow.Cells["ID"].Value.ToString();
+                string codigoOT = selectedRow.Cells["N°. OT"].Value.ToString();
+                string descripcion = selectedRow.Cells["DESCRIPCIÓN DEL SUB-PRODUCTO"].Value.ToString();
+
+                // --- Nota: Para las columnas 26 y 28, necesitas conocer su Alias en el SP ---
+                // Ejemplo asumiendo que son 'AREA' y 'ID AREA'
+                string area = selectedRow.Cells["AREA"].Value.ToString();
+                string idArea = selectedRow.Cells["IdA"].Value.ToString();
+
+                // --- Carga de datos ---
+                lblIdOT.Text = idOT;
+                txtCoidgoOTCalidad.Text = codigoOT;
+                txtDescripcionProductoCalidad.Text = descripcion;
+                txtArea.Text = area;
+                txtIdArea.Text = idArea;
+                txtIdOP.Text = idOT; // Asumiendo que lblIdOP y txtIdOP deben ser el mismo valor (el ID)
+
+                MostrarCantidadesSegunOTCalidad(Convert.ToInt32(lblIdOT.Text)); // Llamada al método optimizado
+
+                btnGenerarCSM.Visible = false;
+                lblGenerarCSM.Visible = false;
+                datalistadoObs.Enabled = false;
+            }
+        }
+
         //GENERACION DE REPORTES
         private void btnVsualizarPDFPT_Click(object sender, EventArgs e)
         {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOT.CurrentRow != null)
+            if (datalistadoEnProc.CurrentRow != null)
             {
-                string codigoOrdenTrabajo = datalistadoTodasOT.Rows[datalistadoTodasOT.CurrentRow.Index].Cells[1].Value.ToString();
+                string codigoOrdenTrabajo = datalistadoEnProc.Rows[datalistadoEnProc.CurrentRow.Index].Cells[1].Value.ToString();
                 Visualizadores.VisualizarOrdenTrabajo frm = new Visualizadores.VisualizarOrdenTrabajo();
                 frm.lblCodigo.Text = codigoOrdenTrabajo;
 
@@ -536,7 +719,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         private void btnGuardarCantidad_Click(object sender, EventArgs e)
         {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOT.CurrentRow != null)
+            if (datalistadoEnProc.CurrentRow != null)
             {
                 if (txtCantidadRealizada.Text == "" || txtCantidadRealizada.Text == "0")
                 {
@@ -570,7 +753,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
                             con.Close();
 
                             MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema");
-                            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            
+                            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
                             LimpiarCantidades();
                         }
                         catch (Exception ex)
@@ -592,7 +776,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             List<int> idOTSeleccionada = new List<int>();
             List<int> CantidadTotalOTSeleccionada = new List<int>();
 
-            foreach (DataGridViewRow row in datalistadoTodasOT.Rows)
+            foreach (DataGridViewRow row in datalistadoEnProc.Rows)
             {
                 DataGridViewCheckBoxCell checkBox = row.Cells[0] as DataGridViewCheckBoxCell;
 
@@ -628,8 +812,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             }
 
             MessageBox.Show("Operación terminada.", "Validación del Sistema");
-            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
-            MostrarOrdenTrabajoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
+            //MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
             LimpiarCantidades();
         }
 
@@ -648,7 +832,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         //FUNCION PARA LIMPIAR LAS CANTIDADES
         public void LimpiarCantidades()
         {
-            datalistadoTodasOT.Enabled = true;
+            datalistadoEnProc.Enabled = true;
             panelIngresoCantidades.Visible = false;
             txtOtsSeleccionadas.Text = "";
             txtCantidadRealizada.Text = "";
@@ -771,10 +955,10 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
 
                 // **Enviar parámetro al reporte**
                 // Cambia "NombreParametro" por el nombre exacto del parámetro en tu reporte
-                int idOrdenServicio = Convert.ToInt32(datalistadoTodasOT.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                string codigoOrdenServicio = datalistadoTodasOT.SelectedCells[2].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                string cliente = datalistadoTodasOT.SelectedCells[6].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                string unidad = datalistadoTodasOT.SelectedCells[7].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                int idOrdenServicio = Convert.ToInt32(datalistadoEnProc.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                string codigoOrdenServicio = datalistadoEnProc.SelectedCells[2].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                string cliente = datalistadoEnProc.SelectedCells[6].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+                string unidad = datalistadoEnProc.SelectedCells[7].Value.ToString(); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
                 crystalReport.SetParameterValue("@idOrdenServicio", idOrdenServicio);
 
                 // Ruta de salida en el escritorio
@@ -792,5 +976,20 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             }
         }
 
+        private void txtDescripcionSub_Producto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelIngresoCantidades_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnRegresarControl_Click(object sender, EventArgs e)
+        {
+            panelControlCalidad.Visible = false;
+            datalistadoObs.Enabled = true;
+        }
     }
 }

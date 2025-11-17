@@ -25,9 +25,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</UpdateUrl>
     <PublisherName>Arenas SRL</PublisherName>
-    <MinimumRequiredVersion>1.0.0.125</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.126</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>127</ApplicationRevision>
+    <ApplicationRevision>128</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -154,6 +154,12 @@
     </Compile>
     <Compile Include="Modulos\Calidad\Revision\ListadoOrdenProduccion.Designer.cs">
       <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Calidad\Revision\ListadoOrdenTrabajo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Calidad\Revision\ListadoOrdenTrabajo.Designer.cs">
+      <DependentUpon>ListadoOrdenTrabajo.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Calidad\Revision\ListadoSNC.cs">
       <SubType>Form</SubType>
@@ -360,6 +366,12 @@
     </Compile>
     <Compile Include="Modulos\Mantenimientos\MenuRequerimientoSimple.Designer.cs">
       <DependentUpon>MenuRequerimientoSimple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Mantenimientos\PanelCarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Mantenimientos\PanelCarga.Designer.cs">
+      <DependentUpon>PanelCarga.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Mantenimientos\Proveedores.cs">
       <SubType>Form</SubType>
@@ -764,6 +776,9 @@
     <EmbeddedResource Include="Modulos\Calidad\Revision\ListadoOrdenProduccion.resx">
       <DependentUpon>ListadoOrdenProduccion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Calidad\Revision\ListadoOrdenTrabajo.resx">
+      <DependentUpon>ListadoOrdenTrabajo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Calidad\Revision\ListadoSNC.resx">
       <DependentUpon>ListadoSNC.cs</DependentUpon>
     </EmbeddedResource>
@@ -865,6 +880,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Mantenimientos\MenuRequerimientoSimple.resx">
       <DependentUpon>MenuRequerimientoSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Mantenimientos\PanelCarga.resx">
+      <DependentUpon>PanelCarga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Mantenimientos\Proveedores.resx">
       <DependentUpon>Proveedores.cs</DependentUpon>

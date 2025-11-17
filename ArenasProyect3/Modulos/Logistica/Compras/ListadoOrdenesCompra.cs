@@ -21,12 +21,12 @@ namespace ArenasProyect3.Modulos.Logistica.Compras
     public partial class ListadoOrdenesCompra : Form
     {
         //VARIABLES GLOBALES
-        int valorEstadoBusqueda = 0;
+        //int valorEstadoBusqueda = 0;
         private Cursor curAnterior = null;
-        string area = "";
-        string cantidadOrdenesCompra = "";
-        string cantidadOrdenesCompra2 = "";
-        string codigoOrdenCOmpra = "";
+        //string area = "";
+        //string cantidadOrdenesCompra = "";
+        //string cantidadOrdenesCompra2 = "";
+        //string codigoOrdenCOmpra = "";
 
         //CONSTRUCTOR DE MI FORMULARIO
         public ListadoOrdenesCompra()

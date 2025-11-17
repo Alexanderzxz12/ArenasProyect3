@@ -14,7 +14,7 @@ namespace ArenasProyect3.Modulos.Logistica.Almacen
     public partial class NotaSalida : Form
     {
         //VARIABLES GLOBALES
-        DataView dv;
+        //DataView dv;
         DataSet ds = new DataSet();
         string codigoSalidaAlmacen = "";
         bool estadoRequerimeintoAtendidoTotal = true;

@@ -132,6 +132,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCerrarPanelNovedades = new System.Windows.Forms.Button();
             this.panelConfiguracion = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label49 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.btnCerrarConfiguracion = new System.Windows.Forms.Button();
             this.btnAbrirManual = new System.Windows.Forms.Button();
             this.label69 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
@@ -176,10 +180,6 @@
             this.btnAuditora = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label49 = new System.Windows.Forms.Label();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.btnCerrarConfiguracion = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -281,12 +281,12 @@
             this.panel22.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelConfiguracion.SuspendLayout();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.panel27.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -1539,6 +1539,59 @@
             this.panelConfiguracion.TabIndex = 24;
             this.panelConfiguracion.Visible = false;
             // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel11.Controls.Add(this.label49);
+            this.panel11.Controls.Add(this.pictureBox11);
+            this.panel11.Controls.Add(this.btnCerrarConfiguracion);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(762, 23);
+            this.panel11.TabIndex = 1;
+            // 
+            // label49
+            // 
+            this.label49.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label49.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label49.Location = new System.Drawing.Point(36, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(133, 23);
+            this.label49.TabIndex = 12;
+            this.label49.Text = "Ajustes del sistema";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(36, 23);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 35;
+            this.pictureBox11.TabStop = false;
+            // 
+            // btnCerrarConfiguracion
+            // 
+            this.btnCerrarConfiguracion.BackColor = System.Drawing.Color.Transparent;
+            this.btnCerrarConfiguracion.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCerrarConfiguracion.FlatAppearance.BorderSize = 0;
+            this.btnCerrarConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarConfiguracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarConfiguracion.ForeColor = System.Drawing.Color.White;
+            this.btnCerrarConfiguracion.Location = new System.Drawing.Point(730, 0);
+            this.btnCerrarConfiguracion.Name = "btnCerrarConfiguracion";
+            this.btnCerrarConfiguracion.Size = new System.Drawing.Size(32, 23);
+            this.btnCerrarConfiguracion.TabIndex = 0;
+            this.btnCerrarConfiguracion.Text = "X";
+            this.btnCerrarConfiguracion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCerrarConfiguracion.UseVisualStyleBackColor = false;
+            // 
             // btnAbrirManual
             // 
             this.btnAbrirManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2020,59 +2073,6 @@
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(0, 15);
             this.label30.TabIndex = 2;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel11.Controls.Add(this.label49);
-            this.panel11.Controls.Add(this.pictureBox11);
-            this.panel11.Controls.Add(this.btnCerrarConfiguracion);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(762, 23);
-            this.panel11.TabIndex = 1;
-            // 
-            // label49
-            // 
-            this.label49.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label49.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label49.Location = new System.Drawing.Point(36, 0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(133, 23);
-            this.label49.TabIndex = 12;
-            this.label49.Text = "Ajustes del sistema";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(36, 23);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 35;
-            this.pictureBox11.TabStop = false;
-            // 
-            // btnCerrarConfiguracion
-            // 
-            this.btnCerrarConfiguracion.BackColor = System.Drawing.Color.Transparent;
-            this.btnCerrarConfiguracion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCerrarConfiguracion.FlatAppearance.BorderSize = 0;
-            this.btnCerrarConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarConfiguracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrarConfiguracion.ForeColor = System.Drawing.Color.White;
-            this.btnCerrarConfiguracion.Location = new System.Drawing.Point(730, 0);
-            this.btnCerrarConfiguracion.Name = "btnCerrarConfiguracion";
-            this.btnCerrarConfiguracion.Size = new System.Drawing.Size(32, 23);
-            this.btnCerrarConfiguracion.TabIndex = 0;
-            this.btnCerrarConfiguracion.Text = "X";
-            this.btnCerrarConfiguracion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCerrarConfiguracion.UseVisualStyleBackColor = false;
             // 
             // label18
             // 
@@ -3021,13 +3021,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelConfiguracion.ResumeLayout(false);
             this.panelConfiguracion.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            this.panel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
