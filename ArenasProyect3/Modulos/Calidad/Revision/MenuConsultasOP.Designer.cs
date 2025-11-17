@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuConsultasOP));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnListadoSNC = new System.Windows.Forms.Button();
             this.btnListadoOP = new System.Windows.Forms.Button();
             this.btnManualUsuario = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -38,7 +39,7 @@
             this.panelMantenimientos = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnListadoSNC = new System.Windows.Forms.Button();
+            this.btnListadoOT = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelMantenimientos.SuspendLayout();
@@ -49,6 +50,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.btnListadoOT);
             this.panel1.Controls.Add(this.btnListadoSNC);
             this.panel1.Controls.Add(this.btnListadoOP);
             this.panel1.Controls.Add(this.btnManualUsuario);
@@ -60,6 +62,24 @@
             this.panel1.Size = new System.Drawing.Size(154, 647);
             this.panel1.TabIndex = 9;
             // 
+            // btnListadoSNC
+            // 
+            this.btnListadoSNC.FlatAppearance.BorderSize = 0;
+            this.btnListadoSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListadoSNC.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoSNC.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListadoSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoSNC.Image")));
+            this.btnListadoSNC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListadoSNC.Location = new System.Drawing.Point(4, 327);
+            this.btnListadoSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListadoSNC.Name = "btnListadoSNC";
+            this.btnListadoSNC.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnListadoSNC.Size = new System.Drawing.Size(169, 53);
+            this.btnListadoSNC.TabIndex = 9;
+            this.btnListadoSNC.Text = "  LISTADO SNC";
+            this.btnListadoSNC.UseVisualStyleBackColor = true;
+            this.btnListadoSNC.Click += new System.EventHandler(this.btnListadoSNC_Click);
+            // 
             // btnListadoOP
             // 
             this.btnListadoOP.FlatAppearance.BorderSize = 0;
@@ -68,7 +88,7 @@
             this.btnListadoOP.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnListadoOP.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoOP.Image")));
             this.btnListadoOP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListadoOP.Location = new System.Drawing.Point(2, 266);
+            this.btnListadoOP.Location = new System.Drawing.Point(4, 209);
             this.btnListadoOP.Margin = new System.Windows.Forms.Padding(4);
             this.btnListadoOP.Name = "btnListadoOP";
             this.btnListadoOP.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -159,23 +179,23 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // btnListadoSNC
+            // btnListadoOT
             // 
-            this.btnListadoSNC.FlatAppearance.BorderSize = 0;
-            this.btnListadoSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListadoSNC.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListadoSNC.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnListadoSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoSNC.Image")));
-            this.btnListadoSNC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListadoSNC.Location = new System.Drawing.Point(4, 327);
-            this.btnListadoSNC.Margin = new System.Windows.Forms.Padding(4);
-            this.btnListadoSNC.Name = "btnListadoSNC";
-            this.btnListadoSNC.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnListadoSNC.Size = new System.Drawing.Size(169, 53);
-            this.btnListadoSNC.TabIndex = 9;
-            this.btnListadoSNC.Text = "  LISTADO SNC";
-            this.btnListadoSNC.UseVisualStyleBackColor = true;
-            this.btnListadoSNC.Click += new System.EventHandler(this.btnListadoSNC_Click);
+            this.btnListadoOT.FlatAppearance.BorderSize = 0;
+            this.btnListadoOT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListadoOT.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoOT.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListadoOT.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoOT.Image")));
+            this.btnListadoOT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListadoOT.Location = new System.Drawing.Point(4, 270);
+            this.btnListadoOT.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListadoOT.Name = "btnListadoOT";
+            this.btnListadoOT.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnListadoOT.Size = new System.Drawing.Size(169, 53);
+            this.btnListadoOT.TabIndex = 10;
+            this.btnListadoOT.Text = "  LISTADO ORDEN TRABAJO";
+            this.btnListadoOT.UseVisualStyleBackColor = true;
+            this.btnListadoOT.Click += new System.EventHandler(this.btnListadoOT_Click);
             // 
             // MenuConsultasOP
             // 
@@ -209,5 +229,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnListadoSNC;
+        private System.Windows.Forms.Button btnListadoOT;
     }
 }

@@ -24,12 +24,11 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
     {
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         private Cursor curAnterior = null;
-        int totalCantidades = 0;
+        //int totalCantidades = 0;
         bool estadoSNG = false;
         bool estadoSNGCulminada = false;
         bool estadoDesaprobado = false;
         DataGridView dgvActivo = null;
-
 
         public ListadoOrdenProduccion()
         {
@@ -47,15 +46,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
             datalistadoTodasOP.DataSource = null;
-
-
-            //PREFILES Y PERSIMOS---------------------------------------------------------------
-            if (Program.RangoEfecto != 1)
-            {
-                //btnAnularPedido.Visible = false;
-                //lblAnularPedido.Visible = false;
-            }
-            //---------------------------------------------------------------------------------
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO Y VER SI ESTAN VENCIDOS
@@ -178,6 +168,40 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             }
         }
 
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
+        public void ColoresListadoCantidades()
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= datalistadoHistorial.RowCount - 1; i++)
+                {
+                    string estadoOP = datalistadoHistorial.Rows[i].Cells[5].Value.ToString();
+
+                    if (estadoOP == "APROBADO" || estadoOP == "SNC CULMINADA")
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else if (estadoOP == "DESAPROBADO")
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else if (estadoOP == "SNC GENERADA")
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkOrange;
+                    }
+                    else
+                    {
+                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
+
         //LISTADO DE OP Y SELECCION DE PDF Y ESTADO DE OP---------------------
         //MOSTRAR OP AL INCIO 
         public void MostrarOrdenProduccionPorCriterios(DateTime fechaInicio, DateTime fechaTermino, string valorBusqueda)
@@ -206,7 +230,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     con2.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con2.Open();
                     SqlCommand cmd2 = new SqlCommand();
-                    cmd2 = new SqlCommand("Calidad_MostrarPorCodigoEnProceso", con2);
+                    cmd2 = new SqlCommand("Calidad_MostrarPorCodigoCulminado", con2);
                     cmd2.CommandType = CommandType.StoredProcedure;
                     cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                     cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -238,7 +262,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     con2.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con2.Open();
                     SqlCommand cmd2 = new SqlCommand();
-                    cmd2 = new SqlCommand("Calidad_MostrarPorClienteEnProceso", con2);
+                    cmd2 = new SqlCommand("Calidad_MostrarPorClienteCulminado", con2);
                     cmd2.CommandType = CommandType.StoredProcedure;
                     cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                     cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
@@ -264,6 +288,21 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     da.Fill(dt);
                     datalistadoTodasOP.DataSource = dt;
                     con.Close();
+
+                    System.Data.DataTable dt2 = new System.Data.DataTable();
+                    SqlConnection con2 = new SqlConnection();
+                    con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con2.Open();
+                    SqlCommand cmd2 = new SqlCommand();
+                    cmd2 = new SqlCommand("Calidad_MostrarPorDescripcionCulminado", con2);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+                    cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    cmd2.Parameters.AddWithValue("@descripcion", valorBusqueda);
+                    SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                    da2.Fill(dt2);
+                    datalistadoEnProcesoOP.DataSource = dt2;
+                    con2.Close();
                 }
                 RedimensionarListadoGeneralPedido(datalistadoTodasOP);
                 RedimensionarListadoGeneralPedido(datalistadoEnProcesoOP);
@@ -319,40 +358,30 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             DGV.Columns[13].ReadOnly = true;
             DGV.Columns[14].ReadOnly = true;
             CargarColoresListadoOPGeneral(DGV);
-          
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in DGV.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoTodasOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
             //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
-            {
-                this.datalistadoTodasOP.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoTodasOP.Cursor = curAnterior;
-            }
+            if (this.datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles") { this.datalistadoTodasOP.Cursor = Cursors.Hand; }
+            else { this.datalistadoTodasOP.Cursor = curAnterior; }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN - HISTORIAL
         private void datalistadoHistorial_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
             //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoHistorial.Columns[e.ColumnIndex].Name == "columDesc")
-            {
-                this.datalistadoHistorial.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoHistorial.Cursor = curAnterior;
-            }
+            if (this.datalistadoHistorial.Columns[e.ColumnIndex].Name == "columDesc") { this.datalistadoHistorial.Cursor = Cursors.Hand; }
+            else { this.datalistadoHistorial.Cursor = curAnterior; }
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
+        private void datalistadoEnProcesoOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (this.datalistadoEnProcesoOP.Columns[e.ColumnIndex].Name == "detallesCulminadas") { this.datalistadoEnProcesoOP.Cursor = Cursors.Hand; }
+            else { this.datalistadoEnProcesoOP.Cursor = curAnterior; }
         }
 
         //ENTRARA A MIS DETALLES DE MI REVISION DE OP
@@ -364,25 +393,22 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
 
                 if (currentColumnT.Name == "detalles")
                 {
-                    panelControlCalidad.Visible = true;
-                    btnVisualizar.Visible = false;
-                    lblLeyendaVisualizar.Visible = false;
-                    btnGenerarCSM.Visible = false;
-                    lblGenerarCSM.Visible = false;
+                    VerificarDGVActivo();
+                    MostrarCantidadesEntregadasOP();
+                }
+            }
+        }
 
-                    lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
-                    txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
-                    txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[8].Value.ToString();
-                    txtCantidadTotalOP.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
-                    txtCantidadEntregada.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
-                    MostrarCantidadesSegunOP(Convert.ToInt32(lblIdOP.Text));
-                    lblCantidadRealizada.Text = datalistadoTodasOP.SelectedCells[13].Value.ToString();
-                    txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadEntregada.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
-                    txtPesoTeorico.Text = "0.00";
-                    txtPesoReal.Text = "0.00";
-                    txtObservaciones.Text = "";
-                    btnGenerarCSM.Visible = false;
-                    lblGenerarCSM.Visible = false;
+        private void datalistadoEnProcesoOP_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoEnProcesoOP.RowCount != 0)
+            {
+                DataGridViewColumn currentColumnT = datalistadoEnProcesoOP.Columns[e.ColumnIndex];
+
+                if (currentColumnT.Name == "detallesCulminadas")
+                {
+                    VerificarDGVActivo();
+                    MostrarCantidadesEntregadasOP();
                 }
             }
         }
@@ -392,24 +418,40 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         {
             if (datalistadoTodasOP.RowCount != 0)
             {
-                panelControlCalidad.Visible = true;
-
-                lblIdOP.Text = datalistadoTodasOP.SelectedCells[1].Value.ToString();
-                lblTotalPedido.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
-                txtCodigoOP.Text = datalistadoTodasOP.SelectedCells[2].Value.ToString();
-                txtDescripcionProducto.Text = datalistadoTodasOP.SelectedCells[8].Value.ToString();
-                txtCantidadTotalOP.Text = datalistadoTodasOP.SelectedCells[9].Value.ToString();
-                txtCantidadEntregada.Text = datalistadoTodasOP.SelectedCells[12].Value.ToString();
-                MostrarCantidadesSegunOP(Convert.ToInt32(lblIdOP.Text));
-                lblCantidadRealizada.Text = datalistadoTodasOP.SelectedCells[13].Value.ToString();
-                txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadEntregada.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
-                txtPesoTeorico.Text = "0.00";
-                txtPesoReal.Text = "0.00";
-                txtObservaciones.Text = "";
-                btnGenerarCSM.Visible = false;
-                lblGenerarCSM.Visible = false;
-                CargarTipoHallazgo();
+                VerificarDGVActivo();
+                MostrarCantidadesEntregadasOP();
             }
+        }
+
+        private void datalistadoEnProcesoOP_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            VerificarDGVActivo();
+            MostrarCantidadesEntregadasOP();
+        }
+
+        //fFUNCION PARA EJECUTAR EL MOSTRAR CANTIDADES
+        public void MostrarCantidadesEntregadasOP()
+        {
+            panelControlCalidad.Visible = true;
+            btnVisualizar.Visible = false;
+            lblLeyendaVisualizar.Visible = false;
+            btnGenerarCSM.Visible = false;
+            lblGenerarCSM.Visible = false;
+
+            lblIdOP.Text = dgvActivo.SelectedCells[1].Value.ToString();
+            txtCodigoOP.Text = dgvActivo.SelectedCells[2].Value.ToString();
+            txtDescripcionProducto.Text = dgvActivo.SelectedCells[8].Value.ToString();
+            txtCantidadTotalOP.Text = dgvActivo.SelectedCells[9].Value.ToString();
+            txtCantidadEntregada.Text = dgvActivo.SelectedCells[12].Value.ToString();
+            MostrarCantidadesSegunOP(Convert.ToInt32(lblIdOP.Text));
+            lblCantidadRealizada.Text = dgvActivo.SelectedCells[13].Value.ToString();
+            txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadEntregada.Text) - Convert.ToInt32(lblCantidadRealizada.Text));
+            txtPesoTeorico.Text = "0.00";
+            txtPesoReal.Text = "0.00";
+            txtObservaciones.Text = "";
+            btnGenerarCSM.Visible = false;
+            lblGenerarCSM.Visible = false;
+            CargarTipoHallazgo();
         }
 
         //CARGAR TIPOS DE HALLAZGO
@@ -430,95 +472,35 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Error del sistema." + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //CAMBIO DE CANTUIDADES DEPENDIENDO LA INGRESADA
         private void txtCantidadInspeccionar_TextChanged(object sender, EventArgs e)
         {
-            if (txtCantidadInspeccionar.Text == "")
-            {
-                txtCantidadInspeccionar.Text = "0";
-            }
-        }
-
-        //AÑADIR UN NUYEVO TIPO DE HALLAZGO
-        private void btnAñadirHallazgo_Click(object sender, EventArgs e)
-        {
-            txtNuevoTipoHallazgo.Visible = true;
-            btnConfirmarNuevoTipoHallazgo.Visible = true;
-            btnCancelarNuevoTipoHallazgo.Visible = true;
-        }
-
-        //INGRESAR UN NUEVO TIPO HALLAZGO
-        private void btnConfirmarNuevoTipoHallazgo_Click(object sender, EventArgs e)
-        {
-            txtNuevoTipoHallazgo.Visible = false;
-            btnConfirmarNuevoTipoHallazgo.Visible = false;
-            btnCancelarNuevoTipoHallazgo.Visible = false;
-            IngrsarNuevoTipoHallazgo(txtNuevoTipoHallazgo);
-        }
-
-        //FUNCION PAR AINGRESAR UN NUEVO TIPO HALLAZGO
-        public void IngrsarNuevoTipoHallazgo(TextBox tipoHallazgo)
-        {
-            if(tipoHallazgo.Text == "")
-            {
-                MessageBox.Show("Debe ingresar un tipo de hallazgo valido", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            else
-            {
-                try
-                {
-                    SqlConnection con = new SqlConnection();
-                    SqlCommand cmd = new SqlCommand();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    cmd = new SqlCommand("Calidad_IngresarTipoHallazgo", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@tipoHallazgo", tipoHallazgo.Text);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
-                    CargarTipoHallazgo();
-                    MessageBox.Show("Tipo de hallazgo ingresado correctamente.", "Validación del Sistema",MessageBoxButtons.OK);
-                    tipoHallazgo.Text = "";
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        //CANCELAR EL NUEVO TIPO HALLAZGO
-        private void btnCancelarNuevoTipoHallazgo_Click(object sender, EventArgs e)
-        {
-            txtNuevoTipoHallazgo.Visible = false;
-            btnConfirmarNuevoTipoHallazgo.Visible = false;
-            btnCancelarNuevoTipoHallazgo.Visible = false;
-            txtNuevoTipoHallazgo.Text = "";
+            if (txtCantidadInspeccionar.Text == "") { txtCantidadInspeccionar.Text = "0"; }
         }
 
         //CERRAR MI PANEL DE CONTROL DE CALIDAD
         private void btnCerrarDetallesOPCantidades_Click(object sender, EventArgs e)
         {
-            panelControlCalidad.Visible = false;
-            ValidarEstadoOP();
-            LimpiarCantidades();
-            MostrarOrdenProduccionPorCriterios(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
-            MostrarOrdenProduccionPorCriterios(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            PanelRevisioncantidades();
         }
 
         //CERRAR MI PANEL DE CONTROL DE CALIDAD
         private void btnRegresarControl_Click(object sender, EventArgs e)
         {
-            ValidarEstadoOP();
+            PanelRevisioncantidades();
+        }
+
+        //SALIR DE LA REVISION DE CANTIDADES
+        public void PanelRevisioncantidades()
+        {
             if (estadoDesaprobado == false)
             {
                 panelControlCalidad.Visible = false;
-
+                ValidarEstadoOP();
                 LimpiarCantidades();
                 MostrarOrdenProduccionPorCriterios(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
                 MostrarOrdenProduccionPorCriterios(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
@@ -553,7 +535,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 3);
                 }
 
-
                 //SI SE INGRESA PARCIALMENTE LAS CANTIDADES PERO NO HAY UN DESAPROBADO Y NO HAY SNG
                 else if (txtCantidadRestante.Text != txtCantidadEntregada.Text && estadoSNG == false && estadoDesaprobado == false || txtCantidadRestante.Text == txtCantidadEntregada.Text && txtCantidadInspeccionar.Text != txtCantidadEntregada.Text && estadoSNG == false && estadoDesaprobado == false)
                 {
@@ -568,6 +549,28 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 {
                     CambiarEstadoCalidad(Convert.ToInt32(lblIdOP.Text), 1);
                 }
+            }
+        }
+
+        //CAMBIAR EL ESTADO DE MI OP A FINALIZADA
+        public void CambiarEstadoCalidad(int idOP, int estadoCalidad)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("Calidad_EstadoCalidad", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idOP", idOP);
+                cmd.Parameters.AddWithValue("@estadoCalidad", estadoCalidad);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -602,7 +605,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         //VERIFICAR EN QUE LSITADO ESTOY
         public void VerificarDGVActivo()
         {
-            if (TabControl.SelectedTab.Text == "OP en Proceso")
+            if (TabControl.SelectedTab.Text == "OP Culminadas")
             {
                 dgvActivo = datalistadoEnProcesoOP;
             }
@@ -642,7 +645,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 string codigoOrdenProduccion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
                 Visualizadores.VisualizarOrdenProduccion frm = new Visualizadores.VisualizarOrdenProduccion();
                 frm.lblCodigo.Text = codigoOrdenProduccion;
-
                 frm.Show();
             }
             else
@@ -740,90 +742,21 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         //APROBAR LAS CANTIDADES INGRESADAS
         private void btnAprobar_Click(object sender, EventArgs e)
         {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOP.CurrentRow != null)
-            {
-                if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "" && cboTipoHallazgo.Text != "TODO CONFORME")
-                {
-                    MessageBox.Show("Debe ingresar una cantidad u obserbación válida para poder aprobar o desaprobar.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else if (Convert.ToInt32(txtCantidadInspeccionar.Text) > Convert.ToInt32(txtCantidadRestante.Text))
-                {
-                    MessageBox.Show("No se puede revisar más de la cantidad restante.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else if (cboTipoHallazgo.Text != "TODO CONFORME" && txtObservaciones.Text == "")
-                {
-                    MessageBox.Show("No se puede revisar hasta que se llenen todos los campos.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    DialogResult boton = MessageBox.Show("¿Realmente desea aprobar esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                    if (boton == DialogResult.OK)
-                    {
-                        try
-                        {
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("Calidad_IngresarRegistroCantidad", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOrdenProduccion", Convert.ToInt32(lblIdOP.Text));
-                            cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(txtCantidadInspeccionar.Text));
-                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
-                            cmd.Parameters.AddWithValue("@pesoTeorico", Convert.ToDecimal(txtPesoTeorico.Text));
-                            cmd.Parameters.AddWithValue("@pesoReal", Convert.ToDecimal(txtPesoReal.Text));
-                            cmd.Parameters.AddWithValue("@observaciones", txtObservaciones.Text);
-                            cmd.Parameters.AddWithValue("@estadoAD", 2);
-                            cmd.Parameters.AddWithValue("@tipoHallazgo", cboTipoHallazgo.SelectedIndex.ToString());
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            ValidarEstadoOP();
-                            MessageBox.Show("Cantidad revisada correctamente.", "Validación del Sistema",MessageBoxButtons.OK);
-                            txtCantidadRestante.Text = Convert.ToString(Convert.ToInt16(txtCantidadRestante.Text) - Convert.ToInt16(txtCantidadInspeccionar.Text));
-                            LimpiarCantidades();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
-        //CAMBIAR EL ESTADO DE MI OP A FINALIZADA
-        public void CambiarEstadoCalidad(int idOP, int estadoCalidad)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                cmd = new SqlCommand("Calidad_EstadoCalidad", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idOP", idOP);
-                cmd.Parameters.AddWithValue("@estadoCalidad", estadoCalidad);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            GuardarRevisionCalidad("aprobar", Convert.ToInt32(lblIdOP.Text), Convert.ToInt32(txtCantidadInspeccionar.Text), Convert.ToDecimal(txtPesoTeorico.Text), Convert.ToDecimal(txtPesoReal.Text), txtObservaciones.Text, 2, Convert.ToInt32(cboTipoHallazgo.SelectedIndex.ToString()));
         }
 
         //DESAPROBAR LAS CANTIDADES INGRESADAS
         private void btnDesaprobar_Click(object sender, EventArgs e)
         {
+            GuardarRevisionCalidad("desaprobar", Convert.ToInt32(lblIdOP.Text), Convert.ToInt32(txtCantidadInspeccionar.Text), Convert.ToDecimal(txtPesoTeorico.Text), Convert.ToDecimal(txtPesoReal.Text), txtObservaciones.Text, 0, Convert.ToInt32(cboTipoHallazgo.SelectedIndex.ToString()));
+        }
+
+        //FUNCION PARA GUARDAR UNA REVISION
+        public void GuardarRevisionCalidad(string tipo, int idOP, int cantidad, decimal pesoTeorico, decimal pesoReal, string observaciones, int estadoAD, int tipoHallazgp)
+        {
+            VerificarDGVActivo();
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasOP.CurrentRow != null)
+            if (dgvActivo.CurrentRow != null)
             {
                 if (txtCantidadInspeccionar.Text == "" || txtCantidadInspeccionar.Text == "0" || txtObservaciones.Text == "" && cboTipoHallazgo.Text != "TODO CONFORME")
                 {
@@ -833,9 +766,13 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 {
                     MessageBox.Show("No se puede revisar más de la cantidad restante.", "Validación del Sistema", MessageBoxButtons.OK);
                 }
+                else if (cboTipoHallazgo.Text != "TODO CONFORME" && txtObservaciones.Text == "" && tipo == "desaprobar")
+                {
+                    MessageBox.Show("No se puede revisar hasta que se llenen todos los campos.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
                 else
                 {
-                    DialogResult boton = MessageBox.Show("¿Realmente desea desaprobar esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    DialogResult boton = MessageBox.Show("¿Realmente desea " + tipo + " esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                     if (boton == DialogResult.OK)
                     {
                         try
@@ -846,18 +783,18 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                             con.Open();
                             cmd = new SqlCommand("Calidad_IngresarRegistroCantidad", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOrdenProduccion", Convert.ToInt32(lblIdOP.Text));
-                            cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(txtCantidadInspeccionar.Text));
-                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
-                            cmd.Parameters.AddWithValue("@pesoTeorico", Convert.ToDecimal(txtPesoTeorico.Text));
-                            cmd.Parameters.AddWithValue("@pesoReal", Convert.ToDecimal(txtPesoReal.Text));
-                            cmd.Parameters.AddWithValue("@observaciones", txtObservaciones.Text);
-                            cmd.Parameters.AddWithValue("@estadoAD", 0);
-                            cmd.Parameters.AddWithValue("@tipoHallazgo", cboTipoHallazgo.SelectedIndex.ToString());
+                            cmd.Parameters.AddWithValue("@idOrdenProduccion", idOP);
+                            cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                            cmd.Parameters.AddWithValue("@fechaRegistro", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@pesoTeorico", pesoTeorico);
+                            cmd.Parameters.AddWithValue("@pesoReal", pesoTeorico);
+                            cmd.Parameters.AddWithValue("@observaciones", observaciones);
+                            cmd.Parameters.AddWithValue("@estadoAD", estadoAD);
+                            cmd.Parameters.AddWithValue("@tipoHallazgo", tipoHallazgp);
                             cmd.ExecuteNonQuery();
                             con.Close();
 
-                            MessageBox.Show("Cantidad revisada correctamente.", "Validación del Sistema",MessageBoxButtons.OK);
+                            MessageBox.Show("Cantidad revisada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                             txtCantidadRestante.Text = Convert.ToString(Convert.ToInt16(txtCantidadRestante.Text) - Convert.ToInt16(txtCantidadInspeccionar.Text));
                             LimpiarCantidades();
                         }
@@ -867,10 +804,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                         }
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema",MessageBoxButtons.OK);
             }
         }
 
@@ -1005,38 +938,6 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                 frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
                 //CARGAR VENTANA
                 frm.Show();
-            }
-        }
-
-        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
-        public void ColoresListadoCantidades()
-        {
-            try
-            {
-                //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= datalistadoHistorial.RowCount - 1; i++)
-                {
-                    if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "APROBADO" || datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "SNC CULMINADA")
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                    }
-                    else if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "DESAPROBADO")
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
-                    }
-                    else if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "SNC GENERADA")
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkOrange;
-                    }
-                    else
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
 

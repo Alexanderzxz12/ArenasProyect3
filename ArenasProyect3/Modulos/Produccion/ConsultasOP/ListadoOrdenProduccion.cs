@@ -862,42 +862,52 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoTodasOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
+            if (datalistadoTodasOP.RowCount != 0)
             {
-                datalistadoTodasOP.Cursor = Cursors.Hand;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
+                {
+                    datalistadoTodasOP.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    datalistadoTodasOP.Cursor = curAnterior;
+                }
             }
-            else
-            {
-                datalistadoTodasOP.Cursor = curAnterior;
-            }
+
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoEnProcesoOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (datalistadoEnProcesoOP.Columns[e.ColumnIndex].Name == "detalles")
+            if (datalistadoEnProcesoOP.RowCount != 0)
             {
-                datalistadoEnProcesoOP.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                datalistadoEnProcesoOP.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (datalistadoEnProcesoOP.Columns[e.ColumnIndex].Name == "detalles")
+                {
+                    datalistadoEnProcesoOP.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    datalistadoEnProcesoOP.Cursor = curAnterior;
+                }
             }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoObservadas_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (datalistadoObservadas.Columns[e.ColumnIndex].Name == "detalles")
+            if (datalistadoObservadas.RowCount != 0)
             {
-                datalistadoObservadas.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                datalistadoObservadas.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (datalistadoObservadas.Columns[e.ColumnIndex].Name == "detalles")
+                {
+                    datalistadoObservadas.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    datalistadoObservadas.Cursor = curAnterior;
+                }
             }
         }
 
@@ -1216,17 +1226,17 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         //------------------------------
                         cmd.Parameters.AddWithValue("@liberacion", ckLiberacion.Checked ? 1 : 0);
                         //------------------------------
-                        cmd.Parameters.AddWithValue("@correcion", ckLiberacion.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("@correcion", ckCorrecion.Checked ? 1 : 0);
                         //------------------------------
-                        cmd.Parameters.AddWithValue("@reproceso", ckLiberacion.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("@reproceso", ckReproceso.Checked ? 1 : 0);
                         //------------------------------
-                        cmd.Parameters.AddWithValue("@reclasificacion", ckLiberacion.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("@reclasificacion", ckReclasificacion.Checked ? 1 : 0);
                         //------------------------------
-                        cmd.Parameters.AddWithValue("@recuperacion", ckLiberacion.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("@recuperacion", ckRecuperacion.Checked ? 1 : 0);
                         //------------------------------
-                        cmd.Parameters.AddWithValue("@destruccion", ckLiberacion.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("@destruccion", ckReposicion.Checked ? 1 : 0);
                         //------------------------------
-                        cmd.Parameters.AddWithValue("@otros", ckLiberacion.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("@otros", ckOtros.Checked ? 1 : 0);
 
                         cmd.Parameters.AddWithValue("@descripcionOtros", txtDescripcionOtros.Text);
                         cmd.Parameters.AddWithValue("@fechaRegistroProduccion", DateTime.Now);
@@ -1256,6 +1266,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                         MessageBox.Show("Salida No Conforme registrada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                         panelRevisionOP.Visible = false;
+                        datalistadoObservadas.Enabled = true;
                     }
                     catch (Exception ex)
                     {
@@ -1322,7 +1333,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             cmd.Parameters.AddWithValue("@idSede", 1);
             cmd.Parameters.AddWithValue("@idLocal", 1);
             cmd.Parameters.AddWithValue("@idArea", Convert.ToInt16(txtIdAreaSNC.Text));
-            cmd.Parameters.AddWithValue("@idipo", 2);
+            cmd.Parameters.AddWithValue("@idipo", 6);
             cmd.Parameters.AddWithValue("@estadoLogistica", 1);
             cmd.Parameters.AddWithValue("@mensajeAnulacion", "");
             cmd.Parameters.AddWithValue("@idJefatura", 1052);
@@ -1354,7 +1365,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 bool estado = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
                 if (estado == true)
                 {
-                    decimal cantidad = Convert.ToDecimal(row.Cells["cantidad"].Value);
+                    decimal cantidad = Convert.ToDecimal(row.Cells["cantidadSolicitada"].Value);
 
                     //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
                     con.Open();
@@ -1639,7 +1650,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         }
 
         //EVENTO PARA GUARDAR MI S CANTIDADES INGRESADAS
-        private void btnGuardarCantidad_Click(object sender, EventArgs e)
+        private async void btnGuardarCantidad_Click(object sender, EventArgs e)
         {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoEnProcesoOP.CurrentRow != null)
@@ -1663,17 +1674,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     {
                         try
                         {
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("OP_IngresarRegistroCantidad", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOrdenProduccion", lblIdOP.Text);
-                            cmd.Parameters.AddWithValue("@cantidad", txtCantidadRealizada.Text);
-                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
-                            cmd.ExecuteNonQuery();
-                            con.Close();
+                            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+                            using (SqlCommand cmd = new SqlCommand("OP_IngresarRegistroCantidad", con))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@idOrdenProduccion", lblIdOP.Text);
+                                cmd.Parameters.AddWithValue("@cantidad", txtCantidadRealizada.Text);
+                                cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                                await con.OpenAsync();
+                                await cmd.ExecuteNonQueryAsync();
+                            }
 
                             MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
                             MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
@@ -2096,17 +2106,16 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //CAMBIAR MI LISTADO
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ColoresListado(datalistadoEnProcesoOP);
-            ColoresListado(datalistadoTodasOP);
-            RedimensionarListadoOPCalidad(datalistadoObservadas);
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //COLOREAR LISTADO
         private void datalistadoEnProcesoOP_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            ColoresListado(datalistadoEnProcesoOP);
-            ColoresListado(datalistadoTodasOP);
-            RedimensionarListadoOPCalidad(datalistadoObservadas);
+            if(datalistadoEnProcesoOP.RowCount != 0)
+            {
+                ColoresListado(datalistadoEnProcesoOP);
+            }
         }
 
         //VISUALIZAR MI PANEL DE SNC

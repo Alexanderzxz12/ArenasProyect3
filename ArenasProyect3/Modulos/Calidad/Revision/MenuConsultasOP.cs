@@ -55,6 +55,21 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             }
         }
 
+        //ABRIR LISTADO DE ORDENES DE TRABAJO
+        private void btnListadoOT_Click(object sender, EventArgs e)
+        {
+            if (panelMantenimientos.Controls.Count == 1)
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoOrdenTrabajo());
+            }
+            else
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoOrdenTrabajo());
+            }
+        }
+
         //ABRIR LISTADO DE SNC
         private void btnListadoSNC_Click(object sender, EventArgs e)
         {
@@ -75,5 +90,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         {
             Process.Start(ruta);
         }
+
+
     }
 }

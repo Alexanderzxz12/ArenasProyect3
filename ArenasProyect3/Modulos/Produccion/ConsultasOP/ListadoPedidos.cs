@@ -1,8 +1,10 @@
-﻿using ArenasProyect3.Modulos.Comercial.Ventas;
+﻿using ArenasProyect3.Conexion;
+using ArenasProyect3.Modulos.Comercial.Ventas;
 using ArenasProyect3.Modulos.ManGeneral;
 using ArenasProyect3.Modulos.Resourses;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml.Office.Word;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Office.Interop.Excel;
@@ -62,7 +64,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
-            datalistadoTodasPedido.DataSource = null;
 
             //PREFILES Y PERSIMOS---------------------------------------------------------------
             if (Program.RangoEfecto != 1)
@@ -713,86 +714,113 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
         //LISTADO DE PEDIDOS Y SELECCION DE PDF Y ESTADO DE PEDIDOS---------------------
         //MOSTRAR PEDIDOS AL INCIO 
-        public void MostrarPedidoPorFecha(DateTime fechaInicio, DateTime fechaTermino)
+        public async Task MostrarPedidoPorFecha(DateTime fechaInicio, DateTime fechaTermino)
         {
-            System.Data.DataTable dt = new System.Data.DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("Pedido_MostrarPorFecha", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasPedido.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
-
+            System.Data.DataTable dt1 = new System.Data.DataTable();
             System.Data.DataTable dt2 = new System.Data.DataTable();
-            SqlConnection con2 = new SqlConnection();
-            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con2.Open();
-            SqlCommand cmd2 = new SqlCommand();
-            cmd2 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con);
-            cmd2.CommandType = CommandType.StoredProcedure;
-            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd2.Parameters.AddWithValue("@estado", 1);
-            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            da2.Fill(dt2);
-            datalistadoPendientePedido.DataSource = dt2;
-            con2.Close();
-            RedimensionarListadoGeneralPedido(datalistadoPendientePedido);
-
             System.Data.DataTable dt3 = new System.Data.DataTable();
-            SqlConnection con3 = new SqlConnection();
-            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con3.Open();
-            SqlCommand cmd3 = new SqlCommand();
-            cmd3 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con3);
-            cmd3.CommandType = CommandType.StoredProcedure;
-            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd3.Parameters.AddWithValue("@estado", 2);
-            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
-            da3.Fill(dt3);
-            datalistadoIncompletoPedido.DataSource = dt3;
-            con3.Close();
-            RedimensionarListadoGeneralPedido(datalistadoIncompletoPedido);
-
             System.Data.DataTable dt4 = new System.Data.DataTable();
-            SqlConnection con4 = new SqlConnection();
-            con4.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con4.Open();
-            SqlCommand cmd4 = new SqlCommand();
-            cmd4 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con4);
-            cmd4.CommandType = CommandType.StoredProcedure;
-            cmd4.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd4.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd4.Parameters.AddWithValue("@estado", 3);
-            SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
-            da4.Fill(dt4);
-            datalistadoCompletoPedido.DataSource = dt4;
-            con4.Close();
-            RedimensionarListadoGeneralPedido(datalistadoCompletoPedido);
-
             System.Data.DataTable dt5 = new System.Data.DataTable();
-            SqlConnection con5 = new SqlConnection();
-            con5.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con5.Open();
-            SqlCommand cmd5 = new SqlCommand();
-            cmd5 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con5);
-            cmd5.CommandType = CommandType.StoredProcedure;
-            cmd5.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd5.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd5.Parameters.AddWithValue("@estado", 4);
-            SqlDataAdapter da5 = new SqlDataAdapter(cmd5);
-            da5.Fill(dt5);
-            datalistadoDespahacoPedido.DataSource = dt5;
-            con5.Close();
-            RedimensionarListadoGeneralPedido(datalistadoDespahacoPedido);
+
+            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+            {
+                await con.OpenAsync();
+
+                if (tabControl2.SelectedTab.Text == "TODAS")
+                {
+                    using (SqlCommand cmd = new SqlCommand("Pedido_MostrarPorFecha", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                        cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+
+                        using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                        {
+                            dt1.Load(reader);
+                        }
+                    }
+                    datalistadoTodasPedido.DataSource = dt1;
+                    RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
+                }
+                if (tabControl2.SelectedTab.Text == "PENDIENTES")
+                {
+                    // Segundo procedimiento
+                    using (SqlCommand cmd2 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con))
+                    {
+                        cmd2.CommandType = CommandType.StoredProcedure;
+                        cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                        cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                        cmd2.Parameters.AddWithValue("@estado", 1);
+
+                        using (SqlDataReader reader2 = await cmd2.ExecuteReaderAsync())
+                        {
+                            dt2.Load(reader2);
+                        }
+                    }
+                    datalistadoPendientePedido.DataSource = dt2;
+                    RedimensionarListadoGeneralPedido(datalistadoPendientePedido);
+                }
+                if (tabControl2.SelectedTab.Text == "INCOMPLETO")
+                {
+                    // Segundo procedimiento
+                    using (SqlCommand cmd3 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con))
+                    {
+                        cmd3.CommandType = CommandType.StoredProcedure;
+                        cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                        cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                        cmd3.Parameters.AddWithValue("@estado", 2);
+
+                        using (SqlDataReader reader3 = await cmd3.ExecuteReaderAsync())
+                        {
+                            dt3.Load(reader3);
+                        }
+                    }
+                    datalistadoIncompletoPedido.DataSource = dt3;
+                    RedimensionarListadoGeneralPedido(datalistadoIncompletoPedido);
+                }
+                if (tabControl2.SelectedTab.Text == "CULMINADA")
+                {
+                    // Segundo procedimiento
+                    using (SqlCommand cmd4 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con))
+                    {
+                        cmd4.CommandType = CommandType.StoredProcedure;
+                        cmd4.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                        cmd4.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                        cmd4.Parameters.AddWithValue("@estado", 3);
+
+                        using (SqlDataReader reader4 = await cmd4.ExecuteReaderAsync())
+                        {
+                            dt4.Load(reader4);
+                        }
+                    }
+                    datalistadoCompletoPedido.DataSource = dt4;
+                    RedimensionarListadoGeneralPedido(datalistadoCompletoPedido);
+                }
+                if (tabControl2.SelectedTab.Text == "DESPACHADO")
+                {
+                    // Segundo procedimiento
+                    using (SqlCommand cmd5 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con))
+                    {
+                        cmd5.CommandType = CommandType.StoredProcedure;
+                        cmd5.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                        cmd5.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                        cmd5.Parameters.AddWithValue("@estado", 4);
+
+                        using (SqlDataReader reader5 = await cmd5.ExecuteReaderAsync())
+                        {
+                            dt5.Load(reader5);
+                        }
+                    }
+                    datalistadoDespahacoPedido.DataSource = dt5;
+                    RedimensionarListadoGeneralPedido(datalistadoDespahacoPedido);
+                }
+            }
+        }
+
+        //CARGAR MI LSITADO
+        private async void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR ACTAS POR CLIENTE
@@ -916,83 +944,102 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoTodasPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasPedido.Columns[e.ColumnIndex].Name == "detalles")
+            if (datalistadoTodasPedido.RowCount != 0)
             {
-                this.datalistadoTodasPedido.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoTodasPedido.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (this.datalistadoTodasPedido.Columns[e.ColumnIndex].Name == "detalles")
+                {
+                    this.datalistadoTodasPedido.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    this.datalistadoTodasPedido.Cursor = curAnterior;
+                }
             }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoPendientePedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoPendientePedido.Columns[e.ColumnIndex].Name == "detalles2")
+            if (datalistadoPendientePedido.RowCount != 0)
             {
-                this.datalistadoPendientePedido.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoPendientePedido.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (this.datalistadoPendientePedido.Columns[e.ColumnIndex].Name == "detalles2")
+                {
+                    this.datalistadoPendientePedido.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    this.datalistadoPendientePedido.Cursor = curAnterior;
+                }
             }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoIncompletoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoIncompletoPedido.Columns[e.ColumnIndex].Name == "detalles3")
+            if (datalistadoIncompletoPedido.RowCount != 0)
             {
-                this.datalistadoIncompletoPedido.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoIncompletoPedido.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (this.datalistadoIncompletoPedido.Columns[e.ColumnIndex].Name == "detalles3")
+                {
+                    this.datalistadoIncompletoPedido.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    this.datalistadoIncompletoPedido.Cursor = curAnterior;
+                }
             }
         }
 
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoCompletoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoCompletoPedido.Columns[e.ColumnIndex].Name == "detalles4")
+            if (datalistadoCompletoPedido.RowCount != 0)
             {
-                this.datalistadoCompletoPedido.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoCompletoPedido.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (this.datalistadoCompletoPedido.Columns[e.ColumnIndex].Name == "detalles4")
+                {
+                    this.datalistadoCompletoPedido.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    this.datalistadoCompletoPedido.Cursor = curAnterior;
+                }
             }
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoDespahacoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoDespahacoPedido.Columns[e.ColumnIndex].Name == "detalles5")
+            if (datalistadoDespahacoPedido.RowCount != 0)
             {
-                this.datalistadoDespahacoPedido.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoDespahacoPedido.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (this.datalistadoDespahacoPedido.Columns[e.ColumnIndex].Name == "detalles5")
+                {
+                    this.datalistadoDespahacoPedido.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    this.datalistadoDespahacoPedido.Cursor = curAnterior;
+                }
             }
         }
 
         //FUNCIOAN PARA CAMBIAR MI CURSOR 
         private void datalistadoProductos_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoProductos.Columns[e.ColumnIndex].Name == "pl1" || this.datalistadoProductos.Columns[e.ColumnIndex].Name == "pl2")
+            if (datalistadoProductos.RowCount != 0)
             {
-                this.datalistadoProductos.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoProductos.Cursor = curAnterior;
+                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+                if (this.datalistadoProductos.Columns[e.ColumnIndex].Name == "pl1" || this.datalistadoProductos.Columns[e.ColumnIndex].Name == "pl2")
+                {
+                    this.datalistadoProductos.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    this.datalistadoProductos.Cursor = curAnterior;
+                }
             }
         }
 
@@ -1703,27 +1750,27 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //---------------------------------------------------------------------------------------------------------
 
         //MOSTRAR PEDIDOS SEGUN LAS FECHAS
-        private void btnMostrarTodo_Click(object sender, EventArgs e)
+        private async void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            await MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR PEDIDOS SEGUN LAS FECHAS
-        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
+        private async void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            await MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR PEDIDOS SEGUN LAS FECHAS
-        private void HastaFecha_ValueChanged(object sender, EventArgs e)
+        private async void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            await MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR PEDIDOS SEGUN EL CLIENTE
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            MostrarPedidoPorCliente(txtBusqueda.Text, DesdeFecha.Value, HastaFecha.Value);
+            //MostrarPedidoPorCliente(txtBusqueda.Text, DesdeFecha.Value, HastaFecha.Value);
         }
 
         //GENERACION DE REPORTES
@@ -2332,7 +2379,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación.", "Validación del Sistema", MessageBoxButtons.OK);
+                            MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación." + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
                         }
                     }
                 }
@@ -2354,7 +2401,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación.", "Validación del Sistema", MessageBoxButtons.OK);
+                            MessageBox.Show("No se ha podido encontrar el archivo o plano, por favor cargar el plano o seleccionarlo al momento de crear la formulación." + ex.Message, "Validación del Sistema", MessageBoxButtons.OK);
                         }
                     }
                 }
@@ -2543,7 +2590,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                             UltimaOP();
                             ValidarOPparaPedidos(Convert.ToInt32(datalistadoProductos.SelectedCells[19].Value.ToString()), Convert.ToInt32(datalistadoProductos.SelectedCells[20].Value.ToString()));
                             GenerarCodigoRequerimientoSimple();
-                            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            //MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
 
                             //INGRESAR MI REQUERIMIENTO PARA MI ORDEN DE PRODUCCION-----------------------------
                             SqlConnection con2 = new SqlConnection();
@@ -2667,7 +2714,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                                 cmd4.Parameters.AddWithValue("@observaciones", "REQUERIMIENTO PARA ORDEN DE SERVICIO");
                                 cmd4.Parameters.AddWithValue("@idSede", 1);
                                 cmd4.Parameters.AddWithValue("@idLocal", 1);
-                                cmd4.Parameters.AddWithValue("@idArea", 1);
+                                cmd4.Parameters.AddWithValue("@idArea", 13);
                                 cmd4.Parameters.AddWithValue("@idipo", 2);
                                 cmd4.Parameters.AddWithValue("@estadoLogistica", 1);
                                 cmd4.Parameters.AddWithValue("@mensajeAnulacion", "");
