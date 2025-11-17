@@ -116,7 +116,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
             ColoresListadoCantidades();
         }
 
-        //LISTADO DE OP Y SELECCION DE PDF Y ESTADO DE OT---------------------
+        //LISTADO DE OTS Y SELECCION DE PDF Y ESTADO DE OT---------------------
         //MOSTRAR OP AL INCIO 
         public void MostrarOrdenTrabajoPorCriterios(
             DateTime fechaInicio,
