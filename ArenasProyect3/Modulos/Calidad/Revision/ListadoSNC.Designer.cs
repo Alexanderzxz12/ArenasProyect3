@@ -383,7 +383,7 @@
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(1165, 19);
             this.label54.TabIndex = 783;
-            this.label54.Text = "Detalle - Orden Producción";
+            this.label54.Text = "Detalle - Salidas no Conforme";
             this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ListadoSNC

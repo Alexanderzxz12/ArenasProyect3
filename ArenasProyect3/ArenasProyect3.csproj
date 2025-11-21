@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</PublishUrl>
+    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,11 +23,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</UpdateUrl>
+    <UpdateUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones - Prueba\</UpdateUrl>
     <PublisherName>Arenas SRL</PublisherName>
-    <MinimumRequiredVersion>1.0.0.126</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.127</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>128</ApplicationRevision>
+    <ApplicationRevision>129</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -511,6 +511,12 @@
     <Compile Include="Modulos\Produccion\ConsultasOP\MenuConsultasOP.Designer.cs">
       <DependentUpon>MenuConsultasOP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\ListadoDetalleSncDestruc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\ListadoDetalleSncDestruc.Designer.cs">
+      <DependentUpon>ListadoDetalleSncDestruc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Produccion\ConsultasOT\ListadoOT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -647,6 +653,12 @@
       <DependentUpon>InformeSNC.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\InformeSNCOT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeSNCOT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Visualizadores\VisualizarActa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -754,6 +766,12 @@
     </Compile>
     <Compile Include="Visualizadores\VisualizarSNC.Designer.cs">
       <DependentUpon>VisualizarSNC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarSNCOT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visualizadores\VisualizarSNCOT.Designer.cs">
+      <DependentUpon>VisualizarSNCOT.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Modulos\Admin\ManEstadoSistema.resx">
       <DependentUpon>ManEstadoSistema.cs</DependentUpon>
@@ -953,6 +971,9 @@
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOP\MenuConsultasOP.resx">
       <DependentUpon>MenuConsultasOP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\ListadoDetalleSncDestruc.resx">
+      <DependentUpon>ListadoDetalleSncDestruc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\ListadoOT.resx">
       <DependentUpon>ListadoOT.cs</DependentUpon>
     </EmbeddedResource>
@@ -1046,6 +1067,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeSNC.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InformeSNCOT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeSNCOT.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarActa.resx">
       <DependentUpon>VisualizarActa.cs</DependentUpon>
     </EmbeddedResource>
@@ -1099,6 +1124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visualizadores\VisualizarSNC.resx">
       <DependentUpon>VisualizarSNC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visualizadores\VisualizarSNCOT.resx">
+      <DependentUpon>VisualizarSNCOT.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ArenasProyect3_ClaveTemporal.pfx" />
     <None Include="packages.config" />

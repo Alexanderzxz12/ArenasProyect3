@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +14,13 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 {
     public partial class ListadoDetalleSncDestruc : Form
     {
-        private Cursor curAnterior = null;
+        //CONMSTRUCTOR DE MI FORMULARIO
         public ListadoDetalleSncDestruc()
         {
             InitializeComponent();
         }
 
+        //PRIMERA CARGA DE MI FORMULARIO
         private void ListadoDetalleSncDestruc_Load(object sender, EventArgs e)
         {
             DateTime date = DateTime.Now;
@@ -28,36 +30,20 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             // 1. Configuración de Controles
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
-            datalistadoTodasSNC.DataSource = null; // Esto se mantendrá así si 'datalistadoTodasSNC' es el control final
-            
-            MostrarListaSncDestruc(oPrimerDiaDelMes, oUltimoDiaDelMes, string.Empty);
-            
-            // PREFILES Y PERSIMOS---------------------------------------------------------------
-            if (Program.RangoEfecto != 1)
-            {
-                //btnAnularPedido.Visible = false;
-                //lblAnularPedido.Visible = false;
-            }
-            //---------------------------------------------------------------------------------
         }
 
+        //FUNCION PARA VISUALIZAR MIS RESULTADOS
         public void MostrarListaSncDestruc(DateTime fechaInicio, DateTime fechaTermino, string codigoOp)
         {
-
             DataTable dt = new DataTable();
-    
             using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
             {
                 using (SqlCommand cmd = new SqlCommand("OP_MostrarSncDestruccion", con)) // Asume el nombre del SP que discutimos
                 {
-                    // Configuración del Comando
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                     cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);                 
                     cmd.Parameters.AddWithValue("@codigoOp", codigoOp ?? string.Empty);
-
-                    // Ejecución y Llenado del DataTable
                     try
                     {
                         con.Open();
@@ -72,12 +58,11 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     }
                 }
             } 
-
-            // Asignación y Redimensionamiento
             datalistadoTodasSNC.DataSource = dt;
             RedimensionarListadoSNC(datalistadoTodasSNC);
         }
 
+        //FUNCION PARA REDIMENSIONAR MIS LISTADOS
         public void RedimensionarListadoSNC(DataGridView DGV)
         {
             DGV.Columns[0].Width = 55;
@@ -92,23 +77,25 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[6].Visible = false;
             DGV.Columns[9].Visible = false;
             DGV.Columns[10].Visible = false;
-            CargarColores();
         }
 
-        public void CargarColores()
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO
+        public void CargarColores(DataGridView dgv)
         {
             try
             {
                 //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= datalistadoTodasSNC.RowCount - 1; i++)
+                for (var i = 0; i <= dgv.RowCount - 1; i++)
                 {
-                    if (datalistadoTodasSNC.Rows[i].Cells[8].Value.ToString() == "DESTRUIDO")
+                    string estado = dgv.Rows[i].Cells[8].Value.ToString();
+
+                    if (estado == "DESTRUIDO")
                     {
-                        datalistadoTodasSNC.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
                     }
-                    else if (datalistadoTodasSNC.Rows[i].Cells[8].Value.ToString() == "PENDIENTE DESTRUCCIÓN")
+                    else if (estado == "PENDIENTE DESTRUCCIÓN")
                     {
-                        datalistadoTodasSNC.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
                     }
                 }
             }
@@ -118,17 +105,37 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //MOSTRAR OT POR FECHA
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            //Obtener los valores de los controles
-            DateTime fechaInicio = DesdeFecha.Value;
-            DateTime fechaTermino = HastaFecha.Value;
-
-            string codigoOp = string.IsNullOrWhiteSpace(txtBusqueda.Text) ? string.Empty : txtBusqueda.Text.Trim();
-
-            MostrarListaSncDestruc(fechaInicio, fechaTermino, codigoOp);
+            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
         }
 
+        //MOSTRAR OT POR FECHA Y CODIGO
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+        }
+
+        //MOSTRAR OT POR FECHA Y CODIGO
+        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+        }
+
+        //MOSTRAR OT POR FECHA Y CODIGO
+        private void HastaFecha_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+        }
+
+        //FUNCION PARA DESTRUIR
+        private void btnDestruir_Click(object sender, EventArgs e)
+        {
+            ActualizarSNCSeleccionado();
+        }
+
+        //ACTUALIZAR EL ESTADO DE LA SNC
         public void ActualizarSNCSeleccionado()
         {
             // Validar la selección de fila
@@ -178,12 +185,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                         using (SqlCommand cmd = new SqlCommand("OP_ActualizarEstadoDestruido", con))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-
                             cmd.Parameters.AddWithValue("@IdDetalleCantidadCalidad", idDetalleCantidadCalidad);
                             cmd.Parameters.AddWithValue("@NuevoEstado", 4); // Estado fijo 'DESTRUIDO'
-
                             cmd.ExecuteNonQuery();
-
                             MessageBox.Show("El registro ha sido marcado como DESTRUIDO.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -193,31 +197,18 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     MessageBox.Show("Error al actualizar en la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                //Recargar los datos con los filtros actuales
-                DateTime fechaInicio = DesdeFecha.Value;
-                DateTime fechaTermino = HastaFecha.Value;
-                string codigoOp = string.IsNullOrWhiteSpace(txtBusqueda.Text) ? string.Empty : txtBusqueda.Text.Trim();
-
-                MostrarListaSncDestruc(fechaInicio, fechaTermino, codigoOp);
+                MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
             }
         }
 
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ActualizarSNCSeleccionado();
-        }
-
-
-
+        //COLOREAR MI LSITADO
         private void datalistadoTodasSNC_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            CargarColores();
+            CargarColores(datalistadoTodasSNC);
         }
 
-        private void btnPlano_Click(object sender, EventArgs e)
+        //VISUALISAR MI PDF DE LA SNC
+        private void btnPdfSNC_Click(object sender, EventArgs e)
         {
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoTodasSNC.CurrentRow != null)
@@ -229,27 +220,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 //CARGAR VENTANA
                 frm.Show();
             }
-        }
-
-        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // 1. Permite el control (ej. Backspace, Delete)
-            // El carácter de control se usa para teclas como Borrar/Retroceso.
-            if (char.IsControl(e.KeyChar))
-            {
-                e.Handled = false; // Permite el carácter
-                return;
-            }
-
-            // 2. Permite dígitos (0-9)
-            if (char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false; // Permite el dígito
-                return;
-            }
-
-            // 3. Ignora cualquier otra cosa (texto, símbolos, etc.)
-            e.Handled = true; // Ignora el carácter (no se muestra en el TextBox)
         }
     }
 }

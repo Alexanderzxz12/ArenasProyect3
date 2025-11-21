@@ -36,7 +36,7 @@
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.btnInfoPedido = new System.Windows.Forms.PictureBox();
             this.btnAtudaFormularioArena = new System.Windows.Forms.PictureBox();
-            this.btnPlano = new System.Windows.Forms.Button();
+            this.btnPdfSNC = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.label46 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDestruir = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
@@ -145,24 +145,24 @@
             this.btnAtudaFormularioArena.TabIndex = 54;
             this.btnAtudaFormularioArena.TabStop = false;
             // 
-            // btnPlano
+            // btnPdfSNC
             // 
-            this.btnPlano.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPlano.FlatAppearance.BorderSize = 0;
-            this.btnPlano.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlano.Image = ((System.Drawing.Image)(resources.GetObject("btnPlano.Image")));
-            this.btnPlano.Location = new System.Drawing.Point(610, 583);
-            this.btnPlano.Name = "btnPlano";
-            this.btnPlano.Size = new System.Drawing.Size(36, 33);
-            this.btnPlano.TabIndex = 2050;
-            this.btnPlano.UseVisualStyleBackColor = true;
-            this.btnPlano.Click += new System.EventHandler(this.btnPlano_Click);
+            this.btnPdfSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPdfSNC.FlatAppearance.BorderSize = 0;
+            this.btnPdfSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPdfSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnPdfSNC.Image")));
+            this.btnPdfSNC.Location = new System.Drawing.Point(571, 583);
+            this.btnPdfSNC.Name = "btnPdfSNC";
+            this.btnPdfSNC.Size = new System.Drawing.Size(36, 33);
+            this.btnPdfSNC.TabIndex = 2050;
+            this.btnPdfSNC.UseVisualStyleBackColor = true;
+            this.btnPdfSNC.Click += new System.EventHandler(this.btnPdfSNC_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(605, 621);
+            this.label1.Location = new System.Drawing.Point(566, 621);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
@@ -175,7 +175,7 @@
             this.btnExportarExcel.FlatAppearance.BorderSize = 0;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
-            this.btnExportarExcel.Location = new System.Drawing.Point(528, 583);
+            this.btnExportarExcel.Location = new System.Drawing.Point(489, 583);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(36, 33);
             this.btnExportarExcel.TabIndex = 2048;
@@ -185,7 +185,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(520, 621);
+            this.label60.Location = new System.Drawing.Point(481, 621);
             this.label60.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(53, 13);
@@ -373,7 +373,7 @@
             this.txtBusqueda.Size = new System.Drawing.Size(558, 21);
             this.txtBusqueda.TabIndex = 163;
             this.txtBusqueda.Tag = "";
-            this.txtBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqueda_KeyPress);
+            this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
             // 
             // btnMostrarTodo
             // 
@@ -427,6 +427,7 @@
             this.DesdeFecha.Name = "DesdeFecha";
             this.DesdeFecha.Size = new System.Drawing.Size(93, 21);
             this.DesdeFecha.TabIndex = 149;
+            this.DesdeFecha.ValueChanged += new System.EventHandler(this.DesdeFecha_ValueChanged);
             // 
             // HastaFecha
             // 
@@ -437,6 +438,7 @@
             this.HastaFecha.Name = "HastaFecha";
             this.HastaFecha.Size = new System.Drawing.Size(93, 21);
             this.HastaFecha.TabIndex = 150;
+            this.HastaFecha.ValueChanged += new System.EventHandler(this.HastaFecha_ValueChanged);
             // 
             // label5
             // 
@@ -491,24 +493,24 @@
             this.panel5.Size = new System.Drawing.Size(900, 1);
             this.panel5.TabIndex = 2042;
             // 
-            // button1
+            // btnDestruir
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(690, 582);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 33);
-            this.button1.TabIndex = 2052;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDestruir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDestruir.FlatAppearance.BorderSize = 0;
+            this.btnDestruir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDestruir.Image = ((System.Drawing.Image)(resources.GetObject("btnDestruir.Image")));
+            this.btnDestruir.Location = new System.Drawing.Point(651, 582);
+            this.btnDestruir.Name = "btnDestruir";
+            this.btnDestruir.Size = new System.Drawing.Size(36, 33);
+            this.btnDestruir.TabIndex = 2052;
+            this.btnDestruir.UseVisualStyleBackColor = true;
+            this.btnDestruir.Click += new System.EventHandler(this.btnDestruir_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(684, 621);
+            this.label3.Location = new System.Drawing.Point(645, 621);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
@@ -522,9 +524,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDestruir);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnPlano);
+            this.Controls.Add(this.btnPdfSNC);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.label60);
@@ -567,7 +569,7 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox btnInfoPedido;
         private System.Windows.Forms.PictureBox btnAtudaFormularioArena;
-        private System.Windows.Forms.Button btnPlano;
+        private System.Windows.Forms.Button btnPdfSNC;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExportarExcel;
         private System.Windows.Forms.Label label60;
@@ -592,7 +594,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDestruir;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox24;
     }

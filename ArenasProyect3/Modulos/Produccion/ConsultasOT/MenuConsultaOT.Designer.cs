@@ -41,6 +41,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             this.panelMantenimientos = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnListadoSNCdestruc = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelMantenimientos.SuspendLayout();
@@ -51,6 +52,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.btnListadoSNCdestruc);
             this.panel1.Controls.Add(this.btnListadoDetalleOT);
             this.panel1.Controls.Add(this.btnListarOrdenTrabajo);
             this.panel1.Controls.Add(this.btnNuevaOrdenTrabajo);
@@ -125,7 +127,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             this.btnManualUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnManualUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnManualUsuario.Image")));
             this.btnManualUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManualUsuario.Location = new System.Drawing.Point(2, 398);
+            this.btnManualUsuario.Location = new System.Drawing.Point(4, 459);
             this.btnManualUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnManualUsuario.Name = "btnManualUsuario";
             this.btnManualUsuario.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -198,6 +200,24 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
+            // btnListadoSNCdestruc
+            // 
+            this.btnListadoSNCdestruc.FlatAppearance.BorderSize = 0;
+            this.btnListadoSNCdestruc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListadoSNCdestruc.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListadoSNCdestruc.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListadoSNCdestruc.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoSNCdestruc.Image")));
+            this.btnListadoSNCdestruc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListadoSNCdestruc.Location = new System.Drawing.Point(4, 398);
+            this.btnListadoSNCdestruc.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListadoSNCdestruc.Name = "btnListadoSNCdestruc";
+            this.btnListadoSNCdestruc.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnListadoSNCdestruc.Size = new System.Drawing.Size(168, 53);
+            this.btnListadoSNCdestruc.TabIndex = 11;
+            this.btnListadoSNCdestruc.Text = "LISTADO \r\n DE SNC PARA DESTRUCCIÓN  ";
+            this.btnListadoSNCdestruc.UseVisualStyleBackColor = true;
+            this.btnListadoSNCdestruc.Click += new System.EventHandler(this.btnListadoSNCdestruc_Click);
+            // 
             // MenuConsultaOT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,5 +251,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         private System.Windows.Forms.Panel panelMantenimientos;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnListadoSNCdestruc;
     }
 }

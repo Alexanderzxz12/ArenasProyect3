@@ -2690,6 +2690,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
 
                                 cmd3.Parameters.AddWithValue("@cantidad", resultadoFinal);
                                 cmd3.Parameters.AddWithValue("@idCliente", Convert.ToInt32(lblIdCliente.Text));
+                                cmd3.Parameters.AddWithValue("@codigoFormulacion", datalistadoProductos.SelectedCells[15].Value.ToString());
                                 cmd3.ExecuteNonQuery();
                                 con3.Close();
 

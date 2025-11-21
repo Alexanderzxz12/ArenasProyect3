@@ -1,4 +1,5 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿using ArenasProyect3.Modulos.Resourses;
+using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -34,6 +35,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         public ListadoOrdenProduccion()
         {
             InitializeComponent();
+        }
+
+        //PRIMERA CARGA DE MI FORMULARIO
+        private void ListadoOrdenProduccion_Load(object sender, EventArgs e)
+        {
+            DateTime date = DateTime.Now;
+            DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
+            DateTime oUltimoDiaDelMes = oPrimerDiaDelMes.AddMonths(1).AddDays(-1);
+
+            DesdeFecha.Value = oPrimerDiaDelMes;
+            HastaFecha.Value = oUltimoDiaDelMes;
+            cboBusqeuda.SelectedIndex = 0;
+            VerificarDGVActivo();
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO Y VER SI ESTAN VENCIDOS
@@ -123,171 +137,90 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
-        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO
-        public void ColoresListado(DataGridView DGV)
-        {
-            try
-            {
-                //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= DGV.RowCount - 1; i++)
-                {
-                    if (DGV.Rows[i].Cells[15].Value.ToString() == "FUERA DE FECHA")
-                    {
-                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
-                    }
-                    else if (DGV.Rows[i].Cells[15].Value.ToString() == "LÍMITE")
-                    {
-                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
-                    }
-                    else if (DGV.Rows[i].Cells[15].Value.ToString() == "PENDIENTE")
-                    {
-                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else if (DGV.Rows[i].Cells[15].Value.ToString() == "CULMINADO")
-                    {
-                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-            }
-        }
-
-        //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
-        public void MostrarExcel()
-        {
-            datalistadoExcel.Rows.Clear();
-
-            foreach (DataGridViewRow dgv in datalistadoEnProcesoOP.Rows)
-            {
-                string numeroOP = dgv.Cells[2].Value.ToString();
-                DateTime fechaInicio = Convert.ToDateTime(dgv.Cells[3].Value.ToString()).Date;
-                DateTime fechaFinal = Convert.ToDateTime(dgv.Cells[4].Value.ToString()).Date;
-                string cliente = dgv.Cells[5].Value.ToString();
-                string unidad = dgv.Cells[6].Value.ToString();
-                string item = dgv.Cells[7].Value.ToString();
-                string descripcionDescripcion = dgv.Cells[8].Value.ToString();
-                string cantidad = dgv.Cells[9].Value.ToString();
-                string color = dgv.Cells[10].Value.ToString();
-                string numeroPedido = dgv.Cells[11].Value.ToString();
-                string cantidadRealizada = dgv.Cells[14].Value.ToString();
-                string estado = dgv.Cells[15].Value.ToString();
-                string estadoOC = dgv.Cells[16].Value.ToString();
-                //COLUMNAS EXTRAS DE MI REPORTE
-                string fechaCulminacionV = dgv.Cells[23].Value.ToString();
-                string fechaCulminacion;
-                int diferenciasDias = 0;
-
-                if (fechaCulminacionV == "SIN REGISTRO")
-                {
-                    fechaCulminacion = "SIN FECHA REGISTRADA";
-                    diferenciasDias = 0;
-                }
-                else
-                {
-                    DateTime fechaCulminacionO = Convert.ToDateTime(fechaCulminacionV).Date;
-                    diferenciasDias = (fechaCulminacionO - fechaFinal).Days;
-                    fechaCulminacion = Convert.ToString(fechaCulminacionO);
-                }
-
-                string area = dgv.Cells[25].Value.ToString();
-
-                datalistadoExcel.Rows.Add(new[] { numeroOP, Convert.ToString(fechaInicio), Convert.ToString(fechaFinal), Convert.ToString(fechaCulminacion), Convert.ToString(diferenciasDias), area, cliente, unidad, item, descripcionDescripcion, cantidad, color, numeroPedido, estado, cantidadRealizada, estado, estadoOC });
-            }
-        }
-
-        //PRIMERA CARGA DE MI FORMULARIO
-        private void ListadoOrdenProduccion_Load(object sender, EventArgs e)
-        {
-            DateTime date = DateTime.Now;
-            DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
-            DateTime oUltimoDiaDelMes = oPrimerDiaDelMes.AddMonths(1).AddDays(-1);
-
-            DesdeFecha.Value = oPrimerDiaDelMes;
-            HastaFecha.Value = oUltimoDiaDelMes;
-            cboBusqeuda.SelectedIndex = 0;
-
-            //PREFILES Y PERSIMOS---------------------------------------------------------------
-            if (Program.RangoEfecto != 1)
-            {
-                //btnAnularPedido.Visible = false;
-                //lblAnularPedido.Visible = false;
-            }
-            //---------------------------------------------------------------------------------
-        }
-
         //FUNCION PARA VERIFICAR SI HAY UNA CANTIDAD 
         public void MostrarCantidadesSegunOP(int idOrdenProduccion)
         {
             totalCantidades = 0;
             datalistadoCantidades.Columns.Clear();
 
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("OP_MostrarCantidades", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoCantidades.DataSource = dt;
-            con.Close();
-            datalistadoCantidades.Columns[0].Width = 40;
-            datalistadoCantidades.Columns[1].Width = 120;
-            datalistadoCantidades.Columns[2].Width = 100;
-            alternarColorFilas(datalistadoCantidades);
-
-            //CONTAR CUANTAS CANTIDADES HAY
-            foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+            try
             {
-                if (row.Cells[3].Value.ToString() == "ENTREGADO")
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("OP_MostrarCantidades", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idOrdenProduccion", idOrdenProduccion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoCantidades.DataSource = dt;
+                con.Close();
+                datalistadoCantidades.Columns[0].Width = 40;
+                datalistadoCantidades.Columns[1].Width = 120;
+                datalistadoCantidades.Columns[2].Width = 100;
+                alternarColorFilas(datalistadoCantidades);
+
+                //CONTAR CUANTAS CANTIDADES HAY
+                foreach (DataGridViewRow row in datalistadoCantidades.Rows)
                 {
-                    totalCantidades = totalCantidades + Convert.ToInt32(row.Cells[1].Value.ToString());
+                    if (row.Cells[3].Value.ToString() == "ENTREGADO")
+                    {
+                        totalCantidades = totalCantidades + Convert.ToInt32(row.Cells[1].Value.ToString());
+                    }
+                }
+
+                //DESCONTAR CUANTAS CANTIDADES HAY
+                foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+                {
+                    if (row.Cells[3].Value.ToString() == "DESAPROBADO")
+                    {
+                        totalCantidades = totalCantidades - Convert.ToInt32(row.Cells[1].Value.ToString());
+                    }
                 }
             }
-
-            //DESCONTAR CUANTAS CANTIDADES HAY
-            foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+            catch (Exception ex)
             {
-                if (row.Cells[3].Value.ToString() == "DESAPROBADO")
-                {
-                    totalCantidades = totalCantidades - Convert.ToInt32(row.Cells[1].Value.ToString());
-                }
+                MessageBox.Show(ex.Message);
             }
         }
 
         //FUNCION PARA COLOCAR IMAGENES A MIS REGISTROS DE CANTIDADES
         public void ColocarImagenesListadoCaantidadaesOP()
         {
-            DataGridViewImageColumn colEstado = new DataGridViewImageColumn();
-            colEstado.Name = "imgEstado";
-            colEstado.HeaderText = "Estado IMG";
-            colEstado.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen
-            colEstado.Width = 60;
-            datalistadoCantidades.Columns.Insert(0, colEstado);
-
-            Image imgAprobado = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Producción\Imagenes\flechaCorrecta.png");     // Imagen para aprobado
-            Image imgDesaprobado = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Producción\Imagenes\flechaIncorrecta.png"); // Imagen para desaprobado
-
-            foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+            try
             {
-                if (row.Cells[4].Value != null)
-                {
-                    string estado = row.Cells[4].Value.ToString();
+                DataGridViewImageColumn colEstado = new DataGridViewImageColumn();
+                colEstado.Name = "imgEstado";
+                colEstado.HeaderText = "Estado IMG";
+                colEstado.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen
+                colEstado.Width = 60;
+                datalistadoCantidades.Columns.Insert(0, colEstado);
 
-                    if (estado == "ENTREGADO")
+                Image imgAprobado = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Producción\Imagenes\flechaCorrecta.png");     // Imagen para aprobado
+                Image imgDesaprobado = Image.FromFile(@"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Producción\Imagenes\flechaIncorrecta.png"); // Imagen para desaprobado
+
+                foreach (DataGridViewRow row in datalistadoCantidades.Rows)
+                {
+                    if (row.Cells[4].Value != null)
                     {
-                        row.Cells["imgEstado"].Value = imgAprobado;
-                    }
-                    else if (estado == "DESAPROBADO")
-                    {
-                        row.Cells["imgEstado"].Value = imgDesaprobado;
+                        string estado = row.Cells[4].Value.ToString();
+
+                        if (estado == "ENTREGADO")
+                        {
+                            row.Cells["imgEstado"].Value = imgAprobado;
+                        }
+                        else if (estado == "DESAPROBADO")
+                        {
+                            row.Cells["imgEstado"].Value = imgDesaprobado;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de carga de datos. " + ex.Message, "Validación del sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -316,13 +249,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                 //COLUMNAS NO VISIBLES
                 datalistadoHistorial.Columns[1].Visible = false;
                 datalistadoHistorial.Columns[6].Visible = false;
-                ColoresListadoCantidades();
-
-                //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-                foreach (DataGridViewColumn column in datalistadoHistorial.Columns)
-                {
-                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                }
+                ColoresListadoCantidades(datalistadoHistorial);
             }
             catch (Exception ex)
             {
@@ -354,37 +281,51 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
-        //BUSCAR DETALLES Y MATERIALES DE MI FORMULACION
-        public void BuscarMaterialesFormulacion(string codigoFormulacion)
+        //FUNCION PARA MOSTRAR MI JEFATURA PRODUCCION
+        public void MostrarJefaturaPro()
         {
-            System.Data.DataTable dt = new System.Data.DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("OP_BuscarMaterialesFormulacion", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@codigoFormulacion", codigoFormulacion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalsitadoMaterialesPre.DataSource = dt;
-            con.Close();
-
-            datalistadoMaterialesFormulacion.Rows.Clear();
-
-            foreach (DataGridViewRow dgv in datalsitadoMaterialesPre.Rows)
+            try
             {
-                string codigoBSS = dgv.Cells[2].Value.ToString();
-                string desProducto = dgv.Cells[4].Value.ToString();
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Reporte_MostrarJefeAreaProduccion", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoDatosJefatura.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la jefatura " + ex.Message);
+            }
+        }
 
-                decimal cantidadObserbada = Convert.ToDecimal(txtCantidadObserbadaReque.Text);
-                decimal cantidad = Convert.ToDecimal(dgv.Cells[5].Value.ToString());
-                decimal CantidadTotal = cantidadObserbada * cantidad;
-
-                string Stock = dgv.Cells[8].Value.ToString();
-                string idArt = dgv.Cells[1].Value.ToString();
-
-                datalistadoMaterialesFormulacion.Rows.Add(new[] { null, codigoBSS, desProducto, Convert.ToString(CantidadTotal), Stock, idArt });
+        //FUNCION PARA MOSTRAR MI OT
+        public void MostrarOTpRODUCCION(string CodigoOP)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("OP_MostrarOTOP", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoOP", CodigoOP);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoOrdenServicioOP.DataSource = dt;
+                con.Close();
+                txtOrdenTrabajoSNC.Text = datalistadoOrdenServicioOP.SelectedCells[0].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la jefatura " + ex.Message);
             }
         }
 
@@ -444,42 +385,8 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         public void GenerarCodigoRequerimientoSimple()
         {
             ConteoRequerimientosSimples();
-
             DateTime date = DateTime.Now;
-
             codigoRequerimientoSimple = Convert.ToString(date.Year) + cantidadRequerimiento2;
-        }
-
-        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
-        public void ColoresListadoCantidades()
-        {
-            try
-            {
-                //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= datalistadoHistorial.RowCount - 1; i++)
-                {
-                    if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "APROBADO" || datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "SNC CULMINADA")
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                    }
-                    else if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "DESAPROBADO")
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
-                    }
-                    else if (datalistadoHistorial.Rows[i].Cells[5].Value.ToString() == "SNC GENERADA")
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkOrange;
-                    }
-                    else
-                    {
-                        datalistadoHistorial.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-            }
         }
 
         //COLOREAR MI LISTADO
@@ -497,11 +404,107 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in dgv.Columns)
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO
+        public void ColoresListado(DataGridView DGV)
+        {
+            try
             {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= DGV.RowCount - 1; i++)
+                {
+                    string estadoPro = DGV.Rows[i].Cells[15].Value.ToString();
+
+                    if (estadoPro == "FUERA DE FECHA")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
+                    }
+                    else if (estadoPro == "LÍMITE")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
+                    }
+                    else if (estadoPro == "PENDIENTE")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                    else if (estadoPro == "CULMINADO")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO DE CANTIDADES
+        public void ColoresListadoCantidades(DataGridView dgv)
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= dgv.RowCount - 1; i++)
+                {
+                    string estadoHistoria = dgv.Rows[i].Cells[5].Value.ToString();
+
+                    if (estadoHistoria == "APROBADO" || estadoHistoria == "SNC CULMINADA")
+                    {
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else if (estadoHistoria == "DESAPROBADO")
+                    {
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else if (estadoHistoria == "SNC GENERADA")
+                    {
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkOrange;
+                    }
+                    else
+                    {
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO OPs
+        public void ColoresListadoOPCalidad(DataGridView DGV)
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= DGV.RowCount - 1; i++)
+                {
+                    string estadoCalidad = DGV.Rows[i].Cells[16].Value.ToString();
+
+                    if (estadoCalidad == "REVISIÓN PARCIAL")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
+                    }
+                    else if (estadoCalidad == "CULMINADA" || estadoCalidad == "CULMINADA - SNC")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
+                    }
+                    else if (estadoCalidad == "ANULADO" || estadoCalidad == "NO DEFINIDO")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
 
@@ -762,13 +765,7 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[14].ReadOnly = true;
 
             CargarColoresListadoOPGeneral(DGV);
-            ColoresListado(DGV);
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in DGV.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+            //ColoresListado(DGV);
         }
 
         //FUNCION PARA REDIMENSIONAR MIS LISTADOS
@@ -818,96 +815,97 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             DGV.Columns[12].ReadOnly = true;
             DGV.Columns[13].ReadOnly = true;
             DGV.Columns[14].ReadOnly = true;
-            ColoresListadoOPCalidad();
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in DGV.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-        }
-
-        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO OPs
-        public void ColoresListadoOPCalidad()
-        {
-            try
-            {
-                //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= datalistadoObservadas.RowCount - 1; i++)
-                {
-                    if (datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "REVISIÓN PARCIAL")
-                    {
-                        datalistadoObservadas.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
-                    }
-                    else if (datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "CULMINADA" || datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "CULMINADA - SNC")
-                    {
-                        datalistadoObservadas.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.DarkGreen;
-                    }
-                    else if (datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "ANULADO" || datalistadoObservadas.Rows[i].Cells[16].Value.ToString() == "NO DEFINIDO")
-                    {
-                        datalistadoObservadas.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
-                    }
-                    else
-                    {
-                        datalistadoObservadas.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-            }
+            //ColoresListadoOPCalidad(DGV);
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoTodasOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (datalistadoTodasOP.RowCount != 0)
-            {
-                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-                if (datalistadoTodasOP.Columns[e.ColumnIndex].Name == "detalles")
-                {
-                    datalistadoTodasOP.Cursor = Cursors.Hand;
-                }
-                else
-                {
-                    datalistadoTodasOP.Cursor = curAnterior;
-                }
-            }
-
+            ModificarCursor(datalistadoTodasOP, "detallesTodos", e);
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoEnProcesoOP_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (datalistadoEnProcesoOP.RowCount != 0)
-            {
-                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-                if (datalistadoEnProcesoOP.Columns[e.ColumnIndex].Name == "detalles")
-                {
-                    datalistadoEnProcesoOP.Cursor = Cursors.Hand;
-                }
-                else
-                {
-                    datalistadoEnProcesoOP.Cursor = curAnterior;
-                }
-            }
+            ModificarCursor(datalistadoEnProcesoOP, "detalles", e);
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoObservadas_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (datalistadoObservadas.RowCount != 0)
+            ModificarCursor(datalistadoObservadas, "detallesObs", e);
+        }
+
+        //MOSTRAR OP SEGUN LAS FECHAS
+        private void btnMostrarTodo_Click(object sender, EventArgs e)
+        {
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //MOSTRAR OP SEGUN LAS FECHAS
+        private void HastaFecha_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //MOSTRAR OP SEGUN LAS FECHAS
+        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //MOSTRAR OPRDENES PRODUCCION DEPENDIENTO LA OPCIÓN ESCOGIDA
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            if (cboBusqeuda.Text == "CÓDIGO OP")
             {
-                //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-                if (datalistadoObservadas.Columns[e.ColumnIndex].Name == "detalles")
-                {
-                    datalistadoObservadas.Cursor = Cursors.Hand;
-                }
-                else
-                {
-                    datalistadoObservadas.Cursor = curAnterior;
-                }
+                MostrarOrdenProduccionPorCodigoOP(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                MostrarOrdenProduccionPorCodigoOP(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            }
+            else if (cboBusqeuda.Text == "CLIENTE")
+            {
+                MostrarOrdenProduccionPorCliente(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                MostrarOrdenProduccionPorCliente(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            }
+            else if (cboBusqeuda.Text == "DESCRIPCIÓN PRODUCTO")
+            {
+                MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            }
+        }
+
+        //LIMPIAR EL CAMBIO DE BUSQUEDA
+        private void cboBusqeuda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusqueda.Text = "";
+        }
+
+        //CARGAR MI PLANO DE PRODUCTO ASIGANDO A LA OP
+        private void btnPlano_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(dgvActivo.SelectedCells[16].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message, MessageBoxButtons.OK);
+            }
+        }
+
+        //CARGAR MI OC TRAIDO DESDE MI PEDIDO
+        private void btnOC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(dgvActivo.SelectedCells[15].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message, MessageBoxButtons.OK);
             }
         }
 
@@ -921,6 +919,69 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         private void datalistadoEnProcesoOP_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             AbrirDetalles(datalistadoEnProcesoOP);
+        }
+
+        //FUNCION PARA ABIRI MIS DETALLES D EIGRESO DE CANTUIDADES DEPENDIENDO EL ISTADO
+        public void AbrirDetalles(DataGridView DGV)
+        {
+
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (DGV.CurrentRow != null)
+            {
+                int count = 0;
+                foreach (DataGridViewRow row in DGV.Rows)
+                {
+                    if (Convert.ToBoolean(row.Cells[0].Value))
+                    {
+                        count++;
+                    }
+                }
+
+                if (count == 0) { count = 1; }
+
+                txtOpsSeleccionadas.Text = Convert.ToString(count);
+                //CARGA DE DAOTS
+                txtCodigoOP.Text = DGV.SelectedCells[2].Value.ToString();
+                int IdOrdenProduccion = Convert.ToInt32(DGV.SelectedCells[1].Value.ToString());
+                txtDescripcionProducto.Text = DGV.SelectedCells[5].Value.ToString();
+                txtCantidadTotalOP.Text = DGV.SelectedCells[9].Value.ToString();
+                txtCantidadRequerida.Text = DGV.SelectedCells[9].Value.ToString();
+                dtpFechaRealizada.Value = DateTime.Now;
+                txtCantidadRealizada.Text = "";
+                txtCantidadRestante.Text = "";
+                MostrarCantidadesSegunOP(IdOrdenProduccion);
+                lblCantidadTotalInghresada.Text = Convert.ToString(totalCantidades);
+                txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadRequerida.Text) - Convert.ToInt32(lblCantidadTotalInghresada.Text));
+
+                DGV.Enabled = false;
+                panelIngresoCantidades.Visible = true;
+
+                if (count != 1)
+                {
+                    btnGenerarGuardarCantidades.Visible = true;
+                    lblGenerarGuardarCantidades.Visible = true;
+                    btnGuardarCantidad.Visible = false;
+                    lblGuardarCantidad.Visible = false;
+                    txtCantidadRealizada.ReadOnly = true;
+                    txtCantidadRealizada.Text = "Gen. Automática";
+                    lblIdOP.Text = "Varios";
+                    txtCantidadRestante.Text = "0";
+                }
+                else
+                {
+                    btnGuardarCantidad.Visible = true;
+                    lblGuardarCantidad.Visible = true;
+                    btnGenerarGuardarCantidades.Visible = false;
+                    lblGenerarGuardarCantidades.Visible = false;
+                    txtCantidadRealizada.ReadOnly = false;
+                    lblIdOP.Text = DGV.SelectedCells[1].Value.ToString();
+                }
+                ColocarImagenesListadoCaantidadaesOP();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
         }
 
         //EVENTO PARA ABRIR EL INGRESO DE LA SNC
@@ -944,11 +1005,232 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             }
         }
 
+        //GENERACION DE REPORTES
+        private void btnGenerarOrdenProduccionPDF_Click(object sender, EventArgs e)
+        {
+            if (dgvActivo.CurrentRow != null)
+            {
+                string codigoOrdenProduccion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
+                Visualizadores.VisualizarOrdenProduccion frm = new Visualizadores.VisualizarOrdenProduccion();
+                frm.lblCodigo.Text = codigoOrdenProduccion;
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una OP para poder generar el PDF.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //EVENTO PARA GUARDAR MI S CANTIDADES INGRESADAS
+        private async void btnGuardarCantidad_Click(object sender, EventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoEnProcesoOP.CurrentRow != null)
+            {
+                if (txtCantidadRealizada.Text == "" || txtCantidadRealizada.Text == "0")
+                {
+                    MessageBox.Show("Debe ingresar una cantidad válida para poder registrar.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else if (txtCantidadRequerida.Text == lblCantidadTotalInghresada.Text)
+                {
+                    MessageBox.Show("La orden de producción ya culminó.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else if (Convert.ToInt32(txtCantidadRestante.Text) < Convert.ToInt32(txtCantidadRealizada.Text))
+                {
+                    MessageBox.Show("No se puede ingresar una cantidad mayor a la restante.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult boton = MessageBox.Show("¿Realmente desea ingresar esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                    if (boton == DialogResult.OK)
+                    {
+                        try
+                        {
+                            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+                            using (SqlCommand cmd = new SqlCommand("OP_IngresarRegistroCantidad", con))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@idOrdenProduccion", lblIdOP.Text);
+                                cmd.Parameters.AddWithValue("@cantidad", txtCantidadRealizada.Text);
+                                cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                                await con.OpenAsync();
+                                await cmd.ExecuteNonQueryAsync();
+                            }
+
+                            MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            LimpiarCantidades();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //EVENTO PARA GUARDAR VARIAS CANTIDADES INGRESADAS
+        private void btnGenerarGuardarCantidades_Click(object sender, EventArgs e)
+        {
+            List<int> idOPSeleccionada = new List<int>();
+            List<int> CantidadTotalOPSeleccionada = new List<int>();
+
+            foreach (DataGridViewRow row in datalistadoEnProcesoOP.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = row.Cells[0] as DataGridViewCheckBoxCell;
+
+                if (checkBox != null && Convert.ToBoolean(checkBox.Value) == true)
+                {
+                    try
+                    {
+                        int idOp = Convert.ToInt32(row.Cells[1].Value.ToString());
+                        int cantidadEsperada = Convert.ToInt32(row.Cells[9].Value.ToString());
+                        int cantidadHecha = Convert.ToInt32(row.Cells[12].Value.ToString());
+                        int TotalCantidad = cantidadEsperada - cantidadHecha;
+
+                        if (TotalCantidad != 0)
+                        {
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("OP_IngresarRegistroCantidad", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idOrdenProduccion", idOp);
+                            cmd.Parameters.AddWithValue("@cantidad", TotalCantidad);
+                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+            MessageBox.Show("Operación terminada.", "Validación del Sistema", MessageBoxButtons.OK);
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+            LimpiarCantidades();
+        }
+
+        //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
+        private void btnSalirCantidad_Click(object sender, EventArgs e)
+        {
+            LimpiarCantidades();
+        }
+
+        //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
+        private void btnCerrarDetallesOPCantidades_Click(object sender, EventArgs e)
+        {
+            LimpiarCantidades();
+        }
+
+        //FUNCION PARA LIMPIAR LAS CANTIDADES
+        public void LimpiarCantidades()
+        {
+            datalistadoEnProcesoOP.Enabled = true;
+            datalistadoTodasOP.Enabled = true;
+            datalistadoObservadas.Enabled = true;
+            panelIngresoCantidades.Visible = false;
+            txtOpsSeleccionadas.Text = "";
+            txtCantidadRealizada.Text = "";
+            txtCantidadRestante.Text = "";
+        }
+
+        //ANULACION DE MI OP - PEDIDO - COTIZACION---------------------------------------------------------------
+        private void btnAnularOP_Click(object sender, EventArgs e)
+        {
+            LimpiarAnulacionPedido();
+            panleAnulacion.Visible = true;
+            datalistadoEnProcesoOP.Enabled = false;
+        }
+
+        //FUNCION PARA PROCEDER A ANULAR MI PEDIDO, COTIZACION Y PRODICCION
+        private void btnProcederAnulacion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //BOTON PARA RETROCEDER DE LA ANULACION
+        private void btnRetrocederAnulacion_Click(object sender, EventArgs e)
+        {
+            LimpiarAnulacionPedido();
+            panleAnulacion.Visible = false;
+            datalistadoEnProcesoOP.Enabled = true;
+        }
+
+        //FUNCION PARA LIMPIAR MIS CONTROLES ORIETADO A ANULACION DE PEDIDO
+        public void LimpiarAnulacionPedido()
+        {
+            //datalistadoBuscarOPxPedidoAnulacion.Rows.Clear();
+            //txtJustificacionAnulacion.Text = "";
+        }
+        //----------------------------------------------------------------------------------------------------------
+
+        //VISUALIZAR IMAGEN 1
+        private void btnImagen1_Click(object sender, EventArgs e)
+        {
+            CargarImagenes(lblImagen1);
+        }
+
+        //VISUALIZAR IMAGEN 2
+        private void btnImagen2_Click(object sender, EventArgs e)
+        {
+            CargarImagenes(lblImagen2);
+        }
+
+        //VISUALIZAR IMAGEN 3
+        private void btnImagen3_Click(object sender, EventArgs e)
+        {
+            CargarImagenes(lblImagen3);
+        }
+
+        //FUNCION PARA LIMPIAR DIDNAMICAMENTE MIS CAJAS DE IMAGENES
+        public void CargarImagenes(Label lblImagen)
+        {
+            try
+            {
+                if (lblImagen.Text == "***" || lblImagen.Text == "")
+                {
+                    MessageBox.Show("No hay ninguna imagen para mostrar.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    Process.Start(lblImagen.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de carga." + ex, "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //SALIR DEL CONTROL DE CALIDAD
+        private void btnRegresarControl_Click(object sender, EventArgs e)
+        {
+            panelControlCalidad.Visible = false;
+            datalistadoObservadas.Enabled = true;
+            lblGenerarCSM.Visible = false;
+            btnGenerarCSM.Visible = false;
+            btnVisualizarSNC.Visible = false;
+            lblLeyendaVisualizar.Visible = false;
+        }
+
         //VISUALIZAR EL COMENTARIO HECHO POR CALIDAD Y LOS COLORES
         private void datalistadoHistorial_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             lblGenerarCSM.Visible = false;
             btnGenerarCSM.Visible = false;
+            btnVisualizarSNC.Visible = false;
+            lblLeyendaVisualizar.Visible = false;
             //SI NO HAY NINGUN REGISTRO SELECCIONADO
             if (datalistadoHistorial.CurrentRow != null)
             {
@@ -962,7 +1244,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
                     lblGenerarCSM.Visible = false;
                     btnGenerarCSM.Visible = false;
                 }
-
                 if (datalistadoHistorial.SelectedCells[5].Value.ToString() == "SNC CULMINADA")
                 {
                     btnVisualizarSNC.Visible = true;
@@ -996,14 +1277,26 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN - HISTORIAL
         private void datalistadoHistorial_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoHistorial.Columns[e.ColumnIndex].Name == "columDesc")
+            ModificarCursor(datalistadoHistorial, "columDesc", e);
+        }
+
+        //SALIR DEL COMETARIO DE CALIDAD
+        private void btnCerarDetallesObservacion_Click(object sender, EventArgs e)
+        {
+            panelDetallesObservacion.Visible = false;
+        }
+
+        //VISUALIZAR MI PANEL DE SNC
+        private void btnVisualizarSNC_Click(object sender, EventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (datalistadoHistorial.CurrentRow != null)
             {
-                this.datalistadoHistorial.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoHistorial.Cursor = curAnterior;
+                //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+                string codigoDetalleCantidadCalidad = datalistadoHistorial.Rows[datalistadoHistorial.CurrentRow.Index].Cells[1].Value.ToString();
+                Visualizadores.VisualizarSNC frm = new Visualizadores.VisualizarSNC();
+                frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
+                frm.Show();
             }
         }
 
@@ -1029,63 +1322,328 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             txtIdOPSNC.Text = txtIdOP.Text;
         }
 
-        //VISUALIZAR IMAGEN 1
-        private void btnImagen1_Click(object sender, EventArgs e)
+        //CARGA DEL FACTOR DE FALLO
+        private void txtAreaSNC_TextChanged(object sender, EventArgs e)
+        {
+            CargarTipoFallo(txtAreaSNC.Text);
+        }
+
+        //CARGAR TIPO DE FALLOR DEPENDIENDO EL AREA
+        public void CargarTipoFallo(string are)
         {
             try
             {
-                if (lblImagen1.Text == "***" || lblImagen1.Text == "")
-                {
-                    MessageBox.Show("No hay ninguna imagen para mostrar.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    Process.Start(lblImagen1.Text);
-                }
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdTipoHallazgo, Nombre, AG.Descripcion AS [AREA] FROM TipoHallazgo TH INNER JOIN AreaGeneral AG ON AG.IdArea = TH.IdArea WHERE th.Estado = 1 AND AG.Descripcion = @area", con);
+                comando.Parameters.AddWithValue("@area", are);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboFactorFallo.ValueMember = "IdTipoHallazgo";
+                cboFactorFallo.DisplayMember = "Nombre";
+                cboFactorFallo.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de carga." + ex, "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Error en la operación por: " + ex.Message);
             }
         }
 
-        //VISUALIZAR IMAGEN 2
-        private void btnImagen2_Click(object sender, EventArgs e)
+        //ADJUNTAR IMAGEN
+        private void btnAgregarArhcivo_Click(object sender, EventArgs e)
         {
-            try
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (lblImagen2.Text == "***" || lblImagen2.Text == "")
+                try
                 {
-                    MessageBox.Show("No hay ninguna imagen para mostrar.", "Validación del Sistema", MessageBoxButtons.OK);
+                    txtRutaArchivo.Text = openFileDialog1.FileName;
                 }
-                else
+                catch (Exception ex)
                 {
-                    Process.Start(lblImagen2.Text);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error de carga." + ex, "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
-        //VISUALIZAR IMAGEN 3
-        private void btnImagen3_Click(object sender, EventArgs e)
+        //LIMPIAR MI RUTA DE ARCHVO
+        private void btnLimpiarArchivo_Click(object sender, EventArgs e)
+        {
+            txtRutaArchivo.Text = "";
+        }
+
+        //LIMPIAR CUANDO SE CAMBIA DE TIPO DE ARCHIVO
+        private void cboTipoArchivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtRutaArchivo.Text = "";
+        }
+
+        //CERRAR EL PANEL DE GENERAR SNC
+        private void btnCerrarSNC_Click(object sender, EventArgs e)
+        {
+            panelRevisionOP.Visible = false;
+            panelControlCalidad.Visible = true;
+            datalistadoObservadas.Enabled = false;
+            LimpairCampos();
+        }
+
+        //CERRAR MI PANEL DE DETALLES DE EVALUACION
+        private void lblCerrarDetallesEvaluacion_Click(object sender, EventArgs e)
+        {
+            panelControlCalidad.Visible = false;
+            datalistadoObservadas.Enabled = true;
+            lblGenerarCSM.Visible = false;
+            btnGenerarCSM.Visible = false;
+            btnVisualizarSNC.Visible = false;
+            lblLeyendaVisualizar.Visible = false;
+        }
+
+        //GUARDAR LA SNC POR PARTE DEL PRODUCCION
+        private void btnGuardarSNC_Click(object sender, EventArgs e)
+        {
+            if (txtOrdenProduccionSNC.Text == "" || txtDescripcionSNC.Text == "" || txtCausaSNC.Text == "" || txtAccionesTomadas.Text == "" || txtOportunidadMejora.Text == "" || ckLiberacion.Checked == true && txtRutaArchivo.Text == "")
+            {
+                MessageBox.Show("Debe completar todos los campos obligatorios para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                DialogResult boton = MessageBox.Show("¿Realmente desea completar esta SNC?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                if (boton == DialogResult.OK)
+                {
+                    try
+                    {
+                        SqlConnection con = new SqlConnection();
+                        SqlCommand cmd = new SqlCommand();
+                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                        con.Open();
+                        cmd = new SqlCommand("OP_IngresarSNC", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idSNC", Convert.ToInt16(lblIdSNC.Text));
+                        cmd.Parameters.AddWithValue("@idDetalleCantidadCalidad", Convert.ToInt16(datalistadoHistorial.SelectedCells[1].Value.ToString()));
+                        cmd.Parameters.AddWithValue("@descripcionAcciones", txtAccionesTomadas.Text);
+                        cmd.Parameters.AddWithValue("@idAutoriza", Program.IdUsuario);
+                        cmd.Parameters.AddWithValue("@inicio", dtpInicio.Value);
+                        cmd.Parameters.AddWithValue("@finaliza", dtpFinal.Value);
+                        //------------------------------
+                        cmd.Parameters.AddWithValue("@liberacion", ckLiberacion.Checked ? 1 : 0);
+                        //------------------------------
+                        cmd.Parameters.AddWithValue("@correcion", ckCorrecion.Checked ? 1 : 0);
+                        //------------------------------
+                        cmd.Parameters.AddWithValue("@reproceso", ckReproceso.Checked ? 1 : 0);
+                        //------------------------------
+                        cmd.Parameters.AddWithValue("@reclasificacion", ckReclasificacion.Checked ? 1 : 0);
+                        //------------------------------
+                        cmd.Parameters.AddWithValue("@recuperacion", ckRecuperacion.Checked ? 1 : 0);
+                        //------------------------------
+                        cmd.Parameters.AddWithValue("@destruccion", ckReposicion.Checked ? 1 : 0);
+                        //------------------------------
+                        cmd.Parameters.AddWithValue("@otros", ckOtros.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("@descripcionOtros", txtDescripcionOtros.Text);
+                        cmd.Parameters.AddWithValue("@fechaRegistroProduccion", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@causaConformidad", txtCausaSNC.Text);
+                        cmd.Parameters.AddWithValue("@oprtunidadMejora", txtOportunidadMejora.Text);
+
+                        if (txtRutaArchivo.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("@rutaLiberacionEvi", "");
+                        }
+                        else
+                        {
+                            string NombreGenerado = "OP " + txtOrdenProduccionSNC.Text + " SNC " + datalistadoHistorial.SelectedCells[1].Value.ToString();
+                            string RutaOld = txtRutaArchivo.Text;
+                            string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Calidad\SNC Evidencia\" + NombreGenerado + ".pdf";
+                            File.Copy(RutaOld, RutaNew, true);
+                            cmd.Parameters.AddWithValue("@rutaLiberacionEvi", RutaNew);
+                        }
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        if (ckReproceso.Checked == true)
+                        {
+                            CambiarEstadoCalidad(txtOrdenProduccionSNC.Text, 2);
+                        }
+
+                        MessageBox.Show("Salida No Conforme registrada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
+                        panelRevisionOP.Visible = false;
+                        datalistadoObservadas.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+            if (ckReproceso.Checked == true)
+            {
+                GenerarRQAdicional();
+            }
+
+            if (ckReposicion.Checked == true)
+            {
+                GenerarOPAdicional();
+            }
+
+            LimpairCampos();
+        }
+
+        //FUNCION PARA GENERAR UNA OP ADICIONAL POR REQPOSISCION
+        public void GenerarOPAdicional()
         {
             try
             {
-                if (lblImagen3.Text == "***" || lblImagen3.Text == "")
-                {
-                    MessageBox.Show("No hay ninguna imagen para mostrar.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    Process.Start(lblImagen3.Text);
-                }
+                SqlConnection con = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("OP_InsertarReposicion", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Codigo_OP_Original", txtOrdenProduccionSNC.Text);
+                cmd.Parameters.AddWithValue("@Nueva_Fecha_Entrega", dtpFinal.Value);
+                cmd.Parameters.AddWithValue("@idCantCal", Convert.ToInt16(datalistadoHistorial.SelectedCells[1].Value.ToString()));
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Se generó la OP por reposición automaticamnete: OP " + txtOrdenProduccionSNC.Text, "Validación del Sistema", MessageBoxButtons.OK);
+
+                MostrarOTpRODUCCION(txtOrdenProduccionSNC.Text);
+
+                SqlConnection con2 = new SqlConnection();
+                SqlCommand cmd2 = new SqlCommand();
+                con2.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con2.Open();
+                cmd2 = new SqlCommand("OT_InsertarReposicion", con2);
+                cmd2.CommandType = CommandType.StoredProcedure;
+                cmd2.Parameters.AddWithValue("@Codigo_OT_Original", txtOrdenTrabajoSNC.Text);
+                cmd2.Parameters.AddWithValue("@Nueva_Fecha_Entrega", dtpFinal.Value);
+                cmd2.Parameters.AddWithValue("@idCantCal", DBNull.Value);
+                cmd2.Parameters.AddWithValue("@cantidad", Convert.ToInt32(txtCantidadObservada.Text));
+                cmd2.ExecuteNonQuery();
+                con2.Close();
+                MessageBox.Show("Se generó la OP por reposición automaticamnete: OT " + txtOrdenTrabajoSNC.Text, "Validación del Sistema", MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de carga." + ex, "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //FUNCION PARA GENERAR UN RQ PARA PRODUCCION ADICIONAL
+        public void GenerarRQAdicional()
+        {
+            MostrarJefaturaPro();
+            GenerarCodigoRequerimientoSimple();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd = new SqlCommand("OP_InsertarRequerimientoSimple", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //INGRESAR LOS DATOS GENERALES DE MI REQUERIMIENTO
+            cmd.Parameters.AddWithValue("@codigoRequerimeintoSimple", codigoRequerimientoSimple);
+            cmd.Parameters.AddWithValue("@fechaRequerida", DateTime.Now);
+            cmd.Parameters.AddWithValue("@fechaSolicitada", DateTime.Now);
+            cmd.Parameters.AddWithValue("@desJefatura", datalistadoDatosJefatura.SelectedCells[0].Value.ToString());
+            cmd.Parameters.AddWithValue("@idSolicitante", datalistadoDatosJefatura.SelectedCells[3].Value.ToString());
+            cmd.Parameters.AddWithValue("@idCentroCostos", 8);
+            cmd.Parameters.AddWithValue("@observaciones", "REQUERIMIENTO ADICIONAL PARA ORDEN DE PRODUCCION");
+            cmd.Parameters.AddWithValue("@idSede", 1);
+            cmd.Parameters.AddWithValue("@idLocal", 1);
+            cmd.Parameters.AddWithValue("@idArea", Convert.ToInt16(txtIdAreaSNC.Text));
+            cmd.Parameters.AddWithValue("@idipo", 6);
+            cmd.Parameters.AddWithValue("@estadoLogistica", 1);
+            cmd.Parameters.AddWithValue("@mensajeAnulacion", "");
+            cmd.Parameters.AddWithValue("@idJefatura", datalistadoDatosJefatura.SelectedCells[3].Value.ToString());
+            cmd.Parameters.AddWithValue("@aliasCargaJefatura", datalistadoDatosJefatura.SelectedCells[4].Value.ToString());
+
+            int cantidadItems = 0;
+            foreach (DataGridViewRow row in datalistadoMaterialesFormulacion.Rows)
+            {
+                bool estado = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
+                if (estado == true)
+                {
+                    cantidadItems = cantidadItems + 1;
+                }
+            }
+
+            cmd.Parameters.AddWithValue("@cantidadItems", cantidadItems);
+            cmd.Parameters.AddWithValue("@idPrioridad", 1);
+            cmd.Parameters.AddWithValue("@idOP", txtIdOPSNCRQ.Text);
+            cmd.Parameters.AddWithValue("@idOT", 0);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Se generó el requerimiento " + codigoRequerimientoSimple + " para la OP " + txtCodigoOPReque.Text + ".", "Validación del Sistema", MessageBoxButtons.OK);
+
+            //VARIABLE PARA CONTAR LA CANTIDAD DE ITEMS QUE HAY
+            int contador = 1;
+            //INGRESO DE LOS DETALLES DEL REQUERIMIENTO SIMPLE CON UN FOREACH
+            foreach (DataGridViewRow row in datalistadoMaterialesFormulacion.Rows)
+            {
+                bool estado = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
+                if (estado == true)
+                {
+                    decimal cantidad = Convert.ToDecimal(row.Cells["cantidadSolicitada"].Value);
+
+                    //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
+                    con.Open();
+                    cmd = new SqlCommand("OP_InsertarRequerimientoSimpleDetalleProductos", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@item", contador);
+                    cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[5].Value));
+                    //SACAR LA CANTIDAD REAL POR UNO
+                    cantidad = cantidad / Convert.ToDecimal(txtCantidadObserbadaReque.Text);
+                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                    cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[4].Value));
+                    cmd.Parameters.AddWithValue("@cantidadTotal", Convert.ToString(row.Cells[3].Value));
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    //AUMENTAR
+                    contador++;
+                }
+            }
+        }
+
+        //ACTIALIZAR MI DATAGRIDVIEW NI BIEN MODIFIQUE UN DATO
+        private void datalistadoMaterialesFormulacion_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (datalistadoMaterialesFormulacion.IsCurrentCellDirty &&
+        datalistadoMaterialesFormulacion.CurrentCell is DataGridViewCheckBoxCell)
+            {
+                datalistadoMaterialesFormulacion.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        //CERRAR MI PANEL DE GENERACION DE REQUERIMIENTO
+        private void btnCerrarGeneracionReque_Click(object sender, EventArgs e)
+        {
+            panelGeneracionRequeRepro.Visible = false;
+        }
+
+        //CAMBIAR EL ESTADO DE MI OP A FINALIZADA
+        public void CambiarEstadoCalidad(string codigoOP, int estadoCalidad)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                cmd = new SqlCommand("OP_EstadoCalidad", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoOP", codigoOP);
+                cmd.Parameters.AddWithValue("@estadoCalidad", estadoCalidad);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -1170,283 +1728,42 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             BuscarMaterialesFormulacion(txtCodigoFormulacionReque.Text);
         }
 
-        //LIMPIAR MI RUTA DE ARCHVO
-        private void btnLimpiarArchivo_Click(object sender, EventArgs e)
+        //BUSCAR DETALLES Y MATERIALES DE MI FORMULACION
+        public void BuscarMaterialesFormulacion(string codigoFormulacion)
         {
-            txtRutaArchivo.Text = "";
-        }
-
-        private void btnAgregarArhcivo_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    txtRutaArchivo.Text = openFileDialog1.FileName;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        //GUARDAR LA SNC POR PARTE DEL PRODUCCION
-        private void btnGuardarSNC_Click(object sender, EventArgs e)
-        {
-            if (txtOrdenProduccionSNC.Text == "" || txtDescripcionSNC.Text == "" || txtCausaSNC.Text == "" || txtAccionesTomadas.Text == "" || txtOportunidadMejora.Text == "" || ckLiberacion.Checked == true && txtRutaArchivo.Text == "")
-            {
-                MessageBox.Show("Debe completar todos los campos obligatorios para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            else
-            {
-                DialogResult boton = MessageBox.Show("¿Realmente desea completar esta SNC?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                if (boton == DialogResult.OK)
-                {
-                    try
-                    {
-                        SqlConnection con = new SqlConnection();
-                        SqlCommand cmd = new SqlCommand();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        cmd = new SqlCommand("OP_IngresarSNC", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idSNC", Convert.ToInt16(lblIdSNC.Text));
-                        cmd.Parameters.AddWithValue("@idDetalleCantidadCalidad", Convert.ToInt16(datalistadoHistorial.SelectedCells[1].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@descripcionAcciones", txtAccionesTomadas.Text);
-                        cmd.Parameters.AddWithValue("@idAutoriza", Program.IdUsuario);
-                        cmd.Parameters.AddWithValue("@inicio", dtpInicio.Value);
-                        cmd.Parameters.AddWithValue("@finaliza", dtpFinal.Value);
-
-                        //------------------------------
-                        cmd.Parameters.AddWithValue("@liberacion", ckLiberacion.Checked ? 1 : 0);
-                        //------------------------------
-                        cmd.Parameters.AddWithValue("@correcion", ckCorrecion.Checked ? 1 : 0);
-                        //------------------------------
-                        cmd.Parameters.AddWithValue("@reproceso", ckReproceso.Checked ? 1 : 0);
-                        //------------------------------
-                        cmd.Parameters.AddWithValue("@reclasificacion", ckReclasificacion.Checked ? 1 : 0);
-                        //------------------------------
-                        cmd.Parameters.AddWithValue("@recuperacion", ckRecuperacion.Checked ? 1 : 0);
-                        //------------------------------
-                        cmd.Parameters.AddWithValue("@destruccion", ckReposicion.Checked ? 1 : 0);
-                        //------------------------------
-                        cmd.Parameters.AddWithValue("@otros", ckOtros.Checked ? 1 : 0);
-
-                        cmd.Parameters.AddWithValue("@descripcionOtros", txtDescripcionOtros.Text);
-                        cmd.Parameters.AddWithValue("@fechaRegistroProduccion", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@causaConformidad", txtCausaSNC.Text);
-                        cmd.Parameters.AddWithValue("@oprtunidadMejora", txtOportunidadMejora.Text);
-
-                        if (txtRutaArchivo.Text == "")
-                        {
-                            cmd.Parameters.AddWithValue("@rutaLiberacionEvi", "");
-                        }
-                        else
-                        {
-                            string NombreGenerado = "OP " + txtOrdenProduccionSNC.Text + " SNC " + datalistadoHistorial.SelectedCells[1].Value.ToString();
-                            string RutaOld = txtRutaArchivo.Text;
-                            string RutaNew = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Areas\Calidad\SNC Evidencia\" + NombreGenerado + ".pdf";
-                            File.Copy(RutaOld, RutaNew, true);
-                            cmd.Parameters.AddWithValue("@rutaLiberacionEvi", RutaNew);
-                        }
-
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        if (ckReproceso.Checked == true)
-                        {
-                            CambiarEstadoCalidad(txtOrdenProduccionSNC.Text, 2);
-                        }
-
-                        MessageBox.Show("Salida No Conforme registrada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                        panelRevisionOP.Visible = false;
-                        datalistadoObservadas.Enabled = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-
-            if (ckReproceso.Checked == true)
-            {
-                GenerarRQAdicional();
-            }
-
-            if (ckReposicion.Checked == true)
-            {
-                GenerarOPAdicional();
-            }
-
-            LimpairCampos();
-        }
-
-        //FUNCION PARA GENERAR UNA OP ADICIONAL POR REQPOSISCION
-        public void GenerarOPAdicional()
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                cmd = new SqlCommand("OP_InsertarReposicion", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Codigo_OP_Original", txtOrdenProduccionSNC.Text);
-                cmd.Parameters.AddWithValue("@Nueva_Fecha_Entrega", dtpFinal.Value);
-                cmd.Parameters.AddWithValue("@idCantCal", Convert.ToInt16(datalistadoHistorial.SelectedCells[1].Value.ToString()));
-                cmd.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Se generó la OP por reposición automaticamnete: OP " + txtOrdenProduccionSNC.Text, "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //FUNCION PARA GENERAR UN RQ PARA PRODUCCION ADICIONAL
-        public void GenerarRQAdicional()
-        {
-            GenerarCodigoRequerimientoSimple();
+            System.Data.DataTable dt = new System.Data.DataTable();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            SqlCommand cmd = new SqlCommand();
             con.Open();
-            cmd = new SqlCommand("OP_InsertarRequerimientoSimple", con);
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("OP_BuscarMaterialesFormulacion", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            //INGRESAR LOS DATOS GENERALES DE MI REQUERIMIENTO
-            cmd.Parameters.AddWithValue("@codigoRequerimeintoSimple", codigoRequerimientoSimple);
-            cmd.Parameters.AddWithValue("@fechaRequerida", DateTime.Now);
-            cmd.Parameters.AddWithValue("@fechaSolicitada", DateTime.Now);
-            cmd.Parameters.AddWithValue("@desJefatura", "EDUARDO LORO ALMEYDA");
-            cmd.Parameters.AddWithValue("@idSolicitante", 1052);
-            cmd.Parameters.AddWithValue("@idCentroCostos", 8);
-            cmd.Parameters.AddWithValue("@observaciones", "REQUERIMIENTO PARA ORDEN DE PRODUCCION");
-            cmd.Parameters.AddWithValue("@idSede", 1);
-            cmd.Parameters.AddWithValue("@idLocal", 1);
-            cmd.Parameters.AddWithValue("@idArea", Convert.ToInt16(txtIdAreaSNC.Text));
-            cmd.Parameters.AddWithValue("@idipo", 6);
-            cmd.Parameters.AddWithValue("@estadoLogistica", 1);
-            cmd.Parameters.AddWithValue("@mensajeAnulacion", "");
-            cmd.Parameters.AddWithValue("@idJefatura", 1052);
-            cmd.Parameters.AddWithValue("@aliasCargaJefatura", "Jefe de Producción");
-
-            int cantidadItems = 0;
-            foreach (DataGridViewRow row in datalistadoMaterialesFormulacion.Rows)
-            {
-                bool estado = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
-                if (estado == true)
-                {
-                    cantidadItems = cantidadItems + 1;
-                }
-            }
-
-            cmd.Parameters.AddWithValue("@cantidadItems", cantidadItems);
-            cmd.Parameters.AddWithValue("@idPrioridad", 1);
-            cmd.Parameters.AddWithValue("@idOP", txtIdOPSNCRQ.Text);
-            cmd.Parameters.AddWithValue("@idOT", 0);
-            cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@codigoFormulacion", codigoFormulacion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalsitadoMaterialesPre.DataSource = dt;
             con.Close();
-            MessageBox.Show("Se generó el requerimiento " + codigoRequerimientoSimple + " para la OP " + txtCodigoOPReque.Text + ".", "Validación del Sistema", MessageBoxButtons.OK);
 
-            //VARIABLE PARA CONTAR LA CANTIDAD DE ITEMS QUE HAY
-            int contador = 1;
-            //INGRESO DE LOS DETALLES DEL REQUERIMIENTO SIMPLE CON UN FOREACH
-            foreach (DataGridViewRow row in datalistadoMaterialesFormulacion.Rows)
+            datalistadoMaterialesFormulacion.Rows.Clear();
+
+            foreach (DataGridViewRow dgv in datalsitadoMaterialesPre.Rows)
             {
-                bool estado = Convert.ToBoolean(row.Cells["columSeleccionar"].Value);
-                if (estado == true)
-                {
-                    decimal cantidad = Convert.ToDecimal(row.Cells["cantidadSolicitada"].Value);
+                string codigoBSS = dgv.Cells[2].Value.ToString();
+                string desProducto = dgv.Cells[4].Value.ToString();
 
-                    //PROCEDIMIENTO ALMACENADO PARA GUARDAR LOS PRODUCTOS
-                    con.Open();
-                    cmd = new SqlCommand("OP_InsertarRequerimientoSimpleDetalleProductos", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@item", contador);
-                    cmd.Parameters.AddWithValue("@idArt", Convert.ToString(row.Cells[5].Value));
-                    //SACAR LA CANTIDAD REAL POR UNO
-                    cantidad = cantidad / Convert.ToDecimal(txtCantidadObserbadaReque.Text);
-                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
-                    cmd.Parameters.AddWithValue("@stock", Convert.ToString(row.Cells[4].Value));
-                    cmd.Parameters.AddWithValue("@cantidadTotal", Convert.ToString(row.Cells[3].Value));
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    //AUMENTAR
-                    contador++;
-                }
-            }
-        }
+                decimal cantidadObserbada = Convert.ToDecimal(txtCantidadObserbadaReque.Text);
+                decimal cantidad = Convert.ToDecimal(dgv.Cells[5].Value.ToString());
+                decimal CantidadTotal = cantidadObserbada * cantidad;
 
-        //CAMBIAR EL ESTADO DE MI OP A FINALIZADA
-        public void CambiarEstadoCalidad(string codigoOP, int estadoCalidad)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                cmd = new SqlCommand("OP_EstadoCalidad", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigoOP", codigoOP);
-                cmd.Parameters.AddWithValue("@estadoCalidad", estadoCalidad);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+                string Stock = dgv.Cells[8].Value.ToString();
+                string idArt = dgv.Cells[1].Value.ToString();
 
-        //CHECKBOX OTROS
-        private void ckOtros_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ckOtros.Checked == true)
-            {
-                txtDescripcionOtros.ReadOnly = false;
-                txtDescripcionOtros.Text = "";
+                datalistadoMaterialesFormulacion.Rows.Add(new[] { null, codigoBSS, desProducto, Convert.ToString(CantidadTotal), Stock, idArt });
             }
-            else
-            {
-                txtDescripcionOtros.ReadOnly = true;
-                txtDescripcionOtros.Text = "";
-            }
-        }
-
-        //SALIR DEL COMETARIO DE CALIDAD
-        private void btnCerarDetallesObservacion_Click(object sender, EventArgs e)
-        {
-            panelDetallesObservacion.Visible = false;
-        }
-
-        //SALIR DEL CONTROL DE CALIDAD
-        private void btnRegresarControl_Click(object sender, EventArgs e)
-        {
-            panelControlCalidad.Visible = false;
-            datalistadoObservadas.Enabled = true;
         }
 
         //CERRAR EL PANEL DE GENERAR SNC
         private void lblCerrarSNC_Click(object sender, EventArgs e)
-        {
-            panelRevisionOP.Visible = false;
-            panelControlCalidad.Visible = true;
-            datalistadoObservadas.Enabled = false;
-            LimpairCampos();
-        }
-
-        //CERRAR EL PANEL DE GENERAR SNC
-        private void btnCerrarSNC_Click(object sender, EventArgs e)
         {
             panelRevisionOP.Visible = false;
             panelControlCalidad.Visible = true;
@@ -1473,387 +1790,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             ckReposicion.Checked = false;
         }
 
-        //FUNCION PARA ABIRI MIS DETALLES D EIGRESO DE CANTUIDADES DEPENDIENDO EL ISTADO
-        public void AbrirDetalles(DataGridView DGV)
-        {
-
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (DGV.CurrentRow != null)
-            {
-                int count = 0;
-                foreach (DataGridViewRow row in DGV.Rows)
-                {
-                    if (Convert.ToBoolean(row.Cells[0].Value))
-                    {
-                        count++;
-                    }
-                }
-
-                if (count == 0) { count = 1; }
-
-                txtOpsSeleccionadas.Text = Convert.ToString(count);
-                //CARGA DE DAOTS
-                txtCodigoOP.Text = DGV.SelectedCells[2].Value.ToString();
-                int IdOrdenProduccion = Convert.ToInt32(DGV.SelectedCells[1].Value.ToString());
-                txtDescripcionProducto.Text = DGV.SelectedCells[5].Value.ToString();
-                txtCantidadTotalOP.Text = DGV.SelectedCells[9].Value.ToString();
-                txtCantidadRequerida.Text = DGV.SelectedCells[9].Value.ToString();
-                dtpFechaRealizada.Value = DateTime.Now;
-                txtCantidadRealizada.Text = "";
-                txtCantidadRestante.Text = "";
-                MostrarCantidadesSegunOP(IdOrdenProduccion);
-                lblCantidadTotalInghresada.Text = Convert.ToString(totalCantidades);
-                txtCantidadRestante.Text = Convert.ToString(Convert.ToInt32(txtCantidadRequerida.Text) - Convert.ToInt32(lblCantidadTotalInghresada.Text));
-
-                //if (txtCantidadRestante.Text == "0")
-                //{
-                //    DGV.Enabled = true;
-                //    panelIngresoCantidades.Visible = false;
-                //    MessageBox.Show("Esta OP ya culminó satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                //}
-                //else
-                //{
-                DGV.Enabled = false;
-                panelIngresoCantidades.Visible = true;
-
-                if (count != 1)
-                {
-                    btnGenerarGuardarCantidades.Visible = true;
-                    lblGenerarGuardarCantidades.Visible = true;
-                    btnGuardarCantidad.Visible = false;
-                    lblGuardarCantidad.Visible = false;
-                    txtCantidadRealizada.ReadOnly = true;
-                    txtCantidadRealizada.Text = "Gen. Automática";
-                    lblIdOP.Text = "Varios";
-                    txtCantidadRestante.Text = "0";
-                }
-                else
-                {
-                    btnGuardarCantidad.Visible = true;
-                    lblGuardarCantidad.Visible = true;
-                    btnGenerarGuardarCantidades.Visible = false;
-                    lblGenerarGuardarCantidades.Visible = false;
-                    txtCantidadRealizada.ReadOnly = false;
-                    lblIdOP.Text = DGV.SelectedCells[1].Value.ToString();
-                }
-                //}
-
-                ColocarImagenesListadoCaantidadaesOP();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
-        //MOSTRAR OP SEGUN LAS FECHAS
-        private void btnMostrarTodo_Click(object sender, EventArgs e)
-        {
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-        }
-
-        //MOSTRAR OP SEGUN LAS FECHAS
-        private void HastaFecha_ValueChanged(object sender, EventArgs e)
-        {
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-        }
-
-        //MOSTRAR OP SEGUN LAS FECHAS
-        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
-        {
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-        }
-
-        //MOSTRAR OPRDENES PRODUCCION DEPENDIENTO LA OPCIÓN ESCOGIDA
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            if (cboBusqeuda.Text == "CÓDIGO OP")
-            {
-                MostrarOrdenProduccionPorCodigoOP(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
-                MostrarOrdenProduccionPorCodigoOP(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
-            }
-            else if (cboBusqeuda.Text == "CLIENTE")
-            {
-                MostrarOrdenProduccionPorCliente(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
-                MostrarOrdenProduccionPorCliente(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
-            }
-            else if (cboBusqeuda.Text == "DESCRIPCIÓN PRODUCTO")
-            {
-                MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
-                MostrarOrdenProduccionPorDescripcion(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
-            }
-        }
-
-        //VERIFICAR EN QUE LSITADO ESTOY
-        public void VerificarDGVActivo()
-        {
-            if (TabControl.SelectedTab.Text == "OP en Proceso")
-            {
-                dgvActivo = datalistadoEnProcesoOP;
-            }
-            else if (TabControl.SelectedTab.Text == "Todas las OP")
-            {
-                dgvActivo = datalistadoTodasOP;
-            }
-            else if (TabControl.SelectedTab.Text == "OP Observadas")
-            {
-                dgvActivo = datalistadoObservadas;
-            }
-        }
-
-        //GENERACION DE REPORTES
-        private void btnGenerarOrdenProduccionPDF_Click(object sender, EventArgs e)
-        {
-            VerificarDGVActivo();
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (dgvActivo.CurrentRow != null)
-            {
-                string codigoOrdenProduccion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
-                Visualizadores.VisualizarOrdenProduccion frm = new Visualizadores.VisualizarOrdenProduccion();
-                frm.lblCodigo.Text = codigoOrdenProduccion;
-
-                frm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una OP para poder generar el PDF.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
-        //CARGAR MI PLANO DE PRODUCTO ASIGANDO A LA OP
-        private void btnPlano_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process.Start(datalistadoEnProcesoOP.SelectedCells[16].Value.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
-            }
-        }
-
-        //CARGAR MI OC TRAIDO DESDE MI PEDIDO
-        private void btnOC_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process.Start(datalistadoEnProcesoOP.SelectedCells[15].Value.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
-            }
-        }
-
-        //EVENTO PARA GUARDAR MI S CANTIDADES INGRESADAS
-        private async void btnGuardarCantidad_Click(object sender, EventArgs e)
-        {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoEnProcesoOP.CurrentRow != null)
-            {
-                if (txtCantidadRealizada.Text == "" || txtCantidadRealizada.Text == "0")
-                {
-                    MessageBox.Show("Debe ingresar una cantidad válida para poder registrar.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else if (txtCantidadRequerida.Text == lblCantidadTotalInghresada.Text)
-                {
-                    MessageBox.Show("La orden de producción ya culminó.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else if (Convert.ToInt32(txtCantidadRestante.Text) < Convert.ToInt32(txtCantidadRealizada.Text))
-                {
-                    MessageBox.Show("No se puede ingresar una cantidad mayor a la restante.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    DialogResult boton = MessageBox.Show("¿Realmente desea ingresar esta cantidad?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                    if (boton == DialogResult.OK)
-                    {
-                        try
-                        {
-                            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
-                            using (SqlCommand cmd = new SqlCommand("OP_IngresarRegistroCantidad", con))
-                            {
-                                cmd.CommandType = CommandType.StoredProcedure;
-                                cmd.Parameters.AddWithValue("@idOrdenProduccion", lblIdOP.Text);
-                                cmd.Parameters.AddWithValue("@cantidad", txtCantidadRealizada.Text);
-                                cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
-                                await con.OpenAsync();
-                                await cmd.ExecuteNonQueryAsync();
-                            }
-
-                            MessageBox.Show("Cantidd ingresada correctamente.", "Validación del Sistema", MessageBoxButtons.OK);
-                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-                            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-                            LimpiarCantidades();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una OP para poder continuar.", "Validación del Sistema");
-            }
-        }
-
-        //EVENTO PARA GUARDAR VARIAS CANTIDADES INGRESADAS
-        private void btnGenerarGuardarCantidades_Click(object sender, EventArgs e)
-        {
-            List<int> idOPSeleccionada = new List<int>();
-            List<int> CantidadTotalOPSeleccionada = new List<int>();
-
-            foreach (DataGridViewRow row in datalistadoEnProcesoOP.Rows)
-            {
-                DataGridViewCheckBoxCell checkBox = row.Cells[0] as DataGridViewCheckBoxCell;
-
-                if (checkBox != null && Convert.ToBoolean(checkBox.Value) == true)
-                {
-                    try
-                    {
-                        int idOp = Convert.ToInt32(row.Cells[1].Value.ToString());
-                        int cantidadEsperada = Convert.ToInt32(row.Cells[9].Value.ToString());
-                        int cantidadHecha = Convert.ToInt32(row.Cells[12].Value.ToString());
-                        int TotalCantidad = cantidadEsperada - cantidadHecha;
-
-                        if (TotalCantidad != 0)
-                        {
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("OP_IngresarRegistroCantidad", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idOrdenProduccion", idOp);
-                            cmd.Parameters.AddWithValue("@cantidad", TotalCantidad);
-                            cmd.Parameters.AddWithValue("@fechaRegistro", Convert.ToDateTime(dtpFechaRealizada.Value));
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-
-            MessageBox.Show("Operación terminada.", "Validación del Sistema");
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-            LimpiarCantidades();
-        }
-
-        //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
-        private void btnSalirCantidad_Click(object sender, EventArgs e)
-        {
-            LimpiarCantidades();
-        }
-
-        //EVENTO PARA RETROCEDER O SALIR DE MI VENTANA DE INGRESO DE CANTIDADES
-        private void btnCerrarDetallesOPCantidades_Click(object sender, EventArgs e)
-        {
-            LimpiarCantidades();
-        }
-
-        //FUNCION PARA LIMPIAR LAS CANTIDADES
-        public void LimpiarCantidades()
-        {
-            datalistadoEnProcesoOP.Enabled = true;
-            datalistadoTodasOP.Enabled = true;
-            datalistadoObservadas.Enabled = true;
-            panelIngresoCantidades.Visible = false;
-            txtOpsSeleccionadas.Text = "";
-            txtCantidadRealizada.Text = "";
-            txtCantidadRestante.Text = "";
-        }
-
-        //ANULACION DE MI OP - PEDIDO - COTIZACION
-        private void btnAnularOP_Click(object sender, EventArgs e)
-        {
-            LimpiarAnulacionPedido();
-            panleAnulacion.Visible = true;
-            datalistadoEnProcesoOP.Enabled = false;
-        }
-
-        //FUNCION PARA PROCEDER A ANULAR MI PEDIDO, COTIZACION Y PRODICCION
-        private void btnProcederAnulacion_Click(object sender, EventArgs e)
-        {
-            //if (datalistadoTodasPedido.CurrentRow != null)
-            //{
-            //    int idOrdenProduccion = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
-            //    int idPedido = Convert.ToInt32(datalistadoTodasPedido.SelectedCells[1].Value.ToString());
-            //    string idCotizacion = datalistadoTodasPedido.SelectedCells[13].Value.ToString();
-
-            //    VerificarOPxPedidoAnulacion(idPedido);
-
-            //    if (datalistadoBuscarOPxPedidoAnulacion.RowCount > 0)
-            //    {
-            //        ordenProduccion = datalistadoBuscarOPxPedidoAnulacion.RowCount;
-            //    }
-
-            //    DialogResult boton = MessageBox.Show("¿Realmente desea anular esta orden de producción?. Se anulará la cotización y pedido asociada ha esta orden de producción.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-            //    if (boton == DialogResult.OK)
-            //    {
-            //        if (ordenProduccion > 0)
-            //        {
-            //            MessageBox.Show("El pedido que desea anular ya tiene una orden de producción generada.", "Validación del Sistema", MessageBoxButtons.OK);
-            //        }
-            //        else
-            //        {
-            //            try
-            //            {
-            //                SqlConnection con = new SqlConnection();
-            //                SqlCommand cmd = new SqlCommand();
-            //                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //                con.Open();
-            //                cmd = new SqlCommand("AnularPedido", con);
-            //                cmd.CommandType = CommandType.StoredProcedure;
-            //                cmd.Parameters.AddWithValue("@idOrdenProduccion", idPedido);
-            //                cmd.Parameters.AddWithValue("@idPedido", idPedido);
-            //                cmd.Parameters.AddWithValue("@idCotizacion", idCotizacion);
-            //                cmd.Parameters.AddWithValue("@mensajeAnulado", txtJustificacionAnulacion.Text);
-            //                cmd.ExecuteNonQuery();
-            //                con.Close();
-
-            //                MessageBox.Show("Cotización, pedido y orden de producción asociado a esta, anuladas exitosamente.", "Validación del Sistema");
-            //                MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-            //                LimpiarAnulacionPedido();
-            //                panleAnulacion.Visible = false;
-            //                datalistadoTodasOP.Enabled = true;
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                MessageBox.Show(ex.Message);
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Debe seleccionar una orden de producción para poder anularlo.", "Validación del Sistema");
-            //}
-        }
-
-        //BOTON PARA RETROCEDER DE LA ANULACION
-        private void btnRetrocederAnulacion_Click(object sender, EventArgs e)
-        {
-            LimpiarAnulacionPedido();
-            panleAnulacion.Visible = false;
-            datalistadoEnProcesoOP.Enabled = true;
-        }
-
-        //FUNCION PARA LIMPIAR MIS CONTROLES ORIETADO A ANULACION DE PEDIDO
-        public void LimpiarAnulacionPedido()
-        {
-            //datalistadoBuscarOPxPedidoAnulacion.Rows.Clear();
-            //txtJustificacionAnulacion.Text = "";
-        }
         //----------------------------------------------------------------------------------------------------------
         //MODIFICAR MI FECHA DE ENTREGA DE MI ORDEN DE PRODUCCION
         private void btnModificarFecha_Click(object sender, EventArgs e)
@@ -1931,8 +1867,136 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             datalistadoEnProcesoOP.Enabled = true;
             panelModiFechaEntrega.Visible = false;
         }
-
         //-----------------------------------------------------------------------------------------------------------
+
+        //EVENETOS Y RECURSOS VARIOS--------------------------------------------------------------------------------
+        //COLOREAR LISTADO
+        private void datalistadoEnProcesoOP_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoEnProcesoOP.RowCount != 0)
+            {
+                ColoresListado(datalistadoEnProcesoOP);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoTodasOP_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoTodasOP.RowCount != 0)
+            {
+                ColoresListado(datalistadoTodasOP);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoObservadas_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoObservadas.RowCount != 0)
+            {
+                ColoresListadoOPCalidad(datalistadoObservadas);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoHistorial_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoHistorial.RowCount != 0)
+            {
+                ColoresListadoCantidades(datalistadoHistorial);
+            }
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN - HISTORIAL
+        public void ModificarCursor(DataGridView dgv, string nomColum, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (dgv.Columns[e.ColumnIndex].Name == nomColum)
+            {
+                dgv.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                dgv.Cursor = curAnterior;
+            }
+        }
+
+        //VERIFICAR EN QUE LSITADO ESTOY
+        public void VerificarDGVActivo()
+        {
+            if (TabControl.SelectedTab.Text == "OP en Proceso")
+            {
+                dgvActivo = datalistadoEnProcesoOP;
+            }
+            else if (TabControl.SelectedTab.Text == "Todas las OP")
+            {
+                dgvActivo = datalistadoTodasOP;
+            }
+            else if (TabControl.SelectedTab.Text == "OP Observadas")
+            {
+                dgvActivo = datalistadoObservadas;
+            }
+        }
+
+        //CAMBIAR MI LISTADO
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VerificarDGVActivo();
+            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //EVENTO PARA VALIDAR EL INGRESO DE NUMEROS Y SIGNOS
+        private void txtCantidadRealizada_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números, puntos, comas y teclas de control (como retroceso)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+        }
+        //-----------------------------------------------------------------------------------------------------------
+
+        //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
+        public void MostrarExcel()
+        {
+            datalistadoExcel.Rows.Clear();
+
+            foreach (DataGridViewRow dgv in datalistadoEnProcesoOP.Rows)
+            {
+                string numeroOP = dgv.Cells[2].Value.ToString();
+                DateTime fechaInicio = Convert.ToDateTime(dgv.Cells[3].Value.ToString()).Date;
+                DateTime fechaFinal = Convert.ToDateTime(dgv.Cells[4].Value.ToString()).Date;
+                string cliente = dgv.Cells[5].Value.ToString();
+                string unidad = dgv.Cells[6].Value.ToString();
+                string item = dgv.Cells[7].Value.ToString();
+                string descripcionDescripcion = dgv.Cells[8].Value.ToString();
+                string cantidad = dgv.Cells[9].Value.ToString();
+                string color = dgv.Cells[10].Value.ToString();
+                string numeroPedido = dgv.Cells[11].Value.ToString();
+                string cantidadRealizada = dgv.Cells[14].Value.ToString();
+                string estado = dgv.Cells[15].Value.ToString();
+                string estadoOC = dgv.Cells[16].Value.ToString();
+                //COLUMNAS EXTRAS DE MI REPORTE
+                string fechaCulminacionV = dgv.Cells[23].Value.ToString();
+                string fechaCulminacion;
+                int diferenciasDias = 0;
+
+                if (fechaCulminacionV == "SIN REGISTRO")
+                {
+                    fechaCulminacion = "SIN FECHA REGISTRADA";
+                    diferenciasDias = 0;
+                }
+                else
+                {
+                    DateTime fechaCulminacionO = Convert.ToDateTime(fechaCulminacionV).Date;
+                    diferenciasDias = (fechaCulminacionO - fechaFinal).Days;
+                    fechaCulminacion = Convert.ToString(fechaCulminacionO);
+                }
+
+                string area = dgv.Cells[25].Value.ToString();
+
+                datalistadoExcel.Rows.Add(new[] { numeroOP, Convert.ToString(fechaInicio), Convert.ToString(fechaFinal), Convert.ToString(fechaCulminacion), Convert.ToString(diferenciasDias), area, cliente, unidad, item, descripcionDescripcion, cantidad, color, numeroPedido, estado, cantidadRealizada, estado, estadoOC });
+            }
+        }
 
         //BOTON PARA EXPORTAR MIS DATOS
         private void btnExportarExcel_Click(object sender, EventArgs e)
@@ -2090,95 +2154,6 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOP
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        //EVENTO PARA VALIDAR EL INGRESO DE NUMEROS Y SIGNOS
-        private void txtCantidadRealizada_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permitir solo números, puntos, comas y teclas de control (como retroceso)
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
-        }
-
-        //CAMBIAR MI LISTADO
-        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MostrarOrdenProduccionPorFecha(DesdeFecha.Value, HastaFecha.Value);
-        }
-
-        //COLOREAR LISTADO
-        private void datalistadoEnProcesoOP_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-            if(datalistadoEnProcesoOP.RowCount != 0)
-            {
-                ColoresListado(datalistadoEnProcesoOP);
-            }
-        }
-
-        //VISUALIZAR MI PANEL DE SNC
-        private void btnVisualizarSNC_Click(object sender, EventArgs e)
-        {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoHistorial.CurrentRow != null)
-            {
-                //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                string codigoDetalleCantidadCalidad = datalistadoHistorial.Rows[datalistadoHistorial.CurrentRow.Index].Cells[1].Value.ToString();
-                Visualizadores.VisualizarSNC frm = new Visualizadores.VisualizarSNC();
-                frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
-                //CARGAR VENTANA
-                frm.Show();
-            }
-        }
-
-        //CARGA DEL FACTOR DE FALLO
-        private void txtAreaSNC_TextChanged(object sender, EventArgs e)
-        {
-            cboFactorFallo.Items.Clear();
-
-            if (txtAreaSNC.Text == "MODULOS CERAMICOS")
-            {
-                cboFactorFallo.Items.AddRange(new string[] { "MEDIDAS", "COLOR", "DUREZA", "DISTANCIA ENTRE PINES", "POSICIÓN DE ABERTURA" });
-            }
-            else if (txtAreaSNC.Text == "MALLAS DE ACERO")
-            {
-                cboFactorFallo.Items.AddRange(new string[] { "MEDIDAS", "COLOR", "TIPO DE PLIEGUE", "TIPO DE ALAMBRE", "POSICIÓN" });
-            }
-            else if (txtAreaSNC.Text == "PANELES Y PIEZAS DE POLIURETANO")
-            {
-                cboFactorFallo.Items.AddRange(new string[] { "MEDIDAS", "COLOR", "TIPO DE PLIEGUE", "TIPO DE ALAMBRE", "POSICIÓN" });
-            }
-            cboFactorFallo.SelectedIndex = 0;
-        }
-
-        //LIMPIAR CUANDO SE CAMBIA DE TIPO DE ARCHIVO
-        private void cboTipoArchivo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtRutaArchivo.Text = "";
-        }
-
-        //CERRAR MI PANEL DE GENERACION DE REQUERIMIENTO
-        private void btnCerrarGeneracionReque_Click(object sender, EventArgs e)
-        {
-            panelGeneracionRequeRepro.Visible = false;
-        }
-
-        //CERRAR MI PANEL DE DETALLES DE EVALUACION
-        private void lblCerrarDetallesEvaluacion_Click(object sender, EventArgs e)
-        {
-            panelControlCalidad.Visible = false;
-            datalistadoObservadas.Enabled = true;
-        }
-
-        //ACTIALIZAR MI DATAGRIDVIEW NI BIEN MODIFIQUE UN DATO
-        private void datalistadoMaterialesFormulacion_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (datalistadoMaterialesFormulacion.IsCurrentCellDirty &&
-        datalistadoMaterialesFormulacion.CurrentCell is DataGridViewCheckBoxCell)
-            {
-                datalistadoMaterialesFormulacion.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
     }

@@ -85,10 +85,27 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             //}
         }
 
+        //LSITADO DE SNC
+        private void btnListadoSNCdestruc_Click(object sender, EventArgs e)
+        {
+            if (panelMantenimientos.Controls.Count == 1)
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoDetalleSncDestruc());
+            }
+            else
+            {
+                panelMantenimientos.Controls.Clear();
+                AbrirMantenimiento(new ListadoDetalleSncDestruc());
+            }
+        }
+
         //ABIRIR EL MANUAL DE USUARIO
         private void btnManualUsuario_Click(object sender, EventArgs e)
         {
             Process.Start(ruta);
         }
+
+
     }
 }

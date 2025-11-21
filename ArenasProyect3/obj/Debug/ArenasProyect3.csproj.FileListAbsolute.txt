@@ -524,3 +524,5 @@ C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProye
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.pdb
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Mantenimientos.PanelCarga.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Calidad.Revision.ListadoOrdenTrabajo.resources
+C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Visualizadores.VisualizarSNCOT.resources
+C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.ListadoDetalleSncDestruc.resources
