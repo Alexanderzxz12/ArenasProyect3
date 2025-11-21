@@ -13,9 +13,9 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Actualizaciones\</PublishUrl>
+    <PublishUrl>C:\Users\kevin\Desktop\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -27,7 +27,7 @@
     <PublisherName>Arenas SRL</PublisherName>
     <MinimumRequiredVersion>1.0.0.88</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>90</ApplicationRevision>
+    <ApplicationRevision>92</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -94,6 +94,7 @@
       <HintPath>..\packages\SpreadsheetLight.3.4.11\lib\net40\SpreadsheetLight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />

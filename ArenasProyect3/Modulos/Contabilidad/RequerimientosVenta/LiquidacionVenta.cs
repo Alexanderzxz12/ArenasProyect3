@@ -16,6 +16,8 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using CrystalDecisions.Shared;
+using ArenasProyect3.Modulos.Resourses;
+using ArenasProyect3.Visualizadores;
 
 namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
 {
@@ -315,40 +317,51 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         //MOSTRAR PDF DE LA LIQUIDACION SIN FIRMA DE JEFATURA
         private void btnVerRequerimiento_Click(object sender, EventArgs e)
         {
-            if (datalistadoTodasLiquidacion.CurrentRow != null)
+            ClassResourses.VisualizarReporte(datalistadoTodasLiquidacion,1,12,new Dictionary<string, Func<int, Form>>
             {
-                if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
-                {
-                    string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada();
-                    frm.lblCodigo.Text = codigoLiquidacionReporte;
+                {"ANULAD", id => new Visualizadores.VisualizarLiquidacionDesaprobada(id) },
+                {"PENDIENTE", id => new Visualizadores.VisualizarLiquidacionesVenta(id) },
+                {"APROBADO", id => new Visualizadores.VisualizarLiquidacionAprobada(id) }
 
-                    frm.Show();
-                }
-                else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
-                {
-                    string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada();
-                    frm.lblCodigo.Text = codigoLiquidacionReporte;
+            });
 
-                    frm.Show();
-                }
-                else
-                {
-                    string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta();
-                    frm.lblCodigo.Text = codigoLiquidacionReporte;
+            //if (datalistadoTodasLiquidacion.CurrentRow != null)
+            //{
+            //    int codigoliquidacionreporte = Convert.ToInt32(datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString());
 
-                    frm.Show();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema");
-            }
+            //    if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+            //    {
+            //        //string codigoliquidacionreporte = datalistadotodasliquidacion.rows[datalistadotodasliquidacion.currentrow.index].cells[1].value.tostring();
+            //        Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada(codigoliquidacionreporte);
+            //        //frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+            //        frm.Show();
+            //    }
+            //    else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
+            //    {
+            //        //string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+            //        Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada(codigoliquidacionreporte);
+            //        //frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+            //        frm.Show();
+            //    }
+            //    else
+            //    {
+            //        //string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+            //        Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta(codigoliquidacionreporte);
+            //        //frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+            //        frm.Show();
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema");
+            //}
         }
         //------------------------------------------------------------------------------------------------------------
 
+    
         //SELECCION DE LA LIQUIDACION Y CARGA DE SUS DETALLES---------------------------
         //PROCESO PARA BUSCAR LOS DETALLES DEL CLIENTE DE LA LIQUIDACIÓN
         public void BuscarLiquidacionDetalles(int codigoLiquidacion)
@@ -388,40 +401,59 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         {
             DataGridViewColumn currentColumn = datalistadoTodasLiquidacion.Columns[e.ColumnIndex];
 
-            if (currentColumn.Name == "btnGenerarPdf")
+            if(currentColumn.Name == "btnGenerarPdf")
             {
-                if (datalistadoTodasLiquidacion.CurrentRow != null)
+                if(datalistadoTodasLiquidacion.CurrentRow != null)
                 {
-                    if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+                    ClassResourses.VisualizarReporte(datalistadoTodasLiquidacion,1,12,new Dictionary<string, Func<int, Form>>
                     {
-                        string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada();
-                        frm.lblCodigo.Text = codigoLiquidacionReporte;
+                        {"ANULADO",id =>  new Visualizadores.VisualizarLiquidacionDesaprobada(id)},
+                        {"PENDIENTE", id => new Visualizadores.VisualizarLiquidacionesVenta(id)},
+                        {"APROBADO", id => new Visualizadores.VisualizarLiquidacionAprobada(id)},
 
-                        frm.Show();
-                    }
-                    else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
-                    {
-                        string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada();
-                        frm.lblCodigo.Text = codigoLiquidacionReporte;
-
-                        frm.Show();
-                    }
-                    else
-                    {
-                        string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta();
-                        frm.lblCodigo.Text = codigoLiquidacionReporte;
-
-                        frm.Show();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema");
+                    });
                 }
             }
+
+
+            //DataGridViewColumn currentColumn = datalistadoTodasLiquidacion.Columns[e.ColumnIndex];
+
+            //if (currentColumn.Name == "btnGenerarPdf")
+            //{
+            //    if (datalistadoTodasLiquidacion.CurrentRow != null)
+            //    {
+            //        int codigoLiquidacionReporte = Convert.ToInt32(datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString());
+
+            //        if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+            //        {
+            //            //string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarLiquidacionDesaprobada frm = new Visualizadores.VisualizarLiquidacionDesaprobada(codigoLiquidacionReporte);
+            //            //frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+            //            frm.Show();
+            //        }
+            //        else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
+            //        {
+            //            //string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarLiquidacionAprobada frm = new Visualizadores.VisualizarLiquidacionAprobada(codigoLiquidacionReporte);
+            //            //frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+            //            frm.Show();
+            //        }
+            //        else
+            //        {
+            //            //string codigoLiquidacionReporte = datalistadoTodasLiquidacion.Rows[datalistadoTodasLiquidacion.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarLiquidacionesVenta frm = new Visualizadores.VisualizarLiquidacionesVenta(codigoLiquidacionReporte);
+            //            //frm.lblCodigo.Text = codigoLiquidacionReporte;
+
+            //            frm.Show();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Debe seleccionar una liquidación para poder generar el PDF.", "Validación del Sistema");
+            //    }
+            //}
         }
 
         //ABRIR LOS DETALLES DE LA LIQUIDACION CON EL EVENTO DOBLE CLICK
@@ -699,66 +731,74 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         //EXPORTAR DOCUMENTO SELECCIOANDO
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            try
+
+            ClassResourses.ExportarDesdeVisualizador(datalistadoTodasLiquidacion,1,12,new Dictionary<string, Func<int, Form>>
             {
-                // Crear una instancia del reporte
-                ReportDocument crystalReport = new ReportDocument();
-
-                // Ruta del reporte .rpt
-                //string rutaBase = Application.StartupPath;
-                string rutaBase = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Recursos y Programas\";
-                string rutaReporte = "";
-
-                if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
-                {
-                    rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeLiquidacionVentaAnulada.rpt");
-                }
-                else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
-                {
-                    rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeLiquidacionVentaAprobada.rpt");
-                }
-                else
-                {
-                    rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeLiquidacionVenta.rpt");
-                }
-
-                crystalReport.Load(rutaReporte);
-
-                // Configurar la conexión a la base de datos
-                ConnectionInfo connectionInfo = new ConnectionInfo
-                {
-                    ServerName = "192.168.1.154,1433", // Ejemplo: "localhost" o "192.168.1.100"
-                    DatabaseName = "BD_VENTAS_2", // Nombre de la base de datos
-                    UserID = "sa", // Usuario de la base de datos
-                    Password = "Arenas.2020!" // Contraseña del usuario
-                };
-
-                // Aplicar la conexión a cada tabla del reporte
-                foreach (CrystalDecisions.CrystalReports.Engine.Table table in crystalReport.Database.Tables)
-                {
-                    TableLogOnInfo logOnInfo = table.LogOnInfo;
-                    logOnInfo.ConnectionInfo = connectionInfo;
-                    table.ApplyLogOnInfo(logOnInfo);
-                }
-
-                // **Enviar parámetro al reporte**
-                // Cambia "NombreParametro" por el nombre exacto del parámetro en tu reporte
-                int idLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                crystalReport.SetParameterValue("@idLiquidacion", idLiquidacion);
-
-                // Ruta de salida en el escritorio
-                string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string rutaSalida = System.IO.Path.Combine(rutaEscritorio, "Liquidación de viaje número " + idLiquidacion + ".pdf");
-
-                // Exportar a PDF
-                crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
-
-                MessageBox.Show("Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                {"ANULADO", id => new Visualizadores.VisualizarLiquidacionDesaprobada(id)},
+                {"PENDIENTE", id => new Visualizadores.VisualizarLiquidacionesVenta(id)},
+                {"APROBADA", id => new Visualizadores.VisualizarLiquidacionAprobada(id)},
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ,"Liquidacion de Viaje");
+            //try
+            //{
+            //    // Crear una instancia del reporte
+            //    ReportDocument crystalReport = new ReportDocument();
+
+            //    // Ruta del reporte .rpt
+            //    //string rutaBase = Application.StartupPath;
+            //    string rutaBase = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Recursos y Programas\";
+            //    string rutaReporte = "";
+
+            //    if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "ANULADO")
+            //    {
+            //        rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeLiquidacionVentaAnulada.rpt");
+            //    }
+            //    else if (datalistadoTodasLiquidacion.SelectedCells[12].Value.ToString() == "APROBADO")
+            //    {
+            //        rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeLiquidacionVentaAprobada.rpt");
+            //    }
+            //    else
+            //    {
+            //        rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeLiquidacionVenta.rpt");
+            //    }
+
+            //    crystalReport.Load(rutaReporte);
+
+            //    // Configurar la conexión a la base de datos
+            //    ConnectionInfo connectionInfo = new ConnectionInfo
+            //    {
+            //        ServerName = "192.168.1.154,1433", // Ejemplo: "localhost" o "192.168.1.100"
+            //        DatabaseName = "BD_VENTAS_2", // Nombre de la base de datos
+            //        UserID = "sa", // Usuario de la base de datos
+            //        Password = "Arenas.2020!" // Contraseña del usuario
+            //    };
+
+            //    // Aplicar la conexión a cada tabla del reporte
+            //    foreach (CrystalDecisions.CrystalReports.Engine.Table table in crystalReport.Database.Tables)
+            //    {
+            //        TableLogOnInfo logOnInfo = table.LogOnInfo;
+            //        logOnInfo.ConnectionInfo = connectionInfo;
+            //        table.ApplyLogOnInfo(logOnInfo);
+            //    }
+
+            //    // **Enviar parámetro al reporte**
+            //    // Cambia "NombreParametro" por el nombre exacto del parámetro en tu reporte
+            //    int idLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+            //    crystalReport.SetParameterValue("@idLiquidacion", idLiquidacion);
+
+            //    // Ruta de salida en el escritorio
+            //    string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //    string rutaSalida = System.IO.Path.Combine(rutaEscritorio, "Liquidación de viaje número " + idLiquidacion + ".pdf");
+
+            //    // Exportar a PDF
+            //    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
+
+            //    MessageBox.Show("Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }

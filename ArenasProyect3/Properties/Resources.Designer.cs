@@ -59,5 +59,195 @@ namespace ArenasProyect3.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeActa {
+            get {
+                object obj = ResourceManager.GetObject("InformeActa", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeActaAprobada {
+            get {
+                object obj = ResourceManager.GetObject("InformeActaAprobada", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeCotizacionVenta {
+            get {
+                object obj = ResourceManager.GetObject("InformeCotizacionVenta", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeCotizacionVentaAnulada {
+            get {
+                object obj = ResourceManager.GetObject("InformeCotizacionVentaAnulada", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeLiquidacionVenta {
+            get {
+                object obj = ResourceManager.GetObject("InformeLiquidacionVenta", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeLiquidacionVentaAnulada {
+            get {
+                object obj = ResourceManager.GetObject("InformeLiquidacionVentaAnulada", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeLiquidacionVentaAprobada {
+            get {
+                object obj = ResourceManager.GetObject("InformeLiquidacionVentaAprobada", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeListarActas {
+            get {
+                object obj = ResourceManager.GetObject("InformeListarActas", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeListarLiquidaciones {
+            get {
+                object obj = ResourceManager.GetObject("InformeListarLiquidaciones", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeListarRequerimientos {
+            get {
+                object obj = ResourceManager.GetObject("InformeListarRequerimientos", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeNotaSalida {
+            get {
+                object obj = ResourceManager.GetObject("InformeNotaSalida", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeOrdenCompra {
+            get {
+                object obj = ResourceManager.GetObject("InformeOrdenCompra", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeOrdenProduccion {
+            get {
+                object obj = ResourceManager.GetObject("InformeOrdenProduccion", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeOrdenTrabajo {
+            get {
+                object obj = ResourceManager.GetObject("InformeOrdenTrabajo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformePedidoVenta {
+            get {
+                object obj = ResourceManager.GetObject("InformePedidoVenta", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeRequerimientoSimple {
+            get {
+                object obj = ResourceManager.GetObject("InformeRequerimientoSimple", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeRequerimientoVenta {
+            get {
+                object obj = ResourceManager.GetObject("InformeRequerimientoVenta", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeRequerimientoVentaAnulada {
+            get {
+                object obj = ResourceManager.GetObject("InformeRequerimientoVentaAnulada", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] InformeRequerimientoVentaAprobado {
+            get {
+                object obj = ResourceManager.GetObject("InformeRequerimientoVentaAprobado", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -16,6 +16,7 @@ using CrystalDecisions.Shared;
 using SpreadsheetLight;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Spreadsheet;
+using ArenasProyect3.Modulos.Resourses;
 
 namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
 {
@@ -388,54 +389,70 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         //GENERACIÓN DEL PDF DEL REQUERIMEINTO
         private void btnVerRequerimiento_Click(object sender, EventArgs e)
         {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasRequerimientos.CurrentRow != null)
+            try
             {
-                //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL Y YA TIENE LIQUIDACIÓN CREADA
-                if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO" && Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString()) == true)
+                ClassResourses.VisualizarReporte(datalistadoTodasRequerimientos,1,9,new Dictionary<string, Func<int, Form>>
                 {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
-                }
-                //SI EL REQUERIMEINTO ESTÁ EN PENDIENTE
-                else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
-                {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
-                }
-                //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL O ESTA EN PENDIENTE
-                else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
-                {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
-                }
-                //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
-                else
-                {
-                    //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                    string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                    frm.lblCodigo.Text = codigoCotizacionReporte;
-                    //CARGAR VENTANA
-                    frm.Show();
-                }
+                    {"ANULADO", id => new Visualizadores.VisualizarRequerimientoDesaprobado(id)},
+                    {"PENDIENTE", id => new Visualizadores.VisualizarRequerimientoVenta(id)},
+                    {"APROBADO", id => new Visualizadores.VisualizarRequerimientoAprobado(id) }
+                });
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema");
+                MessageBox.Show(ex.Message);
             }
+
+            ////SI NO HAY NINGUN REGISTRO SELECCIONADO
+            //if (datalistadoTodasRequerimientos.CurrentRow != null)
+            //{
+            //    int codigoRequerimiento = Convert.ToInt32(datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString());
+
+            //    //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL Y YA TIENE LIQUIDACIÓN CREADA
+            //    if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO" && Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString()) == true)
+            //    {
+            //        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+            //        //string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado(codigoRequerimiento);
+            //        //frm.lblCodigo.Text = codigoCotizacionReporte;
+            //        //CARGAR VENTANA
+            //        frm.Show();
+            //    }
+            //    //SI EL REQUERIMEINTO ESTÁ EN PENDIENTE
+            //    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
+            //    {
+            //        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
+            //        //string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //        Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta(codigoRequerimiento);
+            //        //frm.lblCodigo.Text = codigoCotizacionReporte;
+            //        //CARGAR VENTANA
+            //        frm.Show();
+            //    }
+            //    //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL O ESTA EN PENDIENTE
+            //    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
+            //    {
+            //        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO GENERAL
+            //        //string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //        Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado(codigoRequerimiento);
+            //        //frm.lblCodigo.Text = codigoCotizacionReporte;
+            //        //CARGAR VENTANA
+            //        frm.Show();
+            //    }
+            //    //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
+            //    else
+            //    {
+            //        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+            //        //string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado(codigoRequerimiento);
+            //        //frm.lblCodigo.Text = codigoCotizacionReporte;
+            //        //CARGAR VENTANA
+            //        frm.Show();
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF respectivo.", "Validación del Sistema");
+            //}
         }
 
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN DE GENERACIÓN DEL PDF
@@ -457,55 +474,72 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         {
             DataGridViewColumn currentColumn = datalistadoTodasRequerimientos.Columns[e.ColumnIndex];
 
-            //SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
-            if (currentColumn.Name == "btnGenerarPdf")
+            if(currentColumn.Name == "btnGenerarPdf")
             {
-                if (datalistadoTodasRequerimientos.CurrentRow != null)
+                if(datalistadoTodasRequerimientos.CurrentRow != null)
                 {
-                    //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
-                    if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO")
+                    ClassResourses.VisualizarReporte(datalistadoTodasRequerimientos, 1, 9, new Dictionary<string, Func<int, Form>>
                     {
-                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                        string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
-                    }
-                    //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
-                    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
-                    {
-                        string codigoRequerimeintoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado();
-                        frm.lblCodigo.Text = codigoRequerimeintoReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
-                    }
-                    //SI EL REQUERIMEINTO ESTÁ PENDIENTE POR EL ÁREA COMERCIAL
-                    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
-                    {
-                        string codigoRequerimeintoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta();
-                        frm.lblCodigo.Text = codigoRequerimeintoReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
-                    }
-                    //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
-                    else
-                    {
-                        //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                        string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado();
-                        frm.lblCodigo.Text = codigoCotizacionReporte;
-                        //CARGAR VENTANA
-                        frm.Show();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema");
+                        {"ANULADO", id => new Visualizadores.VisualizarRequerimientoDesaprobado(id)},
+                        {"PENDIENTE",id => new Visualizadores.VisualizarRequerimientoVenta(id)},
+                        {"APROBADO", id => new Visualizadores.VisualizarRequerimientoAprobado(id)}
+                    });
                 }
             }
+
+            //DataGridViewColumn currentColumn = datalistadoTodasRequerimientos.Columns[e.ColumnIndex];
+
+            ////SI SE PRECIONA SOBRE LA COLUMNA CON EL NOMBRE SELECCIOANDO
+            //if (currentColumn.Name == "btnGenerarPdf")
+            //{
+            //    if (datalistadoTodasRequerimientos.CurrentRow != null)
+            //    {
+            //        int codigoRequerimiento = Convert.ToInt32(datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString());
+
+            //        //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
+            //        if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO")
+            //        {
+            //            //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+            //            //string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado(codigoRequerimiento);
+            //            //frm.lblCodigo.Text = codigoCotizacionReporte;
+            //            //CARGAR VENTANA
+            //            frm.Show();
+            //        }
+            //        //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL
+            //        else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
+            //        {
+            //            //string codigoRequerimeintoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarRequerimientoAprobado frm = new Visualizadores.VisualizarRequerimientoAprobado(codigoRequerimiento);
+            //            //frm.lblCodigo.Text = codigoRequerimeintoReporte;
+            //            //CARGAR VENTANA
+            //            frm.Show();
+            //        }
+            //        //SI EL REQUERIMEINTO ESTÁ PENDIENTE POR EL ÁREA COMERCIAL
+            //        else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
+            //        {
+            //            //string codigoRequerimeintoReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarRequerimientoVenta frm = new Visualizadores.VisualizarRequerimientoVenta(codigoRequerimiento);
+            //            //frm.lblCodigo.Text = codigoRequerimeintoReporte;
+            //            //CARGAR VENTANA
+            //            frm.Show();
+            //        }
+            //        //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
+            //        else
+            //        {
+            //            //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+            //            //string codigoCotizacionReporte = datalistadoTodasRequerimientos.Rows[datalistadoTodasRequerimientos.CurrentRow.Index].Cells[1].Value.ToString();
+            //            Visualizadores.VisualizarRequerimientoDesaprobado frm = new Visualizadores.VisualizarRequerimientoDesaprobado(codigoRequerimiento);
+            //            //frm.lblCodigo.Text = codigoCotizacionReporte;
+            //            //CARGAR VENTANA
+            //            frm.Show();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Debe seleccionar un requerimiento para poder generar el PDF con firmas.", "Validación del Sistema");
+            //    }
+            //}
         }
         //--------------------------------------------------------------------------------------
 
@@ -728,74 +762,83 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
         //EXPORTAR DOCUMENTO SELECCIOANDO
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            try
+            ClassResourses.ExportarDesdeVisualizador(datalistadoTodasRequerimientos, 1, 9, new Dictionary<string, Func<int, Form>>
             {
-                // Crear una instancia del reporte
-                ReportDocument crystalReport = new ReportDocument();
-
-                // Ruta del reporte .rpt
-                //string rutaBase = Application.StartupPath;
-                string rutaBase = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Recursos y Programas\";
-                string rutaReporte = "";
-
-                //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL Y YA TIENE LIQUIDACIÓN CREADA
-                if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO" && Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString()) == true)
-                {
-                    rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVentaAnulada.rpt");
-                }
-                //SI EL REQUERIMEINTO ESTÁ EN PENDIENTE
-                else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
-                {
-                    rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVenta.rpt");
-                }
-                //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL O ESTA EN PENDIENTE
-                else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
-                {
-                    rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVentaAprobado.rpt");
-                }
-                //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
-                else
-                {
-                    rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVentaAnulada.rpt");
-                }
-
-                crystalReport.Load(rutaReporte);
-
-                // Configurar la conexión a la base de datos
-                ConnectionInfo connectionInfo = new ConnectionInfo
-                {
-                    ServerName = "192.168.1.154,1433", // Ejemplo: "localhost" o "192.168.1.100"
-                    DatabaseName = "BD_VENTAS_2", // Nombre de la base de datos
-                    UserID = "sa", // Usuario de la base de datos
-                    Password = "Arenas.2020!" // Contraseña del usuario
-                };
-
-                // Aplicar la conexión a cada tabla del reporte
-                foreach (CrystalDecisions.CrystalReports.Engine.Table table in crystalReport.Database.Tables)
-                {
-                    TableLogOnInfo logOnInfo = table.LogOnInfo;
-                    logOnInfo.ConnectionInfo = connectionInfo;
-                    table.ApplyLogOnInfo(logOnInfo);
-                }
-
-                // **Enviar parámetro al reporte**
-                // Cambia "NombreParametro" por el nombre exacto del parámetro en tu reporte
-                int idRequerimiento = Convert.ToInt32(datalistadoTodasRequerimientos.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
-                crystalReport.SetParameterValue("@idRequerimiento", idRequerimiento);
-
-                // Ruta de salida en el escritorio
-                string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string rutaSalida = System.IO.Path.Combine(rutaEscritorio, "Requerimiento de viaje número " + idRequerimiento + ".pdf");
-
-                // Exportar a PDF
-                crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
-
-                MessageBox.Show("Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                {"ANULADO", id => new Visualizadores.VisualizarRequerimientoDesaprobado(id)},
+                {"APROBADO", id => new Visualizadores.VisualizarRequerimientoAprobado(id) },
+                {"PENDIENTE", id => new Visualizadores.VisualizarRequerimientoVenta(id) }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            , "Requerimiento de Viaje");
+
+
+            //try
+            //{
+            //    // Crear una instancia del reporte
+            //    ReportDocument crystalReport = new ReportDocument();
+
+            //    // Ruta del reporte .rpt
+            //    //string rutaBase = Application.StartupPath;
+            //    string rutaBase = @"\\192.168.1.150\arenas1976\ARENASSOFT\RECURSOS\Recursos y Programas\";
+            //    string rutaReporte = "";
+
+            //    //SI EL REQUERIMEINTO ESTÁ ANULADO POR EL ÁREA COMERCIAL Y YA TIENE LIQUIDACIÓN CREADA
+            //    if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "ANULADO" && Convert.ToBoolean(datalistadoTodasRequerimientos.SelectedCells[11].Value.ToString()) == true)
+            //    {
+            //        rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVentaAnulada.rpt");
+            //    }
+            //    //SI EL REQUERIMEINTO ESTÁ EN PENDIENTE
+            //    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "PENDIENTE")
+            //    {
+            //        rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVenta.rpt");
+            //    }
+            //    //SI EL REQUERIMEINTO ESTÁ APROBADO POR EL ÁREA COMERCIAL O ESTA EN PENDIENTE
+            //    else if (datalistadoTodasRequerimientos.SelectedCells[9].Value.ToString() == "APROBADO")
+            //    {
+            //        rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVentaAprobado.rpt");
+            //    }
+            //    //SI EL REQUERIMEINTO NO ENTRA A NINGUNA DE LAS OPCIONES ANTERIORES
+            //    else
+            //    {
+            //        rutaReporte = Path.Combine(rutaBase, "Reportes", "InformeRequerimientoVentaAnulada.rpt");
+            //    }
+
+            //    crystalReport.Load(rutaReporte);
+
+            //    // Configurar la conexión a la base de datos
+            //    ConnectionInfo connectionInfo = new ConnectionInfo
+            //    {
+            //        ServerName = "192.168.1.154,1433", // Ejemplo: "localhost" o "192.168.1.100"
+            //        DatabaseName = "BD_VENTAS_2", // Nombre de la base de datos
+            //        UserID = "sa", // Usuario de la base de datos
+            //        Password = "Arenas.2020!" // Contraseña del usuario
+            //    };
+
+            //    // Aplicar la conexión a cada tabla del reporte
+            //    foreach (CrystalDecisions.CrystalReports.Engine.Table table in crystalReport.Database.Tables)
+            //    {
+            //        TableLogOnInfo logOnInfo = table.LogOnInfo;
+            //        logOnInfo.ConnectionInfo = connectionInfo;
+            //        table.ApplyLogOnInfo(logOnInfo);
+            //    }
+
+            //    // **Enviar parámetro al reporte**
+            //    // Cambia "NombreParametro" por el nombre exacto del parámetro en tu reporte
+            //    int idRequerimiento = Convert.ToInt32(datalistadoTodasRequerimientos.SelectedCells[1].Value.ToString()); // Valor del parámetro (puedes obtenerlo de un TextBox, ComboBox, etc.)
+            //    crystalReport.SetParameterValue("@idRequerimiento", idRequerimiento);
+
+            //    // Ruta de salida en el escritorio
+            //    string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //    string rutaSalida = System.IO.Path.Combine(rutaEscritorio, "Requerimiento de viaje número " + idRequerimiento + ".pdf");
+
+            //    // Exportar a PDF
+            //    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, rutaSalida);
+
+            //    MessageBox.Show("Reporte exportado correctamente a: {rutaSalida}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }
