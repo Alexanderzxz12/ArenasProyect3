@@ -25,6 +25,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private Cursor curAnterior = null;
         string ruta = ManGeneral.Manual.manualAreaComercial;
 
+        int idActa_GenerarRedaccion = 0;
+        ClassResourses recursos = new ClassResourses();
+
         //CONSTRUCTOR DEL MANTENIMIENTO - ACTAS DE VISITA
         public ActasVisita()
         {
@@ -519,6 +522,10 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 txtCLienteActa.Text = datalistadoTodasActas.SelectedCells[8].Value.ToString();
                 txtUnidadActa.Text = datalistadoTodasActas.SelectedCells[10].Value.ToString();
                 txtResponsableActa.Text = datalistadoTodasActas.SelectedCells[12].Value.ToString();
+
+                //CAPTURA DEL ID DE LA ACTA PARA GENERAR LA REDACCIÓN
+                idActa_GenerarRedaccion = Convert.ToInt32(datalistadoTodasActas.SelectedCells[1].Value.ToString());
+
                 panelNuevaActa.Visible = true;
             }
         }
@@ -550,6 +557,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     CargarResponsables(cboCargarResponsables);
                     CargarEquiposAreas();
                     CargarAntecedentesLineaTrabajo(idCliente, idUnidad);
+
+                    //CARGA DE LOS TOKENS UTILIZADOS POR EL USUARIO PARA LA ACTA
+                    CargarTokens(idActa_GenerarRedaccion);
 
                     foreach (DataGridViewRow row in datalistadoAntecedentesLineaTrabajo.Rows)
                     {
@@ -992,6 +1002,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     CargarResponsables(cboCargarResponsables);
                     CargarEquiposAreas();
                     CargarAntecedentesLineaTrabajoEdicion(idCliente, idUnidad);
+
+                    //METODO PARA CAPTURAR LOS TOKENS UTILIZADOS EN LA ACTA SELECCIONADA
+                    CargarTokens(idActa_GenerarRedaccion);
 
                     foreach (DataGridViewRow row in datalistadoAntecedentesLineaTrabajoEdicion.Rows)
                     {
@@ -1910,6 +1923,393 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private void btnInfoActa_Click(object sender, EventArgs e)
         {
             Process.Start(ruta);
+        }
+
+        //------------------------------------------------------------------------
+        //--------------------IMPLEMENTACION IA
+
+        //METODO QUE LISTA LOS TOKENS UTILIZADOS
+        public void CargarTokens(int idacta)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT IATokens1,IATokens2,IATokens3 FROM acta WHERE Estado = 1 AND IdActa = @idacta", con);
+                cmd.Parameters.AddWithValue("@idacta", idacta);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoTokensUsados.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //METODO PARA GUARDAR LOS TOKENS UTILIZADOS
+        public void GuardarTokens(int idacta, string lineatrabajo, string redaccionutilizada)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd;
+                if (lineatrabajo == "NUEVA LINEA DE TRABAJO")
+                {
+                    if (redaccionutilizada == "DESARROLLO")
+                    {
+                        cmd = new SqlCommand("UPDATE Acta SET IATokens1 = @iatoken1 WHERE IdActa = @idacta", con);
+                        cmd.Parameters.AddWithValue("@idacta", idacta);
+                        cmd.Parameters.AddWithValue("@iatoken1", 1);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    if (redaccionutilizada == "RESULTADO")
+                    {
+                        cmd = new SqlCommand("UPDATE Acta SET IATokens2 = @iatoken2 WHERE IdActa = @idacta", con);
+                        cmd.Parameters.AddWithValue("@idacta", idacta);
+                        cmd.Parameters.AddWithValue("@iatoken2", 1);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    if (redaccionutilizada == "ACCIONES")
+                    {
+                        cmd = new SqlCommand("UPDATE Acta SET IATokens3 = @iatoken3 WHERE IdActa = @idacta", con);
+                        cmd.Parameters.AddWithValue("@idacta", idacta);
+                        cmd.Parameters.AddWithValue("@iatoken3", 1);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                else if (lineatrabajo == "EDITAR LINEA DE TRABAJO")
+                {
+                    if (redaccionutilizada == "DESARROLLO")
+                    {
+                        cmd = new SqlCommand("UPDATE Acta SET IATokens1 = @iatoken1 WHERE IdActa = @idacta", con);
+                        cmd.Parameters.AddWithValue("@idacta", idacta);
+                        cmd.Parameters.AddWithValue("@iatoken1", 2);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    if (redaccionutilizada == "RESULTADO")
+                    {
+                        cmd = new SqlCommand("UPDATE Acta SET IATokens2 = @iatoken2 WHERE IdActa = @idacta", con);
+                        cmd.Parameters.AddWithValue("@idacta", idacta);
+                        cmd.Parameters.AddWithValue("@iatoken2", 2);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    if (redaccionutilizada == "ACCIONES")
+                    {
+                        cmd = new SqlCommand("UPDATE Acta SET IATokens3 = @iatoken3 WHERE IdActa = @idacta", con);
+                        cmd.Parameters.AddWithValue("@idacta", idacta);
+                        cmd.Parameters.AddWithValue("@iatoken3", 2);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                con.Close();
+                CargarTokens(idActa_GenerarRedaccion);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+        //EVENTO QUE GENERA LA REDACCIÓN PARA DESARROLLO
+        private async void btnToken1Desarrollo_Click(object sender, EventArgs e)
+        {
+            lblRedaccionUtilizada.Text = "DESARROLLO";
+
+
+            if ((string.IsNullOrWhiteSpace(txtDesarrollo.Text)))
+            {
+                MessageBox.Show("El contenido esta vacio.","Validación del Sistema",MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                if (lblLineaTrabajo.Text == "NUEVA LINEA DE TRABAJO")
+                {
+                    if (Convert.ToInt32(datalistadoTokensUsados.SelectedCells[0].Value.ToString()) == 1)
+                    {
+                        MessageBox.Show("Token 1 (Desarrollo) ya fue utilizado.", "Limite Alcanzado", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        GuardarTokens(idActa_GenerarRedaccion, lblLineaTrabajo.Text, "DESARROLLO");
+                        panelRedaccionTextos.Visible = true;
+                        panelRedaccionTextos.BringToFront();
+                        txtTextoARedactar.Text = txtDesarrollo.Text;
+                        lblDetectarModeloAUtilizar.Text = "gemini";
+
+                        txtRedactado.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
+
+                        if (lblDetectarModeloAUtilizar.Text == "gemini")
+                        {
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoARedactar.Text, lblDetectarModeloAUtilizar.Text);
+
+                            txtRedactado.Text = textoRedactado;
+                        }
+                    }
+                }
+
+                if (lblLineaTrabajo.Text == "EDITAR LINEA DE TRABAJO")
+                {
+                    if (Convert.ToInt32(datalistadoTokensUsados.SelectedCells[0].Value.ToString()) == 2)
+                    {
+                        MessageBox.Show("Token 1 (Desarrollo) ya fue utilizado.", "Limite Alcanzado", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        GuardarTokens(idActa_GenerarRedaccion, lblLineaTrabajo.Text, "DESARROLLO");
+
+                        panelRedaccionTextos.Visible = true;
+                        panelRedaccionTextos.BringToFront();
+                        txtTextoARedactar.Text = txtDesarrollo.Text;
+                        lblDetectarModeloAUtilizar.Text = "gemini";
+
+
+                        txtRedactado.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
+
+                        if (lblDetectarModeloAUtilizar.Text == "gemini")
+                        {
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoARedactar.Text, lblDetectarModeloAUtilizar.Text);
+
+                            txtRedactado.Text = textoRedactado;
+                        }
+                    }
+                }
+            }      
+        }
+
+        //EVENTO QUE GENERA LA REDACCIÓN PARA RESULTADO
+        private async void btnToken2Resultado_Click(object sender, EventArgs e)
+        {
+            lblRedaccionUtilizada.Text = "RESULTADO";
+
+            if (string.IsNullOrWhiteSpace(txtResultado.Text))
+            {
+                MessageBox.Show("El contenido esta vacio.", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                if (lblLineaTrabajo.Text == "NUEVA LINEA DE TRABAJO")
+                {
+                    if (Convert.ToInt32(datalistadoTokensUsados.SelectedCells[1].Value.ToString()) == 1)
+                    {
+                        MessageBox.Show("Token 2 (Resultado) ya fue utilizado.", "Limite Alcanzado", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        GuardarTokens(idActa_GenerarRedaccion, lblLineaTrabajo.Text, "RESULTADO");
+                        panelRedaccionTextos.Visible = true;
+                        panelRedaccionTextos.BringToFront();
+                        txtTextoARedactar.Text = txtResultado.Text;
+                        lblDetectarModeloAUtilizar.Text = "gemini";
+
+                        txtRedactado.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
+
+                        if (lblDetectarModeloAUtilizar.Text == "gemini")
+                        {
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoARedactar.Text, lblDetectarModeloAUtilizar.Text);
+
+                            txtRedactado.Text = textoRedactado;
+                        }
+                    }
+                }
+
+                if (lblLineaTrabajo.Text == "EDITAR LINEA DE TRABAJO")
+                {
+                    if (Convert.ToInt32(datalistadoTokensUsados.SelectedCells[1].Value.ToString()) == 2)
+                    {
+                        MessageBox.Show("Token 2 (Resultado) ya fue utilizado.", "Limite Alcanzado", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        GuardarTokens(idActa_GenerarRedaccion, lblLineaTrabajo.Text, "RESULTADO");
+                        panelRedaccionTextos.Visible = true;
+                        panelRedaccionTextos.BringToFront();
+                        txtTextoARedactar.Text = txtResultado.Text;
+                        lblDetectarModeloAUtilizar.Text = "gemini";
+                        txtRedactado.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
+
+                        if (lblDetectarModeloAUtilizar.Text == "gemini")
+                        {
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoARedactar.Text, lblDetectarModeloAUtilizar.Text);
+
+                            txtRedactado.Text = textoRedactado;
+                        }
+                    }
+                }
+            }               
+                  
+        }
+
+        //EVENTO QUE GENERA LA REDACCIÓN PARA ACCIONES
+        private async void btnToken3Acciones_Click(object sender, EventArgs e)
+        {
+            lblRedaccionUtilizada.Text = "ACCIONES";
+
+            if (string.IsNullOrWhiteSpace(txtAcciones.Text))
+            {
+
+                MessageBox.Show("El contenido esta vacio.", "Validación del Sistema", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                if (lblLineaTrabajo.Text == "NUEVA LINEA DE TRABAJO")
+                {
+                    if (Convert.ToInt32(datalistadoTokensUsados.SelectedCells[2].Value.ToString()) == 1)
+                    {
+                        MessageBox.Show("Token 3 (Acciones) ya fue utilizado.", "Limite Alcanzado", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        GuardarTokens(idActa_GenerarRedaccion, lblLineaTrabajo.Text, "ACCIONES");
+                        panelRedaccionTextos.Visible = true;
+                        panelRedaccionTextos.BringToFront();
+                        txtTextoARedactar.Text = txtAcciones.Text;
+                        lblDetectarModeloAUtilizar.Text = "gemini";
+                        txtRedactado.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
+
+                        if (lblDetectarModeloAUtilizar.Text == "gemini")
+                        {
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoARedactar.Text, lblDetectarModeloAUtilizar.Text);
+
+                            txtRedactado.Text = textoRedactado;
+                        }
+                    }
+                }
+
+                if (lblLineaTrabajo.Text == "EDITAR LINEA DE TRABAJO")
+                {
+                    if (Convert.ToInt32(datalistadoTokensUsados.SelectedCells[2].Value.ToString()) == 2)
+                    {
+                        MessageBox.Show("Token 3 (Acciones) ya fue utilizado.", "Limite Alcanzado", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        GuardarTokens(idActa_GenerarRedaccion, lblLineaTrabajo.Text, "ACCIONES");
+                        panelRedaccionTextos.Visible = true;
+                        panelRedaccionTextos.BringToFront();
+                        txtTextoARedactar.Text = txtAcciones.Text;
+                        lblDetectarModeloAUtilizar.Text = "gemini";
+                        txtRedactado.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
+
+                        if (lblDetectarModeloAUtilizar.Text == "gemini")
+                        {
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoARedactar.Text, lblDetectarModeloAUtilizar.Text);
+
+                            txtRedactado.Text = textoRedactado;
+                        }
+                    }
+                }
+            }
+               
+        }
+
+       
+
+        //EVENTO QUE CONSERVA EL TEXTO ESCRITO POR EL USUARIO Y TAMBIEN SI FUE MODIFICADO Y SE LE AGREGO FRAGMENTOS DE LA REDACCIÓN GENERADA POR LA IA
+        private void btnConservarTextoOriginal_Click(object sender, EventArgs e)
+        {
+            if (txtRedactado.Text == "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...")
+            {
+                MessageBox.Show("Espere a que se realice la redacción", "Servicio de IA", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (lblRedaccionUtilizada.Text == "DESARROLLO")
+            {
+                panelRedaccionTextos.Visible = false;
+                txtDesarrollo.Text = "";
+                txtDesarrollo.Text = txtTextoARedactar.Text.ToUpper();
+                txtTextoARedactar.Text = "";
+                lblRedaccionUtilizada.Text = "";
+            }
+            else if (lblRedaccionUtilizada.Text == "RESULTADO")
+            {
+                panelRedaccionTextos.Visible = false;
+                txtResultado.Text = "";
+                txtResultado.Text = txtTextoARedactar.Text;
+                txtTextoARedactar.Text = "";
+                lblRedaccionUtilizada.Text = "";
+            }
+            else
+            {
+                panelRedaccionTextos.Visible = false;
+                txtAcciones.Text = "";
+                txtAcciones.Text = txtTextoARedactar.Text;
+                txtTextoARedactar.Text = "";
+                lblRedaccionUtilizada.Text = "";
+            }
+        }
+
+        //EVENTO QUE GUARDA LA REDACCIÓN GENERADA POR LA IA Y LO REEMPLAZA POR EL TEXTO ESCRITO POR EL USUARIO
+        private void btnGuardarTextoRedactado_Click(object sender, EventArgs e)
+        {
+            if (txtRedactado.Text == "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...")
+            {
+                MessageBox.Show("Espere a que se realice la redacción", "Servicio de IA", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (lblRedaccionUtilizada.Text == "DESARROLLO")
+            {
+                panelRedaccionTextos.Visible = false;
+                txtDesarrollo.Text = "";
+                txtDesarrollo.Text = txtRedactado.Text.ToUpper();
+                Limpiarlbls(new Label[] { lblDetectarModeloAUtilizar, lblRedaccionUtilizada });
+            }
+            else if (lblRedaccionUtilizada.Text == "RESULTADO")
+            {
+                panelRedaccionTextos.Visible = false;
+                txtResultado.Text = "";
+                txtResultado.Text = txtRedactado.Text.ToUpper();
+                Limpiarlbls(new Label[] { lblDetectarModeloAUtilizar, lblRedaccionUtilizada });               
+            }
+            else
+            {
+                panelRedaccionTextos.Visible = false;
+                txtAcciones.Text = "";
+                txtAcciones.Text = txtRedactado.Text.ToUpper();
+                Limpiarlbls(new Label[] { lblDetectarModeloAUtilizar, lblRedaccionUtilizada });                
+            }
+        }
+
+        //EVENTO QUE CIERRA EL PANEL DE REDACCIÓN GENERADO POR LA IA
+        private void btnCerrarPanelRedaccion_Click(object sender, EventArgs e)
+        {
+            panelRedaccionTextos.Visible = false;
+            CargarTokens(idActa_GenerarRedaccion);
+            txtTextoARedactar.Text = "";
+            txtRedactado.Text = "";
+            Limpiarlbls(new Label[] { lblDetectarModeloAUtilizar, lblRedaccionUtilizada });
+        }
+
+        //METODO DE LIMPIEZA DE LABELS
+        public void Limpiarlbls(Label[] limpiarcontenido)
+        {
+            foreach (Label lbl in limpiarcontenido)
+            {
+                lbl.Text = "";
+            }
         }
     }
 }

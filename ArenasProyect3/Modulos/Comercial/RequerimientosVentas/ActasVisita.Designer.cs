@@ -29,15 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActasVisita));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -203,6 +206,7 @@
             this.lblAnotacionGuardarLineaTrabajo = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnToken1Desarrollo = new System.Windows.Forms.PictureBox();
             this.txtDesarrollo = new System.Windows.Forms.TextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -221,9 +225,11 @@
             this.btnVisualizarImagen3 = new System.Windows.Forms.Button();
             this.btnCargarImagen3 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnToken2Resultado = new System.Windows.Forms.PictureBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txtResultado = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnToken3Acciones = new System.Windows.Forms.PictureBox();
             this.label37 = new System.Windows.Forms.Label();
             this.txtAcciones = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -237,12 +243,31 @@
             this.datalistadoAntecedentesLineaTrabajo = new System.Windows.Forms.DataGridView();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.datalistadoCoidgoLineaTrabajo = new System.Windows.Forms.DataGridView();
+            this.datalistadoTokensUsados = new System.Windows.Forms.DataGridView();
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.btnModificarActa = new System.Windows.Forms.Button();
             this.btnVisualizarActa = new System.Windows.Forms.Button();
             this.btnCulminarActa = new System.Windows.Forms.Button();
+            this.panelRedaccionTextos = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtRedactado = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTextoARedactar = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.btnConservarTextoOriginal = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label35 = new System.Windows.Forms.Label();
+            this.pictureBox28 = new System.Windows.Forms.PictureBox();
+            this.btnCerrarPanelRedaccion = new System.Windows.Forms.PictureBox();
+            this.pictureBox30 = new System.Windows.Forms.PictureBox();
+            this.lblDetectarModeloAUtilizar = new System.Windows.Forms.Label();
+            this.lblRedaccionUtilizada = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.btnGuardarTextoRedactado = new System.Windows.Forms.Button();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaActaGeneral)).BeginInit();
@@ -291,12 +316,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarEquipoArea)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnToken1Desarrollo)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnToken2Resultado)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnToken3Acciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoAntecedentesLineaTrabajoEdicion)).BeginInit();
@@ -304,6 +332,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoAntecedentesLineaTrabajo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCoidgoLineaTrabajo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoTokensUsados)).BeginInit();
+            this.panelRedaccionTextos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCerrarPanelRedaccion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -357,23 +394,23 @@
             this.datalistadoBusquedaActaGeneral.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoBusquedaActaGeneral.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoBusquedaActaGeneral.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoBusquedaActaGeneral.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoBusquedaActaGeneral.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datalistadoBusquedaActaGeneral.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoBusquedaActaGeneral.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoBusquedaActaGeneral.DefaultCellStyle = dataGridViewCellStyle2;
             this.datalistadoBusquedaActaGeneral.Location = new System.Drawing.Point(103, -3);
             this.datalistadoBusquedaActaGeneral.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoBusquedaActaGeneral.Name = "datalistadoBusquedaActaGeneral";
@@ -679,37 +716,37 @@
             this.datalistadoTodasActas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasActas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasActas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasActas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasActas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.datalistadoTodasActas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasActas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnGenerarActa});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasActas.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasActas.DefaultCellStyle = dataGridViewCellStyle5;
             this.datalistadoTodasActas.Location = new System.Drawing.Point(8, 197);
             this.datalistadoTodasActas.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoTodasActas.MultiSelect = false;
             this.datalistadoTodasActas.Name = "datalistadoTodasActas";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasActas.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasActas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.datalistadoTodasActas.RowHeadersVisible = false;
             this.datalistadoTodasActas.RowHeadersWidth = 20;
             this.datalistadoTodasActas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -721,10 +758,10 @@
             // 
             // btnGenerarActa
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle13.NullValue")));
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.btnGenerarActa.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.btnGenerarActa.DefaultCellStyle = dataGridViewCellStyle4;
             this.btnGenerarActa.HeaderText = "PDF";
             this.btnGenerarActa.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarActa.Image")));
             this.btnGenerarActa.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -1040,35 +1077,35 @@
             this.datalistadoLineasTrabajo.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoLineasTrabajo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoLineasTrabajo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineasTrabajo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineasTrabajo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.datalistadoLineasTrabajo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoLineasTrabajo.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoLineasTrabajo.DefaultCellStyle = dataGridViewCellStyle8;
             this.datalistadoLineasTrabajo.Location = new System.Drawing.Point(6, 123);
             this.datalistadoLineasTrabajo.Margin = new System.Windows.Forms.Padding(5);
             this.datalistadoLineasTrabajo.Name = "datalistadoLineasTrabajo";
             this.datalistadoLineasTrabajo.ReadOnly = true;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoLineasTrabajo.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoLineasTrabajo.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.datalistadoLineasTrabajo.RowHeadersVisible = false;
             this.datalistadoLineasTrabajo.RowHeadersWidth = 20;
             this.datalistadoLineasTrabajo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -2429,6 +2466,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnToken1Desarrollo);
             this.tabPage1.Controls.Add(this.txtDesarrollo);
             this.tabPage1.Controls.Add(this.tabControl2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -2440,6 +2478,19 @@
             this.tabPage1.Text = "DESARROLLO";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnToken1Desarrollo
+            // 
+            this.btnToken1Desarrollo.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnToken1Desarrollo.Image = ((System.Drawing.Image)(resources.GetObject("btnToken1Desarrollo.Image")));
+            this.btnToken1Desarrollo.Location = new System.Drawing.Point(547, 54);
+            this.btnToken1Desarrollo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnToken1Desarrollo.Name = "btnToken1Desarrollo";
+            this.btnToken1Desarrollo.Size = new System.Drawing.Size(39, 37);
+            this.btnToken1Desarrollo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnToken1Desarrollo.TabIndex = 2030;
+            this.btnToken1Desarrollo.TabStop = false;
+            this.btnToken1Desarrollo.Click += new System.EventHandler(this.btnToken1Desarrollo_Click);
+            // 
             // txtDesarrollo
             // 
             this.txtDesarrollo.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2449,7 +2500,7 @@
             this.txtDesarrollo.Margin = new System.Windows.Forms.Padding(5);
             this.txtDesarrollo.Multiline = true;
             this.txtDesarrollo.Name = "txtDesarrollo";
-            this.txtDesarrollo.Size = new System.Drawing.Size(575, 125);
+            this.txtDesarrollo.Size = new System.Drawing.Size(529, 125);
             this.txtDesarrollo.TabIndex = 209;
             this.txtDesarrollo.Tag = "";
             // 
@@ -2660,6 +2711,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnToken2Resultado);
             this.tabPage2.Controls.Add(this.label24);
             this.tabPage2.Controls.Add(this.txtResultado);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -2669,6 +2721,19 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "RESULTADO";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnToken2Resultado
+            // 
+            this.btnToken2Resultado.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnToken2Resultado.Image = ((System.Drawing.Image)(resources.GetObject("btnToken2Resultado.Image")));
+            this.btnToken2Resultado.Location = new System.Drawing.Point(555, 46);
+            this.btnToken2Resultado.Margin = new System.Windows.Forms.Padding(4);
+            this.btnToken2Resultado.Name = "btnToken2Resultado";
+            this.btnToken2Resultado.Size = new System.Drawing.Size(39, 37);
+            this.btnToken2Resultado.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnToken2Resultado.TabIndex = 2029;
+            this.btnToken2Resultado.TabStop = false;
+            this.btnToken2Resultado.Click += new System.EventHandler(this.btnToken2Resultado_Click);
             // 
             // label24
             // 
@@ -2692,12 +2757,13 @@
             this.txtResultado.Margin = new System.Windows.Forms.Padding(5);
             this.txtResultado.Multiline = true;
             this.txtResultado.Name = "txtResultado";
-            this.txtResultado.Size = new System.Drawing.Size(586, 125);
+            this.txtResultado.Size = new System.Drawing.Size(548, 125);
             this.txtResultado.TabIndex = 210;
             this.txtResultado.Tag = "";
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnToken3Acciones);
             this.tabPage3.Controls.Add(this.label37);
             this.tabPage3.Controls.Add(this.txtAcciones);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -2707,6 +2773,19 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "ACCIONES";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnToken3Acciones
+            // 
+            this.btnToken3Acciones.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnToken3Acciones.Image = ((System.Drawing.Image)(resources.GetObject("btnToken3Acciones.Image")));
+            this.btnToken3Acciones.Location = new System.Drawing.Point(555, 54);
+            this.btnToken3Acciones.Margin = new System.Windows.Forms.Padding(4);
+            this.btnToken3Acciones.Name = "btnToken3Acciones";
+            this.btnToken3Acciones.Size = new System.Drawing.Size(39, 37);
+            this.btnToken3Acciones.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnToken3Acciones.TabIndex = 2030;
+            this.btnToken3Acciones.TabStop = false;
+            this.btnToken3Acciones.Click += new System.EventHandler(this.btnToken3Acciones_Click);
             // 
             // label37
             // 
@@ -2730,7 +2809,7 @@
             this.txtAcciones.Margin = new System.Windows.Forms.Padding(5);
             this.txtAcciones.Multiline = true;
             this.txtAcciones.Name = "txtAcciones";
-            this.txtAcciones.Size = new System.Drawing.Size(586, 125);
+            this.txtAcciones.Size = new System.Drawing.Size(537, 125);
             this.txtAcciones.TabIndex = 210;
             this.txtAcciones.Tag = "";
             // 
@@ -2786,6 +2865,7 @@
             this.panel4.Controls.Add(this.datalistadoAntecedentesLineaTrabajo);
             this.panel4.Controls.Add(this.pictureBox16);
             this.panel4.Controls.Add(this.datalistadoCoidgoLineaTrabajo);
+            this.panel4.Controls.Add(this.datalistadoTokensUsados);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(5);
@@ -2883,6 +2963,50 @@
             this.datalistadoCoidgoLineaTrabajo.Size = new System.Drawing.Size(13, 33);
             this.datalistadoCoidgoLineaTrabajo.TabIndex = 1928;
             // 
+            // datalistadoTokensUsados
+            // 
+            this.datalistadoTokensUsados.AllowUserToAddRows = false;
+            this.datalistadoTokensUsados.AllowUserToDeleteRows = false;
+            this.datalistadoTokensUsados.AllowUserToResizeColumns = false;
+            this.datalistadoTokensUsados.AllowUserToResizeRows = false;
+            this.datalistadoTokensUsados.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.datalistadoTokensUsados.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.datalistadoTokensUsados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTokensUsados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.datalistadoTokensUsados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTokensUsados.DefaultCellStyle = dataGridViewCellStyle11;
+            this.datalistadoTokensUsados.Location = new System.Drawing.Point(24, 2);
+            this.datalistadoTokensUsados.Margin = new System.Windows.Forms.Padding(5);
+            this.datalistadoTokensUsados.Name = "datalistadoTokensUsados";
+            this.datalistadoTokensUsados.ReadOnly = true;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTokensUsados.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.datalistadoTokensUsados.RowHeadersVisible = false;
+            this.datalistadoTokensUsados.RowHeadersWidth = 20;
+            this.datalistadoTokensUsados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalistadoTokensUsados.Size = new System.Drawing.Size(15, 10);
+            this.datalistadoTokensUsados.TabIndex = 2024;
+            // 
             // openFileDialog3
             // 
             this.openFileDialog3.FileName = "openFileDialog3";
@@ -2934,12 +3058,222 @@
             this.btnCulminarActa.UseVisualStyleBackColor = true;
             this.btnCulminarActa.Click += new System.EventHandler(this.btnCulminarActa_Click);
             // 
+            // panelRedaccionTextos
+            // 
+            this.panelRedaccionTextos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRedaccionTextos.Controls.Add(this.panel7);
+            this.panelRedaccionTextos.Controls.Add(this.pictureBox20);
+            this.panelRedaccionTextos.Controls.Add(this.groupBox3);
+            this.panelRedaccionTextos.Controls.Add(this.groupBox1);
+            this.panelRedaccionTextos.Controls.Add(this.label26);
+            this.panelRedaccionTextos.Controls.Add(this.btnConservarTextoOriginal);
+            this.panelRedaccionTextos.Controls.Add(this.panel10);
+            this.panelRedaccionTextos.Controls.Add(this.label27);
+            this.panelRedaccionTextos.Controls.Add(this.btnGuardarTextoRedactado);
+            this.panelRedaccionTextos.Location = new System.Drawing.Point(126, 80);
+            this.panelRedaccionTextos.Margin = new System.Windows.Forms.Padding(4);
+            this.panelRedaccionTextos.Name = "panelRedaccionTextos";
+            this.panelRedaccionTextos.Size = new System.Drawing.Size(921, 485);
+            this.panelRedaccionTextos.TabIndex = 2022;
+            this.panelRedaccionTextos.Visible = false;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel7.Location = new System.Drawing.Point(279, 60);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(350, 1);
+            this.panel7.TabIndex = 2031;
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox20.Image")));
+            this.pictureBox20.Location = new System.Drawing.Point(371, 22);
+            this.pictureBox20.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(166, 37);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox20.TabIndex = 2030;
+            this.pictureBox20.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtRedactado);
+            this.groupBox3.Location = new System.Drawing.Point(494, 77);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(415, 402);
+            this.groupBox3.TabIndex = 2029;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Texto Redactado Por la IA";
+            // 
+            // txtRedactado
+            // 
+            this.txtRedactado.Location = new System.Drawing.Point(6, 17);
+            this.txtRedactado.Multiline = true;
+            this.txtRedactado.Name = "txtRedactado";
+            this.txtRedactado.ReadOnly = true;
+            this.txtRedactado.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtRedactado.Size = new System.Drawing.Size(401, 377);
+            this.txtRedactado.TabIndex = 42;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtTextoARedactar);
+            this.groupBox1.Location = new System.Drawing.Point(12, 78);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(417, 402);
+            this.groupBox1.TabIndex = 2028;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Texto  Original";
+            // 
+            // txtTextoARedactar
+            // 
+            this.txtTextoARedactar.Location = new System.Drawing.Point(6, 13);
+            this.txtTextoARedactar.Multiline = true;
+            this.txtTextoARedactar.Name = "txtTextoARedactar";
+            this.txtTextoARedactar.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTextoARedactar.Size = new System.Drawing.Size(401, 377);
+            this.txtTextoARedactar.TabIndex = 41;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(431, 262);
+            this.label26.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(60, 13);
+            this.label26.TabIndex = 2027;
+            this.label26.Text = "CONSERVAR";
+            // 
+            // btnConservarTextoOriginal
+            // 
+            this.btnConservarTextoOriginal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConservarTextoOriginal.FlatAppearance.BorderSize = 0;
+            this.btnConservarTextoOriginal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConservarTextoOriginal.Image = ((System.Drawing.Image)(resources.GetObject("btnConservarTextoOriginal.Image")));
+            this.btnConservarTextoOriginal.Location = new System.Drawing.Point(440, 217);
+            this.btnConservarTextoOriginal.Name = "btnConservarTextoOriginal";
+            this.btnConservarTextoOriginal.Size = new System.Drawing.Size(36, 41);
+            this.btnConservarTextoOriginal.TabIndex = 2026;
+            this.btnConservarTextoOriginal.UseVisualStyleBackColor = true;
+            this.btnConservarTextoOriginal.Click += new System.EventHandler(this.btnConservarTextoOriginal_Click);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel10.Controls.Add(this.label35);
+            this.panel10.Controls.Add(this.pictureBox28);
+            this.panel10.Controls.Add(this.btnCerrarPanelRedaccion);
+            this.panel10.Controls.Add(this.pictureBox30);
+            this.panel10.Controls.Add(this.lblDetectarModeloAUtilizar);
+            this.panel10.Controls.Add(this.lblRedaccionUtilizada);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Margin = new System.Windows.Forms.Padding(5);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(919, 18);
+            this.panel10.TabIndex = 40;
+            // 
+            // label35
+            // 
+            this.label35.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label35.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label35.Location = new System.Drawing.Point(22, 0);
+            this.label35.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(140, 18);
+            this.label35.TabIndex = 2;
+            this.label35.Text = "REDACCIÓN DE TEXTOS";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox28
+            // 
+            this.pictureBox28.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox28.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox28.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox28.Image")));
+            this.pictureBox28.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox28.Name = "pictureBox28";
+            this.pictureBox28.Size = new System.Drawing.Size(22, 18);
+            this.pictureBox28.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox28.TabIndex = 1980;
+            this.pictureBox28.TabStop = false;
+            // 
+            // btnCerrarPanelRedaccion
+            // 
+            this.btnCerrarPanelRedaccion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarPanelRedaccion.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCerrarPanelRedaccion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarPanelRedaccion.Image")));
+            this.btnCerrarPanelRedaccion.Location = new System.Drawing.Point(897, 0);
+            this.btnCerrarPanelRedaccion.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCerrarPanelRedaccion.Name = "btnCerrarPanelRedaccion";
+            this.btnCerrarPanelRedaccion.Size = new System.Drawing.Size(22, 18);
+            this.btnCerrarPanelRedaccion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnCerrarPanelRedaccion.TabIndex = 55;
+            this.btnCerrarPanelRedaccion.TabStop = false;
+            this.btnCerrarPanelRedaccion.Click += new System.EventHandler(this.btnCerrarPanelRedaccion_Click);
+            // 
+            // pictureBox30
+            // 
+            this.pictureBox30.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox30.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox30.Image")));
+            this.pictureBox30.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox30.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox30.Name = "pictureBox30";
+            this.pictureBox30.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox30.TabIndex = 54;
+            this.pictureBox30.TabStop = false;
+            // 
+            // lblDetectarModeloAUtilizar
+            // 
+            this.lblDetectarModeloAUtilizar.AutoSize = true;
+            this.lblDetectarModeloAUtilizar.Location = new System.Drawing.Point(23, 2);
+            this.lblDetectarModeloAUtilizar.Name = "lblDetectarModeloAUtilizar";
+            this.lblDetectarModeloAUtilizar.Size = new System.Drawing.Size(0, 13);
+            this.lblDetectarModeloAUtilizar.TabIndex = 2028;
+            // 
+            // lblRedaccionUtilizada
+            // 
+            this.lblRedaccionUtilizada.AutoSize = true;
+            this.lblRedaccionUtilizada.Location = new System.Drawing.Point(44, 2);
+            this.lblRedaccionUtilizada.Name = "lblRedaccionUtilizada";
+            this.lblRedaccionUtilizada.Size = new System.Drawing.Size(0, 13);
+            this.lblRedaccionUtilizada.TabIndex = 2030;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(437, 332);
+            this.label27.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(49, 13);
+            this.label27.TabIndex = 2025;
+            this.label27.Text = "CAMBIAR";
+            // 
+            // btnGuardarTextoRedactado
+            // 
+            this.btnGuardarTextoRedactado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardarTextoRedactado.FlatAppearance.BorderSize = 0;
+            this.btnGuardarTextoRedactado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarTextoRedactado.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarTextoRedactado.Image")));
+            this.btnGuardarTextoRedactado.Location = new System.Drawing.Point(440, 292);
+            this.btnGuardarTextoRedactado.Name = "btnGuardarTextoRedactado";
+            this.btnGuardarTextoRedactado.Size = new System.Drawing.Size(36, 33);
+            this.btnGuardarTextoRedactado.TabIndex = 2024;
+            this.btnGuardarTextoRedactado.UseVisualStyleBackColor = true;
+            this.btnGuardarTextoRedactado.Click += new System.EventHandler(this.btnGuardarTextoRedactado_Click);
+            // 
             // ActasVisita
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1172, 636);
+            this.Controls.Add(this.panelRedaccionTextos);
             this.Controls.Add(this.panelNuevaLineaTrabajo);
             this.Controls.Add(this.panelModificarActa);
             this.Controls.Add(this.btnCulminarActa);
@@ -3023,6 +3357,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnToken1Desarrollo)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -3032,8 +3367,10 @@
             this.tabPage6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnToken2Resultado)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnToken3Acciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoAntecedentesLineaTrabajoEdicion)).EndInit();
@@ -3041,6 +3378,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoAntecedentesLineaTrabajo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCoidgoLineaTrabajo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoTokensUsados)).EndInit();
+            this.panelRedaccionTextos.ResumeLayout(false);
+            this.panelRedaccionTextos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCerrarPanelRedaccion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3253,5 +3603,27 @@
         private System.Windows.Forms.Button btnVerDetalles1;
         private System.Windows.Forms.Button btnRegresarEdicionActa;
         private System.Windows.Forms.Button btnGuardarNuevaActa;
+        private System.Windows.Forms.Panel panelRedaccionTextos;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtRedactado;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtTextoARedactar;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btnConservarTextoOriginal;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.PictureBox pictureBox28;
+        private System.Windows.Forms.PictureBox btnCerrarPanelRedaccion;
+        private System.Windows.Forms.PictureBox pictureBox30;
+        private System.Windows.Forms.Label lblDetectarModeloAUtilizar;
+        private System.Windows.Forms.Label lblRedaccionUtilizada;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button btnGuardarTextoRedactado;
+        private System.Windows.Forms.DataGridView datalistadoTokensUsados;
+        private System.Windows.Forms.PictureBox btnToken1Desarrollo;
+        private System.Windows.Forms.PictureBox btnToken2Resultado;
+        private System.Windows.Forms.PictureBox btnToken3Acciones;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.PictureBox pictureBox20;
     }
 }
