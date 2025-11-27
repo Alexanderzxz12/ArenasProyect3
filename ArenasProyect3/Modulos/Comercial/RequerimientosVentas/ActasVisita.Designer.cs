@@ -251,8 +251,12 @@
             this.btnVisualizarActa = new System.Windows.Forms.Button();
             this.btnCulminarActa = new System.Windows.Forms.Button();
             this.panelRedaccionTextos = new System.Windows.Forms.Panel();
+            this.btnCerrarRedaccionTextos = new System.Windows.Forms.Button();
+            this.label64 = new System.Windows.Forms.Label();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label63 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtRedactado = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -260,14 +264,56 @@
             this.label26 = new System.Windows.Forms.Label();
             this.btnConservarTextoOriginal = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.label35 = new System.Windows.Forms.Label();
             this.pictureBox28 = new System.Windows.Forms.PictureBox();
-            this.btnCerrarPanelRedaccion = new System.Windows.Forms.PictureBox();
             this.pictureBox30 = new System.Windows.Forms.PictureBox();
             this.lblDetectarModeloAUtilizar = new System.Windows.Forms.Label();
             this.lblRedaccionUtilizada = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.btnGuardarTextoRedactado = new System.Windows.Forms.Button();
+            this.panelTranscribirAudiosATexto = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.btnLimpiarTranscripcionDeAudio = new System.Windows.Forms.Button();
+            this.pictureBox27 = new System.Windows.Forms.PictureBox();
+            this.txtAudioTranscritoATexto = new System.Windows.Forms.TextBox();
+            this.btnTranscribirAudioATexto = new System.Windows.Forms.PictureBox();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.btnAbrirAudio = new System.Windows.Forms.Button();
+            this.btnLimpiarAudio = new System.Windows.Forms.Button();
+            this.btnCargarAudio = new System.Windows.Forms.Button();
+            this.txtArchivoAudio = new System.Windows.Forms.TextBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.btnCerrarTranscripcionAudioATexto = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.pictureBox23 = new System.Windows.Forms.PictureBox();
+            this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.panelFuncionalidadesIA = new System.Windows.Forms.Panel();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.btnTranscripcionAudiosATextos = new System.Windows.Forms.PictureBox();
+            this.btnRedaccionTextos = new System.Windows.Forms.PictureBox();
+            this.btnCerrarFuncionalidadesIA = new System.Windows.Forms.Button();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label92 = new System.Windows.Forms.Label();
+            this.panel35 = new System.Windows.Forms.Panel();
+            this.pictureBox33 = new System.Windows.Forms.PictureBox();
+            this.pictureBox34 = new System.Windows.Forms.PictureBox();
+            this.pictureBox36 = new System.Windows.Forms.PictureBox();
+            this.btnGuardarTranscripcion = new System.Windows.Forms.Button();
+            this.label65 = new System.Windows.Forms.Label();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoBusquedaActaGeneral)).BeginInit();
@@ -334,13 +380,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCoidgoLineaTrabajo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTokensUsados)).BeginInit();
             this.panelRedaccionTextos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCerrarPanelRedaccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
+            this.panelTranscribirAudiosATexto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTranscribirAudioATexto)).BeginInit();
+            this.tabControl3.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
+            this.panelFuncionalidadesIA.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTranscripcionAudiosATextos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRedaccionTextos)).BeginInit();
+            this.panel14.SuspendLayout();
+            this.panel35.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -2480,7 +2544,7 @@
             // 
             // btnToken1Desarrollo
             // 
-            this.btnToken1Desarrollo.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnToken1Desarrollo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnToken1Desarrollo.Image = ((System.Drawing.Image)(resources.GetObject("btnToken1Desarrollo.Image")));
             this.btnToken1Desarrollo.Location = new System.Drawing.Point(547, 54);
             this.btnToken1Desarrollo.Margin = new System.Windows.Forms.Padding(4);
@@ -2757,7 +2821,7 @@
             this.txtResultado.Margin = new System.Windows.Forms.Padding(5);
             this.txtResultado.Multiline = true;
             this.txtResultado.Name = "txtResultado";
-            this.txtResultado.Size = new System.Drawing.Size(548, 125);
+            this.txtResultado.Size = new System.Drawing.Size(536, 125);
             this.txtResultado.TabIndex = 210;
             this.txtResultado.Tag = "";
             // 
@@ -2809,7 +2873,7 @@
             this.txtAcciones.Margin = new System.Windows.Forms.Padding(5);
             this.txtAcciones.Multiline = true;
             this.txtAcciones.Name = "txtAcciones";
-            this.txtAcciones.Size = new System.Drawing.Size(537, 125);
+            this.txtAcciones.Size = new System.Drawing.Size(531, 125);
             this.txtAcciones.TabIndex = 210;
             this.txtAcciones.Tag = "";
             // 
@@ -3061,8 +3125,12 @@
             // panelRedaccionTextos
             // 
             this.panelRedaccionTextos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRedaccionTextos.Controls.Add(this.btnCerrarRedaccionTextos);
+            this.panelRedaccionTextos.Controls.Add(this.label64);
+            this.panelRedaccionTextos.Controls.Add(this.panel15);
+            this.panelRedaccionTextos.Controls.Add(this.button1);
+            this.panelRedaccionTextos.Controls.Add(this.label63);
             this.panelRedaccionTextos.Controls.Add(this.panel7);
-            this.panelRedaccionTextos.Controls.Add(this.pictureBox20);
             this.panelRedaccionTextos.Controls.Add(this.groupBox3);
             this.panelRedaccionTextos.Controls.Add(this.groupBox1);
             this.panelRedaccionTextos.Controls.Add(this.label26);
@@ -3077,52 +3145,96 @@
             this.panelRedaccionTextos.TabIndex = 2022;
             this.panelRedaccionTextos.Visible = false;
             // 
+            // btnCerrarRedaccionTextos
+            // 
+            this.btnCerrarRedaccionTextos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarRedaccionTextos.FlatAppearance.BorderSize = 0;
+            this.btnCerrarRedaccionTextos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarRedaccionTextos.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarRedaccionTextos.Image")));
+            this.btnCerrarRedaccionTextos.Location = new System.Drawing.Point(868, 430);
+            this.btnCerrarRedaccionTextos.Name = "btnCerrarRedaccionTextos";
+            this.btnCerrarRedaccionTextos.Size = new System.Drawing.Size(41, 35);
+            this.btnCerrarRedaccionTextos.TabIndex = 2036;
+            this.btnCerrarRedaccionTextos.UseVisualStyleBackColor = true;
+            this.btnCerrarRedaccionTextos.Click += new System.EventHandler(this.btnCerrarRedaccionTextos_Click);
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(865, 467);
+            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(53, 13);
+            this.label64.TabIndex = 2035;
+            this.label64.Text = "REGRESAR";
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.Green;
+            this.panel15.Location = new System.Drawing.Point(12, 249);
+            this.panel15.Margin = new System.Windows.Forms.Padding(4);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(759, 18);
+            this.panel15.TabIndex = 2034;
+            // 
+            // button1
+            // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(341, 18);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 34);
+            this.button1.TabIndex = 2033;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(380, 30);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(166, 19);
+            this.label63.TabIndex = 2032;
+            this.label63.Text = "REDACCIÓN DE TEXTOS";
+            // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel7.Location = new System.Drawing.Point(279, 60);
+            this.panel7.Location = new System.Drawing.Point(283, 54);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(350, 1);
             this.panel7.TabIndex = 2031;
             // 
-            // pictureBox20
-            // 
-            this.pictureBox20.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox20.Image")));
-            this.pictureBox20.Location = new System.Drawing.Point(371, 22);
-            this.pictureBox20.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(166, 37);
-            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox20.TabIndex = 2030;
-            this.pictureBox20.TabStop = false;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtRedactado);
-            this.groupBox3.Location = new System.Drawing.Point(494, 77);
+            this.groupBox3.Location = new System.Drawing.Point(10, 278);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(415, 402);
+            this.groupBox3.Size = new System.Drawing.Size(759, 193);
             this.groupBox3.TabIndex = 2029;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Texto Redactado Por la IA";
             // 
             // txtRedactado
             // 
-            this.txtRedactado.Location = new System.Drawing.Point(6, 17);
+            this.txtRedactado.Location = new System.Drawing.Point(6, 19);
             this.txtRedactado.Multiline = true;
             this.txtRedactado.Name = "txtRedactado";
             this.txtRedactado.ReadOnly = true;
             this.txtRedactado.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRedactado.Size = new System.Drawing.Size(401, 377);
+            this.txtRedactado.Size = new System.Drawing.Size(746, 168);
             this.txtRedactado.TabIndex = 42;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtTextoARedactar);
-            this.groupBox1.Location = new System.Drawing.Point(12, 78);
+            this.groupBox1.Location = new System.Drawing.Point(7, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(417, 402);
+            this.groupBox1.Size = new System.Drawing.Size(763, 184);
             this.groupBox1.TabIndex = 2028;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Texto  Original";
@@ -3133,19 +3245,19 @@
             this.txtTextoARedactar.Multiline = true;
             this.txtTextoARedactar.Name = "txtTextoARedactar";
             this.txtTextoARedactar.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtTextoARedactar.Size = new System.Drawing.Size(401, 377);
+            this.txtTextoARedactar.Size = new System.Drawing.Size(753, 162);
             this.txtTextoARedactar.TabIndex = 41;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(431, 262);
+            this.label26.Location = new System.Drawing.Point(780, 158);
             this.label26.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(60, 13);
+            this.label26.Size = new System.Drawing.Size(136, 13);
             this.label26.TabIndex = 2027;
-            this.label26.Text = "CONSERVAR";
+            this.label26.Text = "CONSERVAR TEXTO ORIGINAL";
             // 
             // btnConservarTextoOriginal
             // 
@@ -3153,7 +3265,7 @@
             this.btnConservarTextoOriginal.FlatAppearance.BorderSize = 0;
             this.btnConservarTextoOriginal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConservarTextoOriginal.Image = ((System.Drawing.Image)(resources.GetObject("btnConservarTextoOriginal.Image")));
-            this.btnConservarTextoOriginal.Location = new System.Drawing.Point(440, 217);
+            this.btnConservarTextoOriginal.Location = new System.Drawing.Point(830, 108);
             this.btnConservarTextoOriginal.Name = "btnConservarTextoOriginal";
             this.btnConservarTextoOriginal.Size = new System.Drawing.Size(36, 41);
             this.btnConservarTextoOriginal.TabIndex = 2026;
@@ -3163,9 +3275,9 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel10.Controls.Add(this.pictureBox20);
             this.panel10.Controls.Add(this.label35);
             this.panel10.Controls.Add(this.pictureBox28);
-            this.panel10.Controls.Add(this.btnCerrarPanelRedaccion);
             this.panel10.Controls.Add(this.pictureBox30);
             this.panel10.Controls.Add(this.lblDetectarModeloAUtilizar);
             this.panel10.Controls.Add(this.lblRedaccionUtilizada);
@@ -3176,17 +3288,30 @@
             this.panel10.Size = new System.Drawing.Size(919, 18);
             this.panel10.TabIndex = 40;
             // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox20.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox20.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox20.Image")));
+            this.pictureBox20.Location = new System.Drawing.Point(904, 0);
+            this.pictureBox20.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(15, 18);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox20.TabIndex = 2031;
+            this.pictureBox20.TabStop = false;
+            // 
             // label35
             // 
             this.label35.Dock = System.Windows.Forms.DockStyle.Left;
             this.label35.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label35.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label35.Location = new System.Drawing.Point(22, 0);
             this.label35.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(140, 18);
             this.label35.TabIndex = 2;
-            this.label35.Text = "REDACCIÓN DE TEXTOS";
+            this.label35.Text = "FUNCIONALIDAD IA";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox28
@@ -3200,20 +3325,6 @@
             this.pictureBox28.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox28.TabIndex = 1980;
             this.pictureBox28.TabStop = false;
-            // 
-            // btnCerrarPanelRedaccion
-            // 
-            this.btnCerrarPanelRedaccion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrarPanelRedaccion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCerrarPanelRedaccion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarPanelRedaccion.Image")));
-            this.btnCerrarPanelRedaccion.Location = new System.Drawing.Point(897, 0);
-            this.btnCerrarPanelRedaccion.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCerrarPanelRedaccion.Name = "btnCerrarPanelRedaccion";
-            this.btnCerrarPanelRedaccion.Size = new System.Drawing.Size(22, 18);
-            this.btnCerrarPanelRedaccion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCerrarPanelRedaccion.TabIndex = 55;
-            this.btnCerrarPanelRedaccion.TabStop = false;
-            this.btnCerrarPanelRedaccion.Click += new System.EventHandler(this.btnCerrarPanelRedaccion_Click);
             // 
             // pictureBox30
             // 
@@ -3247,12 +3358,12 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(437, 332);
+            this.label27.Location = new System.Drawing.Point(771, 373);
             this.label27.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(49, 13);
+            this.label27.Size = new System.Drawing.Size(143, 13);
             this.label27.TabIndex = 2025;
-            this.label27.Text = "CAMBIAR";
+            this.label27.Text = "CAMBIAR A TEXTO REDACTADO";
             // 
             // btnGuardarTextoRedactado
             // 
@@ -3260,12 +3371,530 @@
             this.btnGuardarTextoRedactado.FlatAppearance.BorderSize = 0;
             this.btnGuardarTextoRedactado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarTextoRedactado.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarTextoRedactado.Image")));
-            this.btnGuardarTextoRedactado.Location = new System.Drawing.Point(440, 292);
+            this.btnGuardarTextoRedactado.Location = new System.Drawing.Point(830, 336);
             this.btnGuardarTextoRedactado.Name = "btnGuardarTextoRedactado";
             this.btnGuardarTextoRedactado.Size = new System.Drawing.Size(36, 33);
             this.btnGuardarTextoRedactado.TabIndex = 2024;
             this.btnGuardarTextoRedactado.UseVisualStyleBackColor = true;
             this.btnGuardarTextoRedactado.Click += new System.EventHandler(this.btnGuardarTextoRedactado_Click);
+            // 
+            // panelTranscribirAudiosATexto
+            // 
+            this.panelTranscribirAudiosATexto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTranscribirAudiosATexto.Controls.Add(this.label65);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.btnGuardarTranscripcion);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.label34);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.btnLimpiarTranscripcionDeAudio);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.pictureBox27);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.txtAudioTranscritoATexto);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.btnTranscribirAudioATexto);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.tabControl3);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.panel9);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.label29);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.btnCerrarTranscripcionAudioATexto);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.label30);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.label31);
+            this.panelTranscribirAudiosATexto.Controls.Add(this.panel11);
+            this.panelTranscribirAudiosATexto.Location = new System.Drawing.Point(233, 160);
+            this.panelTranscribirAudiosATexto.Margin = new System.Windows.Forms.Padding(4);
+            this.panelTranscribirAudiosATexto.Name = "panelTranscribirAudiosATexto";
+            this.panelTranscribirAudiosATexto.Size = new System.Drawing.Size(668, 293);
+            this.panelTranscribirAudiosATexto.TabIndex = 2025;
+            this.panelTranscribirAudiosATexto.Visible = false;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(607, 226);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(45, 13);
+            this.label34.TabIndex = 2034;
+            this.label34.Text = "LIMPIAR";
+            // 
+            // btnLimpiarTranscripcionDeAudio
+            // 
+            this.btnLimpiarTranscripcionDeAudio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiarTranscripcionDeAudio.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarTranscripcionDeAudio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarTranscripcionDeAudio.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarTranscripcionDeAudio.Image")));
+            this.btnLimpiarTranscripcionDeAudio.Location = new System.Drawing.Point(605, 188);
+            this.btnLimpiarTranscripcionDeAudio.Name = "btnLimpiarTranscripcionDeAudio";
+            this.btnLimpiarTranscripcionDeAudio.Size = new System.Drawing.Size(41, 35);
+            this.btnLimpiarTranscripcionDeAudio.TabIndex = 2033;
+            this.btnLimpiarTranscripcionDeAudio.UseVisualStyleBackColor = true;
+            this.btnLimpiarTranscripcionDeAudio.Click += new System.EventHandler(this.btnLimpiarTranscripcionDeAudio_Click);
+            // 
+            // pictureBox27
+            // 
+            this.pictureBox27.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox27.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox27.Image")));
+            this.pictureBox27.Location = new System.Drawing.Point(188, 20);
+            this.pictureBox27.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox27.Name = "pictureBox27";
+            this.pictureBox27.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox27.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox27.TabIndex = 2032;
+            this.pictureBox27.TabStop = false;
+            // 
+            // txtAudioTranscritoATexto
+            // 
+            this.txtAudioTranscritoATexto.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAudioTranscritoATexto.Location = new System.Drawing.Point(4, 139);
+            this.txtAudioTranscritoATexto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAudioTranscritoATexto.Multiline = true;
+            this.txtAudioTranscritoATexto.Name = "txtAudioTranscritoATexto";
+            this.txtAudioTranscritoATexto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAudioTranscritoATexto.Size = new System.Drawing.Size(590, 146);
+            this.txtAudioTranscritoATexto.TabIndex = 2031;
+            // 
+            // btnTranscribirAudioATexto
+            // 
+            this.btnTranscribirAudioATexto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTranscribirAudioATexto.Image = ((System.Drawing.Image)(resources.GetObject("btnTranscribirAudioATexto.Image")));
+            this.btnTranscribirAudioATexto.Location = new System.Drawing.Point(608, 75);
+            this.btnTranscribirAudioATexto.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTranscribirAudioATexto.Name = "btnTranscribirAudioATexto";
+            this.btnTranscribirAudioATexto.Size = new System.Drawing.Size(39, 37);
+            this.btnTranscribirAudioATexto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnTranscribirAudioATexto.TabIndex = 2030;
+            this.btnTranscribirAudioATexto.TabStop = false;
+            this.btnTranscribirAudioATexto.Click += new System.EventHandler(this.btnTranscribirAudioATexto_Click);
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.tabPage7);
+            this.tabControl3.Location = new System.Drawing.Point(3, 59);
+            this.tabControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(586, 72);
+            this.tabControl3.TabIndex = 2026;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.btnAbrirAudio);
+            this.tabPage7.Controls.Add(this.btnLimpiarAudio);
+            this.tabPage7.Controls.Add(this.btnCargarAudio);
+            this.tabPage7.Controls.Add(this.txtArchivoAudio);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage7.Size = new System.Drawing.Size(578, 46);
+            this.tabPage7.TabIndex = 0;
+            this.tabPage7.Text = "Audio ";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // btnAbrirAudio
+            // 
+            this.btnAbrirAudio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAbrirAudio.FlatAppearance.BorderSize = 0;
+            this.btnAbrirAudio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbrirAudio.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirAudio.Image")));
+            this.btnAbrirAudio.Location = new System.Drawing.Point(542, 9);
+            this.btnAbrirAudio.Name = "btnAbrirAudio";
+            this.btnAbrirAudio.Size = new System.Drawing.Size(32, 29);
+            this.btnAbrirAudio.TabIndex = 2025;
+            this.btnAbrirAudio.UseVisualStyleBackColor = true;
+            this.btnAbrirAudio.Click += new System.EventHandler(this.btnAbrirAudio_Click);
+            // 
+            // btnLimpiarAudio
+            // 
+            this.btnLimpiarAudio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiarAudio.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarAudio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarAudio.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarAudio.Image")));
+            this.btnLimpiarAudio.Location = new System.Drawing.Point(505, 9);
+            this.btnLimpiarAudio.Name = "btnLimpiarAudio";
+            this.btnLimpiarAudio.Size = new System.Drawing.Size(32, 29);
+            this.btnLimpiarAudio.TabIndex = 2024;
+            this.btnLimpiarAudio.UseVisualStyleBackColor = true;
+            this.btnLimpiarAudio.Click += new System.EventHandler(this.btnLimpiarAudio_Click);
+            // 
+            // btnCargarAudio
+            // 
+            this.btnCargarAudio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargarAudio.FlatAppearance.BorderSize = 0;
+            this.btnCargarAudio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarAudio.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarAudio.Image")));
+            this.btnCargarAudio.Location = new System.Drawing.Point(468, 9);
+            this.btnCargarAudio.Name = "btnCargarAudio";
+            this.btnCargarAudio.Size = new System.Drawing.Size(32, 29);
+            this.btnCargarAudio.TabIndex = 2023;
+            this.btnCargarAudio.UseVisualStyleBackColor = true;
+            this.btnCargarAudio.Click += new System.EventHandler(this.btnCargarAudio_Click);
+            // 
+            // txtArchivoAudio
+            // 
+            this.txtArchivoAudio.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArchivoAudio.Location = new System.Drawing.Point(15, 14);
+            this.txtArchivoAudio.Margin = new System.Windows.Forms.Padding(5);
+            this.txtArchivoAudio.Name = "txtArchivoAudio";
+            this.txtArchivoAudio.ReadOnly = true;
+            this.txtArchivoAudio.Size = new System.Drawing.Size(446, 21);
+            this.txtArchivoAudio.TabIndex = 136;
+            this.txtArchivoAudio.Tag = "";
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel9.Location = new System.Drawing.Point(183, 49);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(300, 1);
+            this.panel9.TabIndex = 2025;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(223, 26);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(214, 19);
+            this.label29.TabIndex = 2023;
+            this.label29.Text = "TRANSCRIPCIONES DE AUDIOS";
+            // 
+            // btnCerrarTranscripcionAudioATexto
+            // 
+            this.btnCerrarTranscripcionAudioATexto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarTranscripcionAudioATexto.FlatAppearance.BorderSize = 0;
+            this.btnCerrarTranscripcionAudioATexto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarTranscripcionAudioATexto.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarTranscripcionAudioATexto.Image")));
+            this.btnCerrarTranscripcionAudioATexto.Location = new System.Drawing.Point(606, 237);
+            this.btnCerrarTranscripcionAudioATexto.Name = "btnCerrarTranscripcionAudioATexto";
+            this.btnCerrarTranscripcionAudioATexto.Size = new System.Drawing.Size(41, 35);
+            this.btnCerrarTranscripcionAudioATexto.TabIndex = 2022;
+            this.btnCerrarTranscripcionAudioATexto.UseVisualStyleBackColor = true;
+            this.btnCerrarTranscripcionAudioATexto.Click += new System.EventHandler(this.btnCerrarTranscripcionAudioATexto_Click);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(603, 274);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(53, 13);
+            this.label30.TabIndex = 2020;
+            this.label30.Text = "REGRESAR";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(598, 116);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(66, 13);
+            this.label31.TabIndex = 2019;
+            this.label31.Text = "TRANSCRIBIR";
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel11.Controls.Add(this.label32);
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Controls.Add(this.pictureBox23);
+            this.panel11.Controls.Add(this.pictureBox24);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Margin = new System.Windows.Forms.Padding(5);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(666, 18);
+            this.panel11.TabIndex = 40;
+            // 
+            // label32
+            // 
+            this.label32.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(23, 0);
+            this.label32.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(155, 18);
+            this.label32.TabIndex = 2;
+            this.label32.Text = "FUNCIONALIDAD IA";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.pictureBox22);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.panel12.Size = new System.Drawing.Size(23, 18);
+            this.panel12.TabIndex = 1000;
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox22.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox22.Image")));
+            this.pictureBox22.Location = new System.Drawing.Point(2, 1);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Padding = new System.Windows.Forms.Padding(2);
+            this.pictureBox22.Size = new System.Drawing.Size(19, 16);
+            this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox22.TabIndex = 1000;
+            this.pictureBox22.TabStop = false;
+            // 
+            // pictureBox23
+            // 
+            this.pictureBox23.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox23.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
+            this.pictureBox23.Location = new System.Drawing.Point(640, 0);
+            this.pictureBox23.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox23.Name = "pictureBox23";
+            this.pictureBox23.Size = new System.Drawing.Size(26, 18);
+            this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox23.TabIndex = 55;
+            this.pictureBox23.TabStop = false;
+            // 
+            // pictureBox24
+            // 
+            this.pictureBox24.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox24.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox24.Image")));
+            this.pictureBox24.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox24.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox24.Name = "pictureBox24";
+            this.pictureBox24.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox24.TabIndex = 54;
+            this.pictureBox24.TabStop = false;
+            // 
+            // panelFuncionalidadesIA
+            // 
+            this.panelFuncionalidadesIA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelFuncionalidadesIA.Controls.Add(this.pictureBox25);
+            this.panelFuncionalidadesIA.Controls.Add(this.label33);
+            this.panelFuncionalidadesIA.Controls.Add(this.label28);
+            this.panelFuncionalidadesIA.Controls.Add(this.btnTranscripcionAudiosATextos);
+            this.panelFuncionalidadesIA.Controls.Add(this.btnRedaccionTextos);
+            this.panelFuncionalidadesIA.Controls.Add(this.btnCerrarFuncionalidadesIA);
+            this.panelFuncionalidadesIA.Controls.Add(this.panel13);
+            this.panelFuncionalidadesIA.Controls.Add(this.label59);
+            this.panelFuncionalidadesIA.Controls.Add(this.label69);
+            this.panelFuncionalidadesIA.Controls.Add(this.label108);
+            this.panelFuncionalidadesIA.Controls.Add(this.panel14);
+            this.panelFuncionalidadesIA.Location = new System.Drawing.Point(331, 195);
+            this.panelFuncionalidadesIA.Name = "panelFuncionalidadesIA";
+            this.panelFuncionalidadesIA.Size = new System.Drawing.Size(511, 190);
+            this.panelFuncionalidadesIA.TabIndex = 2026;
+            this.panelFuncionalidadesIA.Visible = false;
+            // 
+            // pictureBox25
+            // 
+            this.pictureBox25.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox25.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox25.Image")));
+            this.pictureBox25.Location = new System.Drawing.Point(86, 19);
+            this.pictureBox25.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(30, 24);
+            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox25.TabIndex = 2035;
+            this.pictureBox25.TabStop = false;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(262, 132);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(164, 13);
+            this.label33.TabIndex = 2034;
+            this.label33.Text = "TRANSCRIPCION DE AUDIO A TEXTO";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(90, 130);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(109, 13);
+            this.label28.TabIndex = 2033;
+            this.label28.Text = "REDACCIÓN DE TEXTOS";
+            // 
+            // btnTranscripcionAudiosATextos
+            // 
+            this.btnTranscripcionAudiosATextos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTranscripcionAudiosATextos.Image = ((System.Drawing.Image)(resources.GetObject("btnTranscripcionAudiosATextos.Image")));
+            this.btnTranscripcionAudiosATextos.Location = new System.Drawing.Point(322, 91);
+            this.btnTranscripcionAudiosATextos.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTranscripcionAudiosATextos.Name = "btnTranscripcionAudiosATextos";
+            this.btnTranscripcionAudiosATextos.Size = new System.Drawing.Size(39, 37);
+            this.btnTranscripcionAudiosATextos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnTranscripcionAudiosATextos.TabIndex = 2032;
+            this.btnTranscripcionAudiosATextos.TabStop = false;
+            this.btnTranscripcionAudiosATextos.Click += new System.EventHandler(this.btnTranscripcionAudiosATextos_Click);
+            // 
+            // btnRedaccionTextos
+            // 
+            this.btnRedaccionTextos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRedaccionTextos.Image = ((System.Drawing.Image)(resources.GetObject("btnRedaccionTextos.Image")));
+            this.btnRedaccionTextos.Location = new System.Drawing.Point(127, 91);
+            this.btnRedaccionTextos.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRedaccionTextos.Name = "btnRedaccionTextos";
+            this.btnRedaccionTextos.Size = new System.Drawing.Size(39, 37);
+            this.btnRedaccionTextos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnRedaccionTextos.TabIndex = 2031;
+            this.btnRedaccionTextos.TabStop = false;
+            this.btnRedaccionTextos.Click += new System.EventHandler(this.btnRedaccionTextos_Click);
+            // 
+            // btnCerrarFuncionalidadesIA
+            // 
+            this.btnCerrarFuncionalidadesIA.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarFuncionalidadesIA.FlatAppearance.BorderSize = 0;
+            this.btnCerrarFuncionalidadesIA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarFuncionalidadesIA.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarFuncionalidadesIA.Image")));
+            this.btnCerrarFuncionalidadesIA.Location = new System.Drawing.Point(450, 134);
+            this.btnCerrarFuncionalidadesIA.Name = "btnCerrarFuncionalidadesIA";
+            this.btnCerrarFuncionalidadesIA.Size = new System.Drawing.Size(41, 35);
+            this.btnCerrarFuncionalidadesIA.TabIndex = 2008;
+            this.btnCerrarFuncionalidadesIA.UseVisualStyleBackColor = true;
+            this.btnCerrarFuncionalidadesIA.Click += new System.EventHandler(this.btnCerrarFuncionalidadesIA_Click);
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel13.Location = new System.Drawing.Point(104, 47);
+            this.panel13.Margin = new System.Windows.Forms.Padding(4);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(300, 1);
+            this.panel13.TabIndex = 999;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(447, 170);
+            this.label59.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(53, 13);
+            this.label59.TabIndex = 996;
+            this.label59.Text = "REGRESAR";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(3, 61);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(224, 13);
+            this.label69.TabIndex = 226;
+            this.label69.Text = "Seleccione la funcionalidad que desea utilizar:";
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label108.Location = new System.Drawing.Point(120, 25);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(263, 19);
+            this.label108.TabIndex = 225;
+            this.label108.Text = "Selección de Funcionalidades de la IA";
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel14.Controls.Add(this.label92);
+            this.panel14.Controls.Add(this.panel35);
+            this.panel14.Controls.Add(this.pictureBox34);
+            this.panel14.Controls.Add(this.pictureBox36);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(0, 0);
+            this.panel14.Margin = new System.Windows.Forms.Padding(4);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(509, 18);
+            this.panel14.TabIndex = 40;
+            // 
+            // label92
+            // 
+            this.label92.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label92.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(23, 0);
+            this.label92.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(162, 18);
+            this.label92.TabIndex = 57;
+            this.label92.Text = "FUNCIONALIDADES IA";
+            this.label92.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel35
+            // 
+            this.panel35.Controls.Add(this.pictureBox33);
+            this.panel35.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel35.Location = new System.Drawing.Point(0, 0);
+            this.panel35.Name = "panel35";
+            this.panel35.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.panel35.Size = new System.Drawing.Size(23, 18);
+            this.panel35.TabIndex = 56;
+            // 
+            // pictureBox33
+            // 
+            this.pictureBox33.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox33.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox33.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox33.Image")));
+            this.pictureBox33.Location = new System.Drawing.Point(2, 1);
+            this.pictureBox33.Name = "pictureBox33";
+            this.pictureBox33.Padding = new System.Windows.Forms.Padding(2);
+            this.pictureBox33.Size = new System.Drawing.Size(19, 16);
+            this.pictureBox33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox33.TabIndex = 1000;
+            this.pictureBox33.TabStop = false;
+            // 
+            // pictureBox34
+            // 
+            this.pictureBox34.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox34.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox34.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox34.Image")));
+            this.pictureBox34.Location = new System.Drawing.Point(486, 0);
+            this.pictureBox34.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox34.Name = "pictureBox34";
+            this.pictureBox34.Size = new System.Drawing.Size(23, 18);
+            this.pictureBox34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox34.TabIndex = 55;
+            this.pictureBox34.TabStop = false;
+            // 
+            // pictureBox36
+            // 
+            this.pictureBox36.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox36.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox36.Image")));
+            this.pictureBox36.Location = new System.Drawing.Point(1547, -1);
+            this.pictureBox36.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox36.Name = "pictureBox36";
+            this.pictureBox36.Size = new System.Drawing.Size(45, 30);
+            this.pictureBox36.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox36.TabIndex = 54;
+            this.pictureBox36.TabStop = false;
+            // 
+            // btnGuardarTranscripcion
+            // 
+            this.btnGuardarTranscripcion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardarTranscripcion.FlatAppearance.BorderSize = 0;
+            this.btnGuardarTranscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarTranscripcion.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarTranscripcion.Image")));
+            this.btnGuardarTranscripcion.Location = new System.Drawing.Point(606, 134);
+            this.btnGuardarTranscripcion.Name = "btnGuardarTranscripcion";
+            this.btnGuardarTranscripcion.Size = new System.Drawing.Size(41, 35);
+            this.btnGuardarTranscripcion.TabIndex = 2035;
+            this.btnGuardarTranscripcion.UseVisualStyleBackColor = true;
+            this.btnGuardarTranscripcion.Click += new System.EventHandler(this.btnGuardarTranscripcion_Click);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.Location = new System.Drawing.Point(601, 172);
+            this.label65.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(52, 13);
+            this.label65.TabIndex = 2036;
+            this.label65.Text = "GUARDAR";
             // 
             // ActasVisita
             // 
@@ -3273,6 +3902,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1172, 636);
+            this.Controls.Add(this.panelTranscribirAudiosATexto);
+            this.Controls.Add(this.panelFuncionalidadesIA);
             this.Controls.Add(this.panelRedaccionTextos);
             this.Controls.Add(this.panelNuevaLineaTrabajo);
             this.Controls.Add(this.panelModificarActa);
@@ -3381,16 +4012,37 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTokensUsados)).EndInit();
             this.panelRedaccionTextos.ResumeLayout(false);
             this.panelRedaccionTextos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCerrarPanelRedaccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
+            this.panelTranscribirAudiosATexto.ResumeLayout(false);
+            this.panelTranscribirAudiosATexto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTranscribirAudioATexto)).EndInit();
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
+            this.panelFuncionalidadesIA.ResumeLayout(false);
+            this.panelFuncionalidadesIA.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTranscripcionAudiosATextos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRedaccionTextos)).EndInit();
+            this.panel14.ResumeLayout(false);
+            this.panel35.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3613,7 +4265,6 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.PictureBox pictureBox28;
-        private System.Windows.Forms.PictureBox btnCerrarPanelRedaccion;
         private System.Windows.Forms.PictureBox pictureBox30;
         private System.Windows.Forms.Label lblDetectarModeloAUtilizar;
         private System.Windows.Forms.Label lblRedaccionUtilizada;
@@ -3624,6 +4275,53 @@
         private System.Windows.Forms.PictureBox btnToken2Resultado;
         private System.Windows.Forms.PictureBox btnToken3Acciones;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panelTranscribirAudiosATexto;
+        private System.Windows.Forms.TextBox txtAudioTranscritoATexto;
+        private System.Windows.Forms.PictureBox btnTranscribirAudioATexto;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button btnAbrirAudio;
+        private System.Windows.Forms.Button btnLimpiarAudio;
+        private System.Windows.Forms.Button btnCargarAudio;
+        private System.Windows.Forms.TextBox txtArchivoAudio;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Button btnCerrarTranscripcionAudioATexto;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.PictureBox pictureBox23;
+        private System.Windows.Forms.PictureBox pictureBox24;
+        private System.Windows.Forms.Panel panelFuncionalidadesIA;
+        private System.Windows.Forms.Button btnCerrarFuncionalidadesIA;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.Panel panel35;
+        private System.Windows.Forms.PictureBox pictureBox33;
+        private System.Windows.Forms.PictureBox pictureBox34;
+        private System.Windows.Forms.PictureBox pictureBox36;
+        private System.Windows.Forms.PictureBox btnTranscripcionAudiosATextos;
+        private System.Windows.Forms.PictureBox btnRedaccionTextos;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.PictureBox pictureBox25;
+        private System.Windows.Forms.PictureBox pictureBox27;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button btnLimpiarTranscripcionDeAudio;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Button btnCerrarRedaccionTextos;
+        private System.Windows.Forms.Label label64;
         private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Button btnGuardarTranscripcion;
     }
 }

@@ -14,8 +14,12 @@ using System.Windows.Forms;
 
 namespace ArenasProyect3.Modulos.Resourses
 {
+
     public class ClassResourses
     {
+        private static readonly HttpClient client = new HttpClient();
+
+
         public static void RegistrarAuditora(int idAccion, string mantenimiento, int idProceso,int? idUsuario = null, string descripcion = null, int? idGeneral = null)
         {
             try
@@ -125,167 +129,223 @@ namespace ArenasProyect3.Modulos.Resourses
             }
         }
 
-        //METODO PARA REDACTAR TEXTO A TRAVES DE LA API DE GEMINI
+        //--------------------------------------------------------------
+        //------------------ MÉTODOS PARA GEMINI -------------------------
+
+        //METODO PARA LA REDACCIÓN DE TEXTO USANDO GEMINI
         public async Task<string> RedactarTexto(string texto, string modeloseleccionado)
         {
             try
             {
-                //LIMPIEZA DE CONTENIDO
-                string textoLimpio = texto
-                    .Replace("\r\n", " ")
-                    .Replace("\n", " ")
-                    .Replace("\"", "'")
-                    .Trim();
+                if (string.IsNullOrWhiteSpace(texto)) return "ERROR: EL TEXTO DE ENTRADA ESTÁ VACÍO.";
 
-                string prompt = "";
-                string url = "";
-                StringContent content;
+                // --- LIMPIEZA PREVIA INTELIGENTE (INPUT) ---
+                string textoLimpio = Regex.Replace(texto, @"^\s*\d+[\.\)]?\s*$", "", RegexOptions.Multiline);
+
+                // Normalización estándar
+                textoLimpio = textoLimpio.Replace("\"", "'").Trim();
+
+                string apiKey = ConfigurationManager.AppSettings["GeminiApiKey"];
+                if (string.IsNullOrEmpty(apiKey)) return "ERROR: NO SE ENCONTRÓ LA API KEY.";
+
+                string[] modelosGemini = {
+                "gemini-2.5-flash",
+                "gemini-1.5-pro",
+                "gemini-1.5-flash",
+                "gemini-2.0-flash-exp"
+            };
+
+                IEnumerable<string> modelosAUsar = modeloseleccionado == "gemini"
+                                                   ? modelosGemini
+                                                   : new[] { modeloseleccionado };
+
                 string textoFinal = "";
-                bool solicitudexitosa = false;
+                bool solicitudExitosa = false;
+                Exception ultimoError = null;
 
-                //CREACIÓN DE CLIENTE PARA LAS SOLICITUD DE RED HACIA LAS APIS
-                using (HttpClient client = new HttpClient())
+                // --- PROMPT ANTI-ALUCINACIONES NUMÉRICAS ---
+                string promptSistema = @"
+                Actúa como un experto redactor técnico.
+                TU TAREA: Reestructurar la información en un informe profesional limpio y secuencial.
+
+                REGLAS CRÍTICAS DE NUMERACIÓN:
+                1. IGNORA ABSOLUTAMENTE cualquier numeración del texto original (como '37.', '01.', números de página).
+                2. Ten CUIDADO con nombres de eventos que incluyen números (ej: 'PERUMIN 37'). NO uses ese '37' como viñeta.
+                3. GENERA TU PROPIA numeración secuencial lógica empezando estrictamente desde 1 (1., 2., 3...).
+                
+                ESTRUCTURA DE SALIDA:
+                - Primer Párrafo: Resumen ejecutivo (TEXTO CORRIDO, SIN NÚMEROS AL INICIO).
+                - Cuerpo: Lista numerada ordenada (1., 2., 3...).
+                - Detalles: Usa viñetas (-) para sub-puntos.
+
+                Devuelve SOLO el texto plano reestructurado.
+            ";
+
+                foreach (var modeloActual in modelosAUsar)
                 {
-                    // USO DEL MODELO GEMINI DE GOOGLE
-                    if (modeloseleccionado == "gemini")
+                    try
                     {
-                        // 1. OBTENER LA API KEY DE FORMA SEGURA (desde App.config)
-                        string apiKey = ConfigurationManager.AppSettings["GeminiApiKey"];
+                        string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modeloActual}:generateContent?key={apiKey}";
 
-                        if (string.IsNullOrEmpty(apiKey))
+                        var payload = new
                         {
-                            return "UPS OCURRIO UN ERROR";
-                        }
-
-                        //ARREGLO DE MODELOS SI 1 DA ERROR Y NO FUNCIONA SIGUE AL SIGUIENTE MODELO HASTA QUE 1 DE ELLOS ENVIE LA REDACCIÓN
-                        string[] modelosGemini = { 
-                            "gemini-2.5-pro",
-                            "gemini-2.5-flash",
-                            "gemini-2.5-flash-lite",
-                            "gemini-2.0-flash", 
-                            "gemini-2.0-flash-lite",
-                            "gemini-2.0-flash-exp" };
-
-                        Exception ultimoerror = null;
-
-                        foreach (var modeloactual in modelosGemini)
-                        {
-                            try
-                            {                              
-                                url = $"https://generativelanguage.googleapis.com/v1beta/models/{modeloactual}:generateContent?key={apiKey}";
-
-                                // 3. PROMPT DE REDACCIÓN
-                                prompt =
-                                    "Eres un asistente experto en redacción de informes técnicos. Tu tarea es reestructurar y reformular el siguiente texto en ESPAÑOL en un informe profesional. " +
-
-                                    "**REGLAS CRÍTICAS (DEBES SEGUIRLAS):**" +
-                                    "1. **Introducción:** Comienza con un párrafo de resumen. Este párrafo **NUNCA DEBE SER NUMERADO** (ej: sin '5.') y **NUNCA DEBE EMPEZAR CON GUION** (-)." +
-                                    "2. **Secciones Numeradas:** Después de la introducción, las secciones DEBEN empezar con un número (ej: '1. GESTIONES...')." +
-                                    "3. **Palabras Compuestas:** Palabras con guion (como 'técnico-comercial') **DEBEN PERMANECER JUNTAS**. NO las separes. 'TÉCNICO\r\n-COMERCIAL' es un error grave." +
-                                    "4. **Fechas y Números:** NUNCA separes una fecha o un número (ej: '...DE 202\r\n5' es un error grave)." +
-                                    "5. **Viñetas:** Usa guiones (-) solo para viñetas (puntos de acción)." +
-                                    "6. **Salida Limpia:** Devuelve solo el texto reformulado. Sin saludos, sin Markdown, sin explicaciones. Mantén 100% el contexto." +
-                                    "7. Prohibición de Listas Falsas: Los números presentes en el texto (años, cantidades, referencias) deben permanecer como texto corrido. ESTÁ PROHIBIDO formatearlos como viñetas o elementos de lista a menos que sean explícitamente una nueva sección." +
-
-                                    "\nEl texto a reformular es:\n\n\"" + textoLimpio + "\"";
-
-                                // PREPARACION DEL PAQUETE DE DATOS EN FORMATO JSON
-                                var jsonData = new
-                                {
-                                    contents = new[]
-                                    {
-                                        new { parts = new[] { new { text = prompt } } }
-                                    },
-                                    generationConfig = new
-                                    {
-                                        temperature = 0.4 // CREATIVIDAD BAJA PARA LA IA (0.4) PARA QUE EL RESULTADO SEA PRECISO Y NO SE VAYA POR OTRO LADO
-                                    }
-                                };
-
-                                //CONVERTIR EL OBJETO A JSON
-                                string json = JsonConvert.SerializeObject(jsonData);
-                                content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                                //  ENVÍO DE DATOS A LA API DE GEMINI
-                                var response = await client.PostAsync(url, content);
-                                response.EnsureSuccessStatusCode();
-
-                                // LECTURA DE LA RESPUESTA QUE TRAJO LA API DE GEMINI
-                                string jsonResponse = await response.Content.ReadAsStringAsync();
-                                dynamic data = JsonConvert.DeserializeObject(jsonResponse);
-
-                                //SI NO TRAE NADA EN LA RESPUESTA O ESTA BLOQUEADO
-                                if (data["candidates"] == null || data["candidates"][0]["content"] == null)
-                                {
-                                    return "ERROR: LA RESPUESTA FUE BLOQUEADA O NO ES VALIDA.";
-                                }
-                                //SINO SE EXTRAE EL CONTENIDO
-                                else
-                                {
-                                    textoFinal = data["candidates"][0]["content"]["parts"][0]["text"].ToString();
-                                    solicitudexitosa = true;
-                                    break;
-                                }
-                            }
-                            catch (Exception ex)
+                            contents = new[]
                             {
-                                //SI FALLA EL MODELO QUE SE LE HA ENVIADO LOS DATOS, SE GUARDA EL ERROR Y EL BUCLE CONTINUA AL SIGUIENTE MODELO
-                                ultimoerror = ex;
+                                new {
+                                        parts = new[] {
+                                            new { text = promptSistema + "\n\nTEXTO FUENTE:\n" + textoLimpio }
+                                        }
+                                    }
+                            },
+                            generationConfig = new
+                            {
+                                temperature = 0.3,
+                                maxOutputTokens = 2000,
+                                candidateCount = 1
                             }
-                        }
+                        };
 
-                        //SI NINGUN MODELO FUNCIONO SE ENVIA EL ULTIMO ERROR
-                        if (!solicitudexitosa)
+                        string jsonPayload = JsonConvert.SerializeObject(payload);
+                        StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+                        var response = await client.PostAsync(url, content).ConfigureAwait(false);
+
+                        if (!response.IsSuccessStatusCode) throw new Exception($"Error HTTP {response.StatusCode}");
+
+                        string jsonResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        dynamic data = JsonConvert.DeserializeObject(jsonResponse);
+
+                        string respuestaTexto = data?.candidates?[0]?.content?.parts?[0]?.text;
+
+                        if (!string.IsNullOrWhiteSpace(respuestaTexto))
                         {
-                            return "OCURRIO UN ERROR: " + (ultimoerror.Message.ToUpper() ?? "ERROR DESCONOCIDO");
+                            textoFinal = respuestaTexto;
+                            solicitudExitosa = true;
+                            break;
                         }
                     }
-
-                    else
+                    catch (Exception ex)
                     {
-                        return "MODELO NO SOPORTADO.";
+                        ultimoError = ex;
                     }
                 }
 
-                //SI LA IA DEVOLVIO VACIO
-                if (string.IsNullOrWhiteSpace(textoFinal))
-                {
-                    return "ERROR NO SE GENERO TEXTO.";
-                }
+                if (!solicitudExitosa) return $"ERROR: {ultimoError?.Message ?? "Sin respuesta"}";
 
-                //LIMPIEZA FINAL DEL TEXTO
-                textoFinal = textoFinal
-                    .Replace("\\r", "")
-                    .Replace("\\n", "\r\n")
-                    .Replace("\\t", " ")
-                    .Replace("```", "")
-                    .Replace("**", "")
-                    .Replace("* ", "\r\n- ")
-                    .Trim();
+                // --- LIMPIEZA FINAL ---
 
-                // Asegura saltos de línea ANTES de los guiones
-                textoFinal = Regex.Replace(textoFinal, @"(?<!\w)\s*-\s+", "\r\n- ");
+                // 1. Normalizar saltos de línea
+                textoFinal = textoFinal.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Environment.NewLine);
 
-                //// Asegura DOBLE salto de línea ANTES de los números (1. TEMA, 2. TEMA)
-                textoFinal = Regex.Replace(textoFinal, @"(^|[\.\:\?!]\s+)(\d+\.)\s+", "$1\r\n\r\n$2 ");
+                // 2. Eliminar Markdown residual
+                textoFinal = textoFinal.Replace("**", "").Replace("##", "").Replace("`", "");
 
-                //// Quita espacios en blanco o saltos de línea duplicados
-                textoFinal = Regex.Replace(textoFinal, @"(\r\n\s*){2,}", "\r\n\r\n").Trim();
+                // 3. LIMPIEZA DE "RUIDO" POST-GENERACIÓN (SOLUCIÓN AL 37 SUELTO)
+                // Borra cualquier línea que haya quedado conteniendo solo números y puntos (ej: una línea que sea solo "37.")
+                textoFinal = Regex.Replace(textoFinal, @"(?m)^\s*\d+[\.\)]\s*(\r\n|\r|\n|$)", "");
 
-                // Quita el primer guion si está al inicio
-                if (textoFinal.StartsWith("- "))
-                {
-                    textoFinal = textoFinal.Substring(2);
-                }
+                // 4. Limpieza de espacios dobles
+                textoFinal = Regex.Replace(textoFinal, @" +", " ");
 
+                // 5. Formato de lista: Asegurar espacio después del punto ("1.Texto" -> "1. Texto")
+                textoFinal = Regex.Replace(textoFinal, @"(\d+\.)([^\s])", "$1 $2");
 
-                textoFinal = textoFinal.ToUpper();
+                textoFinal = Regex.Replace(textoFinal, @"(?<=[\.\:\?!]|\r|\n|^)\s+(\d+\.)", $"{Environment.NewLine}{Environment.NewLine}$1");
+
+                // 7. Eliminar saltos de línea excesivos (más de 3 seguidos se vuelven 2)
+                textoFinal = Regex.Replace(textoFinal, @"(\r\n){3,}", $"{Environment.NewLine}{Environment.NewLine}");
+
+                textoFinal = textoFinal.ToUpper().Trim();
 
                 return textoFinal;
             }
             catch (Exception ex)
             {
-                return "UPS OCURRIO UN ERROR: " + ex.Message.ToUpper();
+                return "EXCEPCIÓN: " + ex.Message.ToUpper();
+            }
+        }
+
+        //-----------------------------------------------------------------------
+        //----------------------------
+        //METODO PARA TRANSCRIBIR AUDIO A TEXTO USANDO GEMINI   
+        public async Task<string> TranscribirAudioATexto(string rutaArchivoaudio)
+        {
+            try
+            {
+                string apikey = ConfigurationManager.AppSettings["GeminiApiKey"];
+
+                if (!File.Exists(rutaArchivoaudio))
+                {
+                    return "ERROR: EL ARCHIVO DE AUDIO NO EXISTE";
+                }
+
+                //EXTENSION DEL ARCHIVO EN MINUSCULAS
+                string extension = Path.GetExtension(rutaArchivoaudio).ToLower();
+                string mimeType = "";
+
+                //CAPTURA DE LA EXTENSIÓN Y ASIGNACIÓN DEL MIME TYPE
+                switch (extension)
+                {
+                    case ".mp3": mimeType = "audio/mp3"; break;
+                    case ".wav": mimeType = "audio/wav"; break;
+                    case ".ogg": mimeType = "audio/ogg"; break;
+                    case ".opus": mimeType = "audio/ogg"; break;
+                    case ".m4a": mimeType = "audio/m4a"; break;
+                    default: return "ERROR: FORMATO NO SOPORTADO";
+                }
+
+                byte[] audioBytes = File.ReadAllBytes(rutaArchivoaudio);
+                string audioBase64 = Convert.ToBase64String(audioBytes);
+
+                // USO DEL MODELO GEMINI DE GOOGLE 2.5 FLASH
+                string modelo = "gemini-2.5-flash";
+                string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apikey}";
+
+                //CUERPO DEL JSON A ENVIAR
+                var jsondata = new
+                {
+                    contents = new[]
+                    {
+                        new
+                        {
+                            parts = new object[]
+                            {
+                                new { inlineData = new { mimeType = mimeType, data = audioBase64 } },
+                                new { text = "Transcribe esto textualmente." }
+                            }
+                        }
+                    }
+                };
+
+                using (HttpClient client = new HttpClient())
+                {
+                    string jsonString = JsonConvert.SerializeObject(jsondata);
+                    StringContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+                    // Llamada única a la API
+                    var response = await client.PostAsync(url, content);
+
+                    // Verificación estándar de errores (400, 401, 404, 500, etc.)
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        string errorMsg = await response.Content.ReadAsStringAsync();
+                        return $"ERROR API: {response.StatusCode} - {errorMsg}";
+                    }
+
+                    dynamic data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+
+                    if (data["candidates"] == null)
+                    {
+                        return "ERROR: LA IA NO PUDO ESCUCHAR.";
+                    }
+
+
+                    return data["candidates"][0]["content"]["parts"][0]["text"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                return "ERROR CRÍTICO: " + ex.Message;
             }
         }
     }
