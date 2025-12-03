@@ -523,17 +523,17 @@
     <Compile Include="Modulos\Produccion\ConsultasOT\ListadoOT.Designer.cs">
       <DependentUpon>ListadoOT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\ListadoPedidosOT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Produccion\ConsultasOT\ListadoPedidosOT.Designer.cs">
+      <DependentUpon>ListadoPedidosOT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Produccion\ConsultasOT\MenuConsultaOT.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulos\Produccion\ConsultasOT\MenuConsultaOT.Designer.cs">
       <DependentUpon>MenuConsultaOT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modulos\Produccion\ConsultasOT\NuevaOT.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modulos\Produccion\ConsultasOT\NuevaOT.Designer.cs">
-      <DependentUpon>NuevaOT.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Produccion\MenuProduccion.cs">
       <SubType>Form</SubType>
@@ -977,11 +977,11 @@
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\ListadoOT.resx">
       <DependentUpon>ListadoOT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\ListadoPedidosOT.resx">
+      <DependentUpon>ListadoPedidosOT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\MenuConsultaOT.resx">
       <DependentUpon>MenuConsultaOT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modulos\Produccion\ConsultasOT\NuevaOT.resx">
-      <DependentUpon>NuevaOT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Produccion\MenuProduccion.resx">
       <DependentUpon>MenuProduccion.cs</DependentUpon>

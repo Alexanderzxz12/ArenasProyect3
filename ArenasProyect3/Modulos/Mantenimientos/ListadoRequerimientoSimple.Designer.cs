@@ -1037,7 +1037,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelBuscarProductos.Controls.Add(this.txtBusquedaProducto);
             this.panelBuscarProductos.Controls.Add(this.label14);
             this.panelBuscarProductos.Controls.Add(this.panel9);
-            this.panelBuscarProductos.Location = new System.Drawing.Point(79, 54);
+            this.panelBuscarProductos.Location = new System.Drawing.Point(1118, 53);
             this.panelBuscarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.panelBuscarProductos.Name = "panelBuscarProductos";
             this.panelBuscarProductos.Size = new System.Drawing.Size(1014, 502);
@@ -1930,7 +1930,7 @@ namespace ArenasProyect3.Modulos.Mantenimientos
             this.panelEditarRequerimiento.Controls.Add(this.label46);
             this.panelEditarRequerimiento.Controls.Add(this.txtSolicitante);
             this.panelEditarRequerimiento.Controls.Add(this.groupBox3);
-            this.panelEditarRequerimiento.Location = new System.Drawing.Point(127, 27);
+            this.panelEditarRequerimiento.Location = new System.Drawing.Point(1077, 57);
             this.panelEditarRequerimiento.Margin = new System.Windows.Forms.Padding(4);
             this.panelEditarRequerimiento.Name = "panelEditarRequerimiento";
             this.panelEditarRequerimiento.Size = new System.Drawing.Size(918, 600);

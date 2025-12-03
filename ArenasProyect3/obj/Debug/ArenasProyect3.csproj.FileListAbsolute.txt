@@ -493,7 +493,6 @@ C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProye
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOP.MenuConsultasOP.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.ListadoOT.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.MenuConsultaOT.resources
-C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.NuevaOT.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.MenuProduccion.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.UsuariosPermisos.Usuarios.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Properties.Resources.resources
@@ -526,3 +525,4 @@ C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProye
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Calidad.Revision.ListadoOrdenTrabajo.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Visualizadores.VisualizarSNCOT.resources
 C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.ListadoDetalleSncDestruc.resources
+C:\Users\AHUAMAN-PC\Desktop\ArenaProyect1.0\ArenasProyect3\obj\Debug\ArenasProyect3.Modulos.Produccion.ConsultasOT.ListadoPedidosOT.resources

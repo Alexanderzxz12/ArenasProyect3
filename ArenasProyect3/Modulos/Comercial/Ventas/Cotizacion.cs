@@ -30,12 +30,10 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
 {
     public partial class Cotizacion : Form
     {
-        //COMENTARIO AGREGADO PARA VLAIDACION DE LA HERRAMIENTA GITHUB *****WC 1.1 warren cuadros!!
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
-
         private Cursor curAnterior = null;
         string ruta = ManGeneral.Manual.manualAreaComercial;
-
+        DataGridView dgvActivo = null;
         int CodigoCLiente = 0;
         int codigoCotizacion;
         string CodigoGeneradoCotizacion = "";
@@ -54,21 +52,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //INICIO Y CARGA INICIAL DE COTIZACIONES - CONSTRUCTOR--------------------------------------------------------------------------------------
         private void Cotizacion_Load(object sender, EventArgs e)
         {
-            //AJUSTAR FECHAS AL INICIO DEL MES Y FINAL DEL MES
             DateTime date = DateTime.Now;
             DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
             DateTime oUltimoDiaDelMes = oPrimerDiaDelMes.AddMonths(1).AddDays(-1);
-            //ASIGNARLE LAS VARIABLES YA CARGADAS A MIS DateTimerPicker
+
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
-
-            //BLOQUEAR MI LISTADO PARA EVITAR MALAS CARGAS Y CARGAS DE DATOS
-            datalistadoTodasCotiaciones.DataSource = null;
-            datalistadoTodasCotiacionesPendientes.DataSource = null;
-            datalistadoTodasCotiacionesParcial.DataSource = null;
-            datalistadoTodasCotiacionesCompletado.DataSource = null;
-            datalistadoTodasCotiacionesVencidos.DataSource = null;
             cboBusqeudaClienteResponsable.SelectedIndex = 0;
+            VerificarDGVActivo();
 
             //PREFILES Y PERSIMOS------------------------------------------------------------------------------------------------------------------
             //SI EL USUARIO TIENE UN RANGO DE EFECTO DE 1 (JEFATURA DEL ÁREA COMERCIAL)
@@ -85,6 +76,1792 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 lblLeyendaAnularCotizacion.Visible = true;
             }
         }
+
+        //LISTADO DE COTIZACIONES Y SELECCION DE DETALLES Y ESTADO DE COTIZACIONES---------------------
+        //CARGAR TODAS LAS COTIZACIONES INGRESADAS
+        public void CargarCotizaciones(DateTime fechaInicio, DateTime fechaTermino, string cliente = null, string responsable = null)
+        {
+            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+            using (SqlCommand cmd = new SqlCommand("Cotizacion_Mostrar", con))
+            {
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    cmd.Parameters.AddWithValue("@cliente", (object)cliente ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@responsable", (object)responsable ?? DBNull.Value);
+                    try
+                    {
+                        con.Open();
+                        System.Data.DataTable dt = new System.Data.DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+
+                        datalistadoTodasCotiaciones.DataSource = dt;
+                        DataRow[] rowsEnProceso = dt.Select("[ESTADO COTIZACIÓN] IN ('PENDIENTE', 'FUERA DE FECHA', 'INCOMPLETA')");
+                        // Si hay filas, crea un nuevo DataTable, si no, usa una copia vacía del esquema.
+                        System.Data.DataTable dtEnProceso = rowsEnProceso.Any() ? rowsEnProceso.CopyToDataTable() : dt.Clone();
+                        datalistadoTodasCotiacionesPendientes.DataSource = dtEnProceso; // Asumiendo este es el nombre de tu DataGrid
+
+                        // --- 2.3. OT Observadas (Asumimos que el estado "Observadas" es FUERA DE FECHA o LÍMITE) ---
+                        DataRow[] rowIncompletos = dt.Select("[ESTADO COTIZACIÓN] IN ('INCOMPLETA')");
+                        System.Data.DataTable dtIncompletas = rowIncompletos.Any() ? rowIncompletos.CopyToDataTable() : dt.Clone();
+                        datalistadoTodasCotiacionesParcial.DataSource = dtIncompletas; // Asumiendo este es el nombre de tu DataGrid
+
+                        // --- 2.3. OT Observadas (Asumimos que el estado "Observadas" es FUERA DE FECHA o LÍMITE) ---
+                        DataRow[] rowCulminada = dt.Select("[ESTADO COTIZACIÓN] IN ('COMPLETADO')");
+                        System.Data.DataTable dtCulminada = rowCulminada.Any() ? rowCulminada.CopyToDataTable() : dt.Clone();
+                        datalistadoTodasCotiacionesCompletado.DataSource = dtCulminada; // Asumiendo este es el nombre de tu DataGrid
+
+                        // --- 2.3. OT Observadas (Asumimos que el estado "Observadas" es FUERA DE FECHA o LÍMITE) ---
+                        DataRow[] rowDespachda = dt.Select("[ESTADO COTIZACIÓN] IN ('FUERA DE FECHA')");
+                        System.Data.DataTable dtDespachada = rowDespachda.Any() ? rowDespachda.CopyToDataTable() : dt.Clone();
+                        datalistadoTodasCotiacionesVencidos.DataSource = dtDespachada; // Asumiendo este es el nombre de tu DataGrid
+
+                        ReordenarFilasMostrarCotizacion(datalistadoTodasCotiaciones);
+                        ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesPendientes);
+                        ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesParcial);
+                        ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesCompletado);
+                        ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesVencidos);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar el error, por ejemplo, mostrando un mensaje
+                        MessageBox.Show("Error al cargar las cotizaciones: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        //FUNCION PARA REORDENAR MIS LISTADOS
+        public void ReordenarFilasMostrarCotizacion(DataGridView DGV)
+        {
+            //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
+            DGV.Columns[2].Width = 76;
+            DGV.Columns[3].Width = 90;
+            DGV.Columns[4].Width = 90;
+            DGV.Columns[6].Width = 350;
+            DGV.Columns[8].Width = 150;
+            DGV.Columns[10].Width = 185;
+            DGV.Columns[12].Width = 185;
+            DGV.Columns[14].Width = 120;
+            DGV.Columns[27].Width = 75;
+            DGV.Columns[33].Width = 110;
+            //NO MOSTRAR LAS COLUMNAS QUE NO SEAN DE REELEVANCIA PARA EL USUARIO
+            DGV.Columns[1].Visible = false;
+            DGV.Columns[5].Visible = false;
+            DGV.Columns[7].Visible = false;
+            DGV.Columns[9].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[13].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
+            DGV.Columns[17].Visible = false;
+            DGV.Columns[18].Visible = false;
+            DGV.Columns[19].Visible = false;
+            DGV.Columns[20].Visible = false;
+            DGV.Columns[21].Visible = false;
+            DGV.Columns[22].Visible = false;
+            DGV.Columns[23].Visible = false;
+            DGV.Columns[24].Visible = false;
+            DGV.Columns[25].Visible = false;
+            DGV.Columns[26].Visible = false;
+            DGV.Columns[28].Visible = false;
+            DGV.Columns[29].Visible = false;
+            DGV.Columns[30].Visible = false;
+            DGV.Columns[31].Visible = false;
+            DGV.Columns[32].Visible = false;
+            DGV.Columns[34].Visible = false;
+            DGV.Columns[35].Visible = false;
+            //CARGAR EL MÉTODO QUE COLOREA LAS FILAS
+            CargarColoresListadoCotizacionesGeneral(DGV);
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO Y VER SI ESTAN VENCIDOS
+        public void CargarColoresListadoCotizacionesGeneral(DataGridView DGV)
+        {
+            try
+            {
+                //VARIABLE DE FECHA
+                var DateAndTime = DateTime.Now;
+                //RECORRER MI LISTADO PARA VALIDAR MIS COTIZACIONES, SI ESTAN VENCIDAS O NO
+                foreach (DataGridViewRow datorecuperado in DGV.Rows)
+                {
+                    //RECUERAR LA FECHA Y EL CÓDIGO DE MI COTIZACIÓN
+                    DateTime fechaValidez = Convert.ToDateTime(datorecuperado.Cells["FECHA DE VALIDEZ"].Value);
+                    int codigoCoti = Convert.ToInt32(datorecuperado.Cells["ID"].Value);
+                    string estadoCoti = Convert.ToString(datorecuperado.Cells["ESTADO COTIZACIÓN"].Value);
+                    //SI LA FECHA DE VALIDEZ ES MAYOR A LA FECHA ACTUAL CONSULTADA
+                    if (estadoCoti == "PENDIENTE")
+                    {
+                        if (fechaValidez < DateAndTime)
+                        {
+                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
+                            SqlConnection con = new SqlConnection();
+                            SqlCommand cmd = new SqlCommand();
+                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                            con.Open();
+                            cmd = new SqlCommand("Cotizacion_CambiarEstado", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idCoti", codigoCoti);
+                            cmd.Parameters.AddWithValue("@estadoCoti", 1);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                }
+
+                //RECORRIDO DE MI LISTADO
+                foreach (DataGridViewRow datorecuperado in DGV.Rows)
+                {
+                    //RECUPERAR EL VALOR DEL ESTADO DE MI COTIZACIÓN
+                    int estadoItems = Convert.ToInt32(datorecuperado.Cells["ESTADOCOTI"].Value);
+
+                    //SI MI COTIZACIÓN ESTA EN ESTADO 1
+                    if (estadoItems == 1)
+                    {
+                        //VENCIDO -> PLOMO
+                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
+                    }
+                    //SI MI COTIZACIÓN ESTA EN ESTADO 2
+                    else if (estadoItems == 2)
+                    {
+                        //PENDIENTE -> NEGRO
+                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                    //SI MI COTIZACIÓN ESTA EN ESTADO 3
+                    else if (estadoItems == 3)
+                    {
+                        //PARCIAL -> AMARILLO
+                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Goldenrod;
+                    }
+                    //SI MI COTIZACIÓN ESTA EN ESTADO 4
+                    else if (estadoItems == 4)
+                    {
+                        //COMPLETADO -> VERDE
+                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                    }
+                    //SI MI COTIZACIÓN ESTA EN ESTADO 0
+                    else if (estadoItems == 0)
+                    {
+                        //ANULADO -> ROJO
+                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al cargar los datos", "Validación del Sistema", MessageBoxButtons.OK);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //METODO PARA PINTAR DE COLORES LAS FILAS DE MI LSITADO
+        public void alternarColorFilas(DataGridView dgv)
+        {
+            try
+            {
+                {
+                    var withBlock = dgv;
+                    withBlock.RowsDefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
+                    withBlock.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //BÚSQYEDA DE COTIZACIONES POR FECHA
+        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
+        {
+            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //BÚSQYEDA DE COTIZACIONES POR FECHA
+        private void HastaFecha_ValueChanged(object sender, EventArgs e)
+        {
+            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //BÚSQUEDA DE COTIZACIONES POR FECHAS
+        private void btnMostrarTodo_Click(object sender, EventArgs e)
+        {
+            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //BÚSQYEDA DE COTIZACIONES POR RESPONSABLE - CLIENTE
+        private void txtBusquedaClienteCotizacion_TextChanged(object sender, EventArgs e)
+        {
+            string cliente = null;
+            string responsable = null;
+            string textoBusqueda = txtBusquedaClienteCotizacion.Text;
+
+            if (cboBusqeudaClienteResponsable.Text == "CLIENTE")
+            {
+                cliente = textoBusqueda;
+            }
+            else if (cboBusqeudaClienteResponsable.Text == "RESPONSABLE")
+            {
+                responsable = textoBusqueda;
+            }
+            CargarCotizaciones(
+                DesdeFecha.Value,
+                HastaFecha.Value,
+                cliente,
+                responsable
+            );
+        }
+
+        //CAMBIO DE CIRTERIO DE BUSQUEDA DE COTIZACIONES
+        private void cboBusqeudaClienteResponsable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaClienteCotizacion.Text = "";
+        }
+
+        //FUNCION PARA MOSTRAR LOS DETALLES DE MI COTIZACION
+        public void MostrarDetallesCoti(DataGridView DGV, DataGridViewCellEventArgs e, string solumnaDetalle, string tipo)
+        {
+            if (tipo == "click")
+            {
+                if (DGV.RowCount != 0)
+                {
+                    DataGridViewColumn currentColumnT = DGV.Columns[e.ColumnIndex];
+
+                    if (currentColumnT.Name == solumnaDetalle)
+                    {
+                        string estado = DGV.SelectedCells[33].Value.ToString();
+
+                        if (estado == "FUERA DE FECHA" || estado == "ANULADO")
+                        {
+                            MessageBox.Show("No se puede visualizar los detalles de esta cotización", "Validación del Sistema", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
+                            codigoCotizacion = Convert.ToInt32(DGV.SelectedCells[1].Value.ToString());
+                            DataGridViewColumn currentColumn = DGV.Columns[e.ColumnIndex];
+
+                            //ABRIR MI PANEL DE DETALLES
+                            panelDetalleitemsCotizacion.Visible = true;
+                            dgvActivo.Enabled = false;
+                            //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
+                            txtCodigoCotizacion.Text = DGV.SelectedCells[2].Value.ToString();
+                            //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
+                            MostrarItemsSegunCotizacion(codigoCotizacion);
+                            //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
+                            ColorearItemsCotizacion(datalistadoItemsCotizacion);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay ninguna cotización para visualizar, por favor filtre por algún criterio contemplado", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                if (DGV.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || DGV.SelectedCells[33].Value.ToString() == "ANULADO")
+                {
+                    MessageBox.Show("No se puede visualizar los detalles de esta cotización", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
+                    codigoCotizacion = Convert.ToInt32(DGV.SelectedCells[1].Value.ToString());
+                    DataGridViewColumn currentColumn = DGV.Columns[e.ColumnIndex];
+
+                    //ABRIR MI PANEL DE DETALLES
+                    panelDetalleitemsCotizacion.Visible = true;
+                    //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
+                    txtCodigoCotizacion.Text = DGV.SelectedCells[2].Value.ToString();
+                    //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
+                    MostrarItemsSegunCotizacion(codigoCotizacion);
+                    //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
+                    ColorearItemsCotizacion(datalistadoItemsCotizacion);
+                }
+            }
+        }
+
+        //COLOREAR MI LISTADO DE COTIZACION ITEMS
+        public void ColorearItemsCotizacion(DataGridView DGV)
+        {
+            //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
+            foreach (DataGridViewRow datorecuperado in DGV.Rows)
+            {
+                //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
+                bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
+                //SI MI ESTADO ES IGUAL FALSE
+                if (estadoItems == false)
+                {
+                    //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
+                    datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                }
+                else
+                {
+                    //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
+                    datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+        }
+
+        //VER DETALLES (ITEMS) DE MI COTIZACION
+        public void MostrarItemsSegunCotizacion(int idcotizacion)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cotizacion_MostrarItems", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idCotizacion", idcotizacion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoItemsCotizacion.DataSource = dt;
+                con.Close();
+                datalistadoItemsCotizacion.Columns[0].Visible = false;
+                datalistadoItemsCotizacion.Columns[1].ReadOnly = true;
+                datalistadoItemsCotizacion.Columns[2].ReadOnly = true;
+                datalistadoItemsCotizacion.Columns[3].ReadOnly = true;
+                datalistadoItemsCotizacion.Columns[4].ReadOnly = true;
+                datalistadoItemsCotizacion.Columns[5].ReadOnly = true;
+                datalistadoItemsCotizacion.Columns[6].ReadOnly = true;
+                datalistadoItemsCotizacion.Columns[8].ReadOnly = true;
+
+                datalistadoItemsCotizacion.Columns[1].Width = 90;
+                datalistadoItemsCotizacion.Columns[2].Width = 440;
+                datalistadoItemsCotizacion.Columns[3].Width = 70;
+                datalistadoItemsCotizacion.Columns[4].Width = 80;
+                datalistadoItemsCotizacion.Columns[5].Width = 80;
+                datalistadoItemsCotizacion.Columns[6].Width = 80;
+                datalistadoItemsCotizacion.Columns[7].Width = 60;
+                datalistadoItemsCotizacion.Columns[8].Width = 100;
+
+                datalistadoItemsCotizacion.Columns[9].Visible = false;
+                datalistadoItemsCotizacion.Columns[10].Visible = false;
+                datalistadoItemsCotizacion.Columns[11].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //ABERTURA DE LOS DETALLES DE TODOS MIS LISTADOS---------------------------------------------------------------------------------------------
+        private void datalistadoTodasCotiaciones_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiaciones, e, "detalles", "click");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiaciones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiaciones, e, "detalles", "doubleclick");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesPendientes, e, "detalles2", "click");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesPendientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesPendientes, e, "detalles2", "doubleclick");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesParcial_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesParcial, e, "detalles3", "click");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesParcial_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesParcial, e, "detalles3", "doubleclick");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesCompletado_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesCompletado, e, "detalles4", "click");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesCompletado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesCompletado, e, "detalles4", "doubleclick");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesVencidos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesVencidos, e, "detalles5", "click");
+        }
+
+        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesVencidos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarDetallesCoti(datalistadoTodasCotiacionesVencidos, e, "detalles5", "doubleclick");
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiaciones_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoTodasCotiaciones, "detalles", e);
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesPendientes_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoTodasCotiacionesPendientes, "detalles2", e);
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesParcial_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoTodasCotiacionesParcial, "detalles3", e);
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesCompletado_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoTodasCotiacionesCompletado, "detalles4", e);
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN----------------------------------------------------------------------------------
+        private void datalistadoTodasCotiacionesVencidos_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoTodasCotiacionesVencidos, "detalles5", e);
+        }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN - HISTORIAL
+        public void ModificarCursor(DataGridView dgv, string nomColum, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (dgv.Columns[e.ColumnIndex].Name == nomColum)
+            {
+                dgv.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                dgv.Cursor = curAnterior;
+            }
+        }
+
+        //ACCIONES PARA CREAR UNA NUEVA COTIZACION--------------------------------------------
+        //ABRIR VENTANA DE NUEVA COTIZACION
+        private void btnNuevaCotizacion_Click(object sender, EventArgs e)
+        {
+            panelNuevaCotizacion.Visible = true;
+            dgvActivo.Enabled = false;
+
+            var DateAndTime = DateTime.Now;
+            lblTituloCotizacion.Text = "NUEVA COTIZACIÓN";
+            DateAndTime = DateAndTime.AddDays(+10);
+            dateFechaValidez.Value = DateAndTime;
+            dateFechaEmision.Value = DateTime.Now;
+
+            LimpiarCotizacion();
+            CargarBrochures();
+
+            btnGuardarCotizacion.Visible = true;
+            lblGuardar.Visible = true;
+            btnEditarCotizacionAccion.Visible = false;
+            lblEditar.Visible = false;
+            datalistadoCotizacion.Columns[0].ReadOnly = true;
+            datalistadoCotizacion.Columns[1].ReadOnly = true;
+            datalistadoCotizacion.Columns[2].ReadOnly = true;
+            datalistadoCotizacion.Columns[6].ReadOnly = true;
+        }
+
+        //ABRIR LA VENTANA DE BSUAQUEDA DE CLIENTES
+        private void txtBusquedaClientes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                cboTipoBusquedaClientes.SelectedIndex = 0;
+                panelBusquedaClientes.Visible = true;
+                txtBusquedaClientes2.Text = txtBusquedaClientes.Text;
+                txtBusquedaClientes2.Focus();
+            }
+        }
+
+        //BUSCAR Y SELECCIONAR CLIENTES PARA LA COTIZACION
+        private void txtBusquedaClientes2_TextChanged(object sender, EventArgs e)
+        {
+            string documento = null;
+            string nombre = null;
+            string textoBusqueda = txtBusquedaClientes2.Text;
+
+            if (cboTipoBusquedaClientes.Text == "NOMBRES")
+            {
+                nombre = textoBusqueda;
+            }
+            else if (cboTipoBusquedaClientes.Text == "DOCUMENTO")
+            {
+                documento = textoBusqueda;
+            }
+            MostrarClientesBusqeuda(
+                nombre,
+                documento
+            );
+        }
+
+        //FUNCION PARA BUSCAR CLIENTES POR VARIOS CRITERIOS
+        public void MostrarClientesBusqeuda(string nombre = null, string documento = null)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cotizacion_BuscarClientes", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@documento", documento);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoclientes.DataSource = dt;
+                con.Close();
+                ReordenarColumnasBusquedaClientes(datalistadoclientes);
+                alternarColorFilas(datalistadoclientes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //FUNCION APRA REORDENAR MIS COLUMNAS D EMI BUSQUEDA DE CLIENTE
+        public void ReordenarColumnasBusquedaClientes(DataGridView DGV)
+        {
+            DGV.Columns[5].Visible = false;
+            DGV.Columns[6].Visible = false;
+            DGV.Columns[7].Visible = false;
+            DGV.Columns[8].Visible = false;
+            DGV.Columns[9].Visible = false;
+            DGV.Columns[10].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[12].Visible = false;
+            DGV.Columns[13].Visible = false;
+            DGV.Columns[14].Visible = false;
+            DGV.Columns[15].Visible = false;
+            DGV.Columns[16].Visible = false;
+            DGV.Columns[17].Visible = false;
+            DGV.Columns[18].Visible = false;
+            DGV.Columns[19].Visible = false;
+            DGV.Columns[20].Visible = false;
+            DGV.Columns[21].Visible = false;
+            DGV.Columns[22].Visible = false;
+            DGV.Columns[23].Visible = false;
+            DGV.Columns[24].Visible = false;
+            DGV.Columns[25].Visible = false;
+            DGV.Columns[26].Visible = false;
+            DGV.Columns[27].Visible = false;
+            DGV.Columns[28].Visible = false;
+            DGV.Columns[29].Visible = false;
+            DGV.Columns[30].Visible = false;
+
+            DGV.Columns[0].Width = 100;
+            DGV.Columns[1].Width = 90;
+            DGV.Columns[2].Width = 260;
+            DGV.Columns[3].Width = 100;
+            DGV.Columns[4].Width = 150;
+        }
+
+        //SELECCIONAR AL CLIENTE PARA LA COTIZACION
+        private void datalistadoclientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CodigoCLiente = Convert.ToInt32(datalistadoclientes.SelectedCells[30].Value.ToString());
+            txtNombreCliente.Text = datalistadoclientes.SelectedCells[2].Value.ToString();
+            txtDireccionClente.Text = datalistadoclientes.SelectedCells[21].Value.ToString();
+            txtDocumentoCliente.Text = datalistadoclientes.SelectedCells[1].Value.ToString();
+            panelBusquedaClientes.Visible = false;
+            txtBusquedaClientes.Text = "";
+            txtBusquedaClientes2.Text = "";
+            txtLugarEntregado.Text = "Campo Opcional";
+
+            CargarUnidad(CodigoCLiente, cboUnidadCliente);
+            CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadCliente.SelectedValue?.ToString()));
+            CargarContacto(CodigoCLiente, cboContactoCliente);
+            CargarCondicion(CodigoCLiente, cboCondicionPagoCliente);
+            CargarForma(CodigoCLiente, cboFormaPagoCliente);
+            CargarComercial(cboComercial);
+            CargarMoneda(cboMoneda);
+
+            //COLOCACION DE MONEDA
+            if (cboMoneda.Text == "DOLARES AMERICANOS")
+            {
+                imgDolares.Visible = true;
+                imgEuros.Visible = false;
+                imgSoles.Visible = false;
+            }
+            else if (cboMoneda.Text == "EUROS")
+            {
+                imgDolares.Visible = false;
+                imgEuros.Visible = true;
+                imgSoles.Visible = false;
+            }
+            else if (cboMoneda.Text == "SOLES")
+            {
+                imgDolares.Visible = false;
+                imgEuros.Visible = false;
+                imgSoles.Visible = true;
+            }
+            CargarAlmacen(cboAlmacen);
+        }
+
+        //POSISCIONARSE EN MI CAJA DE BÚISQUEDA
+        private void cboTipoBusquedaClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBusquedaClientes2.Text = "";
+        }
+
+        //CERRAR LA BUSQUEDA DE CLIENTES
+        private void btnCerrarBusquedaCLiente_Click(object sender, EventArgs e)
+        {
+            panelBusquedaClientes.Visible = false;
+            txtBusquedaClientes2.Text = "";
+        }
+
+        //FUNCION PARA LIMPIAR TODOS LOS CAMPOS DE MI COTIZACION
+        public void LimpiarCotizacion()
+        {
+            //LIMPIESA DE CAMPOS
+            txtNombreCliente.Text = "";
+            txtDireccionClente.Text = "";
+            txtDocumentoCliente.Text = "";
+            cboUnidadCliente.DataSource = null;
+            cboResponsableCliente.DataSource = null;
+            cboContactoCliente.DataSource = null;
+            cboCondicionPagoCliente.DataSource = null;
+            cboFormaPagoCliente.DataSource = null;
+            ckAlmacenArenas.Checked = false;
+
+            datalistadoCotizacion.Rows.Clear();
+            txtObservaciones.Text = "";
+            txtLugarEntregado.Text = "";
+            txtReferencia.Text = "Campo Obligatorio";
+            txtGarantia.Text = "";
+
+            txtSubTotal.Text = "0.00";
+            txtDescuento.Text = "0.00";
+            txtInafecta.Text = "0.00";
+            txtExonerada.Text = "0.00";
+            txtIgv.Text = "0.00";
+            txtTotalDescuento.Text = "0.00";
+            txtTotal.Text = "0.00";
+            SelectDescuento.Text = "0.00";
+            SelectIgv.Text = "18.00";
+        }
+
+        //CARGAR BROCHURES
+        public void CargarBrochures()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdBrochures,Nombre,Ruta FROM Brochures WHERE Estado = 1", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cboBrochures.ValueMember = "IdBrochures";
+                cboBrochures.DisplayMember = "Nombre";
+                cboBrochures.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //AGREGAR ITEMS A MI COTIZACION--------------------------------------------------------------------------------------------------
+        //AGREGAR FORMULACION
+        private void btnAgregarFormulacion_Click(object sender, EventArgs e)
+        {
+            if (txtNombreCliente.Text == "")
+            {
+                MessageBox.Show("Seleccione un cliente para poder continuar", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                cboFiltroFormulacion.SelectedIndex = 0;
+                panelSeleccionarFormulaciones.Visible = true;
+                cboBusquedaFormulaciones.SelectedIndex = 0;
+                txtBusquedaFormulaciones.Text = "";
+                datalistadoFormulacionesSeleccionadas.Rows.Clear();
+                datalistadoBusquedaFormulaciones.DataSource = null;
+                cboBusquedaFormulaciones.SelectedIndex = 3;
+                cboTipoProducto.SelectedIndex = 0;
+            }
+        }
+
+        //BUSCAR FORMULACIONES PARA AGREGAR A MI COTIZAVION
+        private void txtBusquedaFormulaciones_TextChanged(object sender, EventArgs e)
+        {
+            string descripcion = null;
+            string codigoPro = null;
+            string codigoFor = null;
+            string codigoBSS = null;
+            string textoBusqueda = txtBusquedaFormulaciones.Text;
+
+            if (cboBusquedaFormulaciones.Text == "DESCRIPCIÓN")
+            {
+                descripcion = textoBusqueda;
+            }
+            else if (cboBusquedaFormulaciones.Text == "CÓDIGO")
+            {
+                codigoPro = textoBusqueda;
+            }
+            else if (cboBusquedaFormulaciones.Text == "C. FORMULACIÓN")
+            {
+                codigoFor = textoBusqueda;
+            }
+            else if (cboBusquedaFormulaciones.Text == "CÓDIGO BSS")
+            {
+                codigoBSS = textoBusqueda;
+            }
+
+            if (cboTipoProducto.Text == "PRODUCTOS FABRICADOS")
+            {
+                MostrarFormulacionesPor(
+                    descripcion,
+                    codigoPro,
+                    codigoFor,
+                    codigoBSS
+                );
+            }
+            else
+            {
+                MostrarProductoPor(
+                    descripcion,
+                    codigoPro,
+                    codigoBSS
+                );
+            }
+        }
+
+        //FUNCION PARA BUSCAR MIS FORMULACIONES
+        public void MostrarFormulacionesPor(string descripcion = null, string codigoPro = null, string codigoFor = null, string codigoBSS = null)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPor", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                cmd.Parameters.AddWithValue("@codigoPRO", codigoPro);
+                cmd.Parameters.AddWithValue("@codigoFOR", codigoFor);
+                cmd.Parameters.AddWithValue("@codigoBSS", codigoBSS);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaFormulaciones.DataSource = dt;
+                con.Close();
+                ReordenarColumnasBusquedaClientes(datalistadoclientes);
+                alternarColorFilas(datalistadoclientes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //FUNCION PARA BUSCAR MIS FORMULACIONES
+        public void MostrarProductoPor(string descripcion = null, string codigoPro = null, string codigoBSS = null)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cotizacion_MostrarTodasProductoPor", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                cmd.Parameters.AddWithValue("@codigoPRO", codigoPro);
+                cmd.Parameters.AddWithValue("@codigoBSS", codigoBSS);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoBusquedaFormulaciones.DataSource = dt;
+                con.Close();
+                ReordenarColumnasBusquedaClientes(datalistadoclientes);
+                alternarColorFilas(datalistadoclientes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //ELIMINAR FORMULACION AGREGADA A MI COTIZACION DE AGREGAR FORMULACION
+        private void btnEliminarFormulacion_Click(object sender, EventArgs e)
+        {
+            if (datalistadoCotizacion.CurrentRow != null)
+            {
+                datalistadoCotizacion.Rows.Remove(datalistadoCotizacion.CurrentRow);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un registro para proceder con la eliminación", "Eliminación de un item", MessageBoxButtons.OK);
+            }
+        }
+
+        //GENERAR PEDIDO A MI COTIZACION - DETALLE
+        private void btnGenerarPedidoDetalle_Click(object sender, EventArgs e)
+        {
+            if (dgvActivo.CurrentRow != null)
+            {
+                int habilitado = 0;
+                //VERIFICARSI HAY ITEMS SELECCIOANDOS
+                foreach (DataGridViewRow row in datalistadoItemsCotizacion.Rows)
+                {
+                    bool skPedido = Convert.ToBoolean(row.Cells[7].Value);
+                    string estadoPedido = Convert.ToString(row.Cells[8].Value);
+
+                    if (skPedido == true && estadoPedido == "SIN PEDIDO")
+                    {
+                        habilitado = 1;
+                        break;
+                    }
+                }
+
+                //VALIDAR SI HAY ITEMS SELECCIOANDOS
+                if (habilitado == 1)
+                {
+                    codigoCotizacion = int.Parse(dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString());
+
+                    //BUSCAR ITEMS DE MI COTIZACION
+                    BuscarCotizacionPorCodigo(codigoCotizacion);
+
+                    CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadClientePedido);
+                    CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadCliente.SelectedValue.ToString()));
+                    CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoClientePedido);
+                    CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoClientePedido);
+                    CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoClientePedido);
+                    CargarMoneda(cboMonedaPedido);
+                    CargarAlmacen(cboAlmacenPedido);
+
+                    FechaAhoraPedido.Value = DateTime.Now;
+                    FechaPedidoPedido.Value = DateTime.Now;
+                    FechaEntregaPedido.Value = DateTime.Now;
+                    dateTimeFechaTermino.Value = DateTime.Now;
+                    txtCodigoClientePedido.Text = dataListadiCotiXCodigo.SelectedCells[32].Value.ToString();
+                    txtClientePedido.Text = dataListadiCotiXCodigo.SelectedCells[5].Value.ToString();
+                    txtDireccionCLientePedido.Text = dataListadiCotiXCodigo.SelectedCells[33].Value.ToString();
+                    txtLugarEntregaPedido.Text = dataListadiCotiXCodigo.SelectedCells[16].Value.ToString();
+
+
+                    FechaCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[2].Value.ToString();
+                    txtCodigoCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[1].Value.ToString();
+                    txtIdCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[0].Value.ToString();
+
+                    cboUnidadClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[6].Value.ToString();
+                    cboResponsableClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[8].Value.ToString();
+                    cboContactoClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[27].Value.ToString();
+                    cboCondicionPagoClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[29].Value.ToString();
+                    cboFormaPagoClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[28].Value.ToString();
+                    cboMonedaPedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[12].Value.ToString();
+                    cboAlmacenPedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[15].Value.ToString();
+
+                    //DETALLES DEL PEDIDO
+                    datalistadoGeneracionPedido.Rows.Clear();
+                    try
+                    {
+                        foreach (DataGridViewRow row in datalistadoItemsCotizacion.Rows)
+                        {
+                            bool skPedido = Convert.ToBoolean(row.Cells[7].Value);
+                            string estadoPedido = Convert.ToString(row.Cells[8].Value);
+
+                            if (skPedido == true && estadoPedido == "SIN PEDIDO")
+                            {
+                                string idDetalleCotizacion = row.Cells[0].Value.ToString();
+                                string item = row.Cells[9].Value.ToString();
+                                string codigoProducto = row.Cells[1].Value.ToString();
+                                string descripcion = row.Cells[2].Value.ToString();
+                                string cantidad = row.Cells[3].Value.ToString();
+                                string preciounidad = row.Cells[4].Value.ToString();
+                                string descuento = row.Cells[5].Value.ToString();
+                                string total = row.Cells[6].Value.ToString();
+                                string idProducto = row.Cells[11].Value.ToString();
+                                string codigoFormulacion = row.Cells[10].Value.ToString();
+
+                                datalistadoGeneracionPedido.Rows.Add(new[] { null, item, codigoProducto, descripcion, cantidad, preciounidad, descuento, total, null, idProducto, null, null, codigoFormulacion, idDetalleCotizacion });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+                    }
+
+                    alternarColorFilas(datalistadoGeneracionPedido);
+                    panelGenerarPedido.Visible = true;
+                    panelDetalleitemsCotizacion.Visible = false;
+                    FechaEntregaPedido.Value = DateTime.Now;
+                    FechaPedidoPedido.Value = DateTime.Now;
+                    datalistadoGeneracionPedido.Columns[1].ReadOnly = true;
+                    datalistadoGeneracionPedido.Columns[2].ReadOnly = true;
+                    datalistadoGeneracionPedido.Columns[3].ReadOnly = true;
+                    datalistadoGeneracionPedido.Columns[7].ReadOnly = true;
+                    datalistadoGeneracionPedido.Columns[10].ReadOnly = true;
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar uno o más items para poder continuar con la generación del pedido", "Validación del sistema", MessageBoxButtons.OK);
+                }
+
+            }
+        }
+
+        //SALIR DE LOS DETALLES O ITEMS DE MI COTIZACION
+        private void btnRegresarRegistroitemsCotizacion_Click(object sender, EventArgs e)
+        {
+            panelDetalleitemsCotizacion.Visible = false;
+            dgvActivo.Enabled = true;
+        }
+
+        //EDITAR MI COTIZACION YA INGRESADA
+        private void btnEditarCotizacion_Click(object sender, EventArgs e)
+        {
+            codigoCotizacion = int.Parse(dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString());
+            string estadoCoti = dgvActivo.SelectedCells[33].Value.ToString();
+
+            if (estadoCoti == "FUERA DE FECHA" || estadoCoti == "ANULADO" || estadoCoti == "ADJUDICADO PARCIALMENTE" || estadoCoti == "COMPLETADO")
+            {
+                MessageBox.Show("La cotización que intenta editar ya se encuentra en un estado diferente a PENDIENTE, no se puede editar una cotización que este anulada, vencida o adjudicada parcial/total", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                //TAER LA CABECERA DE MI COTRIZACION
+                BuscarCotizacionPorCodigo(codigoCotizacion);
+                //BUSCAR ITEMS DE MI COTIZACION
+                BuscarCotizacionDetallePorCodigo(codigoCotizacion);
+
+                CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadCliente);
+                CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadCliente.SelectedValue.ToString()));
+                CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoCliente);
+                CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoCliente);
+                CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoCliente);
+                CargarMoneda(cboMoneda);
+                CargarAlmacen(cboAlmacen);
+                CargarComercial(cboComercial);
+
+                txtLugarEntregado.Text = dataListadiCotiXCodigo.SelectedCells[16].Value.ToString();
+                if (txtLugarEntregado.Text == "Calle El Martillo MZ B Lote 5 Urb. Industrial El Naranjal")
+                {
+                    ckAlmacenArenas.Checked = true;
+                }
+
+                txtGarantia.Text = dataListadiCotiXCodigo.SelectedCells[17].Value.ToString();
+                txtTiempoEntrega.Text = dataListadiCotiXCodigo.SelectedCells[18].Value.ToString();
+                txtDocumentoCliente.Text = dataListadiCotiXCodigo.SelectedCells[32].Value.ToString();
+                txtNombreCliente.Text = dataListadiCotiXCodigo.SelectedCells[5].Value.ToString();
+                txtDireccionClente.Text = dataListadiCotiXCodigo.SelectedCells[33].Value.ToString();
+                txtObservaciones.Text = dataListadiCotiXCodigo.SelectedCells[19].Value.ToString();
+                txtReferencia.Text = dataListadiCotiXCodigo.SelectedCells[14].Value.ToString();
+
+                dateFechaEmision.Text = dataListadiCotiXCodigo.SelectedCells[2].Value.ToString();
+                dateFechaValidez.Text = dataListadiCotiXCodigo.SelectedCells[3].Value.ToString();
+                txtCodigoCotizacion.Text = dataListadiCotiXCodigo.SelectedCells[1].Value.ToString();
+
+                cboUnidadCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[6].Value.ToString();
+                cboResponsableCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[8].Value.ToString();
+                cboContactoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[27].Value.ToString();
+                cboCondicionPagoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[29].Value.ToString();
+                cboFormaPagoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[28].Value.ToString();
+                cboMoneda.SelectedValue = dataListadiCotiXCodigo.SelectedCells[12].Value.ToString();
+                cboComercial.SelectedValue = dataListadiCotiXCodigo.SelectedCells[10].Value.ToString();
+                cboAlmacen.SelectedValue = dataListadiCotiXCodigo.SelectedCells[15].Value.ToString();
+
+                txtSubTotal.Text = dataListadiCotiXCodigo.SelectedCells[20].Value.ToString();
+                txtDescuento.Text = dataListadiCotiXCodigo.SelectedCells[21].Value.ToString();
+                txtInafecta.Text = dataListadiCotiXCodigo.SelectedCells[22].Value.ToString();
+                txtExonerada.Text = dataListadiCotiXCodigo.SelectedCells[23].Value.ToString();
+                txtIgv.Text = dataListadiCotiXCodigo.SelectedCells[24].Value.ToString();
+                txtTotalDescuento.Text = dataListadiCotiXCodigo.SelectedCells[25].Value.ToString();
+                txtTotal.Text = dataListadiCotiXCodigo.SelectedCells[26].Value.ToString();
+
+                CargarBrochures();
+                int estadoBrochure = Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[34].Value.ToString());
+                if (estadoBrochure == 1)
+                {
+                    ckAplicarBrochure.Checked = false;
+                }
+                else
+                {
+                    ckAplicarBrochure.Checked = true;
+                    cboBrochures.SelectedValue = estadoBrochure;
+                }
+
+                //CARGAR DETALLES DE LA COTIZACION
+                datalistadoCotizacion.Rows.Clear();
+
+                if (dataListadiCotiDetallesXCodigo.CurrentRow != null)
+                {
+                    foreach (DataGridViewRow row in dataListadiCotiDetallesXCodigo.Rows)
+                    {
+                        string idDetalleCotizacion = row.Cells[0].Value.ToString();
+                        string codigo = row.Cells[2].Value.ToString();
+                        string codigoformulacion = row.Cells[4].Value.ToString();
+                        string detalle = row.Cells[3].Value.ToString();
+                        string cantidad = row.Cells[5].Value.ToString();
+                        string precioUnitario = row.Cells[6].Value.ToString();
+                        string descuento = row.Cells[7].Value.ToString();
+                        string total = row.Cells[8].Value.ToString();
+                        string codigoCliente = row.Cells[13].Value.ToString();
+                        string descripcionCliente = row.Cells[14].Value.ToString();
+
+                        datalistadoCotizacion.Rows.Add(new[] { codigo, detalle, codigoformulacion, cantidad, precioUnitario, descuento, total, null, null, null, null, null, codigoCliente, descripcionCliente, idDetalleCotizacion });
+                    }
+                }
+
+                datalistadoFormulacionesSeleccionadas.Rows.Clear();
+                alternarColorFilas(datalistadoCotizacion);
+                CargarComboData();
+
+                btnGuardarCotizacion.Visible = false;
+                lblGuardar.Visible = false;
+                btnEditarCotizacionAccion.Visible = true;
+                lblEditar.Visible = true;
+
+                dgvActivo.Enabled = false;
+                panelNuevaCotizacion.Visible = true;
+
+                lblTituloCotizacion.Text = "EDICIÓN COTIZACIÓN";
+
+                datalistadoCotizacion.Columns[0].ReadOnly = true;
+                datalistadoCotizacion.Columns[1].ReadOnly = true;
+                datalistadoCotizacion.Columns[2].ReadOnly = true;
+                datalistadoCotizacion.Columns[6].ReadOnly = true;
+            }
+        }
+
+        //CLEINTES SELECCIONA DEWNTRO DE COTIZACIONES----------------------------------------------
+        //CARGAR UUNIDAD DE MIS CLIENTES
+        public void CargarUnidad(int idcliente, ComboBox cbo)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDatosAnexosClienteUnidad,Descripcion FROM DatosAnexosCliente_Unidad WHERE IdCliente = @idcliente AND Estado = 1", con);
+                comando.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDatosAnexosClienteUnidad";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //funcionar PARA CARGAR O RECARGAR MI RESPOSNABLE DE UNIDAD
+        private void cboUnidadCliente_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadCliente.SelectedValue.ToString()));
+        }
+
+        //CARGAR RESPONSABLE DE MIS CLIENTES
+        public void CargarResponsable(ComboBox cbo, int idUnidad)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT USU.IdUsuarios ,USU.Nombres + ' ' + USU.Apellidos AS [RESPONSABLE] FROM DatosAnexosCliente_Unidad DACU INNER JOIN Usuarios USU ON USU.IdUsuarios = DACU.IdResponsable WHERE DACU.IdDatosAnexosClienteUnidad = @idUnidad AND DACU.Estado = 1", con);
+                comando.Parameters.AddWithValue("@idUnidad", idUnidad);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "USU.IdUsuarios";
+                cbo.DisplayMember = "RESPONSABLE";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //CARGAR CONTACTO DE MIS CLIENTES
+        public void CargarContacto(int idcliente, ComboBox cbo)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdDatosAnexosClienteContacto,Descripcion FROM DatosAnexosCliente_Contacto WHERE IdCliente = @idcliente AND Estado = 1", con);
+                comando.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdDatosAnexosClienteContacto";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //CARGAR CONDICION DE MIS CLIENTES
+        public void CargarCondicion(int idcliente, ComboBox cbo)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT C.IdCondicionPago, C.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN CondicionPago C ON C.IdCondicionPago = DACC.IdCondicionPago WHERE IdCliente = @idcliente AND DACC.Estado = 1", con);
+                comando.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "C.IdCondicionPago";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //CARGAR EL COMBO DE FORMA DE CLIENTES
+        public void CargarForma(int idcliente, ComboBox cbo)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT F.IdFormaPago , F.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN FormaPago F ON F.IdFormaPago = DACC.IdFormaPago WHERE IdCliente = @idcliente AND DACC.Estado = 1", con);
+                comando.Parameters.AddWithValue("@idcliente", idcliente);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "F.IdFormaPago";
+                cbo.DisplayMember = "Descripcion";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //CARGA DE COMBOS PARA LA SELECCION DEL CLIENTE DE COTIZACION
+        public void CargarComercial(ComboBox cbo)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [COMERCIAL] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoCotizacion = 1 ORDER BY Nombres + '' + Apellidos", con);
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                data.Fill(dt);
+                cbo.ValueMember = "IdUsuarios";
+                cbo.DisplayMember = "COMERCIAL";
+                cbo.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //VALIDACION DE LA FECHA
+        private void dateFechaValidez_ValueChanged(object sender, EventArgs e)
+        {
+            // Obtener la fecha seleccionada
+            DateTime fechaSeleccionada = dateFechaValidez.Value;
+            // Obtener la fecha actual (sin horas para comparar solo fechas)
+            DateTime fechaActual = DateTime.Now.Date;
+            // Validar si la fecha seleccionada es menor a la actual
+            if (fechaSeleccionada < fechaActual)
+            {
+                MessageBox.Show("La fecha seleccionada no puede ser anterior a la actual.",
+                                "Validación de Fecha",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                // Opcional: devolver el control a la fecha actual
+                dateFechaValidez.Value = fechaActual;
+            }
+        }
+
+        //FUNCION PARA HACER CLICK EN MI CAJA DE LA REFERENCIA
+        private void txtReferencia_Click(object sender, EventArgs e)
+        {
+            if (txtReferencia.Text == "Campo Obligatorio")
+            {
+                txtReferencia.Text = "";
+                txtReferencia.ReadOnly = false;
+            }
+            else
+            {
+                txtReferencia.ReadOnly = false;
+            }
+        }
+
+        //CUANDO SE DESELECCIONA LAS LA REFERENCIA
+        private void txtReferencia_Leave(object sender, EventArgs e)
+        {
+            if (txtReferencia.Text == "")
+            {
+                txtReferencia.ReadOnly = true;
+                txtReferencia.Text = "Campo Obligatorio";
+                txtReferencia.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        //ELEGIR ALMACEN DE ARENAS
+        private void ckAlmacenArenas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckAlmacenArenas.Checked == true)
+            {
+                txtLugarEntregado.Text = "Calle El Martillo MZ B Lote 5 Urb. Industrial El Naranjal";
+            }
+            else
+            {
+                txtLugarEntregado.Text = "";
+            }
+        }
+
+        //BUSCAR  LUGAR DE ENTREGA
+        private void btnBuscarSucursalF_Click(object sender, EventArgs e)
+        {
+            if (txtDocumentoCliente.Text != "")
+            {
+                panelBusquedaSucursal.Visible = true;
+                txtClienteBusquedaSucursal.Text = txtNombreCliente.Text;
+                txtDocumentoBusquedaSucursal.Text = txtDocumentoCliente.Text;
+                BuscarSucursalesXCliente(CodigoCLiente);
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar a un cliente para poder desplegar las sucursales.", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //SELECCIONAR UNA SUCURSAL DE MI CLIENTE
+        private void datalistadoSucursalesXCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoSucursalesXCliente.Rows.Count > 0)
+            {
+                txtLugarEntregado.Text = datalistadoSucursalesXCliente.SelectedCells[2].Value.ToString();
+                panelBusquedaSucursal.Visible = false;
+            }
+        }
+
+        //LIMPIAR LUGAR DE ENTREGA
+        private void btnLimpiarLugarEntregaF_Click(object sender, EventArgs e)
+        {
+            txtLugarEntregado.ReadOnly = true;
+            txtLugarEntregado.Text = "Campo Opcional";
+            txtLugarEntregado.ForeColor = SystemColors.WindowText;
+            ckAlmacenArenas.Checked = false;
+        }
+
+        //CEERAR EL PANEL DE BUSQUEDA DE CLIENTES
+        private void txtCerrarBusquedaSucursal_Click(object sender, EventArgs e)
+        {
+            panelBusquedaSucursal.Visible = false;
+            txtClienteBusquedaSucursal.Text = "";
+            txtDocumentoBusquedaSucursal.Text = "";
+        }
+
+        //ABRIR LOS DETALLES DE MI FORMULACION
+        private void datalistadoCotizacion_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoCotizacion.CurrentRow != null)
+            {
+                DataGridViewColumn currentColumn = datalistadoCotizacion.Columns[e.ColumnIndex];
+
+                if (currentColumn.Name == "formulacion")
+                {
+                    panelDetalleFormulacion.Visible = true;
+                    panelDetalleFormulacion.BringToFront();
+
+                    txtBusquedaFormulacionDetalle.Text = datalistadoCotizacion.Rows[datalistadoCotizacion.CurrentRow.Index].Cells[1].Value.ToString();
+                    detalleProducido = datalistadoCotizacion.Rows[datalistadoCotizacion.CurrentRow.Index].Cells[1].Value.ToString();
+                    MostrarFormulacionesDetalle(detalleProducido);
+                }
+            }
+        }
+
+        //BLOQUEAR LA OPCIÓN DE BUSQUEDA POR HISTORIA
+        private void btnHistorialCotizaciones_Click(object sender, EventArgs e)
+        {
+            panelHistorialFormulacion.Visible = true;
+            panelHistorialFormulacion.BringToFront();
+
+            txtBusquedaHistorial.Text = txtNombreCliente.Text;
+            MostrarFormulacionesDetalleProCliente(CodigoCLiente);
+        }
+
+        //CERRAR MI LISTADO DE HOSTORIA
+        private void btnRegresarDetallesHistorial_Click(object sender, EventArgs e)
+        {
+            panelHistorialFormulacion.Visible = false;
+            datalistadoFormulacionesDetalleHistorial.DataSource = null;
+        }
+
+        //MOSTRAR MIS FORMULACIONES RELACIONADAS A MI PRODUCTO
+        public void MostrarFormulacionesDetalle(string detalle)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cotizacion_MostrarFormulaciones_Detalle", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@detalle", detalle);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoFormulacionesDetalle.DataSource = dt;
+                con.Close();
+                //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
+                datalistadoFormulacionesDetalle.Columns[0].Width = 88;
+                datalistadoFormulacionesDetalle.Columns[1].Width = 95;
+                datalistadoFormulacionesDetalle.Columns[2].Width = 430;
+                datalistadoFormulacionesDetalle.Columns[3].Width = 100;
+                datalistadoFormulacionesDetalle.Columns[4].Width = 95;
+                datalistadoFormulacionesDetalle.Columns[5].Width = 430;
+                datalistadoFormulacionesDetalle.Columns[6].Width = 100;
+                alternarColorFilas(datalistadoFormulacionesDetalle);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //MOSTRAR MIS FORMULACIONES RELACIONADAS A MI PRODUCTO
+        public void MostrarFormulacionesDetalleProCliente(int IdCliente)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cotizacion_MostrarFormulaciones_Detalle_Cliente", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idCliente", IdCliente);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadoFormulacionesHistorial.DataSource = dt;
+                con.Close();
+                //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
+                datalistadoFormulacionesHistorial.Columns[0].Width = 85;
+                datalistadoFormulacionesHistorial.Columns[1].Width = 80;
+                datalistadoFormulacionesHistorial.Columns[2].Width = 90;
+                datalistadoFormulacionesHistorial.Columns[3].Width = 98;
+                datalistadoFormulacionesHistorial.Columns[4].Width = 620;
+                datalistadoFormulacionesHistorial.Columns[5].Width = 100;
+                alternarColorFilas(datalistadoFormulacionesHistorial);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+
+        //SELECCIONAR Y VISUALIZAR LOS MATERIALES DE MI FORMULACION
+        private void datalistadoFormulacionesDetalle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (datalistadoFormulacionesDetalle.RowCount > 0)
+            {
+                string codigoformulacion = datalistadoFormulacionesDetalle.SelectedCells[0].Value.ToString();
+                MostrarFormulacionesDetalle2(codigoformulacion, datalistadoFormulacionesDetalle2);
+            }
+        }
+
+        //SELECCIONAR Y VISUALIZAR LOS MATERIALES DE MI FORMULACION
+        private void datalistadoFormulacionesHistorial_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(datalistadoFormulacionesHistorial.RowCount > 0)
+            {
+                string codigoformulacion = datalistadoFormulacionesHistorial.SelectedCells[2].Value.ToString();
+                MostrarFormulacionesDetalle2(codigoformulacion, datalistadoFormulacionesDetalleHistorial);
+            }
+        }
+
+        //MOSTRAR LOS MTERIALES DE MI PRODUCTO Y SEMIPRODUCIDO DE MANERA GENERAL DE MI FORMUALCION 
+        public void MostrarFormulacionesDetalle2(string detalle, DataGridView DGV)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Cotizacion_MostrarFormulaciones_Detalle2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoFormulacion", detalle);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                DGV.DataSource = dt;
+                con.Close();
+                //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
+                DGV.Columns[0].Width = 100;
+                DGV.Columns[1].Width = 693;
+                DGV.Columns[2].Width = 110;
+                DGV.Columns[3].Width = 90;
+                alternarColorFilas(DGV);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
+        //------------------------------------------------------------------------------------------------
+
+        //VISUALIZAR MI PDF DE MI COTIZACION
+        private void btnGenerarCotizacionPdf_Click(object sender, EventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (dgvActivo.CurrentRow != null)
+            {
+                //SI LA CORIZACIÓN SE ENUENTRA ANULADA
+                if (dgvActivo.SelectedCells[33].Value.ToString() == "ANULADO")
+                {
+                    string ccodigoCotizacion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
+                    Visualizadores.VisualizarCotizacionVentaAnulada frm = new Visualizadores.VisualizarCotizacionVentaAnulada();
+                    frm.lblCodigo.Text = ccodigoCotizacion;
+                    frm.Show();
+                }
+                //SI LA COTIZACIÓN SE ENCUENTRA EN UN ESTADO DIFERENTE
+                else
+                {
+                    if (Convert.ToInt32(dgvActivo.SelectedCells[35].Value.ToString()) == 1)
+                    {
+                        string ccodigoCotizacion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
+                        frm.lblCodigo.Text = ccodigoCotizacion;
+                        frm.Show();
+                    }
+                    else
+                    {
+                        string ccodigoCotizacion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
+                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
+                        frm.lblCodigo.Text = ccodigoCotizacion;
+                        frm.Show();
+
+                        string rutaReporte = @"C:\ArenasSoftBrochure\Cotizacion.pdf";
+                        string rutaOtroPDF = dgvActivo.SelectedCells[34].Value.ToString();
+                        string rutaFinal = @"C:\ArenasSoftBrochure\ReporteFinal.pdf";
+
+                        using (FileStream stream = new FileStream(rutaFinal, FileMode.Create))
+                        {
+                            Document document = new Document();
+                            PdfCopy copy = new PdfCopy(document, stream);
+                            document.Open();
+
+                            void AgregarPDF(string path)
+                            {
+                                PdfReader reader = new PdfReader(path);
+                                for (int i = 1; i <= reader.NumberOfPages; i++)
+                                {
+                                    copy.AddPage(copy.GetImportedPage(reader, i));
+                                }
+                                reader.Close();
+                            }
+
+                            AgregarPDF(rutaOtroPDF);
+                            AgregarPDF(rutaReporte);
+                            document.Close();
+                        }
+                        // Abrir el archivo después de la ejecución
+                        Process.Start(new ProcessStartInfo(rutaFinal) { UseShellExecute = true });
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una cotización para poder generar el PDF respectivo", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+        }
+
+        //HABILITAR ANULACION-------------------------------------------------------------------------------
+        private void btnAnularCotizacion_Click(object sender, EventArgs e)
+        {
+            if (dgvActivo.SelectedCells[33].Value.ToString() == "ANULADO")
+            {
+                MessageBox.Show("La cotización que intenta anular ya se encuentra anulada", "Validación del Sistema", MessageBoxButtons.OK);
+            }
+            else
+            {
+                panleAnulacion.Visible = true;
+                dgvActivo.Enabled = false;
+                txtJustificacionAnulacion.Text = "";
+            }
+        }
+
+        //ANULAR COTIZACION
+        private void btnProcederAnulacion_Click(object sender, EventArgs e)
+        {
+            if (dgvActivo.CurrentRow != null)
+            {
+                int codigo = int.Parse(dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString());
+                string estado = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[33].Value.ToString();
+
+                if (estado == "COMPLETADO" || estado == "ADJUDICADO PARCIALMENTE" || estado == "ANULADO")
+                {
+                    MessageBox.Show("Esta cotización ya tiene un pedido generado o se encuentra anulada, por favor anular por el mantenimiento de pedidos", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    //VALIDACION DE CARACTERES INGRESADOS
+                    if (txtJustificacionAnulacion.Text.Length > 10)
+                    {
+                        DialogResult boton = MessageBox.Show("¿Esta seguro que desea anular esta cotización?", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                        if (boton == DialogResult.OK)
+                        {
+                            try
+                            {
+                                SqlConnection con = new SqlConnection();
+                                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                                con.Open();
+                                SqlCommand cmd = new SqlCommand();
+                                cmd = new SqlCommand("Cotizacion_Anular", con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@codigo", codigo);
+                                cmd.Parameters.AddWithValue("@mensaje", txtJustificacionAnulacion.Text);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+
+                                ClassResourses.RegistrarAuditora(2, this.Name, 2, Program.IdUsuario, "", codigo);
+                                MessageBox.Show("Anulación correcta, operación hecha satisfactoriamente", "Validación del Sistema", MessageBoxButtons.OK);
+
+                                panleAnulacion.Visible = false;
+                                txtJustificacionAnulacion.Text = "";
+                                datalistadoTodasCotiaciones.Enabled = true;
+                                CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error en la operación por: " + ex.Message);
+                                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe ingresar una justificación válida. La cantidad de carácteres debe ser mayor a 10", "Validación del Sistema", MessageBoxButtons.OK);
+                    }
+                }
+            }
+        }
+
+        //RETROCEDER EN LA ANULACION
+        private void btnRetrocederAnulacion_Click(object sender, EventArgs e)
+        {
+            txtJustificacionAnulacion.Text = "";
+            panleAnulacion.Visible = false;
+            datalistadoTodasCotiaciones.Enabled = true;
+        }
+        //---------------------------------------------------------------------------------------------------
+
+        //VERIFICAR EN QUE LSITADO ESTOY
+        public void VerificarDGVActivo()
+        {
+            if (tabControl2.SelectedTab.Text == "TODAS")
+            {
+                dgvActivo = datalistadoTodasCotiaciones;
+            }
+            else if (tabControl2.SelectedTab.Text == "PENDIENTES")
+            {
+                dgvActivo = datalistadoTodasCotiacionesPendientes;
+            }
+            else if (tabControl2.SelectedTab.Text == "INCOMPLETO")
+            {
+                dgvActivo = datalistadoTodasCotiacionesParcial;
+            }
+            else if (tabControl2.SelectedTab.Text == "COMPLETADO")
+            {
+                dgvActivo = datalistadoTodasCotiacionesCompletado;
+            }
+            else if (tabControl2.SelectedTab.Text == "VENCIDOS")
+            {
+                dgvActivo = datalistadoTodasCotiacionesVencidos;
+            }
+        }
+
+        //CARGAR COLORES DE MIS LISTADOS
+        private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VerificarDGVActivo();
+            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoTodasCotiaciones_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoTodasCotiaciones.RowCount != 0)
+            {
+                CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiaciones);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoTodasCotiacionesPendientes_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoTodasCotiacionesPendientes.RowCount != 0)
+            {
+                CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesPendientes);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoTodasCotiacionesParcial_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoTodasCotiacionesParcial.RowCount != 0)
+            {
+                CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesParcial);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoTodasCotiacionesCompletado_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoTodasCotiacionesCompletado.RowCount != 0)
+            {
+                CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesCompletado);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoTodasCotiacionesVencidos_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoTodasCotiacionesVencidos.RowCount != 0)
+            {
+                CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesVencidos);
+            }
+        }
+
+        //COLOREAR MI LIESTADO DE OT TODAS
+        private void datalistadoItemsCotizacion_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (datalistadoItemsCotizacion.RowCount != 0)
+            {
+                ColorearItemsCotizacion(datalistadoItemsCotizacion);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
         public void MostrarExcel()
@@ -149,70 +1926,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //    }
         //}
 
-        //MOSTRAR MIS FORMULACIONES RELACIONADAS A MI PRODUCTO
-        public void MostrarFormulacionesDetalle(string detalle)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Cotizacion_MostrarFormulaciones_Detalle", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@detalle", detalle);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoFormulacionesDetalle.DataSource = dt;
-                con.Close();
-                //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
-                datalistadoFormulacionesDetalle.Columns[0].Width = 110;
-                datalistadoFormulacionesDetalle.Columns[1].Width = 110;
-                datalistadoFormulacionesDetalle.Columns[2].Width = 430;
-                datalistadoFormulacionesDetalle.Columns[3].Width = 110;
-                datalistadoFormulacionesDetalle.Columns[4].Width = 110;
-                datalistadoFormulacionesDetalle.Columns[5].Width = 430;
-                datalistadoFormulacionesDetalle.Columns[6].Width = 110;
-                alternarColorFilas(datalistadoFormulacionesDetalle);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //MOSTRAR LOS MTERIALES DE MI PRODUCTO Y SEMIPRODUCIDO DE MANERA GENERAL DE MI FORMUALCION 
-        public void MostrarFormulacionesDetalle2(string detalle)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Cotizacion_MostrarFormulaciones_Detalle2", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigoFormulacion", detalle);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoFormulacionesDetalle2.DataSource = dt;
-                con.Close();
-                //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
-                datalistadoFormulacionesDetalle2.Columns[0].Width = 100;
-                datalistadoFormulacionesDetalle2.Columns[1].Width = 693;
-                datalistadoFormulacionesDetalle2.Columns[2].Width = 110;
-                datalistadoFormulacionesDetalle2.Columns[3].Width = 90;
-                alternarColorFilas(datalistadoFormulacionesDetalle2);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
+
+
 
         //BUSCAR DATOS DE LA COTIZACIÓN POR EL CÓDIGO
         public void BuscarCotizacionPorCodigo(int codigo)
@@ -314,53 +2030,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //VER DETALLES (ITEMS) DE MI COTIZACION
-        public void MostrarItemsSegunCotizacion(int idcotizacion)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Cotizacion_MostrarItems", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idCotizacion", idcotizacion);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoItemsCotizacion.DataSource = dt;
-                con.Close();
-                datalistadoItemsCotizacion.Columns[0].Visible = false;
-                datalistadoItemsCotizacion.Columns[1].ReadOnly = true;
-                datalistadoItemsCotizacion.Columns[2].ReadOnly = true;
-                datalistadoItemsCotizacion.Columns[3].ReadOnly = true;
-                datalistadoItemsCotizacion.Columns[4].ReadOnly = true;
-                datalistadoItemsCotizacion.Columns[5].ReadOnly = true;
-                datalistadoItemsCotizacion.Columns[6].ReadOnly = true;
-                datalistadoItemsCotizacion.Columns[8].ReadOnly = true;
 
-                datalistadoItemsCotizacion.Columns[1].Width = 90;
-                datalistadoItemsCotizacion.Columns[2].Width = 440;
-                datalistadoItemsCotizacion.Columns[3].Width = 70;
-                datalistadoItemsCotizacion.Columns[4].Width = 80;
-                datalistadoItemsCotizacion.Columns[5].Width = 80;
-                datalistadoItemsCotizacion.Columns[6].Width = 80;
-                datalistadoItemsCotizacion.Columns[7].Width = 60;
-                datalistadoItemsCotizacion.Columns[8].Width = 100;
-
-                datalistadoItemsCotizacion.Columns[9].Visible = false;
-                datalistadoItemsCotizacion.Columns[10].Visible = false;
-                datalistadoItemsCotizacion.Columns[11].Visible = false;
-
-                alternarColorFilas(datalistadoItemsCotizacion);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
         //BUSCAR SUCURSWALPOR CLIENTE
         public void BuscarSucursalesXCliente(int codigo)
@@ -398,23 +2068,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         }
         //------------------------------------------------------------------------------------------------------------------------------------
 
-        //METODO PARA PINTAR DE COLORES LAS FILAS DE MI LSITADO
-        public void alternarColorFilas(DataGridView dgv)
-        {
-            try
-            {
-                {
-                    var withBlock = dgv;
-                    withBlock.RowsDefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
-                    withBlock.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error inesperado, " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
+
 
         //CAPTURAR EL CODIGO DE LA COTIZACION
         public void CodigoCotizacion()
@@ -525,987 +2179,42 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //CARGAR BROCHURES
-        public void CargarBrochures()
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT IdBrochures,Nombre,Ruta FROM Brochures WHERE Estado = 1", con);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cboBrochures.ValueMember = "IdBrochures";
-                cboBrochures.DisplayMember = "Nombre";
-                cboBrochures.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //LISTADO DE COTIZACIONES Y SELECCION DE DETALLES Y ESTADO DE COTIZACIONES---------------------
-        //CARGAR TODAS LAS COTIZACIONES INGRESADAS
-        public void CargarCotizaciones(DateTime fechaInicio, DateTime fechaTermino)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Cotizacion_MostrarPorFecha", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadoTodasCotiaciones.DataSource = dt;
-                con.Close();
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiaciones);
 
-                DataTable dt2 = new DataTable();
-                SqlConnection con2 = new SqlConnection();
-                con2.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con2.Open();
-                SqlCommand cmd2 = new SqlCommand();
-                cmd2 = new SqlCommand("Cotizacion_MostrarPorFechaPorEstado", con);
-                cmd2.CommandType = CommandType.StoredProcedure;
-                cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                cmd2.Parameters.AddWithValue("@estado", 2);
-                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-                da2.Fill(dt2);
-                datalistadoTodasCotiacionesPendientes.DataSource = dt2;
-                con2.Close();
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesPendientes);
 
-                DataTable dt3 = new DataTable();
-                SqlConnection con3 = new SqlConnection();
-                con3.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con3.Open();
-                SqlCommand cmd3 = new SqlCommand();
-                cmd3 = new SqlCommand("Cotizacion_MostrarPorFechaPorEstado", con3);
-                cmd3.CommandType = CommandType.StoredProcedure;
-                cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                cmd3.Parameters.AddWithValue("@estado", 3);
-                SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
-                da3.Fill(dt3);
-                datalistadoTodasCotiacionesParcial.DataSource = dt3;
-                con3.Close();
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesParcial);
 
-                DataTable dt4 = new DataTable();
-                SqlConnection con4 = new SqlConnection();
-                con4.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con4.Open();
-                SqlCommand cmd4 = new SqlCommand();
-                cmd4 = new SqlCommand("Cotizacion_MostrarPorFechaPorEstado", con4);
-                cmd4.CommandType = CommandType.StoredProcedure;
-                cmd4.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                cmd4.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                cmd4.Parameters.AddWithValue("@estado", 4);
-                SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
-                da4.Fill(dt4);
-                datalistadoTodasCotiacionesCompletado.DataSource = dt4;
-                con4.Close();
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesCompletado);
 
-                DataTable dt5 = new DataTable();
-                SqlConnection con5 = new SqlConnection();
-                con5.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con5.Open();
-                SqlCommand cmd5 = new SqlCommand();
-                cmd5 = new SqlCommand("Cotizacion_MostrarPorFechaPorEstado", con5);
-                cmd5.CommandType = CommandType.StoredProcedure;
-                cmd5.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                cmd5.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                cmd5.Parameters.AddWithValue("@estado", 1);
-                SqlDataAdapter da5 = new SqlDataAdapter(cmd5);
-                da5.Fill(dt5);
-                datalistadoTodasCotiacionesVencidos.DataSource = dt5;
-                con5.Close();
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiacionesVencidos);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //CARGAR TODAS LAS COTIZACIONES POR CLIENTE
-        public void CargarCotizacionesPorClienteResponsable(DateTime fechaInicio, DateTime fechaTermino, string variable)
-        {
-            try
-            {
-                if (cboBusqeudaClienteResponsable.Text == "CLIENTE")
-                {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("Cotizacion_MostrarPorCliente", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                    cmd.Parameters.AddWithValue("@cliente", variable);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoTodasCotiaciones.DataSource = dt;
-                    con.Close();
-                }
-                else if (cboBusqeudaClienteResponsable.Text == "RESPONSABLE")
-                {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("Cotizacion_MostrarPorResponsable", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                    cmd.Parameters.AddWithValue("@responsable", variable);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoTodasCotiaciones.DataSource = dt;
-                    con.Close();
-                }
-                ReordenarFilasMostrarCotizacion(datalistadoTodasCotiaciones);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema.", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        public void ReordenarFilasMostrarCotizacion(DataGridView DGV)
-        {
-            //REDIMENSIONAR LAS COLUMNAS SEGUN EL TEMAÑO REQUERIDO
-            DGV.Columns[2].Width = 76;
-            DGV.Columns[3].Width = 90;
-            DGV.Columns[4].Width = 90;
-            DGV.Columns[6].Width = 350;
-            DGV.Columns[8].Width = 150;
-            DGV.Columns[10].Width = 185;
-            DGV.Columns[12].Width = 185;
-            DGV.Columns[14].Width = 120;
-            DGV.Columns[27].Width = 75;
-            DGV.Columns[33].Width = 110;
-            //NO MOSTRAR LAS COLUMNAS QUE NO SEAN DE REELEVANCIA PARA EL USUARIO
-            DGV.Columns[1].Visible = false;
-            DGV.Columns[5].Visible = false;
-            DGV.Columns[7].Visible = false;
-            DGV.Columns[9].Visible = false;
-            DGV.Columns[11].Visible = false;
-            DGV.Columns[13].Visible = false;
-            DGV.Columns[15].Visible = false;
-            DGV.Columns[16].Visible = false;
-            DGV.Columns[17].Visible = false;
-            DGV.Columns[18].Visible = false;
-            DGV.Columns[19].Visible = false;
-            DGV.Columns[20].Visible = false;
-            DGV.Columns[21].Visible = false;
-            DGV.Columns[22].Visible = false;
-            DGV.Columns[23].Visible = false;
-            DGV.Columns[24].Visible = false;
-            DGV.Columns[25].Visible = false;
-            DGV.Columns[26].Visible = false;
-            DGV.Columns[28].Visible = false;
-            DGV.Columns[29].Visible = false;
-            DGV.Columns[30].Visible = false;
-            DGV.Columns[31].Visible = false;
-            DGV.Columns[32].Visible = false;
-            DGV.Columns[34].Visible = false;
-            DGV.Columns[35].Visible = false;
 
-            //CARGAR EL MÉTODO QUE COLOREA LAS FILAS
-            CargarColoresListadoCotizacionesGeneral(DGV);
 
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in DGV.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-        }
 
-        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO Y VER SI ESTAN VENCIDOS
-        public void CargarColoresListadoCotizacionesGeneral(DataGridView DGV)
-        {
-            try
-            {
-                //VARIABLE DE FECHA
-                var DateAndTime = DateTime.Now;
-                //RECORRER MI LISTADO PARA VALIDAR MIS COTIZACIONES, SI ESTAN VENCIDAS O NO
-                foreach (DataGridViewRow datorecuperado in DGV.Rows)
-                {
-                    //RECUERAR LA FECHA Y EL CÓDIGO DE MI COTIZACIÓN
-                    DateTime fechaValidez = Convert.ToDateTime(datorecuperado.Cells["FECHA DE VALIDEZ"].Value);
-                    int codigoCoti = Convert.ToInt32(datorecuperado.Cells["ID"].Value);
-                    string estadoCoti = Convert.ToString(datorecuperado.Cells["ESTADO COTIZACIÓN"].Value);
-                    //SI LA FECHA DE VALIDEZ ES MAYOR A LA FECHA ACTUAL CONSULTADA
-                    if (estadoCoti == "PENDIENTE")
-                    {
-                        if (fechaValidez < DateAndTime)
-                        {
-                            //CAMBIAR EL ESTADO DE MI COTIZACIÓN
-                            SqlConnection con = new SqlConnection();
-                            SqlCommand cmd = new SqlCommand();
-                            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                            con.Open();
-                            cmd = new SqlCommand("Cotizacion_CambiarEstado", con);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idCoti", codigoCoti);
-                            cmd.Parameters.AddWithValue("@estadoCoti", 1);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                }
 
-                //RECORRIDO DE MI LISTADO
-                foreach (DataGridViewRow datorecuperado in DGV.Rows)
-                {
-                    //RECUPERAR EL VALOR DEL ESTADO DE MI COTIZACIÓN
-                    int estadoItems = Convert.ToInt32(datorecuperado.Cells["ESTADOCOTI"].Value);
 
-                    //SI MI COTIZACIÓN ESTA EN ESTADO 1
-                    if (estadoItems == 1)
-                    {
-                        //VENCIDO -> PLOMO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Fuchsia;
-                    }
-                    //SI MI COTIZACIÓN ESTA EN ESTADO 2
-                    else if (estadoItems == 2)
-                    {
-                        //PENDIENTE -> NEGRO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    //SI MI COTIZACIÓN ESTA EN ESTADO 3
-                    else if (estadoItems == 3)
-                    {
-                        //PARCIAL -> AMARILLO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Goldenrod;
-                    }
-                    //SI MI COTIZACIÓN ESTA EN ESTADO 4
-                    else if (estadoItems == 4)
-                    {
-                        //COMPLETADO -> VERDE
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
-                    }
-                    //SI MI COTIZACIÓN ESTA EN ESTADO 0
-                    else if (estadoItems == 0)
-                    {
-                        //ANULADO -> ROJO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al cargar los datos.", "Validación del Sistema", MessageBoxButtons.OK);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //BÚSQYEDA DE COTIZACIONES POR RESPONSABLE - CLIENTE
-        private void txtBusquedaClienteCotizacion_TextChanged(object sender, EventArgs e)
-        {
-            CargarCotizacionesPorClienteResponsable(DesdeFecha.Value, HastaFecha.Value, txtBusquedaClienteCotizacion.Text);
-        }
 
-        //BÚSQYEDA DE COTIZACIONES POR FECHA
-        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
-        {
-            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
-        }
 
-        //BÚSQYEDA DE COTIZACIONES POR FECHA
-        private void HastaFecha_ValueChanged(object sender, EventArgs e)
-        {
-            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
-        }
 
-        //BÚSQUEDA DE COTIZACIONES POR FECHAS
-        private void btnMostrarTodo_Click(object sender, EventArgs e)
-        {
-            CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
-        }
 
-        //CAMBIO DE CIRTERIO DE BUSQUEDA DE COTIZACIONES
-        private void cboBusqeudaClienteResponsable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtBusquedaClienteCotizacion.Text = "";
-        }
 
-        //ABERTURA DE LOS DETALLES DE TODOS MIS LISTADOS---------------------------------------------------------------------------------------------
-        private void datalistadoTodasCotiaciones_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiaciones.RowCount != 0)
-            {
-                DataGridViewColumn currentColumnT = datalistadoTodasCotiaciones.Columns[e.ColumnIndex];
 
-                if (currentColumnT.Name == "detalles")
-                {
-                    if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
-                    {
-                        MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-                    }
-                    else
-                    {
-                        //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                        codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiaciones.SelectedCells[1].Value.ToString());
-                        DataGridViewColumn currentColumn = datalistadoTodasCotiaciones.Columns[e.ColumnIndex];
-
-                        //ABRIR MI PANEL DE DETALLES
-                        panelDetalleitemsCotizacion.Visible = true;
-                        //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                        txtCodigoCotizacion.Text = datalistadoTodasCotiaciones.SelectedCells[2].Value.ToString();
-                        //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                        MostrarItemsSegunCotizacion(codigoCotizacion);
-                        //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                        foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                        {
-                            //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                            bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                            //SI MI ESTADO ES IGUAL FALSE
-                            if (estadoItems == false)
-                            {
-                                //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                            }
-                            else
-                            {
-                                //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hay ninguna cotización para visualizar, por favor filtre por algún criterio contemplado.", "Validación del Sistema");
-            }
-        }
-
-        //INGRESAR AL DETALLE DE MI COTIZAICON
-        private void datalistadoTodasCotiacionesPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesPendientes.RowCount != 0)
-            {
-                DataGridViewColumn currentColumnT = datalistadoTodasCotiacionesPendientes.Columns[e.ColumnIndex];
-
-                if (currentColumnT.Name == "detalles2")
-                {
-                    if (datalistadoTodasCotiacionesPendientes.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesPendientes.SelectedCells[33].Value.ToString() == "ANULADO")
-                    {
-                        MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-                    }
-                    else
-                    {
-                        //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                        codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesPendientes.SelectedCells[1].Value.ToString());
-                        DataGridViewColumn currentColumn = datalistadoTodasCotiacionesPendientes.Columns[e.ColumnIndex];
-
-                        //ABRIR MI PANEL DE DETALLES
-                        panelDetalleitemsCotizacion.Visible = true;
-                        //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                        txtCodigoCotizacion.Text = datalistadoTodasCotiacionesPendientes.SelectedCells[2].Value.ToString();
-                        //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                        MostrarItemsSegunCotizacion(codigoCotizacion);
-                        //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                        foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                        {
-                            //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                            bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                            //SI MI ESTADO ES IGUAL FALSE
-                            if (estadoItems == false)
-                            {
-                                //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                            }
-                            else
-                            {
-                                //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                            }
-                        }
-                    }
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("No hay ninguna cotización para visualizar, por favor filtre por algún criterio contemplado.", "Validación del Sistema");
-            }
-        }
-
-        private void datalistadoTodasCotiacionesParcial_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesParcial.RowCount != 0)
-            {
-                DataGridViewColumn currentColumnT = datalistadoTodasCotiacionesParcial.Columns[e.ColumnIndex];
-
-                if (currentColumnT.Name == "detalles3")
-                {
-                    if (datalistadoTodasCotiacionesParcial.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesParcial.SelectedCells[33].Value.ToString() == "ANULADO")
-                    {
-                        MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-                    }
-                    else
-                    {
-                        //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                        codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesParcial.SelectedCells[1].Value.ToString());
-                        DataGridViewColumn currentColumn = datalistadoTodasCotiacionesParcial.Columns[e.ColumnIndex];
-
-                        //ABRIR MI PANEL DE DETALLES
-                        panelDetalleitemsCotizacion.Visible = true;
-                        //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                        txtCodigoCotizacion.Text = datalistadoTodasCotiacionesParcial.SelectedCells[2].Value.ToString();
-                        //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                        MostrarItemsSegunCotizacion(codigoCotizacion);
-                        //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                        foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                        {
-                            //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                            bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                            //SI MI ESTADO ES IGUAL FALSE
-                            if (estadoItems == false)
-                            {
-                                //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                            }
-                            else
-                            {
-                                //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                            }
-                        }
-                    }
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("No hay ninguna cotización para visualizar, por favor filtre por algún criterio contemplado.", "Validación del Sistema");
-            }
-        }
-
-        private void datalistadoTodasCotiacionesCompletado_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesCompletado.RowCount != 0)
-            {
-                DataGridViewColumn currentColumnT = datalistadoTodasCotiacionesCompletado.Columns[e.ColumnIndex];
-
-                if (currentColumnT.Name == "detalles4")
-                {
-                    if (datalistadoTodasCotiacionesCompletado.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesCompletado.SelectedCells[33].Value.ToString() == "ANULADO")
-                    {
-                        MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-                    }
-                    else
-                    {
-                        //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                        codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesCompletado.SelectedCells[1].Value.ToString());
-                        DataGridViewColumn currentColumn = datalistadoTodasCotiacionesCompletado.Columns[e.ColumnIndex];
-
-                        //ABRIR MI PANEL DE DETALLES
-                        panelDetalleitemsCotizacion.Visible = true;
-                        //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                        txtCodigoCotizacion.Text = datalistadoTodasCotiacionesCompletado.SelectedCells[2].Value.ToString();
-                        //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                        MostrarItemsSegunCotizacion(codigoCotizacion);
-                        //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                        foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                        {
-                            //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                            bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                            //SI MI ESTADO ES IGUAL FALSE
-                            if (estadoItems == false)
-                            {
-                                //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                            }
-                            else
-                            {
-                                //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                            }
-                        }
-                    }
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("No hay ninguna cotización para visualizar, por favor filtre por algún criterio contemplado.", "Validación del Sistema");
-            }
-        }
-
-        private void datalistadoTodasCotiacionesVencidos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesVencidos.RowCount != 0)
-            {
-                DataGridViewColumn currentColumnT = datalistadoTodasCotiacionesVencidos.Columns[e.ColumnIndex];
-
-                if (currentColumnT.Name == "detalles5")
-                {
-                    if (datalistadoTodasCotiacionesVencidos.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesVencidos.SelectedCells[33].Value.ToString() == "ANULADO")
-                    {
-                        MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-                    }
-                    else
-                    {
-                        //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                        codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesVencidos.SelectedCells[1].Value.ToString());
-                        DataGridViewColumn currentColumn = datalistadoTodasCotiacionesVencidos.Columns[e.ColumnIndex];
-
-                        //ABRIR MI PANEL DE DETALLES
-                        panelDetalleitemsCotizacion.Visible = true;
-                        //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                        txtCodigoCotizacion.Text = datalistadoTodasCotiacionesVencidos.SelectedCells[2].Value.ToString();
-                        //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                        MostrarItemsSegunCotizacion(codigoCotizacion);
-                        //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                        foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                        {
-                            //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                            bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                            //SI MI ESTADO ES IGUAL FALSE
-                            if (estadoItems == false)
-                            {
-                                //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                            }
-                            else
-                            {
-                                //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                                datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                            }
-                        }
-                    }
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("No hay ninguna cotización para visualizar, por favor filtre por algún criterio contemplado.", "Validación del Sistema");
-            }
-        }
         //-------------------------------------------------------------------------------------------------------------------------------------------
 
-        //HACER DOBLE CLICK Y VISUALIZAR LOS ITEMS DE MI COTIZACION----------------------------------------------------------------------------------
-        private void datalistadoTodasCotiaciones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
-            {
-                MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-            }
-            else
-            {
-                //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiaciones.SelectedCells[1].Value.ToString());
-                DataGridViewColumn currentColumn = datalistadoTodasCotiaciones.Columns[e.ColumnIndex];
 
-                //ABRIR MI PANEL DE DETALLES
-                panelDetalleitemsCotizacion.Visible = true;
-                //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                txtCodigoCotizacion.Text = datalistadoTodasCotiaciones.SelectedCells[2].Value.ToString();
-                //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                MostrarItemsSegunCotizacion(codigoCotizacion);
-                //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                {
-                    //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                    bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                    //SI MI ESTADO ES IGUAL FALSE
-                    if (estadoItems == false)
-                    {
-                        //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else
-                    {
-                        //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                    }
-                }
-            }
-        }
 
-        private void datalistadoTodasCotiacionesPendientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesPendientes.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesPendientes.SelectedCells[33].Value.ToString() == "ANULADO")
-            {
-                MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-            }
-            else
-            {
-                //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesPendientes.SelectedCells[1].Value.ToString());
-                DataGridViewColumn currentColumn = datalistadoTodasCotiacionesPendientes.Columns[e.ColumnIndex];
 
-                //ABRIR MI PANEL DE DETALLES
-                panelDetalleitemsCotizacion.Visible = true;
-                //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                txtCodigoCotizacion.Text = datalistadoTodasCotiacionesPendientes.SelectedCells[2].Value.ToString();
-                //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                MostrarItemsSegunCotizacion(codigoCotizacion);
-                //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                {
-                    //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                    bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                    //SI MI ESTADO ES IGUAL FALSE
-                    if (estadoItems == false)
-                    {
-                        //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else
-                    {
-                        //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                    }
-                }
-            }
-        }
 
-        private void datalistadoTodasCotiacionesParcial_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesParcial.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesParcial.SelectedCells[33].Value.ToString() == "ANULADO")
-            {
-                MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-            }
-            else
-            {
-                //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesParcial.SelectedCells[1].Value.ToString());
-                DataGridViewColumn currentColumn = datalistadoTodasCotiacionesParcial.Columns[e.ColumnIndex];
 
-                //ABRIR MI PANEL DE DETALLES
-                panelDetalleitemsCotizacion.Visible = true;
-                //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                txtCodigoCotizacion.Text = datalistadoTodasCotiacionesParcial.SelectedCells[2].Value.ToString();
-                //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                MostrarItemsSegunCotizacion(codigoCotizacion);
-                //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                {
-                    //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                    bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                    //SI MI ESTADO ES IGUAL FALSE
-                    if (estadoItems == false)
-                    {
-                        //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else
-                    {
-                        //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                    }
-                }
-            }
-        }
 
-        private void datalistadoTodasCotiacionesCompletado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesCompletado.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesCompletado.SelectedCells[33].Value.ToString() == "ANULADO")
-            {
-                MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-            }
-            else
-            {
-                //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesCompletado.SelectedCells[1].Value.ToString());
-                DataGridViewColumn currentColumn = datalistadoTodasCotiacionesCompletado.Columns[e.ColumnIndex];
 
-                //ABRIR MI PANEL DE DETALLES
-                panelDetalleitemsCotizacion.Visible = true;
-                //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                txtCodigoCotizacion.Text = datalistadoTodasCotiacionesCompletado.SelectedCells[2].Value.ToString();
-                //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                MostrarItemsSegunCotizacion(codigoCotizacion);
-                //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                {
-                    //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                    bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                    //SI MI ESTADO ES IGUAL FALSE
-                    if (estadoItems == false)
-                    {
-                        //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else
-                    {
-                        //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                    }
-                }
-            }
-        }
 
-        private void datalistadoTodasCotiacionesVencidos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoTodasCotiacionesVencidos.SelectedCells[33].Value.ToString() == "FUERA DE FECHA" || datalistadoTodasCotiacionesVencidos.SelectedCells[33].Value.ToString() == "ANULADO")
-            {
-                MessageBox.Show("No se puede visualizar los detalles de esta cotización.", "Validación del Sistema");
-            }
-            else
-            {
-                //CAPTURAR EL CÓDIGO DE COTIZACIÓN Y FILA DE MI LISTADO
-                codigoCotizacion = Convert.ToInt32(datalistadoTodasCotiacionesVencidos.SelectedCells[1].Value.ToString());
-                DataGridViewColumn currentColumn = datalistadoTodasCotiacionesVencidos.Columns[e.ColumnIndex];
 
-                //ABRIR MI PANEL DE DETALLES
-                panelDetalleitemsCotizacion.Visible = true;
-                //COLOCAR EL CÓDIGO DE MI COTIZACIÓN EN LA CAJA DEL PANEL DE DETALLES
-                txtCodigoCotizacion.Text = datalistadoTodasCotiacionesVencidos.SelectedCells[2].Value.ToString();
-                //CARGAR LOS ITEMS DEL DETALLE A MI LISTADO
-                MostrarItemsSegunCotizacion(codigoCotizacion);
-                //RECORRER MI LISTADO DE ITEMS DE MI COTIZACIÓN
-                foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-                {
-                    //CAPTURAR EL ESTADO DE MIS ITEMS DE MI COTIZACIÓN
-                    bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-                    //SI MI ESTADO ES IGUAL FALSE
-                    if (estadoItems == false)
-                    {
-                        //SI MI ESTADO ES FALSE -> EL COLOR DE MI FILA ES NEGRO
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else
-                    {
-                        //SI MI ESTADO ES TRUE U OTRO -> EL COLOR DE MI FILA ES VERDE
-                        datorecuperado.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
-                    }
-                }
-            }
-        }
         //-------------------------------------------------------------------------------------------------------------------------------------------
 
-        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN----------------------------------------------------------------------------------
-        private void datalistadoTodasCotiaciones_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasCotiaciones.Columns[e.ColumnIndex].Name == "detalles")
-            {
-                this.datalistadoTodasCotiaciones.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoTodasCotiaciones.Cursor = curAnterior;
-            }
-        }
 
-        private void datalistadoTodasCotiacionesPendientes_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasCotiacionesPendientes.Columns[e.ColumnIndex].Name == "detalles2")
-            {
-                this.datalistadoTodasCotiacionesPendientes.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoTodasCotiacionesPendientes.Cursor = curAnterior;
-            }
-        }
-
-        private void datalistadoTodasCotiacionesParcial_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasCotiacionesParcial.Columns[e.ColumnIndex].Name == "detalles3")
-            {
-                this.datalistadoTodasCotiacionesParcial.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoTodasCotiacionesParcial.Cursor = curAnterior;
-            }
-        }
-
-        private void datalistadoTodasCotiacionesCompletado_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasCotiacionesCompletado.Columns[e.ColumnIndex].Name == "detalles4")
-            {
-                this.datalistadoTodasCotiacionesCompletado.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoTodasCotiacionesCompletado.Cursor = curAnterior;
-            }
-        }
-
-        private void datalistadoTodasCotiacionesVencidos_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasCotiacionesVencidos.Columns[e.ColumnIndex].Name == "detalles5")
-            {
-                this.datalistadoTodasCotiacionesVencidos.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                this.datalistadoTodasCotiacionesVencidos.Cursor = curAnterior;
-            }
-        }
         //--------------------------------------------------------------------------------------------------------------------------------------------
 
-        //SALIR DE LOS DETALLES O ITEMS DE MI COTIZACION
-        private void btnRegresarRegistroitemsCotizacion_Click(object sender, EventArgs e)
-        {
-            ////VARIABLES PARA LA VALIDACIÓN
-            //int estadoModificacion = 0;
-            //var DateAndTime = DateTime.Now;
-            //bool vencido = false;
 
-            //SqlConnection con = new SqlConnection();
-            //SqlCommand cmd = new SqlCommand();
-            //BuscarCotizacionPorCodigo(codigoCotizacion);
-            panelDetalleitemsCotizacion.Visible = false;
-            //estadoModificacion = Convert.ToInt16(dataListadiCotiXCodigo.SelectedCells[31].Value.ToString());
-            //DateTime fechaValidez = Convert.ToDateTime(dataListadiCotiXCodigo.SelectedCells[3].Value);
-            //int estadoFinal1 = 0;
-            //int estadoFinal2 = 0;
-            //List<int> estadoss = new List<int>();
-
-            ////VALIDAR SI LA COTIZACION YA EXPIRO
-            //if (fechaValidez < DateAndTime && datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "PENDIENTE")
-            //{
-            //    vencido = true;
-            //}
-
-            ////VALIDAR CUANTOS ITEMS SE HAN MARCADO
-            //foreach (DataGridViewRow datorecuperado in datalistadoItemsCotizacion.Rows)
-            //{
-            //    int idItemCoti = Convert.ToInt32(datorecuperado.Cells["IdDetalleCotizacion"].Value);
-            //    bool estadoItems = Convert.ToBoolean(datorecuperado.Cells["ESTADO ITEM"].Value);
-
-            //    try
-            //    {
-            //        if (estadoItems == true)
-            //        {
-            //            estadoss.Add(1);
-
-            //            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //            con.Open();
-            //            cmd = new SqlCommand("Cotizacion_CambiarEstadoItems", con);
-            //            cmd.CommandType = CommandType.StoredProcedure;
-            //            cmd.Parameters.AddWithValue("@idItemCoti", idItemCoti);
-            //            cmd.Parameters.AddWithValue("@estado", 1);
-            //            cmd.ExecuteNonQuery();
-            //            con.Close();
-            //        }
-            //        else
-            //        {
-            //            estadoss.Add(0);
-
-            //            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //            con.Open();
-            //            cmd = new SqlCommand("Cotizacion_CambiarEstadoItems", con);
-            //            cmd.CommandType = CommandType.StoredProcedure;
-            //            cmd.Parameters.AddWithValue("@idItemCoti", idItemCoti);
-            //            cmd.Parameters.AddWithValue("@estado", 0);
-            //            cmd.ExecuteNonQuery();
-            //            con.Close();
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Error en la operación por: " + ex.Message);
-            //        ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            //    }
-            //}
-
-            ////HACER UNA SUMA SIMPLE CON LA CANTIDAD DE ITEMS MARCADOS
-            //foreach (var n in estadoss)
-            //{
-            //    if (int.Equals(1, n))
-            //    {
-            //        estadoFinal1 = estadoFinal1 + 1;
-            //    }
-
-            //    if (int.Equals(0, n))
-            //    {
-            //        estadoFinal2 = estadoFinal2 + 1;
-            //    }
-            //}
-
-            //try
-            //{
-            //    //COTIZACION VENCIDA
-            //    if (vencido == true)
-            //    {
-            //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //        con.Open();
-            //        cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
-            //        cmd.Parameters.AddWithValue("@estadoCoti", 1);
-            //        cmd.ExecuteNonQuery();
-            //        con.Close();
-            //    }
-            //    //COTIZACION COMPLETA
-            //    else if (estadoFinal1 > 0 && estadoFinal2 == 0 && vencido == false)
-            //    {
-            //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //        con.Open();
-            //        cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
-            //        cmd.Parameters.AddWithValue("@estadoCoti", 4);
-            //        cmd.ExecuteNonQuery();
-            //        con.Close();
-            //    }
-            //    //COTIZAXION CON PARTE DE LOS ITEMS PENDIENTES
-            //    else if (estadoFinal1 > 0 && estadoFinal2 > 0 && vencido == false)
-            //    {
-            //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //        con.Open();
-            //        cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
-            //        cmd.Parameters.AddWithValue("@estadoCoti", 3);
-            //        cmd.ExecuteNonQuery();
-            //        con.Close();
-            //    }
-            //    //COTIZACION CON TODOS LOS ITEMS PENDIENTES
-            //    else if (estadoFinal1 == 0 && vencido == false)
-            //    {
-            //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            //        con.Open();
-            //        cmd = new SqlCommand("Cotizacion_CambiarEstadoCoti", con);
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@idcoti", codigoCotizacion);
-            //        cmd.Parameters.AddWithValue("@estadoCoti", 2);
-            //        cmd.ExecuteNonQuery();
-            //        con.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error en la operación por: " + ex.Message);
-            //    ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            //}
-
-            //CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
-        }
 
         //VALIDAR SI EL ITEM YA CUENTA CON PEDIDO CREADA, SI ES ASÍ NO SE VA A PODER MODIFICAR.
         private void datalistadoItemsCotizacion_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -1587,30 +2296,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             //}
         }
 
-        //ACCIONES PARA CREAR UNA NUEVA COTIZACION--------------------------------------------
-        //ABRIR VENTANA DE NUEVA COTIZACION
-        private void btnNuevaCotizacion_Click(object sender, EventArgs e)
-        {
-            panelNuevaCotizacion.Visible = true;
 
-            var DateAndTime = DateTime.Now;
-            lblTituloCotizacion.Text = "NUEVA COTIZACIÓN";
-            DateAndTime = DateAndTime.AddDays(+10);
-            dateFechaValidez.Value = DateAndTime;
-            dateFechaEmision.Value = DateTime.Now;
-
-            LimpiarCotizacion();
-            CargarBrochures();
-
-            btnGuardarCotizacion.Visible = true;
-            lblGuardar.Visible = true;
-            btnEditarCotizacionAccion.Visible = false;
-            lblEditar.Visible = false;
-            datalistadoCotizacion.Columns[0].ReadOnly = true;
-            datalistadoCotizacion.Columns[1].ReadOnly = true;
-            datalistadoCotizacion.Columns[2].ReadOnly = true;
-            datalistadoCotizacion.Columns[6].ReadOnly = true;
-        }
 
         //CHECK PARA APLICAR BROCHURES
         private void ckAplicarBrochure_CheckedChanged(object sender, EventArgs e)
@@ -1635,44 +2321,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             LimpiarNuevaCotizacion();
             panelNuevaCotizacion.Visible = false;
             datalistadoTodasCotiaciones.Enabled = true;
+            dgvActivo.Enabled = true;
         }
 
-        //ABRIR LOS DETALLES DE MI FORMULACION
-        private void datalistadoCotizacion_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (datalistadoCotizacion.CurrentRow != null)
-            {
-                DataGridViewColumn currentColumn = datalistadoCotizacion.Columns[e.ColumnIndex];
 
-                if (currentColumn.Name == "formulacion")
-                {
-                    panelDetalleFormulacion.Visible = true;
 
-                    txtBusquedaFormulacionDetalle.Text = datalistadoCotizacion.Rows[datalistadoCotizacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    detalleProducido = datalistadoCotizacion.Rows[datalistadoCotizacion.CurrentRow.Index].Cells[1].Value.ToString();
-                    MostrarFormulacionesDetalle(detalleProducido);
-                }
-            }
-        }
 
-        //SELECCIONAR Y VISUALIZAR LOS MATERIALES DE MI FORMULACION
-        private void datalistadoFormulacionesDetalle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string codigoformulacion = datalistadoFormulacionesDetalle.SelectedCells[0].Value.ToString();
-            MostrarFormulacionesDetalle2(codigoformulacion);
-        }
 
-        //MOSTAR TODAS LAS FORMUALCIONES SN FILTRO
-        private void btnMostrarTodasFormulaciones_Click(object sender, EventArgs e)
-        {
-            detalleProducido = datalistadoCotizacion.Rows[datalistadoCotizacion.CurrentRow.Index].Cells[1].Value.ToString();
-            //MostrarFormulacionesDetalleTodos(detalleProducido);
-
-            btnOcultarFormulaciones.Visible = false;
-            lblLeyendaOcultar.Visible = false;
-            btnHabilitarFormulaciones.Visible = true;
-            lblLeyendaHabilitar.Visible = true;
-        }
 
         //SALIR DE MI DETALLES DE FORMULACION
         private void btnRegresarDetallesFormulacion_Click(object sender, EventArgs e)
@@ -1680,79 +2335,15 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             panelDetalleFormulacion.Visible = false;
             datalistadoFormulacionesDetalle2.DataSource = null;
 
-            btnOcultarFormulaciones.Visible = true;
-            lblLeyendaOcultar.Visible = true;
-            btnHabilitarFormulaciones.Visible = false;
-            lblLeyendaHabilitar.Visible = false;
         }
 
-        //ABRIR LA VENTANA DE BSUAQUEDA DE CLIENTES
-        private void txtBusquedaClientes_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-            {
-                cboTipoBusquedaClientes.SelectedIndex = 0;
-                panelBusquedaClientes.Visible = true;
-                txtBusquedaClientes2.Text = txtBusquedaClientes.Text;
-                txtBusquedaClientes2.Focus();
-            }
-        }
 
-        //POSISCIONARSE EN MI CAJA DE BÚISQUEDA
-        private void cboTipoBusquedaClientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtBusquedaClientes2.Text = "";
-        }
 
-        //CERRAR LA BUSQUEDA DE CLIENTES
-        private void btnCerrarBusquedaCLiente_Click(object sender, EventArgs e)
-        {
-            panelBusquedaClientes.Visible = false;
-            txtBusquedaClientes2.Text = "";
-        }
 
-        //SELECCIONAR AL CLIENTE PARA LA COTIZACION
-        private void datalistadoclientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            CodigoCLiente = Convert.ToInt32(datalistadoclientes.SelectedCells[30].Value.ToString());
-            txtNombreCliente.Text = datalistadoclientes.SelectedCells[2].Value.ToString();
-            txtDireccionClente.Text = datalistadoclientes.SelectedCells[21].Value.ToString();
-            txtDocumentoCliente.Text = datalistadoclientes.SelectedCells[1].Value.ToString();
-            panelBusquedaClientes.Visible = false;
-            txtBusquedaClientes.Text = "";
-            txtBusquedaClientes2.Text = "";
-            txtLugarEntregado.Text = "Campo Opcional";
 
-            CargarUnidad(CodigoCLiente, cboUnidadCliente);
-            CargarResponsable(CodigoCLiente, cboResponsableCliente);
-            CargarContacto(CodigoCLiente, cboContactoCliente);
-            CargarCondicion(CodigoCLiente, cboCondicionPagoCliente);
-            CargarForma(CodigoCLiente, cboFormaPagoCliente);
-            CargarComercial(cboComercial);
-            CargarMoneda(cboMoneda);
 
-            //COLOCACION DE MONEDA
-            if (cboMoneda.Text == "DOLARES AMERICANOS")
-            {
-                imgDolares.Visible = true;
-                imgEuros.Visible = false;
-                imgSoles.Visible = false;
-            }
-            else if (cboMoneda.Text == "EUROS")
-            {
-                imgDolares.Visible = false;
-                imgEuros.Visible = true;
-                imgSoles.Visible = false;
-            }
-            else if (cboMoneda.Text == "SOLES")
-            {
-                imgDolares.Visible = false;
-                imgEuros.Visible = false;
-                imgSoles.Visible = true;
-            }
 
-            CargarAlmacen(cboAlmacen);
-        }
+
 
         //EVITAR PROBLEMAS CON LA GENERACION Y EDICION DE MI LISTADO
         private void datalistadoCotizacion_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -1760,29 +2351,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             e.Cancel = true;
         }
 
-        //CLEINTES SELECCIONA DEWNTRO DE COTIZACIONES----------------------------------------------
-        //CARGA DE COMBOS PARA LA SELECCION DEL CLIENTE DE COTIZACION
-        public void CargarComercial(ComboBox cbo)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT IdUsuarios, Nombres + ' ' + Apellidos AS [COMERCIAL] FROM Usuarios WHERE Estado = 'Activo' AND HabilitadoCotizacion = 1 ORDER BY Nombres + '' + Apellidos", con);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cbo.ValueMember = "IdUsuarios";
-                cbo.DisplayMember = "COMERCIAL";
-                cbo.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
+
 
         //CARGAR TIPOS DE MONEDA
         public void CargarMoneda(ComboBox cbo)
@@ -1940,160 +2509,11 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //COMBO DE DETALLES
-        //CARGAR UUNIDAD DE MIS CLIENTES
-        public void CargarUnidad(int idcliente, ComboBox cbo)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT IdDatosAnexosClienteUnidad,Descripcion FROM DatosAnexosCliente_Unidad WHERE IdCliente = @idcliente AND Estado = 1", con);
-                comando.Parameters.AddWithValue("@idcliente", idcliente);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cbo.ValueMember = "IdDatosAnexosClienteUnidad";
-                cbo.DisplayMember = "Descripcion";
-                cbo.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //CARGAR RESPONSABLE DE MIS CLIENTES
-        public void CargarResponsable(int idcliente, ComboBox cbo)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT USU.IdUsuarios ,USU.Nombres + ' ' + USU.Apellidos AS [RESPONSABLE] FROM DatosAnexosCliente_Unidad DACU INNER JOIN Usuarios USU ON USU.IdUsuarios = DACU.IdResponsable  WHERE IdCliente = @idcliente AND DACU.Estado = 1", con);
-                comando.Parameters.AddWithValue("@idcliente", idcliente);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cbo.ValueMember = "USU.IdUsuarios";
-                cbo.DisplayMember = "RESPONSABLE";
-                cbo.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //CARGAR CONTACTO DE MIS CLIENTES
-        public void CargarContacto(int idcliente, ComboBox cbo)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT IdDatosAnexosClienteContacto,Descripcion FROM DatosAnexosCliente_Contacto WHERE IdCliente = @idcliente AND Estado = 1", con);
-                comando.Parameters.AddWithValue("@idcliente", idcliente);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cbo.ValueMember = "IdDatosAnexosClienteContacto";
-                cbo.DisplayMember = "Descripcion";
-                cbo.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //CARGAR CONDICION DE MIS CLIENTES
-        public void CargarCondicion(int idcliente, ComboBox cbo)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT C.IdCondicionPago, C.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN CondicionPago C ON C.IdCondicionPago = DACC.IdCondicionPago WHERE IdCliente = @idcliente AND DACC.Estado = 1", con);
-                comando.Parameters.AddWithValue("@idcliente", idcliente);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cbo.ValueMember = "C.IdCondicionPago";
-                cbo.DisplayMember = "Descripcion";
-                cbo.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //CARGAR EL COMBO DE FORMA DE CLIENTES
-        public void CargarForma(int idcliente, ComboBox cbo)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT F.IdFormaPago , F.Descripcion FROM DatosAnexosCliente_Cindicion DACC INNER JOIN FormaPago F ON F.IdFormaPago = DACC.IdFormaPago WHERE IdCliente = @idcliente AND DACC.Estado = 1", con);
-                comando.Parameters.AddWithValue("@idcliente", idcliente);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cbo.ValueMember = "F.IdFormaPago";
-                cbo.DisplayMember = "Descripcion";
-                cbo.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //AGREGAR ITEMS A MI COTIZACION--------------------------------------------------------------------------------------------------
-        //AGREGAR FORMULACION
-        private void btnAgregarFormulacion_Click(object sender, EventArgs e)
-        {
-            if (txtNombreCliente.Text == "")
-            {
-                MessageBox.Show("Seleccione un cliente para poder continuar.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            else
-            {
-                cboFiltroFormulacion.SelectedIndex = 0;
-                panelSeleccionarFormulaciones.Visible = true;
-                cboBusquedaFormulaciones.SelectedIndex = 0;
-                txtBusquedaFormulaciones.Text = "";
-                datalistadoFormulacionesSeleccionadas.Rows.Clear();
-                datalistadoBusquedaFormulaciones.DataSource = null;
-                cboBusquedaFormulaciones.SelectedIndex = 3;
-                cboTipoProducto.SelectedIndex = 0;
-            }
-        }
-
-        //ELIMINAR FORMULACION AGREGADA A MI COTIZACION DE AGREGAR FORMULACION
-        private void btnEliminarFormulacion_Click(object sender, EventArgs e)
-        {
-            if (datalistadoCotizacion.CurrentRow != null)
-            {
-                datalistadoCotizacion.Rows.Remove(datalistadoCotizacion.CurrentRow);
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un registro para proceder con la eliminación.", "Eliminación de un item", MessageBoxButtons.OK);
-            }
-        }
 
         //SELECCIONAR FORMULACION ANTES DE LLEVARLO A LA COTIZACION
         private void datalistadoBusquedaFormulaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -2460,121 +2880,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
         }
 
-        //EDITAR MI COTIZACION YA INGRESADA
-        private void btnEditarCotizacion_Click(object sender, EventArgs e)
-        {
-            codigoCotizacion = int.Parse(datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString());
-            string estadoCoti = datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString();
 
-            if (estadoCoti == "FUERA DE FECHA" || estadoCoti == "ANULADO" || estadoCoti == "ADJUDICADO PARCIALMENTE" || estadoCoti == "COMPLETADO")
-            {
-                MessageBox.Show("La cotización que intenta editar ya se encuentra en un estado diferente a PENDIENTE, no se puede editar una cotización que este anulada, vencida o adjudicada parcial/total.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            else
-            {
-                //TAER LA CABECERA DE MI COTRIZACION
-                BuscarCotizacionPorCodigo(codigoCotizacion);
-                //BUSCAR ITEMS DE MI COTIZACION
-                BuscarCotizacionDetallePorCodigo(codigoCotizacion);
-
-                CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadCliente);
-                CargarResponsable(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboResponsableCliente);
-                CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoCliente);
-                CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoCliente);
-                CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoCliente);
-                CargarMoneda(cboMoneda);
-                CargarAlmacen(cboAlmacen);
-                CargarComercial(cboComercial);
-
-                txtLugarEntregado.Text = dataListadiCotiXCodigo.SelectedCells[16].Value.ToString();
-                if (txtLugarEntregado.Text == "Calle El Martillo MZ B Lote 5 Urb. Industrial El Naranjal")
-                {
-                    ckAlmacenArenas.Checked = true;
-                }
-
-                txtGarantia.Text = dataListadiCotiXCodigo.SelectedCells[17].Value.ToString();
-                txtTiempoEntrega.Text = dataListadiCotiXCodigo.SelectedCells[18].Value.ToString();
-                txtDocumentoCliente.Text = dataListadiCotiXCodigo.SelectedCells[32].Value.ToString();
-                txtNombreCliente.Text = dataListadiCotiXCodigo.SelectedCells[5].Value.ToString();
-                txtDireccionClente.Text = dataListadiCotiXCodigo.SelectedCells[33].Value.ToString();
-                txtObservaciones.Text = dataListadiCotiXCodigo.SelectedCells[19].Value.ToString();
-                txtReferencia.Text = dataListadiCotiXCodigo.SelectedCells[14].Value.ToString();
-
-                dateFechaEmision.Text = dataListadiCotiXCodigo.SelectedCells[2].Value.ToString();
-                dateFechaValidez.Text = dataListadiCotiXCodigo.SelectedCells[3].Value.ToString();
-                txtCodigoCotizacion.Text = dataListadiCotiXCodigo.SelectedCells[1].Value.ToString();
-
-                cboUnidadCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[6].Value.ToString();
-                cboResponsableCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[8].Value.ToString();
-                cboContactoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[27].Value.ToString();
-                cboCondicionPagoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[29].Value.ToString();
-                cboFormaPagoCliente.SelectedValue = dataListadiCotiXCodigo.SelectedCells[28].Value.ToString();
-                cboMoneda.SelectedValue = dataListadiCotiXCodigo.SelectedCells[12].Value.ToString();
-                cboComercial.SelectedValue = dataListadiCotiXCodigo.SelectedCells[10].Value.ToString();
-                cboAlmacen.SelectedValue = dataListadiCotiXCodigo.SelectedCells[15].Value.ToString();
-
-                txtSubTotal.Text = dataListadiCotiXCodigo.SelectedCells[20].Value.ToString();
-                txtDescuento.Text = dataListadiCotiXCodigo.SelectedCells[21].Value.ToString();
-                txtInafecta.Text = dataListadiCotiXCodigo.SelectedCells[22].Value.ToString();
-                txtExonerada.Text = dataListadiCotiXCodigo.SelectedCells[23].Value.ToString();
-                txtIgv.Text = dataListadiCotiXCodigo.SelectedCells[24].Value.ToString();
-                txtTotalDescuento.Text = dataListadiCotiXCodigo.SelectedCells[25].Value.ToString();
-                txtTotal.Text = dataListadiCotiXCodigo.SelectedCells[26].Value.ToString();
-
-                CargarBrochures();
-                int estadoBrochure = Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[34].Value.ToString());
-                if (estadoBrochure == 1)
-                {
-                    ckAplicarBrochure.Checked = false;
-                }
-                else
-                {
-                    ckAplicarBrochure.Checked = true;
-                    cboBrochures.SelectedValue = estadoBrochure;
-                }
-
-                //CARGAR DETALLES DE LA COTIZACION
-                datalistadoCotizacion.Rows.Clear();
-
-                if (dataListadiCotiDetallesXCodigo.CurrentRow != null)
-                {
-                    foreach (DataGridViewRow row in dataListadiCotiDetallesXCodigo.Rows)
-                    {
-                        string idDetalleCotizacion = row.Cells[0].Value.ToString();
-                        string codigo = row.Cells[2].Value.ToString();
-                        string codigoformulacion = row.Cells[4].Value.ToString();
-                        string detalle = row.Cells[3].Value.ToString();
-                        string cantidad = row.Cells[5].Value.ToString();
-                        string precioUnitario = row.Cells[6].Value.ToString();
-                        string descuento = row.Cells[7].Value.ToString();
-                        string total = row.Cells[8].Value.ToString();
-                        string codigoCliente = row.Cells[13].Value.ToString();
-                        string descripcionCliente = row.Cells[14].Value.ToString();
-
-                        datalistadoCotizacion.Rows.Add(new[] { codigo, detalle, codigoformulacion, cantidad, precioUnitario, descuento, total, null, null, null, null, null, codigoCliente, descripcionCliente, idDetalleCotizacion });
-                    }
-                }
-
-                datalistadoFormulacionesSeleccionadas.Rows.Clear();
-                alternarColorFilas(datalistadoCotizacion);
-                CargarComboData();
-
-                btnGuardarCotizacion.Visible = false;
-                lblGuardar.Visible = false;
-                btnEditarCotizacionAccion.Visible = true;
-                lblEditar.Visible = true;
-
-                datalistadoTodasCotiaciones.Enabled = false;
-                panelNuevaCotizacion.Visible = true;
-
-                lblTituloCotizacion.Text = "EDICIÓN COTIZACIÓN";
-
-                datalistadoCotizacion.Columns[0].ReadOnly = true;
-                datalistadoCotizacion.Columns[1].ReadOnly = true;
-                datalistadoCotizacion.Columns[2].ReadOnly = true;
-                datalistadoCotizacion.Columns[6].ReadOnly = true;
-            }
-        }
 
         //EDITAR COTIZACION
         private void btnEditarCotizacionAccion_Click(object sender, EventArgs e)
@@ -2726,283 +3032,20 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
         }
 
-        //HABILITAR ANULACION-------------------------------------------------------------------------------
-        private void btnAnularCotizacion_Click(object sender, EventArgs e)
-        {
-            if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
-            {
-                MessageBox.Show("La cotización que intenta anular ya se encuentra anulada.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            else
-            {
-                panleAnulacion.Visible = true;
-                datalistadoTodasCotiaciones.Enabled = false;
-                txtJustificacionAnulacion.Text = "";
-            }
-        }
-
-        //ANULAR COTIZACION
-        private void btnProcederAnulacion_Click(object sender, EventArgs e)
-        {
-            if (datalistadoTodasCotiaciones.CurrentRow != null)
-            {
-                int codigo = int.Parse(datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString());
-                string estado = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[33].Value.ToString();
-
-                if (codigo != 0)
-                {
-                    //VALIDACION DE CARACTERES INGRESADOS
-                    if (txtJustificacionAnulacion.Text.Length > 10)
-                    {
-                        DialogResult boton = MessageBox.Show("¿Esta seguro que desea anular esta cotización?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
-                        if (boton == DialogResult.OK)
-                        {
-                            if (estado == "COMPLETADO" || estado == "ADJUDICADO PARCIALMENTE")
-                            {
-                                MessageBox.Show("Esta cotización ya tiene un pedido generado, por favor anular por el mantenimiento de pedidos.", "Validación del Sistema", MessageBoxButtons.OK);
-                                return;
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    SqlConnection con = new SqlConnection();
-                                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                                    con.Open();
-                                    SqlCommand cmd = new SqlCommand();
-                                    cmd = new SqlCommand("Cotizacion_Anular", con);
-                                    cmd.CommandType = CommandType.StoredProcedure;
-                                    cmd.Parameters.AddWithValue("@codigo", codigo);
-                                    cmd.Parameters.AddWithValue("@mensaje", txtJustificacionAnulacion.Text);
-                                    cmd.ExecuteNonQuery();
-                                    con.Close();
-
-                                    ClassResourses.RegistrarAuditora(2, this.Name, 2, Program.IdUsuario, "", codigo);
-                                    MessageBox.Show("Anulación correcta, operación hecha satisfactoriamente.", "Validación del Sistema", MessageBoxButtons.OK);
-
-                                    panleAnulacion.Visible = false;
-                                    txtJustificacionAnulacion.Text = "";
-                                    datalistadoTodasCotiaciones.Enabled = true;
-                                    CargarCotizaciones(DesdeFecha.Value, HastaFecha.Value);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show("Error en la operación por: " + ex.Message);
-                                    ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe ingresar una justificación válida. La cantidad de carácteres debe ser mayor a 10.", "Validación del Sistema", MessageBoxButtons.OK);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo anular.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una cotización para poder anularla.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
-        //RETROCEDER EN LA ANULACION
-        private void btnRetrocederAnulacion_Click(object sender, EventArgs e)
-        {
-            txtJustificacionAnulacion.Text = "";
-            panleAnulacion.Visible = false;
-            datalistadoTodasCotiaciones.Enabled = true;
-        }
-        //---------------------------------------------------------------------------------------------------
-
-        //VISUALIZAR MI PDF DE MI COTIZACION
-        private void btnGenerarCotizacionPdf_Click(object sender, EventArgs e)
-        {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasCotiaciones.CurrentRow != null)
-            {
-                //SI LA CORIZACIÓN SE ENUENTRA ANULADA
-                if (datalistadoTodasCotiaciones.SelectedCells[33].Value.ToString() == "ANULADO")
-                {
-                    string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
-                    Visualizadores.VisualizarCotizacionVentaAnulada frm = new Visualizadores.VisualizarCotizacionVentaAnulada();
-                    frm.lblCodigo.Text = ccodigoCotizacion;
-
-                    frm.Show();
-                }
-                //SI LA COTIZACIÓN SE ENCUENTRA EN UN ESTADO DIFERENTE
-                else
-                {
-                    if (Convert.ToInt32(datalistadoTodasCotiaciones.SelectedCells[35].Value.ToString()) == 1)
-                    {
-                        string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
-                        frm.lblCodigo.Text = ccodigoCotizacion;
-
-                        frm.Show();
-                    }
-                    else
-                    {
-                        string ccodigoCotizacion = datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString();
-                        Visualizadores.VisualizarCotizacionVenta frm = new Visualizadores.VisualizarCotizacionVenta();
-                        frm.lblCodigo.Text = ccodigoCotizacion;
-
-                        frm.Show();
-
-                        string rutaReporte = @"C:\ArenasSoftBrochure\Cotizacion.pdf";
-                        string rutaOtroPDF = datalistadoTodasCotiaciones.SelectedCells[34].Value.ToString();
-                        string rutaFinal = @"C:\ArenasSoftBrochure\ReporteFinal.pdf";
-
-                        using (FileStream stream = new FileStream(rutaFinal, FileMode.Create))
-                        {
-                            Document document = new Document();
-                            PdfCopy copy = new PdfCopy(document, stream);
-                            document.Open();
-
-                            void AgregarPDF(string path)
-                            {
-                                PdfReader reader = new PdfReader(path);
-                                for (int i = 1; i <= reader.NumberOfPages; i++)
-                                {
-                                    copy.AddPage(copy.GetImportedPage(reader, i));
-                                }
-                                reader.Close();
-                            }
-
-                            AgregarPDF(rutaOtroPDF);
-                            AgregarPDF(rutaReporte);
-
-                            document.Close();
-                        }
-
-                        // Abrir el archivo después de la ejecución
-                        Process.Start(new ProcessStartInfo(rutaFinal) { UseShellExecute = true });
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una cotización para poder generar el PDF respectivo.", "Validación del Sistema");
-            }
-        }
 
 
-        //FUNCION PARA LIMPIAR TODOS LOS CAMPOS DE MI COTIZACION
-        public void LimpiarCotizacion()
-        {
-            //LIMPIESA DE CAMPOS
-            txtNombreCliente.Text = "";
-            txtDireccionClente.Text = "";
-            txtDocumentoCliente.Text = "";
-            cboUnidadCliente.DataSource = null;
-            cboResponsableCliente.DataSource = null;
-            cboContactoCliente.DataSource = null;
-            cboCondicionPagoCliente.DataSource = null;
-            cboFormaPagoCliente.DataSource = null;
-            ckAlmacenArenas.Checked = false;
 
-            datalistadoCotizacion.Rows.Clear();
-            txtObservaciones.Text = "Campo Opcional";
-            txtLugarEntregado.Text = "Campo Opcional";
-            txtReferencia.Text = "Campo Obligatorio";
-            txtGarantia.Text = "Campo Opcional";
 
-            txtSubTotal.Text = "0.00";
-            txtDescuento.Text = "0.00";
-            txtInafecta.Text = "0.00";
-            txtExonerada.Text = "0.00";
-            txtIgv.Text = "0.00";
-            txtTotalDescuento.Text = "0.00";
-            txtTotal.Text = "0.00";
-            SelectDescuento.Text = "0.00";
-            SelectIgv.Text = "18.00";
-        }
 
-        //BUSCAR Y SELECCIONAR CLIENTES PARA LA COTIZACION
-        private void txtBusquedaClientes2_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cboTipoBusquedaClientes.Text == "NOMBRES")
-                {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("Cotizacion_BuscarClientesPorNombres", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre", txtBusquedaClientes2.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoclientes.DataSource = dt;
-                    con.Close();
-                }
-                else if (cboTipoBusquedaClientes.Text == "DOCUMENTO")
-                {
-                    DataTable dt = new DataTable();
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("Cotizacion_BuscarClientesPorDocumento", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@documento", txtBusquedaClientes2.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    datalistadoclientes.DataSource = dt;
-                    con.Close();
-                }
 
-                ReordenarColumnasBusquedaClientes(datalistadoclientes);
-                alternarColorFilas(datalistadoclientes);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
-        //FUNCION APRA REORDENAR MIS COLUMNAS D EMI BUSQUEDA DE CLIENTE
-        public void ReordenarColumnasBusquedaClientes(DataGridView DGV)
-        {
-            DGV.Columns[5].Visible = false;
-            DGV.Columns[6].Visible = false;
-            DGV.Columns[7].Visible = false;
-            DGV.Columns[8].Visible = false;
-            DGV.Columns[9].Visible = false;
-            DGV.Columns[10].Visible = false;
-            DGV.Columns[11].Visible = false;
-            DGV.Columns[12].Visible = false;
-            DGV.Columns[13].Visible = false;
-            DGV.Columns[14].Visible = false;
-            DGV.Columns[15].Visible = false;
-            DGV.Columns[16].Visible = false;
-            DGV.Columns[17].Visible = false;
-            DGV.Columns[18].Visible = false;
-            DGV.Columns[19].Visible = false;
-            DGV.Columns[20].Visible = false;
-            DGV.Columns[21].Visible = false;
-            DGV.Columns[22].Visible = false;
-            DGV.Columns[23].Visible = false;
-            DGV.Columns[24].Visible = false;
-            DGV.Columns[25].Visible = false;
-            DGV.Columns[26].Visible = false;
-            DGV.Columns[27].Visible = false;
-            DGV.Columns[28].Visible = false;
-            DGV.Columns[29].Visible = false;
-            DGV.Columns[30].Visible = false;
 
-            DGV.Columns[0].Width = 100;
-            DGV.Columns[1].Width = 90;
-            DGV.Columns[2].Width = 260;
-            DGV.Columns[3].Width = 100;
-            DGV.Columns[4].Width = 150;
-        }
+
+
+
+
+
+
 
         //CAMBIO DE TIPO DE BUSQEUDA DE FORMUACIONES
         private void cboBusquedaFormulaciones_SelectedIndexChanged(object sender, EventArgs e)
@@ -3091,147 +3134,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //BUSCAR FORMULACIONES PARA AGREGAR A MI COTIZAVION
-        private void txtBusquedaFormulaciones_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cboTipoProducto.Text == "PRODUCTOS FABRICADOS")
-                {
-                    if (cboBusquedaFormulaciones.Text == "DESCRIPCIÓN")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorNombre_Formulacion", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@detalle", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                    if (cboBusquedaFormulaciones.Text == "CÓDIGO")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorCodigo_Formulacion", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                    if (cboBusquedaFormulaciones.Text == "C. FORMULACIÓN")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorCodigoFormulacion_Formulacion", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                    if (cboBusquedaFormulaciones.Text == "CÓDIGO BSS")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorCodigoBSS_Formulacion", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                }
-                else
-                {
-                    if (cboBusquedaFormulaciones.Text == "DESCRIPCIÓN")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorNombre_Producto", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@detalle", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                    if (cboBusquedaFormulaciones.Text == "CÓDIGO")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorCodigo_Producto", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                    if (cboBusquedaFormulaciones.Text == "C. FORMULACIÓN")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorCodigoFormulacion_Producto", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                    if (cboBusquedaFormulaciones.Text == "CÓDIGO BSS")
-                    {
-                        DataTable dt = new DataTable();
-                        SqlConnection con = new SqlConnection();
-                        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand();
-                        cmd = new SqlCommand("Cotizacion_MostrarTodasFormulacionesPorCodigoBSS_Producto", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@codigo", txtBusquedaFormulaciones.Text);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                        datalistadoBusquedaFormulaciones.DataSource = dt;
-                        con.Close();
-                    }
-                }
 
-                ColorearBoton(datalistadoBusquedaFormulaciones);
-                ReordenadoColumnasBusquedaFormulaciones(datalistadoBusquedaFormulaciones);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
         //FUNCION PARA COLOREAR LOS BOTONES
         public void ColorearBoton(DataGridView DGV)
@@ -3328,9 +3231,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ckAplicarBrochure.Checked = false;
             cboBrochures.SelectedIndex = 0;
 
-            txtObservaciones.Text = "Campo Opcional";
-            txtTiempoEntrega.Text = "Campo Opcional";
-            txtGarantia.Text = "Campo Opcional";
+            txtObservaciones.Text = "";
+            txtTiempoEntrega.Text = "";
+            txtGarantia.Text = "";
             txtSubTotal.Text = "";
             txtDescuento.Text = "";
             txtInafecta.Text = "";
@@ -3381,111 +3284,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             CAJAMUESTRA.Text = String.Format("{0:#,0.00}", total);
         }
 
-        //FUNCION PARA HACER CLICK EN MI CAJA DE OBSERVACIONES
-        private void txtObservaciones_Click(object sender, EventArgs e)
-        {
-            if (txtObservaciones.Text == "Campo Opcional")
-            {
-                txtObservaciones.Text = "";
-                txtObservaciones.ReadOnly = false;
-            }
-            else
-            {
-                txtObservaciones.ReadOnly = false;
-            }
-        }
 
-        //FUNCION PARA HACER CLICK EN MI CAJA DE LA REFERENCIA
-        private void txtReferencia_Click(object sender, EventArgs e)
-        {
-            if (txtReferencia.Text == "Campo Obligatorio")
-            {
-                txtReferencia.Text = "";
-                txtReferencia.ReadOnly = false;
-            }
-            else
-            {
-                txtReferencia.ReadOnly = false;
-            }
-        }
 
-        //CUANDO SE DESELECCIONA LAS OBSERVACIONES
-        private void txtObservaciones_Leave(object sender, EventArgs e)
-        {
-            if (txtObservaciones.Text == "")
-            {
-                txtObservaciones.ReadOnly = true;
-                txtObservaciones.Text = "Campo Opcional";
-                txtObservaciones.ForeColor = SystemColors.WindowText;
-            }
-        }
 
-        //CUANDO SE DESELECCIONA LAS LA REFERENCIA
-        private void txtReferencia_Leave(object sender, EventArgs e)
-        {
-            if (txtReferencia.Text == "")
-            {
-                txtReferencia.ReadOnly = true;
-                txtReferencia.Text = "Campo Obligatorio";
-                txtReferencia.ForeColor = SystemColors.WindowText;
-            }
-        }
-
-        //ELEGIR ALMACEN DE ARENAS
-        private void ckAlmacenArenas_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ckAlmacenArenas.Checked == true)
-            {
-                txtLugarEntregado.Text = "Calle El Martillo MZ B Lote 5 Urb. Industrial El Naranjal";
-            }
-            else
-            {
-                txtLugarEntregado.ReadOnly = true;
-                txtLugarEntregado.Text = "Campo Opcional";
-                txtLugarEntregado.ForeColor = SystemColors.WindowText;
-            }
-        }
-
-        //BUSCAR  LUGAR DE ENTREGA
-        private void btnBuscarSucursalF_Click(object sender, EventArgs e)
-        {
-            if (txtDocumentoCliente.Text != "")
-            {
-                panelBusquedaSucursal.Visible = true;
-                txtClienteBusquedaSucursal.Text = txtNombreCliente.Text;
-                txtDocumentoBusquedaSucursal.Text = txtDocumentoCliente.Text;
-                BuscarSucursalesXCliente(CodigoCLiente);
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar a un cliente para poder desplegar las sucursales.", "Validación del Sistema", MessageBoxButtons.OK);
-            }
-        }
-
-        //SELECCIONAR UNA SUCURSAL DE MI CLIENTE
-        private void datalistadoSucursalesXCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtLugarEntregado.Text = datalistadoSucursalesXCliente.SelectedCells[2].Value.ToString();
-            panelBusquedaSucursal.Visible = false;
-        }
-
-        //LIMPIAR LUGAR DE ENTREGA
-        private void btnLimpiarLugarEntregaF_Click(object sender, EventArgs e)
-        {
-            txtLugarEntregado.ReadOnly = true;
-            txtLugarEntregado.Text = "Campo Opcional";
-            txtLugarEntregado.ForeColor = SystemColors.WindowText;
-            ckAlmacenArenas.Checked = false;
-        }
-
-        //CEERAR EL PANEL DE BUSQUEDA DE CLIENTES
-        private void txtCerrarBusquedaSucursal_Click(object sender, EventArgs e)
-        {
-            panelBusquedaSucursal.Visible = false;
-            txtClienteBusquedaSucursal.Text = "";
-            txtDocumentoBusquedaSucursal.Text = "";
-        }
-        //------------------------------------------------------------------------------------------------
 
         //---------------------------------------------PEDIDO----------------------------------------------
         //CODIGO PARA GENERAR EL CODIGO DE COTIZACION
@@ -3582,7 +3383,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     BuscarCotizacionDetallePorCodigoAdjudicado(codigoCotizacion);
 
                     CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadClientePedido);
-                    CargarResponsable(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboResponsableClientePedido);
+                    CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadCliente.SelectedValue.ToString()));
                     CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoClientePedido);
                     CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoClientePedido);
                     CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoClientePedido);
@@ -3662,113 +3463,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //GENERAR PEDIDO A MI COTIZACION - DETALLE
-        private void btnGenerarPedidoDetalle_Click(object sender, EventArgs e)
-        {
-            if (datalistadoTodasCotiaciones.CurrentRow != null)
-            {
-                int habilitado = 0;
-                //VERIFICARSI HAY ITEMS SELECCIOANDOS
-                foreach (DataGridViewRow row in datalistadoItemsCotizacion.Rows)
-                {
-                    bool skPedido = Convert.ToBoolean(row.Cells[7].Value);
-                    string estadoPedido = Convert.ToString(row.Cells[8].Value);
 
-                    if (skPedido == true && estadoPedido == "SIN PEDIDO")
-                    {
-                        habilitado = 1;
-                        break;
-                    }
-                }
-
-                //VALIDAR SI HAY ITEMS SELECCIOANDOS
-                if (habilitado == 1)
-                {
-                    codigoCotizacion = int.Parse(datalistadoTodasCotiaciones.Rows[datalistadoTodasCotiaciones.CurrentRow.Index].Cells[1].Value.ToString());
-
-                    //BUSCAR ITEMS DE MI COTIZACION
-                    BuscarCotizacionPorCodigo(codigoCotizacion);
-
-                    CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadClientePedido);
-                    CargarResponsable(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboResponsableClientePedido);
-                    CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoClientePedido);
-                    CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoClientePedido);
-                    CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoClientePedido);
-                    CargarMoneda(cboMonedaPedido);
-                    CargarAlmacen(cboAlmacenPedido);
-
-                    FechaAhoraPedido.Value = DateTime.Now;
-                    FechaPedidoPedido.Value = DateTime.Now;
-                    FechaEntregaPedido.Value = DateTime.Now;
-                    dateTimeFechaTermino.Value = DateTime.Now;
-                    txtCodigoClientePedido.Text = dataListadiCotiXCodigo.SelectedCells[32].Value.ToString();
-                    txtClientePedido.Text = dataListadiCotiXCodigo.SelectedCells[5].Value.ToString();
-                    txtDireccionCLientePedido.Text = dataListadiCotiXCodigo.SelectedCells[33].Value.ToString();
-                    txtLugarEntregaPedido.Text = dataListadiCotiXCodigo.SelectedCells[16].Value.ToString();
-
-
-                    FechaCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[2].Value.ToString();
-                    txtCodigoCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[1].Value.ToString();
-                    txtIdCotizacionPedido.Text = dataListadiCotiXCodigo.SelectedCells[0].Value.ToString();
-
-                    cboUnidadClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[6].Value.ToString();
-                    cboResponsableClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[8].Value.ToString();
-                    cboContactoClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[27].Value.ToString();
-                    cboCondicionPagoClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[29].Value.ToString();
-                    cboFormaPagoClientePedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[28].Value.ToString();
-                    cboMonedaPedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[12].Value.ToString();
-                    cboAlmacenPedido.SelectedValue = dataListadiCotiXCodigo.SelectedCells[15].Value.ToString();
-
-                    //DETALLES DEL PEDIDO
-                    datalistadoGeneracionPedido.Rows.Clear();
-                    try
-                    {
-                        foreach (DataGridViewRow row in datalistadoItemsCotizacion.Rows)
-                        {
-                            bool skPedido = Convert.ToBoolean(row.Cells[7].Value);
-                            string estadoPedido = Convert.ToString(row.Cells[8].Value);
-
-                            if (skPedido == true && estadoPedido == "SIN PEDIDO")
-                            {
-                                string idDetalleCotizacion = row.Cells[0].Value.ToString();
-                                string item = row.Cells[9].Value.ToString();
-                                string codigoProducto = row.Cells[1].Value.ToString();
-                                string descripcion = row.Cells[2].Value.ToString();
-                                string cantidad = row.Cells[3].Value.ToString();
-                                string preciounidad = row.Cells[4].Value.ToString();
-                                string descuento = row.Cells[5].Value.ToString();
-                                string total = row.Cells[6].Value.ToString();
-                                string idProducto = row.Cells[11].Value.ToString();
-                                string codigoFormulacion = row.Cells[10].Value.ToString();
-
-                                datalistadoGeneracionPedido.Rows.Add(new[] { null, item, codigoProducto, descripcion, cantidad, preciounidad, descuento, total, null, idProducto, null, null, codigoFormulacion, idDetalleCotizacion });
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-                    }
-
-                    alternarColorFilas(datalistadoGeneracionPedido);
-                    panelGenerarPedido.Visible = true;
-                    panelDetalleitemsCotizacion.Visible = false;
-                    FechaEntregaPedido.Value = DateTime.Now;
-                    FechaPedidoPedido.Value = DateTime.Now;
-                    datalistadoGeneracionPedido.Columns[1].ReadOnly = true;
-                    datalistadoGeneracionPedido.Columns[2].ReadOnly = true;
-                    datalistadoGeneracionPedido.Columns[3].ReadOnly = true;
-                    datalistadoGeneracionPedido.Columns[7].ReadOnly = true;
-                    datalistadoGeneracionPedido.Columns[10].ReadOnly = true;
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar uno o más items para poder continuar con la generación del pedido", "Validación del SISTEMA", MessageBoxButtons.OK);
-                }
-
-            }
-        }
 
         //BOTON PARA SALOR Y REGRESAR DE MI PEDIDO
         private void BtnRegresarGenerarPedido_Click(object sender, EventArgs e)
@@ -4003,55 +3698,8 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //HABILITAR EL INGRESO DE TEXTO
-        private void txtGarantia_Click(object sender, EventArgs e)
-        {
-            if (txtGarantia.Text == "Campo Opcional")
-            {
-                txtGarantia.Text = "";
-                txtGarantia.ReadOnly = false;
-            }
-            else
-            {
-                txtGarantia.ReadOnly = false;
-            }
-        }
 
-        //DESHABILITAR 
-        private void txtGarantia_Leave(object sender, EventArgs e)
-        {
-            if (txtGarantia.Text == "")
-            {
-                txtGarantia.ReadOnly = true;
-                txtGarantia.Text = "Campo Opcional";
-                txtGarantia.ForeColor = SystemColors.WindowText;
-            }
-        }
 
-        //HABILITAR EL INGRESO DE TEXTO
-        private void txtTiempoEntrega_Click(object sender, EventArgs e)
-        {
-            if (txtTiempoEntrega.Text == "Campo Opcional")
-            {
-                txtTiempoEntrega.Text = "";
-                txtTiempoEntrega.ReadOnly = false;
-            }
-            else
-            {
-                txtTiempoEntrega.ReadOnly = false;
-            }
-        }
-
-        //DESHABILITAR EL DETALLE DE PEDIDO
-        private void txtTiempoEntrega_Leave(object sender, EventArgs e)
-        {
-            if (txtTiempoEntrega.Text == "")
-            {
-                txtTiempoEntrega.ReadOnly = true;
-                txtTiempoEntrega.Text = "Campo Opcional";
-                txtTiempoEntrega.ForeColor = SystemColors.WindowText;
-            }
-        }
 
         //BOTON PARA GUARADR EL MI PEDIDO Y GENERAR EL DOCUMENTO RESPECTIVO
         private void btnGuardarPedido_Click(object sender, EventArgs e)
@@ -4526,11 +4174,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //BLOQUEAR LA OPCIÓN DE BUSQUEDA POR HISTORIA
-        private void btnHistorialCotizaciones_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Función no disponible.", "Validación del Sistema");
-        }
+
 
         //BOTON PARA ABRIR EL MANAUL
         private void btnInfoPedido_Click(object sender, EventArgs e)
@@ -4598,15 +4242,6 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //CARGAR COLORES DE MIS LISTADOS
-        private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //CARGAR EL MÉTODO QUE COLOREA LAS FILAS
-            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiaciones);
-            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesPendientes);
-            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesParcial);
-            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesCompletado);
-            CargarColoresListadoCotizacionesGeneral(datalistadoTodasCotiacionesVencidos);
-        }
+
     }
 }

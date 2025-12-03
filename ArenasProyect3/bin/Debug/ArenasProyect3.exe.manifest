@@ -44,14 +44,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ArenasProyect3.exe" size="26349056">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ArenasProyect3.exe" size="26604032">
       <assemblyIdentity name="ArenasProyect3" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>X5SI8Yd6wrbK+TIzLb9w5W5494TnR5atJ0aSoZf+K20=</dsig:DigestValue>
+        <dsig:DigestValue>X29paCKQhztP9MVzQyTnZRz8ACd7aqx8ARhjDwIr+f8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -343,13 +343,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ArenasProyect3.exe.config" size="167">
+  <file name="ArenasProyect3.exe.config" size="284">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>c5A1E0VFdjRrCoH30IyWh/L/VhgQ3hO9i/F+MAROEiY=</dsig:DigestValue>
+      <dsig:DigestValue>rFU7f2tRNZ2D2lUEmqwDve59T8lvgpMFbqRZCpS+XMg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Modulos\Resourses\panel.ico" size="8184">

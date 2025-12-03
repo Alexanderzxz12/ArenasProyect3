@@ -132,7 +132,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO OPs
-        public void ColoresListadoOPCalidad(DataGridView DGV)
+        public void ColoresListadoOTCalidad(DataGridView DGV)
         {
             try
             {
@@ -170,7 +170,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         public void MostrarOrdenTrabajoPorCriterios(DateTime fechaInicio, DateTime fechaTermino, string cliente = null, string codigoOT = null, string descripcion = null)
         {
             using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
-            using (SqlCommand cmd = new SqlCommand("OT_MostrarOrdenServicio", con))
+            using (SqlCommand cmd = new SqlCommand("OT_Mostrar", con))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
@@ -191,8 +191,8 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                     DataTable dtCulminado = rowsCulminado.Any() ? rowsCulminado.CopyToDataTable() : dt.Clone();
                     datalistadoEnProcesoOT.DataSource = dtCulminado; // Asumiendo este es el nombre de tu DataGrid
 
-                    RedimensionarListadoOrdenProduccion(datalistadoTodasOT);
-                    RedimensionarListadoOrdenProduccion(datalistadoEnProcesoOT);
+                    RedimensionarListadoOrdenTrabajo(datalistadoTodasOT);
+                    RedimensionarListadoOrdenTrabajo(datalistadoEnProcesoOT);
                 }
                 catch (Exception ex)
                 {
@@ -202,7 +202,7 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         }
 
         //FUNCION PARA REDIMENSIONAR MIS LISTADOS
-        public void RedimensionarListadoOrdenProduccion(DataGridView DGV)
+        public void RedimensionarListadoOrdenTrabajo(DataGridView DGV)
         {
             ////REDIEMNSION DE PEDIDOS
             DGV.Columns[2].Width = 95;
@@ -409,7 +409,14 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         //VISUALIZAR OC
         private void btnOC_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Process.Start(dgvActivo.SelectedCells[16].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
+            }
         }
 
         //APROBAR LAS CANTIDADES INGRESADAS
@@ -546,6 +553,12 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         private void btnRegresarControl_Click(object sender, EventArgs e)
         {
             VerificarDGVActivo();
+            PanelRevisioncantidades();
+        }
+
+        //CERRAR DETALLES CANTIDADES
+        private void btnCerrarDetallesOPCantidades_Click(object sender, EventArgs e)
+        {
             PanelRevisioncantidades();
         }
 
@@ -776,8 +789,8 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
                         panelSNC.Visible = false;
                         LimpiarSNC();
                         MostrarSNC(datalistadoHistorial);
-                        //FUNCION PARA ENVIAR CORREOS DE CONFIRMACION
-                        ClassResourses.Enviar("arenassoft@arenassrl.com.pe", "CORREO AUTOMATIZADO - CREACIÓN DE UNA SNC", "Correo de creación de una salida no conforme a la OT número " + txtOrdenTrabajoSNC.Text + " por parte del usuario " + Program.UnoNombreUnoApellidoUsuario + " el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                        //FUNCION PARAENVIAR EL CORREO RESPECTIVO
+                        //ClassResourses.Enviar("arenassoft@arenassrl.com.pe", "CORREO AUTOMATIZADO - CREACIÓN DE UNA SNC", "Correo de creación de una salida no conforme a la OT número " + txtOrdenTrabajoSNC.Text + " por parte del usuario " + Program.UnoNombreUnoApellidoUsuario + " el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
                     }
                     catch (Exception ex)
                     {
@@ -859,13 +872,13 @@ namespace ArenasProyect3.Modulos.Calidad.Revision
         //PINTAR MIS LSITADOS
         private void datalistadoEnProcesoOT_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            ColoresListadoOPCalidad(datalistadoEnProcesoOT);
+            ColoresListadoOTCalidad(datalistadoEnProcesoOT);
         }
 
         //PINTAR MIS LSITADOS
         private void datalistadoTodasOT_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            ColoresListadoOPCalidad(datalistadoTodasOT);
+            ColoresListadoOTCalidad(datalistadoTodasOT);
         }
 
         //VALIDAR QUE SOLO INGRESE NÚMEROS ENTEROS

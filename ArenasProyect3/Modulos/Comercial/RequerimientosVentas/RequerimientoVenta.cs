@@ -55,7 +55,6 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             HastaFecha.Value = oUltimoDiaDelMes;
 
             //BLOQUEAR MI LISTADO PARA EVITAR MALAS CARGAS DE PDFs Y CARGAS DE DATOS
-            datalistadoTodasRequerimientos.DataSource = null;
             panelAprobacionDetalleFueraFecha.Visible = false;
             panelObservacionesRequeAtrasado.Visible = false;
             panelObservacionesLiquiFueraFecha.Visible = false;
@@ -124,32 +123,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         }
 
         //CARGAR VEHIVULOS PARA GENERAR EL REQUERIMEINTO
-        public void CargarVehiculosReque(ComboBox cbo)
-        {
-            try
-            {
-                //CARGAR EL COMBO
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand comando = new SqlCommand("SELECT IdVehiculo, Descripcion FROM Vehiculos WHERE Estado = 1", con);
-                SqlDataAdapter data = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                data.Fill(dt);
-                cbo.DisplayMember = "Descripcion";
-                cbo.ValueMember = "IdVehiculo";
-                cbo.DataSource = dt;
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
-            }
-        }
-
-        //CARGAR VEHIVULOS PARA GENERAR EL LIQUIDACIÓN
-        public void CargarVehiculosLiqui(ComboBox cbo)
+        public void CargarVehiculos(ComboBox cbo)
         {
             try
             {
@@ -243,76 +217,76 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         }
 
         //CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE LIQUIDACIÓN Y LA RESPECTIVA VALIDACION
-        public void codigoLiquidacion()
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlDataAdapter da;
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                da = new SqlDataAdapter("SELECT IdLiquidacion FROM LiquidacionVenta WHERE IdLiquidacion = (SELECT MAX(IdLiquidacion) FROM LiquidacionVenta)", con);
-                da.Fill(dt);
-                datalistadoCodigoLiquidacion.DataSource = dt;
-                con.Close();
+        //public void codigoLiquidacion()
+        //{
+        //    try
+        //    {
+        //        DataTable dt = new DataTable();
+        //        SqlDataAdapter da;
+        //        SqlConnection con = new SqlConnection();
+        //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //        con.Open();
+        //        da = new SqlDataAdapter("SELECT IdLiquidacion FROM LiquidacionVenta WHERE IdLiquidacion = (SELECT MAX(IdLiquidacion) FROM LiquidacionVenta)", con);
+        //        da.Fill(dt);
+        //        datalistadoCodigoLiquidacion.DataSource = dt;
+        //        con.Close();
 
-                if (datalistadoCodigoLiquidacion.Rows.Count != 0)
-                {
-                    numeroLiquidacion = Convert.ToInt32(datalistadoCodigoLiquidacion.SelectedCells[0].Value.ToString());
-                    int numeroLiquidacion2 = 0;
-                    numeroLiquidacion2 = Convert.ToInt32(numeroLiquidacion);
-                    numeroLiquidacion2 = numeroLiquidacion2 + 1;
+        //        if (datalistadoCodigoLiquidacion.Rows.Count != 0)
+        //        {
+        //            numeroLiquidacion = Convert.ToInt32(datalistadoCodigoLiquidacion.SelectedCells[0].Value.ToString());
+        //            int numeroLiquidacion2 = 0;
+        //            numeroLiquidacion2 = Convert.ToInt32(numeroLiquidacion);
+        //            numeroLiquidacion2 = numeroLiquidacion2 + 1;
 
-                    numeroLiquidacion = numeroLiquidacion2;
-                }
-                else
-                {
-                    MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-            }
-            catch (Exception ex)
-            {
-                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
-            }
-        }
+        //            numeroLiquidacion = numeroLiquidacion2;
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+        //        ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+        //    }
+        //}
 
-        //CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE REQUERIMIENTO Y LA RESPECTIVA VALIDACION
-        public void codigoRequerimeinto()
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlDataAdapter da;
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                da = new SqlDataAdapter("SELECT IdRequerimientoVenta FROM RequerimientoVenta WHERE IdRequerimientoVenta = (SELECT MAX(IdRequerimientoVenta) FROM RequerimientoVenta)", con);
-                da.Fill(dt);
-                datalistadoCodigoRequerimiento.DataSource = dt;
-                con.Close();
+        ////CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE REQUERIMIENTO Y LA RESPECTIVA VALIDACION
+        //public void codigoRequerimeinto()
+        //{
+        //    try
+        //    {
+        //        DataTable dt = new DataTable();
+        //        SqlDataAdapter da;
+        //        SqlConnection con = new SqlConnection();
+        //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
+        //        con.Open();
+        //        da = new SqlDataAdapter("SELECT IdRequerimientoVenta FROM RequerimientoVenta WHERE IdRequerimientoVenta = (SELECT MAX(IdRequerimientoVenta) FROM RequerimientoVenta)", con);
+        //        da.Fill(dt);
+        //        datalistadoCodigoRequerimiento.DataSource = dt;
+        //        con.Close();
 
-                if (datalistadoCodigoRequerimiento.Rows.Count != 0)
-                {
-                    numeroRequerimiento = Convert.ToInt32(datalistadoCodigoRequerimiento.SelectedCells[0].Value.ToString());
-                    int numeroRequerimiento2 = 0;
-                    numeroRequerimiento2 = Convert.ToInt32(numeroRequerimiento);
-                    numeroRequerimiento2 = numeroRequerimiento2 + 1;
+        //        if (datalistadoCodigoRequerimiento.Rows.Count != 0)
+        //        {
+        //            numeroRequerimiento = Convert.ToInt32(datalistadoCodigoRequerimiento.SelectedCells[0].Value.ToString());
+        //            int numeroRequerimiento2 = 0;
+        //            numeroRequerimiento2 = Convert.ToInt32(numeroRequerimiento);
+        //            numeroRequerimiento2 = numeroRequerimiento2 + 1;
 
-                    numeroRequerimiento = numeroRequerimiento2;
-                }
-                else
-                {
-                    MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
-                }
-            }
-            catch (Exception ex)
-            {
-                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
-            }
-        }
+        //            numeroRequerimiento = numeroRequerimiento2;
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+        //        ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+        //    }
+        //}
 
         //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
         public void MostrarExcel()
@@ -954,7 +928,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 //CARGA DE COMBOS GENERAES NECESARIOS PARA EL NUEVO REQUERIMIENTO
                 CargarResponsables(cboResponsable);
                 CargarTipoMoneda(cboTipoMoneda);
-                CargarVehiculosReque(cboVehiculo);
+                CargarVehiculos(cboVehiculo);
 
                 //BLOQUEO DEL LISTADO DE TODOS LOS REQUERIMEINTOS PARA EVITAR CRUCE DE INFORMACIÓN
                 datalistadoTodasRequerimientos.Enabled = false;
@@ -980,7 +954,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         //CARGA Y BUSQEUDA DE CAMPOS ESENCAILES PARA LA CARGA Y EL GUARDADO DE LA LIQUIDACION
                         CargarTipoMoneda(cboTipoMoneda);
                         CargarResponsables(cboResponsable);
-                        CargarVehiculosLiqui(cboVehiculo);
+                        CargarVehiculos(cboVehiculo);
                         BuscarRequerimeintoGeneral(codigoRequerimeinto);
                         BuscarRequerimeintoClientes(codigoRequerimeinto);
                         BuscarRequerimeintoColaboradores(codigoRequerimeinto);
@@ -1462,7 +1436,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             try
             {
                 //CONFIRMACIÓN PARA PODER GUARDAR EL REQUERIMEINTO
-                DialogResult boton = MessageBox.Show("¿Realmente desea guardar este requerimiento?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                DialogResult boton = MessageBox.Show("¿Realmente desea guardar este requerimiento?", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
                     //PROCEDIMEINTO ALMACENADO PARA HACER LA ACCIÓN DE GUARDAR
@@ -1470,13 +1444,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("RequerimientoViaje_Insertar", con);
+                    cmd = new SqlCommand("RQViaje_Insertar", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    codigoRequerimeinto();
+                    //codigoRequerimeinto();
                     //INGRESO DEL ENCABEZADO DEL REQUERIMIENTO
-                    cmd.Parameters.AddWithValue("@idRequerimientoVenta", numeroRequerimiento);
-                    cmd.Parameters.AddWithValue("@fechaRequerimiento", datatimeFechaRequerimiento.Value);
+                    //cmd.Parameters.AddWithValue("@idRequerimientoVenta", numeroRequerimiento);
+                    //cmd.Parameters.AddWithValue("@fechaRequerimiento", datatimeFechaRequerimiento.Value);
                     cmd.Parameters.AddWithValue("@fechaInicio", datetimeDesde.Value);
                     cmd.Parameters.AddWithValue("@fechaTermino", datetiemHasta.Value);
 
@@ -2081,7 +2055,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             //CARGA Y BUSQEUDA DE CAMPOS ESENCAILES PARA LA CARGA Y EL GUARDADO DE LA LIQUIDACION
                             CargarTipoMoneda(cboTipoMonedaLiquidacion);
                             CargarResponsables(cboResponsableLiquidacion);
-                            CargarVehiculosLiqui(cboVehiculoLiquidacion);
+                            CargarVehiculos(cboVehiculoLiquidacion);
                             BuscarRequerimeintoGeneral(codigoRequerimeinto);
                             BuscarRequerimeintoClientes(codigoRequerimeinto);
                             BuscarRequerimeintoColaboradores(codigoRequerimeinto);
@@ -2651,7 +2625,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         cmd = new SqlCommand("InsertarLiquidacionVenta", con);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        codigoLiquidacion();
+                        //codigoLiquidacion();
                         //INGRESO DEL ENCABEZADO DE LA LIQUIDACIÓN
                         cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
                         cmd.Parameters.AddWithValue("@fechaLiquidacion", datatimeFechaRequerimientoLiquidacion.Value);

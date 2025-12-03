@@ -63,15 +63,15 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle117 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle118 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle120 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle119 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle121 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle123 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle122 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle124 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle126 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle125 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle127 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle129 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle119 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle122 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle125 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle128 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -277,30 +277,22 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.a = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.datalistadoPendientePedido = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.datalistadoIncompletoPedido = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.datalistadoCompletoPedido = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.datalistadoDespahacoPedido = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.detalles2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.detalles3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.detalles4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.detalles5 = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelMovimientoFrm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoOrdenProduccionDash)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoDetallePedidoDash)).BeginInit();
@@ -389,18 +381,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
-            this.a.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoPendientePedido)).BeginInit();
-            this.panel7.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoIncompletoPedido)).BeginInit();
-            this.panel8.SuspendLayout();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCompletoPedido)).BeginInit();
-            this.panel11.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoDespahacoPedido)).BeginInit();
             this.panel12.SuspendLayout();
@@ -880,7 +868,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             dataGridViewCellStyle99.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoTodasPedido.DefaultCellStyle = dataGridViewCellStyle99;
             this.datalistadoTodasPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datalistadoTodasPedido.Location = new System.Drawing.Point(0, 20);
+            this.datalistadoTodasPedido.Location = new System.Drawing.Point(0, 0);
             this.datalistadoTodasPedido.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoTodasPedido.MultiSelect = false;
             this.datalistadoTodasPedido.Name = "datalistadoTodasPedido";
@@ -888,7 +876,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoTodasPedido.RowHeadersVisible = false;
             this.datalistadoTodasPedido.RowHeadersWidth = 20;
             this.datalistadoTodasPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoTodasPedido.Size = new System.Drawing.Size(1162, 368);
+            this.datalistadoTodasPedido.Size = new System.Drawing.Size(1162, 388);
             this.datalistadoTodasPedido.TabIndex = 165;
             this.datalistadoTodasPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoTodasPedido_CellClick);
             this.datalistadoTodasPedido.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoTodasPedido_CellDoubleClick);
@@ -3199,24 +3187,23 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.label23.TabIndex = 9;
             this.label23.Text = "Pendiente";
             // 
-            // a
+            // tabControl
             // 
-            this.a.Controls.Add(this.tabPage5);
-            this.a.Controls.Add(this.tabPage6);
-            this.a.Controls.Add(this.tabPage7);
-            this.a.Controls.Add(this.tabPage8);
-            this.a.Controls.Add(this.tabPage3);
-            this.a.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.a.Location = new System.Drawing.Point(3, 167);
-            this.a.Name = "a";
-            this.a.SelectedIndex = 0;
-            this.a.Size = new System.Drawing.Size(1170, 414);
-            this.a.TabIndex = 2036;
+            this.tabControl.Controls.Add(this.tabPage5);
+            this.tabControl.Controls.Add(this.tabPage6);
+            this.tabControl.Controls.Add(this.tabPage7);
+            this.tabControl.Controls.Add(this.tabPage8);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl.Location = new System.Drawing.Point(3, 167);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1170, 414);
+            this.tabControl.TabIndex = 2036;
             // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.datalistadoTodasPedido);
-            this.tabPage5.Controls.Add(this.panel3);
             this.tabPage5.Controls.Add(this.datalistadoExcel);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
@@ -3225,36 +3212,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.tabPage5.Text = "TODAS";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.ForestGreen;
-            this.panel3.Controls.Add(this.label29);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1162, 20);
-            this.panel3.TabIndex = 211;
-            // 
-            // label29
-            // 
-            this.label29.BackColor = System.Drawing.Color.ForestGreen;
-            this.label29.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label29.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label29.Location = new System.Drawing.Point(0, 0);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(1162, 20);
-            this.label29.TabIndex = 783;
-            this.label29.Text = "Detalle - Pedido";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.datalistadoPendientePedido);
-            this.tabPage6.Controls.Add(this.panel7);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(1162, 388);
@@ -3282,7 +3242,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoPendientePedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle118;
             this.datalistadoPendientePedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoPendientePedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewImageColumn1});
+            this.detalles2});
             dataGridViewCellStyle120.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle120.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle120.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3292,7 +3252,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             dataGridViewCellStyle120.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoPendientePedido.DefaultCellStyle = dataGridViewCellStyle120;
             this.datalistadoPendientePedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datalistadoPendientePedido.Location = new System.Drawing.Point(0, 20);
+            this.datalistadoPendientePedido.Location = new System.Drawing.Point(0, 0);
             this.datalistadoPendientePedido.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoPendientePedido.MultiSelect = false;
             this.datalistadoPendientePedido.Name = "datalistadoPendientePedido";
@@ -3300,55 +3260,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoPendientePedido.RowHeadersVisible = false;
             this.datalistadoPendientePedido.RowHeadersWidth = 20;
             this.datalistadoPendientePedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoPendientePedido.Size = new System.Drawing.Size(1162, 368);
+            this.datalistadoPendientePedido.Size = new System.Drawing.Size(1162, 388);
             this.datalistadoPendientePedido.TabIndex = 213;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            dataGridViewCellStyle119.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle119.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle119.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle119.NullValue")));
-            dataGridViewCellStyle119.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.dataGridViewImageColumn1.DefaultCellStyle = dataGridViewCellStyle119;
-            this.dataGridViewImageColumn1.HeaderText = "SEGUI.";
-            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.MinimumWidth = 6;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.Width = 40;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.ForestGreen;
-            this.panel7.Controls.Add(this.label3);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1162, 20);
-            this.panel7.TabIndex = 212;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.ForestGreen;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1162, 20);
-            this.label3.TabIndex = 783;
-            this.label3.Text = "Detalle - Pedido";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.datalistadoPendientePedido.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoPendientePedido_CellMouseMove);
             // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.datalistadoIncompletoPedido);
-            this.tabPage7.Controls.Add(this.panel8);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(1162, 388);
@@ -3376,7 +3294,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoIncompletoPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle121;
             this.datalistadoIncompletoPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoIncompletoPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewImageColumn2});
+            this.detalles3});
             dataGridViewCellStyle123.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle123.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle123.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3386,7 +3304,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             dataGridViewCellStyle123.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoIncompletoPedido.DefaultCellStyle = dataGridViewCellStyle123;
             this.datalistadoIncompletoPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datalistadoIncompletoPedido.Location = new System.Drawing.Point(0, 20);
+            this.datalistadoIncompletoPedido.Location = new System.Drawing.Point(0, 0);
             this.datalistadoIncompletoPedido.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoIncompletoPedido.MultiSelect = false;
             this.datalistadoIncompletoPedido.Name = "datalistadoIncompletoPedido";
@@ -3394,55 +3312,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoIncompletoPedido.RowHeadersVisible = false;
             this.datalistadoIncompletoPedido.RowHeadersWidth = 20;
             this.datalistadoIncompletoPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoIncompletoPedido.Size = new System.Drawing.Size(1162, 368);
+            this.datalistadoIncompletoPedido.Size = new System.Drawing.Size(1162, 388);
             this.datalistadoIncompletoPedido.TabIndex = 214;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            dataGridViewCellStyle122.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle122.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle122.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle122.NullValue")));
-            dataGridViewCellStyle122.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle122;
-            this.dataGridViewImageColumn2.HeaderText = "SEGUI.";
-            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
-            this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn2.MinimumWidth = 6;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.ReadOnly = true;
-            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn2.Width = 40;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.ForestGreen;
-            this.panel8.Controls.Add(this.label7);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Margin = new System.Windows.Forms.Padding(4);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1162, 20);
-            this.panel8.TabIndex = 213;
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.Color.ForestGreen;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(0, 0);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(1162, 20);
-            this.label7.TabIndex = 783;
-            this.label7.Text = "Detalle - Pedido";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.datalistadoIncompletoPedido.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoIncompletoPedido_CellMouseMove);
             // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.datalistadoCompletoPedido);
-            this.tabPage8.Controls.Add(this.panel11);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(1162, 388);
@@ -3470,7 +3346,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoCompletoPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle124;
             this.datalistadoCompletoPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoCompletoPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewImageColumn3});
+            this.detalles4});
             dataGridViewCellStyle126.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle126.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle126.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3480,7 +3356,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             dataGridViewCellStyle126.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoCompletoPedido.DefaultCellStyle = dataGridViewCellStyle126;
             this.datalistadoCompletoPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datalistadoCompletoPedido.Location = new System.Drawing.Point(0, 20);
+            this.datalistadoCompletoPedido.Location = new System.Drawing.Point(0, 0);
             this.datalistadoCompletoPedido.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoCompletoPedido.MultiSelect = false;
             this.datalistadoCompletoPedido.Name = "datalistadoCompletoPedido";
@@ -3488,55 +3364,13 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoCompletoPedido.RowHeadersVisible = false;
             this.datalistadoCompletoPedido.RowHeadersWidth = 20;
             this.datalistadoCompletoPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoCompletoPedido.Size = new System.Drawing.Size(1162, 368);
+            this.datalistadoCompletoPedido.Size = new System.Drawing.Size(1162, 388);
             this.datalistadoCompletoPedido.TabIndex = 215;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            dataGridViewCellStyle125.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle125.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle125.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle125.NullValue")));
-            dataGridViewCellStyle125.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.dataGridViewImageColumn3.DefaultCellStyle = dataGridViewCellStyle125;
-            this.dataGridViewImageColumn3.HeaderText = "SEGUI.";
-            this.dataGridViewImageColumn3.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn3.Image")));
-            this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn3.MinimumWidth = 6;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            this.dataGridViewImageColumn3.ReadOnly = true;
-            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn3.Width = 40;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.ForestGreen;
-            this.panel11.Controls.Add(this.label8);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Margin = new System.Windows.Forms.Padding(4);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1162, 20);
-            this.panel11.TabIndex = 214;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.ForestGreen;
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label8.Location = new System.Drawing.Point(0, 0);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(1162, 20);
-            this.label8.TabIndex = 783;
-            this.label8.Text = "Detalle - Pedido";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.datalistadoCompletoPedido.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoCompletoPedido_CellMouseMove);
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.datalistadoDespahacoPedido);
-            this.tabPage3.Controls.Add(this.panel12);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1162, 388);
@@ -3564,7 +3398,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoDespahacoPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle127;
             this.datalistadoDespahacoPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoDespahacoPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewImageColumn4});
+            this.detalles5});
             dataGridViewCellStyle129.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle129.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle129.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3574,7 +3408,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             dataGridViewCellStyle129.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datalistadoDespahacoPedido.DefaultCellStyle = dataGridViewCellStyle129;
             this.datalistadoDespahacoPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datalistadoDespahacoPedido.Location = new System.Drawing.Point(0, 20);
+            this.datalistadoDespahacoPedido.Location = new System.Drawing.Point(0, 0);
             this.datalistadoDespahacoPedido.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoDespahacoPedido.MultiSelect = false;
             this.datalistadoDespahacoPedido.Name = "datalistadoDespahacoPedido";
@@ -3582,34 +3416,18 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.datalistadoDespahacoPedido.RowHeadersVisible = false;
             this.datalistadoDespahacoPedido.RowHeadersWidth = 20;
             this.datalistadoDespahacoPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalistadoDespahacoPedido.Size = new System.Drawing.Size(1162, 368);
+            this.datalistadoDespahacoPedido.Size = new System.Drawing.Size(1162, 388);
             this.datalistadoDespahacoPedido.TabIndex = 215;
-            // 
-            // dataGridViewImageColumn4
-            // 
-            dataGridViewCellStyle128.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle128.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle128.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle128.NullValue")));
-            dataGridViewCellStyle128.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.dataGridViewImageColumn4.DefaultCellStyle = dataGridViewCellStyle128;
-            this.dataGridViewImageColumn4.HeaderText = "SEGUI.";
-            this.dataGridViewImageColumn4.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn4.Image")));
-            this.dataGridViewImageColumn4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn4.MinimumWidth = 6;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.ReadOnly = true;
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn4.Width = 40;
+            this.datalistadoDespahacoPedido.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datalistadoDespahacoPedido_CellMouseMove);
             // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.ForestGreen;
             this.panel12.Controls.Add(this.label9);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Location = new System.Drawing.Point(343, 168);
             this.panel12.Margin = new System.Windows.Forms.Padding(4);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1162, 20);
+            this.panel12.Size = new System.Drawing.Size(826, 20);
             this.panel12.TabIndex = 214;
             // 
             // label9
@@ -3622,10 +3440,74 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.label9.Location = new System.Drawing.Point(0, 0);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(1162, 20);
+            this.label9.Size = new System.Drawing.Size(826, 20);
             this.label9.TabIndex = 783;
             this.label9.Text = "Detalle - Pedido";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // detalles2
+            // 
+            dataGridViewCellStyle119.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle119.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle119.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle119.NullValue")));
+            dataGridViewCellStyle119.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.detalles2.DefaultCellStyle = dataGridViewCellStyle119;
+            this.detalles2.HeaderText = "SEGUI.";
+            this.detalles2.Image = ((System.Drawing.Image)(resources.GetObject("detalles2.Image")));
+            this.detalles2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.detalles2.MinimumWidth = 6;
+            this.detalles2.Name = "detalles2";
+            this.detalles2.ReadOnly = true;
+            this.detalles2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.detalles2.Width = 40;
+            // 
+            // detalles3
+            // 
+            dataGridViewCellStyle122.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle122.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle122.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle122.NullValue")));
+            dataGridViewCellStyle122.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.detalles3.DefaultCellStyle = dataGridViewCellStyle122;
+            this.detalles3.HeaderText = "SEGUI.";
+            this.detalles3.Image = ((System.Drawing.Image)(resources.GetObject("detalles3.Image")));
+            this.detalles3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.detalles3.MinimumWidth = 6;
+            this.detalles3.Name = "detalles3";
+            this.detalles3.ReadOnly = true;
+            this.detalles3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.detalles3.Width = 40;
+            // 
+            // detalles4
+            // 
+            dataGridViewCellStyle125.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle125.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle125.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle125.NullValue")));
+            dataGridViewCellStyle125.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.detalles4.DefaultCellStyle = dataGridViewCellStyle125;
+            this.detalles4.HeaderText = "SEGUI.";
+            this.detalles4.Image = ((System.Drawing.Image)(resources.GetObject("detalles4.Image")));
+            this.detalles4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.detalles4.MinimumWidth = 6;
+            this.detalles4.Name = "detalles4";
+            this.detalles4.ReadOnly = true;
+            this.detalles4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.detalles4.Width = 40;
+            // 
+            // detalles5
+            // 
+            dataGridViewCellStyle128.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle128.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle128.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle128.NullValue")));
+            dataGridViewCellStyle128.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.detalles5.DefaultCellStyle = dataGridViewCellStyle128;
+            this.detalles5.HeaderText = "SEGUI.";
+            this.detalles5.Image = ((System.Drawing.Image)(resources.GetObject("detalles5.Image")));
+            this.detalles5.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.detalles5.MinimumWidth = 6;
+            this.detalles5.Name = "detalles5";
+            this.detalles5.ReadOnly = true;
+            this.detalles5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.detalles5.Width = 40;
             // 
             // Pedido
             // 
@@ -3634,9 +3516,10 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
             this.Controls.Add(this.panelDetalleOP);
+            this.Controls.Add(this.panel12);
             this.Controls.Add(this.panleAnulacion);
             this.Controls.Add(this.panelModificacionOrdenCompra);
-            this.Controls.Add(this.a);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.btnAbiriOrdenCompra);
             this.Controls.Add(this.label45);
             this.Controls.Add(this.label18);
@@ -3762,18 +3645,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
-            this.a.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoPendientePedido)).EndInit();
-            this.panel7.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoIncompletoPedido)).EndInit();
-            this.panel8.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoCompletoPedido)).EndInit();
-            this.panel11.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoDespahacoPedido)).EndInit();
             this.panel12.ResumeLayout(false);
@@ -3891,14 +3770,12 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private System.Windows.Forms.PictureBox pictureBox26;
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TabControl a;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Panel panel3;
-        internal System.Windows.Forms.Label label29;
         private System.Windows.Forms.Panel panel35;
         private System.Windows.Forms.PictureBox pictureBox31;
         private System.Windows.Forms.PictureBox pictureBox8;
@@ -3997,20 +3874,14 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         private System.Windows.Forms.DataGridView datalistadoDetallePedidoDash;
         private System.Windows.Forms.DataGridView datalistadoOrdenProduccionDash;
         private System.Windows.Forms.DataGridView datalistadoPendientePedido;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.Panel panel7;
-        internal System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView datalistadoIncompletoPedido;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
-        private System.Windows.Forms.Panel panel8;
-        internal System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView datalistadoCompletoPedido;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
-        private System.Windows.Forms.Panel panel11;
-        internal System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView datalistadoDespahacoPedido;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
         private System.Windows.Forms.Panel panel12;
         internal System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridViewImageColumn detalles2;
+        private System.Windows.Forms.DataGridViewImageColumn detalles3;
+        private System.Windows.Forms.DataGridViewImageColumn detalles4;
+        private System.Windows.Forms.DataGridViewImageColumn detalles5;
     }
 }

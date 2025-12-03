@@ -1,4 +1,5 @@
 ﻿using ArenasProyect3.Modulos.Resourses;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
@@ -347,6 +348,51 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand("CreacionFormulacion_MostrarSinSemiProducido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idLinea", Convert.ToInt32(lblIdLinea.Text));
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    dgv.DataSource = dt;
+                    con.Close();
+                }
+
+                AjustesColunmasMostrarFormulaicones(dgv);
+                alternarColorFilas(dgv);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //LISTAR FORMULACIONES INGRESADAS
+        public void MostrarFormulacionesOcultas(ComboBox cbo, DataGridView dgv)
+        {
+            try
+            {
+                if (cbo.Text.Contains("CON SEMIPRODUCIDO"))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da;
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("CreacionFormulacion_MostrarConSemiProducido_Ocultas", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idLinea", Convert.ToInt32(lblIdLinea.Text));
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    dgv.DataSource = dt;
+                    con.Close();
+                }
+                else
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da;
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("CreacionFormulacion_MostrarSinSemiProducido_Ocultas", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idLinea", Convert.ToInt32(lblIdLinea.Text));
                     da = new SqlDataAdapter(cmd);
@@ -1108,7 +1154,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         {
             if (dgv.RowCount != 0)
             {
-                DialogResult boton = MessageBox.Show("¿Realmente desea anular esta formulación?.", "Validación del Sistema", MessageBoxButtons.OKCancel);
+                DialogResult boton = MessageBox.Show("¿Realmente desea ocultar esta formulación?", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
                 {
                     try
@@ -1119,12 +1165,13 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                         SqlCommand cmd = new SqlCommand();
                         cmd = new SqlCommand("CreacionoFormulacion_Anular", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idFormulacion", Convert.ToInt32(dgv.SelectedCells[1].Value.ToString()));
+                        int fila = dgv.CurrentCell.RowIndex;
+                        cmd.Parameters.AddWithValue("@idFormulacion", Convert.ToInt32(dgv.Rows[fila].Cells[1].Value));
 
                         cmd.ExecuteNonQuery();
                         con.Close();
 
-                        MessageBox.Show("Se eliminó correctamente la formulación seleccionada.", "Validación del Sistema", MessageBoxButtons.OK);
+                        MessageBox.Show("Se ocultó correctamente la formulación seleccionada", "Validación del Sistema", MessageBoxButtons.OK);
                         MostrarFormulaciones(cbo, dgv);
                     }
                     catch (Exception ex)
@@ -1135,7 +1182,7 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una formulación para poder anularla.", "Validación del Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Debe seleccionar una formulación para poder anularla", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -1381,6 +1428,16 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
                 txtFormulaciones.Visible = false;
                 FiltrarFormulaciones(cboBusquedaFormulacion, datalistadoFormulaciones, txtFormulaciones.Text);
             }
+            else if (cboBusquedaFormulacion.Text == "FORMULACIONES ANULADAS")
+            {
+                txtFormulaciones.Visible = false;
+                dtpFechaCreacionInicio.Visible = false;
+                imgFechaInicio.Visible = false;
+                lblEntreFechas.Visible = false;
+                dtpFechaCreacionFinal.Visible = false;
+                imgFechaFinal.Visible = false;
+                FiltrarFormulaciones(cboBusquedaFormulacion, datalistadoFormulaciones, txtFormulaciones.Text);
+            }
             else
             {
                 dtpFechaCreacionInicio.Visible = false;
@@ -1399,7 +1456,11 @@ namespace ArenasProyect3.Modulos.Procesos.Fornulacion
         {
             try
             {
-                if (busquedaformulaciones == "" && cboBusquedaFormulacion.Text != "FECHA DE CREACIÓN")
+                if (cboBusquedaFormulacion.Text == "FORMULACIONES ANULADAS")
+                {
+                    MostrarFormulacionesOcultas(cboDefinicionFormulacion, datalistadoFormulaciones);
+                }
+                else if (busquedaformulaciones == "" && cboBusquedaFormulacion.Text != "FECHA DE CREACIÓN")
                 {
                     MostrarFormulaciones(cboDefinicionFormulacion, datalistadoFormulaciones);
                 }

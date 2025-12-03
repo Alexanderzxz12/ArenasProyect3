@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoOrdenTrabajo));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMovimientoFrm = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -80,43 +80,6 @@
             this.btnOC = new System.Windows.Forms.Button();
             this.btnGenerarOrdenTrabajo = new System.Windows.Forms.Button();
             this.panelControlCalidad = new System.Windows.Forms.Panel();
-            this.panelSNC = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.btnCerrarSNC = new System.Windows.Forms.Button();
-            this.btnGuardarSNC = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.txtDescripcionSNC = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnLimpiar1 = new System.Windows.Forms.Button();
-            this.btnCargar1 = new System.Windows.Forms.Button();
-            this.txtImagen1 = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnLimpiar2 = new System.Windows.Forms.Button();
-            this.btnCargar2 = new System.Windows.Forms.Button();
-            this.txtImagen2 = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnLimpiar3 = new System.Windows.Forms.Button();
-            this.btnCargar3 = new System.Windows.Forms.Button();
-            this.txtImagen3 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.txtOrdenTrabajoSNC = new System.Windows.Forms.TextBox();
-            this.txtReponsableRegistro = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.dtpFechaHallazgo = new System.Windows.Forms.DateTimePicker();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
             this.panelDetallesObservacion = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label38 = new System.Windows.Forms.Label();
@@ -184,6 +147,43 @@
             this.btnCerrarDetallesOPCantidades = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.panelSNC = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.btnCerrarSNC = new System.Windows.Forms.Button();
+            this.btnGuardarSNC = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.txtDescripcionSNC = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnLimpiar1 = new System.Windows.Forms.Button();
+            this.btnCargar1 = new System.Windows.Forms.Button();
+            this.txtImagen1 = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnLimpiar2 = new System.Windows.Forms.Button();
+            this.btnCargar2 = new System.Windows.Forms.Button();
+            this.txtImagen2 = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnLimpiar3 = new System.Windows.Forms.Button();
+            this.btnCargar3 = new System.Windows.Forms.Button();
+            this.txtImagen3 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtOrdenTrabajoSNC = new System.Windows.Forms.TextBox();
+            this.txtReponsableRegistro = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.dtpFechaHallazgo = new System.Windows.Forms.DateTimePicker();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
@@ -207,6 +207,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoTodasOT)).BeginInit();
             this.panel16.SuspendLayout();
             this.panelControlCalidad.SuspendLayout();
+            this.panelDetallesObservacion.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoHistorial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panelSNC.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
@@ -219,16 +229,6 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panelDetallesObservacion.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoHistorial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMovimientoFrm
@@ -595,25 +595,25 @@
             this.datalistadoEnProcesoOT.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoEnProcesoOT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoEnProcesoOT.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoEnProcesoOT.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoEnProcesoOT.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datalistadoEnProcesoOT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoEnProcesoOT.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnaDetallesCul});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoEnProcesoOT.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoEnProcesoOT.DefaultCellStyle = dataGridViewCellStyle3;
             this.datalistadoEnProcesoOT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datalistadoEnProcesoOT.Location = new System.Drawing.Point(0, 0);
             this.datalistadoEnProcesoOT.Margin = new System.Windows.Forms.Padding(4);
@@ -632,10 +632,10 @@
             // 
             // columnaDetallesCul
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle11.NullValue")));
-            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(2);
-            this.columnaDetallesCul.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
+            this.columnaDetallesCul.DefaultCellStyle = dataGridViewCellStyle2;
             this.columnaDetallesCul.HeaderText = "SEL.";
             this.columnaDetallesCul.Image = ((System.Drawing.Image)(resources.GetObject("columnaDetallesCul.Image")));
             this.columnaDetallesCul.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -666,25 +666,25 @@
             this.datalistadoTodasOT.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoTodasOT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoTodasOT.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoTodasOT.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoTodasOT.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.datalistadoTodasOT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoTodasOT.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.detalles});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoTodasOT.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoTodasOT.DefaultCellStyle = dataGridViewCellStyle6;
             this.datalistadoTodasOT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datalistadoTodasOT.Location = new System.Drawing.Point(0, 0);
             this.datalistadoTodasOT.Margin = new System.Windows.Forms.Padding(4);
@@ -703,10 +703,10 @@
             // 
             // detalles
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle14.NullValue")));
-            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(2);
-            this.detalles.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle5.NullValue")));
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            this.detalles.DefaultCellStyle = dataGridViewCellStyle5;
             this.detalles.HeaderText = "SEL.";
             this.detalles.Image = ((System.Drawing.Image)(resources.GetObject("detalles.Image")));
             this.detalles.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -816,6 +816,7 @@
             // panelControlCalidad
             // 
             this.panelControlCalidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelControlCalidad.Controls.Add(this.panelSNC);
             this.panelControlCalidad.Controls.Add(this.panelDetallesObservacion);
             this.panelControlCalidad.Controls.Add(this.btnCancelarNuevoTipoHallazgo);
             this.panelControlCalidad.Controls.Add(this.btnConfirmarNuevoTipoHallazgo);
@@ -872,459 +873,6 @@
             this.panelControlCalidad.Size = new System.Drawing.Size(589, 555);
             this.panelControlCalidad.TabIndex = 2059;
             this.panelControlCalidad.Visible = false;
-            // 
-            // panelSNC
-            // 
-            this.panelSNC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSNC.Controls.Add(this.panel1);
-            this.panelSNC.Controls.Add(this.label37);
-            this.panelSNC.Controls.Add(this.label36);
-            this.panelSNC.Controls.Add(this.btnCerrarSNC);
-            this.panelSNC.Controls.Add(this.btnGuardarSNC);
-            this.panelSNC.Controls.Add(this.groupBox3);
-            this.panelSNC.Controls.Add(this.panel4);
-            this.panelSNC.Controls.Add(this.label26);
-            this.panelSNC.Location = new System.Drawing.Point(304, 175);
-            this.panelSNC.Margin = new System.Windows.Forms.Padding(4);
-            this.panelSNC.Name = "panelSNC";
-            this.panelSNC.Size = new System.Drawing.Size(568, 290);
-            this.panelSNC.TabIndex = 2060;
-            this.panelSNC.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.label34);
-            this.panel1.Controls.Add(this.label40);
-            this.panel1.Controls.Add(this.pictureBox15);
-            this.panel1.Controls.Add(this.pictureBox16);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(566, 15);
-            this.panel1.TabIndex = 2098;
-            // 
-            // label34
-            // 
-            this.label34.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(17, 0);
-            this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(156, 15);
-            this.label34.TabIndex = 2;
-            this.label34.Text = "SNC";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(127, -2);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(32, 13);
-            this.label40.TabIndex = 2049;
-            this.label40.Text = "*****";
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox15.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
-            this.pictureBox15.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(17, 15);
-            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox15.TabIndex = 999;
-            this.pictureBox15.TabStop = false;
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox16.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox16.Image")));
-            this.pictureBox16.Location = new System.Drawing.Point(2063, -1);
-            this.pictureBox16.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(60, 37);
-            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox16.TabIndex = 54;
-            this.pictureBox16.TabStop = false;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(490, 262);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(65, 13);
-            this.label37.TabIndex = 2097;
-            this.label37.Text = "RETROCEDER";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(380, 262);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(49, 13);
-            this.label36.TabIndex = 2096;
-            this.label36.Text = "GENERAR";
-            // 
-            // btnCerrarSNC
-            // 
-            this.btnCerrarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrarSNC.FlatAppearance.BorderSize = 0;
-            this.btnCerrarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSNC.Image")));
-            this.btnCerrarSNC.Location = new System.Drawing.Point(454, 251);
-            this.btnCerrarSNC.Name = "btnCerrarSNC";
-            this.btnCerrarSNC.Size = new System.Drawing.Size(32, 32);
-            this.btnCerrarSNC.TabIndex = 2095;
-            this.btnCerrarSNC.UseVisualStyleBackColor = true;
-            this.btnCerrarSNC.Click += new System.EventHandler(this.btnCerrarSNC_Click);
-            // 
-            // btnGuardarSNC
-            // 
-            this.btnGuardarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardarSNC.FlatAppearance.BorderSize = 0;
-            this.btnGuardarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarSNC.Image")));
-            this.btnGuardarSNC.Location = new System.Drawing.Point(345, 251);
-            this.btnGuardarSNC.Name = "btnGuardarSNC";
-            this.btnGuardarSNC.Size = new System.Drawing.Size(32, 32);
-            this.btnGuardarSNC.TabIndex = 2094;
-            this.btnGuardarSNC.UseVisualStyleBackColor = true;
-            this.btnGuardarSNC.Click += new System.EventHandler(this.btnGuardarSNC_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.pictureBox9);
-            this.groupBox3.Controls.Add(this.pictureBox5);
-            this.groupBox3.Controls.Add(this.txtDescripcionSNC);
-            this.groupBox3.Controls.Add(this.tabControl1);
-            this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.txtOrdenTrabajoSNC);
-            this.groupBox3.Controls.Add(this.txtReponsableRegistro);
-            this.groupBox3.Controls.Add(this.label31);
-            this.groupBox3.Controls.Add(this.label30);
-            this.groupBox3.Controls.Add(this.pictureBox3);
-            this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.dtpFechaHallazgo);
-            this.groupBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 43);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(545, 204);
-            this.groupBox3.TabIndex = 2091;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Identificación";
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(517, 24);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(18, 18);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 2100;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(517, 53);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(18, 18);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 2048;
-            this.pictureBox5.TabStop = false;
-            // 
-            // txtDescripcionSNC
-            // 
-            this.txtDescripcionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcionSNC.Location = new System.Drawing.Point(144, 80);
-            this.txtDescripcionSNC.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescripcionSNC.Multiline = true;
-            this.txtDescripcionSNC.Name = "txtDescripcionSNC";
-            this.txtDescripcionSNC.Size = new System.Drawing.Size(393, 49);
-            this.txtDescripcionSNC.TabIndex = 2095;
-            this.txtDescripcionSNC.Tag = "";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(12, 136);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(520, 62);
-            this.tabControl1.TabIndex = 2099;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.btnLimpiar1);
-            this.tabPage1.Controls.Add(this.btnCargar1);
-            this.tabPage1.Controls.Add(this.txtImagen1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(512, 36);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Imagen 1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiar1
-            // 
-            this.btnLimpiar1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar1.FlatAppearance.BorderSize = 0;
-            this.btnLimpiar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar1.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar1.Image")));
-            this.btnLimpiar1.Location = new System.Drawing.Point(479, 5);
-            this.btnLimpiar1.Name = "btnLimpiar1";
-            this.btnLimpiar1.Size = new System.Drawing.Size(25, 25);
-            this.btnLimpiar1.TabIndex = 2100;
-            this.btnLimpiar1.UseVisualStyleBackColor = true;
-            this.btnLimpiar1.Click += new System.EventHandler(this.btnLimpiar1_Click);
-            // 
-            // btnCargar1
-            // 
-            this.btnCargar1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargar1.FlatAppearance.BorderSize = 0;
-            this.btnCargar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargar1.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar1.Image")));
-            this.btnCargar1.Location = new System.Drawing.Point(448, 5);
-            this.btnCargar1.Name = "btnCargar1";
-            this.btnCargar1.Size = new System.Drawing.Size(25, 25);
-            this.btnCargar1.TabIndex = 2099;
-            this.btnCargar1.UseVisualStyleBackColor = true;
-            this.btnCargar1.Click += new System.EventHandler(this.btnCargar1_Click);
-            // 
-            // txtImagen1
-            // 
-            this.txtImagen1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImagen1.Location = new System.Drawing.Point(8, 7);
-            this.txtImagen1.Margin = new System.Windows.Forms.Padding(4);
-            this.txtImagen1.Name = "txtImagen1";
-            this.txtImagen1.ReadOnly = true;
-            this.txtImagen1.Size = new System.Drawing.Size(433, 21);
-            this.txtImagen1.TabIndex = 2093;
-            this.txtImagen1.Tag = "";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.btnLimpiar2);
-            this.tabPage2.Controls.Add(this.btnCargar2);
-            this.tabPage2.Controls.Add(this.txtImagen2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(512, 36);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Imagen 2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiar2
-            // 
-            this.btnLimpiar2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar2.FlatAppearance.BorderSize = 0;
-            this.btnLimpiar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar2.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar2.Image")));
-            this.btnLimpiar2.Location = new System.Drawing.Point(479, 5);
-            this.btnLimpiar2.Name = "btnLimpiar2";
-            this.btnLimpiar2.Size = new System.Drawing.Size(25, 25);
-            this.btnLimpiar2.TabIndex = 2103;
-            this.btnLimpiar2.UseVisualStyleBackColor = true;
-            this.btnLimpiar2.Click += new System.EventHandler(this.btnLimpiar2_Click);
-            // 
-            // btnCargar2
-            // 
-            this.btnCargar2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargar2.FlatAppearance.BorderSize = 0;
-            this.btnCargar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargar2.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar2.Image")));
-            this.btnCargar2.Location = new System.Drawing.Point(448, 5);
-            this.btnCargar2.Name = "btnCargar2";
-            this.btnCargar2.Size = new System.Drawing.Size(25, 25);
-            this.btnCargar2.TabIndex = 2102;
-            this.btnCargar2.UseVisualStyleBackColor = true;
-            this.btnCargar2.Click += new System.EventHandler(this.btnCargar2_Click);
-            // 
-            // txtImagen2
-            // 
-            this.txtImagen2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImagen2.Location = new System.Drawing.Point(8, 7);
-            this.txtImagen2.Margin = new System.Windows.Forms.Padding(4);
-            this.txtImagen2.Name = "txtImagen2";
-            this.txtImagen2.ReadOnly = true;
-            this.txtImagen2.Size = new System.Drawing.Size(433, 21);
-            this.txtImagen2.TabIndex = 2101;
-            this.txtImagen2.Tag = "";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.btnLimpiar3);
-            this.tabPage3.Controls.Add(this.btnCargar3);
-            this.tabPage3.Controls.Add(this.txtImagen3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(512, 36);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Imagen 3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiar3
-            // 
-            this.btnLimpiar3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar3.FlatAppearance.BorderSize = 0;
-            this.btnLimpiar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar3.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar3.Image")));
-            this.btnLimpiar3.Location = new System.Drawing.Point(479, 5);
-            this.btnLimpiar3.Name = "btnLimpiar3";
-            this.btnLimpiar3.Size = new System.Drawing.Size(25, 25);
-            this.btnLimpiar3.TabIndex = 2103;
-            this.btnLimpiar3.UseVisualStyleBackColor = true;
-            this.btnLimpiar3.Click += new System.EventHandler(this.btnLimpiar3_Click);
-            // 
-            // btnCargar3
-            // 
-            this.btnCargar3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargar3.FlatAppearance.BorderSize = 0;
-            this.btnCargar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargar3.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar3.Image")));
-            this.btnCargar3.Location = new System.Drawing.Point(448, 5);
-            this.btnCargar3.Name = "btnCargar3";
-            this.btnCargar3.Size = new System.Drawing.Size(25, 25);
-            this.btnCargar3.TabIndex = 2102;
-            this.btnCargar3.UseVisualStyleBackColor = true;
-            this.btnCargar3.Click += new System.EventHandler(this.btnCargar3_Click);
-            // 
-            // txtImagen3
-            // 
-            this.txtImagen3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImagen3.Location = new System.Drawing.Point(8, 7);
-            this.txtImagen3.Margin = new System.Windows.Forms.Padding(4);
-            this.txtImagen3.Name = "txtImagen3";
-            this.txtImagen3.ReadOnly = true;
-            this.txtImagen3.Size = new System.Drawing.Size(433, 21);
-            this.txtImagen3.TabIndex = 2101;
-            this.txtImagen3.Tag = "";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(8, 83);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(108, 13);
-            this.label32.TabIndex = 2094;
-            this.label32.Text = "Descripción de la SNC";
-            // 
-            // txtOrdenTrabajoSNC
-            // 
-            this.txtOrdenTrabajoSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrdenTrabajoSNC.Location = new System.Drawing.Point(424, 51);
-            this.txtOrdenTrabajoSNC.Margin = new System.Windows.Forms.Padding(4);
-            this.txtOrdenTrabajoSNC.Name = "txtOrdenTrabajoSNC";
-            this.txtOrdenTrabajoSNC.ReadOnly = true;
-            this.txtOrdenTrabajoSNC.Size = new System.Drawing.Size(90, 21);
-            this.txtOrdenTrabajoSNC.TabIndex = 2093;
-            this.txtOrdenTrabajoSNC.Tag = "";
-            this.txtOrdenTrabajoSNC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtReponsableRegistro
-            // 
-            this.txtReponsableRegistro.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReponsableRegistro.Location = new System.Drawing.Point(144, 22);
-            this.txtReponsableRegistro.Margin = new System.Windows.Forms.Padding(4);
-            this.txtReponsableRegistro.Name = "txtReponsableRegistro";
-            this.txtReponsableRegistro.ReadOnly = true;
-            this.txtReponsableRegistro.Size = new System.Drawing.Size(370, 21);
-            this.txtReponsableRegistro.TabIndex = 2092;
-            this.txtReponsableRegistro.Tag = "";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(327, 57);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(90, 13);
-            this.label31.TabIndex = 2090;
-            this.label31.Text = "Orden de trabajo:";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(11, 27);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(127, 13);
-            this.label30.TabIndex = 2089;
-            this.label30.Text = "Responsable del registro:";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(243, 52);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(19, 19);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 2087;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(8, 57);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(96, 13);
-            this.label29.TabIndex = 2088;
-            this.label29.Text = "Fecha del hallazgo:";
-            // 
-            // dtpFechaHallazgo
-            // 
-            this.dtpFechaHallazgo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaHallazgo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaHallazgo.Location = new System.Drawing.Point(144, 51);
-            this.dtpFechaHallazgo.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpFechaHallazgo.Name = "dtpFechaHallazgo";
-            this.dtpFechaHallazgo.Size = new System.Drawing.Size(95, 21);
-            this.dtpFechaHallazgo.TabIndex = 2086;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel4.Location = new System.Drawing.Point(138, 39);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(300, 1);
-            this.panel4.TabIndex = 1000;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(178, 21);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(221, 19);
-            this.label26.TabIndex = 999;
-            this.label26.Text = "Control de Salida No Conforme";
             // 
             // panelDetallesObservacion
             // 
@@ -1506,6 +1054,7 @@
             this.btnAñadirHallazgo.Size = new System.Drawing.Size(21, 21);
             this.btnAñadirHallazgo.TabIndex = 2097;
             this.btnAñadirHallazgo.UseVisualStyleBackColor = true;
+            this.btnAñadirHallazgo.Visible = false;
             // 
             // label28
             // 
@@ -1584,25 +1133,25 @@
             this.datalistadoHistorial.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.datalistadoHistorial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.datalistadoHistorial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datalistadoHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datalistadoHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.datalistadoHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datalistadoHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columDesc});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datalistadoHistorial.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datalistadoHistorial.DefaultCellStyle = dataGridViewCellStyle9;
             this.datalistadoHistorial.Location = new System.Drawing.Point(39, 366);
             this.datalistadoHistorial.Margin = new System.Windows.Forms.Padding(4);
             this.datalistadoHistorial.MultiSelect = false;
@@ -1619,10 +1168,10 @@
             // 
             // columDesc
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle17.NullValue")));
-            dataGridViewCellStyle17.Padding = new System.Windows.Forms.Padding(1);
-            this.columDesc.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle8.NullValue")));
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(1);
+            this.columDesc.DefaultCellStyle = dataGridViewCellStyle8;
             this.columDesc.HeaderText = "DESC.";
             this.columDesc.Image = ((System.Drawing.Image)(resources.GetObject("columDesc.Image")));
             this.columDesc.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -2109,6 +1658,7 @@
             this.btnCerrarDetallesOPCantidades.Size = new System.Drawing.Size(19, 18);
             this.btnCerrarDetallesOPCantidades.TabIndex = 1000;
             this.btnCerrarDetallesOPCantidades.Text = " X";
+            this.btnCerrarDetallesOPCantidades.Click += new System.EventHandler(this.btnCerrarDetallesOPCantidades_Click);
             // 
             // pictureBox1
             // 
@@ -2134,6 +1684,459 @@
             this.pictureBox8.TabIndex = 54;
             this.pictureBox8.TabStop = false;
             // 
+            // panelSNC
+            // 
+            this.panelSNC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSNC.Controls.Add(this.panel1);
+            this.panelSNC.Controls.Add(this.label37);
+            this.panelSNC.Controls.Add(this.label36);
+            this.panelSNC.Controls.Add(this.btnCerrarSNC);
+            this.panelSNC.Controls.Add(this.btnGuardarSNC);
+            this.panelSNC.Controls.Add(this.groupBox3);
+            this.panelSNC.Controls.Add(this.panel4);
+            this.panelSNC.Controls.Add(this.label26);
+            this.panelSNC.Location = new System.Drawing.Point(9, 131);
+            this.panelSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.panelSNC.Name = "panelSNC";
+            this.panelSNC.Size = new System.Drawing.Size(568, 290);
+            this.panelSNC.TabIndex = 2060;
+            this.panelSNC.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label34);
+            this.panel1.Controls.Add(this.label40);
+            this.panel1.Controls.Add(this.pictureBox15);
+            this.panel1.Controls.Add(this.pictureBox16);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(566, 15);
+            this.panel1.TabIndex = 2098;
+            // 
+            // label34
+            // 
+            this.label34.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label34.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(17, 0);
+            this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(156, 15);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "SNC";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(127, -2);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(32, 13);
+            this.label40.TabIndex = 2049;
+            this.label40.Text = "*****";
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox15.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(17, 15);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox15.TabIndex = 999;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox16.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox16.Image")));
+            this.pictureBox16.Location = new System.Drawing.Point(2063, -1);
+            this.pictureBox16.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(60, 37);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox16.TabIndex = 54;
+            this.pictureBox16.TabStop = false;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(490, 262);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(65, 13);
+            this.label37.TabIndex = 2097;
+            this.label37.Text = "RETROCEDER";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(380, 262);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(49, 13);
+            this.label36.TabIndex = 2096;
+            this.label36.Text = "GENERAR";
+            // 
+            // btnCerrarSNC
+            // 
+            this.btnCerrarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarSNC.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSNC.Image")));
+            this.btnCerrarSNC.Location = new System.Drawing.Point(454, 251);
+            this.btnCerrarSNC.Name = "btnCerrarSNC";
+            this.btnCerrarSNC.Size = new System.Drawing.Size(32, 32);
+            this.btnCerrarSNC.TabIndex = 2095;
+            this.btnCerrarSNC.UseVisualStyleBackColor = true;
+            this.btnCerrarSNC.Click += new System.EventHandler(this.btnCerrarSNC_Click);
+            // 
+            // btnGuardarSNC
+            // 
+            this.btnGuardarSNC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardarSNC.FlatAppearance.BorderSize = 0;
+            this.btnGuardarSNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarSNC.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarSNC.Image")));
+            this.btnGuardarSNC.Location = new System.Drawing.Point(345, 251);
+            this.btnGuardarSNC.Name = "btnGuardarSNC";
+            this.btnGuardarSNC.Size = new System.Drawing.Size(32, 32);
+            this.btnGuardarSNC.TabIndex = 2094;
+            this.btnGuardarSNC.UseVisualStyleBackColor = true;
+            this.btnGuardarSNC.Click += new System.EventHandler(this.btnGuardarSNC_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.pictureBox9);
+            this.groupBox3.Controls.Add(this.pictureBox5);
+            this.groupBox3.Controls.Add(this.txtDescripcionSNC);
+            this.groupBox3.Controls.Add(this.tabControl1);
+            this.groupBox3.Controls.Add(this.label32);
+            this.groupBox3.Controls.Add(this.txtOrdenTrabajoSNC);
+            this.groupBox3.Controls.Add(this.txtReponsableRegistro);
+            this.groupBox3.Controls.Add(this.label31);
+            this.groupBox3.Controls.Add(this.label30);
+            this.groupBox3.Controls.Add(this.pictureBox3);
+            this.groupBox3.Controls.Add(this.label29);
+            this.groupBox3.Controls.Add(this.dtpFechaHallazgo);
+            this.groupBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(12, 43);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(545, 204);
+            this.groupBox3.TabIndex = 2091;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Identificación";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(517, 24);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 2100;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(517, 53);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 2048;
+            this.pictureBox5.TabStop = false;
+            // 
+            // txtDescripcionSNC
+            // 
+            this.txtDescripcionSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcionSNC.Location = new System.Drawing.Point(144, 80);
+            this.txtDescripcionSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcionSNC.Multiline = true;
+            this.txtDescripcionSNC.Name = "txtDescripcionSNC";
+            this.txtDescripcionSNC.Size = new System.Drawing.Size(393, 49);
+            this.txtDescripcionSNC.TabIndex = 2095;
+            this.txtDescripcionSNC.Tag = "";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(12, 136);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(520, 62);
+            this.tabControl1.TabIndex = 2099;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnLimpiar1);
+            this.tabPage1.Controls.Add(this.btnCargar1);
+            this.tabPage1.Controls.Add(this.txtImagen1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(512, 36);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Imagen 1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar1
+            // 
+            this.btnLimpiar1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar1.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar1.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar1.Image")));
+            this.btnLimpiar1.Location = new System.Drawing.Point(479, 5);
+            this.btnLimpiar1.Name = "btnLimpiar1";
+            this.btnLimpiar1.Size = new System.Drawing.Size(25, 25);
+            this.btnLimpiar1.TabIndex = 2100;
+            this.btnLimpiar1.UseVisualStyleBackColor = true;
+            this.btnLimpiar1.Click += new System.EventHandler(this.btnLimpiar1_Click);
+            // 
+            // btnCargar1
+            // 
+            this.btnCargar1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargar1.FlatAppearance.BorderSize = 0;
+            this.btnCargar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar1.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar1.Image")));
+            this.btnCargar1.Location = new System.Drawing.Point(448, 5);
+            this.btnCargar1.Name = "btnCargar1";
+            this.btnCargar1.Size = new System.Drawing.Size(25, 25);
+            this.btnCargar1.TabIndex = 2099;
+            this.btnCargar1.UseVisualStyleBackColor = true;
+            this.btnCargar1.Click += new System.EventHandler(this.btnCargar1_Click);
+            // 
+            // txtImagen1
+            // 
+            this.txtImagen1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImagen1.Location = new System.Drawing.Point(8, 7);
+            this.txtImagen1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtImagen1.Name = "txtImagen1";
+            this.txtImagen1.ReadOnly = true;
+            this.txtImagen1.Size = new System.Drawing.Size(433, 21);
+            this.txtImagen1.TabIndex = 2093;
+            this.txtImagen1.Tag = "";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnLimpiar2);
+            this.tabPage2.Controls.Add(this.btnCargar2);
+            this.tabPage2.Controls.Add(this.txtImagen2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(512, 36);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Imagen 2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar2
+            // 
+            this.btnLimpiar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar2.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar2.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar2.Image")));
+            this.btnLimpiar2.Location = new System.Drawing.Point(479, 5);
+            this.btnLimpiar2.Name = "btnLimpiar2";
+            this.btnLimpiar2.Size = new System.Drawing.Size(25, 25);
+            this.btnLimpiar2.TabIndex = 2103;
+            this.btnLimpiar2.UseVisualStyleBackColor = true;
+            this.btnLimpiar2.Click += new System.EventHandler(this.btnLimpiar2_Click);
+            // 
+            // btnCargar2
+            // 
+            this.btnCargar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargar2.FlatAppearance.BorderSize = 0;
+            this.btnCargar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar2.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar2.Image")));
+            this.btnCargar2.Location = new System.Drawing.Point(448, 5);
+            this.btnCargar2.Name = "btnCargar2";
+            this.btnCargar2.Size = new System.Drawing.Size(25, 25);
+            this.btnCargar2.TabIndex = 2102;
+            this.btnCargar2.UseVisualStyleBackColor = true;
+            this.btnCargar2.Click += new System.EventHandler(this.btnCargar2_Click);
+            // 
+            // txtImagen2
+            // 
+            this.txtImagen2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImagen2.Location = new System.Drawing.Point(8, 7);
+            this.txtImagen2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtImagen2.Name = "txtImagen2";
+            this.txtImagen2.ReadOnly = true;
+            this.txtImagen2.Size = new System.Drawing.Size(433, 21);
+            this.txtImagen2.TabIndex = 2101;
+            this.txtImagen2.Tag = "";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnLimpiar3);
+            this.tabPage3.Controls.Add(this.btnCargar3);
+            this.tabPage3.Controls.Add(this.txtImagen3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(512, 36);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Imagen 3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar3
+            // 
+            this.btnLimpiar3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar3.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar3.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar3.Image")));
+            this.btnLimpiar3.Location = new System.Drawing.Point(479, 5);
+            this.btnLimpiar3.Name = "btnLimpiar3";
+            this.btnLimpiar3.Size = new System.Drawing.Size(25, 25);
+            this.btnLimpiar3.TabIndex = 2103;
+            this.btnLimpiar3.UseVisualStyleBackColor = true;
+            this.btnLimpiar3.Click += new System.EventHandler(this.btnLimpiar3_Click);
+            // 
+            // btnCargar3
+            // 
+            this.btnCargar3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargar3.FlatAppearance.BorderSize = 0;
+            this.btnCargar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar3.Image = ((System.Drawing.Image)(resources.GetObject("btnCargar3.Image")));
+            this.btnCargar3.Location = new System.Drawing.Point(448, 5);
+            this.btnCargar3.Name = "btnCargar3";
+            this.btnCargar3.Size = new System.Drawing.Size(25, 25);
+            this.btnCargar3.TabIndex = 2102;
+            this.btnCargar3.UseVisualStyleBackColor = true;
+            this.btnCargar3.Click += new System.EventHandler(this.btnCargar3_Click);
+            // 
+            // txtImagen3
+            // 
+            this.txtImagen3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImagen3.Location = new System.Drawing.Point(8, 7);
+            this.txtImagen3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtImagen3.Name = "txtImagen3";
+            this.txtImagen3.ReadOnly = true;
+            this.txtImagen3.Size = new System.Drawing.Size(433, 21);
+            this.txtImagen3.TabIndex = 2101;
+            this.txtImagen3.Tag = "";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(8, 83);
+            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(108, 13);
+            this.label32.TabIndex = 2094;
+            this.label32.Text = "Descripción de la SNC";
+            // 
+            // txtOrdenTrabajoSNC
+            // 
+            this.txtOrdenTrabajoSNC.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrdenTrabajoSNC.Location = new System.Drawing.Point(424, 51);
+            this.txtOrdenTrabajoSNC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOrdenTrabajoSNC.Name = "txtOrdenTrabajoSNC";
+            this.txtOrdenTrabajoSNC.ReadOnly = true;
+            this.txtOrdenTrabajoSNC.Size = new System.Drawing.Size(90, 21);
+            this.txtOrdenTrabajoSNC.TabIndex = 2093;
+            this.txtOrdenTrabajoSNC.Tag = "";
+            this.txtOrdenTrabajoSNC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtReponsableRegistro
+            // 
+            this.txtReponsableRegistro.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReponsableRegistro.Location = new System.Drawing.Point(144, 22);
+            this.txtReponsableRegistro.Margin = new System.Windows.Forms.Padding(4);
+            this.txtReponsableRegistro.Name = "txtReponsableRegistro";
+            this.txtReponsableRegistro.ReadOnly = true;
+            this.txtReponsableRegistro.Size = new System.Drawing.Size(370, 21);
+            this.txtReponsableRegistro.TabIndex = 2092;
+            this.txtReponsableRegistro.Tag = "";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(327, 57);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(90, 13);
+            this.label31.TabIndex = 2090;
+            this.label31.Text = "Orden de trabajo:";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(11, 27);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(127, 13);
+            this.label30.TabIndex = 2089;
+            this.label30.Text = "Responsable del registro:";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(243, 52);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 2087;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(8, 57);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(96, 13);
+            this.label29.TabIndex = 2088;
+            this.label29.Text = "Fecha del hallazgo:";
+            // 
+            // dtpFechaHallazgo
+            // 
+            this.dtpFechaHallazgo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaHallazgo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaHallazgo.Location = new System.Drawing.Point(144, 51);
+            this.dtpFechaHallazgo.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFechaHallazgo.Name = "dtpFechaHallazgo";
+            this.dtpFechaHallazgo.Size = new System.Drawing.Size(95, 21);
+            this.dtpFechaHallazgo.TabIndex = 2086;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel4.Location = new System.Drawing.Point(138, 39);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(300, 1);
+            this.panel4.TabIndex = 1000;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(178, 21);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(221, 19);
+            this.label26.TabIndex = 999;
+            this.label26.Text = "Control de Salida No Conforme";
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -2152,7 +2155,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1177, 640);
-            this.Controls.Add(this.panelSNC);
             this.Controls.Add(this.panelMovimientoFrm);
             this.Controls.Add(this.panelControlCalidad);
             this.Controls.Add(this.panel5);
@@ -2194,6 +2196,18 @@
             this.panel16.ResumeLayout(false);
             this.panelControlCalidad.ResumeLayout(false);
             this.panelControlCalidad.PerformLayout();
+            this.panelDetallesObservacion.ResumeLayout(false);
+            this.panelDetallesObservacion.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datalistadoHistorial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.panelSNC.ResumeLayout(false);
             this.panelSNC.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -2212,18 +2226,6 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panelDetallesObservacion.ResumeLayout(false);
-            this.panelDetallesObservacion.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datalistadoHistorial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

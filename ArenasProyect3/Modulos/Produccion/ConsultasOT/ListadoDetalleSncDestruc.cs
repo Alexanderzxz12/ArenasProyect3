@@ -13,6 +13,9 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
 {
     public partial class ListadoDetalleSncDestruc : Form
     {
+        //VARIABLES GLOBALES
+        DataGridView dgvActivo = null;
+
         //CONMSTRUCTOR DE MI FORMULARIO
         public ListadoDetalleSncDestruc()
         {
@@ -29,53 +32,100 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             // 1. Configuración de Controles
             DesdeFecha.Value = oPrimerDiaDelMes;
             HastaFecha.Value = oUltimoDiaDelMes;
+            VerificarDGVActivo();
         }
 
+        //LISTADO DE OP Y SELECCION DE PDF Y ESTADO DE OP---------------------
+        //MOSTRAR OP AL INCIO 
         //FUNCION PARA VISUALIZAR MIS RESULTADOS
-        public void MostrarListaSncDestruc(DateTime fechaInicio, DateTime fechaTermino, string codigoOp)
+        public void MostrarOrdenTrabajo(DateTime fechaInicio, DateTime fechaTermino, string codigo = null)
         {
-            DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+            using (SqlCommand cmd = new SqlCommand("OT_MostrarSNCList", con))
             {
-                using (SqlCommand cmd = new SqlCommand("OT_MostrarSncDestruccion", con)) // Asume el nombre del SP que discutimos
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                     cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                    cmd.Parameters.AddWithValue("@codigoOt", codigoOp ?? string.Empty);
+                    cmd.Parameters.AddWithValue("@codigoOt", (object)codigo ?? DBNull.Value);
                     try
                     {
                         con.Open();
+                        DataTable dt = new DataTable();
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         da.Fill(dt);
+
+                        datalsitadoTodasSNC.DataSource = dt;
+                        DataRow[] rowsDes = dt.Select("[TIPO SNC] IN ('REPOSICIÓN')");
+                        // Si hay filas, crea un nuevo DataTable, si no, usa una copia vacía del esquema.
+                        DataTable dtDes = rowsDes.Any() ? rowsDes.CopyToDataTable() : dt.Clone();
+                        datalistadoPorDestrucccion.DataSource = dtDes; // Asumiendo este es el nombre de tu DataGrid
+
+                        RedimensionarListadoSNCDes(datalistadoPorDestrucccion);
+                        RedimensionarListadoSNC(datalsitadoTodasSNC);
                     }
                     catch (Exception ex)
                     {
-                        // Manejo de errores básico (puedes adaptarlo a tu sistema de logging)
-                        System.Diagnostics.Debug.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
-                        return;
+                        // Manejar el error, por ejemplo, mostrando un mensaje
+                        MessageBox.Show("Error al cargar las órdenes de trabajo: " + ex.Message);
                     }
                 }
             }
-            datalistadoTodasSNC.DataSource = dt;
-            RedimensionarListadoSNC(datalistadoTodasSNC);
         }
 
         //FUNCION PARA REDIMENSIONAR MIS LISTADOS
         public void RedimensionarListadoSNC(DataGridView DGV)
         {
-            DGV.Columns[0].Width = 55;
-            DGV.Columns[1].Width = 190;
-            DGV.Columns[2].Width = 90;
-            DGV.Columns[4].Width = 100;
-            DGV.Columns[5].Width = 390;
-            DGV.Columns[7].Width = 80;
-            DGV.Columns[8].Width = 150;
-            DGV.Columns[11].Width = 80;
-            DGV.Columns[3].Visible = false;
-            DGV.Columns[6].Visible = false;
-            DGV.Columns[9].Visible = false;
+            DGV.Columns[1].Width = 50;
+            DGV.Columns[2].Width = 190;
+            DGV.Columns[3].Width = 75;
+            DGV.Columns[5].Width = 95;
+            DGV.Columns[6].Width = 535;
+            DGV.Columns[8].Width = 70;
+            DGV.Columns[9].Width = 90;
+            //COLUMNAS NO VISIBLES PARA EL USUARIO
+            DGV.Columns[4].Visible = false;
+            DGV.Columns[7].Visible = false;
             DGV.Columns[10].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[12].Visible = false;
+            BloquearEdicion(DGV);
+        }
+
+        //FUNCION PARA REDIMENSIONAR MIS LISTADOS
+        public void RedimensionarListadoSNCDes(DataGridView DGV)
+        {
+            DGV.Columns[1].Width = 50;
+            DGV.Columns[2].Width = 190;
+            DGV.Columns[3].Width = 75;
+            DGV.Columns[5].Width = 95;
+            DGV.Columns[6].Width = 400;
+            DGV.Columns[8].Width = 70;
+            DGV.Columns[9].Width = 90;
+            DGV.Columns[10].Width = 135;
+            //COLUMNAS NO VISIBLES PARA EL USUARIO
+            DGV.Columns[4].Visible = false;
+            DGV.Columns[7].Visible = false;
+            DGV.Columns[11].Visible = false;
+            DGV.Columns[12].Visible = false;
+            BloquearEdicion(DGV);
+        }
+
+        //FUNCION PARA BLOQUERA MI LISTADO DE SNC
+        public void BloquearEdicion(DataGridView DGV)
+        {
+            ////SE BLOQUEA MI LISTADO
+            DGV.Columns[1].ReadOnly = true;
+            DGV.Columns[2].ReadOnly = true;
+            DGV.Columns[3].ReadOnly = true;
+            DGV.Columns[4].ReadOnly = true;
+            DGV.Columns[5].ReadOnly = true;
+            DGV.Columns[6].ReadOnly = true;
+            DGV.Columns[7].ReadOnly = true;
+            DGV.Columns[8].ReadOnly = true;
+            DGV.Columns[9].ReadOnly = true;
+            DGV.Columns[10].ReadOnly = true;
+            DGV.Columns[11].ReadOnly = true;
         }
 
         //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO
@@ -86,15 +136,15 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
                 //RECORRIDO DE MI LISTADO
                 for (var i = 0; i <= dgv.RowCount - 1; i++)
                 {
-                    string estado = dgv.Rows[i].Cells[8].Value.ToString();
+                    string estado = dgv.Rows[i].Cells[10].Value.ToString();
 
                     if (estado == "DESTRUIDO")
                     {
-                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
                     }
                     else if (estado == "PENDIENTE DESTRUCCIÓN")
                     {
-                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                        dgv.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
                     }
                 }
             }
@@ -107,25 +157,40 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         //MOSTRAR OT POR FECHA
         private void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR OT POR FECHA
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
         }
 
         //MOSTRAR OT POR FECHA
         private void HastaFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
         }
 
         //MOSTRAR OT POR FECHA
         private void DesdeFecha_ValueChanged(object sender, EventArgs e)
         {
-            MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+            MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //VISUALISAR MI PDF DE LA SNC
+        private void btnPdfSNC_Click(object sender, EventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (dgvActivo.CurrentRow != null)
+            {
+                //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
+                string codigoDetalleCantidadCalidad = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[11].Value.ToString();
+                Visualizadores.VisualizarSNCOT frm = new Visualizadores.VisualizarSNCOT();
+                frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
+                //CARGAR VENTANA
+                frm.Show();
+            }
         }
 
         //FUNCION PARA DESTRUIR
@@ -138,19 +203,19 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
         public void ActualizarSNCSeleccionado()
         {
             // Validar la selección de fila
-            if (datalistadoTodasSNC.SelectedRows.Count == 0)
+            if (dgvActivo.SelectedRows.Count == 0 || dgvActivo.Name == "datalsitadoTodasSNC")
             {
-                MessageBox.Show("Por favor, seleccione una fila para actualizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No existe un registro para destruir o se encuentra en un listado diferente al de destrucción.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Obtener el estado actual y el ID
-            string estadoActual = datalistadoTodasSNC.SelectedRows[0].Cells["ESTADO"].Value.ToString();
+            string estadoActual = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[10].Value.ToString();
             int idDetalleCantidadCalidad;
 
             try
             {
-                idDetalleCantidadCalidad = Convert.ToInt32(datalistadoTodasSNC.SelectedRows[0].Cells["IdDetalleCantidadCalidadOT"].Value);
+                idDetalleCantidadCalidad = Convert.ToInt32(dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[11].Value);
             }
             catch (Exception)
             {
@@ -196,29 +261,41 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
                     MessageBox.Show("Error al actualizar en la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                MostrarListaSncDestruc(DesdeFecha.Value, HastaFecha.Value, txtBusqueda.Text);
+                MostrarOrdenTrabajo(DesdeFecha.Value, HastaFecha.Value);
             }
+        }
+        //-----------------------------------------------------------------------------------------------------------
+
+        //EVENETOS Y RECURSOS VARIOS--------------------------------------------------------------------------------
+        //COLOREAR LISTADO
+        private void datalistadoTodasSNC_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            CargarColores(datalsitadoTodasSNC);
         }
 
         //COLOREAR MI LSITADO
-        private void datalistadoTodasSNC_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        private void datalistadoPorDestrucccion_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            CargarColores(datalistadoTodasSNC);
+            CargarColores(datalistadoPorDestrucccion);
         }
 
-        //VISUALISAR MI PDF DE LA SNC
-        private void btnPdfSNC_Click(object sender, EventArgs e)
+        //VERIFICAR EN QUE LSITADO ESTOY
+        public void VerificarDGVActivo()
         {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasSNC.CurrentRow != null)
+            if (TabControl.SelectedTab.Text == "SNC para destrucción")
             {
-                //SE CARGA EL VISUALIZADOR DEL REQUERIMIENTO DESAPROBADO
-                string codigoDetalleCantidadCalidad = datalistadoTodasSNC.Rows[datalistadoTodasSNC.CurrentRow.Index].Cells[10].Value.ToString();
-                Visualizadores.VisualizarSNCOT frm = new Visualizadores.VisualizarSNCOT();
-                frm.lblCodigo.Text = codigoDetalleCantidadCalidad;
-                //CARGAR VENTANA
-                frm.Show();
+                dgvActivo = datalistadoPorDestrucccion;
             }
+            else if (TabControl.SelectedTab.Text == "Todas las SNC")
+            {
+                dgvActivo = datalsitadoTodasSNC;
+            }
+        }
+
+        //CAMBIAR MI LISTADO
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VerificarDGVActivo();
         }
     }
 }

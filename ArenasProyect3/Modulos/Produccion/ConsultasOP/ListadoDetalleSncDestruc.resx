@@ -1684,7 +1684,7 @@
   <data name="btnDestruir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        5AAAAOQBXaJ52AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANKSURBVFhHtVdJ
+        4wAAAOMBD+bfpwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANKSURBVFhHtVdJ
         aBNhFI6CB5ebN0G9qeBBtHjw0pnJMkkmmc6UonRRkF5UcKnaWIsUU/AgSsWlhR60TS20mkNpZktr9eJB
         PGiiIuJJtCJ0AUWbKalExvdPX0K6mOlM4gePeS957/u/+edfXaWgUMFTCh1qKzaZ5k7i3/8E5ETRLQ+q
         h8+mL1wy3kbaC6YwoVycprdgyqqomICkX5ycuv/AyEijBZvgj/xKVAf3Y8r/herle961XckVC0idiyxo
@@ -1702,4 +1702,10 @@
         UgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="detalles.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="detallesTodos.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

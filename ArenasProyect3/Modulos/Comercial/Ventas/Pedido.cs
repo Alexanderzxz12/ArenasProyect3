@@ -26,6 +26,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //VARIABLES GLOBALES PARA EL MANTENIMIENTO
         string ruta = ManGeneral.Manual.manualAreaComercial;
         private Cursor curAnterior = null;
+        DataGridView dgvActivo = null;
 
         //CONMSTRUCTOR DE MI FORMULARIO
         public Pedido()
@@ -44,53 +45,80 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             HastaFecha.Value = oUltimoDiaDelMes;
             datalistadoTodasPedido.DataSource = null;
             cboBusqeuda.SelectedIndex = 0;
+            VerificarDGVActivo();
+        }
 
-            //PREFILES Y PERSIMOS---------------------------------------------------------------
-            if (Program.RangoEfecto != 1)
+        //VER DETALLES (ITEMS) DE MI PEDIDO
+        public void MostrarItemsSegunPedido(string codigoPedido)
+        {
+            try
             {
-                btnAnularPedido.Visible = false;
-                lblAnularPedido.Visible = false;
+                //LIMPIAR MI LISTADO
+                datalistadooItemsPedido.DataSource = null;
+
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Pedido_MostrarItemsPorCodigo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoPedido", codigoPedido);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadooItemsPedido.DataSource = dt;
+                con.Close();
+                datalistadooItemsPedido.Columns[0].Width = 20;
+                datalistadooItemsPedido.Columns[3].Width = 300;
+                datalistadooItemsPedido.Columns[4].Width = 70;
+                datalistadooItemsPedido.Columns[5].Width = 70;
+                datalistadooItemsPedido.Columns[6].Width = 70;
+                datalistadooItemsPedido.Columns[7].Width = 70;
+                //OCULTAR FILAS
+                datalistadooItemsPedido.Columns[1].Visible = false;
+                datalistadooItemsPedido.Columns[2].Visible = false;
+                //CENTRAR LISTADO
+                datalistadooItemsPedido.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
-            //---------------------------------------------------------------------------------
-        }
-
-        //FUNCION PARA VERIFICAR SI HAY OP CREADA PARA PROCEDER A ANULAR PEDIDO
-        public void VerificarOPxPedidoAnulacion(int idPedido)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("Pedido_BuscarOPxPedidoAnulacion", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idPedido", idPedido);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoBuscarOPxPedidoAnulacion.DataSource = dt;
-            con.Close();
-        }
-
-        //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
-        public void MostrarExcel()
-        {
-            datalistadoExcel.Rows.Clear();
-
-            foreach (DataGridViewRow dgv in datalistadoTodasPedido.Rows)
+            catch (Exception ex)
             {
-                string numeroPedido = dgv.Cells[2].Value.ToString();
-                string fechaInicio = dgv.Cells[3].Value.ToString();
-                string fechaVencimiento = dgv.Cells[4].Value.ToString();
-                string cliente = dgv.Cells[5].Value.ToString();
-                string tipoMoneda = dgv.Cells[6].Value.ToString();
-                string total = dgv.Cells[7].Value.ToString();
-                string numeroCotizacion = dgv.Cells[8].Value.ToString();
-                string cantidadItems = dgv.Cells[9].Value.ToString();
-                string unidad = dgv.Cells[10].Value.ToString();
-                string ordenCOmpra = dgv.Cells[11].Value.ToString();
-                string estado = dgv.Cells[12].Value.ToString();
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
+            }
+        }
 
-                datalistadoExcel.Rows.Add(new[] { numeroPedido, fechaInicio, fechaVencimiento, cliente, tipoMoneda, total, numeroCotizacion, cantidadItems, unidad, ordenCOmpra, estado });
+        //VER DETALLES (ITEMS) DE MI PEDIDO
+        public void MostrarItemsSegunOP(string codigoOP)
+        {
+            try
+            {
+                //LIMPIAR MI LISTADO
+                datalistadooItemsOP.DataSource = null;
+
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd = new SqlCommand("Pedido_MostrarItemsPorCodigoOP", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigoOP", codigoOP);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                datalistadooItemsOP.DataSource = dt;
+                con.Close();
+                datalistadooItemsOP.Columns[0].Width = 20;
+                datalistadooItemsOP.Columns[1].Width = 300;
+                datalistadooItemsOP.Columns[2].Width = 70;
+                datalistadooItemsOP.Columns[3].Width = 70;
+                datalistadooItemsOP.Columns[4].Width = 70;
+                //CENTRAR LISTADO
+                datalistadooItemsOP.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
+                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
             }
         }
 
@@ -167,175 +195,21 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //LISTADO DE PEDIDOS Y SELECCION DE PDF Y ESTADO DE PEDIDOS---------------------
-        //MOSTRAR PEDIDOS AL INCIO 
-        public void MostrarPedidoPorFecha(DateTime fechaInicio, DateTime fechaTermino)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("Pedido_MostrarPorFecha", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasPedido.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
-
-            DataTable dt2 = new DataTable();
-            SqlConnection con2 = new SqlConnection();
-            con2.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con2.Open();
-            SqlCommand cmd2 = new SqlCommand();
-            cmd2 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con);
-            cmd2.CommandType = CommandType.StoredProcedure;
-            cmd2.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd2.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd2.Parameters.AddWithValue("@estado", 1);
-            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            da2.Fill(dt2);
-            datalistadoPendientePedido.DataSource = dt2;
-            con2.Close();
-            RedimensionarListadoGeneralPedido(datalistadoPendientePedido);
-
-            DataTable dt3 = new DataTable();
-            SqlConnection con3 = new SqlConnection();
-            con3.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con3.Open();
-            SqlCommand cmd3 = new SqlCommand();
-            cmd3 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con3);
-            cmd3.CommandType = CommandType.StoredProcedure;
-            cmd3.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd3.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd3.Parameters.AddWithValue("@estado", 2);
-            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
-            da3.Fill(dt3);
-            datalistadoIncompletoPedido.DataSource = dt3;
-            con3.Close();
-            RedimensionarListadoGeneralPedido(datalistadoIncompletoPedido);
-
-            DataTable dt4 = new DataTable();
-            SqlConnection con4 = new SqlConnection();
-            con4.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con4.Open();
-            SqlCommand cmd4 = new SqlCommand();
-            cmd4 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con4);
-            cmd4.CommandType = CommandType.StoredProcedure;
-            cmd4.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd4.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd4.Parameters.AddWithValue("@estado", 3);
-            SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
-            da4.Fill(dt4);
-            datalistadoCompletoPedido.DataSource = dt4;
-            con4.Close();
-            RedimensionarListadoGeneralPedido(datalistadoCompletoPedido);
-
-            DataTable dt5 = new DataTable();
-            SqlConnection con5 = new SqlConnection();
-            con5.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con5.Open();
-            SqlCommand cmd5 = new SqlCommand();
-            cmd5 = new SqlCommand("Pedido_MostrarPorFechaPorEstado", con5);
-            cmd5.CommandType = CommandType.StoredProcedure;
-            cmd5.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd5.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            cmd5.Parameters.AddWithValue("@estado", 4);
-            SqlDataAdapter da5 = new SqlDataAdapter(cmd5);
-            da5.Fill(dt5);
-            datalistadoDespahacoPedido.DataSource = dt5;
-            con5.Close();
-            RedimensionarListadoGeneralPedido(datalistadoDespahacoPedido);
-        }
-
-        //MOSTRAR ACTAS POR CLIENTE
-        public void MostrarPedidoCliente(string cliente, DateTime fechaInicio, DateTime fechaTermino)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = Conexion.ConexionMaestra.conexion;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = new SqlCommand("Pedido_MostrarPorCliente", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@cliente", cliente);
-            cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-            cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            datalistadoTodasPedido.DataSource = dt;
-            con.Close();
-            RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
-        }
-
-        //FUNCION PARA REDIMENSIONAR MIS LISTADOS
-        public void RedimensionarListadoGeneralPedido(DataGridView DGV)
-        {
-            //REDIEMNSION DE PEDIDOS
-            DGV.Columns[2].Width = 80;
-            DGV.Columns[3].Width = 90;
-            DGV.Columns[4].Width = 90;
-            DGV.Columns[5].Width = 350;
-            DGV.Columns[6].Width = 130;
-            DGV.Columns[7].Width = 80;
-            DGV.Columns[8].Width = 80;
-            DGV.Columns[9].Width = 70;
-            DGV.Columns[10].Width = 160;
-            DGV.Columns[11].Width = 90;
-            DGV.Columns[12].Width = 130;
-
-            DGV.Columns[1].Visible = false;
-            DGV.Columns[13].Visible = false;
-            DGV.Columns[14].Visible = false;
-            DGV.Columns[15].Visible = false;
-
-            //DESHABILITAR EL CLICK Y REORDENAMIENTO POR COLUMNAS
-            foreach (DataGridViewColumn column in DGV.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-
-            ColoresListadoPedidos();
-        }
-
-        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO PEDIDOS
-        public void ColoresListadoPedidos()
+        //FUNCIONES PARA LAS CARGAS DEL SOCHBOARD
+        //COLOREAR MI LISTADO
+        public void alternarColorFilas(DataGridView dgv)
         {
             try
             {
-                //RECORRIDO DE MI LISTADO
-                for (var i = 0; i <= datalistadoTodasPedido.RowCount - 1; i++)
                 {
-                    ValidarOPparaPedidos(Convert.ToInt32(datalistadoTodasPedido.Rows[i].Cells[1].Value), Convert.ToInt32(datalistadoTodasPedido.Rows[i].Cells[9].Value));
-
-                    if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "PENDIENTE")
-                    {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "INCOMPLETA")
-                    {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(192, 192, 0);
-                    }
-                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "CULMINADA")
-                    {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
-                    }
-                    else if (datalistadoTodasPedido.Rows[i].Cells[12].Value.ToString() == "DESPACHADO")
-                    {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
-                    }
-                    else
-                    {
-                        datalistadoTodasPedido.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
-                    }
+                    var withBlock = dgv;
+                    withBlock.RowsDefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
+                    withBlock.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en la operación por: " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -356,10 +230,125 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                         DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la operación por: " + ex.Message);
+            }
+        }
 
-                foreach (DataGridViewColumn column in DGV.Columns)
+        //LISTADO DE OP Y SELECCION DE PDF Y ESTADO DE OP---------------------
+        //MOSTRAR OP AL INCIO 
+        //FUNCION PARA VISUALIZAR MIS RESULTADOS
+        public void MostrarPedidos(DateTime fechaInicio, DateTime fechaTermino, string cliente = null)
+        {
+            using (SqlConnection con = new SqlConnection(Conexion.ConexionMaestra.conexion))
+            using (SqlCommand cmd = new SqlCommand("Pedido_Mostrar", con))
+            {
                 {
-                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaTermino", fechaTermino);
+                    cmd.Parameters.AddWithValue("@cliente", (object)cliente ?? DBNull.Value);
+                    try
+                    {
+                        con.Open();
+                        System.Data.DataTable dt = new System.Data.DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+
+                        datalistadoTodasPedido.DataSource = dt;
+                        DataRow[] rowsEnProceso = dt.Select("ESTADO IN ('PENDIENTE', 'FUERA DE FECHA', 'LÍMITE')");
+                        // Si hay filas, crea un nuevo DataTable, si no, usa una copia vacía del esquema.
+                        System.Data.DataTable dtEnProceso = rowsEnProceso.Any() ? rowsEnProceso.CopyToDataTable() : dt.Clone();
+                        datalistadoPendientePedido.DataSource = dtEnProceso; // Asumiendo este es el nombre de tu DataGrid
+
+                        // --- 2.3. OT Observadas (Asumimos que el estado "Observadas" es FUERA DE FECHA o LÍMITE) ---
+                        DataRow[] rowIncompletos = dt.Select("ESTADO IN ('INCOMPLETA')");
+                        System.Data.DataTable dtIncompletas = rowIncompletos.Any() ? rowIncompletos.CopyToDataTable() : dt.Clone();
+                        datalistadoIncompletoPedido.DataSource = dtIncompletas; // Asumiendo este es el nombre de tu DataGrid
+
+                        // --- 2.3. OT Observadas (Asumimos que el estado "Observadas" es FUERA DE FECHA o LÍMITE) ---
+                        DataRow[] rowCulminada = dt.Select("ESTADO IN ('CULMINADA')");
+                        System.Data.DataTable dtCulminada = rowCulminada.Any() ? rowCulminada.CopyToDataTable() : dt.Clone();
+                        datalistadoCompletoPedido.DataSource = dtCulminada; // Asumiendo este es el nombre de tu DataGrid
+
+                        // --- 2.3. OT Observadas (Asumimos que el estado "Observadas" es FUERA DE FECHA o LÍMITE) ---
+                        DataRow[] rowDespachda = dt.Select("ESTADO IN ('DESPACHADO')");
+                        System.Data.DataTable dtDespachada = rowDespachda.Any() ? rowDespachda.CopyToDataTable() : dt.Clone();
+                        datalistadoDespahacoPedido.DataSource = dtDespachada; // Asumiendo este es el nombre de tu DataGrid
+
+                        RedimensionarListadoGeneralPedido(datalistadoTodasPedido);
+                        RedimensionarListadoGeneralPedido(datalistadoPendientePedido);
+                        RedimensionarListadoGeneralPedido(datalistadoIncompletoPedido);
+                        RedimensionarListadoGeneralPedido(datalistadoCompletoPedido);
+                        RedimensionarListadoGeneralPedido(datalistadoDespahacoPedido);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar el error, por ejemplo, mostrando un mensaje
+                        MessageBox.Show("Error al cargar las órdenes de trabajo: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        //FUNCION PARA REDIMENSIONAR MIS LISTADOS
+        public void RedimensionarListadoGeneralPedido(DataGridView DGV)
+        {
+            //REDIEMNSION DE PEDIDOS
+            DGV.Columns[2].Width = 80;
+            DGV.Columns[3].Width = 100;
+            DGV.Columns[4].Width = 100;
+            DGV.Columns[5].Width = 350;
+            DGV.Columns[6].Width = 150;
+            DGV.Columns[7].Width = 80;
+            DGV.Columns[8].Width = 80;
+            DGV.Columns[9].Width = 80;
+            DGV.Columns[10].Width = 170;
+            DGV.Columns[11].Width = 120;
+            DGV.Columns[12].Width = 150;
+
+            DGV.Columns[1].Visible = false;
+            DGV.Columns[13].Visible = false;
+            DGV.Columns[14].Visible = false;
+            DGV.Columns[15].Visible = false;
+
+            ColoresListadoPedidos(DGV);
+        }
+
+        //FUNCIÓN PARA COLOREAR MIS REGISTROS EN MI LISTADO PEDIDOS
+        public void ColoresListadoPedidos(DataGridView DGV)
+        {
+            try
+            {
+                //RECORRIDO DE MI LISTADO
+                for (var i = 0; i <= DGV.RowCount - 1; i++)
+                {
+                    ValidarOPparaPedidos(Convert.ToInt32(DGV.Rows[i].Cells[1].Value), Convert.ToInt32(DGV.Rows[i].Cells[9].Value));
+
+                    string estadoPedido = Convert.ToString(DGV.Rows[i].Cells[12].Value);
+
+                    if (estadoPedido == "PENDIENTE")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                    else if (estadoPedido == "INCOMPLETA")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(192, 192, 0);
+                    }
+                    else if (estadoPedido == "CULMINADA")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.ForestGreen;
+                    }
+                    else if (estadoPedido == "DESPACHADO")
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Blue;
+                    }
+                    else
+                    {
+                        DGV.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
                 }
             }
             catch (Exception ex)
@@ -371,16 +360,217 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN
         private void datalistadoTodasPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
-            if (this.datalistadoTodasPedido.Columns[e.ColumnIndex].Name == "detalles")
+            ModificarCursor(datalistadoTodasPedido, "detalles", e);
+        }
+
+        private void datalistadoPendientePedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoPendientePedido, "detalles2", e);
+        }
+
+        private void datalistadoIncompletoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoIncompletoPedido, "detalles3", e);
+        }
+
+        private void datalistadoCompletoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoCompletoPedido, "detalles4", e);
+        }
+
+        private void datalistadoDespahacoPedido_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModificarCursor(datalistadoDespahacoPedido, "detalles5", e);
+        }
+
+        //MOSTRAR PEDIDOS SEGUN LAS FECHAS
+        private void btnMostrarTodo_Click(object sender, EventArgs e)
+        {
+            MostrarPedidos(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //MOSTRAR PEDIDOS SEGUN LAS FECHAS
+        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarPedidos(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //MOSTRAR PEDIDOS SEGUN LAS FECHAS
+        private void HastaFecha_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarPedidos(DesdeFecha.Value, HastaFecha.Value);
+        }
+
+        //MOSTRAR PEDIDOS SEGUN EL CLIENTE
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string cliente = null;
+            string textoBusqueda = txtBusqueda.Text;
+
+            MostrarPedidos(
+                DesdeFecha.Value,
+                HastaFecha.Value,
+                cliente
+            );
+        }
+
+        //ABRIR Y VISUALIZAR MI OC
+        private void btnAbiriOrdenCompra_Click(object sender, EventArgs e)
+        {
+            EjecutarDocumento(dgvActivo.SelectedCells[14].Value.ToString());
+        }
+
+        //EJECUTAR DOCUMENTOS
+        public void EjecutarDocumento(string link)
+        {
+            try
             {
-                this.datalistadoTodasPedido.Cursor = Cursors.Hand;
+                Process.Start(link);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message, MessageBoxButtons.OK);
+            }
+        }
+
+        //GENERACION DE REPORTES
+        private void btnGenerarPedidoPdf_Click(object sender, EventArgs e)
+        {
+            //SI NO HAY NINGUN REGISTRO SELECCIONADO
+            if (dgvActivo.CurrentRow != null)
+            {
+                string ccodigoCotizacion = dgvActivo.Rows[dgvActivo.CurrentRow.Index].Cells[1].Value.ToString();
+                Visualizadores.VisualizarPedidoVenta frm = new Visualizadores.VisualizarPedidoVenta();
+                frm.lblCodigo.Text = ccodigoCotizacion;
+
+                frm.Show();
             }
             else
             {
-                this.datalistadoTodasPedido.Cursor = curAnterior;
+                MessageBox.Show("Debe seleccionar un pedido para poder generar el PDF.", "Validación del Sistema");
             }
         }
+
+        //EVENTO PARA PODER CAMBIAR EL CURSOR AL PASAR POR EL BOTÓN - HISTORIAL
+        public void ModificarCursor(DataGridView dgv, string nomColum, DataGridViewCellMouseEventArgs e)
+        {
+            //SI SE PASA SOBRE UNA COLUMNA DE MI LISTADO CON EL SIGUIENTE NOMBRA
+            if (dgv.Columns[e.ColumnIndex].Name == nomColum)
+            {
+                dgv.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                dgv.Cursor = curAnterior;
+            }
+        }
+
+        //VERIFICAR EN QUE LSITADO ESTOY
+        public void VerificarDGVActivo()
+        {
+            if (tabControl.SelectedTab.Text == "TODAS")
+            {
+                dgvActivo = datalistadoTodasPedido;
+            }
+            else if (tabControl.SelectedTab.Text == "PENDIENTES")
+            {
+                dgvActivo = datalistadoPendientePedido;
+            }
+            else if (tabControl.SelectedTab.Text == "INCOMPLETO")
+            {
+                dgvActivo = datalistadoIncompletoPedido;
+            }
+            else if (tabControl.SelectedTab.Text == "CULMINADA")
+            {
+                dgvActivo = datalistadoCompletoPedido;
+            }
+            else if (tabControl.SelectedTab.Text == "DESPACHADO")
+            {
+                dgvActivo = datalistadoDespahacoPedido;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //FUNCION PARA VERIFICAR SI HAY OP CREADA PARA PROCEDER A ANULAR PEDIDO
+        public void VerificarOPxPedidoAnulacion(int idPedido)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = Conexion.ConexionMaestra.conexion;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd = new SqlCommand("Pedido_BuscarOPxPedidoAnulacion", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            datalistadoBuscarOPxPedidoAnulacion.DataSource = dt;
+            con.Close();
+        }
+
+        //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
+        public void MostrarExcel()
+        {
+            datalistadoExcel.Rows.Clear();
+
+            foreach (DataGridViewRow dgv in datalistadoTodasPedido.Rows)
+            {
+                string numeroPedido = dgv.Cells[2].Value.ToString();
+                string fechaInicio = dgv.Cells[3].Value.ToString();
+                string fechaVencimiento = dgv.Cells[4].Value.ToString();
+                string cliente = dgv.Cells[5].Value.ToString();
+                string tipoMoneda = dgv.Cells[6].Value.ToString();
+                string total = dgv.Cells[7].Value.ToString();
+                string numeroCotizacion = dgv.Cells[8].Value.ToString();
+                string cantidadItems = dgv.Cells[9].Value.ToString();
+                string unidad = dgv.Cells[10].Value.ToString();
+                string ordenCOmpra = dgv.Cells[11].Value.ToString();
+                string estado = dgv.Cells[12].Value.ToString();
+
+                datalistadoExcel.Rows.Add(new[] { numeroPedido, fechaInicio, fechaVencimiento, cliente, tipoMoneda, total, numeroCotizacion, cantidadItems, unidad, ordenCOmpra, estado });
+            }
+        }
+
+        
+
+
+
+
+
+
+
+
 
         //REACCION AL MOMENTO DE ENVONTRAR MI COTIZACION
         private void lblCodigoCotizacionDash_TextChanged(object sender, EventArgs e)
@@ -842,29 +1032,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //FUNCIONES PARA LAS CARGAS DEL SOCHBOARD
-        //COLOREAR MI LISTADO
-        public void alternarColorFilas(DataGridView dgv)
-        {
-            try
-            {
-                {
-                    var withBlock = dgv;
-                    withBlock.RowsDefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
-                    withBlock.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-            //deshabilitar el click y  reordenamiento por columnas
-            foreach (DataGridViewColumn column in dgv.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-        }
 
         //VER DETALLES (ITEMS) DE MI COTIZACION
         public void MostrarItemsSegunCotizacion(int idcotizacion)
@@ -911,83 +1079,9 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
             }
         }
 
-        //VER DETALLES (ITEMS) DE MI PEDIDO
-        public void MostrarItemsSegunPedido(string codigoPedido)
-        {
-            try
-            {
-                //LIMPIAR MI LISTADO
-                datalistadooItemsPedido.DataSource = null;
 
-                System.Data.DataTable dt = new System.Data.DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Pedido_MostrarItemsPorCodigo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigoPedido", codigoPedido);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadooItemsPedido.DataSource = dt;
-                con.Close();
-                datalistadooItemsPedido.Columns[0].Width = 20;
-                datalistadooItemsPedido.Columns[3].Width = 300;
-                datalistadooItemsPedido.Columns[4].Width = 70;
-                datalistadooItemsPedido.Columns[5].Width = 70;
-                datalistadooItemsPedido.Columns[6].Width = 70;
-                datalistadooItemsPedido.Columns[7].Width = 70;
 
-                datalistadooItemsPedido.Columns[1].Visible = false;
-                datalistadooItemsPedido.Columns[2].Visible = false;
 
-                datalistadooItemsPedido.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                alternarColorFilas(datalistadooItemsPedido);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
-
-        //VER DETALLES (ITEMS) DE MI PEDIDO
-        public void MostrarItemsSegunOP(string codigoOP)
-        {
-            try
-            {
-                //LIMPIAR MI LISTADO
-                datalistadooItemsOP.DataSource = null;
-
-                System.Data.DataTable dt = new System.Data.DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexion;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("Pedido_MostrarItemsPorCodigoOP", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@codigoOP", codigoOP);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                datalistadooItemsOP.DataSource = dt;
-                con.Close();
-                datalistadooItemsOP.Columns[0].Width = 20;
-                datalistadooItemsOP.Columns[1].Width = 300;
-                datalistadooItemsOP.Columns[2].Width = 70;
-                datalistadooItemsOP.Columns[3].Width = 70;
-                datalistadooItemsOP.Columns[4].Width = 70;
-
-                datalistadooItemsOP.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                alternarColorFilas(datalistadooItemsOP);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error del sistema", "Validación del Sistema", MessageBoxButtons.OK);
-                ClassResourses.RegistrarAuditora(13, this.Name, 2, Program.IdUsuario = 0, ex.Message, 0);
-            }
-        }
 
         //CARGA DE ITEMS GENERTA
         public void CargarItemsGeneral(int idPedido)
@@ -1153,60 +1247,11 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         }
         //------------------------------------------------------------------------------------------------------------------
 
-        //MOSTRAR PEDIDOS SEGUN LAS FECHAS
-        private void btnMostrarTodo_Click(object sender, EventArgs e)
-        {
-            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
-        }
 
-        //MOSTRAR PEDIDOS SEGUN LAS FECHAS
-        private void DesdeFecha_ValueChanged(object sender, EventArgs e)
-        {
-            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
-        }
 
-        //MOSTRAR PEDIDOS SEGUN LAS FECHAS
-        private void HastaFecha_ValueChanged(object sender, EventArgs e)
-        {
-            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
-        }
 
-        //MOSTRAR PEDIDOS SEGUN EL CLIENTE
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            MostrarPedidoCliente(txtBusqueda.Text, DesdeFecha.Value, HastaFecha.Value);
-        }
 
-        //GENERACION DE REPORTES
-        private void btnGenerarPedidoPdf_Click(object sender, EventArgs e)
-        {
-            //SI NO HAY NINGUN REGISTRO SELECCIONADO
-            if (datalistadoTodasPedido.CurrentRow != null)
-            {
-                string ccodigoCotizacion = datalistadoTodasPedido.Rows[datalistadoTodasPedido.CurrentRow.Index].Cells[1].Value.ToString();
-                Visualizadores.VisualizarPedidoVenta frm = new Visualizadores.VisualizarPedidoVenta();
-                frm.lblCodigo.Text = ccodigoCotizacion;
 
-                frm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un pedido para poder generar el PDF.", "Validación del Sistema");
-            }
-        }
-
-        //ABRIR Y VISUALIZAR MI OC
-        private void btnAbiriOrdenCompra_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process.Start(datalistadoTodasPedido.SelectedCells[14].Value.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Documento no encontrado, hubo un error al momento de cargar el archivo.", ex.Message);
-            }
-        }
 
         //PRODEDIMEINTO PARA ANULAR MI PEDIDO
         private void btnAnularPedido_Click(object sender, EventArgs e)
@@ -1256,7 +1301,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                             con.Close();
 
                             MessageBox.Show("Pedido y cotización asociado a esta, anuladas exitosamente.", "Validación del Sistema");
-                            MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                            MostrarPedidos(DesdeFecha.Value, HastaFecha.Value);
 
 
                         }
@@ -1356,7 +1401,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     //MENSAJE DE CONFIRMACION DE EDICION DE ORDEN DE COMPRA
                     MessageBox.Show("Se editó correctamente la orden de compra del pedido " + datalistadoTodasPedido.SelectedCells[2].Value.ToString() + ".", "Validación del Sistema");
                     LimpiarEdicionOrdenCompra();
-                    MostrarPedidoPorFecha(DesdeFecha.Value, HastaFecha.Value);
+                    MostrarPedidos(DesdeFecha.Value, HastaFecha.Value);
                     panelModificacionOrdenCompra.Visible = false;
                     datalistadoTodasPedido.Enabled = true;
                 }
@@ -1559,5 +1604,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                 MessageBox.Show($"Ocurrió un error al exportar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

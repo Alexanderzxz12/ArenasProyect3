@@ -46,12 +46,12 @@ namespace ArenasProyect3.Modulos.Produccion.ConsultasOT
             if (panelMantenimientos.Controls.Count == 1)
             {
                 panelMantenimientos.Controls.Clear();
-                AbrirMantenimiento(new NuevaOT());
+                AbrirMantenimiento(new ListadoPedidosOT());
             }
             else
             {
                 panelMantenimientos.Controls.Clear();
-                AbrirMantenimiento(new NuevaOT());
+                AbrirMantenimiento(new ListadoPedidosOT());
             }
         }
 
