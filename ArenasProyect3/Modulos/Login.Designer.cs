@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLogoArenas = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ImgRegresar = new System.Windows.Forms.PictureBox();
@@ -281,6 +281,7 @@
             this.lblLeyendaProcesos.TabIndex = 1;
             this.lblLeyendaProcesos.Text = "PROCESOS";
             this.lblLeyendaProcesos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaProcesos.Click += new System.EventHandler(this.lblLeyendaProcesos_Click);
             // 
             // btnProcesos
             // 
@@ -319,6 +320,7 @@
             this.lblleyendaComercial.TabIndex = 1;
             this.lblleyendaComercial.Text = "COMERCIAL";
             this.lblleyendaComercial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblleyendaComercial.Click += new System.EventHandler(this.lblleyendaComercial_Click);
             // 
             // btnComercial
             // 
@@ -357,6 +359,7 @@
             this.lblLeyendaProduccion.TabIndex = 1;
             this.lblLeyendaProduccion.Text = "PRODUCCIÓN";
             this.lblLeyendaProduccion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaProduccion.Click += new System.EventHandler(this.lblLeyendaProduccion_Click);
             // 
             // btnProduccion
             // 
@@ -395,6 +398,7 @@
             this.lblLeyendaIngieneria.TabIndex = 1;
             this.lblLeyendaIngieneria.Text = "INGENIERÍA";
             this.lblLeyendaIngieneria.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaIngieneria.Click += new System.EventHandler(this.lblLeyendaIngieneria_Click);
             // 
             // btnIngieneria
             // 
@@ -433,6 +437,7 @@
             this.lblLeyendaLogistica.TabIndex = 1;
             this.lblLeyendaLogistica.Text = "LOGÍSTICA";
             this.lblLeyendaLogistica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaLogistica.Click += new System.EventHandler(this.lblLeyendaLogistica_Click);
             // 
             // btnLogistica
             // 
@@ -471,6 +476,7 @@
             this.lblLeyendaContabilidad.TabIndex = 1;
             this.lblLeyendaContabilidad.Text = "CONTABILIDA..";
             this.lblLeyendaContabilidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaContabilidad.Click += new System.EventHandler(this.lblLeyendaContabilidad_Click);
             // 
             // btnContabilidad
             // 
@@ -509,6 +515,7 @@
             this.lblLeyendaCalidad.TabIndex = 1;
             this.lblLeyendaCalidad.Text = "CALIDAD";
             this.lblLeyendaCalidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaCalidad.Click += new System.EventHandler(this.lblLeyendaCalidad_Click);
             // 
             // btnCalidad
             // 
@@ -547,6 +554,7 @@
             this.lblLeyendaSIG.TabIndex = 1;
             this.lblLeyendaSIG.Text = "S.I.G.";
             this.lblLeyendaSIG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaSIG.Click += new System.EventHandler(this.lblLeyendaSIG_Click);
             // 
             // btnSIG
             // 
@@ -585,6 +593,7 @@
             this.lblLeyendaMantenimiento.TabIndex = 1;
             this.lblLeyendaMantenimiento.Text = "MANTENIMIE..";
             this.lblLeyendaMantenimiento.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaMantenimiento.Click += new System.EventHandler(this.lblLeyendaMantenimiento_Click);
             // 
             // btnMantenimiento
             // 
@@ -623,6 +632,7 @@
             this.lblLeyendaAdmin.TabIndex = 1;
             this.lblLeyendaAdmin.Text = "ADMINISTRA..";
             this.lblLeyendaAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLeyendaAdmin.Click += new System.EventHandler(this.lblLeyendaAdmin_Click);
             // 
             // btnAdministrador
             // 
@@ -647,7 +657,7 @@
             this.panelLogin.Controls.Add(this.label2);
             this.panelLogin.Controls.Add(this.btnIniciarSesion);
             this.panelLogin.Controls.Add(this.btnCambiarusuarioIcono);
-            this.panelLogin.Location = new System.Drawing.Point(206, 60);
+            this.panelLogin.Location = new System.Drawing.Point(206, 55);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(586, 381);
             this.panelLogin.TabIndex = 2003;
@@ -845,7 +855,7 @@
             // 
             this.panelValidacionLicencia.Controls.Add(this.pictureBox1);
             this.panelValidacionLicencia.Controls.Add(this.datalistadoVerificacionLicencia);
-            this.panelValidacionLicencia.Location = new System.Drawing.Point(88, 90);
+            this.panelValidacionLicencia.Location = new System.Drawing.Point(88, 82);
             this.panelValidacionLicencia.Margin = new System.Windows.Forms.Padding(2);
             this.panelValidacionLicencia.Name = "panelValidacionLicencia";
             this.panelValidacionLicencia.Size = new System.Drawing.Size(822, 379);
@@ -1017,14 +1027,14 @@
             this.dataListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eli});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataListado.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataListado.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataListado.EnableHeadersVisualStyles = false;
             this.dataListado.Location = new System.Drawing.Point(33, 38);
             this.dataListado.Name = "dataListado";

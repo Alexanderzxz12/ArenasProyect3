@@ -958,7 +958,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     BuscarCotizacionPorCodigo(codigoCotizacion);
 
                     CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadClientePedido);
-                    CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadCliente.SelectedValue.ToString()));
+                    CargarResponsable(cboResponsableClientePedido, Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[6].Value.ToString()));
                     CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoClientePedido);
                     CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoClientePedido);
                     CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoClientePedido);
@@ -3206,6 +3206,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
         public void LimpiarNuevaCotizacion()
         {
             panelNuevaCotizacion.Visible = false;
+            dgvActivo.Enabled = true;
 
             txtBusquedaClientes.Text = "";
             txtNombreCliente.Text = "";
@@ -3383,7 +3384,7 @@ namespace ArenasProyect3.Modulos.Comercial.Ventas
                     BuscarCotizacionDetallePorCodigoAdjudicado(codigoCotizacion);
 
                     CargarUnidad(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboUnidadClientePedido);
-                    CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadCliente.SelectedValue.ToString()));
+                    CargarResponsable(cboResponsableCliente, Convert.ToInt32(cboUnidadClientePedido.SelectedValue.ToString()));
                     CargarContacto(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboContactoClientePedido);
                     CargarCondicion(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboCondicionPagoClientePedido);
                     CargarForma(Convert.ToInt32(dataListadiCotiXCodigo.SelectedCells[4].Value.ToString()), cboFormaPagoClientePedido);

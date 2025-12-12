@@ -217,76 +217,76 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         }
 
         //CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE LIQUIDACIÓN Y LA RESPECTIVA VALIDACION
-        //public void codigoLiquidacion()
-        //{
-        //    try
-        //    {
-        //        DataTable dt = new DataTable();
-        //        SqlDataAdapter da;
-        //        SqlConnection con = new SqlConnection();
-        //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-        //        con.Open();
-        //        da = new SqlDataAdapter("SELECT IdLiquidacion FROM LiquidacionVenta WHERE IdLiquidacion = (SELECT MAX(IdLiquidacion) FROM LiquidacionVenta)", con);
-        //        da.Fill(dt);
-        //        datalistadoCodigoLiquidacion.DataSource = dt;
-        //        con.Close();
+        public void codigoLiquidacion()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdLiquidacion FROM LiquidacionVenta WHERE IdLiquidacion = (SELECT MAX(IdLiquidacion) FROM LiquidacionVenta)", con);
+                da.Fill(dt);
+                datalistadoCodigoLiquidacion.DataSource = dt;
+                con.Close();
 
-        //        if (datalistadoCodigoLiquidacion.Rows.Count != 0)
-        //        {
-        //            numeroLiquidacion = Convert.ToInt32(datalistadoCodigoLiquidacion.SelectedCells[0].Value.ToString());
-        //            int numeroLiquidacion2 = 0;
-        //            numeroLiquidacion2 = Convert.ToInt32(numeroLiquidacion);
-        //            numeroLiquidacion2 = numeroLiquidacion2 + 1;
+                if (datalistadoCodigoLiquidacion.Rows.Count != 0)
+                {
+                    numeroLiquidacion = Convert.ToInt32(datalistadoCodigoLiquidacion.SelectedCells[0].Value.ToString());
+                    int numeroLiquidacion2 = 0;
+                    numeroLiquidacion2 = Convert.ToInt32(numeroLiquidacion);
+                    numeroLiquidacion2 = numeroLiquidacion2 + 1;
 
-        //            numeroLiquidacion = numeroLiquidacion2;
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-        //        ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
-        //    }
-        //}
+                    numeroLiquidacion = numeroLiquidacion2;
+                }
+                else
+                {
+                    MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
+        }
 
-        ////CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE REQUERIMIENTO Y LA RESPECTIVA VALIDACION
-        //public void codigoRequerimeinto()
-        //{
-        //    try
-        //    {
-        //        DataTable dt = new DataTable();
-        //        SqlDataAdapter da;
-        //        SqlConnection con = new SqlConnection();
-        //        con.ConnectionString = Conexion.ConexionMaestra.conexion;
-        //        con.Open();
-        //        da = new SqlDataAdapter("SELECT IdRequerimientoVenta FROM RequerimientoVenta WHERE IdRequerimientoVenta = (SELECT MAX(IdRequerimientoVenta) FROM RequerimientoVenta)", con);
-        //        da.Fill(dt);
-        //        datalistadoCodigoRequerimiento.DataSource = dt;
-        //        con.Close();
+        //CARGAR CODIGOS PARA ALMACENAR EL NUEVO DE REQUERIMIENTO Y LA RESPECTIVA VALIDACION
+        public void codigoRequerimeinto()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = Conexion.ConexionMaestra.conexion;
+                con.Open();
+                da = new SqlDataAdapter("SELECT IdRequerimientoVenta FROM RequerimientoVenta WHERE IdRequerimientoVenta = (SELECT MAX(IdRequerimientoVenta) FROM RequerimientoVenta)", con);
+                da.Fill(dt);
+                datalistadoCodigoRequerimiento.DataSource = dt;
+                con.Close();
 
-        //        if (datalistadoCodigoRequerimiento.Rows.Count != 0)
-        //        {
-        //            numeroRequerimiento = Convert.ToInt32(datalistadoCodigoRequerimiento.SelectedCells[0].Value.ToString());
-        //            int numeroRequerimiento2 = 0;
-        //            numeroRequerimiento2 = Convert.ToInt32(numeroRequerimiento);
-        //            numeroRequerimiento2 = numeroRequerimiento2 + 1;
+                if (datalistadoCodigoRequerimiento.Rows.Count != 0)
+                {
+                    numeroRequerimiento = Convert.ToInt32(datalistadoCodigoRequerimiento.SelectedCells[0].Value.ToString());
+                    int numeroRequerimiento2 = 0;
+                    numeroRequerimiento2 = Convert.ToInt32(numeroRequerimiento);
+                    numeroRequerimiento2 = numeroRequerimiento2 + 1;
 
-        //            numeroRequerimiento = numeroRequerimiento2;
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
-        //        ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
-        //    }
-        //}
+                    numeroRequerimiento = numeroRequerimiento2;
+                }
+                else
+                {
+                    MessageBox.Show("Se debe inicializar la tabla LIQUIDACIONES.", "Validación del Sistema", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
+                ClassResourses.RegistrarAuditora(13, this.Name, 4, Program.IdUsuario, ex.Message, 0);
+            }
+        }
 
         //VIZUALIZAR DATOS EXCEL--------------------------------------------------------------------
         public void MostrarExcel()
@@ -865,7 +865,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 datalistadoSeleccionColaborador.Rows.Add(new[] { codigo, colaborador });
                 //////////////////////////--------------------------------------------------------------------------
                 //CODIGO IMPLEMENTADO 
-                datalistadoBusquedaColaboradorLiquidacion.Rows.RemoveAt(e.RowIndex);
+                datalistadoColaboradores.Rows.RemoveAt(e.RowIndex);
                 //////////////////////////--------------------------------------------------------------------------
             }
         }
@@ -1444,32 +1444,25 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     con.ConnectionString = Conexion.ConexionMaestra.conexion;
                     con.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd = new SqlCommand("RQViaje_Insertar", con);
+                    cmd = new SqlCommand("RequerimientoViaje_Insertar", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    //codigoRequerimeinto();
+                    codigoRequerimeinto();
                     //INGRESO DEL ENCABEZADO DEL REQUERIMIENTO
-                    //cmd.Parameters.AddWithValue("@idRequerimientoVenta", numeroRequerimiento);
-                    //cmd.Parameters.AddWithValue("@fechaRequerimiento", datatimeFechaRequerimiento.Value);
+                    cmd.Parameters.AddWithValue("@idRequerimientoVenta", numeroRequerimiento);
+                    cmd.Parameters.AddWithValue("@fechaRequerimiento", datatimeFechaRequerimiento.Value);
                     cmd.Parameters.AddWithValue("@fechaInicio", datetimeDesde.Value);
                     cmd.Parameters.AddWithValue("@fechaTermino", datetiemHasta.Value);
 
-                    if (rbNacional.Checked == true)
-                    {
-                        cmd.Parameters.AddWithValue("@nacional", 1);
-                        cmd.Parameters.AddWithValue("@extranjeto", 0);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@nacional", 0);
-                        cmd.Parameters.AddWithValue("@extranjeto", 1);
-                    }
+                    cmd.Parameters.AddWithValue("@nacional", rbNacional.Checked ? 1 : 0);
+                    cmd.Parameters.AddWithValue("@extranjeto", rbExterior.Checked ? 1 : 0);
 
                     cmd.Parameters.AddWithValue("@motivoVisita", txtMotivoViaje.Text);
                     cmd.Parameters.AddWithValue("@idvendedor", cboResponsable.SelectedValue.ToString());
                     cmd.Parameters.AddWithValue("@idvehiculo", cboVehiculo.SelectedValue.ToString());
                     cmd.Parameters.AddWithValue("@itinerarioViaje", txtItinerarioViaje.Text);
                     cmd.Parameters.AddWithValue("@total", txtSubTotal.Text);
+
                     cmd.Parameters.AddWithValue("@estadoAtrasado", estadoAtrasado);
                     cmd.Parameters.AddWithValue("@mensajeAtrasado", mensajeAtrasado);
                     cmd.Parameters.AddWithValue("@idTipoMoneda", cboTipoMoneda.SelectedValue.ToString());
@@ -2187,7 +2180,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         //////////////////////////--------------------------------------------------------------------------
                     }
                 }
-            }  
+            }
         }
 
         //LIMPIEZA DEL CLIENTE SELCCIONADO Y CARGADO
@@ -2566,7 +2559,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         }
                     }
                 }
-            }     
+            }
         }
 
         //BOTON PARA GUARDAR OBSERVACIONES 2

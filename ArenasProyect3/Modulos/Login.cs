@@ -75,7 +75,7 @@ namespace ArenasProyect3.Modulos
                 else
                 {
                     //SI NO EXISTE
-                    MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                    MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema",MessageBoxButtons.OK);
                     panelValidacionLicencia.Visible = true;
                     imgValidacionCorrecta.Visible = false;
                     imgValidacionIncorrecta.Visible = true;
@@ -122,6 +122,18 @@ namespace ArenasProyect3.Modulos
         //SELECCION DEL ÁREA DE PROCESOS
         private void btnProcesos_Click(object sender, EventArgs e)
         {
+            SeleccionProcesos();
+        }
+
+        //SELECCION DEL ÁREA DE PROCESOS
+        private void lblLeyendaProcesos_Click(object sender, EventArgs e)
+        {
+            SeleccionProcesos();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D EPROCESOS
+        public void SeleccionProcesos()
+        {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
             {
@@ -156,12 +168,24 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //SELECCION DEL ÁREA COMERCIAL
         private void btnComercial_Click(object sender, EventArgs e)
+        {
+            SeleccionComercial();
+        }
+
+        //SELECCION DEL ÁREA COMERCIAL
+        private void lblleyendaComercial_Click(object sender, EventArgs e)
+        {
+            SeleccionComercial();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D COMERCIAL
+        public void SeleccionComercial()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -197,12 +221,24 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //SELECCION DEL ÁREA DE PRODUCCIÓN
         private void btnProduccion_Click(object sender, EventArgs e)
+        {
+            SeleccionProduccion();
+        }
+
+        //SELECCION DEL ÁREA DE PRODUCCIÓN
+        private void lblLeyendaProduccion_Click(object sender, EventArgs e)
+        {
+            SeleccionProduccion();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D PRODUCCION
+        public void SeleccionProduccion()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -238,12 +274,24 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //SELECCION DEL ÁREA DE INGIENERÍA
         private void btnIngieneria_Click(object sender, EventArgs e)
+        {
+            SeleccionIngenieria();
+        }
+
+        //SELECCION DEL ÁREA DE INGIENERÍA
+        private void lblLeyendaIngieneria_Click(object sender, EventArgs e)
+        {
+            SeleccionIngenieria();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D INGENIERIA
+        public void SeleccionIngenieria()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -279,12 +327,24 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //SELECCION DEL ÁREA DE LOGÍSTICA
         private void btnLogistica_Click(object sender, EventArgs e)
+        {
+            SeleccionLogistica();
+        }
+
+        //SELECCION DEL ÁREA DE LOGÍSTICA
+        private void lblLeyendaLogistica_Click(object sender, EventArgs e)
+        {
+            SeleccionLogistica();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D LOGISTICA
+        public void SeleccionLogistica()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -320,12 +380,24 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //SELECCION DEL´ÁREA DE CONTABILIDAD
         private void btnContabilidad_Click(object sender, EventArgs e)
+        {
+            SeleccionContabilidad();
+        }
+
+        //SELECCION DEL´ÁREA DE CONTABILIDAD
+        private void lblLeyendaContabilidad_Click(object sender, EventArgs e)
+        {
+            SeleccionContabilidad();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D CONTABILIDAD
+        public void SeleccionContabilidad()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -361,12 +433,24 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //SELECCION DEL ÁREA DE CALIDAD
         private void btnCalidad_Click(object sender, EventArgs e)
+        {
+            SeleccionCalidad();
+        }
+
+        //SELECCION DEL ÁREA DE CALIDAD
+        private void lblLeyendaCalidad_Click(object sender, EventArgs e)
+        {
+            SeleccionCalidad();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D CALIDAD
+        public void SeleccionCalidad()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -402,7 +486,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
@@ -412,8 +496,32 @@ namespace ArenasProyect3.Modulos
             //AUN EN PROCESO
         }
 
+        //SELECCION DEL ÁREA DE SIG
+        private void lblLeyendaSIG_Click(object sender, EventArgs e)
+        {
+            //AUN EN PROCESO
+        }
+
+        //FUNCION PARA ABRIR EL AREA D SIG
+        public void SeleccionSIG()
+        {
+            //AUN EN PROCESO
+        }
+
         //SELECCION DEL ÁREA DE MANTENIMIENTO
         private void btnMantenimiento_Click(object sender, EventArgs e)
+        {
+            SeleccionMantenimiento();
+        }
+
+        //SELECCION DEL ÁREA DE MANTENIMIENTO
+        private void lblLeyendaMantenimiento_Click(object sender, EventArgs e)
+        {
+            SeleccionMantenimiento();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D MANTENIMIETO
+        public void SeleccionMantenimiento()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -449,12 +557,24 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
 
         //SELECCION DEL´ÁREA DE ADMINISTRADOR
         private void btnAdministrador_Click(object sender, EventArgs e)
+        {
+            SeleccionAdmin();
+        }
+
+        //SELECCION DEL´ÁREA DE ADMINISTRADOR
+        private void lblLeyendaAdmin_Click(object sender, EventArgs e)
+        {
+            SeleccionAdmin();
+        }
+
+        //FUNCION PARA ABRIR EL AREA D ADMIN
+        public void SeleccionAdmin()
         {
             //VALIDAR SI EL USUARIO TIENE LICENCIA
             if (datalistadoVerificacionLicencia.RowCount > 0)
@@ -482,7 +602,7 @@ namespace ArenasProyect3.Modulos
             else
             {
                 //SI EL USUARIO NO TIENE LICENCIA O NO ESTA REGISTRADO
-                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun.", "Validación del Sistema");
+                MessageBox.Show("El dispositivo en donde está corriendo el sistema no tiene la licencia o autorización respectiva, por favor comunicarse con el área de sistemas para poder solucionar este error, Error: InvalidKeyToRun", "Validación del Sistema", MessageBoxButtons.OK);
             }
         }
         //-------------------------------------------------------------------------------------------------------
@@ -892,7 +1012,7 @@ namespace ArenasProyect3.Modulos
                 }
                 else
                 {
-                    MessageBox.Show("Ocurrio un error inesperado.", "Ingreso al Sistema", MessageBoxButtons.OK);
+                    MessageBox.Show("Ocurrio un error inesperado", "Ingreso al Sistema", MessageBoxButtons.OK);
                     txtPassword.Focus();
                 }
 
@@ -900,7 +1020,7 @@ namespace ArenasProyect3.Modulos
             }
             else if (txtPassword.Text == "")
             {
-                MessageBox.Show("Debe ingresar una contraseña, ingrese una contraseña válida.", "Ingreso al Sistema", MessageBoxButtons.OK);
+                MessageBox.Show("Debe ingresar una contraseña, ingrese una contraseña válida", "Ingreso al Sistema", MessageBoxButtons.OK);
                 txtPassword.Focus();
             }
             else
@@ -921,141 +1041,135 @@ namespace ArenasProyect3.Modulos
         //BOTON DE PROCESOS
         private void btnProcesos_MouseHover(object sender, EventArgs e)
         {
-            btnProcesos.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaProcesos.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnProcesos, lblLeyendaProcesos);
         }
 
         //LEYENDA DE PROCESOS
         private void btnProcesos_MouseLeave(object sender, EventArgs e)
         {
-            btnProcesos.BackColor = Color.Black;
-            lblLeyendaProcesos.BackColor = Color.Black;
+            CambiarColor(btnProcesos, lblLeyendaProcesos);
         }
 
         //BOTON DE COMERCIAL
         private void btnComercial_MouseHover(object sender, EventArgs e)
         {
-            btnComercial.BackColor = Color.FromArgb(48, 48, 48);
-            lblleyendaComercial.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnComercial, lblleyendaComercial);
         }
 
         //LEYENDA DE COMERCIAL
         private void btnComercial_MouseLeave(object sender, EventArgs e)
         {
-            btnComercial.BackColor = Color.Black;
-            lblleyendaComercial.BackColor = Color.Black;
+            CambiarColor(btnComercial, lblleyendaComercial);
         }
 
         //BOTON DE PRODUCCION
         private void btnProduccion_MouseHover(object sender, EventArgs e)
         {
-            btnProduccion.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaProduccion.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnProduccion, lblLeyendaProduccion);
         }
 
         //LEYENDA D EPRODICCION
         private void btnProduccion_MouseLeave(object sender, EventArgs e)
         {
-            btnProduccion.BackColor = Color.Black;
-            lblLeyendaProduccion.BackColor = Color.Black;
+            CambiarColor(btnProduccion, lblLeyendaProduccion);
         }
 
         //BOTON DE INGENIERIA
         private void btnIngieneria_MouseHover(object sender, EventArgs e)
         {
-            btnIngieneria.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaIngieneria.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnIngieneria, lblLeyendaIngieneria);
         }
 
         //LEYENDA DE INGIENERIA
         private void btnIngieneria_MouseLeave(object sender, EventArgs e)
         {
-            btnIngieneria.BackColor = Color.Black;
-            lblLeyendaIngieneria.BackColor = Color.Black;
+            CambiarColor(btnIngieneria, lblLeyendaIngieneria);
         }
 
         //BOTON DE LOGISTICA
         private void btnLogistica_MouseHover(object sender, EventArgs e)
         {
-            btnLogistica.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaLogistica.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnLogistica, lblLeyendaLogistica);
         }
 
         //LEYENDA DE LOGISTICA
         private void btnLogistica_MouseLeave(object sender, EventArgs e)
         {
-            btnLogistica.BackColor = Color.Black;
-            lblLeyendaLogistica.BackColor = Color.Black;
+            CambiarColor(btnLogistica, lblLeyendaLogistica);
         }
 
         //BOTON DE CONTABILIDAD
         private void btnContabilidad_MouseHover(object sender, EventArgs e)
         {
-            btnContabilidad.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaContabilidad.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnContabilidad, lblLeyendaContabilidad);
         }
 
         //LEYENDA DE CONTABILIDAD
         private void btnContabilidad_MouseLeave(object sender, EventArgs e)
         {
-            btnContabilidad.BackColor = Color.Black;
-            lblLeyendaContabilidad.BackColor = Color.Black;
+            CambiarColor(btnContabilidad, lblLeyendaContabilidad);
         }
 
         //BOTON DE CALIDAD
         private void btnCalidad_MouseHover(object sender, EventArgs e)
         {
-            btnCalidad.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaCalidad.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnCalidad, lblLeyendaCalidad);
         }
 
         //LEYENDA DE CALIDAD
         private void btnCalidad_MouseLeave(object sender, EventArgs e)
         {
-            btnCalidad.BackColor = Color.Black;
-            lblLeyendaCalidad.BackColor = Color.Black;
+            CambiarColor(btnCalidad, lblLeyendaCalidad);
         }
 
         //BOTON DE SIG
         private void btnSIG_MouseHover(object sender, EventArgs e)
         {
-            btnSIG.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaSIG.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnSIG, lblLeyendaSIG);
         }
 
         //LEYENDA DE SIG
         private void btnSIG_MouseLeave(object sender, EventArgs e)
         {
-            btnSIG.BackColor = Color.Black;
-            lblLeyendaSIG.BackColor = Color.Black;
+            CambiarColor(btnSIG, lblLeyendaSIG);
         }
 
         //BOTON DE MANTENIMIENTO
         private void btnMantenimiento_MouseHover(object sender, EventArgs e)
         {
-            btnMantenimiento.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaMantenimiento.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnMantenimiento, lblLeyendaMantenimiento);
         }
 
         //LEYENDA DE MANTENIMIENTO
         private void btnMantenimiento_MouseLeave(object sender, EventArgs e)
         {
-            btnMantenimiento.BackColor = Color.Black;
-            lblLeyendaMantenimiento.BackColor = Color.Black;
+            CambiarColor(btnMantenimiento, lblLeyendaMantenimiento);
         }
 
         //BOTON ADMINISTRADOR
         private void btnAdministrador_MouseHover(object sender, EventArgs e)
         {
-            btnAdministrador.BackColor = Color.FromArgb(48, 48, 48);
-            lblLeyendaAdmin.BackColor = Color.FromArgb(48, 48, 48);
+            CambiarColor2(btnAdministrador, lblLeyendaAdmin);
         }
 
         //LEYENDA ADMIN
         private void btnAdministrador_MouseLeave(object sender, EventArgs e)
         {
-            btnAdministrador.BackColor = Color.Black;
-            lblLeyendaAdmin.BackColor = Color.Black;
+            CambiarColor(btnAdministrador, lblLeyendaAdmin);
+        }
+
+        //CAMBIAR DE COLOR AL MOMENTO DE PASAR
+        public void CambiarColor(PictureBox boton, Label label)
+        {
+            boton.BackColor = Color.Black;
+            label.BackColor = Color.Black;
+        }
+
+        //CAMBIAR DE COLOR AL MOMENTO DE PASAR
+        public void CambiarColor2(PictureBox boton, Label label)
+        {
+            boton.BackColor = Color.FromArgb(48, 48, 48);
+            label.BackColor = Color.FromArgb(48, 48, 48);
         }
 
         //EVENTAO PARA CERRAR MI FORMULARIO
@@ -1064,6 +1178,24 @@ namespace ArenasProyect3.Modulos
             //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
             ClassResourses.RegistrarAuditora(10, this.Name, 1, Program.IdUsuario = 0, "", 0);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //-----------------------------------------------------------------------------------------------
     }
 }
