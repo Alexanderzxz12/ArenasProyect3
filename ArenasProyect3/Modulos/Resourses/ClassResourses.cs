@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DocumentFormat.OpenXml.Office2010.Word;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,10 +18,18 @@ namespace ArenasProyect3.Modulos.Resourses
 
     public class ClassResourses
     {
-        private static readonly HttpClient client = new HttpClient();
 
+        //CREACION DEL OBJETO CLIENTE PARA EL LLAMADO A LAS APIS
+        //TIMEOUT DE 30 MINUTOS PARA QUE SOPORTE UAIDOS LARGOS SIN QUE SE CORTE
+        private static readonly HttpClient client = new HttpClient { Timeout = TimeSpan.FromMinutes(30) };
 
-        public static void RegistrarAuditora(int idAccion, string mantenimiento, int idProceso,int? idUsuario = null, string descripcion = null, int? idGeneral = null)
+        //CLAVE API KEY 
+        //private static string ApiKeyGemini => ConfigurationManager.AppSettings["GeminiApiKey"];
+
+        private static readonly string apiKey = ConfigurationManager.AppSettings["GeminiApiKey"];
+        
+
+        public static void RegistrarAuditora(int idAccion, string mantenimiento, int idProceso, int? idUsuario = null, string descripcion = null, int? idGeneral = null)
         {
             try
             {
@@ -35,14 +44,14 @@ namespace ArenasProyect3.Modulos.Resourses
                 cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                 cmd.Parameters.AddWithValue("@mantenimiento", mantenimiento);
 
-                if (!string.IsNullOrEmpty(descripcion)){cmd.Parameters.AddWithValue("@descripcion", descripcion);}
-                else{cmd.Parameters.AddWithValue("@descripcion", DBNull.Value);}
+                if (!string.IsNullOrEmpty(descripcion)) { cmd.Parameters.AddWithValue("@descripcion", descripcion); }
+                else { cmd.Parameters.AddWithValue("@descripcion", DBNull.Value); }
 
                 cmd.Parameters.AddWithValue("@idTipoAccion", idAccion);
                 cmd.Parameters.AddWithValue("@nombreUsuarioSesion", usuarioWindows);
 
-                if (idGeneral.HasValue){cmd.Parameters.AddWithValue("@idGeneral", idGeneral.Value);}
-                else{cmd.Parameters.AddWithValue("@idGeneral", DBNull.Value);}
+                if (idGeneral.HasValue) { cmd.Parameters.AddWithValue("@idGeneral", idGeneral.Value); }
+                else { cmd.Parameters.AddWithValue("@idGeneral", DBNull.Value); }
 
                 cmd.Parameters.AddWithValue("@idProceso", idProceso);
 
@@ -78,7 +87,7 @@ namespace ArenasProyect3.Modulos.Resourses
         }
 
         //METODO QUE REFRESCA LOS REQUERIMIENTOS GUARDANDO EL SCROLL
-        public static void RefrescarRequerimientos(string tipoOperacion,DataGridView DGV, Action metodoCarga)
+        public static void RefrescarRequerimientos(string tipoOperacion, DataGridView DGV, Action metodoCarga)
         {
             //VARIABLES QUE ALMACENARAN EL SCROLL Y LA FILA SELECCIONADA POR EL USUARIO
             int indiceScroll = 0;
@@ -122,15 +131,17 @@ namespace ArenasProyect3.Modulos.Resourses
                 //Y SE SELECCIONA LA FILA SELECCIONADA
                 if (filaseleccionada >= 0 && filaseleccionada < DGV.Rows.Count)
                 {
-                    DGV.ClearSelection(); 
-                    DGV.Rows[filaseleccionada].Selected = true; 
-                    DGV.CurrentCell = DGV.Rows[filaseleccionada].Cells[0]; 
+                    DGV.ClearSelection();
+                    DGV.Rows[filaseleccionada].Selected = true;
+                    DGV.CurrentCell = DGV.Rows[filaseleccionada].Cells[0];
                 }
             }
         }
 
         //--------------------------------------------------------------
         //------------------ MÉTODOS PARA GEMINI -------------------------
+
+
 
         //METODO PARA LA REDACCIÓN DE TEXTO USANDO GEMINI
         public async Task<string> RedactarTexto(string texto, string modeloseleccionado)
@@ -145,15 +156,22 @@ namespace ArenasProyect3.Modulos.Resourses
                 // Normalización estándar
                 textoLimpio = textoLimpio.Replace("\"", "'").Trim();
 
-                string apiKey = ConfigurationManager.AppSettings["GeminiApiKey"];
+                //string apiKey = ConfigurationManager.AppSettings["GeminiApiKey"];
                 if (string.IsNullOrEmpty(apiKey)) return "ERROR: NO SE ENCONTRÓ LA API KEY.";
 
-                string[] modelosGemini = {
-                "gemini-2.5-flash",
-                "gemini-1.5-pro",
-                "gemini-1.5-flash",
-                "gemini-2.0-flash-exp"
-            };
+                //    string[] modelosGemini = {
+                //    "gemini-2.5-flash",
+                //    "gemini-1.5-pro",
+                //    "gemini-1.5-flash",
+                //    "gemini-2.0-flash-exp"
+                //};
+
+                string[] modelosGemini = 
+                {
+                    "gemini-2.5-flash-lite",
+                    "gemini-2.5-flash",
+                    "gemini-2.5-pro"
+                };
 
                 IEnumerable<string> modelosAUsar = modeloseleccionado == "gemini"
                                                    ? modelosGemini
@@ -162,7 +180,7 @@ namespace ArenasProyect3.Modulos.Resourses
                 string textoFinal = "";
                 bool solicitudExitosa = false;
                 Exception ultimoError = null;
-
+                
                 // --- PROMPT ANTI-ALUCINACIONES NUMÉRICAS ---
                 string promptSistema = @"
                 Actúa como un experto redactor técnico.
@@ -185,7 +203,9 @@ namespace ArenasProyect3.Modulos.Resourses
                 {
                     try
                     {
-                        string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modeloActual}:generateContent?key={apiKey}";
+                        //string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modeloActual}:generateContent?key={apiKey}";
+                        string url = $"https://generativelanguage.googleapis.com/v1/models/{modeloActual}:generateContent?key={apiKey}";
+
 
                         var payload = new
                         {
@@ -226,6 +246,12 @@ namespace ArenasProyect3.Modulos.Resourses
                     }
                     catch (Exception ex)
                     {
+                        //SI SE REALIZARON DEMASIADAS SOLICITUDES SE ESPERA 2 SEGUNDOS ANTES DE SEGUIR
+                        if(ex.Message.Contains("429") || ex.Message.Contains("Resource Exhausted"))
+                        {
+                            System.Threading.Thread.Sleep(2000);
+                        }
+
                         ultimoError = ex;
                     }
                 }
@@ -272,7 +298,7 @@ namespace ArenasProyect3.Modulos.Resourses
         {
             try
             {
-                string apikey = ConfigurationManager.AppSettings["GeminiApiKey"];
+                //string apikey = ConfigurationManager.AppSettings["GeminiApiKey"];
 
                 if (!File.Exists(rutaArchivoaudio))
                 {
@@ -299,7 +325,7 @@ namespace ArenasProyect3.Modulos.Resourses
 
                 // USO DEL MODELO GEMINI DE GOOGLE 2.5 FLASH
                 string modelo = "gemini-2.5-flash";
-                string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apikey}";
+                string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apiKey}";
 
                 //CUERPO DEL JSON A ENVIAR
                 var jsondata = new
@@ -348,5 +374,152 @@ namespace ArenasProyect3.Modulos.Resourses
                 return "ERROR CRÍTICO: " + ex.Message;
             }
         }
+
+        //METODOS IA ESTATICOS
+
+        //public static async Task<string> RedactarTexto(string texto, string modeloseleccionado)
+        //{
+        //    if (string.IsNullOrWhiteSpace(texto)) return "ERROR: EL TEXTO DE ENTRADA ESTÁ VACÍO.";
+
+        //    // Limpieza previa
+        //    string textoLimpio = Regex.Replace(texto, @"^\s*\d+[\.\)]?\s*$", "", RegexOptions.Multiline);
+        //    textoLimpio = textoLimpio.Replace("\"", "'").Trim();
+
+        //    //---PROMPT ANTI - ALUCINACIONES NUMÉRICAS-- -
+        //           string promptSistema = @"
+        //            Actúa como un experto redactor técnico.
+        //            TU TAREA: Reestructurar la información en un informe profesional limpio y secuencial.
+
+        //            REGLAS CRÍTICAS DE NUMERACIÓN:
+        //            1. IGNORA ABSOLUTAMENTE cualquier numeración del texto original (como '37.', '01.', números de página).
+        //            2. Ten CUIDADO con nombres de eventos que incluyen números (ej: 'PERUMIN 37'). NO uses ese '37' como viñeta.
+        //            3. GENERA TU PROPIA numeración secuencial lógica empezando estrictamente desde 1 (1., 2., 3...).
+
+        //            ESTRUCTURA DE SALIDA:
+        //            - Primer Párrafo: Resumen ejecutivo (TEXTO CORRIDO, SIN NÚMEROS AL INICIO).
+        //            - Cuerpo: Lista numerada ordenada (1., 2., 3...).
+        //            - Detalles: Usa viñetas (-) para sub-puntos.
+
+        //            Devuelve SOLO el texto plano reestructurado.
+        //        ";        
+
+        //    var partes = new object[]
+        //    {
+        //        new { text = promptSistema + "\n\nTEXTO FUENTE:\n" + textoLimpio }
+        //    };
+
+        //    var modelos = modeloseleccionado == "gemini"
+        //        ? new[] { "gemini-2.5-flash", "gemini-1.5-pro", "gemini-1.5-flash", "gemini-2.0-flash-exp" }
+        //        : new[] { modeloseleccionado };
+
+        //    return await EjecutarGeminiCore(modelos, partes);
+        //}
+
+
+
+        //// MÉTODO PÚBLICO 2: TRANSCRIBIR AUDIO (Ahora es static)
+        //public static async Task<string> TranscribirAudioATexto(string rutaArchivoaudio)
+        //{
+        //    if (!File.Exists(rutaArchivoaudio)) return "ERROR: EL ARCHIVO NO EXISTE.";
+
+        //    string extension = Path.GetExtension(rutaArchivoaudio).ToLower();
+        //    string mimeType = ObtenerMimeType(extension); 
+        //    if (mimeType == null) return "ERROR: FORMATO NO SOPORTADO";
+
+        //    try
+        //    {
+        //        byte[] audioBytes = File.ReadAllBytes(rutaArchivoaudio);
+        //        string audioBase64 = Convert.ToBase64String(audioBytes);
+
+        //        var partes = new object[]
+        //        {
+        //            new { inlineData = new { mimeType = mimeType, data = audioBase64 } },
+        //            new { text = "Transcribe esto textualmente." }
+        //        };
+
+        //        var modelos = new[] { "gemini-2.5-flash" };
+
+        //        return await EjecutarGeminiCore(modelos, partes);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return "ERROR AL LEER AUDIO: " + ex.Message;
+        //    }
+        //}
+
+        //// NÚCLEO PRIVADO DE CONEXIÓN (STATIC)
+        //// -------------------------------------------------------------------------
+        //private static async Task<string> EjecutarGeminiCore(IEnumerable<string> modelos, object[] partesContenido)
+        //{
+        //    string apiKey = ApiKeyGemini;
+        //    if (string.IsNullOrEmpty(apiKey)) return "ERROR: NO API KEY";
+
+        //    Exception ultimoError = null;
+
+        //    foreach (var modelo in modelos)
+        //    {
+        //        try
+        //        {
+        //            string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apiKey}";
+
+        //            var payload = new
+        //            {
+        //                contents = new[] { new { parts = partesContenido } },
+        //                generationConfig = new
+        //                {
+        //                    temperature = 0.0,
+        //                    maxOutputTokens = 2000
+        //                }
+        //            };
+
+        //            string jsonPayload = JsonConvert.SerializeObject(payload);
+        //            StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+        //            // Usamos el cliente estático global _clientIA
+        //            var response = await client.PostAsync(url, content).ConfigureAwait(false);
+
+        //            if (!response.IsSuccessStatusCode) throw new Exception($"HTTP {response.StatusCode}");
+
+        //            string jsonResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        //            dynamic data = JsonConvert.DeserializeObject(jsonResponse);
+
+        //            string respuesta = data?.candidates?[0]?.content?.parts?[0]?.text;
+
+        //            if (!string.IsNullOrWhiteSpace(respuesta))
+        //            {
+        //                return LimpiarSalidaGemini(respuesta);
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ultimoError = ex;
+        //        }
+        //    }
+        //    return $"ERROR: {ultimoError?.Message ?? "Fallo en todos los modelos"}";
+        //}
+
+        //private static string LimpiarSalidaGemini(string texto)
+        //{
+        //    if (string.IsNullOrEmpty(texto)) return "";
+        //    texto = texto.Replace("**", "").Trim().ToUpper();
+        //    // ... Puedes agregar aquí el resto de tus regex de limpieza si quieres ...
+        //    return texto;
+        //}
+
+        //private static string ObtenerMimeType(string ext)
+        //{
+        //    switch (ext)
+        //    {
+        //        case ".mp3": return "audio/mp3";
+        //        case ".wav": return "audio/wav";
+        //        case ".ogg": return "audio/ogg";
+        //        case ".opus": return "audio/ogg";
+        //        case ".m4a": return "audio/m4a";
+        //        default: return null;
+        //    }
+        //}
+
+
     }
+
 }
