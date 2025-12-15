@@ -1139,6 +1139,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                                         //INGRESO DEL ENCABEZADO DE LA LIQUIDACIÓN
                                         cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
+
                                         cmd.Parameters.AddWithValue("@fechaLiquidacion", datatimeFechaRequerimientoLiquidacion.Value);
                                         cmd.Parameters.AddWithValue("@fechaInicio", datetimeDesdeLiquidacion.Value);
                                         cmd.Parameters.AddWithValue("@fechaTermino", datetiemHastaLiquidacion.Value);
@@ -1179,7 +1180,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                             con.Open();
                                             cmd = new SqlCommand("InsertarEdicionLiquidacionVenta_DetalleLiquidacion", con);
                                             cmd.CommandType = CommandType.StoredProcedure;
-                                            cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
+                                            //cmd.Parameters.AddWithValue("@idliquidacion", idLiquidacion);
+
                                             cmd.Parameters.AddWithValue("@fechaLiquiracion", Convert.ToString(row.Cells[1].Value));
                                             cmd.Parameters.AddWithValue("@combustible", Convert.ToString(row.Cells[2].Value));
                                             cmd.Parameters.AddWithValue("@hospedaje", Convert.ToString(row.Cells[3].Value));
@@ -1207,7 +1209,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                             con.Open();
                                             cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleCliente", con);
                                             cmd.CommandType = CommandType.StoredProcedure;
-                                            cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
+
+                                            //cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
+
                                             cmd.Parameters.AddWithValue("@asistencia", estadoCliente);
 
 
@@ -1232,7 +1236,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                                             con.Open();
                                             cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleVendedores", con);
                                             cmd.CommandType = CommandType.StoredProcedure;
-                                            cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
+
+                                            //cmd.Parameters.AddWithValue("@idLiquidacion", idLiquidacion);
+
                                             cmd.Parameters.AddWithValue("@estadoAsistencia", estadoAsistencia);
                                             cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
                                             cmd.ExecuteNonQuery();
@@ -1374,8 +1380,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             MessageBox.Show("Liquidación y requerimiento asociado a esta, anuladas exitosamente.", "Validación del Sistema", MessageBoxButtons.OK);
                             BusquedaDependiente();
 
-                            ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
-                            ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            //ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            //ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL LIQUIDACIÓN N°. " + idLiquidacion, "Correo de verificación de anulación de una liquidación por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
 
                             //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                             ClassResourses.RegistrarAuditora(2, this.Name, 5, Program.IdUsuario, "Anular liquidación de viaje.", Convert.ToInt32(idLiquidacion));

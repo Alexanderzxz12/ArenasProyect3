@@ -1447,9 +1447,13 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                     cmd = new SqlCommand("RequerimientoViaje_Insertar", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    codigoRequerimeinto();
+                    
+                    //codigoRequerimeinto();
+
                     //INGRESO DEL ENCABEZADO DEL REQUERIMIENTO
-                    cmd.Parameters.AddWithValue("@idRequerimientoVenta", numeroRequerimiento);
+                    //cmd.Parameters.AddWithValue("@idRequerimientoVenta", numeroRequerimiento);
+
+
                     cmd.Parameters.AddWithValue("@fechaRequerimiento", datatimeFechaRequerimiento.Value);
                     cmd.Parameters.AddWithValue("@fechaInicio", datetimeDesde.Value);
                     cmd.Parameters.AddWithValue("@fechaTermino", datetiemHasta.Value);
@@ -1480,7 +1484,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Open();
                         cmd = new SqlCommand("RequerimientoViaje_InsertarDetalles", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
+                        //cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
+
                         cmd.Parameters.AddWithValue("@fechaRequerimeinto", Convert.ToString(row.Cells[1].Value));
                         cmd.Parameters.AddWithValue("@combustible", Convert.ToString(row.Cells[2].Value));
                         cmd.Parameters.AddWithValue("@hospedaje", Convert.ToString(row.Cells[3].Value));
@@ -1505,7 +1510,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Open();
                         cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleCliente", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
+                        //cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
+
                         cmd.Parameters.AddWithValue("@idClienteDetalle", codigoDetalleCliente);
                         cmd.Parameters.AddWithValue("@idUnidadDetalle", codigoDetalleUnidad);
                         cmd.Parameters.AddWithValue("@codigoDestinoDetalle", codigoDetalleDestino);
@@ -1523,7 +1529,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Open();
                         cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleVendedores", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
+                        //cmd.Parameters.AddWithValue("@idRequerimiento", numeroRequerimiento);
                         cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -1789,8 +1795,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             //INGRESO DE AUDITORA | ACCION - MANTENIMIENTO - PROCESO - IDUSUARIO - DESCRIPCION - IDGENERAL
                             ClassResourses.RegistrarAuditora(2, this.Name, 4, Program.IdUsuario, "Anular requerimiento de viaje", idRequerimiento);
 
-                            ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
-                            ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            //ClassResourses.Enviar("ynunahuanca@arenassrl.com.pe", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
+                            //ClassResourses.Enviar("jhoalexxxcc@gmail.com", "CORREO AUTOMATIZADO - ANULACIÓN DEL REQUERIMIENTO N°. " + idRequerimiento, "Correo de verificación de anulación de un requerimiento por parte del usuario '" + Program.UnoNombreUnoApellidoUsuario + "' el la fecha siguiente: " + DateTime.Now + ". Por favor no responder.");
                         }
                         catch (Exception ex)
                         {
@@ -1985,6 +1991,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         //GENERACIÓN DE LA LIQUIDACIÓN Y CARGA DE LOS DATOS
         private void btnGenerarLiquidacion_Click(object sender, EventArgs e)
         {
+            
+
             //SE ASIGNA EL VALOR DEL DATA Y SE BLOQUE LAS COLUMNAS PARA QUE SOLO SE PUEDAN LEER
             //DATALISTADO LIQUIDACION CLIENTES
             datatimeCalculador2.Value = datetiemHastaLiquidacion.Value;
@@ -2057,6 +2065,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             cboBusquedaClientesLiquidacion.SelectedIndex = 0;
                             cboBusquedaColaboradorLiquidacion.SelectedIndex = 0;
                             panelNuevaLiquidadcion.Visible = true;
+                            btnGenerarLiquidacion.Enabled = false;
 
                             //CARGA DE DATOS DE LOS LISTADO AL FORMUALRIO DE INGRESO DE LIQUIDACION
                             int tipoRequerimiento = Convert.ToInt32(datalistadoBusquedaReuqerimientoGeneral.SelectedCells[2].Value.ToString());
@@ -2620,7 +2629,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         //codigoLiquidacion();
                         //INGRESO DEL ENCABEZADO DE LA LIQUIDACIÓN
-                        cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+                        //cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+
                         cmd.Parameters.AddWithValue("@fechaLiquidacion", datatimeFechaRequerimientoLiquidacion.Value);
                         cmd.Parameters.AddWithValue("@fechaInicio", datetimeDesdeLiquidacion.Value);
                         cmd.Parameters.AddWithValue("@fechaTermino", datetiemHastaLiquidacion.Value);
@@ -2657,7 +2667,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             con.Open();
                             cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleLiquidacion", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+
+                            //cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+
                             cmd.Parameters.AddWithValue("@fechaLiquiracion", Convert.ToString(row.Cells[1].Value));
                             cmd.Parameters.AddWithValue("@combustible", Convert.ToString(row.Cells[2].Value));
                             cmd.Parameters.AddWithValue("@hospedaje", Convert.ToString(row.Cells[3].Value));
@@ -2685,7 +2697,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             con.Open();
                             cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleCliente", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+
+                            //cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+
                             cmd.Parameters.AddWithValue("@asistencia", estadoCliente);
 
 
@@ -2710,7 +2724,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             con.Open();
                             cmd = new SqlCommand("InsertarLiquidacionVenta_DetalleVendedores", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+
+                            //cmd.Parameters.AddWithValue("@idLiquidacion", numeroLiquidacion);
+
                             cmd.Parameters.AddWithValue("@estadoAsistencia", estadoAsistencia);
                             cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
                             cmd.ExecuteNonQuery();
@@ -2731,6 +2747,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                         //REINICIAR FORMULARIO DE INGRESO DE REQUERIMIENTO
                         panelNuevaLiquidadcion.Visible = false;
+                        btnGenerarLiquidacion.Enabled = true;
                         datalistadoTodasRequerimientos.Enabled = true;
 
                         datalistadoDetallesLiquidacion.Rows.Clear();
@@ -2815,7 +2832,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Open();
                         cmd = new SqlCommand("RequerimientoViaje_InsertarDetalles", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
+
+                        //cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
+
                         cmd.Parameters.AddWithValue("@fechaRequerimeinto", Convert.ToString(row.Cells[1].Value));
                         cmd.Parameters.AddWithValue("@combustible", Convert.ToString(row.Cells[2].Value));
                         cmd.Parameters.AddWithValue("@hospedaje", Convert.ToString(row.Cells[3].Value));
@@ -2840,7 +2859,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Open();
                         cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleCliente", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
+
+                        //cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
+
                         cmd.Parameters.AddWithValue("@idClienteDetalle", codigoDetalleCliente);
                         cmd.Parameters.AddWithValue("@idUnidadDetalle", codigoDetalleUnidad);
                         cmd.Parameters.AddWithValue("@codigoDestinoDetalle", codigoDetalleDestino);
@@ -2858,7 +2879,9 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                         con.Open();
                         cmd = new SqlCommand("RequerimientoViaje_InsertarDetalleVendedores", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
+
+                        //cmd.Parameters.AddWithValue("@idRequerimiento", codigoRequerimeinto);
+
                         cmd.Parameters.AddWithValue("@idvendedordetalle", codigoDetalleColaborador);
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -2902,6 +2925,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private void btnSalirLiquidacion_Click(object sender, EventArgs e)
         {
             panelNuevaLiquidadcion.Visible = false;
+            btnGenerarLiquidacion.Enabled = true;
             txtNumFecha2.Text = "1";
             datatimeCalculador2.Value = datetiemHastaLiquidacion.Value;
 

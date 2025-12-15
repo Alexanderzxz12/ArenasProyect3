@@ -246,7 +246,7 @@ namespace ArenasProyect3.Modulos.Contabilidad
         //BLOEQUEO HACI EL REPORTE NÚMERO 1
         private void lblReporte1_Click(object sender, EventArgs e)
         {
-            ExportarReporteOpFechas("", DesdeFecha.Value, HastaFecha.Value);
+            //ExportarReporteOpFechas("", DesdeFecha.Value, HastaFecha.Value);
         }
 
         //BLOEQUEO HACI EL REPORTE NÚMERO 2
@@ -503,100 +503,100 @@ namespace ArenasProyect3.Modulos.Contabilidad
         }
         //------------------------------------------------------------------------------------------------------------------------------------
 
-        //FUNCION PAARA EXPORTAR A EXCEL MI LISTADO COMPLETO
-        public void ExportarReporteOpFechas(string cliente, DateTime inicio, DateTime fin)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd = new SqlCommand("SP_A_REPORTE_OP_PAOLA", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandTimeout = 300;
-                cmd.Parameters.AddWithValue("@DESCLI", cliente);
-                cmd.Parameters.AddWithValue("@DESDE", inicio);
-                cmd.Parameters.AddWithValue("@HASTA", fin);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.SelectCommand.CommandTimeout = 300;
-                da.Fill(dt);
-                datalistadoReporteOPFechas.DataSource = dt;
-                con.Close();
+        ////FUNCION PAARA EXPORTAR A EXCEL MI LISTADO COMPLETO
+        //public void ExportarReporteOpFechas(string cliente, DateTime inicio, DateTime fin)
+        //{
+        //    try
+        //    {
+        //        DataTable dt = new DataTable();
+        //        SqlConnection con = new SqlConnection();
+        //        con.ConnectionString = Conexion.ConexionMaestra.conexionSoft;
+        //        con.Open();
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd = new SqlCommand("SP_A_REPORTE_OP_PAOLA", con);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.CommandTimeout = 300;
+        //        cmd.Parameters.AddWithValue("@DESCLI", cliente);
+        //        cmd.Parameters.AddWithValue("@DESDE", inicio);
+        //        cmd.Parameters.AddWithValue("@HASTA", fin);
+        //        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //        da.SelectCommand.CommandTimeout = 300;
+        //        da.Fill(dt);
+        //        datalistadoReporteOPFechas.DataSource = dt;
+        //        con.Close();
 
-                MostrarExcelCompleto();
+        //        MostrarExcelCompleto();
 
-                SLDocument sl = new SLDocument();
-                SLStyle style = new SLStyle();
-                SLStyle styleC = new SLStyle();
+        //        SLDocument sl = new SLDocument();
+        //        SLStyle style = new SLStyle();
+        //        SLStyle styleC = new SLStyle();
 
-                //COLUMNAS
-                sl.SetColumnWidth(1, 15);
-                sl.SetColumnWidth(2, 15);
-                sl.SetColumnWidth(3, 15);
-                sl.SetColumnWidth(4, 100);
-                sl.SetColumnWidth(5, 15);
-                sl.SetColumnWidth(6, 15);
-                sl.SetColumnWidth(7, 15);
+        //        //COLUMNAS
+        //        sl.SetColumnWidth(1, 15);
+        //        sl.SetColumnWidth(2, 15);
+        //        sl.SetColumnWidth(3, 15);
+        //        sl.SetColumnWidth(4, 100);
+        //        sl.SetColumnWidth(5, 15);
+        //        sl.SetColumnWidth(6, 15);
+        //        sl.SetColumnWidth(7, 15);
 
-                //CABECERA
-                style.Font.FontSize = 11;
-                style.Font.Bold = true;
-                style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
-                style.Alignment.WrapText = true;
-                style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
-                style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-                style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-                style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-                style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+        //        //CABECERA
+        //        style.Font.FontSize = 11;
+        //        style.Font.Bold = true;
+        //        style.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+        //        style.Alignment.WrapText = true;
+        //        style.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Beige, System.Drawing.Color.Beige);
+        //        style.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+        //        style.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+        //        style.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+        //        style.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
 
-                //FILAS
-                styleC.Font.FontSize = 10;
-                styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+        //        //FILAS
+        //        styleC.Font.FontSize = 10;
+        //        styleC.Alignment.Horizontal = HorizontalAlignmentValues.Center;
 
-                styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
-                styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
-                styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
-                styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
+        //        styleC.Border.LeftBorder.BorderStyle = BorderStyleValues.Hair;
+        //        styleC.Border.RightBorder.BorderStyle = BorderStyleValues.Hair;
+        //        styleC.Border.BottomBorder.BorderStyle = BorderStyleValues.Hair;
+        //        styleC.Border.TopBorder.BorderStyle = BorderStyleValues.Hair;
 
-                int ic = 1;
-                foreach (DataGridViewColumn column in datalistadoReporteOPFechasExcel.Columns)
-                {
-                    sl.SetCellValue(1, ic, column.HeaderText.ToString());
-                    sl.SetCellStyle(1, ic, style);
-                    ic++;
-                }
+        //        int ic = 1;
+        //        foreach (DataGridViewColumn column in datalistadoReporteOPFechasExcel.Columns)
+        //        {
+        //            sl.SetCellValue(1, ic, column.HeaderText.ToString());
+        //            sl.SetCellStyle(1, ic, style);
+        //            ic++;
+        //        }
 
-                int ir = 2;
-                foreach (DataGridViewRow row in datalistadoReporteOPFechasExcel.Rows)
-                {
-                    sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
-                    sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
-                    sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
-                    sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
-                    sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
-                    sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
-                    sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
-                    sl.SetCellStyle(ir, 1, styleC);
-                    sl.SetCellStyle(ir, 2, styleC);
-                    sl.SetCellStyle(ir, 3, styleC);
-                    sl.SetCellStyle(ir, 4, styleC);
-                    sl.SetCellStyle(ir, 5, styleC);
-                    sl.SetCellStyle(ir, 6, styleC);
-                    sl.SetCellStyle(ir, 7, styleC);
-                    ir++;
-                }
+        //        int ir = 2;
+        //        foreach (DataGridViewRow row in datalistadoReporteOPFechasExcel.Rows)
+        //        {
+        //            sl.SetCellValue(ir, 1, row.Cells[0].Value.ToString());
+        //            sl.SetCellValue(ir, 2, row.Cells[1].Value.ToString());
+        //            sl.SetCellValue(ir, 3, row.Cells[2].Value.ToString());
+        //            sl.SetCellValue(ir, 4, row.Cells[3].Value.ToString());
+        //            sl.SetCellValue(ir, 5, row.Cells[4].Value.ToString());
+        //            sl.SetCellValue(ir, 6, row.Cells[5].Value.ToString());
+        //            sl.SetCellValue(ir, 7, row.Cells[6].Value.ToString());
+        //            sl.SetCellStyle(ir, 1, styleC);
+        //            sl.SetCellStyle(ir, 2, styleC);
+        //            sl.SetCellStyle(ir, 3, styleC);
+        //            sl.SetCellStyle(ir, 4, styleC);
+        //            sl.SetCellStyle(ir, 5, styleC);
+        //            sl.SetCellStyle(ir, 6, styleC);
+        //            sl.SetCellStyle(ir, 7, styleC);
+        //            ir++;
+        //        }
 
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                sl.SaveAs(desktopPath + @"\Reporte de ordenes de producción.xlsx");
-                MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //        string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        //        sl.SaveAs(desktopPath + @"\Reporte de ordenes de producción.xlsx");
+        //        MessageBox.Show("Se exportó los datos a un archivo de Microsoft Excel en la siguiente ubicación: " + desktopPath, "Validación del Sistema", MessageBoxButtons.OK);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         //MOSTRARA MI MANUAL DE USUARIO
         private void btnAbrirManual_Click(object sender, EventArgs e)

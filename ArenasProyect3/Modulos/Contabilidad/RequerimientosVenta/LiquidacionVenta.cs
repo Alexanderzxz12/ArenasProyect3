@@ -605,7 +605,11 @@ namespace ArenasProyect3.Modulos.Contabilidad.RequerimientosVenta
             if (datalistadoTodasLiquidacion.CurrentRow != null)
             {
                 int idLiquidacion = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[1].Value.ToString());
-                int idRequerimiento = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[13].Value.ToString());
+
+                //int idRequerimiento = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[13].Value.ToString());
+
+                int idRequerimiento = Convert.ToInt32(datalistadoTodasLiquidacion.SelectedCells[15].Value.ToString());
+
 
                 DialogResult boton = MessageBox.Show("¿Realmente desea anular esta liquidación?. Se desaprobará el requerimiento asociado a esta liquidación.", "Validación del Sistema", MessageBoxButtons.OKCancel);
                 if (boton == DialogResult.OK)
