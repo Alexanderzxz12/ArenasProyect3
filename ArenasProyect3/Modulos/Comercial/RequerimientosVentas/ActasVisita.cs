@@ -2024,6 +2024,15 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
+        //METODO DE VISUALIZACIÓN DEL PANEL DE FUNCIONALIDADES
+        public void VisualizarFuncionalidadesIA()
+        {
+            panelNuevaLineaTrabajo.Enabled = false;
+            panelFuncionalidadesIA.Visible = true;
+            panelFuncionalidadesIA.BringToFront();
+            panelFuncionalidadesIA.Focus();
+        }
+
         //EVENTO DE APERTURA AL PANEL DE FUNCIONALIDADES IA
         private void btnFuncionalidadesIA_Click(object sender, EventArgs e)
         {
@@ -2031,24 +2040,15 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
             if (paginaactual.Text == "DESARROLLO")
             {
-                panelNuevaLineaTrabajo.Enabled = false;
-                panelFuncionalidadesIA.Visible = true;
-                panelFuncionalidadesIA.BringToFront();
-                panelFuncionalidadesIA.Focus();
+                VisualizarFuncionalidadesIA();            
             }
             else if (paginaactual.Text == "RESULTADO")
             {
-                panelNuevaLineaTrabajo.Enabled = false;
-                panelFuncionalidadesIA.Visible = true;
-                panelFuncionalidadesIA.BringToFront();
-                panelFuncionalidadesIA.Focus();
+                VisualizarFuncionalidadesIA();                
             }
             else if(paginaactual.Text == "ACCIONES")
             {
-                panelNuevaLineaTrabajo.Enabled = false;
-                panelFuncionalidadesIA.Visible = true;
-                panelFuncionalidadesIA.BringToFront();
-                panelFuncionalidadesIA.Focus();
+                VisualizarFuncionalidadesIA();             
             }
         }
 
@@ -2064,7 +2064,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
         public async Task Uso_RedaccionTexto(TabPage paginaactual, string lineatrabajo,string contenidoAredactar,int usoToken1)
         {
-            string modelousado = "gemini";
+            string IAutilizada = "gemini";
 
             if (lineatrabajo == "NUEVA LINEA DE TRABAJO" || lineatrabajo == "EDITAR LINEA DE TRABAJO")
             {
@@ -2093,7 +2093,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             Visualizacion_Controles();
                             txtTextoCopiaOriginal.Text = contenidoAredactar;
                             txtTextoRedactadoIA.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
-                            string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, modelousado);
+                            //string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, modelousado);
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, IAutilizada);
                             txtTextoRedactadoIA.Text = textoRedactado;
                         }
                         else if (paginaactual.Text == "RESULTADO")
@@ -2102,7 +2103,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             Visualizacion_Controles();
                             txtTextoCopiaOriginal.Text = contenidoAredactar;
                             txtTextoRedactadoIA.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
-                            string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, modelousado);
+                            //string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, modelousado);
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, IAutilizada);
                             txtTextoRedactadoIA.Text = textoRedactado;
                         }
                         else if (paginaactual.Text == "ACCIONES")
@@ -2111,7 +2113,8 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                             Visualizacion_Controles();
                             txtTextoCopiaOriginal.Text = contenidoAredactar;
                             txtTextoRedactadoIA.Text = "PROCESANDO REDACCIÓN, POR FAVOR ESPERE...";
-                            string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, modelousado);
+                            //string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, modelousado);
+                            string textoRedactado = await recursos.RedactarTexto(txtTextoCopiaOriginal.Text, IAutilizada);
                             txtTextoRedactadoIA.Text = textoRedactado;
                         }
                     }
@@ -2139,6 +2142,18 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }            
         }
 
+        //METODO PARA LA LIMPIEZA DE LOS CONTROLES AL CONSERVAR EL CONTENIDO
+        public void LimpiarControles_AlConservarContenido(TextBox txt)
+        {
+            panelRedaccionTextos.Visible = false;
+            txt.Text = "";
+            txt.Text = txtTextoCopiaOriginal.Text.ToUpper();
+            txtTextoCopiaOriginal.Text = "";
+            panelFuncionalidadesIA.Visible = false;
+            panelNuevaLineaTrabajo.Enabled = true;
+            panelFuncionalidadesIA.Enabled = true;
+        }
+
         //METODO PARA LA CONSERVACION DEL TEXTO ORIGINAL ESCRITO POR EL USUARIO Y LAS MODIFICACIONES QUE REALIZO EN EL TXT
         public void Conservar_Contenido_Copia_Original(TabPage paginaActual, string contenidoredactadoXIA)
         {
@@ -2150,33 +2165,15 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
             if (paginaActual.Text == "DESARROLLO")
             {
-                panelRedaccionTextos.Visible = false;
-                txtDesarrollo.Text = "";
-                txtDesarrollo.Text = txtTextoCopiaOriginal.Text.ToUpper();
-                txtTextoCopiaOriginal.Text = "";
-                panelFuncionalidadesIA.Visible = false;
-                panelNuevaLineaTrabajo.Enabled = true;
-                panelFuncionalidadesIA.Enabled = true;
+                LimpiarControles_AlConservarContenido(txtDesarrollo);             
             }
             else if (paginaActual.Text == "RESULTADO")
             {
-                panelRedaccionTextos.Visible = false;
-                txtResultado.Text = "";
-                txtResultado.Text = txtTextoCopiaOriginal.Text;
-                txtTextoCopiaOriginal.Text = "";
-                panelFuncionalidadesIA.Visible = false;
-                panelNuevaLineaTrabajo.Enabled = true;
-                panelFuncionalidadesIA.Enabled = true;
+                LimpiarControles_AlConservarContenido(txtResultado);              
             }
             else if (paginaActual.Text == "ACCIONES")
             {
-                panelRedaccionTextos.Visible = false;
-                txtAcciones.Text = "";
-                txtAcciones.Text = txtTextoCopiaOriginal.Text;
-                txtTextoCopiaOriginal.Text = "";
-                panelFuncionalidadesIA.Visible = false;
-                panelNuevaLineaTrabajo.Enabled = true;
-                panelFuncionalidadesIA.Enabled = true;
+                LimpiarControles_AlConservarContenido(txtAcciones);            
             }
         }
 
@@ -2184,6 +2181,17 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
         private void btnConservarTextoOriginal_Click(object sender, EventArgs e)
         {
             Conservar_Contenido_Copia_Original(tabControl1.SelectedTab,txtTextoRedactadoIA.Text);
+        }
+
+        //METODO PARA LIMPIAR LOS CONTROLES AL MOMENTO DE GUARDAR EL CONTENIDO REDACTADO POR LA IA
+        public void LimpiarControles_AlGuardarContenidoIA(TextBox txt)
+        {
+            panelRedaccionTextos.Visible = false;
+            txt.Text = "";
+            txt.Text = txtTextoRedactadoIA.Text.ToUpper();
+            panelFuncionalidadesIA.Visible = false;
+            panelNuevaLineaTrabajo.Enabled = true;
+            panelFuncionalidadesIA.Enabled = true;
         }
 
         //METODO PARA EL GUARDADO DEL TEXTO REDACTADO POR LA IA
@@ -2197,30 +2205,15 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
             if (paginaActual.Text == "DESARROLLO")
             {
-                panelRedaccionTextos.Visible = false;
-                txtDesarrollo.Text = "";
-                txtDesarrollo.Text = txtTextoRedactadoIA.Text.ToUpper();
-                panelFuncionalidadesIA.Visible = false;
-                panelNuevaLineaTrabajo.Enabled = true;
-                panelFuncionalidadesIA.Enabled = true;
+                LimpiarControles_AlGuardarContenidoIA(txtDesarrollo);              
             }
             else if (paginaActual.Text == "RESULTADO")
             {
-                panelRedaccionTextos.Visible = false;
-                txtResultado.Text = "";
-                txtResultado.Text = txtTextoRedactadoIA.Text.ToUpper();
-                panelFuncionalidadesIA.Visible = false;
-                panelNuevaLineaTrabajo.Enabled = true;
-                panelFuncionalidadesIA.Enabled = true;
+                LimpiarControles_AlGuardarContenidoIA(txtResultado);               
             }
             else if(paginaActual.Text == "ACCIONES")
             {
-                panelRedaccionTextos.Visible = false;
-                txtAcciones.Text = "";
-                txtAcciones.Text = txtTextoRedactadoIA.Text.ToUpper();
-                panelFuncionalidadesIA.Visible = false;
-                panelNuevaLineaTrabajo.Enabled = true;
-                panelFuncionalidadesIA.Enabled = true;
+                LimpiarControles_AlGuardarContenidoIA(txtAcciones);             
             }
         }
 
@@ -2280,8 +2273,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
         //BOTON PARA ABRIR EL AUDIO ADJUNTADO
         private void btnAbrirAudio_Click(object sender, EventArgs e)
-        {
-            if (txtArchivoAudio.Text != "")
+        {            if (txtArchivoAudio.Text != "")
             {
                 string ruta = txtArchivoAudio.Text;
 
@@ -2293,20 +2285,74 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             }
         }
 
-        //BOTON PARA REALIZAR LA TRANSCRIPCION DEL AUDIO A TEXTO
+        //METODO PARA LA GENERACIÓN DE LA TRANSCRIPCION DE AUDIO A TEXTO
+        public async Task GenerarTranscripcion(TextBox txtAudio, TextBox txtcontenidoAtranscribir,PictureBox btnGenerarTranscripcion)
+        {
+            string fileUri = "";
+            string fileName = "";
+
+            try
+            {
+                txtcontenidoAtranscribir.Text = "";
+
+                if (string.IsNullOrWhiteSpace(txtAudio.Text))
+                {
+                    MessageBox.Show("Por favor cargue un archivo para realizar la transcripción del Audio", "Validación del Sistema", MessageBoxButtons.OK);
+                    return;
+                }
+
+                btnGenerarTranscripcion.Enabled = false;
+
+                txtcontenidoAtranscribir.Text = "TRANSCRIBIENDO AUDIO, POR FAVOR ESPERE...";
+
+                string rutaarchivo = txtAudio.Text;
+
+                //MB * KB * Bytes
+                long limitebytes = 35 * 1024 * 1024;
+
+                FileInfo infoarchivo = new FileInfo(rutaarchivo);
+
+                if (infoarchivo.Length > limitebytes)
+                {
+                    txtcontenidoAtranscribir.Text = "Archivo demasiado pesado".ToUpper();
+
+                    //LENGHT DA BYTES DIVISION BYTES / KB / MB
+                    MessageBox.Show($"El archivo es demasiado pesado {infoarchivo.Length / 1024 / 1024} MB). \n" + "El sistema limite a aprox. 30 minutos de audio (Max 35MB) para evitar saturación.", "Archivo muy grande", MessageBoxButtons.OK);
+                    return;
+                }
+                string mimetype = recursos.obtenerMimeType(rutaarchivo);
+
+                string[] datosarchivo = await recursos.SubirComoBytes(rutaarchivo, mimetype);
+
+                fileUri = datosarchivo[0];
+                fileName = datosarchivo[1];
+
+
+                string transcribiraudio = await recursos.TranscribirAudioATexto(fileUri, mimetype);
+
+                txtcontenidoAtranscribir.Text = transcribiraudio.ToUpper();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                txtcontenidoAtranscribir.Text = "Error en la transcripcion";
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    await recursos.BorrarArchivoGoogle(fileName);
+                }
+
+                btnGenerarTranscripcion.Enabled = true;
+            }
+        }
+
+        //EVENTO DE GENERACION DE TRANSCRIPCION
         private async void btnTranscribirAudioATexto_Click(object sender, EventArgs e)
         {
-            txtAudioTranscritoATexto.Text = "";
-
-            if (string.IsNullOrWhiteSpace(txtArchivoAudio.Text))
-            {
-                MessageBox.Show("Por favor cargue un archivo para realizar la transcripción del Audio", "Validación del Sistema", MessageBoxButtons.OK);
-                return;
-            }
-            
-            string audiotranscrito = await recursos.TranscribirAudioATexto(txtArchivoAudio.Text);
-
-            txtAudioTranscritoATexto.Text = audiotranscrito;
+            await GenerarTranscripcion(txtArchivoAudio,txtAudioTranscritoATexto,btnTranscribirAudioATexto);
         }
 
         //EVENTO Y METODO PARA GUARDAR EL TEXTO TRANSCRITO EN UN BLOC DE NOTAS
@@ -2369,7 +2415,5 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
             panelNuevaLineaTrabajo.Enabled = true;
             panelFuncionalidadesIA.Visible = false;
         }
-
-      
     }
 }

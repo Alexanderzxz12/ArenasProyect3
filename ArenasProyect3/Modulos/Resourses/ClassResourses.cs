@@ -8,10 +8,14 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace ArenasProyect3.Modulos.Resourses
 {
@@ -27,7 +31,7 @@ namespace ArenasProyect3.Modulos.Resourses
         //private static string ApiKeyGemini => ConfigurationManager.AppSettings["GeminiApiKey"];
 
         private static readonly string apiKey = ConfigurationManager.AppSettings["GeminiApiKey"];
-        
+
 
         public static void RegistrarAuditora(int idAccion, string mantenimiento, int idProceso, int? idUsuario = null, string descripcion = null, int? idGeneral = null)
         {
@@ -141,385 +145,411 @@ namespace ArenasProyect3.Modulos.Resourses
         //--------------------------------------------------------------
         //------------------ MÉTODOS PARA GEMINI -------------------------
 
-
-
-        //METODO PARA LA REDACCIÓN DE TEXTO USANDO GEMINI
-        public async Task<string> RedactarTexto(string texto, string modeloseleccionado)
+        public async Task<string> RedactarTexto(string texto,string IAutilizada)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(texto)) return "ERROR: EL TEXTO DE ENTRADA ESTÁ VACÍO.";
-
-                // --- LIMPIEZA PREVIA INTELIGENTE (INPUT) ---
-                string textoLimpio = Regex.Replace(texto, @"^\s*\d+[\.\)]?\s*$", "", RegexOptions.Multiline);
-
-                // Normalización estándar
-                textoLimpio = textoLimpio.Replace("\"", "'").Trim();
-
-                //string apiKey = ConfigurationManager.AppSettings["GeminiApiKey"];
-                if (string.IsNullOrEmpty(apiKey)) return "ERROR: NO SE ENCONTRÓ LA API KEY.";
-
-                //    string[] modelosGemini = {
-                //    "gemini-2.5-flash",
-                //    "gemini-1.5-pro",
-                //    "gemini-1.5-flash",
-                //    "gemini-2.0-flash-exp"
-                //};
-
-                string[] modelosGemini = 
+                if (string.IsNullOrEmpty(apiKey))
                 {
-                    "gemini-2.5-flash-lite",
-                    "gemini-2.5-flash",
-                    "gemini-2.5-pro"
-                };
+                    return "Error: No se encontro la API KEY";
+                }
 
-                IEnumerable<string> modelosAUsar = modeloseleccionado == "gemini"
-                                                   ? modelosGemini
-                                                   : new[] { modeloseleccionado };
+                if (string.IsNullOrWhiteSpace(texto))
+                {
+                    return "Error: El texto de entrada esta vacio";
+                }
 
-                string textoFinal = "";
-                bool solicitudExitosa = false;
-                Exception ultimoError = null;
-                
-                // --- PROMPT ANTI-ALUCINACIONES NUMÉRICAS ---
-                string promptSistema = @"
-                Actúa como un experto redactor técnico.
-                TU TAREA: Reestructurar la información en un informe profesional limpio y secuencial.
+                //MODELOS V1beta (DE TESTING Y PRUEBA)
+                //string[] modelosGemini = {"gemini-2.5-flash","gemini-1.5-pro","gemini-1.5-flash","gemini-2.0-flash-exp"};
 
-                REGLAS CRÍTICAS DE NUMERACIÓN:
-                1. IGNORA ABSOLUTAMENTE cualquier numeración del texto original (como '37.', '01.', números de página).
-                2. Ten CUIDADO con nombres de eventos que incluyen números (ej: 'PERUMIN 37'). NO uses ese '37' como viñeta.
-                3. GENERA TU PROPIA numeración secuencial lógica empezando estrictamente desde 1 (1., 2., 3...).
-                
-                ESTRUCTURA DE SALIDA:
-                - Primer Párrafo: Resumen ejecutivo (TEXTO CORRIDO, SIN NÚMEROS AL INICIO).
-                - Cuerpo: Lista numerada ordenada (1., 2., 3...).
-                - Detalles: Usa viñetas (-) para sub-puntos.
+                //MODELOS V1 (OFICIALES)
+                string[] modelosGemini = { "gemini-2.5-flash-lite", "gemini-2.5-flash", "gemini-2.5-pro" };
 
-                Devuelve SOLO el texto plano reestructurado.
-            ";
+                string prompt = @"
+                                1.ROL: Actua como un experto redactor técnico especializado en informes de ingenieria y mantenimiento.
 
-                foreach (var modeloActual in modelosAUsar)
+                                2.CONTEXTO: El texto que recibiras proviene de notas rápidas, Contiene errores gramaticales, ideas repetidas, muletillas y oraciones inconexas.
+
+                                3.TAREA: Tu objetivo es reescribir y estructurar este contenido para convertirlo en un INFORME PROFESIONAL. Debes:
+                                - Corregir ortografia y gramática.
+                                - Eliminar redundancias y muletillas.
+                                - Sintetizar las ideas principales.
+                                - Agrupar temas relacionados aunque estén separados en el texto original.
+                                - Mantener nombres propios (como 'Lucas', 'Sistemas') y datos técnicos exactos.
+
+                                4.FORMATO DE SALIDA (Estructura visual): Organiza la respuesta estrictamente con esta estructura:
+                                
+                                RESUMEN EJECUTIVO:
+                                (Un párrafo breve de 3 líneas resumiendo la situación general)
+                              
+                                PUNTOS CLAVE:
+                                - (Lista con viñetas sobre los temas tratados).
+                                - (Usa lenguaje técnico apropiado).
+
+                                ACUERDOS Y TAREAS:
+                                1. (Lista numerada con las acciones a realizar o conclusiones, si las hay).
+                                2. (Si no hay acuerdos claros, omite esta sección).
+
+                                5. RESTRICCIONES (Lo prohibido)
+                                - NO incluyas saludos, despedidas ni frases como 'Aqui esta tu reporte'.
+                                - NO inventes información que no esté en el texto fuente
+                                - NO uses Markdown complejo (negritas o cursivas). usa solo texto plano.
+                                - Escribe todo en ESPAÑOL NEUTRO Y FORMAL
+                                ";
+
+                string textofinal = "";
+                bool solicitudexitosa = false;
+                string ultimoerror = "";
+
+                foreach (var modeloactual in modelosGemini)
                 {
                     try
                     {
-                        //string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modeloActual}:generateContent?key={apiKey}";
-                        string url = $"https://generativelanguage.googleapis.com/v1/models/{modeloActual}:generateContent?key={apiKey}";
+                        //VARIABLES PARA LA VALIDACIÓN DE REINTENTOS DEL MISMO MODELO SI HAY ERROR 429 - SATURACIÓN
+                        int intentosmaximos = 3;
+                        int tiempoesperasegundos = 2;
 
-
-                        var payload = new
+                        for (int intentos = 1; intentos <= intentosmaximos; intentos++)
                         {
-                            contents = new[]
+                            //LLAMADO A LA API DE MODELOS DE PRUEBA
+                            //string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modeloActual}:generateContent?key={apiKey}";
+
+                            //LLAMADO A LA API DE MODELOS DE OFICIALES
+                            string url = $"https://generativelanguage.googleapis.com/v1/models/{modeloactual}:generateContent?key={apiKey}";
+
+                            //CUERPO DEL JSON
+                            var json = new
                             {
-                                new {
-                                        parts = new[] {
-                                            new { text = promptSistema + "\n\nTEXTO FUENTE:\n" + textoLimpio }
+                                contents = new[]
+                                {
+                                    new
+                                    {
+                                        parts = new[]
+                                        {
+                                            new { text = prompt + "\n\nTEXTO FUENTE:\n" + texto }
                                         }
                                     }
-                            },
-                            generationConfig = new
+                                },
+                                generationConfig = new
+                                {
+                                    temperature = 0.1,  //LO MENOS POSIBLE PARA RESPUESTAS MÁS PRECISAS
+                                    maxOutputTokens = 10000, //CANTIDAD DE TOKENS A USAR PARA LA REDACCIÓN
+                                    candidateCount = 1  // NÚMERO DE RESPUESTAS A GENERAR
+                                }
+                            };
+
+                            var jsonAenviar = new StringContent(JsonConvert.SerializeObject(json), Encoding.UTF8, "application/json");
+                            var response = await client.PostAsync(url, jsonAenviar);
+
+                            // ERROR 429 Y ERROR 503
+                            if(response.StatusCode == (System.Net.HttpStatusCode)429 || response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
                             {
-                                temperature = 0.3,
-                                maxOutputTokens = 2000,
-                                candidateCount = 1
+                                if(intentos < intentosmaximos)
+                                {
+                                    //ESPERA DE 2 SEGUNDOS
+                                    await Task.Delay(tiempoesperasegundos * 1000);
+
+                                    //TIEMPO DE ESPERA PARA EL SIGUEINTE INTENTO
+                                    tiempoesperasegundos = tiempoesperasegundos * 2;
+
+                                    continue;
+                                }
+                                else
+                                {
+                                    string errorMsg = await response.Content.ReadAsStringAsync();
+                                    ultimoerror = $"Saturación {response.StatusCode} - {errorMsg}";
+                                    break;
+                                }
                             }
-                        };
 
-                        string jsonPayload = JsonConvert.SerializeObject(payload);
-                        StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+                            //OTROS ERRORES HTTP (PASA AL SIGUIENTE MODELO)
+                            if (response.IsSuccessStatusCode == false)
+                            {
+                                string errordetalle = await response.Content.ReadAsStringAsync();
+                                ultimoerror = $"Error HTTP {response.StatusCode} - {errordetalle}";
+                                break;
+                            }
 
-                        var response = await client.PostAsync(url, content).ConfigureAwait(false);
+                            string jsonRespuesta = await response.Content.ReadAsStringAsync();
+                            dynamic data = JsonConvert.DeserializeObject(jsonRespuesta);
+                            string respuestaTexto = data?.candidates?[0]?.content?.parts?[0]?.text;
 
-                        if (!response.IsSuccessStatusCode) throw new Exception($"Error HTTP {response.StatusCode}");
-
-                        string jsonResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        dynamic data = JsonConvert.DeserializeObject(jsonResponse);
-
-                        string respuestaTexto = data?.candidates?[0]?.content?.parts?[0]?.text;
-
-                        if (!string.IsNullOrWhiteSpace(respuestaTexto))
-                        {
-                            textoFinal = respuestaTexto;
-                            solicitudExitosa = true;
-                            break;
+                            if (!string.IsNullOrWhiteSpace(respuestaTexto))
+                            {
+                                textofinal = respuestaTexto.Trim();
+                                solicitudexitosa = true;
+                                break;
+                            }
                         }
                     }
                     catch (Exception ex)
                     {
-                        //SI SE REALIZARON DEMASIADAS SOLICITUDES SE ESPERA 2 SEGUNDOS ANTES DE SEGUIR
-                        if(ex.Message.Contains("429") || ex.Message.Contains("Resource Exhausted"))
-                        {
-                            System.Threading.Thread.Sleep(2000);
-                        }
+                        ultimoerror = ex.Message;
+                        await Task.Delay(1000);
+                    }
 
-                        ultimoError = ex;
+                    if(solicitudexitosa == true)
+                    {
+                        break;
                     }
                 }
 
-                if (!solicitudExitosa) return $"ERROR: {ultimoError?.Message ?? "Sin respuesta"}";
+                if(solicitudexitosa == true)
+                {                  
+                    string textolimpio = LimpiezaTexto(textofinal);
 
-                // --- LIMPIEZA FINAL ---
-
-                // 1. Normalizar saltos de línea
-                textoFinal = textoFinal.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Environment.NewLine);
-
-                // 2. Eliminar Markdown residual
-                textoFinal = textoFinal.Replace("**", "").Replace("##", "").Replace("`", "");
-
-                // 3. LIMPIEZA DE "RUIDO" POST-GENERACIÓN (SOLUCIÓN AL 37 SUELTO)
-                // Borra cualquier línea que haya quedado conteniendo solo números y puntos (ej: una línea que sea solo "37.")
-                textoFinal = Regex.Replace(textoFinal, @"(?m)^\s*\d+[\.\)]\s*(\r\n|\r|\n|$)", "");
-
-                // 4. Limpieza de espacios dobles
-                textoFinal = Regex.Replace(textoFinal, @" +", " ");
-
-                // 5. Formato de lista: Asegurar espacio después del punto ("1.Texto" -> "1. Texto")
-                textoFinal = Regex.Replace(textoFinal, @"(\d+\.)([^\s])", "$1 $2");
-
-                textoFinal = Regex.Replace(textoFinal, @"(?<=[\.\:\?!]|\r|\n|^)\s+(\d+\.)", $"{Environment.NewLine}{Environment.NewLine}$1");
-
-                // 7. Eliminar saltos de línea excesivos (más de 3 seguidos se vuelven 2)
-                textoFinal = Regex.Replace(textoFinal, @"(\r\n){3,}", $"{Environment.NewLine}{Environment.NewLine}");
-
-                textoFinal = textoFinal.ToUpper().Trim();
-
-                return textoFinal;
+                    return textolimpio;
+                }
+                else
+                {
+                    return $"Error al momento de llamar a la IA: {ultimoerror}";
+                }
             }
             catch (Exception ex)
             {
-                return "EXCEPCIÓN: " + ex.Message.ToUpper();
+                return $"Error Critico: {ex.Message}";
             }
         }
 
-        //-----------------------------------------------------------------------
-        //----------------------------
-        //METODO PARA TRANSCRIBIR AUDIO A TEXTO USANDO GEMINI   
-        public async Task<string> TranscribirAudioATexto(string rutaArchivoaudio)
+        //METODO PARA LIMPIAR EL TEXTO DEVUELTO POR LA IA
+        private string LimpiezaTexto(string texto)
+        {
+
+            //NORMALIZAR SALTOS DE LÍNEA DE LINUX A WINDOWS (PARA QUE NO SE VEA EL TEXTO SEGUIDO)
+            texto = texto.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Environment.NewLine);
+
+            //ELIMINAR MARKDOWN RESIDUAL (NEGRITA ** Y ENCABEZADOS ##)
+            texto = texto.Replace("**", "").Replace("##", "").Replace("###", "").Replace("`","");
+
+            //ELIMINACIÓN POR SI 1 LINEA SOLO ES UN NÚMERO
+            texto = Regex.Replace(texto, @"(?m)^\s*\d+[\.\)]\s*(\r\n|\r|\n|$)", "");
+
+            //ELMINACIÓN DE ESPACIOS DOBLES INNECESARIOS
+            texto = System.Text.RegularExpressions.Regex.Replace(texto, @" +", " ");
+
+            // ESPACIO LUEGO DE DOS PUNTOS (TITULO:TEXTO)
+            texto = texto.Replace(":", ": ");
+
+            //FORMATO DE LISTA: ASEGURAR ESPACIO DESPUÉS DEL PUNTO (1.Texto -> 1. Texto)
+            texto = Regex.Replace(texto, @"(\d+\.)([^\s])", "$1 $2");
+
+            //SALTO DE LÍNEA ANTES DE CADA NÚMERO DE LISTA
+            texto = Regex.Replace(texto, @"(?<=[\.\:\?!]|\r|\n|^)\s+(\d+\.)", $"{Environment.NewLine}{Environment.NewLine}$1");
+
+            //ELIMINAR SALTOS DE LÍNEA EXCESIVOS (MÁS DE 3 SEGUIDOS SE VUELVEN 2)
+            texto = Regex.Replace(texto, @"(\r\n){3,}", $"{Environment.NewLine}{Environment.NewLine}");
+
+            return texto.ToUpper();
+        }
+
+        //-----------------------------------------------------------------------------
+        //TRANSCRIPCION AUDIO A TEXTO
+        // NUEVO ESTRUCTURA DE METODOS PARA LA GENERACIÓN DE TRANSCRIPCION DE AUDIO A TEXTO
+
+        //METODO PARA SUBIR EL ARCHIVO COMO BYTES
+        public async Task<string[]> SubirComoBytes(string rutaarchivo, string mimetype)
+        {
+            //URL PARA LA SUBIDA DEL ARCHIVO
+            string url = $"https://generativelanguage.googleapis.com/upload/v1beta/files?key={apiKey}";
+
+            //SEPARADOR DE MULTIPART PARA LOS METADATOS Y LA URI
+            string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
+
+            string nombrearchivo = Path.GetFileName(rutaarchivo);
+
+            // CREAR EL FORMULARIO MULTIPART CON LOS DATOS (PASANDOLE EL SEPARADOR boundary)
+            using (var form = new MultipartFormDataContent(boundary))
+            {
+                // FORMACION DEL JSON DE METADATOS
+                var metadata = new { file = new { display_name = nombrearchivo } };  //NOMBRE DEL ARCHIVO A SUBIR
+
+                //SERIALIZACION DEL JSON Y CAMBIO EN LA CABECERA PARA QUE SE LLAME metadata
+                var jsonContent = new StringContent(JsonConvert.SerializeObject(metadata), Encoding.UTF8, "application/json");
+                jsonContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { Name = "\"metadata\"" };
+
+                //AGREGADO AL FORMULARIO
+                form.Add(jsonContent);
+
+                //LECUTRA DEL ARCHIVO EN BYTES
+                byte[] archivoEnBytes = File.ReadAllBytes(rutaarchivo);
+
+                //CREACION DEL CONTENT DEL ARCHIVO
+                var fileContent = new ByteArrayContent(archivoEnBytes);
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(mimetype);
+                fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "\"file\"",
+                    FileName = $"\"{nombrearchivo}\""
+                };
+
+                //AGREGADO AL FORMULARIO : JSON + BYTES
+                form.Add(fileContent);
+
+                
+                form.Headers.Remove("Content-Type");
+                form.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
+
+                //ENVIO DEL FORMULARIO
+                var response = await client.PostAsync(url, form);
+
+                if (response.IsSuccessStatusCode == false)
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error al Subir: {error}");
+                }
+
+                var jsonResp = await response.Content.ReadAsStringAsync();
+                dynamic data = JsonConvert.DeserializeObject(jsonResp);
+
+                string uri = data["file"]["uri"].ToString();
+                string name = data["file"]["name"].ToString();
+
+                return new string[] { uri, name };
+            }
+        }       
+
+        //METODO DE TRANSCRIPCION DE AUDIO A TEXTO 
+        public async Task<string> TranscribirAudioATexto(string fileUri, string mimeTypeRecibido)
+        {
+            int intentosmaximos = 3;
+            int esperarPorSaturacion = 10;
+            int pausaFinalExito = 2;
+
+
+            string modelo = "gemini-2.5-flash-lite";
+            string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apiKey}";
+
+            string prompt = "Por favor, transcribe este audio textualmente." + "Escribe todo de corrido sin agregar timestamps (00:00) ni comentarios extra.";
+
+            var payload = new
+            {
+                contents = new[]
+                {
+                    new
+                    {
+                        parts = new object[]
+                        {
+                            new
+                            {
+                                fileData = new
+                                {
+                                    mimeType = mimeTypeRecibido,  
+                                    fileUri = fileUri
+                                }
+                            },
+                            new { text = prompt }
+                        }
+                    }
+                }
+            };
+
+            for (int intento = 1; intento <= intentosmaximos; intento++)
+            {
+                try
+                {
+                    var jsonContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync(url, jsonContent);
+
+                    if(response.StatusCode == (System.Net.HttpStatusCode)429 || response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
+                    {
+                        if(intento == intentosmaximos)
+                        {
+                            string errorMsg = await response.Content.ReadAsStringAsync();
+                            throw new Exception($"Google sigue saturado tras {intentosmaximos} intentos. {errorMsg}");
+                        }
+
+                        await Task.Delay((esperarPorSaturacion * intento) * 1000);
+                        continue;
+                    }
+
+                    if (response.IsSuccessStatusCode == false)
+                    {
+                        string error = await response.Content.ReadAsStringAsync();
+                        throw new Exception($"Error al transcribir: {error}");
+                    }
+
+                    string responseString = await response.Content.ReadAsStringAsync();
+                    dynamic data = JsonConvert.DeserializeObject(responseString);
+
+                    await Task.Delay(pausaFinalExito * 1000);
+
+                    if (data["candidates"] != null && data["candidates"].Count > 0)
+                    {
+                        return data["candidates"][0]["content"]["parts"][0]["text"].ToString();
+                    }
+
+                    return "No se pudo generar texto (Respuesta vacía).";
+                }
+                catch (Exception ex)
+                {
+                    if (intento == intentosmaximos) throw; 
+                    await Task.Delay(5000); 
+                }
+            }
+            return "Error desconocido despues de reintentos";
+        }
+
+        //ELIMINACIÓN DEL ARCHIVO SUBIDO
+        public async Task<bool> BorrarArchivoGoogle(string fileName)
         {
             try
             {
-                //string apikey = ConfigurationManager.AppSettings["GeminiApiKey"];
+                string url = $"https://generativelanguage.googleapis.com/v1beta/{fileName}?key={apiKey}";
 
-                if (!File.Exists(rutaArchivoaudio))
+                var response = await client.DeleteAsync(url);
+
+                if (response.IsSuccessStatusCode == true)
                 {
-                    return "ERROR: EL ARCHIVO DE AUDIO NO EXISTE";
+                    return true;
                 }
-
-                //EXTENSION DEL ARCHIVO EN MINUSCULAS
-                string extension = Path.GetExtension(rutaArchivoaudio).ToLower();
-                string mimeType = "";
-
-                //CAPTURA DE LA EXTENSIÓN Y ASIGNACIÓN DEL MIME TYPE
-                switch (extension)
+                else
                 {
-                    case ".mp3": mimeType = "audio/mp3"; break;
-                    case ".wav": mimeType = "audio/wav"; break;
-                    case ".ogg": mimeType = "audio/ogg"; break;
-                    case ".opus": mimeType = "audio/ogg"; break;
-                    case ".m4a": mimeType = "audio/m4a"; break;
-                    default: return "ERROR: FORMATO NO SOPORTADO";
-                }
-
-                byte[] audioBytes = File.ReadAllBytes(rutaArchivoaudio);
-                string audioBase64 = Convert.ToBase64String(audioBytes);
-
-                // USO DEL MODELO GEMINI DE GOOGLE 2.5 FLASH
-                string modelo = "gemini-2.5-flash";
-                string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apiKey}";
-
-                //CUERPO DEL JSON A ENVIAR
-                var jsondata = new
-                {
-                    contents = new[]
-                    {
-                        new
-                        {
-                            parts = new object[]
-                            {
-                                new { inlineData = new { mimeType = mimeType, data = audioBase64 } },
-                                new { text = "Transcribe esto textualmente." }
-                            }
-                        }
-                    }
-                };
-
-                using (HttpClient client = new HttpClient())
-                {
-                    string jsonString = JsonConvert.SerializeObject(jsondata);
-                    StringContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-
-                    // Llamada única a la API
-                    var response = await client.PostAsync(url, content);
-
-                    // Verificación estándar de errores (400, 401, 404, 500, etc.)
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        string errorMsg = await response.Content.ReadAsStringAsync();
-                        return $"ERROR API: {response.StatusCode} - {errorMsg}";
-                    }
-
-                    dynamic data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
-
-                    if (data["candidates"] == null)
-                    {
-                        return "ERROR: LA IA NO PUDO ESCUCHAR.";
-                    }
-
-
-                    return data["candidates"][0]["content"]["parts"][0]["text"].ToString();
+                    string error = await response.Content.ReadAsStringAsync();
+                    return false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                return "ERROR CRÍTICO: " + ex.Message;
+                return false;
             }
         }
 
-        //METODOS IA ESTATICOS
+        //CAPTURA DEL MIMETYPE SEGÚN LA EXTENSIÓN DEL ARCHIVO
+        public string obtenerMimeType(string rutaarchivo)
+        {
+            string extension = Path.GetExtension(rutaarchivo).ToLower();
 
-        //public static async Task<string> RedactarTexto(string texto, string modeloseleccionado)
-        //{
-        //    if (string.IsNullOrWhiteSpace(texto)) return "ERROR: EL TEXTO DE ENTRADA ESTÁ VACÍO.";
+            switch (extension)
+            {
+                // --- AUDIOS ---
+                case ".mp3": return "audio/mp3";
+                case ".wav": return "audio/wav";
+                case ".aac": return "audio/aac";
+                case ".flac": return "audio/flac";
+                case ".wma": return "audio/wma";
+                case ".aiff": return "audio/aiff";
 
-        //    // Limpieza previa
-        //    string textoLimpio = Regex.Replace(texto, @"^\s*\d+[\.\)]?\s*$", "", RegexOptions.Multiline);
-        //    textoLimpio = textoLimpio.Replace("\"", "'").Trim();
+                // --- AUDIOS MÓVILES --
+                case ".ogg": return "audio/ogg";
+                case ".opus": return "audio/ogg"; 
+                case ".m4a": return "audio/m4a";
+                case ".amr": return "audio/amr";
 
-        //    //---PROMPT ANTI - ALUCINACIONES NUMÉRICAS-- -
-        //           string promptSistema = @"
-        //            Actúa como un experto redactor técnico.
-        //            TU TAREA: Reestructurar la información en un informe profesional limpio y secuencial.
+                // --- VIDEOS 
+                case ".mp4": return "video/mp4";
+                case ".mpeg": return "video/mpeg";
+                case ".mov": return "video/mov"; 
+                case ".avi": return "video/avi";
+                case ".webm": return "video/webm";
+                case ".flv": return "video/x-flv";
 
-        //            REGLAS CRÍTICAS DE NUMERACIÓN:
-        //            1. IGNORA ABSOLUTAMENTE cualquier numeración del texto original (como '37.', '01.', números de página).
-        //            2. Ten CUIDADO con nombres de eventos que incluyen números (ej: 'PERUMIN 37'). NO uses ese '37' como viñeta.
-        //            3. GENERA TU PROPIA numeración secuencial lógica empezando estrictamente desde 1 (1., 2., 3...).
+                default: return "application/octet-stream";
 
-        //            ESTRUCTURA DE SALIDA:
-        //            - Primer Párrafo: Resumen ejecutivo (TEXTO CORRIDO, SIN NÚMEROS AL INICIO).
-        //            - Cuerpo: Lista numerada ordenada (1., 2., 3...).
-        //            - Detalles: Usa viñetas (-) para sub-puntos.
-
-        //            Devuelve SOLO el texto plano reestructurado.
-        //        ";        
-
-        //    var partes = new object[]
-        //    {
-        //        new { text = promptSistema + "\n\nTEXTO FUENTE:\n" + textoLimpio }
-        //    };
-
-        //    var modelos = modeloseleccionado == "gemini"
-        //        ? new[] { "gemini-2.5-flash", "gemini-1.5-pro", "gemini-1.5-flash", "gemini-2.0-flash-exp" }
-        //        : new[] { modeloseleccionado };
-
-        //    return await EjecutarGeminiCore(modelos, partes);
-        //}
-
-
-
-        //// MÉTODO PÚBLICO 2: TRANSCRIBIR AUDIO (Ahora es static)
-        //public static async Task<string> TranscribirAudioATexto(string rutaArchivoaudio)
-        //{
-        //    if (!File.Exists(rutaArchivoaudio)) return "ERROR: EL ARCHIVO NO EXISTE.";
-
-        //    string extension = Path.GetExtension(rutaArchivoaudio).ToLower();
-        //    string mimeType = ObtenerMimeType(extension); 
-        //    if (mimeType == null) return "ERROR: FORMATO NO SOPORTADO";
-
-        //    try
-        //    {
-        //        byte[] audioBytes = File.ReadAllBytes(rutaArchivoaudio);
-        //        string audioBase64 = Convert.ToBase64String(audioBytes);
-
-        //        var partes = new object[]
-        //        {
-        //            new { inlineData = new { mimeType = mimeType, data = audioBase64 } },
-        //            new { text = "Transcribe esto textualmente." }
-        //        };
-
-        //        var modelos = new[] { "gemini-2.5-flash" };
-
-        //        return await EjecutarGeminiCore(modelos, partes);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return "ERROR AL LEER AUDIO: " + ex.Message;
-        //    }
-        //}
-
-        //// NÚCLEO PRIVADO DE CONEXIÓN (STATIC)
-        //// -------------------------------------------------------------------------
-        //private static async Task<string> EjecutarGeminiCore(IEnumerable<string> modelos, object[] partesContenido)
-        //{
-        //    string apiKey = ApiKeyGemini;
-        //    if (string.IsNullOrEmpty(apiKey)) return "ERROR: NO API KEY";
-
-        //    Exception ultimoError = null;
-
-        //    foreach (var modelo in modelos)
-        //    {
-        //        try
-        //        {
-        //            string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apiKey}";
-
-        //            var payload = new
-        //            {
-        //                contents = new[] { new { parts = partesContenido } },
-        //                generationConfig = new
-        //                {
-        //                    temperature = 0.0,
-        //                    maxOutputTokens = 2000
-        //                }
-        //            };
-
-        //            string jsonPayload = JsonConvert.SerializeObject(payload);
-        //            StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-        //            // Usamos el cliente estático global _clientIA
-        //            var response = await client.PostAsync(url, content).ConfigureAwait(false);
-
-        //            if (!response.IsSuccessStatusCode) throw new Exception($"HTTP {response.StatusCode}");
-
-        //            string jsonResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-        //            dynamic data = JsonConvert.DeserializeObject(jsonResponse);
-
-        //            string respuesta = data?.candidates?[0]?.content?.parts?[0]?.text;
-
-        //            if (!string.IsNullOrWhiteSpace(respuesta))
-        //            {
-        //                return LimpiarSalidaGemini(respuesta);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            ultimoError = ex;
-        //        }
-        //    }
-        //    return $"ERROR: {ultimoError?.Message ?? "Fallo en todos los modelos"}";
-        //}
-
-        //private static string LimpiarSalidaGemini(string texto)
-        //{
-        //    if (string.IsNullOrEmpty(texto)) return "";
-        //    texto = texto.Replace("**", "").Trim().ToUpper();
-        //    // ... Puedes agregar aquí el resto de tus regex de limpieza si quieres ...
-        //    return texto;
-        //}
-
-        //private static string ObtenerMimeType(string ext)
-        //{
-        //    switch (ext)
-        //    {
-        //        case ".mp3": return "audio/mp3";
-        //        case ".wav": return "audio/wav";
-        //        case ".ogg": return "audio/ogg";
-        //        case ".opus": return "audio/ogg";
-        //        case ".m4a": return "audio/m4a";
-        //        default: return null;
-        //    }
-        //}
-
-
+            }
+        }
     }
-
 }
+
+
+
