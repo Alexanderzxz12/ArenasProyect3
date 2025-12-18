@@ -415,11 +415,15 @@ namespace ArenasProyect3.Modulos.Resourses
             int esperarPorSaturacion = 10;
             int pausaFinalExito = 2;
 
+            string modelo = "gemini-2.5-flash";
 
-            string modelo = "gemini-2.5-flash-lite";
             string url = $"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={apiKey}";
 
-            string prompt = "Por favor, transcribe este audio textualmente." + "Escribe todo de corrido sin agregar timestamps (00:00) ni comentarios extra.";
+            //string prompt = "Por favor, transcribe este audio textualmente." + "Escribe todo de corrido sin agregar timestamps (00:00) ni comentarios extra.";
+
+            //string prompt = "Por favor, transcribe este audio textualmente." + "Escribe todo de corrido agregando timestamps en cada palabra que se diga (00:00) ni comentarios extra.";
+
+            string prompt = "Transcribe el audio textualmente. Agrega timestamps (00:00) solo al inicio de cada frase o cambio de orador. No repitas texto y no agregues comentarios extra, no escribas el prompt dentro de la transcripción.";
 
             var payload = new
             {
@@ -476,7 +480,11 @@ namespace ArenasProyect3.Modulos.Resourses
 
                     if (data["candidates"] != null && data["candidates"].Count > 0)
                     {
-                        return data["candidates"][0]["content"]["parts"][0]["text"].ToString();
+                        string textotranscrito = data["candidates"][0]["content"]["parts"][0]["text"].ToString();
+
+                        string textoformateado = Regex.Replace(textotranscrito, @"\(\d{2}:\d{2}\)", Environment.NewLine + "$0");
+
+                        return textoformateado;
                     }
 
                     return "No se pudo generar texto (Respuesta vacía).";

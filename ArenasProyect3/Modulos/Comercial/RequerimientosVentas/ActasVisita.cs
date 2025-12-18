@@ -2308,7 +2308,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
                 string rutaarchivo = txtAudio.Text;
 
                 //MB * KB * Bytes
-                long limitebytes = 35 * 1024 * 1024;
+                long limitebytes = 42 * 1024 * 1024;
 
                 FileInfo infoarchivo = new FileInfo(rutaarchivo);
 
@@ -2330,7 +2330,7 @@ namespace ArenasProyect3.Modulos.Comercial.RequerimientosVentas
 
                 string transcribiraudio = await recursos.TranscribirAudioATexto(fileUri, mimetype);
 
-                txtcontenidoAtranscribir.Text = transcribiraudio.ToUpper();
+                txtcontenidoAtranscribir.Text = transcribiraudio.ToUpper().Trim();
             }
 
             catch (Exception ex)
